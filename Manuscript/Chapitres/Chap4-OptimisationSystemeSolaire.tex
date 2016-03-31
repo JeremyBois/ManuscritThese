@@ -1,0 +1,202 @@
+% Chap4-OptimisationSystemeSolaire
+
+\section{Construction d’un système solaire: Un problème d’optimisation multicritère} % (fold)
+\label{sec:construction_d_un_systeme_solaire_un_probleme_d_optimisation}
+-----------------------------------
+% Rappeler ce qui différencie cette approche des autres issues de la littérature:
+%  - Approche couplée système/enveloppe
+%  - Optimisation complète systèmes/contrôle/enveloppe
+
+% Aide à la décision nécessite en set de solutions optimales:
+%  - Génération d’un jeu de solutions optimales
+
+L’optimisation multi-critère est aujourd’hui largement utilisé dans le bâtiment.
+On a par exemple \cite{} qui a développé une méthode d’optimisation pour les
+construction bois en utilisant un meta-modèle de bâtiment. Elle utilise un meta-heuristique
+à population (Particule Swarm optimization) et évalue les besoins en énergie, le confort des
+occupants, la sécurité de l’ouvrage et de l’impact environnemental. \cite{} a quand à lui
+utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
+pour identifier des programmes séquentiels efficaces de réhabilitation énergétique.
+Il a ainsi optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
+dans lequel ces améliorations doivent être réalisées afin d’être le plus optimal
+possible.
+Pour les différentes solutions l’impact environnemental, le confort des occupants en
+période estivale, et le coût ont été évaluées.
+
+\NOTE{Ajouter des sources vers des exemples d’optimisation de bâtiment}
+
+
+On a aussi de nombreux exemples d’optimisation de système énergétique.
+
+\NOTE{Ajouter des sources vers des exemples d’optimisation de système}
+
+On voit donc que l’optimisation est un outil qui a été largement utilisé dans
+le bâtiment comme pour l’amélioration ou l’identification de solutions performantes
+pour les systèmes.
+L’originalité de ce travail provient principalement du couplage entre le bâtiment
+et ses systèmes. La plupart des optimisations de bâtiment évalues les besoins
+du bâtiment et considère donc un système de chauffage et de ventilation idéaux.
+Dans ces travaux on cherche à optimiser la partie système et son algorithme de
+contrôle en même temps que l’enveloppe du bâtiment. On évalue donc plus un besoin
+en énergie mais une consommation qui est fonction de la performance des systèmes
+envisagées. Les travaux se concentre sur l’évaluation de solutions utilisant fortement
+l’énergie solaire comme vecteur énergétique. On cherche donc à couvrir les besoins
+de chauffage, d’eau chaude sanitaire (ECS) et d’électricité.
+Cette approche permettra d’évaluer le potentiel d’autonomie solaire disponible
+pour différentes combinaisons systèmes/enveloppe.
+
+\NOTE{Ajouter du bla bla sur l’originalité et les perspectives de ces travaux}
+
+Enfin ces travaux vise à l’élaboration d’un outil d’aide à la décision. Il existe
+diverses methodes pour faire de l’aide à la décision comme décrites dans le chapitre
+précédent~\autoref{sec:multi_critere}. L’approche choisie est de déterminer un
+ensemble de solutions non-dominées dans un premier temps, puis d’utiliser des
+outils d’aide à la décision pour réduire le nombre de solution. On se trouve donc
+dans une approche par front de Pareto.
+
+\NOTE{Ajouter du bla bla sur le choix de l’ordre entre optimisation et aide à la décision}
+
+
+Dans les sections suivantes nous décrirons dans un premier temps les hypothèses
+retenues pour l’étude. Dans un second temps nous décrirons le processus retenu
+pour l’outil d’aide à la décision.
+
+\NOTE{Reformuler tout ça pour mieux introduire les parties qui suivent}
+
+% section construction_d_un_systeme_solaire_un_probleme_d_optimisation (end)
+
+
+
+
+\section{Cas d’étude: Un système solaire combiné couplée à une maison passive} % (fold)
+\label{sec:cas_d_etude_un_systeme_solaire_combine_couplee_a_une_maison_passive}
+-----------------------------------
+\subsection{Hypothèses retenues} % (fold)
+\label{sub:hypotheses_retenues}
+\subsubsection{Description du site étudié} % (fold)
+\label{ssub:description_du_site_etudie}
+% Description du site étudié:
+%  - Climat
+%  - Données météos
+%  - ...
+Afin d’évaluer et d’optimiser la performance d’un système solaire, il est nécessaire
+que les conditions extérieures ne soit pas fortement favorable.
+Les climats méditerranéens ne sont donc pas des cas d’étude intéressant du fait
+de la forte couverture solaire.
+À l’opposé le climat de Limoges est assez rude et l’ensoleillement durant la période
+hivernale est faible. C’est donc un cas d’étude intéressant.
+
+\NOTE{Ajouter une carte pour localiser la ville}\\
+\NOTE{Ajouter une description plus complète avec DJU, extrèmes, ...}\\
+\NOTE{Refaire complètement ce paragraphe car il fait pitié actuellement}
+% subsubsection description_du_site_etudie (end)
+
+
+\subsubsection{Description de la maison etudiée} % (fold)
+\label{ssub:description_de_la_maison_etudiee}
+% Description de la maison:
+%  - Composition de base
+%  - Surface
+%  - ...
+La maison fait 100\,\si{m^{2}} est est composée de ...
+
+\NOTE{Ajouter du bla bla sur la composition de la maison}
+% subsubsection description_de_la_maison_etudiee (end)
+
+
+\subsubsection{Description des paramètres fixes} % (fold)
+\label{ssub:description_des_parametres_fixes}
+% Descriptions des paramètres fixes:
+%  - L’occupation
+%  - La température de consigne
+%  - Charges internes
+%  - ...
+
+\NOTE{Décrire les différents scénarios avec des illustrations}
+
+% subsubsection description_des_parametres_fixes (end)
+% subsection hypotheses_retenues (end)
+% section cas_d_etude_un_systeme_solaire_combine_couplee_a_une_maison_passive (end)
+
+
+
+\section{Formulation du problème d’optimisation} % (fold)
+\label{sec:formulation_du_probleme_d_optimisation}
+-----------------------------------
+Choix des variables de décisions:
+ - Propre au bâtiment
+ - Propre au système
+ - Propre au contrôle
+
+Définir chaque variables:
+ - Type
+ - Plage de variation
+ - Unité
+ - Description
+
+
+Définition des objectifs:
+ - Couverture solaire chauffage
+ - Couverture solaire ECS
+ - Coût de l’installation
+
+
+Définition des contraintes:
+ - Surface de toiture à partager (Photovoltaïque)
+ - Équilibre entre production/consommation (Primaire)
+
+
+Réduction du nombre de variables par l’étude de sensibilité:
+ - Méthodes locales
+ - Méthodes globales
+ - Screening (Morris)
+
+Nécessiter de limiter le nombre de variables à évaluer pour réduire la cardinalité
+du problème.
+% section formulation_du_probleme_d_optimisation (end)
+
+
+
+\section{Méthode retenue pour le dimensionnement du système} % (fold)
+\label{sec:methode_retenue_pour_le_dimensionnement_du_systeme}
+-----------------------------------
+Faire un comparatif des solutions existantes et des performances de celles-ci.
+Mettre en avant le faible nombre de paramètres nécessaires (bien pour un outil bureau d’étude)
+No-free-lunch-theorem est aussi un argument
+Mettre en exergue le problème de temps de calcul qui sera le facteur influant
+sur le choix de l’approche d’optimisation.
+
+Description du Meta-heuristique choisi:
+
+ - Origine de l’algorithme (inspiration des abeilles):
+Décrire l’origine de cet algorithme. Décrire les recherches qui ont été faites sur
+les abeilles et ensuite les conclusions tirées par l’inventeur pour formuler ce
+meta-heuristique.
+Les sources suivantes non pas encore été lues: \cite{Camazine_1991547}, \cite{Wisdom_of_the_Hive}
+mais traitent du comportement des abeilles.
+
+ - Formulation théorique:
+
+    + Description des différentes étape de résolution de la méthode:
+      Détails pour onlookers, employed, scout, ...
+      Détails pour les paramètres nécessaires au fonctionnement de l’heuristique.
+
+    + Description de la mise à jour de la position d’une source:
+      Dans le cas de variables continues la formulation de base est applicable et sera
+      donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
+      développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
+
+Description de la mise à jour de l’archive choisie:
+
+ - Formulation théorique
+ - Graphiquement
+
+Analyse de sensibilité retenue:
+
+ - Formulation théorique
+ - Graphiquement
+
+Ajouter une vision globale du processus d’optimisation sous forme de graphique
+servant de résumé du chapitre.
+% section methode_retenue_pour_le_dimensionnement_du_systeme (end)
+

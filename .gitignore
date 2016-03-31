@@ -1,0 +1,95 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyc
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Django stuff:
+*.log
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# Musics
+*.wav
+*.ogg
+*.mid
+*.mp3
+
+# Pictures
+*.png
+*.jpg
+*.psd
+*.gif
+
+# Dymola
+*.mat
+*.obj
+*.c
+*.exe
+*.exp
+*.txt
+*.lib
+*.bak-mo
+
+# Latex
+*.out
+*.aux
+*.log
+*.gz
+*.fdb_latexmk
+*.lot
+*.toc
+*.dmp
+*.lof
+*.blg
+*.bbl
+*.bcf
+*.fls
+*.pdf
+*.run.xml
+# Image folder always in the Dropbox
+# Adapt folder path in each machine
+*ImagesFolder.sty
+
+
+# Folders
+Images/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
