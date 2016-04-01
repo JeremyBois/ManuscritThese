@@ -5,7 +5,15 @@
 \usepackage[utf8]{inputenc}                           % .tex Encoding spec
 \usepackage[greek, francais]{babel}                   % language used
 \usepackage{csquotes}                                 % Ensure correct quote text
+
+% Text font pack
+% \usepackage{charter}
+% \usepackage{helvet}
+\usepackage[scaled]{beramono}
+% \usepackage[ttdefault=true]{AnonymousPro}              % only match source code
 \usepackage[T1]{fontenc}                              % .pdf Encoding spec
+
+
 % Template packages
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
 \pagestyle{plain}                                     % Changing page style
@@ -47,7 +55,7 @@
 
 % Color packages
 \usepackage[dvipsnames, svgnames]{xcolor}
-\newcommand{\NOTE}[1]{\colorbox{blue!30}{#1}}        % Add a background to notes
+\newcommand{\NOTE}[1]{\relax\let\next\allowbreak\colorbox{blue!30}{#1}}        % Add a background to notes
 
 % Add support for image and defines image folder
 \usepackage{./Template/ImagesFolder}
@@ -77,10 +85,6 @@
 % (\times, \div) compute multi and div (Used if encoding in utf8)
 \usepackage{amsmath}
 
-% Text font pack
-\usepackage{helvet}
-% \usepackage[ttdefault=true]{AnonymousPro}              % only match source code
-
 % Turn off french bulleted lists (-) ---> Private format : \item[\textbf{--}]
 \frenchbsetup{StandardLists=true}
 
@@ -98,7 +102,8 @@
 \date{}
 
 % Limit included files
-\includeonly{Chapitres/Chap3-UnOutilAideDecision, Chapitres/Chap4-OptimisationSystemeSolaire}
+\includeonly{Chapitres/Chap2-Modelisation, Chapitres/Chap3-UnOutilAideDecision,
+             Chapitres/Chap4-OptimisationSystemeSolaire}
 
 % ------------------------------------------------------------------------------
 % Document start here
@@ -166,3 +171,6 @@
 % Document end here
 % ------------------------------------------------------------------------------
 
+
+% Le surlignage empêche le retour à la ligne
+% Refaire l’organisation entre chapitre 2 et 4 sinon il y aura des doublons.

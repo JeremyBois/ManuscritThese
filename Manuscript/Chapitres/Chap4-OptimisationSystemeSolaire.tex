@@ -2,7 +2,7 @@
 
 \section{Construction d’un système solaire: Un problème d’optimisation multicritère} % (fold)
 \label{sec:construction_d_un_systeme_solaire_un_probleme_d_optimisation}
------------------------------------
+% -----------------------------------
 % Rappeler ce qui différencie cette approche des autres issues de la littérature:
 %  - Approche couplée système/enveloppe
 %  - Optimisation complète systèmes/contrôle/enveloppe
@@ -11,23 +11,22 @@
 %  - Génération d’un jeu de solutions optimales
 
 L’optimisation multi-critère est aujourd’hui largement utilisé dans le bâtiment.
-On a par exemple \cite{} qui a développé une méthode d’optimisation pour les
+On a par exemple \cite{Decker2015} qui a développé une méthode d’optimisation pour les
 construction bois en utilisant un meta-modèle de bâtiment. Elle utilise un meta-heuristique
+
 à population (Particule Swarm optimization) et évalue les besoins en énergie, le confort des
-occupants, la sécurité de l’ouvrage et de l’impact environnemental. \cite{} a quand à lui
-utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
+occupants, la sécurité de l’ouvrage et de l’impact environnemental. \cite{Rivallain2013}
+a quand à lui utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
 pour identifier des programmes séquentiels efficaces de réhabilitation énergétique.
 Il a ainsi optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
 dans lequel ces améliorations doivent être réalisées afin d’être le plus optimal
 possible.
 Pour les différentes solutions l’impact environnemental, le confort des occupants en
 période estivale, et le coût ont été évaluées.
-
 \NOTE{Ajouter des sources vers des exemples d’optimisation de bâtiment}
 
 
 On a aussi de nombreux exemples d’optimisation de système énergétique.
-
 \NOTE{Ajouter des sources vers des exemples d’optimisation de système}
 
 On voit donc que l’optimisation est un outil qui a été largement utilisé dans
@@ -44,7 +43,6 @@ l’énergie solaire comme vecteur énergétique. On cherche donc à couvrir les
 de chauffage, d’eau chaude sanitaire (ECS) et d’électricité.
 Cette approche permettra d’évaluer le potentiel d’autonomie solaire disponible
 pour différentes combinaisons systèmes/enveloppe.
-
 \NOTE{Ajouter du bla bla sur l’originalité et les perspectives de ces travaux}
 
 Enfin ces travaux vise à l’élaboration d’un outil d’aide à la décision. Il existe
@@ -53,7 +51,6 @@ précédent~\autoref{sec:multi_critere}. L’approche choisie est de déterminer
 ensemble de solutions non-dominées dans un premier temps, puis d’utiliser des
 outils d’aide à la décision pour réduire le nombre de solution. On se trouve donc
 dans une approche par front de Pareto.
-
 \NOTE{Ajouter du bla bla sur le choix de l’ordre entre optimisation et aide à la décision}
 
 
@@ -70,7 +67,7 @@ pour l’outil d’aide à la décision.
 
 \section{Cas d’étude: Un système solaire combiné couplée à une maison passive} % (fold)
 \label{sec:cas_d_etude_un_systeme_solaire_combine_couplee_a_une_maison_passive}
------------------------------------
+% -----------------------------------
 \subsection{Hypothèses retenues} % (fold)
 \label{sub:hypotheses_retenues}
 \subsubsection{Description du site étudié} % (fold)
@@ -85,9 +82,8 @@ Les climats méditerranéens ne sont donc pas des cas d’étude intéressant du
 de la forte couverture solaire.
 À l’opposé le climat de Limoges est assez rude et l’ensoleillement durant la période
 hivernale est faible. C’est donc un cas d’étude intéressant.
-
-\NOTE{Ajouter une carte pour localiser la ville}\\
-\NOTE{Ajouter une description plus complète avec DJU, extrèmes, ...}\\
+\NOTE{Ajouter une carte pour localiser la ville}
+\NOTE{Ajouter une description plus complète avec DJU, extrèmes, ...}
 \NOTE{Refaire complètement ce paragraphe car il fait pitié actuellement}
 % subsubsection description_du_site_etudie (end)
 
@@ -99,22 +95,41 @@ hivernale est faible. C’est donc un cas d’étude intéressant.
 %  - Surface
 %  - ...
 La maison fait 100\,\si{m^{2}} est est composée de ...
-
 \NOTE{Ajouter du bla bla sur la composition de la maison}
 % subsubsection description_de_la_maison_etudiee (end)
 
 
-\subsubsection{Description des paramètres fixes} % (fold)
-\label{ssub:description_des_parametres_fixes}
+\subsubsection{Description des scénarios} % (fold)
+\label{ssub:description_des_scenarios}
 % Descriptions des paramètres fixes:
 %  - L’occupation
 %  - La température de consigne
 %  - Charges internes
 %  - ...
+Le cas d’étude utilise les scénarios d’une famille moyenne développés au travers de
+la création d’un outil pour évaluer l’impact des occupants sur les besoins
+énergétiques du bâtiment (\cite{Vorger2014}).
+\NOTE{Décrire rapidement les travaux d’Éric}
 
+Pour cette étude différents scénarios ont été pris en compte de manière fixe:
+\begin{itemize}
+    \item Occupation
+    \item Charges internes (faibles par rapport à un scénario RT)
+    \item Température de consigne
+    \item Débits d’extractions d’air
+\end{itemize}
 \NOTE{Décrire les différents scénarios avec des illustrations}
 
-% subsubsection description_des_parametres_fixes (end)
+D’autres font partis intégrante de l’optimisation. En effet ils influencent le
+fonctionnement du système et donc sa performance. Les scénarios non-fixes sont donc
+les suivants:
+\begin{itemize}
+    \item Occupation
+    \item Profil de puisage ECS
+    \item Température de consigne solaire
+\end{itemize}
+\NOTE{Décrire les scénarios variables}
+% subsubsection description_des_scenarios (end)
 % subsection hypotheses_retenues (end)
 % section cas_d_etude_un_systeme_solaire_combine_couplee_a_une_maison_passive (end)
 
@@ -122,81 +137,187 @@ La maison fait 100\,\si{m^{2}} est est composée de ...
 
 \section{Formulation du problème d’optimisation} % (fold)
 \label{sec:formulation_du_probleme_d_optimisation}
------------------------------------
-Choix des variables de décisions:
- - Propre au bâtiment
- - Propre au système
- - Propre au contrôle
+% -----------------------------------
+\subsection{Définition des objectifs et contraintes} % (fold)
+\label{sub:definition_des_objectifs_et_contraintes}
+\subsubsection{Les objectifs de l’étude} % (fold)
+\label{ssub:les_objectifs_de_l_etude}
+% Définition des objectifs:
+%  - Couverture solaire chauffage
+%  - Couverture solaire ECS
+%  - Coût de l’installation
+%  - Temps de retour sur investissement
+Dans cette étude on considère trois fonctions objectifs. On cherche dans un premier
+temps à évaluer la performance du système solaire. Pour ce faire on évalue sa
+performance sur le chauffage et sur la production d’ECS séparément. Il en a enfin
+été noté dans ~\autoref{sec:approche_monozone} que certaines variations impactent
+de manière différentes la part de chauffage et d’ECS. Enfin on a vu dans
+~\autoref{sub:description_des_systemes} que la production d’ECS reste prioritaire
+sur le chauffage, la modification du profil de puisage aura donc un impact différent
+sur le chauffage et l’ECS.
+\NOTE{Il est aussi nécessaire de mettre en valeur l’impact de l’algorithme sur \\
+      les rendements}
 
-Définir chaque variables:
- - Type
- - Plage de variation
- - Unité
- - Description
+Le dernier objectif qui sera pris en compte est l’\textbf{impact économique}. Il
+est important de ne pas seulement se focaliser sur la performance du système afin
+de filtrer les solutions certes très performantes mais non-réalisable dans les années
+proches. Il est ainsi important de rappeler que ces travaux se focalise sur une
+technologie innovante mais pouvant être implémentées aujourd’hui.
+Ainsi ce facteur bien que discutable du fait de son caractère changeant est indispensable
+dans notre étude pour guider la recherche et donner un ordre de prix pour une solution
+type.
+L’optimisation se portera ainsi sur la maximisation de la couverture solaire pour
+(i) le chauffage, (ii) la production d’eau chaude sanitaire, et la minimisation
+du coût d’installation et du temps de retour sur investissement.
+\NOTE{Décrire les différents objectifs retenues avec plus de bla bla}
+% subsubsection les_objectifs_de_l_etude (end)
 
 
-Définition des objectifs:
- - Couverture solaire chauffage
- - Couverture solaire ECS
- - Coût de l’installation
+\subsubsection{Les contraintes de l’étude} % (fold)
+\label{ssub:les_contraintes_de_l_etude}
+% Définition des contraintes:
+%  - Surface de toiture à partager (Photovoltaïque)
+%  - Équilibre entre production/consommation (Primaire)
+Les objectifs sont maintenant clairement définies mais l’étude comporte plusieurs
+contraintes qui doivent être prises en compte durant le processus d’optimisation.
+La première contrainte est la surface de toiture qui est limitée et doit donc être
+partagée entre les panneaux photovoltaïques et thermiques. Comme nous l’avons définie
+(~\autoref{sub:description_des_systemes}) le cas d’étude étudié comporte des pans
+de toiture avec diverses orientations ce qui complète la première contrainte.
+On a donc une double contrainte, à savoir
+partager la surface de toiture pour chaque orientation entre les différents capteurs.
+Des études ont déjà été réalisées pour évaluer le meilleur ratio entre photovoltaïque
+et thermique (\cite{}) mais traite le problème sans tenir compte des combinaisons
+entre les équipements, la structure, la régulation, ... Ces travaux permettront donc
+d’obtenir plus d’informations sur cet aspect encore aujourd’hui faiblement exploré.
+\NOTE{Retrouver la publication qui parle de ratio thermique/photovoltaïque}\\
 
+La seconde contrainte est la place disponible dans la maison pour accueillir les
+équipements.
+\NOTE{Bla bla bla}\\
 
-Définition des contraintes:
- - Surface de toiture à partager (Photovoltaïque)
- - Équilibre entre production/consommation (Primaire)
-
-
-Réduction du nombre de variables par l’étude de sensibilité:
- - Méthodes locales
- - Méthodes globales
- - Screening (Morris)
-
-Nécessiter de limiter le nombre de variables à évaluer pour réduire la cardinalité
-du problème.
+Enfin la contrainte principale est sur l’équilibre entre production et consommation
+d’énergie primaire. En effet l’approche MEPOS ou encore NZEB définit comme requit
+pour une maison passive d’avoir un équilibre entre production et consommation.
+On a donc ici une contrainte forte au niveau énergétique.
+\NOTE{Bla bla bla}\\
+\NOTE{Décrire les contraintes et la méthode utilisée pour les traiter}
+% subsubsection les_contraintes_de_l_etude (end)
+% subsection definition_des_objectifs_et_contraintes (end)
 % section formulation_du_probleme_d_optimisation (end)
+
+
+\subsection{Choix des variables de décision} % (fold)
+\label{sub:choix_des_variables_de_decision}
+% Choix des variables de décisions:
+%  - Propre au bâtiment
+%  - Propre au système
+%  - Propre au contrôle
+Dans cette partie sera décrit les différentes variables qui ont été sélectionnées
+en amont du **screening**.
+\NOTE{Décrire l’ensemble des variables considérées en amont de l’étude de sensibilité \\
+      classée par groupe, système, contrôle, enveloppe, scénarios}
+% Définir chaque variable:
+%  - Type
+%  - Plage de variation
+%  - Unité
+%  - Description
+\NOTE{Dresser une liste des caractéristiques de chaque critère}\\
+\NOTE{Faire apparaître clairement (graphiquement) l’impact de chaque variables \\
+      sur les différents objectifs peut être pas à mettre ici mais plus dans \\
+      ~\autoref{sub:reduction_de_la_cardinalite_par_screening}}
+% subsection choix_des_variables_de_decision (end)
+
 
 
 
 \section{Méthode retenue pour le dimensionnement du système} % (fold)
 \label{sec:methode_retenue_pour_le_dimensionnement_du_systeme}
------------------------------------
-Faire un comparatif des solutions existantes et des performances de celles-ci.
-Mettre en avant le faible nombre de paramètres nécessaires (bien pour un outil bureau d’étude)
-No-free-lunch-theorem est aussi un argument
-Mettre en exergue le problème de temps de calcul qui sera le facteur influant
-sur le choix de l’approche d’optimisation.
+% -----------------------------------
+Comme nous l’avons vu précédemment, il existe de nombreux meta-heuristiques dans
+la littérature. Cependant il n’existe pas à la connaissance de l’auteur de méthode
+pour sélectionner un algorithme qui sera le plus performant pour un problème donnée.
+Ce principe a été formalisé par \cite{Wolpert_1997067} \NOTE{Pas encore lu ...}. Il démontre qu’il
+n’y a aucunes \emph{à priori} différences entre les algorithmes. Les critères
+permettant de sélectionner un meta-heuristique sont donc à caractère subjectif.
+Un des arguments pertinent qui peut être mis en avant est le nombre de paramètres
+nécessaires pour le réglage de l’algorithme. En effet sur ce point les algorithmes
+sont très différents, certains demandant de nombreux paramètres à configurer
+\NOTE{Citer des exemple de algo génétique, réseaux de neuronnes, ...} contrairement
+à d’autres \NOTE{Citer des exemples de PSO, ABC, ...}. Un autre critère pertinent
+est la robustesse des algorithmes. On entend par \emph{robuste} la capacité des algorithmes
+à converger pour différentes valeurs de paramètre. Par exemple le meta-heuristique PSO
+peut être considérée comme robuste \NOTE{Mettre des sources} car la solution n’est
+pas fortement influencée par le choix de la configuration.
+À l’opposée des approches par réseau de neurones \NOTE{Mettre des sources} sont
+très sensibles, et la variation d’un paramètre peut donner une solution complètement
+différente (pour le meilleur et le pire).
+Afin de pallier à ces problème, des outils existent pour paramétrer ces meta-heuristique.
+C’est particulièrement vrai dans le cas d’optimisation mono-critère mais commence
+aussi à émerger pour des problème plus complexe. \cite{LopezIbanez_2012861}
+présente un framework pour faire de l’optimisation multi-critères en utilisant
+différents algorithmes de colonies de fourmis (MOACO). Il propose aussi un outil
+pour configurer automatiquement les paramètres du meta-heuristique en utilisant un jeu de solution
+d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} (\cite{LopezIbanez_2011000})
+au problème multi-critère pour différentes (\cite{Birattari2010311, Zitzler2003117}). Les auteurs montrent
+alors que les configurations trouvées automatiquement sont meilleures que celles
+de la littérature pour différents type de problèmes. Cette approche permet alors
+de se passer de l’étape de configuration manuelle et pourrait si généralisée/généralisable
+permettre au meta-heuristique très dépendant de ces paramètres d’être plus simples
+à utiliser.
+\NOTE{Vu le nombre de choses à dire, faire le tri entre ce qui va ici et ce qui\\
+      va dans le chapitre précédent. . .}
+Au vu des remarques précédentes le meta-heuristique choisi est basé sur le
+comportement des abeilles, une approche assez récente \NOTE{Mettre citation}.Il est
+robuste \NOTE{Ben ouais citation} et comporte peu de paramètre à tuner. Enfin il
+a montré sa capacité à sortir des minimums locaux \NOTE{citation toujours citation}.
+La partie suivante présente ce générateur de solution de manière plus détaillée.
+\NOTE{Faire un comparatif des solutions existantes convergence/répartition/vitesse\\
+      et mettre en exergue la lenteur de mes simulations ...}
+% subsection methode_retenue_pour_le_dimensionnement_du_systeme (end)
 
-Description du Meta-heuristique choisi:
 
- - Origine de l’algorithme (inspiration des abeilles):
-Décrire l’origine de cet algorithme. Décrire les recherches qui ont été faites sur
-les abeilles et ensuite les conclusions tirées par l’inventeur pour formuler ce
-meta-heuristique.
-Les sources suivantes non pas encore été lues: \cite{Camazine_1991547}, \cite{Wisdom_of_the_Hive}
-mais traitent du comportement des abeilles.
+\subsection{Optimisation par essaim d’abeilles: un meta-heuristique à population} % (fold)
+\label{sub:optimisation_par_essaim_d_abeilles_un_meta_heuristique_a_population}
+% Description du Meta-heuristique choisi:
+%  - Origine de l’algorithme (inspiration des abeilles):
+% Décrire l’origine de cet algorithme. Décrire les recherches qui ont été faites sur
+% les abeilles et ensuite les conclusions tirées par l’inventeur pour formuler ce
+% meta-heuristique.
+% Les sources suivantes non pas encore été lues: \cite{Camazine_1991547}, \cite{Wisdom_of_the_Hive}
+% mais traitent du comportement des abeilles.
+%  - Formulation théorique:
+%     + Description des différentes étape de résolution de la méthode:
+%       Détails pour onlookers, employed, scout, ...
+%       Détails pour les paramètres nécessaires au fonctionnement de l’heuristique.
+%     + Description de la mise à jour de la position d’une source:
+%       Dans le cas de variables continues la formulation de base est applicable et sera
+%       donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
+%       développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
+\NOTE{Inspiration, formalisation, détail des groupes d’abeilles, points forts.}
+% subsection optimisation_par_essaim_d_abeilles_un_meta_heuristique_a_population (end)
 
- - Formulation théorique:
+\subsection{Mise à jour du front de Pareto par epsilon-Dominance} % (fold)
+\label{sub:mise_a_jour_du_front_de_pareto_par_epsilon_dominance}
+% Description de la mise à jour de l’archive choisie:
+%  - Formulation théorique
+%  - Graphiquement
+\NOTE{Décrire la méthode choisie parmis celle détaillées dans le chapitre précédent.}
+% subsection mise_a_jour_du_front_de_pareto_par_epsilon_dominance (end)
 
-    + Description des différentes étape de résolution de la méthode:
-      Détails pour onlookers, employed, scout, ...
-      Détails pour les paramètres nécessaires au fonctionnement de l’heuristique.
 
-    + Description de la mise à jour de la position d’une source:
-      Dans le cas de variables continues la formulation de base est applicable et sera
-      donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
-      développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
+\subsection{Réduction de la cardinalité par screening} % (fold)
+\label{sub:reduction_de_la_cardinalite_par_screening}
+% Analyse de sensibilité retenue:
+%  - Formulation théorique
+%  - Graphiquement
+\NOTE{Présenter l’analyse de sensibilité choisie ...}
+% subsection reduction_de_la_cardinalite_par_screening (end)
 
-Description de la mise à jour de l’archive choisie:
 
- - Formulation théorique
- - Graphiquement
-
-Analyse de sensibilité retenue:
-
- - Formulation théorique
- - Graphiquement
-
-Ajouter une vision globale du processus d’optimisation sous forme de graphique
-servant de résumé du chapitre.
-% section methode_retenue_pour_le_dimensionnement_du_systeme (end)
+\subsection{Processus d’optimisation complet} % (fold)
+\label{sub:processus_d_optimisation_complet}
+\NOTE{Ajouter une vision globale du processus d’optimisation sous forme de graphique \\
+      servant de résumé du chapitre.}
+% subsection processus_d_optimisation_complet (end)
 
