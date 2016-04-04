@@ -1,0 +1,75 @@
+% Algorithmes\exempleAlgo.tex
+
+\begin{algorithm}[ht]
+    % Params
+    \SetKwData{NumBees}{$Bees_{num}$}
+    \SetKwData{NumSites}{$Sites_{num}$}
+    \SetKwData{NumEliteSites}{$EliteSites_{num}$}
+    \SetKwData{InitialPatchSize}{$PatchSize_{init}$}
+    \SetKwData{NumEliteBees}{$EliteBees_{num}$}
+    \SetKwData{NumOtherBees}{$OtherBees_{num}$}
+    \SetKwData{ProblemSize}{$Problem_{size}$}
+
+    % Data
+    \SetKwData{Neighborhood}{Neighborhood}
+    \SetKwData{Population}{Population}
+    \SetKwData{Best}{$Bee_{best}$}
+    \SetKwData{NextGeneration}{NextGeneration}
+    \SetKwData{BestSites}{$Sites_{best}$}
+    \SetKwData{PatchDecreaseFactor}{$PatchDecrease_{factor}$}
+    \SetKwData{Site}{$Site_{i}$}
+    \SetKwData{NumRecruitedBees}{$RecruitedBees_{num}$}
+    \SetKwData{PatchSize}{$Patch_{size}$}
+    \SetKwData{RemainingBees}{$RemainingBees_{num}$}
+
+    % Functions
+    \SetKwFunction{InitializePopulation}{InitializePopulation}
+    \SetKwFunction{StopCondition}{StopCondition}
+    \SetKwFunction{GetBestSolution}{GetBestSolution}
+    \SetKwFunction{SelectBestSites}{SelectBestSites}
+    \SetKwFunction{CreateNeighborhoodBee}{CreateNeighborhoodBee}
+    \SetKwFunction{CreateRandomBee}{CreateRandomBee}
+    \SetKwFunction{EvaluatePopulation}{EvaluatePopulation}
+
+    % I/O
+    \KwIn{\ProblemSize, \NumBees, \NumSites, \NumEliteSites, \InitialPatchSize, \NumEliteBees, \NumOtherBees}
+    \KwOut{\Best}
+
+    % Algorithm
+    % Start
+    \Population $\leftarrow$ \InitializePopulation{\NumBees, \ProblemSize}\;
+
+    \While{$\neg$\StopCondition{}} {
+        \EvaluatePopulation{\Population}\;
+        \Best $\leftarrow$ \GetBestSolution{\Population}\;
+        \NextGeneration $\leftarrow \emptyset$\;
+        \PatchSize $\leftarrow$ ( \InitialPatchSize $\times$ \PatchDecreaseFactor )\;
+        \BestSites $\leftarrow$ \SelectBestSites{\Population, \NumSites}\;
+
+        \ForEach{\Site $\in$ \BestSites} {
+                \NumRecruitedBees $\leftarrow$ $\emptyset$\;
+                \eIf{$i <$ \NumEliteSites} {
+                    \NumRecruitedBees $\leftarrow$ \NumEliteBees\;
+                }{
+                    \NumRecruitedBees $\leftarrow$ \NumOtherBees\;
+                }
+                \Neighborhood $\leftarrow$ $\emptyset$\;
+                \For{$j$ \KwTo \NumRecruitedBees} {
+                    \Neighborhood $\leftarrow$ \CreateNeighborhoodBee{\Site, \PatchSize}\;
+                }
+                \NextGeneration $\leftarrow$ \GetBestSolution{\Neighborhood}\;
+            }
+
+        \RemainingBees $\leftarrow$ (\NumBees - \NumSites)\;
+        \For{$j$ \KwTo \RemainingBees} {
+            \NextGeneration $\leftarrow$ \CreateRandomBee{}\;
+        }
+        \Population $\leftarrow$ \NextGeneration\;
+    }
+    \Return{\Best}\;
+    % End
+
+    % Misc
+    \caption{Pseudocode for the Bees Algorithm.}
+    \label{alg:bees_algorithm}
+\end{algorithm}
