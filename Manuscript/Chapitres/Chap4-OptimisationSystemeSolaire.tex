@@ -11,7 +11,7 @@
 %  - Génération d’un jeu de solutions optimales
 
 L’optimisation multi-critère est aujourd’hui largement utilisé dans le bâtiment.
-On a par exemple \cite{Decker2015} qui a développé une méthode d’optimisation pour les
+On a par exemple \cite{Armand-Decker2015} qui a développé une méthode d’optimisation pour les
 construction bois en utilisant un meta-modèle de bâtiment. Elle utilise un meta-heuristique
 
 à population (Particule Swarm optimization) et évalue les besoins en énergie, le confort des
@@ -237,7 +237,7 @@ en amont du **screening**.
 Comme nous l’avons vu précédemment, il existe de nombreux meta-heuristiques dans
 la littérature. Cependant il n’existe pas à la connaissance de l’auteur de méthode
 pour sélectionner un algorithme qui sera le plus performant pour un problème donnée.
-Ce principe a été formalisé par \cite{Wolpert_1997067} \NOTE{Pas encore lu ...}. Il démontre qu’il
+Ce principe a été formalisé par \cite{Wolpert199767} \NOTE{Pas encore lu ...}. Il démontre qu’il
 n’y a aucunes \emph{à priori} différences entre les algorithmes. Les critères
 permettant de sélectionner un meta-heuristique sont donc à caractère subjectif.
 Un des arguments pertinent qui peut être mis en avant est le nombre de paramètres
@@ -254,12 +254,12 @@ très sensibles, et la variation d’un paramètre peut donner une solution comp
 différente (pour le meilleur et le pire).
 Afin de pallier à ces problème, des outils existent pour paramétrer ces meta-heuristique.
 C’est particulièrement vrai dans le cas d’optimisation mono-critère mais commence
-aussi à émerger pour des problème plus complexe. \cite{LopezIbanez_2012861}
+aussi à émerger pour des problème plus complexe. \cite{Lopez-Ibanez2012861}
 présente un framework pour faire de l’optimisation multi-critères en utilisant
 différents algorithmes de colonies de fourmis (MOACO). Il propose aussi un outil
 pour configurer automatiquement les paramètres du meta-heuristique en utilisant un jeu de solution
-d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} (\cite{LopezIbanez_2011000})
-au problème multi-critère pour différentes (\cite{Birattari2010311, Zitzler2003117}). Les auteurs montrent
+d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} (\cite{Lopez-Ibanez2011})
+au problème multi-critère pour différentes (\cite{Birattari2010311,Zitzler2003117}). Les auteurs montrent
 alors que les configurations trouvées automatiquement sont meilleures que celles
 de la littérature pour différents type de problèmes. Cette approche permet alors
 de se passer de l’étape de configuration manuelle et pourrait si généralisée/généralisable
@@ -284,7 +284,7 @@ La partie suivante présente ce générateur de solution de manière plus détai
 % Décrire l’origine de cet algorithme. Décrire les recherches qui ont été faites sur
 % les abeilles et ensuite les conclusions tirées par l’inventeur pour formuler ce
 % meta-heuristique.
-% Les sources suivantes non pas encore été lues: \cite{Camazine_1991547}, \cite{Wisdom_of_the_Hive}
+% Les sources suivantes non pas encore été lues: \cite{Camazine1991547}, \cite{Seeley1996}
 % mais traitent du comportement des abeilles.
 %  - Formulation théorique:
 %     + Description des différentes étape de résolution de la méthode:
@@ -294,6 +294,90 @@ La partie suivante présente ce générateur de solution de manière plus détai
 %       Dans le cas de variables continues la formulation de base est applicable et sera
 %       donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
 %       développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
+
+L’intelligence artificielle se traduit par la construction de programmes informatiques
+pour la réalisation de tâches demandant une démarche critique, et de l’apprentissage. La
+notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
+dans de nombreux domaines comme le déplacement organisé de groupe important d’animaux (humains, oiseaux, poissons, ...)
+ou encore l’apprentissage et la réflexion (\cite{Hsu199970,Silver2016484}).
+Une des branches de l’intelligence artificielle s’intéresse particulièrement au comportement
+du monde animal. Dans notre cas on s’intéresse à la branche de l’intelligence des
+essaims (Swarm Intelligence). \cite{Bonabeau1999} a définit quatre caractéristiques
+définissant l’organisation dans ces essaims:
+\begin{description}
+    \item \emph{positive feedback}, se traduisant par le renforcement de chemins ou le recrutement d’individus suite à un constat
+          d’un des individus
+    \item \emph{negative feedback}, permettant de stabiliser la structure évitant la saturation du au positive feedback facteur
+    \item \emph{fluctuations ou amplification}, faisant émerger des solutions nouvelles (facteur aléatoire)
+    \item \emph{multiple interactions}, pouvant se traduire par le partage d’informations entre les individus de la population
+\end{description}
+Les algorithmes les plus connues étant inspirées des oiseaux (Particule Swarm Intelligence),
+des fourmis (Ant Colony), ou encore des abeilles qui a été choisi pour les raisons explicité ci-avant.
+Il existe plusieurs approches d’algorithmes d’essaims d’abeilles. Certaines sont basées
+sur le comportement des butineuses faisant intervenir la fameuse danse des abeilles pour partager
+les informations sur la qualité d’une source aux autres abeilles. D’autres s’inspirent de la
+reproduction des reines ou encore du mariage.
+Parmi les plus utilisés on peut citer le mariage entre abeilles introduit par \cite{Abbass20011}, l’algorithme VirtualBee
+créé à l’origine pour l’optimisation de fonction numérique \cite{Yang2005317}, l’algorithme Bee Colony Optimization (BCO)
+\cite{Lucic2001441} pour l’optimisation de problèmes combinatoire. Enfin on peut citer les
+algorithmes BeeHive proposé par \cite{Wedde200483} et les algorithmes Artificial Bee Colony (ABC) introduit par
+\cite{Karaboga2005}. ABC simule le comportement des butineuses pour la recherche de sources prometteuses.
+Comme le montre l’état de l’art de \cite{Karaboga201221} il est l’algorithme le plus
+utilisé pour la résolution de problèmes d’optimisation et peut être appliqué à toute sorte de problème: continues,
+combinatoires, mono et multi-objectifs, contraints, ou encore pour faire du clustering.
+
+À l’origine pensé pour résoudre des problèmes continues il a été adapté pour traiter des problèmes
+d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-critères
+\cite{Akbari201239,Omkar2011489}.
+Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
+neurones (\cite{Karaboga2007}), le génie électrique/mécanique/civil (\cite{Rao2009887}), ou encore le clustering (\cite{Zhang20104761}).
+On retrouve aussi cet algorithme dans l’optimisation de système de chauffage (\cite{Atashkari2011}) ou dans des problèmes avec
+contrainte (\cite{Tsai201480,Karaboga20113021}).
+Malgré son jeune âge la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
+pour mieux répondre aux différents types de problèmes d’optimisations.
+\NOTE{Ajouter un graphique montrant l’attrait pour ces techniques \cite{Karaboga201221}}
+
+
+\NOTE{Décrire l’algorithme}
+Dans la partie qui suit l’approche retenue pour ces travaux, l’algorithme ABC, est détaillée.
+Dans la nature les abeilles communiquent entres elles pour découvrir et récupérer le plus
+de nectar possible. Leur comportement est défini par principalement 3 composants:
+\begin{description}
+    \item La source de nourriture: Elle est caractériser par sa quantité, proximité, et accessibilité.
+    \item Les butineuses (employed foragers): Elles évaluent la qualité des sources explorées et ramènent cette information
+          au reste des abeilles dit réceptrices (unemployed foragers). L’information de chaque source est transmisse
+          grâce à une danse. Celle-ci permettant de donner la qualité et la direction d’une source.
+    \item Les réceptrices (unemployed foragers) se décomposent en deux groupes:
+    \begin{itemize}
+        \item Les spectatrices (onlookers) qui utilisent l’information des butineuses pour sélectionner une source à exploiter.
+              Plus la source est de qualité plus grande est la probabilité qu’une spectatrice la choisisse.
+        \item Les éclaireuses (scouts) qui explorent aléatoirement les environs, à la recherche d’une nouvelle source. On estime à
+        5-10\,\% la quantité de d’éclaireurs dans un essaim \cite{Seeley1996}
+    \end{itemize}
+\end{description}
+
+\NOTE{Description de l’algorithme au niveau global avec des renvois vers chaque phase.
+      Faire un table avec une description des différentes phases et l’algorithme global au-dessus ?}
+L’algorithme ABC peut ainsi se traduire par les différentes étapes suivantes:
+
+\NOTE{Décrire les caractérisation qui ont été évalué (taille population, nombre de cycle, convergence, ...): }
+L’algorithme étant encore jeune de nombreuses améliorations et/ou modifications on été ajouté au cours des dernières années.
+\cite{Aderhold2010283} a évalué l’impact de la taille de la population et propose une nouvelle méthode
+pour mettre à jour la position des sources. Certaines améliorations s’inspirent du PSO en tenant compte d’un facteur
+d’inertie ou de la meilleure solution globale (\cite{Lei2010,Zou20109}).
+D’autres s’inspirent de algorithmes évolutionnaires et génétiques (\cite{Bi2011174,Zhao2010558}). Il a aussi été développé
+de nombreuses approches hybrides dont \cite{Pulikanti2009196} utilisant un heuristique.
+
+\NOTE{Ajouter après lecture de Karaboga 2014}
+Enfin \cite{Karaboga2014227} fait une distinction sur la méthode utilisé pour mettre à jour les butineuses et les spectatrices, montrant
+une amélioration de la convergence de l’algorithme.
+
+
+
+\NOTE{Décrire certaines approches parallèles (elle ne sont pas parallèle dans le sens que je veux faire)}
+
+
+
 \NOTE{Inspiration, formalisation, détail des groupes d’abeilles, points forts.}
 % subsection optimisation_par_essaim_d_abeilles_un_meta_heuristique_a_population (end)
 

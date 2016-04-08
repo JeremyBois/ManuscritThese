@@ -55,14 +55,15 @@
 
 % Easy note support
 \usepackage[most]{tcolorbox}
+% Mes remarques
 \newcommand{\NOTE}[1]{
   \begin{tcolorbox}[
                     enhanced jigsaw,                % needed to really the frame off!
-                    colback=green!50!red!25!white,  % blue background
+                    colback=green!50!red!25!white,  % green background
                     coltext=black,                  % black text
                     fontupper={\normalsize},        % change the font here
                     rounded corners,                % no rounded corners
-                    colframe=red!50!white,          % not really necessary if no frame ...
+                    colframe=red!70!white,          % not really necessary if no frame ...
                     left=1mm, right=1mm,
                     top=1mm, bottom=1mm,
                     boxsep=0mm,                     % Force frame to fit text size
@@ -70,7 +71,22 @@
     #1
   \end{tcolorbox}
 }
-
+% Remarques de Laurent
+\newcommand{\Laurent}[1]{
+  \begin{tcolorbox}[
+                    enhanced jigsaw,                % needed to really the frame off!
+                    colback=red!70!white,           % red background
+                    coltext=black,                  % black text
+                    fontupper={\normalsize},        % change the font here
+                    rounded corners,                % no rounded corners
+                    colframe=green!50!red!25!white, % not really necessary if no frame ...
+                    left=1mm, right=1mm,
+                    top=1mm, bottom=1mm,
+                    boxsep=0mm,                     % Force frame to fit text size
+                    ]
+    #1
+  \end{tcolorbox}
+}
 
 % Add table support
 % \usepackage{booktabs}                             % Easy pro tables
