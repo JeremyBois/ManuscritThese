@@ -1,13 +1,12 @@
 % \documentclass[11pt, draft, twoside]{report}
-\documentclass[12pt, twoside]{report}
+% \documentclass[12pt, twoside]{report}
+\documentclass[12pt, oneside]{report}
 
 % ------------------------------------------------------------------------------
 % Packages import
 % ------------------------------------------------------------------------------
 % Text font pack
-\usepackage[scaled]{beramono}
-\usepackage[ttdefault=true]{AnonymousPro}  % only match source code
-\usepackage[T1]{fontenc}                   % .pdf Encoding spec
+\usepackage[OT1, T1]{fontenc}              % .pdf Encoding spec
 \usepackage[utf8]{inputenc}                % .tex Encoding spec
 \usepackage[greek, french]{babel}          % language used
 \usepackage{csquotes}                      % Ensure correct quote text
@@ -15,6 +14,7 @@
 \usepackage{./Template/graphics_support}   % Image support
 \frenchspacing                             % French typo
 \frenchbsetup{StandardLists=true}          % Turn off french bulleted lists
+\usepackage[scaled]{beramono}
 
 % Template packages
 \usepackage[top=2cm,
@@ -52,41 +52,143 @@
 }
 
 
+% Scientist support
+\usepackage{siunitx}                                % Unit package
+\usepackage{amsmath, amssymb}                       % Allow adding complex equations
+\usepackage{nicefrac}                               % for \nicefrac macro
+% \usepackage{listings}                             % Code block support
+\usepackage[algoruled,
+            linesnumbered,
+            algosection]{algorithm2e}               % Algorithm support
+
+
+% Bibliography support
+\usepackage[style=authoryear,
+            sorting=none,
+            backend=biber]{biblatex}                % Bibliography support
+\addbibresource{Bibliographie/references.bib}       % Where to find bibliography
+
 
 % Easy note support
-\usepackage[most]{tcolorbox}
-% Mes remarques
-\newcommand{\NOTE}[1]{
-  \begin{tcolorbox}[
-                    enhanced jigsaw,                % needed to really the frame off!
-                    colback=green!50!red!25!white,  % green background
-                    coltext=black,                  % black text
-                    fontupper={\normalsize},        % change the font here
-                    rounded corners,                % no rounded corners
-                    colframe=red!70!white,          % not really necessary if no frame ...
-                    left=1mm, right=1mm,
-                    top=1mm, bottom=1mm,
-                    boxsep=0mm,                     % Force frame to fit text size
-                    ]
-    #1
-  \end{tcolorbox}
-}
-% Remarques de Laurent
-\newcommand{\Laurent}[1]{
-  \begin{tcolorbox}[
-                    enhanced jigsaw,                % needed to really the frame off!
-                    colback=red!70!white,           % red background
-                    coltext=black,                  % black text
-                    fontupper={\normalsize},        % change the font here
-                    rounded corners,                % no rounded corners
-                    colframe=green!50!red!25!white, % not really necessary if no frame ...
-                    left=1mm, right=1mm,
-                    top=1mm, bottom=1mm,
-                    boxsep=0mm,                     % Force frame to fit text size
-                    ]
-    #1
-  \end{tcolorbox}
-}
+\usepackage{soul}
+\usepackage{xargs}                         % Use more than one optional parameter in a new commands
+\usepackage[colorinlistoftodos,
+            prependcaption,
+            textsize=tiny]{todonotes}      % Note support
+
+% Redefine \missingfigure command from todonotes packages
+\makeatletter
+\renewcommand{\missingfigure}[2][]{%
+\setkeys{todonotes}{#1}%
+\addcontentsline{tdo}{todo}{%
+    \fcolorbox{\@todonotes@currentbordercolor}%
+    {\@todonotes@currentbackgroundcolor}%
+    {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
+    \ Figure: #2}%
+\par
+\noindent
+\begin{tikzpicture}
+    \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+         (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
+    \draw (2, -1) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
+    \draw[BrickRed, fill=white, rounded corners = 5pt, line width=5pt]
+         (-1.25,0) -- (1.25,0) -- (0,-2) -- cycle;
+    \draw (0, -0.5) node {Figure};
+\end{tikzpicture}\hfill
+}% Ending \missingfigure command
+
+% Define \missingequation command using \missingfigure command
+\newcommand{\missingequation}[2][]{%
+\setkeys{todonotes}{#1}%
+\addcontentsline{tdo}{todo}{%
+    \fcolorbox{\@todonotes@currentbordercolor}%
+    {\@todonotes@currentbackgroundcolor}%
+    {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
+    \ Equation: #2}%
+\par
+\par
+\noindent
+\begin{tikzpicture}
+    \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+         (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
+    \draw (2, -1) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
+    \draw[BrickRed, fill=white, line width=5pt]
+         (0,-0.3) circle (1.1cm);
+    \draw (0, -0.4) node {Equation};
+\end{tikzpicture}\hfill
+}% Ending \missingequation command
+\makeatother
+
+% Note if not sure about that
+\newcommandx{\munsure}[2][1=]{
+    \todo[linecolor=red,
+          backgroundcolor=red!25,
+          bordercolor=red,
+          #1]{#2}}
+\newcommandx{\iunsure}[2][1=]{
+    \todo[linecolor=red,
+          backgroundcolor=red!25,
+          bordercolor=red,
+          inline,
+          size=\small,
+          #1]{#2}}
+
+% Note we highlighted text
+\newcommandx{\mfix}[3][1=]{
+    \texthl{#3}%
+    \todo[linecolor=orange,
+          backgroundcolor=orange!25,
+          bordercolor=orange,
+          #1]{#2}}
+\newcommandx{\ifix}[3][1=]{
+    \texthl{#3}%
+    \todo[linecolor=orange,
+          backgroundcolor=orange!25,
+          bordercolor=orange,
+          inline,
+          size=\small,
+          #1]{#2}}
+
+% Note for part that need change
+\newcommandx{\mtodo}[2][1=]{
+    \todo[linecolor=JungleGreen,
+          backgroundcolor=JungleGreen!25,
+          bordercolor=JungleGreen,
+          #1]{#2}}
+\newcommandx{\itodo}[2][1=]{
+    \todo[linecolor=JungleGreen,
+          backgroundcolor=JungleGreen!25,
+          bordercolor=JungleGreen,
+          inline,
+          size=\small,
+          #1]{#2}}
+
+% Note for missing figure
+\newcommandx{\ftodo}[2][1=]{
+    \missingfigure[figcolor=MidnightBlue!25,
+                   backgroundcolor=MidnightBlue!25,
+                   bordercolor=MidnightBlue,
+                   color=MidnightBlue!25,
+                   figheight=2cm,
+                   size=\normalsize,
+                   #1]{#2}}
+
+
+% Note for missing equation
+\newcommandx{\etodo}[2][1=]{
+    \missingequation[figcolor=CornflowerBlue!25,
+                     backgroundcolor=CornflowerBlue!25,
+                     bordercolor=CornflowerBlue,
+                     color=CornflowerBlue!25,
+                     figheight=2cm,
+                     size=\normalsize,
+                     #1]{#2}}
+\newcommandx{\emtodo}[2][1=]{
+    \todo[linecolor=CornflowerBlue,
+          backgroundcolor=CornflowerBlue!25,
+          bordercolor=CornflowerBlue,
+          #1]{Equation: #2}}
+
 
 % Add table support
 % \usepackage{booktabs}                             % Easy pro tables
@@ -98,18 +200,6 @@
 % New table command to inser table inside a table cell
 % \newcommand{\minitab}[2][Insert text here]{\begin{tabular}{#1}#2\end{tabular}}
 
-
-% Scientist support
-\usepackage{siunitx}                                % Unit package
-\usepackage{amsmath}                                % Allow adding complex equations
-% \usepackage{listings}                             % Code block support
-\usepackage[algoruled,
-            linesnumbered,
-            algosection]{algorithm2e}               % Algorithm support
-\usepackage[style=authoryear,
-            sorting=none,
-            backend=biber]{biblatex}                % Bibliography support
-\addbibresource{Bibliographie/references.bib}       % Where to find bibliography
 % ------------------------------------------------------------------------------
 
 
@@ -151,12 +241,12 @@
 \pagenumbering{arabic}
 
 
-% % Other stuff
-% \chapter*{Résumé}
-% Résumé ici
+% Other stuff
+\chapter*{Résumé}
+Résumé ici
 
-% \chapter*{Remerciements}
-% Merci merci ...
+\chapter*{Remerciements}
+Merci merci ...
 
 
 \tableofcontents
@@ -166,8 +256,12 @@
 \newpage
 
 % Test algorithm implementation
-\include{Algorithmes/exempleAlgo}
+% \include{Algorithmes/exempleAlgo}
 
+
+\newpage
+\listoftodos[Notes]
+\newpage
 
 % Start importing chapters
 \chapter*{Introduction}

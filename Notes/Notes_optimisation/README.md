@@ -361,9 +361,8 @@ Variables discrètes:
     -
 
 Variables continues:
-    -
-
-    -
+    - Débit (solaire et chauffage)
+    - PID (les différentes paramètres intervenants)
 
 
 **Notes:**

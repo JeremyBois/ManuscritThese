@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="methode_envisagee.svg">
+   sodipodi:docname="methode_envisagee.pdf">
   <defs
      id="defs4">
     <marker
@@ -65,15 +65,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="350.40219"
-     inkscape:cy="519.09053"
+     inkscape:cx="461.93419"
+     inkscape:cy="413.9186"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      borderlayer="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1058"
-     inkscape:window-x="1912"
+     inkscape:window-height="1018"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -84,7 +84,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -102,7 +102,7 @@
          height="64.693527"
          width="204.33644"
          id="rect2989-0-8-3"
-         style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+         style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </a>
     <flowRoot
        transform="translate(458.90401,287.34312)"
@@ -132,12 +132,13 @@
          x="917.14288"
          y="-1.9235322"> </tspan></text>
     <g
-       transform="translate(238.57141,915.53573)"
+       transform="matrix(1.318611,0,0,1,195.50846,920.08142)"
        id="g3777-7-6-2-4">
       <g
          id="g4072">
         <a
-           id="a3774-4-1-3-2">
+           id="a3774-4-1-3-2"
+           transform="matrix(1.2062446,0,0,1,-27.695703,0)">
           <rect
              ry="0"
              y="61.622547"
@@ -145,7 +146,7 @@
              height="64.693527"
              width="204.33644"
              id="rect2989-0-8-3-7"
-             style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+             style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
         </a>
         <flowRoot
            transform="translate(-12.857143,-2.8571429)"
@@ -154,12 +155,24 @@
            style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"><flowRegion
              id="flowRegion3768-4-2-1-9"><rect
                id="rect3770-8-7-1-3"
-               width="202.31766"
-               height="41.242939"
+               width="308.80182"
+               height="38.717556"
                x="48.487324"
                y="76.554825" /></flowRegion><flowPara
              id="flowPara3826-3-7-8"
-             style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Anonymous Pro;-inkscape-font-specification:Anonymous Pro Bold">Front Pareto</flowPara></flowRoot>      </g>
+             style="font-size:26.12539673px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Anonymous Pro;-inkscape-font-specification:Anonymous Pro Bold" /></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3141"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+           transform="matrix(0.75837377,0,0,1,-37.95395,-914.52558)"><flowRegion
+             id="flowRegion3143"><rect
+               id="rect3145"
+               width="367.69553"
+               height="37.880718"
+               x="45.456863"
+               y="988.21747" /></flowRegion><flowPara
+             id="flowPara3147"
+             style="font-size:36.00000009000000000px;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold;text-anchor:middle;text-align:center">Front de Pareto final</flowPara></flowRoot>      </g>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -177,16 +190,17 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4259"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cf2828;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
        transform="translate(130.71428,-76.428573)"><flowRegion
          id="flowRegion4261"><rect
            id="rect4263"
-           width="185.02103"
-           height="44.80566"
+           width="207.87817"
+           height="73.37709"
            x="212.85715"
-           y="315.21933" /></flowRegion><flowPara
+           y="315.21933"
+           style="fill:#cf2828;fill-opacity:1" /></flowRegion><flowPara
          id="flowPara4265"
-         style="font-size:20px;text-align:center;text-anchor:middle">Assignation ID unique à chaque solution</flowPara></flowRoot>    <flowRoot
+         style="font-size:22px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold">Assignation ID unique à chaque solution</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4267"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
@@ -200,35 +214,37 @@
          id="flowPara4273" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4275"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cf2828;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face Bold"
        transform="translate(-17.857147,-2.8571429)"><flowRegion
          id="flowRegion4277"><rect
            id="rect4279"
-           width="90.913734"
-           height="51.51778"
+           width="106.62802"
+           height="55.803493"
            x="626.29456"
-           y="270.50412" /></flowRegion><flowPara
+           y="270.50412"
+           style="font-weight:bold;fill:#cf2828;fill-opacity:1;-inkscape-font-specification:Baskerville Old Face Bold" /></flowRegion><flowPara
          id="flowPara4281"
-         style="font-size:20px;text-align:center;text-anchor:middle">Génération requête</flowPara></flowRoot>    <flowRoot
+         style="font-size:22px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold">Génération requête</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4283"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cf2828;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
        transform="translate(-25.71429,-21.428572)"><flowRegion
          id="flowRegion4285"><rect
            id="rect4287"
            width="78.791893"
            height="94.954338"
            x="629.32501"
-           y="537.18439" /></flowRegion><flowPara
+           y="537.18439"
+           style="fill:#cf2828;fill-opacity:1" /></flowRegion><flowPara
          id="flowPara4289"
-         style="font-size:20px;text-align:center;text-anchor:middle">Lecture </flowPara><flowPara
-         style="font-size:20px;text-align:center;text-anchor:middle"
+         style="font-size:22px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold">Lecture </flowPara><flowPara
+         style="font-size:22px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold"
          id="flowPara4291">ou</flowPara><flowPara
-         style="font-size:20px;text-align:center;text-anchor:middle"
+         style="font-size:22px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold"
          id="flowPara4293">Écriture</flowPara></flowRoot>    <g
        id="g8374">
       <rect
-         style="color:#000000;fill:#a0b2b3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.56587458;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#b3aea0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.56587458000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3764"
          width="203.29131"
          height="109.36267"
@@ -247,7 +263,7 @@
              height="64.693527"
              width="204.33644"
              id="rect2989"
-             style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+             style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
         </a>
         <flowRoot
            xml:space="preserve"
@@ -284,10 +300,10 @@
            height="93.944183"
            x="514.16766"
            y="116.96092" /></flowRegion><flowPara
-         id="flowPara3278"></flowPara></flowRoot>    <g
+         id="flowPara3278" /></flowRoot>    <g
        id="g8358">
       <rect
-         style="color:#000000;fill:#a0b2b3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.56587458;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#b3aea0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.56587458000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3764-1-7"
          width="203.29131"
          height="109.36267"
@@ -306,7 +322,7 @@
              height="64.693527"
              width="204.33644"
              id="rect2989-0-8"
-             style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+             style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
         </a>
         <flowRoot
            transform="translate(-12.857143,0)"
@@ -341,7 +357,7 @@
     <g
        id="g8301">
       <rect
-         style="color:#000000;fill:#a0b2b3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.34980774;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#b3aea0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.34980774000000010;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3764-1-2"
          width="202.50737"
          height="150.72159"
@@ -356,7 +372,7 @@
         <g
            id="g4181">
           <rect
-             style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
              id="rect2989-0-5"
              width="204.33644"
              height="64.693527"
@@ -396,7 +412,9 @@
              width="188.39812"
              id="rect4263-5" /></flowRegion><flowPara
            style="font-size:20px;text-align:center;text-anchor:middle"
-           id="flowPara4265-1">Génération de solutions à partir de deux population et d’une recherche guidée par une intelligence arficielle</flowPara></flowRoot>    </g>
+           id="flowPara4265-1">Génération de solutions grâce à l’intelligence artificielle.</flowPara><flowPara
+           style="font-size:20px;text-align:center;text-anchor:middle"
+           id="flowPara3139">Chaque itération génère un front de solutions optimales.</flowPara></flowRoot>    </g>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
@@ -412,7 +430,7 @@
        id="g8320"
        transform="translate(0,0.86839882)">
       <rect
-         style="color:#000000;fill:#a0b2b3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.97620964;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#b3aea0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.97620964000000040;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3764-1-2-7"
          width="202.88097"
          height="130.16554"
@@ -427,7 +445,7 @@
         <g
            id="g4169">
           <rect
-             style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.52073503000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
              id="rect2989-0-5-4"
              width="204.33644"
              height="64.693527"
@@ -439,13 +457,13 @@
              id="flowRoot3766-9-1-2"
              xml:space="preserve"><flowRegion
                id="flowRegion3768-4-7-3"><rect
-                 y="76.554825"
-                 x="48.487324"
-                 height="38.385796"
-                 width="173.74623"
+                 y="74.534523"
+                 x="36.365494"
+                 height="40.911167"
+                 width="194.95944"
                  id="rect3770-8-1-2" /></flowRegion><flowPara
                style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Anonymous Pro;-inkscape-font-specification:Anonymous Pro Bold"
-               id="flowPara3772-8-1-2">ε-MOEA</flowPara><flowPara
+               id="flowPara3772-8-1-2">ε-Dominance</flowPara><flowPara
                style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Anonymous Pro;-inkscape-font-specification:Anonymous Pro Bold"
                id="flowPara3873-1" /><flowPara
                style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Anonymous Pro;-inkscape-font-specification:Anonymous Pro Bold"
@@ -467,7 +485,7 @@
              width="189.06165"
              id="rect4263-5-1" /></flowRegion><flowPara
            style="font-size:20px;text-align:center;text-anchor:middle"
-           id="flowPara4265-1-5">Maintien des deux archives: (i) Population de taille constante (ii) Archive de solutions non-dominées </flowPara></flowRoot>    </g>
+           id="flowPara4265-1-5">Assure la diversité de la recherche en limitant le nombre de solutions par region de l’espace des objectifs </flowPara></flowRoot>    </g>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
@@ -481,7 +499,7 @@
          y="637.69458"> </tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Lstart);marker-mid:none;marker-end:url(#Arrow1Lend)"
-       d="m 262.86905,826.35871 243.7344,0.47413"
+       d="m 262.86905,827.02979 243.7344,10e-6"
        id="path3355"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -521,7 +539,7 @@
        inkscape:connection-end-point="d4" />
     <path
        style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)"
-       d="m 236.48084,891.24416 99.0746,85.91412"
+       d="m 257.34204,892.11255 132.03222,89.59142"
        id="path7175"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -542,28 +560,32 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot8005"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cf2828;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
        transform="translate(-4.1123996,26.697253)"><flowRegion
          id="flowRegion8007"><rect
            id="rect8009"
            width="161.42857"
            height="58.57143"
            x="301.42856"
-           y="745.2193" /></flowRegion><flowPara
+           y="745.2193"
+           style="fill:#cf2828;fill-opacity:1" /></flowRegion><flowPara
          id="flowPara8011"
-         style="font-size:20px;text-align:center;text-anchor:middle">Échange de solutions générées et stockées</flowPara></flowRoot>    <flowRoot
+         style="font-size:20px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1"><flowSpan
+   style="font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold;font-size:22px"
+   id="flowSpan4401">Échange de solutions générées</flowSpan> et stockées</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot8005-2"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
-       transform="translate(-154.75223,184.73599)"><flowRegion
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cf2828;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+       transform="translate(-150.71162,172.61416)"><flowRegion
          id="flowRegion8007-7"><rect
            id="rect8009-6"
            width="161.42857"
            height="58.57143"
            x="301.42856"
-           y="745.2193" /></flowRegion><flowPara
+           y="745.2193"
+           style="fill:#cf2828;fill-opacity:1" /></flowRegion><flowPara
          id="flowPara8011-1"
-         style="font-size:20px;text-align:center;text-anchor:middle">Solutions de l’archive</flowPara></flowRoot>    <flowRoot
+         style="font-size:22px;text-align:center;text-anchor:middle;fill:#cf2828;fill-opacity:1;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold">Solutions de l’archive</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot8040"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"><flowRegion
@@ -576,22 +598,23 @@
          id="flowPara8046" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot8048"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cf2828;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face;opacity:1;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.63800906999999996"
        transform="translate(-117.14286,-106.42857)"><flowRegion
          id="flowRegion8050"><rect
            id="rect8052"
-           width="231.42857"
-           height="71.428566"
+           width="237.14285"
+           height="99.999992"
            x="144.28572"
-           y="386.64789" /></flowRegion><flowPara
+           y="386.64789"
+           style="fill:#cf2828;fill-opacity:1;stroke:none" /></flowRegion><flowPara
          id="flowPara8054"
-         style="font-size:20px">Renvois les paramètres devant être pris en compte pour l’optimisation</flowPara></flowRoot>    <g
+         style="font-size:22px;fill:#cf2828;fill-opacity:1;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke:none;stroke-opacity:0.63800906999999996;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold">Renvois les paramètres devant être pris en compte pour l’optimisation</flowPara></flowRoot>    <g
        id="g8339">
       <path
          inkscape:connector-curvature="0"
          id="rect2989-0-5-4-2"
          d="m 123.28392,422.17994 c 122.71695,0 245.43392,0 368.15088,0 0,21.25453 0,42.50905 0,63.76358 -122.71696,0 -245.43393,0 -368.15088,0 0,-21.25453 0,-42.50905 0,-63.76358 z"
-         style="color:#000000;fill:#a8b3a0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.69168949;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+         style="color:#000000;fill:#b7c9a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.69168948999999990;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
       <flowRoot
          transform="matrix(1.1594374,0,0,1,121.64104,353.81784)"
          style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville Old Face;-inkscape-font-specification:Baskerville Old Face"
@@ -613,7 +636,7 @@
            id="flowPara3826-2-8-6" /><flowPara
            style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Anonymous Pro;-inkscape-font-specification:Anonymous Pro Bold"
            id="flowPara3875-5-5" /></flowRoot>      <rect
-         style="color:#000000;fill:#a0b2b3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.60708427;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#b3aea0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.60708426999999960;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3764-1-2-7-4"
          width="366.34921"
          height="127.07626"
@@ -632,13 +655,13 @@
              width="354.41882"
              id="rect4263-5-1-2" /></flowRegion><flowPara
            id="flowPara8101"
-           style="font-size:20px;text-align:center;text-anchor:middle">Objectifs multiples: </flowPara><flowPara
+           style="font-size:20px;text-align:center;text-anchor:middle;font-weight:bold;-inkscape-font-specification:Baskerville Old Face Bold">Objectifs multiples: </flowPara><flowPara
            id="flowPara8105"
-           style="font-size:20px;text-align:center;text-anchor:middle">(i) Couverture consommation ECS </flowPara><flowPara
+           style="font-size:20px;text-align:center;text-anchor:middle">(i) Maximiser part ECS solaire </flowPara><flowPara
            id="flowPara8107"
-           style="font-size:20px;text-align:center;text-anchor:middle">(ii) Couverture consommations de chauffage </flowPara><flowPara
+           style="font-size:20px;text-align:center;text-anchor:middle">(ii) Maximiser part chauffage solaire</flowPara><flowPara
            id="flowPara8109"
-           style="font-size:20px;text-align:center;text-anchor:middle">(iii) Coût de l’installation solaire </flowPara></flowRoot>    </g>
+           style="font-size:20px;text-align:center;text-anchor:middle">(iii) Minimiser le coût de l’installation solaire </flowPara></flowRoot>    </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)"
        d="m 421.25568,614.15656 128.55674,71.64121"
