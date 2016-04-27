@@ -71,28 +71,87 @@
 \begin{document}
 
 \chapter*{Expression analytique de la distribution de Lévy stable et symétrique}
+La distribution est le plus souvent exprimée sous la forme d’une transformée de Fourier:
+\begin{equation}\label{eq:fourier_levy}
+    \mathcal{F}(k) = \exp(-\alpha|k|^{\beta}) \qquad  0 < \beta \leq 2
+\end{equation}
+Il existe des cas spéciaux où la transformée inverse de Fourier correspond à une distribution
+normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
+
+La forme analytique de la \emph{distribution de Lévy stable et symétrique} (symmetrical Lévy stable distribution with index $\beta$) peut
+s’exprimer sous la forme suivante (\cite{Gutowski2001}):
+\begin{equation}\label{eq:dist_levy}
+    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
+\end{equation}
+
+Démonstration du passage à l’expression analytique avec $\mathcal{F}(k) = \hat{L}(k)$:
+\begin{equation}
+    \begin{split}
+        L(s) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{L}(k)e^{+iks} dk\\
+             &= \frac{1}{\pi}\int_{0}^{+\infty}\hat{L}(k)e^{+iks} dk\\
+             &= \frac{1}{\pi}\int_{0}^{+\infty}\exp(-\alpha k^{\beta})  e^{iks} \ dk, \qquad k \geqslant 0\\
+             &= \frac{1}{\pi}\int_{0}^{+\infty}\exp(-\alpha k^{\beta})  \left[cos(ks) + isin(ks)\right] dk\\
+             &= \frac{1}{\pi}\int_{0}^{+\infty}\exp(-\alpha k^{\beta})  cos(ks) ~dk
+    \end{split}
+\end{equation}
 
 
 \chapter*{Estimation de la variance pour une marche aléatoire}
-
-
+Ce chapitre permet de me rapeller des différences entre les publications de \cite{Yang201445,Gutowski2001}
+L’un utilisant la notion de \emph{variance} et l’autre de de distance moyenne quadratique, \emph{RMS}.
+La démonstration suivante montre donc que les deux valeurs sont similaires et peuvent ainsi être toutes
+les deux utilisées.\\
+Soit $\mathbf{X}$ suivant une loi de distribution:
+\begin{equation}
+    \begin{split}
+        Var(\mathbf{X}) &= \frac{1}{n^{2}} \sum_{i=1}^{n} \sum_{j=1}^{n} \frac{1}{2}(x_{i} - x_{j})^{2}\\
+        Var(\mathbf{X}) &= \frac{1}{n^{2}} \sum_{i=1}^{n} \sum_{j>i}^{n} (x_{i} - x_{j})^{2}\\
+        Var(\mathbf{X}) &= \frac{1}{n^{2}} \sum_{i=1}^{n} (x_{i} - x_{i+1})^{2}\\
+    \end{split}
+\end{equation}
+Posons:  $x_{i} = x_{i} - x_{i+1}$:
+\begin{equation}
+    \begin{split}
+        RMS = \bar{x}_{2} &= \sqrt{\frac{1}{n}} \times \sqrt{\sum_{i=1}^{n}x_{i}^{2}}\\
+                          &= \sqrt{\frac{1}{n}} \times \sqrt{\sum_{i=1}^{n}(x_{i} - x_{i+1})^{2}}\\
+    \end{split}
+\end{equation}
+On a alors:
+\begin{align*}
+    & RMS^{2} = \frac{1}{n} \sum_{i=1}^{n}(x_{i} - x_{i+1})^{2} \\
+    & Var(\mathbf{X}) \sim RMS^{2}\\
+\end{align*}
 
 \chapter*{Autres notes}
 
+L’équation généralisé de la moyenne peux être défini de la manière suivante:
 \begin{equation}\label{eq:moyenne_generale}
-    x_{m} = \left[ \frac{1}{n} \sum_{i=1}^{n}(x_{i}^{m})\right]^{\nicefrac{1}{m}}\\
+    \bar{x}_{m} = \left[ \frac{1}{n} \sum_{i=1}^{n}(x_{i}^{m})\right]^{\nicefrac{1}{m}}\\
 \end{equation}
-\begin{align}\label{eq:parametre_m}
-    & m \to \infty  & \text{maximum of } x_{i}\\
+\begin{align*}\label{eq:parametre_m}
+    & m \to +\infty  & \text{maximum of } x_{i}\\
     & m \to -\infty & \text{minimum of } x_{i}\\
     & m = 2         & \text{moyenne quadratique (RMS)}\\
     & m = 1         & \text{moyenne arithmétique}\\
     & m = -1        & \text{moyenne harmonique}\\
     & m \to 0       & \text{moyenne géométrique}\\
-\end{align}
+\end{align*}
+
+La variance pour un cas discret peut être écrite de la façon suivante:
+\begin{equation}
+    V(\mathbf{X}) = \frac{1}{n} \sum_{i=1}^{n} (x_{i} - \mu)^{2}, \qquad \mu \text{ étant la moyenne}
+\end{equation}
+
+La déviation est alors définie par:
+\begin{equation}
+    \sigma = \sqrt{V(\mathbf{X})}
+\end{equation}
 
 
-
+Remarque sur la fonction $\Gamma$:
+\begin{equation}
+    \Gamma(1+\beta) = \beta \times \Gamma(\beta)
+\end{equation}
 
 
 \end{document}
