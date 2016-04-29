@@ -187,7 +187,7 @@ de toiture avec diverses orientations ce qui complète la première contrainte.
 On a donc une double contrainte, à savoir
 partager la surface de toiture pour chaque orientation entre les différents capteurs.
 Des études ont déjà été réalisées pour évaluer le meilleur ratio entre photovoltaïque
-et thermique (\cite{}) mais traite le problème sans tenir compte des combinaisons
+et thermique\mtodo{Ajouter citation} mais traite le problème sans tenir compte des combinaisons
 entre les équipements, la structure, la régulation, ... Ces travaux permettront donc
 d’obtenir plus d’informations sur cet aspect encore aujourd’hui faiblement exploré.
 \itodo{Retrouver la publication qui parle de ratio thermique/photovoltaïque}
@@ -295,6 +295,10 @@ La partie suivante présente ce générateur de solution de manière plus détai
 %       donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
 %       développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
 
+
+% ------------------------------------------------------------------------------
+\subsubsection{Histoire de l’Artificial Bee Colony ()} % (fold)
+\label{ssub:histoire_de_l_artificial_bee_colony}
 L’intelligence artificielle se traduit par la construction de programmes informatiques
 pour la réalisation de tâches demandant une démarche critique, et de l’apprentissage. La
 notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
@@ -335,10 +339,14 @@ On retrouve aussi cet algorithme dans l’optimisation de système de chauffage 
 contrainte (\cite{Tsai201480,Karaboga20113021}).
 Malgré son jeune âge la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
 pour mieux répondre aux différents types de problèmes d’optimisations.
-\itodo{Ajouter un graphique montrant l’attrait pour ces techniques \cite{Karaboga201221}}
+\itodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
+% subsubsection histoire_de_l_artificial_bee_colony (end)
 
 
-\itodo{Décrire l’algorithme}
+% ------------------------------------------------------------------------------
+\subsubsection{Description de l’algorithme ABC} % (fold)
+\label{ssub:description_de_l_algorithme_abc}
+
 Dans la partie qui suit l’approche retenue pour ces travaux, l’algorithme ABC, est détaillée.
 Dans la nature les abeilles communiquent entres elles pour découvrir et récupérer le plus
 de nectar possible. Leur comportement est défini par principalement 3 composants:
@@ -362,15 +370,15 @@ de nectar possible. Leur comportement est défini par principalement 3 composant
       Faire un table avec une description des différentes phases et l’algorithme global au-dessus ?}
 L’algorithme ABC peut ainsi se traduire par les différentes étapes suivantes:
 
-\itodo{Décrire les caractérisation qui ont été évalué (taille population, nombre de cycle, convergence, ...): }
-L’algorithme étant encore jeune de nombreuses améliorations et/ou modifications on été ajouté au cours des dernières années.
-\cite{Aderhold2010283} a évalué l’impact de la taille de la population et propose une nouvelle méthode
-pour mettre à jour la position des sources. Certaines améliorations s’inspirent du PSO en tenant compte d’un facteur
-d’inertie ou de la meilleure solution globale (\cite{Lei2010,Zou20109}).
-D’autres s’inspirent de algorithmes évolutionnaires et génétiques (\cite{Bi2011174,Zhao2010558}). Il a aussi été développé
-de nombreuses approches hybrides dont \cite{Pulikanti2009196} utilisant un heuristique.
+
+\itodo{Inspiration, formalisation, détail des groupes d’abeilles, points forts.}
+% subsubsection description_de_l_algorithme_abc (end)
 
 
+
+% ------------------------------------------------------------------------------
+\subsubsection{Extensions de l’algorithme original} % (fold)
+\label{ssub:extensions_de_l_algorithme_original}
 \itodo{Ajouter une description des approches pour améliorer ABC à cause des problème d’exploitation (Sharma2012213 p.217 pour blabla)}
 Un meta-heuristique se compose de deux étapes principales, l’exploration et l’exploitation.
 L’exploration est mesurée par la capacité à explorer l’espace de solution à la recherche
@@ -382,10 +390,13 @@ Afin d’éviter de tomber dans un optimum local ou bien de converger très lent
 exploitation est nécessaire.
 Dans notre cas l’algorithme ABC est reconnue pour être bon en exploration mais faible en exploitation (\cite{Karaboga2009108,Zhu20103166,Karaboga201221}).
 En effet le paramètre $limit$ et les éclaireuses permettent d’éviter de se coincer dans un optimum local, cependant
-l’essaim n’utilise pas autant d’informations pour la recherche locale que par exemple le PSO. Il en résulte une converge
-plus lente vers l’optimum. Pour remédier à ce problème de nombreuses approches ont été envisagées.
-\cite{Zhu20103166,} ajoute la prise en compte de
-la meilleure solution actuelle dans l’équation de mise à jour
+l’essaim n’utilise pas autant d’informations pour diriger la recherche locale, se traduisant par une convergence
+plus lente vers l’optimum.
+L’algorithme étant encore jeune de nombreuses améliorations et/ou modifications on été ajouté au cours des dernières années.
+Certaines améliorations s’inspirent du PSO en tenant compte d’un facteur d’inertie ou de
+la meilleure solution globale (\cite{Lei2010,Zou20109}). D’autres s’inspirent de algorithmes évolutionnaires
+et génétiques (\cite{Bi2011174,Zhao2010558}) où encore avec des approches hybrides dont \cite{Pulikanti2009196} qui utilise un heuristique.
+\cite{Zhu20103166} ajoute la prise en compte de la meilleure solution actuelle dans l’équation de mise à jour.
 Il nomme le nouvel algorithme Gbest Artificial Bee Colony (GABC) et la nouvelle formulation
 de la mise à jour\emtodo{Ajoute mise à jour de l’équation} est décrite ci-dessous:
 Pour contrôler l’importance de la meilleure solution actuelle un coefficient est tiré aléatoirement
@@ -413,12 +424,71 @@ Enfin on peut aussi noter l’approche de \cite{Omkar2011489} qui cherche à opt
 Vector Evaluated Artificial Bee Colony (VEABC). Chaque individus d’un
 essaim sont mis à jour en utilisant les individus des autres essaims. C’est cette collaboration qui permet à l’algorithme
 de trouver l’espace de compromis.
+% subsubsection extensions_de_l_algorithme_original (end)
 
 
-\itodo{Décrire les approches pour tacler les problèmes avec contraintes}
+% ------------------------------------------------------------------------------
+\subsubsection{La prise en compte des contraintes} % (fold)
+\label{ssub:la_prise_en_compte_des_contraintes}
+\itodo{Décrire les approches pour tacler les problèmes avec contraintes.
+       Homorphous mapping, assimilation à un autre objectif (Voir Karaboga20113021)}
+De nombreuses améliorations ont été proposées pour améliorer la vitesse de convergence
+vers le ou les optimaux tout en évitant les optimums locaux. Cependant dans certaines
+optimisation les objectifs sont dépendant de contraintes. Dans certaines conditions, il
+est possible de résoudre ce problème de contrainte en bornant les variables à des solutions
+réalisables mais ce n’est pas toujours possible. Lorsque ces contraintes ne peuvent pas être vérifiées
+en amont de l’optimisation, il faut alors en tenir compte durant ce processus à l’aide
+de méthode plus ou moins complexes.
+
+La pénalité est l’approche la plus souvent retenue (\cite{EfrEnMezura-Montes2003}\munsure{Peut être mettre un vrai article ?}).
+Cette approche demande la définition d’un facteur de pénalité qui doit être définie
+avec précision pour pouvoir converger vers le/les solutions optimales qui respectent les
+contraintes. Ce paramètre est dit: (i) statique si la pénalité est la somme pondérée des contraintes,
+(ii) dynamique si le nombre d’itération influence le paramètre, (iii) adaptatif si l’information de la
+recherche aide à sa détermination (\cite{Woldesenbet20073077}).
+Enfin il est important de noter que une solution respectant toutes les contraintes sera toujours préférée
+à une solution violant des contraintes même si l’évaluation des objectifs est meilleur. Il peut ainsi être
+difficile d’atteindre certaines optimums\mtodo{Ceux qui sont entourés de violeur de contraintes} particulièrement
+dans un espace de solutions faisables limitée.
+\cite{Tsai201480} l’utilise avec deux essaims d’abeilles respectant respectivement l’algorithme
+ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
+qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
+utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement (\cite{Deb2000311}) comme
+les approches plus classiques de pénalité.\mtodo{Lire cet article !!}
+\\
+
+\cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
+déterministe permettant d’accepter des solutions infaisables. La probabilité de sélectionner une solution
+seulement sur la performance des fonctions objectifs évolue est un paramètre adaptatif. Si durant une
+certaine intervalle la déviation moyenne évolue faiblement alors la probabilité de pouvoir sélectionner
+une solution uniquement sur optimalité des objectifs augmente et inversement.
 
 
-\itodo{Décrire Lévy Flight et applications}
+\cite{Woldesenbet20073077} propose aussi une méthode ne demandant pas de paramètres supplémentaires
+qui doivent être déterminé empiriquement. La première étape est de normalisé les objectifs et contraintes
+grâce aux minimums et maximums à chaque itération. Ensuite une distance $d_{i}$ est
+évaluée et la distance minimale est conservée. Soit $\tilde{f}$ respectivement la fonction objectif $i$ normalisée
+et la somme des contraintes normalisées alors la distance s’écrit:
+\begin{align}\label{eq:distance_measure}
+    d_{i} = \begin{cases}
+                v(x),                               \qquad & if\  r_{f} = 0\\
+                \sqrt{\tilde{f}(x)^{2} + v(x)^{2}}, \qquad & otherwise\\
+            \end{cases}
+\end{align}
+avec:
+\begin{equation*}
+    r_{f} = \frac{\text{Nbr de solutions faisable dans la population}}{\text{Taille de la population}}
+\end{equation*}
+Afin d’orienter la recherche vers un espace de solution faisables, une pénalité adaptative
+est utilisé, $p_{i}(x)$, donnant un objectif final modifié de la forme: $F_{i}(x) = d_{i}(x) + p_{i}(x)$.
+La population peut ainsi accepter des solutions ne respectant pas les contraintes mais
+dans le cas d’une optimisation multi-objectifs, l’archive elle n’accepte que des solutions faisables.
+% subsubsection la_prise_en_compte_des_contraintes (end)
+
+
+% ------------------------------------------------------------------------------
+\subsubsection{Vol de Lévy} % (fold)
+\label{ssub:vol_de_levy}
 Nous avons vu que le maintien de l’équilibre entre exploitation et exploration est un
 critère fondamental pour la formulation d’un meta-heuristique performant. Cependant il y a un caractère
 inhérent à chaque méta-heuristique dont nous n’avons pas parlé: l’aléatoire.
@@ -427,10 +497,7 @@ Les méta-heuristiques sont alors dits stochastiques; en plus de l’échange d�
 Les méthodes approchées ont en effet été développées afin de répondre aux besoins d’optimisation sur des
 problèmes dont la connaissance à-priori est insuffisante pour formuler le problème sous une forme classique.
 Certains auteurs ont alors cherché à améliorer les algorithmes en modifiant la loi de
-distribution utilisée, s’inspirant encore une fois du monde du vivant.
-
-
-
+distribution utilisée, s’inspirant encore une fois du monde du vivant
 
 Dans un premier temps, il est important de définir le terme de marche aléatoire inhérent
 à beaucoup de méthodes approchées.
@@ -443,14 +510,20 @@ la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche a
               &= S_{N-1} + X_{N}
     \end{split}
 \end{equation}
-Il est alors clair d’après la forme récursive de \eqref{eq:marche_aleatoire} que l’état suivant
-ne dépend que de l’état précédent.
+Il est alors clair d’après la forme récursive de \eqref{eq:marche_aleatoire} que chaque pas
+ne dépend que du pas le précédent; une marche aléatoire est alors un processus de Markov.
 
 
-La longueur du pas peut varier en fonction de la distribution de probabilité à laquelle il est associé.
-Les plus utilisées dans les méta-heuristiques étant les loi uniformes, comme par exemple dans les algorithmes PSO ou ABC.
-Il existe de nombreuses autres distributions, poisson, normale (ou gaussienne), ou encore de Lévy.
-\ftodo{Densité de probabilité des loi existantes}
+La longueur du pas peut varier en fonction de la distribution de probabilité (Fig.~\ref{fig:distribution_pdf})
+à laquelle il est associé. Les plus utilisées dans les méta-heuristiques étant les loi uniformes ou gaussiennes.
+\begin{figure}
+    \begin{center}
+        \includegraphics{LevyFlight/distribution_pdf.pdf}
+    \end{center}
+    \caption{Densité de probabilité des lois de cauchy, uniforme, normale, Lévy stable et symétrique.
+             L’expression analytique est représentée par la courbe noire.
+             \label{fig:distribution_pdf}}
+\end{figure}
 
 C’est cette dernière qui nous intéresse plus particulièrement pour une application en méta-heuristique.
 Il a en effet été observé chez diverses espèces comme les atèles (singes), les albatros,
@@ -471,7 +544,7 @@ La densité de probabilités peut ainsi s’écrire sous la forme analytique sim
 \end{align}
 La distribution est le plus souvent exprimée sous la forme d’une transformée de Fourier:
 \begin{equation}\label{eq:fourier_levy}
-    \mathcal{F}(k) = \exp(-\alpha|k|^{\beta}) \qquad  0 < \beta \leq 2
+    \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
 \end{equation}
 Il existe des cas spéciaux où la transformée inverse de Fourier correspond à une distribution
 normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
@@ -483,7 +556,7 @@ s’exprimer sous la forme suivante (\cite{Gutowski2001}):
 \end{equation}
 L’intégrale \eqref{eq:dist_levy} est souvent approximée à une simple loi de puissance de la forme:
 \begin{equation}\label{eq:power_levy}
-    L(s) \sim |s|^{-1-\beta} \qquad  0 < \beta \leq 2, \quad s \to \infty
+    L(s) \sim \mathopen{|}s\mathclose{|}^{-1-\beta} \qquad  0 < \beta \leq 2, \quad s \to \infty
 \end{equation}
 Pour rappel, une distribution est dite stable\munsure{\url{https://en.wikipedia.org/wiki/Stable_distribution}} si la
 combinaison linéaire de deux échantillons, a la même distribution indépendamment du pas minimum ($\nu$) et du facteur
@@ -491,12 +564,12 @@ d’échelle ($\gamma$).
 Il est important de noter que son espérance et sa variance sont infinies.
 D’après \eqref{eq:dist_levy}, la distribution peut être estimée seulement quand $s$ est grand:
 \begin{equation}
-    L(s) \approx \frac{\Gamma(\beta)sin(\pi\frac{\beta}{2})}{\pi|s|^{1+\beta}}, \qquad s \to \infty
+    L(s) \approx \frac{\mathbf{\Gamma}(\beta)sin(\pi\frac{\beta}{2})}{\pi\mathopen{|}s\mathclose{|}^{1+\beta}}, \qquad s \to \infty
 \end{equation}
-$\Gamma$ représentant la fonction Gamma qui est l’extension analytique de la fonction factoriel pour
-les complexes et les réels ($\Gamma(\beta) = (\beta -1)!, \quad \beta\in \mathbb{N}$) et est définie par:
+$\mathbf{\Gamma}$ représentant la fonction Gamma qui est l’extension analytique de la fonction factoriel pour
+les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!, \quad \beta\in \mathbb{N}$) et est définie par:
 \begin{equation}
-    \Gamma(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
+    \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
 \end{equation}
 
 L’algorithme de Mantegna \cite{Mantegna19944677} est souvent utilisé pour générer aléatoirement des nombres
@@ -504,100 +577,101 @@ dont la densité de probabilité est proche de celle d’une distribution de Lé
 être positif ou négatif).
 La longueur du pas est alors calculé à l’aide de deux distributions normales de la manière suivante:
 \begin{equation}\label{eq:step_len}
-    s = \frac{u}{|v|^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
+    s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
 \end{equation}
 avec:
 \begin{equation}\label{eq:sigmas}
-    \sigma_{u} = \left[ \frac{\Gamma(1+\beta)\sin(\pi\frac{\beta}{2})}%
-                             {\Gamma \left[\frac{(1+\beta)}{2}\beta 2^{\frac{(\beta-1)}{2}}\right]}\right]^{\nicefrac{1}{\beta}},%
+    \sigma_{u} = \left[ \frac{\mathbf{\Gamma}(1+\beta)\sin(\pi\frac{\beta}{2})}%
+                             {\mathbf{\Gamma} \left[\frac{(1+\beta)}{2}\beta 2^{\frac{(\beta-1)}{2}}\right]}\right]^{\nicefrac{1}{\beta}},%
     \qquad \sigma_{v} = 1
 \end{equation}
 
 Équations~\eqref{eq:step_len}, \eqref{eq:sigmas} il est ainsi possible de définir une longueur de pas aléatoirement et qui
 grâce au caractère symétrique de la distribution peut être positif ou négatif.
-Comme le montre la Figure~\ref{fig:}
 Fig.~\ref{fig:levy_length} permet de mettre en évidence ce comportement avec 100 tirages aléatoires
-obéissant à une distribution de Lévy et Fig.~\ref{fig:levy_flight} montre le chemin parcouru durant
-une séquence de Lévy flight. Il est intéressant de noter que le comportement de la
-Lévy flight peut être assimilé à une intensification (forte probabilité de générer un petit saut)
+obéissant à une distribution de Lévy, et, Fig.~\ref{fig:levy_flight} montre le chemin parcouru durant
+une séquence de vol de Lévy. Il est intéressant de noter que le comportement de la
+vol de Lévy peut être assimilé à une intensification (forte probabilité de générer un petit saut)
 couplé à une exploration (faible probabilité de générer un saut important).
 
-De plus la variance d’une Lévy flight~\eqref{eq:variance_brownien_levy} augmente plus rapidement que celle d’un mouvement
+De plus la variance d’un vol de Lévy~\eqref{eq:variance_brownien_levy} augmente plus rapidement que celle d’un mouvement
 brownien\footnote{marche aléatoire obéissent à une distribution normale/gaussienne}
 permettant aux longueurs des marches aléatoires d’être plus importante (Fig.~\ref{fig:levy_vs_gaussian}).
 Cette dernière caractéristique permet d’augmenter l’exploration mais aussi d’éviter
-de se coincer dans un optimum local contrairement à un mouvement brownien.
+de se coincer dans un optimum local contrairement à un mouvement brownien. En effet
+bien que statistiquement similaires, la densité de probabilité dans l’espace du mouvement brownien
+est fortement concentré localement contrairement à l’effet d’île caractéristique du vol de Lévy.
+C’est une caractéristique aussi partagée par les marche aléatoire dite sous-diffuse \eqref{eq:distance_moy}.
 
-La distance moyenne \eqref{eq:distance_moy} d’une marche aléatoire est fonction du temps $t$ et la diffusion est
-dite améliorée pour $v > 1$ (\cite{Gutowski2001}):
+La distance moyenne \eqref{eq:distance_moy} d’une marche aléatoire est fonction du temps $t$. La diffusion est
+dite \emph{améliorée} pour $v > 1$ (\cite{Gutowski2001}):
 \begin{equation}\label{eq:distance_moy}
-    \langle R^{2}(t) \rangle = Dt^{v}, \qquad \text{D étant la constante de diffusion}
+    \langle RMS^{2}(t) \rangle = Dt^{v}, \qquad \text{D étant la constante de diffusion}\\\\
 \end{equation}
+La variance ($Var(\mathbf{X}) \sim \langle RMS^{2}\rangle$) pour un mouvement Brownien
+et un vol de Lévy est définie par:
 \begin{align}\label{eq:variance_brownien_levy}
-    &\text{Mouvement brownien:} &\langle R^{2}(t) \rangle \sim \ &t\\
-    &\text{Levy flight:} &\langle R^{2}(t) \rangle \sim \ &t^{3-\beta}, \qquad 0 < \beta \leq 2
+    \begin{split}
+        \text{Mouvement brownien }  \quad \Rightarrow \quad & Var(\mathbf{X}) \sim \ t\\
+        \text{Vol de Lévy }         \quad \Rightarrow \quad & Var(\mathbf{X}) \sim \ t^{3-\beta}, \qquad 0 < \beta \leq 2
+    \end{split}
 \end{align}
 
 \begin{figure}
-\begin{center}
-\includegraphics{LevyFlight/levy_length.pdf}
-\end{center}
-\caption{Distribution de 100 tirages aléatoire obéissant à une distribution de Lévy.
-         \label{fig:levy_length}}
+    \begin{center}
+        \includegraphics{LevyFlight/levy_length.pdf}
+    \end{center}
+    \caption{Distribution de 100 tirages aléatoire obéissant à une distribution de Lévy.
+             \label{fig:levy_length}}
 \end{figure}
 
 \begin{figure}
-\begin{center}
-\includegraphics{LevyFlight/levy_flight.pdf}
-\end{center}
-\caption{Multiple Lévy flight de 200 pas.
-         \label{fig:levy_flight}}
+    \begin{center}
+        \includegraphics{LevyFlight/levy_flight.pdf}
+    \end{center}
+    \caption{Multiples vols de Lévy de 200 pas.
+             \label{fig:levy_flight}}
 \end{figure}
 
 \begin{figure}
-\begin{center}
-\includegraphics{LevyFlight/levy_vs_gaussian.pdf}
-\end{center}
-\caption{Mouvement browien (en vert) et Lévy flight (en bleu) pour 200 pas aléatoires.
-         \label{fig:levy_vs_gaussian}}
+    \begin{center}
+        \includegraphics{LevyFlight/levy_vs_gaussian.pdf}
+    \end{center}
+    \caption{Mouvement browien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
+             \label{fig:levy_vs_gaussian}}
 \end{figure}
 
-
-\itodo{Ajoute des applications aux problèmes multi-critères}
-Dans \cite{Sharma2012213}, Lévy flight est employé pour améliorer l’algorithme ABC
+\itodo{Ajouter des applications aux problèmes multi-critères}
+Dans \cite{Sharma2012213}, vol de Lévy est employé pour améliorer l’algorithme ABC
 pour faire une recherche locale autour de la meilleure solution actuelle. L’auteur
 utilise un multiplicateur pour réduire la longueur des pas généré d’après \eqref{eq:step_len}.
 De plus la meilleure solution actuelle est utilisée pour guider la recherche aléatoire et
-peu être assimilé à un apprentissage.
+peu être assimilé à un apprentissage. Le vol de Lévy a aussi été utilisé dans un algorithme
+d’optimisation approchée, le Cuckko search. Cet algorithme est inspiré du comportement
+parasitaire de la reproduction des cuculidés et a était adapté aux problèmes
+multi-critères (\cite{Yang20131616}).
+% subsubsection vol_de_lévy (end)
 
 
+% ------------------------------------------------------------------------------
+\subsubsection{Apprentissage par opposition} % (fold)
+\label{ssub:apprentissage_par_opposition}
 
-
-\ftodo{Le caractère spécifique de cette distribution peut être observé ...}
-La distribution traduit le schéma d’une recherche locale suivi par une forte variation. L’utilisation
-de cette distribution permet ainsi de renforcer la recherche locale sans prendre le risque de se
-coincer dans un optimum local.
-
-
-
-
-
-
-
-
-
-\itodo{Décrire apprentissage par opposition et applications.\\
-       Ajouter des exemple en multi-objectif pour montrer que c’est applicable}
 La recherche par vecteur opposé (opposition-based learning) a été implémenté pour la première fois
-en optimisation par \cite{}. Il propose une méthode permettant de diversifier la
-population sans connaissances à-priori et ne demandant aucuns paramètres à déterminer.
-La méthode est la suivante:
-\etodo{Ajouter la formule traduisant le principe de la méthode}
+en optimisation par \cite{Tizhoosh2005695,Rahnamayan2008155}. Il propose une méthode permettant de diversifier la
+population sans connaissances à-priori.
+Admettons un point de dimension $D$, $P(x_{1}, x_{2}, ..., x_{D})$ avec
+$x_{1}, x_{2}, ..., x_{D}$ des valeurs bornées. Si $x_{i} \in [a_{i}, b_{i}]$ pour
+$i = 1, 2, ..., D$ alors le point opposée est $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$ suivant:
+\begin{equation}
+    \check{x_{i}} = a_{i} + b_{i} - x_{i}
+\end{equation}
 
-
-Il est important de noter que les solutions sont comparées deux à deux par tournoi binaire.
-Il est ainsi sélectionnée ou la solution initiale ou son opposée.
-\ftodo{Illustration du tournoi binaire graphiquement !}
+Il est important de noter que les solutions sont comparées deux à deux par tournoi binaire, où
+seule la meilleure solution entre l’initiale et son opposée est conservée. Admettons une solution
+candidate $P(x_{1}, x_{2}, ..., x_{D})$ et son opposée $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$,
+alors si $f(\check{P}) \geq f(P)$ alors la solution $P$ est remplacé par $\check{P}$.
+\ftodo{Illustration du tournoi binaire graphiquement}
 
 Cette méthode a ensuite été améliorée (\cite{Rahnamayan2008155}) puis adaptée à
 l’algorithme Differential evolution (DE). La méthode reprend la définition de base
@@ -614,17 +688,17 @@ La méthode a ensuite été testée sur un jeu de 15 fonctions de références (
 et 8 multi-modales). La nouvelle approche permet alors de trouver de meilleurs
 résultats sur 14 des 15 fonctions. Il est aussi montré la supériorité de la
 sélection par opposition par rapport au caractère aléatoire (\cite{Rahnamayan2008155,Rahnamayan2008906})
-\itodo{Ajouter:Les fonctions utilisées ---- Les résultats obtenues}
-
-Ensuite un il est aussi mis en avant que la probabilité de générer une population opposée
-doit décroitre au fur et à mesure des itérations. En effet la méthode permet de
+Il est aussi mis en avant que la probabilité de générer une population opposée
+doit décroitre au fur et à mesure des itérations. En effet, la méthode permet de
 réduire l’espace de recherche mais ralenti la convergence une fois cette intervalle
-faible. Finalement il est proposé d’utiliser une intervalle pour le coefficient si le problème
+faible. Finalement il est proposé une intervalle de performance pour le coefficient si le problème
 ne permet pas de déterminer un nombre fixe d’itération à-priori: $[0.1 < J_r < 0.4]$.
 
 Cette approche a été appliquée avec succès dans le cas de l’algorithme ABC en couplage
 avec un opérateur de mutation (\cite{Bi2011174}) ou encore en coopération avec une marche
 aléatoire (\cite{Sharma2012213}).
+Il a aussi été appliqué pour résoudre des problèmes plus complexe à objectifs multiples,
+en combinaison avec un algorithme évolutionnaire (\cite{Ma201448}), ou encore avec le PSO (\cite{Gao2013114}).
 
 Notre problème ne nous permettant pas d’avoir de connaissance à-priori, il nous est
 impossible d’estimer le nombre d’itération nécessaires et l’utilisation d’un coefficient $J_r$
@@ -632,19 +706,15 @@ dynamique difficile.
 Au vu des recommandations et des applications déjà faites pour des problèmes mono-critères,
 ce coefficient sera fixé à 0.1 dans un premier temps.
 \ftodo{Ajouter une description graphique de l’approche par vecteur opposé}
-
-
-
-
-\iunsure{Décrire approche par chaos et applications}
+% subsubsection apprentissage_par_opposition (end)
 
 
 \itodo{Décrire certaines approches parallèles (elle ne sont pas parallèle dans le sens que je veux faire)}
-
-
-
-\itodo{Inspiration, formalisation, détail des groupes d’abeilles, points forts.}
 % subsection optimisation_par_essaim_d_abeilles_un_meta_heuristique_a_population (end)
+
+
+
+
 
 \subsection{Mise à jour du front de Pareto par epsilon-Dominance} % (fold)
 \label{sub:mise_a_jour_du_front_de_pareto_par_epsilon_dominance}
@@ -652,6 +722,28 @@ ce coefficient sera fixé à 0.1 dans un premier temps.
 %  - Formulation théorique
 %  - Graphiquement
 \itodo{Décrire la méthode choisie parmis celle détaillées dans le chapitre précédent.}
+L’une des principales difficultés lors d’une optimisation multi-objectif est de
+déterminer quelles solutions conservées sachant que autant objectif n’est prioritaire.
+Si tel était le cas, le problème pourrait être formuler sous la forme d’une optimisation
+à objectif unique en ajoutant des poids aux divers objectifs par exemple.
+La conservation de l’ensemble des solutions n’est pas une solution convenable. Des
+solutions trop similaires vont parasiter l’efficacité de la recherche et ralentir la
+convergence à cause d’un nombre conséquent de solution "clone".
+Ainsi de nombreuses solution on cherché à définir des solution permettant de trier
+le front de Pareto à chaque itérations pour converger efficacement vers le vrai front
+de Pareto tout en assurant une bonne répartition sur celui-ci (\cite{Laumanns2002263}). Une bonne méthode de
+trie permet alors d’améliorer la convergence et la diversité du front de Pareto optimal.
+\\
+
+\itodo{Introduire les principales méthodes\\
+       Décrire histoire des méthodes de trie \\
+       Decrire la méthode d’epsilon-dominance
+       }
+
+La méthode la plus connue est celle introduite dans l’algorithme NSGA-II qui 
+
+
+
 % subsection mise_a_jour_du_front_de_pareto_par_epsilon_dominance (end)
 
 

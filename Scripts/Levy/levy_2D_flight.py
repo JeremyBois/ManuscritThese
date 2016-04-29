@@ -2,6 +2,8 @@ from math import sin, cos, gamma, pi
 from random import gauss, uniform
 
 import matplotlib.pyplot as plt
+import scipy.stats as law
+import numpy as np
 
 
 def levy_step_length(beta):
@@ -122,8 +124,7 @@ def draw_random_levy(beta, n=100):
 
 
 def test_levy_flight(nrows, ncols, beta_init, n_steps_init):
-    pass
-    fig, ax = plt.subplots(nrows, ncols)
+    fig, ax = plt.subplots(nrows, ncols, figsize=(24, 14), dpi=80, facecolor='w')
     for col in range(ncols):
         n_steps_iter = n_steps_init
         beta_init += 0.25
@@ -141,6 +142,51 @@ def test_levy_flight(nrows, ncols, beta_init, n_steps_init):
     fig.tight_layout()
 
 
+def draw_pdf():
+    """Draw the probability density function (PDF) for four distribution.
+        - Gaussian or normal
+        - Uniform
+        - Cauchy
+        - Lévy stable and symetrical(Only a set of random number due to no analytique expression)
+    """
+    fig, ax = plt.subplots(2, 2, figsize=(24, 14), dpi=80, facecolor='w')
+    # Cauchy
+    cauchy = law.cauchy()
+    x = np.linspace(cauchy.ppf(0.01), cauchy.ppf(0.99), 10000)
+    ax[0][0].hist(cauchy.rvs(size=10000), bins=100000, normed=True, histtype='stepfilled', alpha=0.8,
+                  label='Cauchy', color="#859900")
+    ax[0][0].plot(x, cauchy.pdf(x), 'k-', lw=4)
+    ax[0][0].set_xlim([-5, 5])
+    # Normal
+    normal = law.norm()
+    x = np.linspace(normal.ppf(0.0000001), normal.ppf(0.999999), 10000)
+    ax[1][0].hist(normal.rvs(size=10000), bins=50, normed=True, histtype='stepfilled', alpha=0.8,
+                  label='Gaussienne', color="#268bd2")
+    ax[1][0].plot(x, normal.pdf(x), 'k-', lw=4)
+    ax[1][0].set_xlim([-4, 4])
+    fig.tight_layout()
+    # Uniform
+    uniform = law.uniform()
+    x = np.linspace(uniform.ppf(0.0000001), uniform.ppf(0.999999), 10000)
+    ax[0][1].hist(uniform.rvs(size=100000), bins=20, normed=True, histtype='stepfilled', alpha=0.8,
+                  label='Uniforme', color="#dc322f")
+    ax[0][1].plot(x, uniform.pdf(x), 'k-', lw=4)
+    ax[0][1].set_xlim([0, 1])
+    fig.tight_layout()
+    # Lévy
+    ax[1][1].hist(tuple((levy_step_length(beta=1.5) for el in range(1000000))), bins=100000,
+                  normed=True, histtype='stepfilled', alpha=0.8, label='Lévy stable et symétrique', color="#cb4b16")
+    ax[1][1].set_xlim([-15, 15])
+    # Add legend
+    ax[1][1].legend(loc='best', frameon=False)
+    ax[0][1].legend(loc='best', frameon=False)
+    ax[1][0].legend(loc='best', frameon=False)
+    ax[0][0].legend(loc='best', frameon=False)
+    fig.subplots_adjust(hspace=0.15, wspace=0.15,
+                        top=0.92, bottom=0.08,
+                        left=0.07, right=0.96)
+
+
 if __name__ == '__main__':
     # draw_levy_flight(nrows=3, ncols=3, beta=1.5, n_steps=200)
     # draw_browian_motion(nrows=3, ncols=3, sigma=1, n_steps=200)
@@ -148,7 +194,7 @@ if __name__ == '__main__':
     # draw_random_walks(n_steps=1000, beta=1.5, sigma=1)
     # draw_random_levy(beta=1.5, n=100)
 
-    draw_uniform_motion(nrows=2, ncols=2, sigma=1, n_steps=20000)
-    # draw_levy_flight(nrows=2, ncols=2, beta=1.5, n_steps=100000)
-    # draw_uniform_motion(nrows=3, ncols=3, sigma=1, n_steps=2000)
+    draw_pdf()
+
+    # Setup
     plt.show()

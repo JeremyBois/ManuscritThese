@@ -15,6 +15,10 @@
 \frenchbsetup{StandardLists=true}          % Turn off french bulleted lists
 \usepackage[scaled]{beramono}
 
+% Add support for annotations with transparent color
+\usepackage{pdfcomment}
+\definecolor{transparent}{cmyk}{1, 1, 1, 1}
+
 % Template packages
 \usepackage[top=2cm,
             bottom=2cm,
@@ -23,6 +27,7 @@
             a4paper]{geometry}             % Page layout support
 \usepackage{bookmark}                      % load hyperref internaly
 \usepackage{appendix}                      % Appendix package to add sub-annex | annex to main table
+
 \hypersetup{
     pdfkeywords={Passive,
                  Optimisation,
@@ -59,21 +64,31 @@
 \usepackage[algoruled,
             linesnumbered,
             algosection]{algorithm2e}               % Algorithm support
-
+\usepackage{letltxmacro}                            % Support for optional argument in redefinition
+% Change the ways square root appears
+\makeatletter
+    \let\oldr@@t\r@@t
+    \def\r@@t#1#2{%
+    \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+    \advance\dimen0-0.2\ht0
+    \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+    {\box0\lower0.4pt\box2}}
+    \LetLtxMacro{\oldsqrt}{\sqrt}
+    \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+\makeatother
 
 % Bibliography support
 \usepackage[style=authoryear,
             sorting=none,
             backend=biber]{biblatex}                % Bibliography support
-\addbibresource{Bibliographie/references.bib}       % Where to find bibliography
-
+\addbibresource{../Bibliographie/references.bib}    % Where to find bibliography
 
 \begin{document}
 
 \chapter*{Expression analytique de la distribution de Lévy stable et symétrique}
 La distribution est le plus souvent exprimée sous la forme d’une transformée de Fourier:
 \begin{equation}\label{eq:fourier_levy}
-    \mathcal{F}(k) = \exp(-\alpha|k|^{\beta}) \qquad  0 < \beta \leq 2
+    \mathcal{F}(k) = \exp\left(-\alpha|k|^{\beta}\right), \qquad  0 < \beta \leq 2
 \end{equation}
 Il existe des cas spéciaux où la transformée inverse de Fourier correspond à une distribution
 normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
@@ -81,27 +96,28 @@ normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
 La forme analytique de la \emph{distribution de Lévy stable et symétrique} (symmetrical Lévy stable distribution with index $\beta$) peut
 s’exprimer sous la forme suivante (\cite{Gutowski2001}):
 \begin{equation}\label{eq:dist_levy}
-    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
+    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp\left(-\alpha k^{\beta}\right) dk, \qquad  0 < \beta \leq 2, \quad \alpha > 0
 \end{equation}
 
 Démonstration du passage à l’expression analytique avec $\mathcal{F}(k) = \hat{L}(k)$:
 \begin{equation}
     \begin{split}
-        L(s) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{L}(k)e^{+iks} dk\\
-             &= \frac{1}{\pi}\int_{0}^{+\infty}\hat{L}(k)e^{+iks} dk\\
-             &= \frac{1}{\pi}\int_{0}^{+\infty}\exp(-\alpha k^{\beta})  e^{iks} \ dk, \qquad k \geqslant 0\\
-             &= \frac{1}{\pi}\int_{0}^{+\infty}\exp(-\alpha k^{\beta})  \left[cos(ks) + isin(ks)\right] dk\\
-             &= \frac{1}{\pi}\int_{0}^{+\infty}\exp(-\alpha k^{\beta})  cos(ks) ~dk
+        L(s) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{L}(k)e^{+iks} ~dk\\
+             &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{L}(k) [cos(ks) + isin(ks)] ~dk\\
+             &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}\exp\left(-\alpha k^{\beta}\right)  [cos(ks) + isin(ks)] ~dk\\
+             &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}\exp\left(-\alpha k^{\beta}\right)  cos(ks) ~dk,
+                \qquad \pdfmarkupcomment[mathstyle=\displaystyle, color=transparent] {\text{(Partie complexe = 0)}}%
+                {On conserve alors uniquement la partie entière nous permettant de faire la simplification ci-après}\\
+             &= \frac{1}{\pi}\int_{0}^{+\infty} \exp(-\alpha k^{\beta})  cos(ks) ~dk
     \end{split}
 \end{equation}
 
 
 \chapter*{Estimation de la variance pour une marche aléatoire}
-Ce chapitre permet de me rapeller des différences entre les publications de \cite{Yang201445,Gutowski2001}
-L’un utilisant la notion de \emph{variance} et l’autre de de distance moyenne quadratique, \emph{RMS}.
-La démonstration suivante montre donc que les deux valeurs sont similaires et peuvent ainsi être toutes
-les deux utilisées.\\
-Soit $\mathbf{X}$ suivant une loi de distribution:
+Ce chapitre montre que les notations de \cite{Yang201445} et \cite{Gutowski2001}
+sont toutes les deux valables. L’un utilisant la notion de \emph{variance} et
+l’autre de distance moyenne quadratique, \emph{RMS}.\\
+Soit $\mathbf{X}$ suivant une loi de distribution pour construire une marche aléatoire:
 \begin{equation}
     \begin{split}
         Var(\mathbf{X}) &= \frac{1}{n^{2}} \sum_{i=1}^{n} \sum_{j=1}^{n} \frac{1}{2}(x_{i} - x_{j})^{2}\\
@@ -112,15 +128,16 @@ Soit $\mathbf{X}$ suivant une loi de distribution:
 Posons:  $x_{i} = x_{i} - x_{i+1}$:
 \begin{equation}
     \begin{split}
-        RMS = \bar{x}_{2} &= \sqrt{\frac{1}{n}} \times \sqrt{\sum_{i=1}^{n}x_{i}^{2}}\\
+        \langle RMS\rangle = \bar{x}_{2} &= \sqrt{\frac{1}{n}} \times \sqrt{\sum_{i=1}^{n}x_{i}^{2}}\\
                           &= \sqrt{\frac{1}{n}} \times \sqrt{\sum_{i=1}^{n}(x_{i} - x_{i+1})^{2}}\\
     \end{split}
 \end{equation}
 On a alors:
 \begin{align*}
-    & RMS^{2} = \frac{1}{n} \sum_{i=1}^{n}(x_{i} - x_{i+1})^{2} \\
-    & Var(\mathbf{X}) \sim RMS^{2}\\
+    & \langle RMS^{2}\rangle = \frac{1}{n} \sum_{i=1}^{n}(x_{i} - x_{i+1})^{2} \\\\
+    & Var(\mathbf{X}) \sim \langle RMS^{2}\rangle\\
 \end{align*}
+
 
 \chapter*{Autres notes}
 
@@ -129,8 +146,8 @@ L’équation généralisé de la moyenne peux être défini de la manière suiv
     \bar{x}_{m} = \left[ \frac{1}{n} \sum_{i=1}^{n}(x_{i}^{m})\right]^{\nicefrac{1}{m}}\\
 \end{equation}
 \begin{align*}\label{eq:parametre_m}
-    & m \to +\infty  & \text{maximum of } x_{i}\\
-    & m \to -\infty & \text{minimum of } x_{i}\\
+    & m \to +\infty & \text{maximum de } x_{i}\\
+    & m \to -\infty & \text{minimum de } x_{i}\\
     & m = 2         & \text{moyenne quadratique (RMS)}\\
     & m = 1         & \text{moyenne arithmétique}\\
     & m = -1        & \text{moyenne harmonique}\\
@@ -148,10 +165,13 @@ La déviation est alors définie par:
 \end{equation}
 
 
-Remarque sur la fonction $\Gamma$:
+Remarque sur la fonction $\mathbf{\Gamma}$:
 \begin{equation}
-    \Gamma(1+\beta) = \beta \times \Gamma(\beta)
+    \mathbf{\Gamma}(1+\beta) = \beta \times \mathbf{\Gamma}(\beta)
 \end{equation}
 
+
+% Add bibliography
+\printbibliography
 
 \end{document}

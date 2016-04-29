@@ -82,6 +82,10 @@ docs/_build/
 *.fls
 *.pdf
 *.run.xml
+*.upa
+*.upb
+*.tdo
+
 # Image folder always in the Dropbox
 # Adapt folder path in each machine
 *ImagesFolder.sty

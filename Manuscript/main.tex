@@ -1,5 +1,4 @@
 % \documentclass[11pt, draft, twoside]{report}
-% \documentclass[12pt, twoside]{report}
 \documentclass[12pt, oneside]{report}
 
 % ------------------------------------------------------------------------------
@@ -60,13 +59,20 @@
 \usepackage[algoruled,
             linesnumbered,
             algosection]{algorithm2e}               % Algorithm support
+\usepackage{letltxmacro}                            % Support for optional argument in redefinition
+% Change the ways square root appears
+\makeatletter
+    \let\oldr@@t\r@@t
+    \def\r@@t#1#2{%
+    \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+    \advance\dimen0-0.2\ht0
+    \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+    {\box0\lower0.4pt\box2}}
+    \LetLtxMacro{\oldsqrt}{\sqrt}
+    \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+\makeatother
 
 
-% Bibliography support
-\usepackage[style=authoryear,
-            sorting=none,
-            backend=biber]{biblatex}                % Bibliography support
-\addbibresource{Bibliographie/references.bib}       % Where to find bibliography
 
 
 % Easy note support
@@ -78,45 +84,45 @@
 
 % Redefine \missingfigure command from todonotes packages
 \makeatletter
-\renewcommand{\missingfigure}[2][]{%
-\setkeys{todonotes}{#1}%
-\addcontentsline{tdo}{todo}{%
-    \fcolorbox{\@todonotes@currentbordercolor}%
-    {\@todonotes@currentbackgroundcolor}%
-    {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
-    \ Figure: #2}%
-\par
-\noindent
-\begin{tikzpicture}
-    \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
-         (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
-    \draw (2, -1) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
-    \draw[BrickRed, fill=white, rounded corners = 5pt, line width=5pt]
-         (-1.25,0) -- (1.25,0) -- (0,-2) -- cycle;
-    \draw (0, -0.5) node {Figure};
-\end{tikzpicture}\hfill
-}% Ending \missingfigure command
+    \renewcommand{\missingfigure}[2][]{%
+    \setkeys{todonotes}{#1}%
+    \addcontentsline{tdo}{todo}{%
+        \fcolorbox{\@todonotes@currentbordercolor}%
+        {\@todonotes@currentbackgroundcolor}%
+        {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
+        \ Figure: #2}%
+    \par
+    \noindent
+    \begin{tikzpicture}
+        \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+             (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
+        \draw (2, -1) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
+        \draw[BrickRed, fill=white, rounded corners = 5pt, line width=5pt]
+             (-1.25,0) -- (1.25,0) -- (0,-2) -- cycle;
+        \draw (0, -0.5) node {Figure};
+    \end{tikzpicture}\hfill
+    }% Ending \missingfigure command
 
-% Define \missingequation command using \missingfigure command
-\newcommand{\missingequation}[2][]{%
-\setkeys{todonotes}{#1}%
-\addcontentsline{tdo}{todo}{%
-    \fcolorbox{\@todonotes@currentbordercolor}%
-    {\@todonotes@currentbackgroundcolor}%
-    {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
-    \ Equation: #2}%
-\par
-\par
-\noindent
-\begin{tikzpicture}
-    \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
-         (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
-    \draw (2, -1) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
-    \draw[BrickRed, fill=white, line width=5pt]
-         (0,-0.3) circle (1.1cm);
-    \draw (0, -0.4) node {Equation};
-\end{tikzpicture}\hfill
-}% Ending \missingequation command
+    % Define \missingequation command using \missingfigure command
+    \newcommand{\missingequation}[2][]{%
+    \setkeys{todonotes}{#1}%
+    \addcontentsline{tdo}{todo}{%
+        \fcolorbox{\@todonotes@currentbordercolor}%
+        {\@todonotes@currentbackgroundcolor}%
+        {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
+        \ Equation: #2}%
+    \par
+    \par
+    \noindent
+    \begin{tikzpicture}
+        \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+             (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
+        \draw (2, -1) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
+        \draw[BrickRed, fill=white, line width=5pt]
+             (0,-0.3) circle (1.1cm);
+        \draw (0, -0.4) node {Equation};
+    \end{tikzpicture}\hfill
+    }% Ending \missingequation command
 \makeatother
 
 % Note if not sure about that
@@ -190,6 +196,12 @@
           #1]{Equation: #2}}
 
 
+% Bibliography support
+\usepackage[backend=biber,
+            style=authoryear,
+            ]{biblatex}                               % Bibliography support
+\addbibresource{./Bibliographie/references.bib}       % Where to find bibliography
+
 % Add table support
 % \usepackage{booktabs}                             % Easy pro tables
 % \usepackage{longtable}                            % Allow to create tab on multiple pages
@@ -199,6 +211,13 @@
 
 % New table command to inser table inside a table cell
 % \newcommand{\minitab}[2][Insert text here]{\begin{tabular}{#1}#2\end{tabular}}
+
+
+% % Add support for annotations
+% \usepackage{pdfcomment}
+% \definecolor{transparent}{cmyk}{1, 1, 1, 1}
+% % Voilà un \pdfmarkupcomment[color=transparent]{text avec annotation}{I’m marking you}
+
 
 % ------------------------------------------------------------------------------
 
@@ -219,11 +238,11 @@
 % ------------------------------------------------------------------------------
 % Included files selection defined here
 % ------------------------------------------------------------------------------
-\includeonly{
-             Chapitres/Chap2-Modelisation, Chapitres/Chap3-UnOutilAideDecision,
-             Chapitres/Chap4-OptimisationSystemeSolaire,
-             Algorithmes/exempleAlgo
-            }
+% \includeonly{
+%              Chapitres/Chap2-Modelisation, Chapitres/Chap3-UnOutilAideDecision,
+%              Chapitres/Chap4-OptimisationSystemeSolaire,
+%              Algorithmes/exempleAlgo
+%             }
 % ------------------------------------------------------------------------------
 
 
