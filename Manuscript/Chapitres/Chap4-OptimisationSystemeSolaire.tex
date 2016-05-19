@@ -297,7 +297,7 @@ La partie suivante présente ce générateur de solution de manière plus détai
 
 
 % ------------------------------------------------------------------------------
-\subsubsection{Histoire de l’Artificial Bee Colony ()} % (fold)
+\subsubsection{Histoire de l’Artificial Bee Colony (ABC)} % (fold)
 \label{ssub:histoire_de_l_artificial_bee_colony}
 L’intelligence artificielle se traduit par la construction de programmes informatiques
 pour la réalisation de tâches demandant une démarche critique, et de l’apprentissage. La
@@ -308,13 +308,13 @@ Une des branches de l’intelligence artificielle s’intéresse particulièreme
 du monde animal. Dans notre cas on s’intéresse à la branche de l’intelligence des
 essaims (Swarm Intelligence). \cite{Bonabeau1999} a définit quatre caractéristiques
 définissant l’organisation dans ces essaims:
-\begin{description}
+\begin{itemize}
     \item \emph{positive feedback}, se traduisant par le renforcement de chemins ou le recrutement d’individus suite à un constat
           d’un des individus
-    \item \emph{negative feedback}, permettant de stabiliser la structure évitant la saturation du au positive feedback facteur
+    \item \emph{negative feedback}, permettant de stabiliser la structure évitant la saturation du au positive feedback
     \item \emph{fluctuations ou amplification}, faisant émerger des solutions nouvelles (facteur aléatoire)
     \item \emph{multiple interactions}, pouvant se traduire par le partage d’informations entre les individus de la population
-\end{description}
+\end{itemize}
 Les algorithmes les plus connues étant inspirées des oiseaux (Particule Swarm Intelligence),
 des fourmis (Ant Colony), ou encore des abeilles qui a été choisi pour les raisons explicité ci-avant.
 Il existe plusieurs approches d’algorithmes d’essaims d’abeilles. Certaines sont basées
@@ -414,7 +414,8 @@ de solution optimales proches, et la différenciation entre butineuses et specta
 
 Plusieurs approches ont aussi été envisagées pour les problèmes multi-objectifs. On a par exemple l’approche MO-ABC, VABC, MHABC-CMO
 \cite{Hedayatzadeh2010, Akbari201239} adapte l’algorithme ABC pour résoudre des problèmes multi-objectifs. Ils proposent
-principalement deux modifications. La première est l’utilisation de l’$\varepsilon$-dominance \mtodo{Ajouter un lien vers l’explication}
+principalement deux modifications. La première est l’utilisation de l’$\varepsilon$-dominance
+(~\autoref{sub:mise_a_jour_du_front_de_pareto})
 pour la gestion de l’archive assurant ainsi la diversité des solutions. La seconde modifie la mise à jour des sources en
 exploitant la population et les solutions de l’archive.
 \cite{Zhang20121} introduit une approche basée sur plusieurs essaims se partageant les informations et une sélection
@@ -482,7 +483,7 @@ avec:
 Afin d’orienter la recherche vers un espace de solution faisables, une pénalité adaptative
 est utilisé, $p_{i}(x)$, donnant un objectif final modifié de la forme: $F_{i}(x) = d_{i}(x) + p_{i}(x)$.
 La population peut ainsi accepter des solutions ne respectant pas les contraintes mais
-dans le cas d’une optimisation multi-objectifs, l’archive elle n’accepte que des solutions faisables.
+l’archive (optimisation multi-objectifs) elle n’accepte que des solutions faisables.
 % subsubsection la_prise_en_compte_des_contraintes (end)
 
 
@@ -716,12 +717,8 @@ ce coefficient sera fixé à 0.1 dans un premier temps.
 
 
 
-\subsection{Mise à jour du front de Pareto par epsilon-Dominance} % (fold)
-\label{sub:mise_a_jour_du_front_de_pareto_par_epsilon_dominance}
-% Description de la mise à jour de l’archive choisie:
-%  - Formulation théorique
-%  - Graphiquement
-\itodo{Décrire la méthode choisie parmis celle détaillées dans le chapitre précédent.}
+\subsection{Mise à jour du front de Pareto} % (fold)
+\label{sub:mise_a_jour_du_front_de_pareto}
 L’une des principales difficultés lors d’une optimisation multi-objectif est de
 déterminer quelles solutions conservées sachant que autant objectif n’est prioritaire.
 Si tel était le cas, le problème pourrait être formuler sous la forme d’une optimisation
@@ -731,20 +728,52 @@ solutions trop similaires vont parasiter l’efficacité de la recherche et rale
 convergence à cause d’un nombre conséquent de solution "clone".
 Ainsi de nombreuses solution on cherché à définir des solution permettant de trier
 le front de Pareto à chaque itérations pour converger efficacement vers le vrai front
-de Pareto tout en assurant une bonne répartition sur celui-ci (\cite{Laumanns2002263}). Une bonne méthode de
-trie permet alors d’améliorer la convergence et la diversité du front de Pareto optimal.
+de Pareto tout en assurant une bonne répartition sur celui-ci (\cite{Laumanns2002263}).
+La mise à jour du front de Pareto doit ainsi
 \\
 
-\itodo{Introduire les principales méthodes\\
-       Décrire histoire des méthodes de trie \\
-       Decrire la méthode d’epsilon-dominance
-       }
+Couramment utilisé, le \emph{Elitist Non-Dominated
+Sorting Genetic Algorithm} (NSGA-II, \cite{Deb2002182}) s’articule en 3 étapes:
+(i) classement des solutions du front précédent plus les nouvelles solutions
+en niveau en fonction de leur dominance (Fast Nondominated Sorting Approach),
+(ii) la mesure de la distance moyenne normalisée pour chaque
+solution, tenant compte de tous les objectifs (crowing distance assignment), (iii)
+la sélection de solution pour former le nouveau front (crowed-comparaison).
+Dans cette approche les solutions de rang faible (non-dominées ou faiblement)
+sont prioritaires. La taille de l’archive étant fixe, les solutions appartenant au
+même rang sont triées selon le critère de distance. La compléxité de l’approche
+étant alors de $\mathcal{O} \left (MN^{2} \right)$ avec $M$ le nombre d’objectifs.
+\ftodo{Ajout de l’image descriptive du trie de cette approche (voir Deb2002182)
+       avec des modifications pour la rendre plus compréhensive}
+La méthode utilisée dans \emph{Strength Pareto Evolutionary Algorithm} (SPEA, \cite{Zitzler1999257})
+est elle plus complexe, la distance euclidienne est utilisée pour former $N$ cluster
+avec $N$ le taille de l’archive. Elle permet
+d’obtenir une meilleure diversité que l’approche par NSGA-II mais est d’ordre plus
+important ($\mathcal{O} \left (N^{3} \right)$) et demande donc plus de temps de calcul.
 
-La méthode la plus connue est celle introduite dans l’algorithme NSGA-II qui 
+\cite{Laumanns2002263} propose de séparer l’espace des solutions en une grille en ajoutant la notion
+de $\epsilon$-dominance. Dans cette approche l’espace des objectifs est divisé en hypercubes,
+et chaque hypercube est comparé selon l’$\epsilon$-dominance. D’autres approches
+utilisent une grille pour la mise à jour du front de Pareto (PAES, \cite{Knowles2000149}) mais
+sans limiter le nombre de solutions par hypercubes se révélant alors très élitiste. Ici,
+chaque hypercube accepte une unique solution; la taille de l’archive est alors dépendante de la valeur
+$\epsilon$ choisie pour chaque objectif.
+En cas de solutions multiples (pour un même hypercube), la dominance selon Pareto est appliquée pour
+sélectionner la solution qui sera conservée. Cette approche permet de garantir une
+diversité sur l’ensemble de l’espace de décision pour un temps de calcul très faible.
+\ftodo{Ajouter la description de l’algorithme (voir (Deb2005501)}
+\cite{Deb2005501} implémente la méthode et la compare à 4 autres approches dont SPEA2 et NSGA-II.
+La comparaison prend en compte la convergence, la diversité des solutions, et le temps
+de calcul nécessaire. Nommé $\epsilon$-MOEA, l’algorithme se révèle performant sur les
+trois aspects évalués. Il peut être considéré comme un bon compromis entre la qualité
+de la diversité apportée par les approches par clustering (SPEA2, C-NSGA-II), et la
+vitesse de convergence des approches très élitistes (PESA, NSGA-II) pour un temps de
+calcul bien inférieur. L’approche $\epsilon$-MOEA a cependant du mal à trouver des
+solutions sur les extrêmes du front de Pareto à cause de la limitation du nombre de
+solution par hypercube.
+% subsection mise_a_jour_du_front_de_pareto (end)
 
 
-
-% subsection mise_a_jour_du_front_de_pareto_par_epsilon_dominance (end)
 
 
 \subsection{Réduction de la cardinalité par screening} % (fold)
