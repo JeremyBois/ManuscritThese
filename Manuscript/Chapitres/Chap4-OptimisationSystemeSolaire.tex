@@ -357,14 +357,21 @@ de nectar possible. Leur comportement est défini par principalement 3 composant
           grâce à une danse. Celle-ci permettant de donner la qualité et la direction d’une source.
     \item Les réceptrices (unemployed foragers) se décomposent en deux groupes:
     \begin{itemize}
-        \item Les spectatrices (onlookers) qui utilisent l’information des butineuses pour sélectionner une source à exploiter.
+        \item Les ouvrières (onlookers) qui utilisent l’information des butineuses pour sélectionner une source à exploiter.
               Plus la source est de qualité plus grande est la probabilité qu’une spectatrice la choisisse.
         \item Les éclaireuses (scouts) qui explorent aléatoirement les environs, à la recherche d’une nouvelle source. On estime à
         5-10\,\% la quantité de d’éclaireurs dans un essaim \cite{Seeley1996}
     \end{itemize}
 \end{description}
 \etodo{Ajouter les formulations mathématique et algorithmiques}
-\ftodo{Ajouter une description graphique de l’algorithme ou un flowchart}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{abc/BeeDance.png}
+    \end{center}
+    \caption{Description du fonctionnement de l’algorithme ABC.
+             \label{fig:abc_fonc}}
+\end{figure}
 
 \itodo{Description de l’algorithme au niveau global avec des renvois vers chaque phase.
       Faire un table avec une description des différentes phases et l’algorithme global au-dessus ?}
@@ -410,7 +417,7 @@ le décrit \cite{Mernik2015115}, les algorithmes doivent être comparés suivant
 objectifs et non par rapport au nombre d’itérations. En effet la variante PS-ABC ici utilise 3 populations et réalise donc
 en moyenne 6 fois plus d’évaluation de fonction par itération que l’approche standard.
 On peut aussi citer \cite{Aderhold2010283,Karaboga2014227} qui ajoutent respectivement la distance euclidienne pour la sélection
-de solution optimales proches, et la différenciation entre butineuses et spectatrices pour la mise à jour des sources.
+de solution optimales proches, et la différenciation entre butineuses et ouvrières pour la mise à jour des sources.
 
 Plusieurs approches ont aussi été envisagées pour les problèmes multi-objectifs. On a par exemple l’approche MO-ABC, VABC, MHABC-CMO
 \cite{Hedayatzadeh2010, Akbari201239} adapte l’algorithme ABC pour résoudre des problèmes multi-objectifs. Ils proposent
@@ -519,7 +526,7 @@ La longueur du pas peut varier en fonction de la distribution de probabilité (F
 à laquelle il est associé. Les plus utilisées dans les méta-heuristiques étant les loi uniformes ou gaussiennes.
 \begin{figure}
     \begin{center}
-        \includegraphics{LevyFlight/distribution_pdf.pdf}
+        \includegraphics{LevyFlight/distribution_pdf.png}
     \end{center}
     \caption{Densité de probabilité des lois de cauchy, uniforme, normale, Lévy stable et symétrique.
              L’expression analytique est représentée par la courbe noire.
@@ -661,12 +668,15 @@ multi-critères (\cite{Yang20131616}).
 La recherche par vecteur opposé (opposition-based learning) a été implémenté pour la première fois
 en optimisation par \cite{Tizhoosh2005695,Rahnamayan2008155}. Il propose une méthode permettant de diversifier la
 population sans connaissances à-priori.
+% Opposite based learning method
+\begin{Def}[OBLM~:~Opposition-Based Learning Method]\label{def:oblm}
+La recherche par vecteur opposé (Opposition-Based Learning) permet de diversifier la
+population sans connaissances à-priori.
 Admettons un point de dimension $D$, $P(x_{1}, x_{2}, ..., x_{D})$ avec
 $x_{1}, x_{2}, ..., x_{D}$ des valeurs bornées. Si $x_{i} \in [a_{i}, b_{i}]$ pour
 $i = 1, 2, ..., D$ alors le point opposée est $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$ suivant:
-\begin{equation}
-    \check{x_{i}} = a_{i} + b_{i} - x_{i}
-\end{equation}
+\[\check{x_{i}} = a_{i} + b_{i} - x_{i}\]
+\end{Def}
 
 Il est important de noter que les solutions sont comparées deux à deux par tournoi binaire, où
 seule la meilleure solution entre l’initiale et son opposée est conservée. Admettons une solution
@@ -704,9 +714,17 @@ en combinaison avec un algorithme évolutionnaire (\cite{Ma201448}), ou encore a
 Notre problème ne nous permettant pas d’avoir de connaissance à-priori, il nous est
 impossible d’estimer le nombre d’itération nécessaires et l’utilisation d’un coefficient $J_r$
 dynamique difficile.
-Au vu des recommandations et des applications déjà faites pour des problèmes mono-critères,
-ce coefficient sera fixé à 0.1 dans un premier temps.
-\ftodo{Ajouter une description graphique de l’approche par vecteur opposé}
+% Au vu des recommandations et des applications déjà faites pour des problèmes mono-critères,
+% ce coefficient sera fixé à 0.1 dans un premier temps.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{abc/principe_obl.pdf}
+    \end{center}
+    \caption{Principe de fonctionnement de la recherche par vecteur opposée.
+             \label{fig:OBL_method}}
+\end{figure}
+
 % subsubsection apprentissage_par_opposition (end)
 
 
@@ -755,13 +773,30 @@ important ($\mathcal{O} \left (N^{3} \right)$) et demande donc plus de temps de 
 de $\epsilon$-dominance. Dans cette approche l’espace des objectifs est divisé en hypercubes,
 et chaque hypercube est comparé selon l’$\epsilon$-dominance. D’autres approches
 utilisent une grille pour la mise à jour du front de Pareto (PAES, \cite{Knowles2000149}) mais
-sans limiter le nombre de solutions par hypercubes se révélant alors très élitiste. Ici,
+sans limiter le nombre de solutions par hypercubes limitant l’espace des objectifs. Ici,
 chaque hypercube accepte une unique solution; la taille de l’archive est alors dépendante de la valeur
 $\epsilon$ choisie pour chaque objectif.
-En cas de solutions multiples (pour un même hypercube), la dominance selon Pareto est appliquée pour
-sélectionner la solution qui sera conservée. Cette approche permet de garantir une
-diversité sur l’ensemble de l’espace de décision pour un temps de calcul très faible.
-\ftodo{Ajouter la description de l’algorithme (voir (Deb2005501)}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{abc/selection_boxes.png}
+    \end{center}
+    \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
+             \label{fig:epsilon_dominance}}
+\end{figure}
+L’archive (Fig.~\ref{fig:epsilon_dominance}) accepte une unique solution par hypercube dont la taille est définie par le
+choix des epsilon (la tolérance de chaque objectif).
+Lors de l’ajout d’une solution à l’archive on va ainsi en premier lieu vérifier que
+l’hypercube à laquelle elle appartient n’est pas dominé. Si il est non-dominé la
+nouvelle solution est ajoutée. Cependant si la solution est dans un hypercube contenant
+déjà une solution, alors il est nécessaire de choisir entre les deux.
+Ce choix peut être fait de deux manières: (i) On calcule la dominance stricte entre les
+deux solutions, (ii) On calcule la distance euclidienne entre le coin supérieur droit
+(dans le cas d’une maximisation) et les deux solutions, et on conserve celle ayant
+la distance la plus faible.
+Cette approche permet de garantir une diversité sur l’ensemble de l’espace de
+décision pour un temps de calcul très faible.
+
 \cite{Deb2005501} implémente la méthode et la compare à 4 autres approches dont SPEA2 et NSGA-II.
 La comparaison prend en compte la convergence, la diversité des solutions, et le temps
 de calcul nécessaire. Nommé $\epsilon$-MOEA, l’algorithme se révèle performant sur les
@@ -785,9 +820,195 @@ solution par hypercube.
 % subsection reduction_de_la_cardinalite_par_screening (end)
 
 
+
+
 \subsection{Processus d’optimisation complet} % (fold)
 \label{sub:processus_d_optimisation_complet}
 \itodo{Ajouter une vision globale du processus d’optimisation sous forme de graphique
       servant de résumé du chapitre.}
+
+
+L’algorithme ABC modifié (Fig.~\ref{fig:abc_modifie}) comprend les même phases que l’original. La différence réside
+dans le déroulement de ces phases. En effet plusieures technique présentées ci-avant
+ont été implémentées afin d’améliorer l’exploitation et l’exploration de l’algorithme.
+Enfin une archive par $\epsilon$-dominance est utilisé pour maintenir les solutions
+non-dominées formant le front de Pareto. Cette archive est mise à jour après chaque
+évaluation contrairement aux sources qui ne sont mis à jour que après chaque phase.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=10cm, height=15cm]{abc/algorithme_complet.png}
+    \end{center}
+    \caption{Description globale de l’algorithme ABC modifié. Chaque phase renvois à un algorithme.
+             \label{fig:abc_modifie}}
+\end{figure}
+
+Dans un premier temps l’algorithme initialise l’archive grâce aux objectifs et aux valeurs
+d’epsilons. Ensuite la population est initialisé aléatoirement et une approche par OBL est
+utilisée pour obtenir une meilleure diversité (Algorithm~\ref{alg:init_phase}). Ensuite on rentre dans la boucle principale
+tant que la ou les conditions d’arrêts ne sont pas atteintes. Les différentes phases
+sont les suivantes: (i) Phase des butineuses (Algorithm~\ref{alg:employed_phase}) qui explore l’espace de décision avec des vols de
+Lévy, (ii) Phase des ouvrières (Algorithm~\ref{alg:onlooker_phase}) qui utilisent les informations acquises par les butineuses
+et améliorent les sources choisies \eqref{eq:attribution_prob_to_source}, (iii) Phase des éclaireuses
+(Algorithm~\ref{alg:scout_phase}) qui réinitialisent une source si elle est non fructueuse.
+La longueur du vol de Lévy est définie par:
+\begin{equation}\label{eq:levy_flight}
+  LevyFlight = scaleFactor \times stepLength \times RandUniform(0, 1)
+\end{equation}
+avec $stepLength$ définie par \eqref{eq:step_len} et $scaleFactor$ fixé à 0.01.\\
+
+
+% Attribution des probabilités
+La probabilité de choisir une source $k$ par une ouvrière est elle définie comme:
+\begin{subequations}\label{eq:attribution_prob_to_source}
+  \begin{align}
+    prob_{k} = &\frac{Qualite(\vec{x}_{k})}{\sum_{i=1}^{NbrSources} Qualite(\vec{x}_{i})} \\[1em]
+    Qualite(\vec{x}_{k}) = &\frac{Dominance(k)}{NbrSources}
+  \end{align}
+  avec \emph{Dominance(k)} le nombre de source que la source $k$ domine, et \emph{Fitness}
+  la qualité de la source en tenant comptes des contraintes comme définies en.
+\end{subequations}
+
+% Phase d’initialisation
+\begin{algorithm}\label{alg:init_phase}
+  \SetAlgoVlined
+  \emph{Initialisation des sources sur l’ensemble de l’espace de décision}\;
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    \emph{Initialisation des critères pour chaque source}\;
+    \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+    {
+      \AComment{Génération aléatoire de la position initiale}
+      $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
+      avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
+      respectivement le minimum et le maximum du critère $j$\;
+      \vspace{1em}  % Add some space between two blocs
+      \AComment{Génération de la position opposée suivant Definition~\ref{def:oblm}}
+      $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
+      avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieurs du critère
+    }
+    \If{$\ASource_{i}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la source initial à l’archive}
+      $\AArchive \pluseq \ASource_{i}$\;
+    }
+    \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la source opposée à l’archive}
+      $\AArchive \pluseq \check{\ASource_{i}}$\;
+    }
+  }
+  \AComment{On ne conserve que une seule position par source}
+  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Initialisation des sources par OBLM (Opposite-Based Learning Method).}
+\end{algorithm}
+
+% Maj des sources
+\begin{algorithm}\label{alg:maj_phase}
+  \SetAlgoVlined
+  Récupérer le maximum et minimum pour chaque objectif\;
+  Récupérer le maximum pour chaque contrainte\;
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    Normaliser les objectifs et les contraintes avec ()\;
+    Calculer la valeur de distance $\vec{d_{i}}$ en utilisant \eqref{eq:distance_measure}\;
+    Calculer la pénalité $\vec{p_{i}}$ d’après ()\;
+    \AComment{Attribuer les nouvelles valeurs d’objectifs aux sources}
+    $\vec{F_{i}} = \vec{d_{i}} + \vec{p_{i}}$\;
+    \If{$\check{\vec{F_{i}}} \succ \vec{F_{i}}$}
+    {
+      \AComment{On remplace la position de la source par la nouvelle}
+      $\vec{x_{i}} \leftarrow \check{\vec{x_{i}}}$\;
+      \AComment{On réinitialise le nombre d’échec pour la source $i$}
+      $\ATrial_{i} \leftarrow 0$\;
+    }
+    \Else
+    {
+      \AComment{On incrémente le nombre d’échec pour la source $i$}
+      $\ATrial_{i} \pluseq 1$\;
+    }
+    avec $\vec{F_{i}}$, $\check{\vec{F_{i}}}$ respectivement les vecteurs objectifs
+    normalisés pour l’ancienne et la nouvelle position.\;
+  }
+  \caption{Mise à jour des sources}
+\end{algorithm}
+
+% Phase des butineuses
+\begin{algorithm}\label{alg:employed_phase}
+  \SetAlgoVlined
+  \AComment{Exploration des sources par les \AEmployed}
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    Sélection aléatoire d’une source $k$ dans l’\AArchive\;
+    \AComment{Génération d’une nouvelle position pour la \ASource $i$}
+    \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+    {
+      \begin{algomathdisplay}
+        \check{x_{ij}} =%
+          \begin{cases}
+            x_{ij} + \ALevyFlight_{ij} \times (x_{ij} - x_{kj}) &\ \ATirage < \AMR \\
+            x_{ij}                                      &\ sinon
+          \end{cases}
+      \end{algomathdisplay}
+      avec \ATirage un nombre aléatoire uniforme (entre 0 et 1),
+      \AMR un paramètre contrôlant le nombre de modifications
+      et \ALevyFlight définie par \eqref{eq:levy_flight}\;
+    }
+    \If{aucun critère n’a été modifié}
+      {
+        \AComment{Sélection aléatoire d’un critère $j$ à mettre à jour}
+        $\check{x_{ij}} = x_{ij} + \ALevyFlight_{ij} \times (x_{ij} - x_{kj})$\;
+      }
+    \If{$\ASource_{i}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la source initial à l’archive}
+      $\AArchive \pluseq \ASource_{i}$\;
+    }
+    \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la source opposée à l’archive}
+      $\AArchive \pluseq \check{\ASource_{i}}$\;
+    }
+  }
+  \AComment{On ne conserve que une seule position par source}
+  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Phase des butineuses.}
+\end{algorithm}
+
+% Phase des ouvrières
+\begin{algorithm}\label{alg:onlooker_phase}
+  \SetAlgoVlined
+  \AComment{Exploitation des sources par les \AOnlookers}
+  \For{$\ABee \in \AOnlookers$}
+    {
+      Sélection aléatoire d’une \ASource $i$ selon la probabilité
+      définie par l’équation \eqref{eq:attribution_prob_to_source} (Sélection par roulette)\;
+      Génération d’une nouvelle position pour la \ASource $i$ selon Algorithm~\ref{alg:employed_phase}
+      (lignes 3 à 16)\;
+    }
+  \AComment{On ne conserve que une seule position par source}
+  \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
+  Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Phase des ouvrières.}
+\end{algorithm}
+
+% Phase des éclaireuses
+\begin{algorithm}\label{alg:scout_phase}
+  \SetAlgoVlined
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    \If{$\ATrial_{i} > \AMaxTrial$ }
+    {
+      \AComment{Exploration par les \AScouts}
+      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}
+      (lignes 4 à 16)\;
+    }
+  }
+  \AComment{On conserve la meilleure solution parmi les deux nouvelles}
+  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Phase des éclaireuses.}
+\end{algorithm}
+
+
 % subsection processus_d_optimisation_complet (end)
 

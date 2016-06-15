@@ -1,6 +1,21 @@
 % \documentclass[11pt, draft, twoside]{report}
 \documentclass[12pt, oneside]{report}
 
+
+% ------------------------------------------------------------------------------
+%
+% Les images sont ajustées automatiquement et donc `scale' ne peut pas être utilisé
+% Permet d’écrire et d’insérer les images sans devoir se soucier de la taille.
+% Lors de la mise en page, ce paramètre devra être supprimé
+% (\usepackage{./Template/graphics_support})
+%
+%
+% Refaire l’organisation entre chapitre 2 et 4 sinon il y aura des doublons.
+%
+% ------------------------------------------------------------------------------
+
+
+
 % ------------------------------------------------------------------------------
 % Packages import
 % ------------------------------------------------------------------------------
@@ -51,14 +66,13 @@
 }
 
 
-% Scientist support
+% ------------------------------------------------------------------------------
+% Math and algorithm support
+% ------------------------------------------------------------------------------
 \usepackage{siunitx}                                % Unit package
-\usepackage{amsmath, amssymb}                       % Allow adding complex equations
+\usepackage{amsmath, amssymb, amsthm}               % Allow adding complex equations
 \usepackage{nicefrac}                               % for \nicefrac macro
 % \usepackage{listings}                             % Code block support
-\usepackage[algoruled,
-            linesnumbered,
-            algosection]{algorithm2e}               % Algorithm support
 \usepackage{letltxmacro}                            % Support for optional argument in redefinition
 % Change the ways square root appears
 \makeatletter
@@ -71,11 +85,71 @@
     \LetLtxMacro{\oldsqrt}{\sqrt}
     \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
 \makeatother
+% Math symbols
+\newcommand{\pluseq}{\mathrel{+}\mathrel{\mkern-1mu}=}
+% Mise en page des théorèmes
+\usepackage{tikz}
+\newsavebox{\boiteencadrement}
+\newenvironment{encadrement}[1][gray!50]
+  {\par\addvspace{\dimexpr\topsep+2pt}%
+   \def\couleurencadrement{#1}%
+   \begin{lrbox}{\boiteencadrement}%
+   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule}%
+  }
+  {\end{minipage}\end{lrbox}%
+   \noindent\begin{tikzpicture}[inner sep=\fboxsep+0.5em,line width=\fboxrule]
+   \node[rounded corners,draw,color=black,fill=\couleurencadrement] {\usebox{\boiteencadrement}};
+   \end{tikzpicture}%
+   \par\addvspace{\topsep}%
+  }
+% Mise en page des Définitions
+\newtheoremstyle{Def}
+  {.5cm}               % Space before
+  {.5cm}               % Space after
+  {\itshape}           % Content style
+  {\parindent}         % Title Indentation
+  {\bfseries}          % Title style
+  {}                   % Ponctuation after title and before title spacing
+  {\newline}           % Space after Title
+  {\thmname{#1}\thmnumber{ \textup{#2}}\thmnote{~(\textit{#3})}}   % Title construction
+\theoremstyle{Def}
+\newcounter{Def}
+\newtheorem{preDef}[Def]{Définition}
+\newenvironment{Def}{\begin{encadrement}[white]\begin{preDef}}{\end{preDef}\end{encadrement}}
 
 
+% Algorithm support
+\usepackage[french, onelanguage,
+            linesnumbered, lined,
+            boxed,
+            commentsnumbered]{algorithm2e}
+% Comments
+\definecolor{commcolor}{HTML}{93a1a1}
+\newcommand\commfont[1]{\footnotesize\ttfamily\textcolor{commcolor}{#1}}
+\SetCommentSty{commfont}
+\SetKwComment{AComment}{\#~}{}
+% Functions
+\SetKwFunction{ALevyFlight}{LevyFlight}
+% Keywords
+\SetKwData{ASources}{Sources}
+\SetKwData{ASource}{Source}
+\SetKwData{ANbrSources}{NbrSources}
+\SetKwData{AOnlookers}{Ouvrières}
+\SetKwData{AScouts}{Éclaireuses}
+\SetKwData{AEmployed}{Butineuses}
+\SetKwData{ABee}{Abeille}
+\SetKwData{ACriteria}{Critères}
+\SetKwData{ACriterion}{Critère}
+\SetKwData{ANbrCriteria}{NbrCritères}
+\SetKwData{AArchive}{Archive}
+\SetKwData{ATirage}{Tirage}
+\SetKwData{AMR}{MR}
+\SetKwData{ATrial}{Echec}
+\SetKwData{AMaxTrial}{MaxEchec}
 
-
-% Easy note support
+% ------------------------------------------------------------------------------
+% Notes support
+% ------------------------------------------------------------------------------
 \usepackage{soul}
 \usepackage{xargs}                         % Use more than one optional parameter in a new commands
 \usepackage[colorinlistoftodos,
@@ -196,6 +270,9 @@
           #1]{Equation: #2}}
 
 
+% ------------------------------------------------------------------------------
+% Others
+% ------------------------------------------------------------------------------
 % Bibliography support
 \usepackage[backend=biber,
             style=authoryear,
@@ -238,11 +315,11 @@
 % ------------------------------------------------------------------------------
 % Included files selection defined here
 % ------------------------------------------------------------------------------
-% \includeonly{
-%              Chapitres/Chap2-Modelisation, Chapitres/Chap3-UnOutilAideDecision,
-%              Chapitres/Chap4-OptimisationSystemeSolaire,
-%              Algorithmes/exempleAlgo
-%             }
+\includeonly{
+             % Chapitres/Chap2-Modelisation, Chapitres/Chap3-UnOutilAideDecision,
+             Chapitres/Chap4-OptimisationSystemeSolaire
+             % Algorithmes/exempleAlgo
+            }
 % ------------------------------------------------------------------------------
 
 
@@ -271,6 +348,7 @@ Merci merci ...
 \tableofcontents
 \listoffigures
 \listoftables
+\listofalgorithms
 \thispagestyle{empty}
 \newpage
 
@@ -320,4 +398,4 @@ Merci merci ...
 % ------------------------------------------------------------------------------
 
 
-% Refaire l’organisation entre chapitre 2 et 4 sinon il y aura des doublons.
+

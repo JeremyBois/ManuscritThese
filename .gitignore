@@ -55,6 +55,7 @@ docs/_build/
 *.jpg
 *.psd
 *.gif
+*.svg
 
 # Dymola
 *.mat
@@ -85,6 +86,7 @@ docs/_build/
 *.upa
 *.upb
 *.tdo
+*.loa
 
 # Image folder always in the Dropbox
 # Adapt folder path in each machine
