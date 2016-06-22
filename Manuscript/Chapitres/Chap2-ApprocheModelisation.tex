@@ -1,0 +1,158 @@
+% Chapitres\Chap2-ApprocheModelisation.tex
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Modélisation des systèmes} % (fold)
+\label{sec:modelisation_des_systemes}
+
+% ------------------------------------------------------------------------------
+\subsection{Pourquoi et comment ?} % (fold)
+\label{sub:pourquoi_et_comment}
+\itodo{Décrire le choix de l’approche par modélisation}
+\itodo{Décrire les outils utilisés: Modelica et les bibliothèques, Dymola et les solveurs}
+\itodo{Pourquoi une modélisation détaillée d’un système existant}
+% subsection pourquoi_et_comment (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Un système solaire couplée au vecteur air} % (fold)
+\label{sub:description_du_système_vecteur_air}
+\itodo{Choix de modélisation pour les systèmes}
+\itodo{Description de l’algorithme de fonctionnement}
+\itodo{Description des modèles validés}
+\itodo{Description schématique du système}
+% subsection description_du_système_vecteur_air (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Un système solaire couplée au vecteur eau} % (fold)
+\label{sub:description_du_système_vecteur_eau}
+\itodo{Déscription des systèmes}
+% subsection description_du_système_vecteur_eau (end)
+% section modelisation_des_systemes (end)
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Modélisation du bâtiment} % (fold)
+\label{sec:modelisation_du_batiment}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Description de la maison} % (fold)
+\label{sub:description_de_la_maison}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description du site} % (fold)
+\label{ssub:modelisation_du_site}
+\itodo{Description du site étudié: climat, données metéos, ...}
+
+Afin d’évaluer et d’optimiser la performance d’un système solaire, il est nécessaire
+que les conditions extérieures ne soit pas fortement favorable.
+Les climats méditerranéens ne sont donc pas des cas d’étude intéressant du fait
+de la forte couverture solaire.
+À l’opposé le climat de Limoges est assez rude et l’ensoleillement durant la période
+hivernale est faible. C’est donc un cas d’étude intéressant.
+\itodo{Ajouter une carte pour localiser la ville}
+\itodo{Ajouter une description plus complète avec DJU, extrèmes, ...}
+\itodo{Refaire complètement ce paragraphe car il fait pitié actuellement}
+% subsubsection description_du_site (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description de l’enveloppe} % (fold)
+\label{ssub:description_de_l_enveloppe}
+\itodo{Description complète de la maison: Composition de base, surfaces, orientation, ...}
+
+La maison fait 100\,\si{m^{2}} est est composée de ...
+\itodo{Ajouter du bla bla sur la composition de la maison}
+% subsubsection description_de_l_enveloppe (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description des scénarios} % (fold)
+\label{ssub:description_des_scenarios}
+\itodo{Description des différents scénarios et consignes}
+
+Le cas d’étude utilise les scénarios d’une famille moyenne développés au travers de
+la création d’un outil pour évaluer l’impact des occupants sur les besoins
+énergétiques du bâtiment (\cite{Vorger2014}).
+\itodo{Décrire rapidement les travaux d’Éric}
+
+Pour cette étude différents scénarios ont été pris en compte de manière fixe:
+\begin{itemize}
+    \item Occupation
+    \item Charges internes (faibles par rapport à un scénario RT)
+    \item Température de consigne
+    \item Débits d’extractions d’air
+\end{itemize}
+\itodo{Décrire les différents scénarios avec des illustrations}
+
+D’autres font partis intégrante de l’optimisation. En effet ils influencent le
+fonctionnement du système et donc sa performance. Les scénarios non-fixes sont donc
+les suivants:
+\begin{itemize}
+    \item Occupation
+    \item Profil de puisage ECS
+    \item Température de consigne solaire
+\end{itemize}
+\itodo{Décrire les scénarios variables}
+% subsection description_de_la_maison (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Approche monozone} % (fold)
+\label{sub:approche_monozone}
+\itodo{Décrire la raison de ce choix}
+\itodo{Introduire la validité à l’échelle annuelle par un modèle détaillé (Aurélie)}
+\itodo{Décrire les limitations de cette approches grâce au premiers résultats}
+% subsection approche_monozone (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Approche multizone} % (fold)
+\label{sub:approche_multizone}
+\itodo{Décrire les outils nécessaire pour l’approche multi-zone: EnergyPlus, FMU,
+       Python, Sketchup, OpenStudio}
+\itodo{Introduire les avantages au regard de l’approche multizone}
+\itodo{Décrire la mise en place du modèle}
+% subsection approche_multizone (end)
+% section description_du_batiment (end)
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Étude paramétrique} % (fold)
+\label{sec:etude_parametrique}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Récapitulatif} % (fold)
+\label{sub:récapitulatif}
+\itodo{Descriptif des simulations réalisées dans le cas Monozone}
+% subsection récapitulatif (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Analyse détaillée} % (fold)
+\label{sub:analyse_detaillee}
+\itodo{Évaluation et analyse des résultats}
+% subsection analyse_detaillee (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Ce qu’il faut retenir} % (fold)
+\label{sub:ce_qu_il_faut_retenir}
+\itodo{Conclusion de l’étude}
+
+\itodo{Développement de modèles détaillés}
+\itodo{Mise en évidence du découplage de la performance entre chauffage et ECS}
+\itodo{Nécessité de comprendre les intéractions}
+\itodo{Nécessité d’intégrer une estimation du coût ---> Optimisation}
+% subsection ce_qu_il_faut_retenir (end)
+% section etude_parametrique (end)
+
