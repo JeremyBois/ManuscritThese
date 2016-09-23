@@ -2,44 +2,195 @@
 
 
 
+% ..............................................................................
+% ..............................................................................
+\section{Le solaire thermique appliqué au bâtiment} % (fold)
+\label{sec:le_solaire_thermique_applique_au_batiment}
 
-% ..............................................................................
-% ..............................................................................
-\section{Contexte énergétique} % (fold)
-\label{sec:contexte_energetique}
+% ------------------------------------------------------------------------------
+\subsection{Contexte énergétique} % (fold)
+\label{sub:contexte_energetique}
 \itodo{État de l’art sur performance des bâtiments, danger réchauffement, augmentation
        de la population}
-% section contexte_energetique (end)
+\itodo{Parler de ce que fait NegaWatt notament avec le projet <Europe,Territoires>.\\
+       \url{http://www.negawatt.org/telechargement/Docs/160615_Rapport-final_Europe-territoire_Phase1.pdf}\\
+       \url{http://www.negawatt.org/telechargement/Docs/160324_Synthese_Etude_Europe-territoires_Phase1.pdf}}
+% subsection contexte_énergétique (end)
 
-
-
-
-% ..............................................................................
-% ..............................................................................
-\section{Le bâtiment à énergie positive} % (fold)
-\label{sec:le_batiment_a_energie_positive}
+% ------------------------------------------------------------------------------
+\subsection{Le concept MEPOS} % (fold)
+\label{sub:le_concept_mepos}
 \itodo{Description des approches existantes: Passivhaus, NZEB, MEPOS}
-\itodo{Contexte et choix de MEPOS, pourquoi ?}
+\itodo{Décrire l’initiative de COMEPOS pour le label MEPOS}
+\itodo{Décrire pourquoi ce choix (car il a apprit des anciens labels)}
+% subsection le_concept_mepos (end)
+
+% ------------------------------------------------------------------------------
+\subsection{Le solaire thermique pour une production énergétique respectueuse} % (fold)
+\label{sub:le_solaire_thermique_pour_une_production_energetique_respectueuse}
+\itodo{État de l’art sur les applications du solaire thermique.}
 \itodo{Montrer que le solaire thermique n’a pas la côte dans la construction à énergie positive.
        Problème de coût, de confiance, ou de performance ?}
 \itodo{Montrer que l’innovation passe par le neuf avant d’être intégré à la rénovation.}
-% section le_batiment_a_energie_positive (end)
+% subsection le_solaire_thermique_pour_une_production_énergétique_respectueuse (end)
+% section le_solaire_thermique_appliqué_au_bâtiment (end)
 
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Le solaire appliqué au bâtiment} % (fold)
-\label{sec:le_solaire_appliqué_au_batiment}
-\itodo{État de l’art sur la modélisation de système solaires}
+\section{Une approche par optimisation} % (fold)
+\label{sec:une_approche_par_optimisation}
 
+% ------------------------------------------------------------------------------
+\subsection{Approches explorées} % (fold)
+\label{sub:approches_explorees}
+\itodo{Décrire les différentes approches déjà explorées}
+\itodo{Augmentation surface capteur, sur-isolation, mon approche couplée pour un
+       compromis entre coût/surface capteur/isolation}
+% subsection approches_explorées (end)
+
+% ------------------------------------------------------------------------------
+\subsection{L’optimisation d’une maison solaire: un problème multi-critère} % (fold)
+\label{sub:l_optimisation_d_une_maison_solaire_un_probleme_multi_critere}
+\itodo{Décrire brièvement les methodes existantes}
+\itodo{Décrire les outils nécessaires (sensibilité, opimisation, aide à la décision)}
+% subsection l_optimisation_d_une_maison_solaire_un_problème_multi_critère (end)
+% section une_approche_par_optimisation (end)
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Le choix d’un modèle de système solaire couplé au bâtiment} % (fold)
+\label{sec:le_choix_d_un_modele_de_systeme_solaire_couple_au_batiment}
+% ------------------------------------------------------------------------------
+\subsection{Les modèles existants} % (fold)
+\label{sub:les_modeles_existants}
+\itodo{Décrire le choix de l’approche par modélisation}
+Il existe plusieurs moyens permettant d’évaluer un système énergétique. Le premier
+consiste à reproduire expérimentalement le système et son environnement. Cependant
+ce processus est couteux , spécialement lorsque on essayer d’évaluer un système à l’échelle
+du bâtiment. On est de plus contraint par les conditions extérieures que l’on ne contrôle
+pas. Ainsi ces deux raisons font qu’il est compliqué et couteux de chercher à dimensionner
+expérimentalement un système. Pour réduire le coût de la recherche et explorer plus de
+variation il est nécessaire de pouvoir contrôler les conditions limites et de pouvoir
+itérer rapidement entre différents compositions/régulations. La modélisation entre alors
+en jeu proposant un contrôle complet des systèmes, de leur régulation, et des conditions
+limites. Le système n’étant pas physique il est alors possible de faire varier n’importe
+quel paramètre simplement afin d’évaluer son importance, son impact, ...
+La modélisation est donc l’outil de choix pour réaliser une étude de faisabilité, un
+dimensionnement, une optimisation.
+
+\itodo{État de l’art des modèles numériques}
 \itodo{Détail des modèles existant, contrôle, couplages}
 \itodo{Montrer que ces modèles sont très génériques et souvent très simplifiés.
        De plus l’algorithme de contrôle est non évalué/optimisé.}
+% subsection les_modèles_existants (end)
+
+% ------------------------------------------------------------------------------
+\subsection{Un modèle solaire couplé au bâtiment} % (fold)
+\label{sub:un_modele_solaire_couple_au_bâtiment}
+\itodo{Décrire le choix de l’approche par modélisation}
+
+
+\itodo{Décrire les outils utilisés: Modelica et les bibliothèques, Dymola et les solveurs}
+Il existe de nombreux langages, logiciels pour réaliser des simulations plus ou moins complexes.
+La première choses à définir est donc le niveau de précision que l’on souhaite pour son modèle ou
+pour les différentes parties du modèle. Notre cas d’étude se place à l’échelle du bâtiment mais
+l’on souhaite aussi conserver un contrôle important sur la gestion des équipements.
+Ensuite il est nécessaire de déterminer le niveau d’accessibilité que l’on souhaite avoir
+sur chaque composant du système. Le modèle \textbf{boîte noire} ne pourrait pas correspondre à notre
+demande. Celui-ci ne nous offre pas le liberté de comprendre comment évolue chaque
+composants du système et nous empêche d’explorer/modifier le code.
+Pour la même raison un modèle \textbf{boîte grise} nous limite dans l’accès à certaines
+partie du code et donc à la compréhension interne du fonctionnement du système.
+Il est alors nécessaire d’utiliser un modèle \textbf{boîte blanche} garantissant
+un contrôle total sur chaque partie du système et permettant d’évaluer le comportement
+au niveau global mais aussi composant par composant.
+Nous avons ainsi opté pour le langage Modelica et la plateforme de développement
+Dymola (Dynamics Modeling Laboratory).
+
+
+\itodo{Modelica description}
+\mtodo{Ajouter référence}{Modelica} est un langage de programmation libre et ouvert développé pour répondre aux
+contraintes de la modélisation multi-physique. Il a été pensé pour être intuitif
+et offre une approche équationnelle et orienté objet au développeur.
+L’approche objet est très intuitive et permet d’encapsuler un ensemble de données
+et d’offrir des interface pour accéder à ces données. On peut alors composer de nouveaux
+objets grâce à des références vers d’autre objets (composition) ou en héritant
+du comportement d’un objet pour lui ajouter une spécialisation (héritage).
+Enfin le langage est acausal permettant d’itérer entre différentes formulation
+d’un problème facilement. Un système acausal récupère l’ensemble des variables qu’il
+connait et défini les inconnus à partir de celles-ci. L’ordre d’écriture des équations
+n’est donc plus importante et modifier un système n’oblige pas à re-écrire complètement
+les équations pour isoler la variable que l’on cherche à déterminer. Prenons l’exemple
+de la formule $U = R \times I$. Un problème causal requiert de connaître $R$ et $I$
+pour trouver $U$.L’équation doit être re-écrite si on cherche à trouver $R$ ou $I$.
+Si on utilise une approche acausal alors cette équation a une solution si on a deux des
+trois inconnus ($U et R$ ou $R et I$, ...) sans avoir à modifier l’équation. On peut ainsi utiliser
+la même formulation pour peut importe les variables connues.
+On peut ainsi voir que le développement sous Modelica permet de rapidement proto-typer
+des systèmes complexes.
+
+
+\itodo{Dymola description}
+Dymola est une suite de logiciels développée par \mtodo{Ajouter référence}{Dassault System}
+permettant d’ajouter de nombreuses fonctionnalités.
+La première étant l’interface graphique permettant de connecter différentes portion
+de code de manière plus intuitive. Il ajoute aussi un débogueur puissant permettant
+de trouver rapidement la portion de code qui pose problème, un outil pour faire du
+refactoring. Enfin il offre un outil puissant pour compiler, initialiser et intégrer
+le modèle avec un large choix d’intégrateurs avec le programme \mtodo{Ajouter référence}{Dymosim}.
+Il propose aussi du support pour la parallélisation, les FMU, et, un outil
+puissant pour faire du traitement des données durant et après les simulations. Enfin
+Dymola propose grâce à des scripts d’accéder à l’ensemble des fonctionnalités
+comme lancer une simulation, modifier un modèle, exporter un modèle, ...
+Dymola est ainsi un outil puissant pour accélérer le développement de modèle Modelica.
+
+
+\itodo{Couplage Dymola + Modelica description}
+Ces deux outils offrent alors de nombreux avantages. On contrôle chaque partie
+du système, le code est réutilisable, on peut choisir le détail de chaque partie
+du modèle, et on peut le coupler avec d’autres logiciels si besoin est.
+
+Le langage Modelica étant largement utilisé, de nombreuses bibliothèques open source
+on été développées dont la liste peut être trouvée sur le site officiel de l’association Modelica
+(\url{https://www.modelica.org/libraries}). Dans notre étude nous avons utilisé
+la bibliothèque \mtodo{Ajouter référence}{Buildings} qui est développé par le
+Laboratoire National Lawrence Berkeley (LBNL). C’est une bibliothèque libre et ouverte
+orienté pour le secteur du bâtiment offrant de nombreux modèles de base.
+
+
+\itodo{Pourquoi une modélisation détaillée d’un système existant}
+Le but de cette étude est d’évaluer le potentiel de couverture d’un système solaire,
+il apparaît donc important de pouvoir évaluer dans le détail son comportement au niveau
+de chaque élément. On va chercher à comprendre comment évolue la température au sein
+de la maison mais aussi des ballons, des capteurs, ...
+Il est aussi important de pouvoir modifier facilement les différents éléments composant
+le système comme les temporisations, les consignes, la taille des différents équipements, ...
+L’étude ne s’intéresse en effet pas seulement à la performance finale du système mais
+aux raisons et limitations qui ont pour conséquence ce résultat.
+
+
+\itodo{Récapituler les besoins de l’étude}
+Si on résume on a donc besoin de contrôler chaque composant pour évaluer si il se
+comporte comme on l’entends. Il est aussi nécessaire de pouvoir facilement de manière
+intuitive les sous-modèles sans affecter le modèle principal. On veut de plus pouvoir
+évaluer le système au niveau du bâtiment et il est donc nécessaire de réaliser des
+simulation sur une échelle de temps importante (de l’ordre de l’année).
+
+
+\itodo{Conclure sur le choix de Modelica et Dymola}
+Le choix du couple Modelica + Dymola est donc le résultat d’une recherche d’un outil
+répondant à nos contraintes. On veut avoir un contrôle complet de chaque composant, leur
+physique comme leur régulation et évaluer au niveau bâtiment la performance de celui-ci.
+Ces deux outils nous permet d’évaluer/modifier/comprendre efficacement le système
+sur différentes échelles tout en encourageant le processus itératif de cette étude.
+
+
+
 \itodo{Montrer que aujourd’hui peu de travail a été fait sur l’optimisation couplée
        et que par conséquent ce sujet est innovant dans son approche du problème}
-% section le_solaire_appliqué_au_batiment (end)
-
-
-
-
+\itodo{Introduire la partie suivante}
+% subsection un_modèle_solaire_couplé_au_bâtiment (end)
+% section le_choix_d_un_modèle_de_système_solaire_couplé_au_bâtiment (end)

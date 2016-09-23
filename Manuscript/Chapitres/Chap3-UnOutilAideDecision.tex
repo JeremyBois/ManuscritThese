@@ -10,8 +10,11 @@
 
 % ..............................................................................
 % ..............................................................................
-\section{L’optimisation Multi-objectif} % (fold)
+\section{Vers une optimisation multi-critère et multi-objectif} % (fold)
 \label{sec:multi_critere}
+\section{Vers une optimisation multi-critère et multi-objectif} % (fold)
+\label{sec:vers_une_optimisation_multi_critere_et_multi_objectif}
+
 
 % ------------------------------------------------------------------------------
 \subsection{Introduction} % (fold)
@@ -52,8 +55,8 @@ pour différentes combinaisons systèmes/enveloppe.
 \itodo{Ajouter du bla bla sur l’originalité et les perspectives de ces travaux}
 
 Enfin ces travaux vise à l’élaboration d’un outil d’aide à la décision. Il existe
-diverses methodes pour faire de l’aide à la décision comme décrites dans le chapitre
-précédent~\autoref{sec:multi_critere}. L’approche choisie est de déterminer un
+diverses methodes pour faire de l’aide à la décision (~\autoref{sec:vers_une_optimisation_multi_critere_et_multi_objectif}).
+L’approche choisie est de déterminer un
 ensemble de solutions non-dominées dans un premier temps, puis d’utiliser des
 outils d’aide à la décision pour réduire le nombre de solution. On se trouve donc
 dans une approche par front de Pareto.
@@ -96,7 +99,7 @@ Approches Pareto:\\
  - les métriques utilisable pour évaluer la qualité de ce front
 }
 % subsection les_approches_existantes (end)
-% section multi_critere (end)
+% section vers_une_optimisation_multi_critere_et_multi_objectif (end)
 
 
 
@@ -111,18 +114,121 @@ Approches Pareto:\\
 \label{sub:les_méthodes_existantes}
 \itodo{
 Nécessiter de limiter le nombre de variables à évaluer pour réduire la cardinalité
-du problème.\\
-Réduction du nombre de variables par l’étude de sensibilité:\\
- - Méthodes locales\\
- - Méthodes globales\\
- - Screening (Morris)
-}
+du problème.}
+Réduction du nombre de variables par l’étude de sensibilité:
+\begin{itemize}
+    \item Méthodes locales
+    \item Méthodes globales
+    \item Screening
+\end{itemize}
+
+Les méthodes de screening sont plus limitées que les methodes d’analyse de sensibilité
+globales. Elles ne permettent d’obtenir qu’une évaluation qualitative des différents
+facteurs influents, permettant de les classer relativement les uns par rapports au autres.
+Cependant un des principaux avantages est le faible nombre d’évaluations nécessaires
+pour évaluer l’influence de chaque facteurs.
 % subsection les_méthodes_existantes (end)
 
 % ------------------------------------------------------------------------------
 \subsection{Réduction de la cardinalité par screening} % (fold)
 \label{sub:reduction_de_la_cardinalite_par_screening}
 \itodo{Présenter l’analyse de sensibilité choisie (graphique, description, ...)}
+
+\itodo{Motiver le choix d’une méthode de screening}
+Dans le cadre de notre étude nous cherchons à sélectionner seulement des facteurs
+ayant un impact important pour limiter la cardinalité de l’étude. Il est en effet important
+d’éliminer à priori les facteurs faiblement impactant pour permettre dans un premier temps
+la simplification du modèle, puis dans un second temps améliorer la convergence
+de la méthode d’optimisation retenue.
+Les méthodes de screening sont alors parfaitement adaptées à notre problème.
+
+\itodo{Motiver le choix de Morris}
+Il existe plusieurs methodes de screening mais la methode de Morris  (\cite{Morris1991161})
+est facilement adaptable à tout type de problèmes. Elle est par exemple utilisable dans le cas où
+les facteurs se compensent ou encore si le signe de l’effet d’un facteur n’est pas
+connue à-priori (\cite{Saltelli2004}).
+
+
+\itodo{Décrire Morris}
+\itodo{Décrire les math derrière Morris ?}
+La méthode de Morris utilise un plan OAT (One (Factor) At the Time) et est basée sur
+l’EEM (Elementary Effect Method).
+Chaque facteur est définie par une intervalle (suivant une loi uniforme) et un certain
+nombre de valeur discrètes (\emph{niveaux} ($p$) sont sélectionnée suivant une discrétisation
+de l’intervalle définie par un \emph{pas} ($\delta$. L’espace des facteurs peut être représenté
+comme un vecteur position dont la longueur correspond au nombre de facteur (noté $k$) et dont chaque élément i
+est la valeur discrète associé au facteur i.
+
+On définie alors une \emph{matrice d’orientation} (ou \emph{trajectoire}) noté $r$
+permettant d’évaluer un effet élémentaire, $d_{i}$. La matrice étant composée de $k$ lignes représentant
+chacune un vecteur position, la méthode de Morris demande $r \times (k + 1)$ évaluations.
+
+
+La première implémentation de la méthode permet d’évaluer qualitativement l’influence de chaque
+paramètre grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$ \eqref{eq:ecart_type}.
+La moyenne permettant d’évaluer les effets linéaires chaque paramètre sur les indicateurs,
+et l’écart type lui d’identifier les influences non linéaires ou les couplages entre différents facteurs.
+
+\begin{equation}\label{eq:moyenne}
+    \mu = \sum_{i = 1}^{r} \frac{d_{i}}{r}
+\end{equation}
+
+\begin{equation}\label{eq:ecart_type}
+    \sigma = \sqrt{\sum_{i=1}^{r}\frac{(d_{i} - \mu)^{2}}{r})}
+\end{equation}
+
+\begin{equation}\label{eq:moyenne_absolue}
+    \mu^{*} = \sum_{i = 1}^{r} \frac{\lvert d_{i} \rvert}{r}
+\end{equation}
+
+\cite{Campolongo20071509} améliore la méthode en proposant deux modifications. La première
+est l’ajout de la moyenne absolue, $\mu^{*}$ \eqref{eq:moyenne_absolue}. Cet indicateur permet
+de voir l’importance des facteurs dont le signe de l’influence est variable là où
+la moyenne ne donnerais pas l’information. En effet le changement de signe
+entraîne des compensations dans le calcul de la moyenne.
+Enfin, l’utilisation cumulé de $\mu$ et de $\mu^{*}$ permet d’évaluer le sens de
+l’influence.
+La seconde modification proposée est la génération d’un grand nombre de trajectoires, $N$,
+dans lesquelles $r$ trajectoires sont sélectionnées. La méthode permet ainsi
+d’obtenir une meilleure répartition des trajectoires dans l’échantillon.
+La méthode de sélection proposée est faite par \emph{Brute force} et demande une forte puissance
+de calcul pour un nombre important de trajectoires.
+
+Afin de palier à ce problème, \cite{Ruano2012103} propose une approximation de
+la meilleure répartition dans un temps de calcul très court permettant d’obtenir
+une sélection représentatif du domaine d’exploitation.
+
+\itodo{Évaluation des résultats}
+La méthode recommandée dans la littérature pour évaluer les résultats de l’analyse
+est graphique et consiste à tracer le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il est
+ainsi possible de juger de l’importance globale d’un facteur.
+Enfin la distance normalisée, $\hat{distance}$ \eqref{eq:distance_norm}, permet
+de classer l’ensemble des indicateurs sur un même graphe à l’aide d’une représentation
+en diagramme à barre permettant d’identifier rapidement les facteurs influents.
+
+\begin{align}\label{eq:distance_norm}
+    \begin{split}
+        distance        &= \sqrt{{\mu^{*}}^2 + \sigma^{2}} \\
+        \hat{distance}  &=  \frac{distance - distance_{min}}{distance_{max} - distance_{min}}
+    \end{split}
+\end{align}
+
+\itodo{Décrire le choix des paramètres}
+Le choix des paramètres $r$ et $p$ a un impact direct sur la qualité du plan OAT.
+Prenons l’exemple d’un $r$ faible ($r=1$), et d’un $p$ important ($p=20$).
+On va alors obtenir 20 valeurs discrètes par facteurs mais une unique trajectoire
+sera générer: le risque de ne pas explorer l’ensemble des facteurs est donc important.
+De bon résultats ont été obtenues pour $r >= 10$ et $p = 4$, (\cite{Campolongo199975,Campolongo2000377,Campolongo199749}).
+Le dernier paramètre, le saut, $grid_{jump}$ permet de définir le pas de discrétisation, $\delta$ \eqref{eq:delta}
+qui doit être un multiple de $\frac{1}{(p - 1)}$.
+\begin{equation}\label{eq:delta}
+  \delta = grid_{jump} \times \frac{1}{(p - 1)}
+\end{equation}
+La littérature utilise principalement $grid_{jump} = \frac{p}{2}$.
+
+Il est important de noter que les améliorations de la méthode d’origine permettent
+d’obtenir une meilleure répartition pour un temps de calcul très faible.
+
 % subsection reduction_de_la_cardinalite_par_screening (end)
 % section l_analyse_de_sensibilite (end)
 
@@ -442,7 +548,7 @@ la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche a
     \end{split}
 \end{equation}
 Il est alors clair d’après la forme récursive de \eqref{eq:marche_aleatoire} que chaque pas
-ne dépend que du pas le précédent; une marche aléatoire est alors un processus de Markov.
+ne dépend que du pas précédent; une marche aléatoire est alors un processus de Markov.
 
 
 La longueur du pas peut varier en fonction de la distribution de probabilité (Fig.~\ref{fig:distribution_pdf})
@@ -459,7 +565,7 @@ La longueur du pas peut varier en fonction de la distribution de probabilité (F
 C’est cette dernière qui nous intéresse plus particulièrement pour une application en méta-heuristique.
 Il a en effet été observé chez diverses espèces comme les atèles (singes), les albatros,
 ou encore la famille des Tephritidae (petites mouches) un comportement respectant
-une marche aléatoire connu sous le nom de Lévy Flight.\mtodo{Citations de Sharma2012213 et Yang201445}
+une marche aléatoire connu sous le nom de Lévy Flight (\cite{Sharma2012213,Yang201445}).
 Cette marche aléatoire est une marche aléatoire utilisant une distribution de Lévy pour
 déterminer la longueur du pas aléatoirement.
 La distribution de Lévy de son auteur Paul Lévy est une distribution à queue lourde, indiquant que son comportement
@@ -503,7 +609,7 @@ les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!, \quad \beta\
     \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
 \end{equation}
 
-L’algorithme de Mantegna \cite{Mantegna19944677} est souvent utilisé pour générer aléatoirement des nombres
+L’algorithme de Mantegna (\cite{Mantegna19944677}) est souvent utilisé pour générer aléatoirement des nombres
 dont la densité de probabilité est proche de celle d’une distribution de Lévy stable et symétrique (le pas peut
 être positif ou négatif).
 La longueur du pas est alors calculé à l’aide de deux distributions normales de la manière suivante:
@@ -677,8 +783,8 @@ dans un espace de solutions faisables limitée.
 \cite{Tsai201480} l’utilise avec deux essaims d’abeilles respectant respectivement l’algorithme
 ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
 qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
-utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement (\cite{Deb2000311}) comme
-les approches plus classiques de pénalité.\mtodo{Lire cet article !!}
+utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement
+(\cite{Deb2000311}\mtodo{Lire cet article !!}) comme les approches plus classiques de pénalité.
 \\
 
 \cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
@@ -717,7 +823,7 @@ l’archive (optimisation multi-objectifs) elle n’accepte que des solutions fa
       servant de résumé du chapitre.}
 
 L’algorithme ABC modifié (Fig.~\ref{fig:abc_modifie}) comprend les même phases que l’original. La différence réside
-dans le déroulement de ces phases. En effet plusieures technique présentées ci-avant
+dans le déroulement de ces phases. En effet plusieurs technique présentées ci-avant
 ont été implémentées afin d’améliorer l’exploitation et l’exploration de l’algorithme.
 Enfin une archive par $\epsilon$-dominance est utilisé pour maintenir les solutions
 non-dominées formant le front de Pareto. Cette archive est mise à jour après chaque

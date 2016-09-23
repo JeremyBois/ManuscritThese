@@ -3,139 +3,16 @@
 
 % ..............................................................................
 % ..............................................................................
-\section{Modélisation des systèmes} % (fold)
-\label{sec:modelisation_des_systemes}
+\section{Description du modèle solaire} % (fold)
+\label{sec:description_du_modele_solaire}
 
 % ------------------------------------------------------------------------------
-\subsection{Pourquoi et comment ?} % (fold)
-\label{sub:pourquoi_et_comment}
-\itodo{Décrire le choix de l’approche par modélisation}
-Il existe plusieurs moyens permettant d’évaluer un système énergétique. Le premier
-consiste à reproduire expérimentalement le système et son environnement. Cependant
-ce processus est couteux , spécialement lorsque on essayer d’évaluer un système à l’échelle
-du bâtiment. On est de plus contraint par les conditions extérieures que l’on ne contrôle
-pas. Ainsi ces deux raisons font qu’il est compliqué et couteux de chercher à dimensionner
-expérimentalement un système. Pour réduire le coût de la recherche et explorer plus de
-variation il est nécessaire de pouvoir contrôler les conditions limites et de pouvoir
-itérer rapidement entre différents compositions/régulations. La modélisation entre alors
-en jeu proposant un contrôle complet des systèmes, de leur régulation, et des conditions
-limites. Le système n’étant pas physique il est alors possible de faire varier n’importe
-quel paramètre simplement afin d’évaluer son importance, son impact, ...
-La modélisation est donc l’outil de choix pour réaliser une étude de faisabilité, un
-dimensionnement, une optimisation.
-
-
-
-
-\itodo{Décrire les outils utilisés: Modelica et les bibliothèques, Dymola et les solveurs}
-Il existe de nombreux langages, logiciels pour réaliser des simulations plus ou moins complexes.
-La première choses à définir est donc le niveau de précision que l’on souhaite pour son modèle ou
-pour les différentes parties du modèle. Notre cas d’étude se place à l’échelle du bâtiment mais
-l’on souhaite aussi conserver un contrôle important sur la gestion des équipements.
-Ensuite il est nécessaire de déterminer le niveau d’accessibilité que l’on souhaite avoir
-sur chaque composant du système. Le modèle \textbf{boîte noire} ne pourrait pas correspondre à notre
-demande. Celui-ci ne nous offre pas le liberté de comprendre comment évolue chaque
-composants du système et nous empêche d’explorer/modifier le code.
-Pour la même raison un modèle \textbf{boîte grise} nous limite dans l’accès à certaines
-partie du code et donc à la compréhension interne du fonctionnement du système.
-Il est alors nécessaire d’utiliser un modèle \textbf{boîte blanche} garantissant
-un contrôle total sur chaque partie du système et permettant d’évaluer le comportement
-au niveau global mais aussi composant par composant.
-Nous avons ainsi opté pour le langage Modelica et la plateforme de développement
-Dymola (Dynamics Modeling Laboratory).
-
-
-
-\itodo{Modelica description}
-\mtodo{Ajouter référence}{Modelica} est un langage de programmation libre et ouvert développé pour répondre aux
-contraintes de la modélisation multi-physique. Il a été pensé pour être intuitif
-et offre une approche équationnelle et orienté objet au développeur.
-L’approche objet est très intuitive et permet d’encapsuler un ensemble de données
-et d’offrir des interface pour accéder à ces données. On peut alors composer de nouveaux
-objets grâce à des références vers d’autre objets (composition) ou en héritant
-du comportement d’un objet pour lui ajouter une spécialisation (héritage).
-Enfin le langage est acausal permettant d’itérer entre différentes formulation
-d’un problème facilement. Un système acausal récupère l’ensemble des variables qu’il
-connait et défini les inconnus à partir de celles-ci. L’ordre d’écriture des équations
-n’est donc plus importante et modifier un système n’oblige pas à re-écrire complètement
-les équations pour isoler la variable que l’on cherche à déterminer. Prenons l’exemple
-de la formule $U = R \times I$. Un problème causal requiert de connaître $R$ et $I$
-pour trouver $U$.L’équation doit être re-écrite si on cherche à trouver $R$ ou $I$.
-Si on utilise une approche acausal alors cette équation a une solution si on a deux des
-trois inconnus ($U et R$ ou $R et I$, ...) sans avoir à modifier l’équation. On peut ainsi utiliser
-la même formulation pour peut importe les variables connues.
-On peut ainsi voir que le développement sous Modelica permet de rapidement proto-typer
-des systèmes complexes.
-
-
-
-\itodo{Dymola description}
-Dymola est une suite de logiciels développée par \mtodo{Ajouter référence}{Dassault System}
-permettant d’ajouter de nombreuses fonctionnalités.
-La première étant l’interface graphique permettant de connecter différentes portion
-de code de manière plus intuitive. Il ajoute aussi un débogueur puissant permettant
-de trouver rapidement la portion de code qui pose problème, un outil pour faire du
-refactoring. Enfin il offre un outil puissant pour compiler, initialiser et intégrer
-le modèle avec un large choix d’intégrateurs avec le programme \mtodo{Ajouter référence}{Dymosim}.
-Il propose aussi du support pour la parallélisation, les FMU, et, un outil
-puissant pour faire du traitement des données durant et après les simulations. Enfin
-Dymola propose grâce à des scripts d’accéder à l’ensemble des fonctionnalités
-comme lancer une simulation, modifier un modèle, exporter un modèle, ...
-Dymola est ainsi un outil puissant pour accélérer le développement de modèle Modelica.
-
-
-
-\itodo{Couplage Dymola + Modelica description}
-Ces deux outils offrent alors de nombreux avantages. On contrôle chaque partie
-du système, le code est réutilisable, on peut choisir le détail de chaque partie
-du modèle, et on peut le coupler avec d’autres logiciels si besoin est.
-
-Le langage Modelica étant largement utilisé, de nombreuses bibliothèques open source
-on été développées dont la liste peut être trouvée sur le site officiel de l’association Modelica
-(\url{https://www.modelica.org/libraries}). Dans notre étude nous avons utilisé
-la bibliothèque \mtodo{Ajouter référence}{Buildings} qui est développé par le
-Laboratoire National Lawrence Berkeley (LBNL). C’est une bibliothèque libre et ouverte
-orienté pour le secteur du bâtiment offrant de nombreux modèles de base.
-
-
-
-\itodo{Pourquoi une modélisation détaillée d’un système existant}
-Le but de cette étude est d’évaluer le potentiel de couverture d’un système solaire,
-il apparaît donc important de pouvoir évaluer dans le détail son comportement au niveau
-de chaque élément. On va chercher à comprendre comment évolue la température au sein
-de la maison mais aussi des ballons, des capteurs, ...
-Il est aussi important de pouvoir modifier facilement les différents éléments composant
-le système comme les temporisations, les consignes, la taille des différents équipements, ...
-L’étude ne s’intéresse en effet pas seulement à la performance finale du système mais
-aux raisons et limitations qui ont pour conséquence ce résultat.
-
-
-
-\itodo{Récapituler les besoins de l’étude}
-Si on résume on a donc besoin de contrôler chaque composant pour évaluer si il se
-comporte comme on l’entends. Il est aussi nécessaire de pouvoir facilement de manière
-intuitive les sous-modèles sans affecter le modèle principal. On veut de plus pouvoir
-évaluer le système au niveau du bâtiment et il est donc nécessaire de réaliser des
-simulation sur une échelle de temps importante (de l’ordre de l’année).
-
-
-
-\itodo{Conclure sur le choix de Modelica et Dymola}
-Le choix du couple Modelica + Dymola est donc le résultat d’une recherche d’un outil
-répondant à nos contraintes. On veut avoir un contrôle complet de chaque composant, leur
-physique comme leur régulation et évaluer au niveau bâtiment la performance de celui-ci.
-Ces deux outils nous permet d’évaluer/modifier/comprendre efficacement le système
-sur différentes échelles tout en encourageant le processus itératif de cette étude.
-% subsection pourquoi_et_comment (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Un système solaire couplée au vecteur air} % (fold)
-\label{sub:description_du_systeme_vecteur_air}
+\subsection{Un système solaire utilisant le vecteur air} % (fold)
+\label{sub:un_systeme_solaire_utilisant_le_vecteur_air}
 \itodo{Description schématique du système}
 Le système solaire \mtodo{Ajouter Ref}{complet} comporte deux parties distinctes,
 la partie hydraulique qui sera détaillée dans un premier temps et la partie
-aéraulique qui sera expliqué ensuite.
+aéraulique qui sera expliquée ensuite.
 \begin{figure}
     \begin{center}
         \includegraphics{schemas/air_complet_mono.pdf}
@@ -433,11 +310,7 @@ indirect n’est pas autorisé. De plus les terminaux électriques ne peuvent pa
 et le débit de soufflage est limité au débit réglementaire de renouvellement d’air.
 En effet il est recherché de
 
-
 \ftodo{Ajouter description schématique de la logique de contrôle}
-
-
-
 % subsubsection description_du_fonctionnement_de_la_partie_aeraulique (end)
 
 
@@ -509,38 +382,51 @@ Les caractéristiques des capteurs utilisés dans l’étude paramétrique provi
 de la même source \mtodo{Ajouter Réf}, qui est un organisme dont l’action est de
 vérifier la performance des capteurs dans les conditions expérimentales décrites
 dans la norme (\mtodo{Ajouter Réf}).
-
 % subsubsection confiance_dans_les_modeles (end)
-% subsection description_du_systeme_vecteur_air (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Un système solaire couplée au vecteur eau} % (fold)
-\label{sub:description_du_système_vecteur_eau}
-\itodo{Déscription des systèmes}
-% subsection description_du_système_vecteur_eau (end)
-% section modelisation_des_systemes (end)
-
+% subsection un_système_solaire_utilisant_le_vecteur_air (end)
+% section description_du_modèle_solaire (end)
 
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Modélisation du bâtiment} % (fold)
-\label{sec:modelisation_du_batiment}
-
+\section{Description du bâtiment} % (fold)
+\label{sec:description_du_batiment}
 
 % ------------------------------------------------------------------------------
-\subsection{Description de la maison} % (fold)
-\label{sub:description_de_la_maison}
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description du site} % (fold)
-\label{ssub:modelisation_du_site}
+\subsection{Description du site} % (fold)
+\label{sub:description_du_site}
 \itodo{Description du site étudié: climat, données metéos, ...}
+\itodo{
+Le fichier météo utilisé est celui de Bordeaux et est de type \emph{IWEC}
+et a pour code d’identification \href{http://www.ladybug.tools/epwmap/}{{IWEC - WMO 075100}}.
+}
 L’étude porte sur les climats de Limoges, Bordeaux, Toulouse, Marseille, et Strasbourg
 afin de couvrir les différentes configuration qui peuvent être rencontrées en
-\itodo{Ajouter un tableau récap avec DJU, ensoleillement dispo, températures mini, ...}{France.}
+France (\ref{tab:description_site}).
+\scriptsize
+\begin{table}
+    \begin{tabular}{c c | c c c c c}
+                            &                     & \textbf{Bordeaux}         & \textbf{Marseille} & \textbf{Toulouse}       & \textbf{Limoges}            & \textbf{Strasbourg}         \\
+        \toprule
+        Température         & Min                 & \cellcolor{Amaranth}-8,2  &                    & -5,4                    & -7,2                        &  \\
+        extérieure          & Max                 & 34                        &                    & 35,6                    & 33,7                        &  \\
+        \si{\degreeCelsius} & Moy                 & 13,2                      &                    & 13,8                    & 11,4                        &  \\
+        \midrule
+        Température         & Min                 & 8,9                       &                    & 8,6                     & \cellcolor{Amaranth}7       &  \\
+        eau froide          & Max                 & 16                        &                    & 17                      & 14                          &  \\
+        \si{\degreeCelsius} & Moy                 & 12,5                      &                    & 12,8                    & \cellcolor{Amaranth}10,6    &  \\
+        \midrule
+        DJU (19)            & \si{\degreeCelsius} & 2408                      &                    & 2321                    & \cellcolor{Amaranth}2972    &  \\
+        \midrule
+        Ensoleillement      &  Direct             &                           &                    &                         &                             &  \\
+        \si{kWh/m^{2}}      &  Diffus             &                           &                    &                         &                             &  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des différentes sites.}
+    \label{tab:description_site}
+\end{table}
+\normalsize
 
 Marseille correspond à un climat très ensoleillé avec peu de demande en chauffage
 durant l’année entière. Il est alors à priori propice à une installation solaire.
@@ -558,47 +444,347 @@ du bâtiment, mais est fortement dépendant de la composition du plancher et du 
 d’isolation de celui-ci.
 
 \itodo{Ajouter un tableau récap des besoins en énergie}
-
 \ftodo{Ajouter une carte pour positionner les villes}
-% subsubsection description_du_site (end)
+% subsection description_du_site (end)
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description de l’enveloppe} % (fold)
-\label{ssub:description_de_l_enveloppe}
+% ------------------------------------------------------------------------------
+\subsection{Approche monozone} % (fold)
+\label{sub:approche_monozone}
+\itodo{Décrire la raison de ce choix}
+\itodo{Maison monozone vérifiée par un modèle multi-zone}
+Dans une première application, un modèle monozone a été utilisé pour réduire la
+complexité du modèle. Comme décrit plus haut (\autoref{ssub:confiance_dans_les_modeles}),
+le modèle respecte une large suite de test, et une approche trop détaillée n’est pas
+nécessaire à ce moment de l’analyse. Le but étant de faire une première évaluation du
+potentiel solaire du système combiné.
+Le modèle a cependant été comparé avec une implémentation dans Energy Plus afin de
+vérifier que les deux modèle ais des résultats similaires. Le travail fais en amont
+sur l’enveloppe de la maison étant complémentaire à celui-ci.
+
+\itodo{Décrire les limitations de cette approches grâce au premiers résultats}
+Les premiers résultats montrent un potentiel intéressant de la production solaire pour
+des climats allant de Marseille à Limoges. Dans un climat très hostile comme
+Strasbourg, la part solaire est faible et ce système ne semble pas permettre de couvrir
+les besoins. Il est important de noter que l’énergie disponible pour le solaire est
+fortement dépendant des fichiers météos.
+Il est aussi intéressant de voir les limitations de l’approche paramétrique. Aucune
+interaction entre les composants n’est prise en compte et la seule information disponible
+est donc difficilement extrapolable/utilisable pour d’autres cas. Il est en effet nécessaire
+d’évaluer/ trier les paramètres influant. Une fois un certain nombre de paramètres retenus,
+il est alors possible de suivre une méthode d’optimisation combinatoire pour évaluer
+un ensemble de solution optimales.
+Enfin l’approche monozone montre aussi ces limites sur plusieurs aspects qui sont importants
+pour l’évaluation d’une maison faiblement déperditive. La répartitions des charges internes
+et des périodes d’occupation est un facteur important à prendre en compte. Sans une approche
+multizone, il est impossible d’en tenir compte correctement (charges propres au type de pièce)
+Il est aussi intéressant de voir quel est l’impact passif des équipements du système solaire sur la
+consommation et la charge de la maison. L’approche monozone n’ayant que un seul nœud
+d’air, la prise en compte des apports par ces équipements est trop grossier.
+Enfin l’approche multizone permet de modéliser un algorithme de régulation plus réaliste.
+En effet pour prendre le cas de la CTA; l’insufflation et l’extraction ne se font pas au même endroit.
+
+\itodo{Decrire le découpage de la maison.}
+La maison a été modélisé comme un ensemble de 3 zones, les combles, le vide-sanitaire, et la zone
+à vivre. Un modèle simplifié est utilisé pour les combles et le vide sanitaire
+afin d’obtenir des conditions limites notamment pour les parois du puits de jour.
+Les coefficients de convection intérieurs utilisés sont les suivants:
+\begin{itemize}
+    \item Plafond: 8~\si{W/m^{2}.k}
+    \item Plancher: 8~\si{W/m^{2}.k}
+    \item Murs: 8~\si{W/m^{2}.k}
+\end{itemize}
+
+Le coefficient de convection extérieur utilisé est de 25~\si{W/m^{2}.k}.
+% subsection approche_monozone (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Description de l’enveloppe} % (fold)
+\label{sub:description_de_l_enveloppe}
 \itodo{Description complète de la maison: Composition de base, surfaces, orientation, ...}
-La maison a une surface habitable de \munsure{À vérifier}{100}\,\si{m^2}. Elle comporte
+La maison (Fig.~\ref{fig:plan_maison}) a une surface habitable de 98.4~\si{m^2}. Elle comporte
 3 \mtodo{Ajouter orientation}{chambres}, une cuisine/salon, et un local technique
 où se trouve les équipements du système. La maison comporte des combles non aménagés
-et un vide sanitaire.
+et un vide sanitaire. La maison est de plain-pied et les compositions sont:
+\begin{itemize}
+    \item Murs: ~\autoref{tab:compo_mur}
+    \item Plafond: ~\autoref{tab:compo_plafond}
+    \item Plancher: ~\autoref{tab:compo_plancher}
+    \item Partition: ~\autoref{tab:compo_partition}
+    \item Murs du puits de lumière: ~\autoref{tab:compo_puits}
+    \item Murs vide sanitaire: ~\autoref{tab:compo_VS}
+    \item Toiture: ~\autoref{tab:compo_toiture}
+\end{itemize}
+Les différents vitrages sont des vitrages double avec une lame d’air ou d’argon.
+Une couche faiblement émissive est ajouté pour les vitrages des parois verticales (~\autoref{tab:compo_vitrage}).
+La fenêtre de toit~\autoref{tab:compo_velux} et les caractéristiques des gaz  ~\autoref{tab:compo_gaz}
+sont aussi décrites.
 
-\ftodo{Ajouter image de la maison (Aurélie)}
-Cette étude ne cherchera pas à modifier l’enveloppe de la maison qui est déjà le
-résultat de l’étude \munsure{Travail d’aurélie}{paramétrique} mais se concentrera
-sur l’impact de la modification des composants du système, de la régulation, et du climat.
-
-La maison a été modélisé comme un ensemble de 3 zones, les combles, le vide-sanitaire, et la zone
-à vivre. Le tableau ci-dessous () présente les caractéristiques des matériaux utilisés
-dans la composition des parois. Celle-ci sont décrite au tableau suivant ().
-
-\itodo{Tableau des matériaux}
+\begin{figure}
+    \begin{center}
+        \includegraphics{Maison/plan.png}
+    \end{center}
+    \caption{Plan de la maison accueillant le système solaire modélisé.
+             \label{fig:plan_maison}}
+\end{figure}
 
 \itodo{Tableau des parois}
-% subsubsection description_de_l_enveloppe (end)
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} & \si{kg/m^{3}} \\
+        \midrule
+        Enduit            & 0.01      & 1.15           & 850             & 2000            \\
+        Optibric (R=1.32) & 0.2       & 0.1515         & 1000            & 685             \\
+        Laine de verre    & 0.14      & 0.03218        & 840             & 20              \\
+        Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des parois verticales.}
+    \label{tab:compo_mur}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux              & e         & $\lambda$        & $C_{p}$         & $\rho$          \\
+                               & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)} & \si{kg/m^{3}} \\
+        \midrule
+        Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
+        Polyuréthane           & 0.1       &  0.0215          & 1590            & 35              \\
+        Hourdis + polystyrène  & 0.12      &  0.0276          & 1450            & 35              \\
+        Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description du plancher.}
+    \label{tab:compo_plancher}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux               & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+                                & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)}    &\si{kg/m^{3}}  \\
+        \midrule
+        Laine de roche soufflée & 0.365     & 0.045        & 1030               & 150                 \\
+        Plâtre                  & 0.01      & 0.25         & 1000               & 820                 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description du plafond sous combles.}
+    \label{tab:compo_plafond}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+                  & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+        \midrule
+        Tuile     & 0.04      & 1              & 800             & 2000            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description de la toiture.}
+    \label{tab:compo_toiture}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+        \midrule
+        Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
+        Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
+        Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des parois du puits de jour.}
+    \label{tab:compo_puits}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+        \midrule
+        Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
+        Air (R=0.15)      & -         & -              & -               & -               \\
+        Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des murs de partitions.}
+    \label{tab:compo_partition}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *4{c}}
+        \toprule
+        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+        \midrule
+        Béton             & 0.2       & 1.13           & 1000            & 2000            \\
+        Terre             & 4         & 0.52           & 50              & 2050            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des parois du vide sanitaire.}
+    \label{tab:compo_VS}
+\end{table}
+
+
+\itodo{Tableau des vitrages}
+\begin{table}
+    \begin{tabular}{l *8{c}}
+        \toprule
+        Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$ \\
+                  & \si{m}  & \si{W/(m.k)} & -              & -         & -                & -                & -                & -                \\
+        \midrule
+        SGG Planilux       & 0.04  & 1          & 0.849      & 0           & 0.837              & 0.837              & 0.076              & 0.076                   \\
+        Argon              & 0.016 & -          & -          & -           & -                  & -                  & -                  & -                       \\
+        SGG PlaniTherm One & 0.04  & 1          & 0.591      & 0           & 0.037              & 0.837              & 0.312              & 0.264                   \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des vitrages en façades verticales ($U_{f}$ de 1.4~\si{W/m^{2}.k}).}
+    \label{tab:compo_vitrage}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{l *8{c}}
+        \toprule
+        Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
+                  & \si{m}  & \si{W/(m.k)} & -              & -         & -          & -          & -            & -             \\
+        \midrule
+        Verre ext & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
+        Air       & 0.016     & -              & -                & -           & -           & -            & -              & -               \\
+        Verre int & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description de la fenêtre de toit ($U_{f}$ de 1.8~\si{W/m^{2}.k}).}
+    \label{tab:compo_velux}
+\end{table}
+
+\begin{table}
+    \raggedright
+    \begin{tabular}{l *5{c}}
+        \toprule
+        Gaz   & $a_{k}$              & $b_{k}$              & $a_{mu}$             & $b_{mu}$             & $a_{c}$           \\
+              & \si{W/(m.k)}       & \si{W/(m.k^{2})}   & Pa.s               & \si{N.s/(m^{2}.k)} & \si{J/(kg.k)}   \\
+        \midrule
+        Argon & $2.285\times10^{-3}$ & $5.149\times10^{-5}$ & $3.379\times10^{-6}$ & $6.451\times10^{-8}$ & 521.9285          \\
+        Air   & $2.873\times10^{-3}$ & $7.760\times10^{-5}$ & $3.723\times10^{-6}$ & $4.940\times10^{-8}$ & 1002.737          \\
+        \bottomrule
+    \end{tabular}
+    \bigskip
+    \begin{tabular}{l *3{c}}
+              & $b_{c}$                & $MM$                  & $P0$       \\
+              & \si{J/(kg.k^{2})}    & \si{kg/mol}         & \si{bar} \\
+        \midrule
+        Argon & 0                      & $39.948\times10^{-3}$ & 101325     \\
+        Air   & $1.2324\times10^{-2}$  & $28.97\times10^{-3}$  & 101325     \\
+        \bottomrule
+    \end{tabular}
+    \caption{Description des caractéristiques des gaz}
+    \label{tab:compo_gaz}
+\end{table}
+
+
+% subsection description_de_l_enveloppe (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Description du comportement des occupants} % (fold)
+\label{sub:description_du_comportement_des_occupants}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Hypothèses sur les charges internes} % (fold)
+\label{ssub:hypotheses_sur_les_charges_internes}
+
+\paragraph{Construction des scénarios} % (fold)
+\label{par:construction_des_scenarios}
+\itodo{Décrire le choix des scénarios}
+Les charges internes sont le cumul des charges dû aux occupants, les équipements et à l’éclairage.
+Le scénario d’occupation est représentatif d’une famille type.
+On a donc deux adultes et deux enfants. Ils sont absents durant toute la journée;
+les enfants étant à l’école et les parents au travail. Le Mercredi, il est admis que
+la maison est occupée durant l’après midi et le week-end, le scénario
+considère que toute la famille est présente.
+Le scénario utilisé pour représenter la charge des équipements suit le même schéma que
+l’occupation. La consommation est issue de la réglementation thermique, RT2012. Durant la nuit et les
+inoccupations, un réduit représentant la veille des équipements est pris en compte.
+\itodo{Décrire les différents scénarios avec des illustrations}
+De la même manière le scénario représentant les charges liées à l’éclairage suivent
+le même schéma que l’occupation. On ne considère pas de charge durant la nuit et la
+journée en semaine. Le week-end durant la journée la consommation est abaissée comme
+définie dans la RT2012.
+% paragraph construction_des_scénarios (end)
+
+\paragraph{Description de l’occupation} % (fold)
+\label{par:description_de_l_occupation}
+\itodo{Détailler plus le choix du scénario d’occupation}
+\itodo{Ajouter répartition sensible radiatif}
+Le modèle étant monozone, il n’est pas possible d’utiliser un scénario
+en fonction du type d’activités. La maison est occupée
+par 4 personnes dont la puissance rejetée est de l’ordre de 97.5\,\si{W/m^{2}}.
+Cette valeur provient de la moyenne de puissance générée par
+les habitants en fonction de l’activité et de leur âge (enfant ou parent).
+Ce calcul tient compte des valeurs utilisées dans la simulation \emph{Energy Plus} qui est
+elle détaillée par zone dans le tableau ci-dessous.
+
+\begin{table}
+\begin{tabular}{*8{c}}
+    \toprule
+    Chambre 1 & Chambre 2  & Chambre 3 & Séjour & Cuisine & Sanitaire & SdB   & Cellier \\
+    \midrule
+    78        & 78         & 117       & 97.5   & 97.5    & 114.3     & 114.3 & 114.3   \\
+    \bottomrule
+\end{tabular}
+\caption{Description de la puissance dissipée par personne en fonction de la zone.}
+\end{table}
+
+La puissance ainsi calculé suit le profil décrit en Fig~\ref{fig:occupation_scenario}
+dont 70~\% est considérée comme convectif et 30~\% comme radiatif.
+
+\begin{figure}
+    \includegraphics{Maison/Scenarios/Occupation_Watt.png}
+    \caption{Profil de la puissance dissipée par les occupants durant une semaine type.}
+    \label{fig:occupation_scenario}
+\end{figure}
+% paragraph description_de_l_occupation (end)
+
+\paragraph{Description des charges internes inertes} % (fold)
+\label{par:description_des_charges_internes_inertes}
+\itodo{Descriptif charges}
+\itodo{Détailler plus le choix des scénarios}
+Les profils de puissance dissipée (Fig~\ref{fig:charges_internes_scenario}) suit les puissances
+définies dans la \textbf{RT 2012}.
+On a donc pour l’éclairage une dissipation équivalent de 1.4~\si{W/m^{2}} et
+de 5.7~\si{W/m^{2}} pour l’électroménager.
+L’énergie dissipée pour l’éclairage est répartie en convectif (42\%) et en radiatif (58\%).
+L’énergie dissipée pour l’électroménager est répartie en convectif (80\%) et en radiatif (20\%).
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Maison/Scenarios/Charges_Watt_meter_day.png}
+        \includegraphics{Maison/Scenarios/Charges_Watt_meter.png}
+    \end{center}
+    \caption{Profil de la puissance dissipée par les charges électriques internes (\si{W/m^{2}})}
+    \label{fig:charges_internes_scenario}
+\end{figure}
+% paragraph description_des_charges_internes_inertes (end)
+
+% subsubsection hypothèses_sur_les_charges_internes (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description des scénarios} % (fold)
-\label{ssub:description_des_scenarios}
-\itodo{Description des différents scénarios}
-Le cas d’étude considère une famille de 4 personnes. Les scénarios utilisés pour
-l’occupation, les apports internes, et, les consommations de l’éclairage proviennent
-de la réglementation française (\itodo{Ajouter ref}{RT2012}).
-Le scénario d’occupation est le suivant:
+\subsubsection{Hypothèses sur le puisage en eau chaude sanitaire} % (fold)
+\label{ssub:hypotheses_sur_le_puisage_en_eau_chaude_sanitaire}
 
-
-La température de l'eau du réseau varie en fonction du mois de l'année et de la
-position géographique du bâtiment selon \mtodo{Ajouter Ref}.
+\paragraph{Hypothèses sur la température de l’eau froide} % (fold)
+\label{par:hypothèses_sur_la_température_de_l_eau_froide}
+La température de l'eau du réseau suit une évolution mensuel afin de prendre en compte
+la variation importante durant l’année.
 La température d’arrivée de l’eau au niveau du ballon est un facteur important pour
 évaluer la consommation d’énergie pour le puisage en ECS. Le récapitulatif (\autoref{tab:temp_water})
 montre bien que la variation de la température est autant influencé par la période de l’année
@@ -621,113 +807,102 @@ que par la position géographique.
          position géographique.}
          \label{tab:temp_water}
 \end{table}
+% paragraph hypothèses_sur_la_température_de_l_eau_froide (end)
+
+\paragraph{Description du scénario de référence} % (fold)
+\label{par:description_du_scénario_de_reference}
+Comme explicité en \autoref{par:description_de_l_occupation} on considère 4 personnes
+dans la maison. Un comportement \munsure{trouve mieux}{gaspilleur} a été considéré
+afin d’évaluer la performance du système pour des conditions non favorables. Il a été
+retenue 33~\si{l/jour/pers}~(\textbf{60~\si{\degree}}) contre un puisage moyen
+\mtodo{Ajouter source}{33\,\si{l/jour/pers}~(\textbf{50\,\si{\degree}})}.
+La température de puisage a été fixé à 40~\si{\degree} ce qui correspond donc
+à un volume total de 220~\si{l/jour}~(\textbf{40~\si{\degree}}).
+\itodo{Ajouter scénario de puisage}
+Le puisage est considéré comme répartie sur la journée. Il est considéré 3 pics de
+demande de puisage: le matin (1/6), le midi (1/6), et le soir (2/3) ().
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Maison/Scenarios/Puisage_ecs.png}
+%     \end{center}
+%     \caption{Profil de la puissance dissipée par les charges électriques internes (\si{W/m^{2}})}
+%     \label{fig:puisage_ecs}
+% \end{figure}
+
+\iunsure{
+Refaire étude paramétrique pour avoir le même modèle que étude de sensibilité
+Consommation de 41~\si{l/jour/pers} (\textbf{60\,\si{\degree}})
+}
+% paragraph description_du_scénario_de_référence (end)
+% subsubsection hypothèses_sur_le_puisage_en_eau_chaude_sanitaire (end)
 
 
-\itodo{Description des différents consignes}
-\itodo{Ajouter Réf vers scénarios}
-Différents scénarios ont été pris mis en place afin de simuler une famille de 4 personnes;
-2 enfants et 2 adultes. Dans un premier temps, les scénarios fixes sont décrits. Ces scénarios
-ne subissent aucunes variations durant l’étude paramétrique.
-\begin{itemize}
-    \item Occupation %(\autoref{tab:})
-    \item Charges équipements %(\autoref{tab:})
-    \item Charges éclairage %(\autoref{tab:})
-\end{itemize} 
-Les charges internes sont le cumul des charges dû aux occupants, les équipements et à l’éclairage.
-Le scénario d’occupation est représentatif d’une famille type.
-On a donc deux adultes et deux enfants. Ils sont absents durant toute la journée;
-les enfants étant à l’école et les parents au travail. Le Mercredi, il est admis que
-la maison est occupée durant l’après midi et le weekend, le scénario
-considère que toute la famille est présente.
-Le scénario utilisé pour représenter la charge des équipements suit le même schéma que
-l’occupation. La consommation est issue de la réglementation thermique, RT2012. Durant la nuit et les
-inoccupations, un réduit représentant la veille des équipements est pris en compte.
-\itodo{Décrire les différents scénarios avec des illustrations}
-De la même manière le scénario représentant les charges liées à l’éclairage suivent
-le même schéma que l’occupation. On ne considère pas de charge durant la nuit et la
-journée en semaine. Le weekend durant la journée la consommation est abaissée comme
-définie dans la RT2012.
+\subsubsection{Hypothèses sur le renouvellement d’air} % (fold)
+\label{ssub:hypothèses_sur_le_renouvellement_d_air}
+
+\paragraph{Ventilation} % (fold)
+\label{par:ventilation}
+Le renouvellement d’air neuf suit le scénario réglementaire définie par
+l’\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{arrêté du 24 mars 1982 et du 28 octobre 1983}.
+La maison comprend 4 pièces principales. Le débit réglementaire est alors de 90~\si{m^{3}/h}
+si on considère un fonctionnement mécanique et contrôlé de la ventilation.
+% paragraph ventilation (end)
+
+\paragraph{Infiltrations} % (fold)
+\label{par:infiltrations}
+Les infiltrations ont été définies en utilisant un coefficient de perméabilité ($q_{4}$) de 0.4~\si{m^{3}/h.m^{2}}.
+Le calcul \eqref{eq:infiltrations} tient compte de la somme des surfaces dites \emph{froides}.
+
+\begin{align}
+    Infiltrations &= 0.4 \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
+    &              = 0.4 \times (26.4 \times 4 + 8.6 + 98.4)\\
+    &              = 85~\si{m^{3}/h}
+    \label{eq:infiltrations}
+\end{align}
+% paragraph infiltrations (end)
+% subsubsection hypothèses_sur_le_renouvellement_d_air (end)
+
+\subsubsection{Hypothèses sur la température de consigne} % (fold)
+\label{ssub:hypothèses_sur_la_température_de_consigne}
+
+\paragraph{Consigne de chauffage} % (fold)
+\label{par:consigne_de_chauffage}
+La température de consigne (Fig.~\ref{fig:consigne_scenario}) est de 19\,\si{\degree} durant l’occupation avec un
+réduit à 18\,\si{\degree} la nuit. Durant les absences (après-midi des jours ouvrés)
+il est considéré un réduit à 16\,\si{\degree}. Il est important de noté que comme
+les scénarios de charge interne, la consigne de température est basé sur le scénario
+d’occupation.
+\begin{figure}
+    \begin{center}
+        \includegraphics{Maison/Scenarios/Consigne_temperature.png}
+    \end{center}
+    \caption{Profil de la consigne de température (\si{\celsius})}
+    \label{fig:consigne_scenario}
+\end{figure}
+% paragraph consigne_de_chauffage (end)
 
 
-\itodo{Décrire les scénarios variables}
-\itodo{Ajouter Réf vers scénarios}
-La suite présente les scénarios dont la variation a été étudiée durant l’étude:
-\begin{itemize}
-    \item Température de consigne %(\autoref{tab:})
-    \item Profil de puisage ECS %(\autoref{tab:})
-    \item Débits d’extractions d’air %(\autoref{tab:})
-    \item Température de consigne solaire %(\autoref{tab:})
-\end{itemize} 
-Le descriptif ci-dessous présente le scénario du cas de référence, les variations
-étant décrites dans le partie sur l’étude paramétrique.
-Le premier est la température de consigne. Pour le cas de référence, on cherche à
-maintenir une température de 19\,\si{\degreeCelsius} durant l’occupation avec un
-réduit à 18\,\si{\degreeCelsius} la nuit. Durant les absences (après-midi des jours ouvrés)
-il est considéré un réduit à 16\,\si{\degreeCelsius}.
-Le profil de puisage du cas de référence considère un puisage répartie entre le matin (1/6),
-l’après midi (1/6) et le soir (2/3). Il a été considéré une consommation d’eau chaude
-sanitaire importante pour évaluer la performance du système dans le cas le plus défavorable.
-En effet il a été retenue une consommation de 41\,\si{l/jour/pers} (\textbf{60\,\si{\degreeCelsius}}) alors que la
-moyenne par personne est de l’ordre de 33\,\si{l/jour/pers} (\textbf{50\,\si{\degreeCelsius}}) \mtodo{Ajouter des sources}.
-L’utilisation d’une ventilation a été simulé par le maintien du débit hygiénique
-en cas d’occupation et le débit minimal en inoccupation. Ce débit est fixe et ne dépend
-pas du taux d’humidité comme fonctionnerait une bouche hygroréglable, mais simule un
-fonctionnement on/off. Il est en effet considéré que durant l’absence des occupants
-le taux d’humidité est faible que par conséquent le débit de renouvellement est réduit.
-Enfin il a été autorisé durant la journée (période d’inoccupation) d’augmenter la température
-intérieure grâce au solaire afin de charger la maison en énergie et repousser la 
-prochaine demande en chauffage.
-\ftodo{Ajouter un graphique par scénario}
-% subsection description_de_la_maison (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Approche monozone} % (fold)
-\label{sub:approche_monozone}
-\itodo{Décrire la raison de ce choix}
-Dans une première application, un modèle monozone a été utilisé pour réduire la
-complexité du modèle. Comme décrit plus haut (\autoref{ssub:confiance_dans_les_modeles}),
-le modèle respecte une large suite de test, et une approche trop détaillée n’est pas 
-nécessaire à ce moment de l’analyse. Le but étant de faire une première évaluation du
-potentiel solaire du système combiné.
-Le modèle a cependant été comparé avec une implémentation dans Energy Plus afin de
-vérifier que les deux modèle ais des résultats similaires. Le travail fais en amont
-sur l’enveloppe de la maison étant complémentaire à celui-ci.
-
-\itodo{Décrire les limitations de cette approches grâce au premiers résultats}
-Les premiers résultats montrent un potentiel intéressant de la production solaire pour 
-des climats allant de Marseille à Limoges. Dans un climat très hostile comme 
-Strasbourg, la part solaire est faible et ce système ne semble pas permettre de couvrir
-les besoins. Il est important de noter que l’énergie disponible pour le solaire est 
-fortement dépendant des fichiers météos.
-Il est aussi intéressant de voir les limitations de l’approche paramétrique. Aucune
-interaction entre les composants n’est prise en compte et la seule information disponible
-est donc difficilement extrapolable/utilisable pour d’autres cas. Il est en effet nécessaire
-d’évaluer/ trier les paramètres influant. Une fois un certain nombre de paramètres retenus,
-il est alors possible de suivre une méthode d’optimisation combinatoire pour évaluer 
-un ensemble de solution optimales.
-Enfin l’approche monozone montre aussi ces limites sur plusieurs aspects qui sont importants
-pour l’évaluation d’une maison faiblement déperditive. La répartitions des charges internes
-et des périodes d’occupation est un facteur important à prendre en compte. Sans une approche
-multizone, il est impossible d’en tenir compte correctement (charges propres au type de pièce)
-Il est aussi intéressant de voir quel est l’impact passif des équipements du système solaire sur la 
-consommation et la charge de la maison. L’approche monozone n’ayant que un seul nœud
-d’air, la prise en compte des apports par ces équipements est trop grossier.
-Enfin l’approche multizone permet de modéliser un algorithme de régulation plus réaliste.
-En effet pour prendre le cas de la CTA; l’insufflation et l’extraction ne se font pas au même endroit.
-% subsection approche_monozone (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Approche multizone} % (fold)
-\label{sub:approche_multizone}
-\itodo{Décrire les outils nécessaire pour l’approche multi-zone: EnergyPlus, FMU,
-       Python, Sketchup, OpenStudio}
-\itodo{Introduire les avantages au regard de l’approche multizone}
-\itodo{Décrire la mise en place du modèle}
-% subsection approche_multizone (end)
-% section description_du_batiment (end)
-
+\paragraph{Consigne de surchauffe solaire} % (fold)
+\label{par:consigne_de_surchauffe_solaire}
+Afin de favoriser l’énergie solaire, la consigne de température peut être modifiée.
+Celle-ci est alors appelée consigne de surchauffe solaire. Cette consigne permet
+de charger la maison en profitant de son inertie (principalement de la dalle) afin
+de retarder la demande en chauffage le soir (Fig.~\ref{fig:surchauffe_solaire}). Il est important de noter que seul
+l’énergie solaire direct peut être utilisé pour atteindre cette consigne. En effet,
+le but est de profiter de l’énergie solaire disponible durant la journée et il utiliser
+l’énergie de l’auxiliaire ou décharger le ballon solaire pour atteindre un sur-confort
+n’aurait pas de sens.
+\ftodo{Ajouter la consigne solaire}
+\begin{figure}
+    \begin{center}
+        \includegraphics{Regulation/control_air_curve.pdf}
+    \end{center}
+    \caption{Illustration de la surchauffe solaire diurne.}
+    \label{fig:surchauffe_solaire}
+\end{figure}
+% paragraph consigne_de_surchauffe_solaire (end)
+% subsubsection hypothèses_sur_la_température_de_consigne (end)
+% section description_du_bâtiment (end)
 
 
 
@@ -750,8 +925,6 @@ d’un système solaire combiné couplé à une maison passive est une approche 
 \itodo{Variations de la régulation}
 
 \itodo{Faire un récap des résultats de l’étude}
-
-
 % subsection récapitulatif (end)
 
 
@@ -781,3 +954,32 @@ d’un système solaire combiné couplé à une maison passive est une approche 
 % subsection ce_qu_il_faut_retenir (end)
 % section etude_parametrique (end)
 
+
+
+
+
+
+
+
+
+
+
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Un système solaire couplée au vecteur eau} % (fold)
+% \label{sub:description_du_système_vecteur_eau}
+% \itodo{Déscription des systèmes}
+% % subsection description_du_système_vecteur_eau (end)
+% % section modelisation_des_systemes (end)
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Approche multizone} % (fold)
+% \label{sub:approche_multizone}
+% \itodo{Décrire les outils nécessaire pour l’approche multi-zone: EnergyPlus, FMU,
+%        Python, Sketchup, OpenStudio}
+% \itodo{Introduire les avantages au regard de l’approche multizone}
+% \itodo{Décrire la mise en place du modèle}
+% % subsection approche_multizone (end)
+% % section description_du_batiment (end)
