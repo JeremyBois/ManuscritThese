@@ -13,6 +13,7 @@
 \usepackage[dvipsnames, svgnames]{xcolor}  % Color support
 \frenchspacing                             % French typo
 \frenchbsetup{StandardLists=true}          % Turn off french bulleted lists
+\usepackage{./Template/graphics_support}   % Image support
 \usepackage[scaled]{beramono}
 
 % Add support for annotations with transparent color
@@ -83,6 +84,11 @@
             backend=biber]{biblatex}                % Bibliography support
 \addbibresource{../Bibliographie/references.bib}    % Where to find bibliography
 
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
 \begin{document}
 
 \chapter*{Expression analytique de la distribution de Lévy stable et symétrique}
@@ -137,6 +143,52 @@ On a alors:
     & \langle RMS^{2}\rangle = \frac{1}{n} \sum_{i=1}^{n}(x_{i} - x_{i+1})^{2} \\\\
     & Var(\mathbf{X}) \sim \langle RMS^{2}\rangle\\
 \end{align*}
+
+
+\chapter*{Évaluation du nombre de rectangle dans un triangle quelconque}
+Considérons un rectangle de dimensions $l \times h$ et un triangle ABC.
+Combien de rectangle (sans rotation) peut contenir le triangle ABC (Fig.~\ref{fig:rects_in_triangle}).
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Demonstrations/rects_in_triangle.png}
+    \end{center}
+    \caption{Représentation schématique du problème : Combien de rectangle
+             (sans rotation) peut contenir le triangle ABC
+             \label{fig:rects_in_triangle}}
+\end{figure}
+
+D’après la \textbf{loi des cosinus} (Théorême de Al Kashi) il est possible d’écrire:
+\begin{equation}
+        \alpha = \arccos \left[\frac{AC^{2} + BC^{2} - AB^{2}}{2 \times AC \times BC}\right]
+    \label{eq:loi_cosinus}
+\end{equation}
+On peut alors définir la hauteur du triangle ABC en utilisant la trigonométrie et
+\autoref{eq:loi_cosinus}:
+\begin{equation}
+    \begin{split}
+        H &= \sin (\arccos[\alpha]) \times BC\\
+        \\
+          &= \sin \left(\arccos \left[\frac{AC^{2} + BC^{2} - AB^{2}}{2 \times AC \times BC}\right]\right) \times BC
+    \end{split}
+    \label{fig:height_triangle}
+\end{equation}
+
+En utilisant le \textbf{théorême de Thalès} dans ABC et A’BC on peut définir la longueur DE
+en fonction de $H$.
+\begin{equation}
+    \begin{split}
+        DE &= \frac{BE \times AC}{BC} \\
+        \\
+           &= \frac{(H - h) \times AC}{H}
+    \end{split}
+\end{equation}
+
+Le nombre total de rectangle sans chevauchement peut alors être définie par \autoref{eq:nb_rects_in_triangle}:
+\begin{equation}
+    N_{rect} = \sum_{n = 1}^{\floor*{\nicefrac{H}{h}}} \floor*{\frac{(H - n \times h) \times AC}{l \times H}}
+    \label{eq:nb_rects_in_triangle}
+\end{equation}
 
 
 \chapter*{Autres notes}

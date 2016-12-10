@@ -1,0 +1,23 @@
+% Template\graphics_support.sty
+
+% ------------------------------------------------------------------------------
+% Support for images, pdf. Avoid overflow problems.
+% ------------------------------------------------------------------------------
+% Manipulate pictures and figures
+\usepackage{graphicx, grffile}
+% Define macro to avoid overflow from images
+\makeatletter
+  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+%\setkeys{Gin}{width=\maxwidth,height=\maxheight}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight, keepaspectratio}
+
+
+% ------------------------------------------------------------------------------
+% This file must be rewrite on any new support to point to correct folders
+% ------------------------------------------------------------------------------
+\usepackage{Template/ImagesFolder}
