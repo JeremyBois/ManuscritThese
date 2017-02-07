@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="file:///C:/Users/bois/AppData/Local/Pandoc/css/scholmd-heuristically-latest.min.css">
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="vers-un-outil-daide-à-la-décision-plan-chapitre-3">Vers un outil d’aide à la décision : Plan chapitre 3</h1>
+<h2 id="introduction-du-chapitre">Introduction du chapitre</h2>
+<h2 id="choix-dune-méthodologie-adaptée">Choix d’une méthodologie adaptée</h2>
+<h3 id="méthodologies-existantes">1) Méthodologies existantes</h3>
+<ul>
+<li>Formulation / Définition</li>
+<li>Optimisation puis décision (à posteriori)</li>
+<li>Décision puis optimisation (à priori –&gt; agrégation)</li>
+<li>Décision + Optimisation (combinée, itératif)</li>
+<li>Introduire partie suivante</li>
+</ul>
+<p><br/></p>
+<h3 id="réduire-la-cardinalité-du-problème">2) Réduire la cardinalité du problème</h3>
+<h4 id="principe-de-lanalyse-de-sensibilité">Principe de l’analyse de sensibilité</h4>
+<ul>
+<li>Définir l’ensemble des facteurs influents à priori et les objectifs</li>
+<li>Limiter la variation en fonction des objectifs</li>
+<li>Décrire méthodes existantes :
+<ul>
+<li>Quand les utiliser ?</li>
+<li>Quels limites ?</li>
+</ul></li>
+</ul>
+<h4 id="méthode-de-criblage-morris">Méthode de criblage : Morris</h4>
+<ul>
+<li>Décrire principe</li>
+<li>Décrire améliorations</li>
+<li>Limites (variables continues)</li>
+</ul>
+<p><br/></p>
+<h3 id="les-méthodes-doptimisation">3) Les méthodes d’optimisation</h3>
+<h4 id="loptimisation">L’optimisation</h4>
+<ul>
+<li>Définition + vocabulaire
+<ul>
+<li>Exemples d’application</li>
+</ul></li>
+<li>Introduction des type de variables (discrètes, continues)</li>
+<li>Extension au cas multi-objectif
+<ul>
+<li>Description des approches (arbre des méthodes)</li>
+<li>Description des méthodes</li>
+<li>Pareto (approches de dominance, techniques de diversité)
+<ul>
+<li>Dominance rank</li>
+<li>Dominance depth</li>
+<li>Dominance account</li>
+</ul></li>
+<li>Non Pareto / Non scalaire</li>
+<li>Scalaire</li>
+<li>MOCO vs Continuous optimization</li>
+</ul></li>
+</ul>
+<p><em>Basseur200639</em>, <em>Armand-Decker2015</em></p>
+<h4 id="les-méta-heuristiques">Les Méta-heuristiques</h4>
+<p><em>Généralités</em></p>
+<ul>
+<li>Définition, différence heuristique et méta-heuristique, utilité, limites, …</li>
+<li>Introduire intelligence artificielle</li>
+<li>Décrire existant : Évolutionnaires / Essaim / Autres</li>
+<li>Comment choisir ? Nombre de paramètres / Applicabilité / Subjectivité</li>
+</ul>
+<p><em>Approches basées sur les essaims</em></p>
+<ul>
+<li>Décrire les caractéristiques des essaims</li>
+<li>Décrire les différents algorithmes existants avec des applications</li>
+</ul>
+<h2 id="construction-dun-méta-heuristique">Construction d’un Méta-heuristique</h2>
+<h3 id="générateur-de-solutions">1) Générateur de solutions</h3>
+<h4 id="motivations">Motivations</h4>
+<ul>
+<li>Nécessite peu de paramètre à tuner</li>
+<li>Respecte les règles caractéristiques des essaims</li>
+<li>Simplicité de fonctionnement / implémentation</li>
+<li>Équilibre entre exploitation et exploration</li>
+<li>Capacité à s’extraire des optimums locaux</li>
+<li>Limiter le nombre d’évaluations nécessaires (vitesse de convergence)</li>
+</ul>
+<h4 id="artificial-bee-colony-abc">Artificial Bee Colony (ABC)</h4>
+<ul>
+<li>Décrire son histoire</li>
+<li>Décrire le fonctionnement de l’algorithme
+<ul>
+<li>Les phases (exploitation / recherche locale / exploration)</li>
+<li>L’apprentissage par la mise en commun</li>
+<li>Recherche stochastique</li>
+</ul></li>
+<li>Extension aux problèmes multi-objectif</li>
+<li>Améliorations
+<ul>
+<li>Existantes</li>
+<li>Vol de Lévy pour les Scouts</li>
+<li>Apprentissage par vecteur opposés pour l’initialisation</li>
+</ul></li>
+<li>(Faire propagande avec des articles montrant qu’il se comporte mieux !)</li>
+</ul>
+<p><br/></p>
+<h3 id="stockage-des-solutions-optimales">2) Stockage des solutions optimales</h3>
+<h4 id="motivations-1">Motivations</h4>
+<ul>
+<li>Garder en mémoire l’évolution du front (multi-objectif)</li>
+<li>Tenir compte de problèmes à objectifs multiples</li>
+<li>Assurer l’élitisme</li>
+<li>Fournir une base d’apprentissage (mémoire) pour progresser dans la recherche</li>
+<li>Limiter le nombre de solutions retenues</li>
+</ul>
+<h4 id="epsilon-archive-epsilon-archive">Epsilon-Archive (<span class="math inline">\(\epsilon\)</span>-archive)</h4>
+<ul>
+<li>Introduire les techniques de diversité existantes (Kernel, nearest, hist)</li>
+<li>Décrire le fonctionnement</li>
+<li>Comparer avec les autres approches existantes
+<ul>
+<li>Mettre en exergue l’élitisme nécessaire à la convergence</li>
+<li>Mettre en exergue la rapidité de l’approche</li>
+<li>Mettre en exergue la diversité qu’il apporte</li>
+<li>Mettre en exergue la robustesse lorsque le nombre d’objectif augmente</li>
+</ul></li>
+</ul>
+<p><br/></p>
+<h3 id="prendre-en-compte-les-contraintes">3) Prendre en compte les contraintes</h3>
+<ul>
+<li>Décrire les méthodes existantes
+<ul>
+<li>Pénalité (diverses approches avec des poids)</li>
+<li>Exclusion (ne considère pas du tout les solutions sous contraintes)</li>
+<li>Deb rules (priorité aux solutions respectant les contraintes)</li>
+</ul></li>
+<li>Décrire la méthode retenue
+<ul>
+<li>Accepte des solutions avec contraintes</li>
+<li>Améliore l’exploration</li>
+<li>Capacité à contrôler / limiter le nombre de solution sous contraintes</li>
+</ul></li>
+<li>Cas spécifique de l’archivage
+<ul>
+<li>Comportement stricte pour les solutions dans l’archive</li>
+<li>Conserver que des solutions possibles / voulues / plausibles</li>
+</ul></li>
+</ul>
+<p><br/></p>
+<h3 id="description-globale-du-méta-heuristique">4) Description globale du Méta-heuristique</h3>
+<ul>
+<li>Décrire algorithme</li>
+<li>Décrire graphiquement</li>
+<li>Décrire implémentation
+<ul>
+<li>Description macro de l’architecture</li>
+<li>Lien vers bibliothèques</li>
+</ul></li>
+</ul>
+<h2 id="que-retenir">Que retenir ?</h2>
+<ul>
+<li>Faire un récapitulatif</li>
+<li>Ouvrir le prochain chapitre</li>
+</ul>
+</body>
+</html>

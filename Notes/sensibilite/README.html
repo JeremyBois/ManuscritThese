@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="file:///C:/Users/bois/AppData/Local/Pandoc/css/scholmd-heuristically-latest.min.css">
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="thèse-analyse-de-sensibilité.">Thèse: Analyse de sensibilité.</h1>
+<p><strong>Mise à jour: 2016-08-29</strong></p>
+<hr />
+<h2 id="méthode-de-morris">Méthode de Morris:</h2>
+<h3 id="références">Références:</h3>
+<ol type="1">
+<li>Morris, M. D. (1991). Factorial sampling plans for preliminary computational experiments. Technometrics, 33, 161–174.</li>
+<li>Campolongo, F., J. Cariboni, and A. Saltelli (2007). An effective screening design for sensitivity analysis of large models. Environmental Modelling and Software, 22, 1509–1518.</li>
+<li>http://salib.github.io/SALib/</li>
+<li>A. Saltelli et .al (2000) Sensitivity analysis in practice: A guide to Assessing Scientif Models (book) Chap 2, 4 Wiley <code>p. 108</code></li>
+<li>Saltelli et al. (2000). Sensitivity analysis as an ingredient of modelling. Statist. Sci. 15(4), 377-395 <code>p.65</code></li>
+<li>F. Campolongo and S. Tarantola and A. Saltelli (1999) Tackling quantitatively large dimensionality problems Computer Physics Communications</li>
+<li>F. Campolongo and S. Tarantola and A. Saltelli (2000) Sensitivity Analysis as an Ingredient of Modeling Statistical Science</li>
+<li>Francesca Campolongo and Andrea Saltelli (1997) Sensitivity analysis of an environmental model: an application of different analysis methods Reliability Engineering &amp; System Safety</li>
+</ol>
+<h3 id="introduction">Introduction:</h3>
+<p>La méthode utilise un plan OAT ou OFAT (<em>One (Factor) At a Time</em>). Une unique variable est modifiée à la fois laissant les autres à leur valeur d’origine. La méthode ne peut donc pas détecter les intéractions entre les variables.</p>
+<p>C’est une methode de screening basé sur l’<code>Elementary Effect Method</code> (EEM [1]). La méthode permet de récupérer la <strong>moyenne</strong> et l’<strong>écart type</strong> qui permettent d’évaluer qualitativement l’influence de chaque variable. La moyenne absolue est introduit par [2] afin de palier au problème du signe de l’influence. Le vecteur de base n’est jamais évalué durant la méthode, mais seulement utilisé pour avoir une base commune. Cette base est générée aléatoirement.</p>
+<h3 id="fonctionnement">Fonctionnement:</h3>
+<p>La méthode permet de classer l’importance (décroissance) de chaque variable afin d’ensuite faire une recherche plus approfondie ou d’optimiser les variables importantes. Il permet aussi d’identifier les variables qui peuvent être fixée à n’importe quelle valeur dans leur intervalle d’incertitude sans affecter la sortie. Ce dernier point peut permettre par exemple de simplifier un modèle complexe.</p>
+<p>La méthode de Morris a les avantages suivants:</p>
+<ul>
+<li>Indépendant du modèle contrairement aux autres connues [4], [5]</li>
+<li>Grouper les facteurs (variables d’entrées) [2, 4]</li>
+<li>Rapide <span class="math inline">\((k + 1) * p\)</span> avec <span class="math inline">\(k\)</span> le nombre de variables et <span class="math inline">\(p\)</span> le nombre de niveaux</li>
+<li>Peut être considérée comme global car on explore différente région de l’espace des variables et réalise la moyenne d’effets élémentaires</li>
+</ul>
+<p>La méthode de Morris a les inconvénients suivants:</p>
+<ul>
+<li>Ne recherche pas sur l’intégralité de l’espace de variation</li>
+<li>Ne permet pas d’obtenir une réponse quantitative</li>
+<li>Le fait de moyenner fait perdre la dépendance d’un point spécific</li>
+<li>La variation des paramètres ne peut que suivre une loi uniforme</li>
+</ul>
+<h3 id="exploitation">Exploitation:</h3>
+<p>Les sorties de la méthode révisée [2] permettent d’identifier 3 types d’influence:</p>
+<ul>
+<li>Négligeable</li>
+<li>linéaire (moyenne absolue <span class="math inline">\(\mu^{*}\)</span> et moyenne <span class="math inline">\(\mu\)</span>)</li>
+<li>Direction de l’influence (moyenne absolue <span class="math inline">\(\mu^{*}\)</span> et moyenne <span class="math inline">\(\mu\)</span>)</li>
+<li>non-linéaire ou couplée à d’autres facteurs (standard deviation == écart type <span class="math inline">\(\sigma\)</span>)</li>
+</ul>
+<p>Il est important de noter la différence entre <span class="math inline">\(\mu\)</span> et <span class="math inline">\(\mu^{*}\)</span>. Le premier est la sortie de la méthode d’origine [1], alors que le second est ajouté dans la révision de [2]. En effet lorsque le modèle est non-monotomic, certaines variables peuvent avoir des effets s’annulant. La moyenne standard <span class="math inline">\(\mu\)</span> perd alors de sa pertinence. Le choix d’une moyenne en valeur absolue évite les effets de signe opposés et permet donc de classer correctement les variables ayant un effet linéaire.</p>
+<p>Afin d’évaluer correctement l’importance et le type d’influence de chaque variable, [1] propose un méthode graphique consistant à tracer le plan (<span class="math inline">\(\sigma\)</span>, <span class="math inline">\(\mu\)</span> ou <span class="math inline">\(\mu^{*}\)</span>). Enfin il est aussi possible d’estimer le sens d’influence grâce aux deux moyennes (<span class="math inline">\(\mu\)</span> et <span class="math inline">\(\mu^{*}\)</span>). Par exemple si <span class="math inline">\(\mu^{*}\)</span> est important mais <span class="math inline">\(\mu\)</span> non, alors la variable peu avoir des effets différents en fonction du point (plan oat) utilisé. Pour estimer les intéractions entre les variables <span class="math inline">\(\sigma\)</span> peut être utilisé. Si il est important on note que la variable est dépendant de la variation des autres variables.</p>
+<h3 id="choix-des-paramètres">Choix des paramètres:</h3>
+<p>Plusieurs paramètres sont à définir:</p>
+<ul>
+<li>k = nbr de variables</li>
+<li><span class="math inline">\(min_{i}\)</span>, <span class="math inline">\(max_{i}\)</span> = bornes des variables (0 &lt; i &lt;= k)</li>
+<li>p = nbr de niveaux</li>
+<li>r = nbr de trajectoires</li>
+<li><span class="math inline">\(\delta\)</span> = pas</li>
+<li><span class="math inline">\(grid_{jump}\)</span> = saut (à ne pas confondre avec <span class="math inline">\(\delta\)</span>)</li>
+</ul>
+<p><span class="math inline">\(k\)</span> est le nombre de variables dont l’on cherche à évaluer l’importance et <span class="math inline">\(min_{i}\)</span>, <span class="math inline">\(max_{i}\)</span> leur bornes (loi uniforme). <span class="math inline">\(p\)</span> est le nombre de valeurs discrètes que peuvent prendre chaque variable. <span class="math inline">\(r\)</span> est la taille de l’échantillon (le nombre de génération de trajectoire ou encore le nombre de fois que la matrice d’orientation est générée) Enfin <span class="math inline">\(\delta\)</span> est le pas de discrétisation utilisé et il doit être un multiple de <span class="math inline">\(\frac{1}{(p - 1)}\)</span>. Il est souvant fixé comme suit : <span class="math inline">\(grid_{jump} \times \frac{1}{(p - 1)}\)</span>.</p>
+<p>La méthode demande alors <span class="math inline">\(r \times (k + 1)\)</span> simulations.</p>
+<p><strong>Paramètres courants:</strong><br />
+<span class="math inline">\(k\)</span>, <span class="math inline">\(min_{i}\)</span>, <span class="math inline">\(max_{i}\)</span> sont propres au problème. Il a été montré ([6], [7], [8]) que un choix de <span class="math inline">\(r = &gt;10\)</span> et de <span class="math inline">\(p = 4\)</span> produit de bon résultats. Il est important de noter que ces deux paramètres on un lien de dépendance sur la qualité du plan OAT généré. Prenons un <span class="math inline">\(r\)</span> (nbr de matrice généré) trop petit (disons 1) alors même si on utilise un <span class="math inline">\(p\)</span> grand (disons 20), on risque de n’explorer qu’une portion de l’espace des variables. En effet on augmente le nombre de valeur discrète que peut prendre chaque variable durant l’analyse de sensibilité mais on ne génére qu’une unique matrice d’orientation. Ces deux paramètres doivent donc être sélectionnés ensembles. Enfin le dernier paramètre <span class="math inline">\(\delta\)</span> est le pas de discrétisation utilisé pour passer d’une valeur discrète à une autre (ce qui explique le lien de probabilité décrit ci-dessus). La litterature ([1], [2]) utilise <span class="math inline">\(\delta = \frac{p}{2 \times (p - 1)}\)</span></p>
+<hr />
+</body>
+</html>

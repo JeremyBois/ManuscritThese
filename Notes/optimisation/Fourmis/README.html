@@ -1,0 +1,1541 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>README</title></head><body><article class="markdown-body"><h1 id="these-multi-objectives-combinatorial-optimization-problem-mocop"><a name="user-content-these-multi-objectives-combinatorial-optimization-problem-mocop" href="#these-multi-objectives-combinatorial-optimization-problem-mocop" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Thèse: Multi Objectives Combinatorial Optimization Problem (MOCOP)</h1>
+<p><strong><em>Mise à jour: 20151106</em></strong></p>
+<h2 id="vocabulaire"><a name="user-content-vocabulaire" href="#vocabulaire" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Vocabulaire:</h2>
+<pre><code>fourmi      = Solution en construction
+heuristique = Règle utilisé pour guider la recherche
+phéromone   = Information stigmergique (https://fr.wikipédia.org/wiki/Stigmergie)
+nœud       = Critère de construction
+branche     = Représente une passerelle autorisé entre deux nœuds
+chemin      = Combinaison de la sélection d’une branche puis une autre, ...
+nid         = Nœud utilisé à l’initialisation
+évaporation = Dépreciation d’une solution
+tau_ij      = Quantité de phéromone entre nœud i et nœud j
+TSP         = Problème du voyageur de commerce (Traveling Salesman Problem)
+QAP         = Quadratic Assignment Problem
+</code></pre>
+<h2 id="acronymes"><a name="user-content-acronymes" href="#acronymes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Acronymes:</h2>
+<pre><code>ACS   = Ant Colony System
+MMAS  = Min-Max Ant System
+MOCOP = Multi Objectives Combinatorial Optimization Problem
+</code></pre>
+<h2 id="ant-colony-system-acs"><a name="user-content-ant-colony-system-acs" href="#ant-colony-system-acs" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Ant Colony System (ACS):</h2>
+<p>C’est un méta-heuristique basé sur le comportement des fourmis. En effet les fourmis<br />
+secrètent une substance appelée <code>phéromone</code> pour communiquer. L’algorithme utilise<br />
+ce principe pour construire une solution à un problème donné.<br />
+En plus de l’information déposée par les fourmis, un <code>heuristique</code> est utilisé.<br />
+Cet heuristique permet de guider la recherche dans l’ensemble des <code>critères</code> utilisés<br />
+pour construire une solution. Afin d’éviter la convergence trop rapide de l’algorithme<br />
+chaque étape de la construction de la solution est soumis à une loi probabiliste.<br />
+Chaque choix est influencé par le niveau de phéromone et l’heuristique qui augmente<br />
+les chances de choisir un critère plutôt que un autre.<br />
+L’algorithme peut donc être représenté par un <code>graphe</code>. Un graphe est une structure<br />
+permettant d’organiser les données en utilisant des nœuds (node ou vertex) reliés<br />
+par des branches (edges). On a donc l’ensemble des critères représentés par des<br />
+nœuds et chaque branches contiennent les informations de phéromones et de l’heuristique.<br />
+On a donc un graphe avec poids <code>weight-graph</code>.<br />
+Ainsi le problème à résoudre doit pouvoir s’écrire sous forme de graphe afin<br />
+de pouvoir utilisé ce méta-heuristique et cherche à trouver le plus court cycle<br />
+hamiltonien.</p>
+<p>Le premier (combi opti)</p>
+<h3 id="description-de-la-methode"><a name="user-content-description-de-la-methode" href="#description-de-la-methode" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Description de la méthode:</h3>
+<p><strong><em>Initialisation:</em></strong></p>
+<ul>
+<li>On définit un <code>nid</code> (nœud de départ)</li>
+<li>On défini l’heuristique utilisé pour guider la recherche</li>
+<li>On initialise la quantité de phéromone (dépendant de la variante de l’algorithme)</li>
+</ul>
+<p><strong><em>Itération</em></strong></p>
+<ul>
+<li>Chaque fourmis construit la solution en fonction de la loi probabiliste.</li>
+<li>On réalise une recherche locale (optionnelle)</li>
+<li>On autorise plus ou moins de fourmis à déposer des phéromones<br />
+   (dépendant de la variante de l’algorithme)</li>
+<li>Évaporation pour oublier les mauvais choix (exponentielle)<br />
+   Choisir un coefficient faible ralenti l’évaporation (coef entre 0 et 1)</li>
+</ul>
+<h2 id="min-max-ant-system-mmas"><a name="user-content-min-max-ant-system-mmas" href="#min-max-ant-system-mmas" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Min-Max Ant System (MMAS):</h2>
+<p>Cette approche est une amélioration de l’algorithme de base sur plusieurs point:</p>
+<p><strong><em>Utilisation de borne pour la quantité de phéromone</em></strong><br />
+On limite ainsi le risque de converger trop vite vers un optimum local<br />
+En effet les fourmis la probabilité de suivre un chemin augmente si la quantité<br />
+de phéromone augmente. Si on ne borne pas cette quantité, on finit par avoir<br />
+l’ensemble de la population qui suit le même chemin.</p>
+<p><strong><em>On ne dépose des phéromones que sur la solution optimale pour l’itération</em></strong><br />
+Ce choix permet de concentrer la recherche vers les combinaisons de critères<br />
+prometteurs mais peuvent</p>
+<p><strong><em>Initialisation des phéromones pour chaque branche à la borne maximale</em></strong><br />
+On initialise la quantité de phéromone  <code>tau</code> à la valeur maximale.</p>
+<p><strong><em>On peut réinitialiser les pistes de phéromones</em></strong></p>
+<h2 id="ameliorations-de-la-recherche"><a name="user-content-ameliorations-de-la-recherche" href="#ameliorations-de-la-recherche" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Améliorations de la recherche</h2>
+<p>Afin d’améliorer encore la recherche de la solution optimale plusieurs propositions<br />
+peuvent être utilisés.</p>
+<p><strong><em>Sources:</em></strong><br />
+The Max-Min ANT System and Local Search for Cominatorial Optimization Problems<br />
+Thomas Stützle, Holger  H. Hoos_2000_Future generation computer systems</p>
+<h3 id="initialisation-des-pistes-de-pheromones"><a name="user-content-initialisation-des-pistes-de-pheromones" href="#initialisation-des-pistes-de-pheromones" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Initialisation des pistes de phéromones:</h3>
+<p>On choisit une valeur très grande pour toutes les pistes (supérieure à tau_max)<br />
+pour la première itération de façon à ce que l’évaporation ne limite pas l’itération<br />
+suivante. Tous les chemins à l’itération 2 ont donc une valeur tau_max.</p>
+<h3 id="reinitialisation"><a name="user-content-reinitialisation" href="#reinitialisation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Réinitialisation</h3>
+<p>Réinitialisation lorsque le système converge (plus d’évolution).<br />
+Lorsque toutes les branches ne contenant pas les critère de la solution optimale<br />
+ont un niveau de phéromone proche de tau_min et qu’il n’y a plus d’amélioration<br />
+de la solution depuis <code>x</code> nombre d’itération.<br />
+<code>x</code> et <code>proche de tau_min</code> étant à définir.</p>
+<h3 id="choix-du-maximum-et-du-minimum"><a name="user-content-choix-du-maximum-et-du-minimum" href="#choix-du-maximum-et-du-minimum" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Choix du maximum et du minimum</h3>
+<p>Le choix des bornes (minimum et maximum) est un facteur de convergence vers la<br />
+meilleur solution.<br />
+Tau_max doit être proche de la valeur de la meilleur solution de l’objectif.<br />
+On l’approche asymptotiquement à partir de la loi probabiliste qui influence<br />
+le prochain choix d’une fourmis.<br />
+Tau_min est fonction du nombre de choix pour chaque critère et de la valeur de Tau_max<br />
+<strong><em>Plus d’informations dans la publication</em></strong></p>
+<h3 id="mise-a-jour-des-pheromones"><a name="user-content-mise-a-jour-des-pheromones" href="#mise-a-jour-des-pheromones" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Mise à jour des phéromones</h3>
+<p>Le choix de la solution à mettre à jour est déterminée par la meilleure solution<br />
+à l’itération en cours. Choisir des fois de mettre à jour la meilleure solution<br />
+globale peut améliorer la qualité des solutions trouvées.</p>
+<h3 id="lissage-des-pheromones"><a name="user-content-lissage-des-pheromones" href="#lissage-des-pheromones" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Lissage des phéromones</h3>
+<p>Lorsque l’algorithme commence à converger ou converge, il est intéressant de lisser<br />
+les pistes de phéromones afin que les fourmis continuent à explorer de nouvelles<br />
+solutions. On affaibli la solution vers laquelle on a convergé en utilisant un<br />
+facteur entre 0 et 1.</p>
+<pre><code>Tau_ij = Tau_ij + facteur_réducteur * (Tau_max - Tau_ij)
+</code></pre>
+<p><em>Tau_ij la quantité de phéromone entre le nœud i et le nœud j</em><br />
+<em>0 &lt; facteur_réducteur &lt; 1</em></p>
+<h3 id="ajout-dune-recherche-locale"><a name="user-content-ajout-dune-recherche-locale" href="#ajout-dune-recherche-locale" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Ajout d’une recherche locale</h3>
+<p>Certain problèmes NP-hard obtiennent de meilleurs résultats avec l’ajout d’une<br />
+recherche local:</p>
+<ul>
+<li>2-opt</li>
+<li>3-opt / reduced 3-opt</li>
+<li>LK local search</li>
+<li>Robust tabu search</li>
+</ul>
+<h2 id="multi-objectives-combinatorial-optimization-problem-approche-pareto"><a name="user-content-multi-objectives-combinatorial-optimization-problem-approche-pareto" href="#multi-objectives-combinatorial-optimization-problem-approche-pareto" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Multi Objectives Combinatorial Optimization Problem: Approche Pareto</h2>
+<p>La section précédente traite de l’approche pour un seul objectif et les améliorations<br />
+des ACO au fur et à mesure du temps.<br />
+Depuis des adaptations aux problèmes multi-critères ont été étudiés et c’est ce<br />
+qui est présenté dans ce chapitre.</p>
+<h1 id="articles"><a name="user-content-articles" href="#articles" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Articles:</h1>
+<hr />
+<p><img src="///D://Github/Projets/These/Notes/Notes_optimisation/AntColonyOptimization/article.jpg"/></p>
+<hr />
+<h1 id="multiobjective-max-min-ant-system-an-application-to-multicast-traffic-engineering"><a name="user-content-multiobjective-max-min-ant-system-an-application-to-multicast-traffic-engineering" href="#multiobjective-max-min-ant-system-an-application-to-multicast-traffic-engineering" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Multiobjective Max-Min Ant System. An application to Multicast Traffic Engineering</h1>
+<p><strong>Auteurs:</strong> Diego Pinto, Benjamím Barán<br />
+<strong>Année:</strong> 2008</p>
+<h2 id="citations"><a name="user-content-citations" href="#citations" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Citations:</h2>
+<ul>
+<li>[3] D.A.V Veldhuizen et G.B Lamont 2000 <code>Multiobjective Evolutionary Algorithms: Analyzing the State of the Art</code></li>
+<li>[6] S. Iredi et al. 2001 <code>Bi-Criterion Optimization  with Multi Colony Ant Algorithm</code></li>
+<li>[8] T Stützle et H.Hoos 2000 <code>MAX-MIN Ant System</code></li>
+</ul>
+<h2 id="resume"><a name="user-content-resume" href="#resume" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Résumé:</h2>
+<h3 id="1-introduction"><a name="user-content-1-introduction" href="#1-introduction" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 | Introduction:</h3>
+<p>Introduit l’historique des premières optimisations multi-objectifs avec les algorithmes<br />
+de colonies de fourmis sans ajout de caractères subjectifs.<br />
+[6]: Première approche sans classement des objectifs<br />
+[8]: Description de la variante d’ACO la plus performante &ndash;&gt; MMAS</p>
+<p>Présentation d’une variante de MOACO par recherche de front de Pareto (M-MMAS ou M3AS).<br />
+Aucunes introductions de données à priori. Génération d’un front de Pareto à chaque<br />
+boucle, et mise à jour des nouvelles solutions non dominées de ce set.<br />
+Évaluation de la performance de l’algorithme sur le <code>Multicast Routing Problem</code><br />
+en l’opposant à un autre développé specifiquement pour ce problème.</p>
+<h3 id="2-formulation"><a name="user-content-2-formulation" href="#2-formulation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2 | Formulation:</h3>
+<p>Description de la formulation d’un problème multi-critère très bien faite.<br />
+Voir le papier lors de la rédaction</p>
+<h3 id="4-ant-colony-optimization-approach"><a name="user-content-4-ant-colony-optimization-approach" href="#4-ant-colony-optimization-approach" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4 | Ant Colony Optimization Approach:</h3>
+<p>Description succincte de la forme générale de l’algorithme.<br />
+Description de la varainte MMAS avec l’introduction des modifications de l’approche<br />
+M3AS.</p>
+<h3 id="7-result"><a name="user-content-7-result" href="#7-result" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>7 | Result:</h3>
+<p>Petites instances: M3AS plus performant<br />
+Grandes instances: M3AS plus performant à 320s mais un peu en dessous à 160s<br />
+M3AS globalement meilleur sur le nombre de solutions trouvée et la couverture des<br />
+solutions possibles.<br />
+Enfin les solutions trouvées par M3AS domine une plus grosse part des solutions<br />
+de MMA que l’inverse.<br />
+M3AS est donc une meilleure alternative pour ce problème.</p>
+<h1 id="max-min-ant-system"><a name="user-content-max-min-ant-system" href="#max-min-ant-system" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>MAX-MIN Ant System</h1>
+<p><strong>Auteurs:</strong> Thomas Stützle et Holger H. Hoos<br />
+<strong>Année:</strong> 2000</p>
+<h2 id="citations_1"><a name="user-content-citations_1" href="#citations_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Citations:</h2>
+<ul>
+<li>[9] M. Dorigo et al. 2000 <code>Ant algorithms and stimergy</code></li>
+<li>[10] M. Dorigo et al. 1999 <code>The Ant colony optimization meta-heuristique</code></li>
+<li>[11] M. Dorigo et al. 1999 <code>Ant algorithms for distributed discrete optimization</code></li>
+<li>[41] T. Stützle 1998 <code>Local search algorithms for combinatorial problems</code></li>
+</ul>
+<h2 id="resume_1"><a name="user-content-resume_1" href="#resume_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Résumé:</h2>
+<h3 id="1-introduction_1"><a name="user-content-1-introduction_1" href="#1-introduction_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 | Introduction:</h3>
+<p>La matrice de phéromone pêut être vu comme la représentation de l’expérience des<br />
+fourmis sur un problème donné.<br />
+La recherche autour des meilleures solutions apporte les meilleurs résultats.<br />
+Il explique aussi que l’ajout de recherche local renforce la performance de ces<br />
+méthodes (voir [5, 12, 19, 28, 41-43]).<br />
+MMAS est l’algorithme le plus performant sur les cas tests, parmis les différents<br />
+algorithmes de fourmis.</p>
+<h3 id="2-ant-colony-optimization"><a name="user-content-2-ant-colony-optimization" href="#2-ant-colony-optimization" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2 | Ant Colony Optimization:</h3>
+<p>Ce Meta-Heuristique peut être appliqué à n’importe quel problème combinatoire<br />
+(voir [10, 11]).<br />
+Explication du meta-heuristique appliqué au problème du voyageur de commerce (TSP).<br />
+<strong>Stagnation:</strong> Situation ou les différentes fourmis construisent le même chemin encore et encore. (voir [14])</p>
+<h3 id="4-max-min-ant-system"><a name="user-content-4-max-min-ant-system" href="#4-max-min-ant-system" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4 | MAX-MIN Ant System:</h3>
+<p>Description détaillée de l’algorithme, et plus particulièrement la méthode utilisée<br />
+pour la mise à jour des traces de phéromones. Il explique l’alternance entre la<br />
+meilleure solution du tour et la meilleur au globale.</p>
+<p><strong>Choix des bornes sur la matrice de phéromone:</strong><br />
+<strong>Borne max:</strong><br />
+La solution optimale n’étant pas connue la borne max (<code>Tau_max</code>) est mise à jour dynamiquement<br />
+en utilisant l’approximation que la meilleure solution actuelle est la solution optimale.<br />
+Le taux de phéromone maximum correspond alors à la normalization de l’approximation<br />
+de la solution optimale pondérée par l’évaporation.<br />
+<code>[1 / (1 - rho)] * [1 / meilleure solution globale]</code></p>
+<p><strong>Borne min:</strong><br />
+La borne <code>Tau_min</code> est elle définie en utilisant une estimation de <code>rho_best</code><br />
+qui permet ensuite de définir <code>rho_dec</code>. Ces critères sont déterminants pour<br />
+la vitesse de convergence du système. Important de définir correctement les bornes<br />
+de la matrice de phéromone (voir eq. 8&ndash;&gt;11).</p>
+<p><strong>Initialisation:</strong><br />
+Au premier tour la matrice de phéromone doit être initialisée à une valeur assez grande pour<br />
+que au second tour l’ensemble de la matrice de phéromone soit toujours à Tau_max.<br />
+Permet d’améliorer l’espace de recherche.</p>
+<p><strong>Évaporation:</strong><br />
+Choisir un coefficient d’évaporation faible accélère la convergence mais risque<br />
+de converger vers un optimum local. <code>0 &lt; rho &lt; 1</code><br />
+Pour le TSP problème le choix d’une évaporation très forte et d’une sélection élitiste<br />
+donne de bon résultats</p>
+<p><strong>Defauts for TSP:</strong><br />
+beta=2, alpha=1, m=n=nombre de fourmis=nombre de choix à faire, rho=0.98, prob_best=0.05<br />
+On remarque que avec beta=0 (exclusion de l’heuristique) la qualité de la solution ne<br />
+varie que faiblement (<strong>voir partie 6</strong>).</p>
+<p><strong>Sélection de la solution optimale:</strong><br />
+Amélioration du jeu de solution en alternant entre le choix de la meilleur au tour et globale.<br />
+Au fur et à mesure, il est intéressant d’augmenter la probabilité de choisir de mettre à<br />
+jour la meilleure solution globale pour converger plus rapidement.<br />
+Une meilleure convergence a été observée si on ne choisi pas de mettre à jour la<br />
+meilleure entre solution globale et de l’itération mais si on applique l’alternance<br />
+progressive décrite ci-dessus (<strong>voir résultats partie 6</strong>).</p>
+<p>Afin d’améliorer la performance de la solution, il peut être intéressant d’ajouter<br />
+un <code>pheromone trail smoothing (PTS)</code>. Le principe est le suivant: On va favoriser<br />
+la recherche de solution avec une faible trace de phéromone.<br />
+À montré son efficacité pour le TSP.</p>
+<h3 id="6-experimental-results-for-the-qap"><a name="user-content-6-experimental-results-for-the-qap" href="#6-experimental-results-for-the-qap" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6 | Experimental results for the QAP:</h3>
+<p>** Recherche locale<br />
+La recherche locale étant coûteuse en temps de calcul, un faible nombre de fourmis<br />
+on été sélectionnée. Le faible nombre de fourmis est compensé par la qualité des<br />
+solution après la recherche locale.<br />
+Il est aussi observée que pour des instances &ldquo;réelles&rdquo; une recherche locale simple<br />
+suffit pour avoir de très bon résultats.</p>
+<h1 id="ant-colony-optimization-for-multi-objective-optimization-problems"><a name="user-content-ant-colony-optimization-for-multi-objective-optimization-problems" href="#ant-colony-optimization-for-multi-objective-optimization-problems" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Ant Colony Optimization for Multi-objective Optimization Problems</h1>
+<p><strong>Auteurs:</strong> Ines Alaya<br />
+<strong>Année:</strong> 2007</p>
+<h2 id="citations_2"><a name="user-content-citations_2" href="#citations_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Citations:</h2>
+<ul>
+<li>[6] M. Dorigo 1992 <code>Optimization, Learning, Natural Algorithm, PhD thesis</code></li>
+<li>[7] M. Dorigo 2004 <code>Ant Colony Optimization, MIT Press</code></li>
+<li>[20] T. Stützle 2000 <code>MAX-MIN Ant System</code></li>
+</ul>
+<h2 id="resume_2"><a name="user-content-resume_2" href="#resume_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Résumé:</h2>
+<h3 id="1-introduction_2"><a name="user-content-1-introduction_2" href="#1-introduction_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 | Introduction:</h3>
+<p>L’algorithme proposée est paramétrable par le nombre de colonies et le nombre de<br />
+matrice de phéromones.<br />
+Le problème multi-objectif test est le suivant: <code>Knapsack problem</code></p>
+<h3 id="3-a-generic-aco-algorithm-for-multiobjective-problems"><a name="user-content-3-a-generic-aco-algorithm-for-multiobjective-problems" href="#3-a-generic-aco-algorithm-for-multiobjective-problems" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3 | A Generic ACO algorithm for multiobjective problems</h3>
+<p>Proposition de plusieurs algorithmes m-ACO (m étant le nombre d’objectifs).<br />
+Un heuristique est définie pour chaque objectif. Ces algorithmes étant basés sur<br />
+<code>MMAS</code> une borne min et max est définie pour éviter de la concentration trop<br />
+rapide vers un optimum local.<br />
+L’évaporation est définie par un facteur constant.</p>
+<p><strong>m-ACO1 (m+1 colonies, m structures de phéromones):</strong><br />
+La colonie supplémentaire optimise les deux objectifs en sélectionnant de façon<br />
+aléatoire à chaque itération un objectif à optimiser.<br />
+Chaque colonies à un objectif, un heuristique, et une trace de phéromone.<br />
+La mise à jour de la trace est réalisé pour la meilleure solution pour chaque<br />
+objectif (chaque colonie) et la quantité dépend de la meilleure solution globale.<br />
+Enfin la mise à jour est réalisée sur chaque matrice de phéromones.</p>
+<p><strong>m-ACO2 (m+1 colonies, m structures de phéromones):</strong><br />
+Similaire à <code>m-ACO1</code> avec comme différence l’agréation des valeurs de phéromone de<br />
+chaque solution. Agrégation par <code>sum-weigthed-values</code>.</p>
+<p><strong>m-ACO3 (1 colonie, 1 structure de phéromone):</strong><br />
+L’heuristique est définie comme la somme des heuristique associés à chaque objectif.<br />
+La mise à jour du set de Pareto est réalisée par l’ensemble des solutions non-dominées<br />
+avec une valeur constante sans cumul possible.</p>
+<p><strong>m-ACO4 (1 colonie, m structures de phéromones):</strong><br />
+À chaque itération un objectif est sélectionné aléatoirement.<br />
+L’heuristique est définie comme la somme des heuristique associés à chaque objectif.<br />
+<code>m</code> solutions sont sélectionnées pour la mise à jour et la quantité de phéromone<br />
+est définie comme pour <code>m-ACO1</code> et <code>m-ACO2</code>, elle est relative à la meilleure solution<br />
+actuelle.</p>
+<h3 id="6-experimental-results"><a name="user-content-6-experimental-results" href="#6-experimental-results" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6 | Experimental results:</h3>
+<p><code>m-ACO4</code> toujours meilleur que <code>m-ACO1</code> et <code>m-ACO2</code>. <code>m-ACO3</code> semble par contre<br />
+n’être ni meilleur ni moins bon selon les cas.</p>
+<h1 id="bi-criterion-optimization-with-multi-colony-ant-algorithms"><a name="user-content-bi-criterion-optimization-with-multi-colony-ant-algorithms" href="#bi-criterion-optimization-with-multi-colony-ant-algorithms" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Bi-Criterion Optimization with Multi Colony Ant Algorithms</h1>
+<p><strong>Auteurs:</strong> Stephen Iredi, Daniel Merkle, Martin Middendorf<br />
+<strong>Année:</strong> 2001</p>
+<h2 id="citations_3"><a name="user-content-citations_3" href="#citations_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Citations:</h2>
+<p>-</p>
+<h2 id="resume_3"><a name="user-content-resume_3" href="#resume_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Résumé:</h2>
+<h3 id="1-introduction_3"><a name="user-content-1-introduction_3" href="#1-introduction_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 | Introduction:</h3>
+<p>Proposition d’un algorithme de colonie de fourmis utilisant plusieurs colonies<br />
+hétérogènes ayant chacune deux matrice de phéromone (une par objectif).<br />
+Il est ensuite testé sur <code>Single Machine Total Tardiness problem</code>.<br />
+Cette méthode a été développée pour les cas où il n’est pas possible de classer<br />
+entre eux les objectifs selon leur importances.</p>
+<h3 id="4-ant-algorithm-for-bi-criterion-optimization-problems"><a name="user-content-4-ant-algorithm-for-bi-criterion-optimization-problems" href="#4-ant-algorithm-for-bi-criterion-optimization-problems" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4 | Ant Algorithm for Bi-Criterion Optimization Problems:</h3>
+<p>Il utilise deux traces de phéromones, une pour chaque objectif. Pour obtenir un<br />
+jeu de solution Pareto optimale sur l’ensemble de solution, chaque fourmis prend<br />
+en compte les deux objectifs mais avec une importance qui varie. Par exemple la fourmi<br />
+<code>A</code> aura un poids de 0.2 sur l’objectif 1 et de 0.5 sur le 2. Une autre fourmi <code>B</code><br />
+quand à elle pour porter les poids (0, 1), etc&hellip;<br />
+On note donc un cas particulier si on a un jeu de poids (1, 0) ou (0, 1); ce cas<br />
+correspond à ne considérer que l’un des objectifs.<br />
+Pour l’agrégation des phéromones, une combinaison entre évaluation des ancienne<br />
+décision et de la somme des solution actuelles. Des coefficient permettent de<br />
+pondérer l’impact de l’un ou l’autre.<br />
+Enfin l’évaporation est réalisée par l’ensemble des solutions non-dominées de<br />
+l’itération et ce pour chaque matrice. La quantité de phéromone est fonction<br />
+décroissante du nombre de fourmis qui mettent leur solution à jour.<br />
+T_ij = T_ij + 1/N^a.</p>
+<h3 id="5-the-multi-colony-approach"><a name="user-content-5-the-multi-colony-approach" href="#5-the-multi-colony-approach" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>5 | The Multi Colony Approach:</h3>
+<p>Chaque colonie à le même nombre de fourmis.<br />
+Soit <code>p</code> colonies et <code>m</code> le nombre total de fourmis, on a donc pour chaque colonie<br />
+<code>m/p</code> fourmis.</p>
+<p>Contrairement à la plupart des approches, les colonies coopèrent entre elles<br />
+en partageant le même front de Pareto global. Ainsi les solutions dominées sont<br />
+exclues par coopération. Seule les fourmis ayant trouvées une solution non-dominées<br />
+dans le front global sont autorisés à mettre à jour leur piste.<br />
+<em>Le raisonnement est le suivant:</em> Une solution optimale localement a plus de chance<br />
+de l’être globalement si peu de solutions ont été trouvées dans cette région. On<br />
+permet ainsi aux fourmis trouvant des solutions dans des régions moins dense du front<br />
+de Pareto global de mettre à jour leur solution. Cette technique permet ainsi de<br />
+mieux couvrir l’espace de Pareto.</p>
+<h4 id="pheromone-update"><a name="user-content-pheromone-update" href="#pheromone-update" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Pheromone Update</h4>
+<p>Il est proposé deux méthodes pour choisir dans quelle colonie la fourmi doit mettre à jour sa trace de phéromone.</p>
+<ul>
+<li><code>update-by-origin</code>: Une fourmi ne met à jour que sa propre colonie</li>
+<li><code>update-by-region</code>: L’ensemble de solutions non-dominées sont splittées en<br />
+<code>i</code> parties avec <code>i</code> le nombre de colonie. Les fourmis ayant trouvées une solution<br />
+    dans le <code>i</code> partie mettent à jour leur trace de phéromone dans dans la colonie <code>i</code>.<br />
+    Les solutions sont triées selon le premier objectif.</li>
+</ul>
+<p><strong>Critique de la mise à jour:</strong> Il est acceptable de trier les solutions selon le premier<br />
+critère si on a deux objectifs mais si le nombre d’objectif augmente il est alors<br />
+moins trivial de définir comment trier les solutions.<br />
+L’auteur indique cependant que le choix du critère n’est pas important, le but étant<br />
+de disperser les fourmis pour élargir l’espace de recherche.</p>
+<h4 id="heterogeneous-colonies"><a name="user-content-heterogeneous-colonies" href="#heterogeneous-colonies" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Heterogeneous Colonies:</h4>
+<p>Comme dans la version à colonie unique les fourmis utilisent un facteur pondérateur<br />
+pour prendre en compte de manières différentes les objectifs.<br />
+<strong>Règle 1:</strong> Répartition des poids entre les différentes colonies,<br />
+<strong>Règle 2: Intervalles disjointes - </strong> Répartition des poids entre les fourmis d’une même colonie en définissant<br />
+             des sous-groupes de fourmis.<br />
+** Règle 3: Intervalles superposées - Chaque colonies partagent 50% de leur intervalle.</p>
+<h3 id="7-results"><a name="user-content-7-results" href="#7-results" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>7 | Results:</h3>
+<p>L’algorithme est testé sur le problème suivant: <code>Single Machine Total Tardiness problem</code>.<br />
+L’auteur montre la supériorité de l’approche multi-colonie sur la grande majorité<br />
+du front de Pareto.<br />
+Il est aussi mis en avant la performance des deux méthode proposées pour la mise à<br />
+jour de la piste de phéromone qui permet d’obtenir un meilleur front sur l’ensemble<br />
+de l’espace de recherche.<br />
+Ensuite la méthode d’agrégation est étudiée. Il apparaît que la méthode <code>disjoint</code><br />
+permet d’obtenir une meilleure couverture des extrêmes mais est pauvre dans l’espace<br />
+central. Par contre l’approche par <code>Overlapping</code> permet d’obtenir un front de Pareto<br />
+convexe performant sur l’ensemble du front (l’infériorité sur les extrêmes et<br />
+faible si on augmente le nombre de colonies).<br />
+La différence est réduite en augmentant le nombre de colonies.<br />
+Enfin il est aussi montré que l’utilisation de deux matrice de phéromone par colonie<br />
+est plus performant.</p>
+<h3 id="8-conlusions-and-future-work"><a name="user-content-8-conlusions-and-future-work" href="#8-conlusions-and-future-work" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>8 | Conlusions and Future Work:</h3>
+<p>Coopération entre colonies permet d’améliorer la recherche de solutions Pareto<br />
+optimales. Enfin il est nécessaire d’avoir <code>n</code> matrices de phéromone par colonies,<br />
+avec <code>n</code> le nombre d’objectifs.</p>
+<p>Une question ouverte est finalement posé sur la sélection par région si on a plus<br />
+de deux objectifs. Quelle région utiliser dans le front de solutions non dominées.</p>
+<h1 id="the-automatic-design-of-multiobjective-ant-colony-optimization-algorithms"><a name="user-content-the-automatic-design-of-multiobjective-ant-colony-optimization-algorithms" href="#the-automatic-design-of-multiobjective-ant-colony-optimization-algorithms" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>The automatic Design of Multiobjective Ant Colony Optimization Algorithms</h1>
+<p><strong>Auteurs:</strong> Manuel López Ibánez, Thomas Stützle<br />
+<strong>Année:</strong> 2012</p>
+<h2 id="citations_4"><a name="user-content-citations_4" href="#citations_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Citations:</h2>
+<ul>
+<li>[7] S.Iredi 2001 <code>Bi-criterion oprimization with multicolony ant algorithms</code></li>
+<li>[14] M. López Ibánez 2010 <code>An analysis of algorithmic components for multiobjective ant colony optimization: A case study on the biobjective TSP</code></li>
+<li>[15] M. López Ibánez 2010 <code>The impact of design choice of multiobjective ant colony optimization: A case study ...</code></li>
+<li>[17] M. López Ibánez 2010 <code>Automatic configuration of multiobjectives ACO algotithms</code></li>
+<li>[25] E.Zitzler 2002 <code>SPEA2: Improving the strengh Pareto evolutionnary algorithm for multi-objective optimization</code></li>
+<li>[33] M. Birrattari 2010 <code>F-race and iterated F-race: An overview</code></li>
+</ul>
+<h3 id="1-introduction_4"><a name="user-content-1-introduction_4" href="#1-introduction_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 | Introduction:</h3>
+<p>Ce papier présente un Multi-objective Ant Colony Opimization (MOACO) framework.<br />
+En plus d’offrir un outil pour réaliser de l’optimisation, il propose aussi un outil<br />
+d’auto-configuration des algorithmes en fonction du problème afin d’avoir la meilleure<br />
+performance de celui-ci pour un problème donné.<br />
+Il est important de garder à l’esprit que ce framework a été développé pour regrouper<br />
+les algorithmes de fourmis par approche Pareto avec en focus les problèmes bi-objectifs.<br />
+Il présente d’abord les algorithmes existant [14, 15] pour ensuite détailler le framework et<br />
+expliquer comment chaque algorithme a été implémenté.<br />
+L’approche utilisée pour configurer automatiquement l’algorithme utilise des indicateurs<br />
+de qualité comme l’<code>hypervolume</code> et l’<code>epsilon measure</code> grâce à l’outil I/F Race [17, 33]<br />
+Leur approche par configuration automatique permet d’améliorer grandement le front de Pareto<br />
+de l’ensemble de solutions.</p>
+<h3 id="2-preliminaries"><a name="user-content-2-preliminaries" href="#2-preliminaries" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2 | Preliminaries:</h3>
+<p>Présentation de l’optimization multi-objectif.<br />
+Présentation du problème utilisé comme benchmark (bTSP).<br />
+Présentation de la forme générale des algorithmes de fourmis.</p>
+<h3 id="3-configurable-moaco-framework"><a name="user-content-3-configurable-moaco-framework" href="#3-configurable-moaco-framework" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3 | Configurable MOACO Framework:</h3>
+<p>Le framework implémente une interface abstraite qui est ensuite complété par les<br />
+caractéristique de l’algorithme de fourmis qui sont supposée être des approches<br />
+performantes.</p>
+<p><strong>Single/Multiple phéromone/heuristique matrices:</strong><br />
+Il est important de noter que la définition de la matrice de phéromone et de la<br />
+matrice heuristique est un des critères les plus important pour la performance de<br />
+l’algorithme.<br />
+Le choix du nombre de matrice est donc laissé comme choix à l’utilisateur.</p>
+<p><strong>Agrégation:</strong><br />
+Trois méthodes sont disponibles afin de définir une valeur unique à chaque noeud:</p>
+<ul>
+<li><em>Weighted sum:</em> Somme pondérée par l’importance des objectifs</li>
+<li><em>Weighted product:</em> Produit pondérée par l’importance des objectifs</li>
+<li><em>Random:</em> À chaque itération la fourmi selon une loi aléatoire uniforme sélectionne<br />
+           une des matrices.</li>
+</ul>
+<p>Afin de pouvoir couvrir l’ensemble des algorithmes l’agrégation pour chaque colonies<br />
+est pondérée par des coefficient. Chaque fourmis porte un jeu de coefficient.<br />
+Le choix des coefficients de pondération est définie selon deux méthodes:</p>
+<ul>
+<li><em>one-weight-per-iteration:</em> Toute les fourmis utilisent les même poids à une certaine<br />
+                             itération.</li>
+<li>
+<p><em>all-weight-per-iteration:</em> Les fourmis se répartissent les poids au sein d’une<br />
+                             même colonie.<br />
+Il est important de noter que les poids sont distribuées équitablement afin de ne pas<br />
+favoriser un objectif <code>à priori</code>.<br />
+Dans le cas de colonies multiples, la répartition des poids peut être définie de<br />
+deux manières différentes [7]:</p>
+</li>
+<li>
+<p><em>Intervalles disjointes:</em> Répartition des poids entre les fourmis d’une même colonie en définissant<br />
+                               des sous-groupes de fourmis.</p>
+</li>
+<li><em>Intervalles superposées:</em> Chaque colonies partagent 50% de leur intervalle.</li>
+</ul>
+<p>Dans les deux cas, la première étapes est de générer le nombre correct de poids<br />
+distribués équitablement sur l’intervalle <code>[0, 1]</code>. Par exemple dans le cas<br />
+de l’algorithme <code>Bi-Criterion_Ant</code> on aura pour chaque colonies autant de poids<br />
+que de fourmis. On doit donc générer un set de poids de longueur <code>nbr_ant * nbr_col</code><br />
+et ensuite les répartir selon les deux méthodes décrites ci-dessus.</p>
+<p><strong>Mise à jour des traces de phéromones:</strong><br />
+À chaque itération de l’algorithme, on obtient un ensemble de solutions candidates.<br />
+Un nombre maximum de solution doit être définis (<code>N_upd</code>). Si il y a plus de solution retenues<br />
+que le maximum autorisé alors une troncation est appliquée [25] avant de mettre à<br />
+jour les matrices de phéromones.</p>
+<p>Trois méthodes sont proposées pour sélectionner quelles solutions sont retenues:</p>
+<ul>
+<li><em>Non-dominées:</em> On sélectionne les solutions non-dominées pour la mise à jour</li>
+<li>
+<p><em>Meilleur pour l’objectif:</em> On Conserve les <code>N_upd</code> meilleurs pour les différents objectifs<br />
+Si il y a plusieurs matrices de phéromones, chaque matrice est mise à jour par les<br />
+<code>N_upd</code> solutions associées à cet objectif. Si il y a une unique matrice de phéromone<br />
+alors <code>2 * N_upd</code> solutions sont mis à jour dans la matrice.</p>
+</li>
+<li>
+<p><em>Meilleur selon leur poids:</em> Pour chaque poids et chaque objectifs il y a <code>N_upd</code> meilleurs solutions<br />
+Dans les cas spéciaux de poids 0 et 1, seule l’objectif 2 et 1 sont conservé respectivement.<br />
+Si on utilise seulement deux poids pour l’agrégation alors on a le même comportement que<br />
+pour la méthode 2 (<em>Meilleur pour l’objectif</em>).</p>
+</li>
+</ul>
+<p>Il est important de noter que l’ensemble de solutions candidates est définie par<br />
+l’algorithme lui-même et que ces méthode ne sont appliquées que ensuite.</p>
+<p>Dans le cas d’un algorithme multi-colonies, l’ensemble des solutions générées à chaque<br />
+itération est stockée dans une archive commune permettant de supprimer les solutions<br />
+dominées par coopération des colonies. Ensuite le jeu de solutions candidates est<br />
+construit en utilisant les solutions non-dominées restantes à l’itération ou globalement.<br />
+Une fois le nombre de solutions à mettre à jour est définie, les solutions sont<br />
+renvoyées à chaque colonies pour la mise à jour.<br />
+On a ici deux méthode pour la distribution des solutions proposée par [7]:</p>
+<ul>
+<li><em>update-by-origin:</em> On renvois les solutions à leur colonie d’origine</li>
+<li><em>update-by-region:</em> On échange des solutions entre les colonies en part égales<br />
+                       de tel manière que chaque set corresponde à une région du front<br />
+Enfin on fait appel à une des trois méthode de mise à jour décrites plus haut.</li>
+</ul>
+<p><strong> Algorithme complet:</strong><br />
+Dans la publication l’algorithme complet est disponible avec un détail par étape.<br />
+Ici on traduit rapidement les étapes principales</p>
+<p>A. Initialisation des phéromones et des poids pour chaque colonie<br />
+ B. Initialisation unique des heuristiques car partagées par l’ensemble des colonies<br />
+ C. Initialisation du front de Pareto global et du compteur d’itération</p>
+<ol>
+<li>
+<p>À chaque itération chaque fourmi:<br />
+  - Construit une solution selon une pondération des objectifs<br />
+  - Recherche localement (optionnelle)<br />
+  - Réduction du front de Pareto de l’itération en cours par coopération</p>
+</li>
+<li>
+<p>Mise à jour du front de Pareto global</p>
+</li>
+<li>
+<p>Pour chaque colonie:<br />
+  - Sélection et assignation des traces à mettre à jour (<code>origin</code> ou <code>region</code>)<br />
+  - Mise à jour des pistes de phéromones</p>
+</li>
+<li>
+<p>Incrémentation du compteur</p>
+</li>
+</ol>
+<h3 id="4-design-of-moaco-algorithms"><a name="user-content-4-design-of-moaco-algorithms" href="#4-design-of-moaco-algorithms" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4 | Design of MOACO Algorithms:</h3>
+<p>Description des différentes approches utilisées pour représenter les algorithmes<br />
+existants dans le framework. Un table récapitulatif permet de voir l’ensemble des<br />
+algorithmes. Enfin un autre tableau récapitulatif permet de voir l’ensemble des<br />
+paramètres pouvant être modifiés pour créer son propre algorithme &hellip;</p>
+<p><em>Note:</em> Certains algorithmes ont été modifiés afin d’être adaptable dans le framework.<br />
+La modification vise les méthodes d’agrégation pour <code>COMPETants</code> qui permet de<br />
+mieux exploré l’espace de solution. Pour <code>P-ACO</code> le nombre de matrice de phéromone<br />
+est ajustée à 2 (une par objectif) afin d’éviter un front de Pareto trop étroit.<br />
+Enfin <code>mACO-3</code> limite le nombre de mise à jour à 1, peu importe le nombre de solution<br />
+le contenant, ce qui n’est pas le cas de l’implémentation dans le framework.</p>
+<p>Le principal ajout du framework réside dans la méthode d’initialisation automatique<br />
+qui permet de définir rapidement la combinaison la plus adaptée à notre problème.<br />
+C’est une méthode dite <code>offline</code> basée sur une extension de <code>iterated F-Race (I/F Race)</code><br />
+aux problèmes multi-objectifs en utilisant la méthode d’ <code>unary quality measure</code> [15].</p>
+<h3 id="5-automatic-configuration-of-the-moaco-framework"><a name="user-content-5-automatic-configuration-of-the-moaco-framework" href="#5-automatic-configuration-of-the-moaco-framework" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>5 | Automatic configuration of the MOACO framework:</h3>
+<p>Pour ce faire, il est nécessaire de lui donner un jeu de problèmes d’entrainements.<br />
+représentatif du problème à étudié.<br />
+Deux <code>unary measure</code> sont utilisées.</p>
+<p><strong>Hypervolume:</strong><br />
+Volume de l’espace de l’objectif dominé par un set de solution non-dominées et<br />
+restreint par un point de référence strictement dominées par les solutions Pareto<br />
+optimales. Un hypervolume large est donc une bonne chose, car il indique une large<br />
+évaluation de l’espace de recherche.</p>
+<p><strong>Epsilon measure:</strong><br />
+La valeur minimale qui soustraite à l’ensemble des solutions non-dominées fait que<br />
+ce set domine faiblement un set de référence. Plus cette valeur est faible mieux c’est.</p>
+<p><strong>L’implémentation du framework est séquentielle.</strong></p>
+<h4 id="a-configuration-if-multiobjective-components"><a name="user-content-a-configuration-if-multiobjective-components" href="#a-configuration-if-multiobjective-components" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>A | Configuration if Multiobjective Components:</h4>
+<p>Comparaison entre les algorithmes existant et ceux auto-définies.<br />
+L’ensemble des résultats est disponible en complément [38].<br />
+Les résultats obtenues avec <code>Hypervolume</code> ou <code>Epsilon measure</code> sont similaires et<br />
+seuls ceux avec le premier sont reportés.<br />
+Ils montrent que les algorithmes auto-initialisés sont plus performant que les<br />
+existant.<br />
+Il est aussi montré que même si on utilise les meilleurs paramètres trouvés pour<br />
+l’ACO (ici le meilleur étant <code>BiCriterionAnt</code>), les algorithmes définies automatiquement<br />
+restent supérieurs que l’on configure que le design ou bien les paramètres de l’ACO ou<br />
+encore les deux.</p></article></body></html>

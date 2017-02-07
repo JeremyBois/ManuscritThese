@@ -81,12 +81,13 @@ docs/_build/
 *.bbl
 *.bcf
 *.fls
-*.pdf
 *.run.xml
 *.upa
 *.upb
 *.tdo
 *.loa
+Manuscript/*.pdf
+Demonstrations/*.pdf
 
 # Image folder always in the Dropbox
 # Adapt folder path in each machine
@@ -95,6 +96,8 @@ docs/_build/
 
 # Folders
 Images/
+Meetings/
+Publications/
 
 # Sublime Text
 *.sublime-project
