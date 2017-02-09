@@ -6,99 +6,340 @@
        (ii)Optimisation complète systèmes/contrôle/enveloppe
 }
 
-
-
 % ..............................................................................
 % ..............................................................................
-\section{Vers une optimisation multi-critère et multi-objectif} % (fold)
-\label{sec:vers_une_optimisation_multi_critere_et_multi_objectif}
+\section{Choix d’une méthodologie adaptée} % (fold)
+\label{sec:choix_d_une_methodologie_adaptee}
+% ------------------------------------------------------------------------------
+\subsection{Méthodologies existantes} % (fold)
+\label{sub:methodologies_existantes}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Formulation} % (fold)
+\label{ssub:formulation}
+% Utile de décrire des stats sur tout (choix objectifs / nbr variables / ...)     NON
+
+% Lorsque l’ensemble des variables de décisions incluent des variables continues
+% et des variables discrètes on parle de problème à variables mixtes.
+
+La première étape est la pré-analyse. Elle permet d’évaluer la ou les raisons
+motivant la formulation d’un problème d’aide à la décision. Dans cette première étape,
+il est ainsi nécessaire de faire le bilan entre l’état actuel, les résultats précédemment
+obtenus et les points qui pourraient être améliorés.
+L’expérience et les résultats obtenues en amont permettent d’alimenter
+la réflexion amenant à la formulation des objectifs de manière précise.
+Ce processus permet ainsi de passer d’une observation ou d’un questionnement plus global
+à une formulation plus structurée.
+Ces objectifs permettront de caractériser la qualité d’une solution par rapport à une autre.
+La définition de ces fonctions objectifs est propre à chaque problème et des informations disponibles.
+Dans le secteur du bâtiment, il est courant de considérer certaines sorties des
+logiciels de simulation dynamique (STD, CFD, ...) comme objectifs. On parle alors
+de fonction quantitative.
+Dans le cas d’études sur la performance des bâtiment passifs la consommation, le coût,
+et le confort son couramment utilisés (Attia et al. 2013).
+\itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
+
+La seconde étape est de déterminer les variables de décisions dont la variation
+semble intéressante à priori. Les variables peuvent être classées en deux grandes
+familles : les quantitatives et les qualitatives (\mtodo{ajouter référence figure}).
+\ftodo{Diagramme décrivant les différents types de variables}
+Les variables quantitatives exprime une quantité à travers un nombre et
+peuvent être discrètes ou continues. On considère ainsi respectivement un nombre de
+valeurs discrètes (ex : épaisseur d’un isolant) ou une plage de variation définissant
+ces limites/bornes (ex : épaisseur d’une dalle en béton).
+Enfin, les variables qualitatives permettent de décrire une variation non ordonnable
+(ex : couleur) ou bien floue (ex : beau / laid).
+
+Finalement des contraintes peuvent être ajoutées afin de répondre aux exigences
+techniques en se basant sur les connaissances à priori du problème ou bien afin de
+limiter l’espace de recherche.
+Certaines de ces contraintes peuvent être exprimés à priori (ex : surface disponible
+en toiture pour installer des panneaux photovoltaïques). Elles peuvent aussi être définies
+à posteriori afin par exemple de borner certains objectifs (ex : Consommation < 10~\si{kWh/m^{2}})
+ou encore de pondérer les objectifs existants (ex: pénaliser le coût global en fonction de l’inconfort
+thermique). Certaines approches tiennent aussi compte de certaines contraintes comme
+un objectif supplémentaire.
+Elle peuvent ainsi s’exprimer sous la forme de bornes, d’équations ou inéquations.
+% subsubsection formulation (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Les différentes approches} % (fold)
+\label{ssub:les_differentes_approches}
+Plusieurs approches existent pour répondre à des problèmes multi-objectifs et
+comportent des avantages et des inconvénients.
+
+\paragraph{Décision a priori :} % (fold)
+\label{par:decision_a_priori}
+Dans cette approche, le problème multi-objectif est réduit à un problème mono-objectif.
+Ce processus de réduction est réalisé à l’aide de méthodes d’agrégation parmi lesquelles
+il est possible de citer les méthodes de pondération, de compromis,
+ou encore de distance. Dans tout les cas la réduction nécessite de normaliser les
+objectifs et le décideur introduit un caractère préférentiel (\cite{Rivallain2013,Armand-Decker2015}).
+Dans le cas de la pondération, un coefficient est attribuer à chaque objectifs. Bien que
+algorithmiquement relativement simple à mettre en place, le choix des coefficient peut être complexe.
+En effet les divers objectifs peuvent être à des échelles / unités différentes
+et la connaissance a priori limitée rend difficile l’exploitation des résultats .
+La méthode du compromis, considère un objectif et les autres doivent être formulés
+sous forme de contraintes.
+Dans ces deux approches, les méthodes ne permettent d’obtenir qu’une seule
+solution à chaque itération.
+Finalement la dernière méthode permet d’optimiser les différents objectifs en calculant
+la distance de chaque solution par rapport à une solution de référence. Le choix
+du point de référence est alors déterminant (\cite{Collette2002}, Fig. 2.10).
+\ftodo{Ajouter un graphique montrant le passage d’un problème multi-objectif à
+un problème mono-objectif}
+% paragraph decision_a_priori (end)
+
+\paragraph{Décision interactive} % (fold)
+\label{par:decision_interactive}
+Dans cette approche le décideur oriente la recherche de manière itérative.
+\itodo{Ajouter description plus complète}
+% paragraph decision_interactive (end)
+
+\paragraph{Décision a posteriori :} % (fold)
+\label{par:decision_a_posteriori}
+Dans cette configuration, on conserve la formulation multi-objectif et l’optimisation
+est réalisé en amont de la décision. Cette approche n’introduit pas de
+caractère préférentiel et permet de générer un ensemble de solution par itération
+appelé surface de compromis.
+Le choix du décideur intervient alors a posteriori
+Le décideur peut alors faire appel à des méthodes d’aide à la décision (ELECTRE I, ...)
+Elles permettant de classer ou de sélectionner un ensemble de solutions
+à partir d’une surface de compromis grâce à des critères subjectifs. En effet, la
+surface de compromis étant composées uniquement de solutions optimales, l’expérience ou/et
+les préférences du décideur deviennent alors des critères de choix.
+
+% Manquants
+\itodo{Décrire les approches d’aide à la décision}
+\itodo{Approche par critère de synthèse}
+\itodo{Approche par surclassement}
+\itodo{Approche itératives}
+
+Cette approche à l’avantage d’apporter une meilleure compréhension du problème à
+travers l’exploration des variables de décisions et de la surface de compromis.
+De plus il ne nécessite pas d’expertise importante contrairement aux approches a priori.
+Il est cependant nécessaire de définir des règles permettant de trier les multiples solutions.
+
+Il existe de nombreuses manière de réaliser une optimisation multi-objectif et une
+description plus détaillée est réalisé dans la partie suivante.
+% paragraph decision_a_posteriori (end)
+
+\paragraph{Bilan et sélection d’une approche :} % (fold)
+\label{par:bilan_et_selection_d_une_approche}
+\itodo{Expliquer la raison du choix d’une approche a posteriori}
+% paragraph bilan_et_selection_d_une_approche (end)
+% subsubsection les_differentes_approches (end)
+% subsection methodologies_existantes (end)
+
 
 
 % ------------------------------------------------------------------------------
-\subsection{Introduction} % (fold)
-\label{sub:introduction}
-\itodo{À reprendre complètement}
+\subsection{Les méthodes d’optimisation multi-objectif} % (fold)
+\label{sub:les_methodes_d_optimisation_multi_objectif}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\itodo{Ajouter introduction introduisant la sélection d’une méthode d’optimisation adaptée}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Vocabulaire et définition} % (fold)
+\label{ssub:vocabulaire_et_definition}
+Cette partie présente les notions importantes liées à l’optimisation multi-critère.
+\paragraph{Optimisation multi-objectif :} % (fold)
+\label{par:optimisation_multi_objectif}
+L’optimisation multicritère est le processus visant à minimiser ou maximiser un ensemble
+d’objectifs tout en respectant un nombre fini de contraintes.
+Il peut être formulé de la manière suivante dans le cas d’une minimisation :
+\begin{equation}\label{eq:def_optimisation}
+  \begin{aligned}
+                           & \underset{\vec{x} \in \mathbb{R}^{n}}{\min(\vec{f}(\vec{x}))}& & \quad (f_{m})_{m \in [1 ... M]} & \longmapsto \mathbb{R} \\
+    \text{Sujet à : }\quad & \vec{g}(\vec{x}) \leqslant 0                                 & & \quad (g_{j})_{j \in [1 ... J]} & \longmapsto \mathbb{R} \\
+                           & \vec{h}(\vec{x}) = 0                                         & & \quad (g_{k})_{k \in [1 ... K]} & \longmapsto \mathbb{R} \\
+  \end{aligned}
+\end{equation}
+Avec $\vec{x}$ représentant la valeur des $n$ variables de décisions et $\vec{f}(\vec{x})$
+l’ensemble des $M$ fonctions objectif.  $\vec{g}(\vec{x})$ et $\vec{g}(\vec{x})$ représente
+respectivement les $J$ contraintes d’inégalité et $K$ contraintes d’égalité imposées au problème
+d’optimisation. L’optimisation multi-objectif est donc le processus qui cherche à améliorer la
+qualité des solutions en faisant varier la valeur des variables de décisions ($\vec{x}$).
+Lorsque $J > 0$ ou $K > 0$ on parle de problème d’optimisation sous contraintes.
+Ainsi on a un espace de recherche multidimensionnel tant pour les objectifs que pour
+les variables de décisions contrairement à une recherche mono objectif où seul
+l’espace de décision est multi dimensionnel.
+% paragraph optimisation_multi_objectif (end)
 
-L’optimisation multi-objectif est aujourd’hui largement utilisé dans le bâtiment.
-On a par exemple \cite{Armand-Decker2015} qui a développé une méthode d’optimisation pour les
-construction bois en utilisant un meta-modèle de bâtiment. Elle utilise un meta-heuristique
-à population (Particule Swarm optimization) et évalue les besoins en énergie, le confort des
-occupants, la sécurité de l’ouvrage et de l’impact environnemental. \cite{Rivallain2013}
-a quand à lui utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
-pour identifier des programmes séquentiels efficaces de réhabilitation énergétique.
-Il a ainsi optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
-dans lequel ces améliorations doivent être réalisées afin d’être le plus optimal
-possible.
-Pour les différentes solutions l’impact environnemental, le confort des occupants en
-période estivale, et le coût ont été évaluées.
-\itodo{Ajouter des sources vers des exemples d’optimisation de bâtiment}
+\paragraph{Relation de dominance :} % (fold)
+\label{par:relation_de_dominance}
+Afin de pouvoir classer et sélectionner les solutions en fonction de leur fonction
+objectif, il est nécessaire de définir une relation de dominance.
+L’approche la plus répandue est la dominance au sens de Pareto.
 
-On a aussi de nombreux exemples d’optimisation de système énergétique.
-\itodo{Ajouter des sources vers des exemples d’optimisation de système}
+\noindent On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{x}_{b}$ si :
+\begin{itemize}
+  \item $\vec{x}_{a}$ est aussi bon que $\vec{x}_{b}$ sur tous les objectifs
+  \item $\vec{x}_{a}$ est meilleur que $\vec{x}_{b}$ sur au moins un objectif
+\end{itemize}
+Mathématiquement la relation sera notée : $\vec{x}_{a} \prec \vec{x}_{b}$.
+Une point est ainsi dit optimal au sens de Pareto si aucuns autres point dans
+l’ensemble la comprenant ne la domine (\mtodo{ajouter référence figure}).
+\ftodo{Ajouter figure montrant la relation de dominance. Partie dominée, dominante, neutre}
 
-On voit donc que l’optimisation est un outil qui a été largement utilisé dans
-le bâtiment comme pour l’amélioration ou l’identification de solutions performantes
-pour les systèmes.
+D’autres méthodes de dominance existent et certaines d’entre elles introduisent
+une préférence tout en conservant le caractère multi-objectif.
+Dans l’approche lexicographique (\mtodo{Ajouter citation}) les différents objectifs
+sont ordonnées. Contrairement à l’approche de Pareto, les objectifs sont comparés
+suivant cet ordre et la solution est définie comme lexicographiquement dominée dès
+que un objectif est moins optimal.
+Une approche intéressant généralise l’approche de Pareto en permettant de régler
+la surface dominée : la cône optimalité. Un paramètre $\lambda$ est introduit et
+permet de réduire ou agrandir la surface couverte par la dominance. On retrouve le
+comportement de la dominance de Pareto lorsque $\lambda = 0$.
 
-\itodo{Ajouter du bla bla sur l’originalité et les perspectives de ces travaux}
-L’originalité de ce travail provient principalement du couplage entre le bâtiment
-et ses systèmes. La plupart des optimisations de bâtiment évalues les besoins
-du bâtiment et considère donc un système de chauffage et de ventilation idéaux.
-Dans ces travaux on cherche à optimiser la partie système et son algorithme de
-contrôle en même temps que l’enveloppe du bâtiment. On évalue donc plus un besoin
-en énergie mais une consommation qui est fonction de la performance des systèmes
-envisagées. Les travaux se concentre sur l’évaluation de solutions utilisant fortement
-l’énergie solaire comme vecteur énergétique. On cherche donc à couvrir les besoins
-de chauffage, d’eau chaude sanitaire (ECS) et d’électricité.
-Cette approche permettra d’évaluer le potentiel d’autonomie solaire disponible
-pour différentes combinaisons systèmes/enveloppe.
+D’autres approches existent et le lecteur intéressé est invité à consulter \cite{Collette2002}
+pour une explication plus détaillée et exhaustive. Dans ces travaux la relation de
+dominance au sens de Pareto a été sélectionnée car c’est la méthode la plus répandue
+et qu’elle n’introduit pas de préférence a priori.
+% paragraph relation_de_dominance (end)
 
-Enfin ces travaux vise à l’élaboration d’un outil d’aide à la décision. Il existe
-diverses methodes pour faire de l’aide à la décision (~\autoref{sec:vers_une_optimisation_multi_critere_et_multi_objectif}).
-L’approche choisie est de déterminer un
-ensemble de solutions non-dominées dans un premier temps, puis d’utiliser des
-outils d’aide à la décision pour réduire le nombre de solution. On se trouve donc
-dans une approche par front de Pareto.
-\itodo{Ajouter du bla bla sur le choix de l’ordre entre optimisation et aide à la décision}
+\paragraph{Front de Pareto :} % (fold)
+\label{par:front_de_pareto}
+Il représente l’ensemble formé par les solutions non-dominées (espace des objectifs)
+dont les vecteurs de décisions sont non-dominés.
+Le front de Pareto est donc la représentation dans l’espace des objectifs
+de l’ensemble optimal de Pareto qui lui est définie dans l’espace de décision.
+Mathématiquement la relation peut être notée :
+\begin{equation}
+  \begin{aligned}
+    PF   =& \left\{ \vec{f}(\vec{x}_{*}), \  \vec{x}_{*} \in POS \right\} \\
+    POS  =& \left\{ \vec{x}_{*} \in \mathbb{R}^{n} \mid (\nexists \vec{x} \in \mathbb{R}^{n}) \  \vec{f}(\vec{x}) \prec \vec{f}(\vec{x}_{*}) \right\} \\
+  \end{aligned}
+\end{equation}
+avec $POS$ l’ensemble optimal de Pareto (Pareto Optimal Set) et $PF$ le front de Pareto
+(Pareto Front).
+% paragraph front_de_pareto (end)
 
-\itodo{Reformuler tout ça pour mieux introduire les parties qui suivent}
-% subsection introduction (end)
+\paragraph{Points de références : } % (fold)
+\label{par:points_de_references}
+Certaines méthodes d’aide à la décision utilisent des points singuliers.
+
+Le \emph{point idéal} (\mtodo{ajouter référence figure}) est le point dans l’espace des objectifs dont
+les coordonnées correspondent à l’optimal de chaque objectif pris séparément. Ce point
+peut être utilisé pour guider la recherche mais n’est pas dans la plupart des cas
+une solution du problème multi-objectif qui est souvent composé d’objectifs
+\mfix{Autre mot}{contradictoires}.
+
+Le \emph{point Nadir} (\mtodo{ajouter référence figure}) a pour coordonnées la
+valeur de la borne supérieure (cas d’une minimisation) pour chaque objectif du front
+de Pareto. Si ce point est connu, il peut être utilisé pour restreindre l’espace
+de recherche ou évaluer la qualité des solutions trouvées.
+\ftodo{Ajouter graphique avec point idéal et point nadir}
+% paragraph points_de_references (end)
+
+\paragraph{Convexité :} % (fold)
+\label{par:convexite}
+Terme permettant de caractériser la forme d’un ensemble.
+Il est dit \emph{convexe} lorsque pour deux points distincts, la droite les reliant
+est contenu dans cet ensemble (\cite{Collette2002}). Ce terme permet ainsi de décrire
+la forme du front de Pareto dans le cas de problème multi-objectifs.
+% paragraph convexite (end)
+% subsubsection vocabulaire_et_definition (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description des approches existantes} % (fold)
+\label{ssub:description_des_approches_existantes}
+Dans le domaine de la thermique du bâtiment la caractérisation
+de la performance est souvent effectuée de manière itérative à partir d’une solution
+de référence ou bien de manière empirique dans l’espace de décision. La direction et
+les variations évaluées résultant dans la plupart des cas de l’expérience du ou des
+décideur[s]. La recherche est alors fortement biaisé en amont et l’exploration
+d’alternatives comme l’obtention d’une solution optimale est fortement improbable.
+Dans ces travaux l’approche de décision a posteriori a été retenu et le problème
+est de type combinatoire. En effet certaines variables de l’espace de décision
+sont discrètes, d’autres continues et enfin certaines sont qualitatives. Ainsi les
+approches continues ne seront pas détaillées.
+
+\paragraph{Méthodes exactes} % (fold)
+\label{par:methodes_exactes}
+
+% paragraph methodes_exactes (end)
+
+\paragraph{Heuristiques} % (fold)
+\label{par:heuristics}
+\itodo{Parallèles, heuristiques spécialisés, méta-heuristiques}
+
+% paragraph heuristics (end)
+% subsubsection description_des_approches_existantes (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Sélection d’une méthode adapté au problème} % (fold)
+\label{ssub:selection_d_une_methode_adapte_au_probleme}
+
+% subsubsection selection_d_une_methode_adapte_au_probleme (end)
+% subsection les_methodes_d_optimisation_multi_objectif (end)
 
 
 % ------------------------------------------------------------------------------
-\subsection{Les approches existantes} % (fold)
-\label{sub:les_approches_existantes}
-\itodo{
-Description des méthodologies:\\
- - Formulation\\
- - Optimisation puis décision\\
- - Décision puis optimisation\\
- - Combinée
-}
+\subsection{Les Méta-heuristiques} % (fold)
+\label{sub:les_meta_heuristiques}
 
-\itodo{
-Description des méthodes existantes:\\
- - Graphe des possibilités\\
- - Exactes\\
- - Approchées
-}
+% subsection les_meta_heuristiques (end)
+% section choix_d_une_methodologie_adaptee (end)
 
-\itodo{
-Les type de variables:\\
- - Quantitative\\
- - Qualitative (combinatoire, continue)
-}
 
-\itodo{
-Approches Pareto:\\
- - Comparaisons de solution\\
- - Front de Pareto\\
- - Critère de performance (Hyper-volume, répartition, convergence, rapidité)\\
- - Les méthode de sélection de Front de Pareto\\
- - les métriques utilisable pour évaluer la qualité de ce front
-}
-% subsection les_approches_existantes (end)
-% section vers_une_optimisation_multi_critere_et_multi_objectif (end)
+% % ..............................................................................
+% % ..............................................................................
+% \section{Vers une optimisation multi-critère et multi-objectif} % (fold)
+% \label{sec:vers_une_optimisation_multi_critere_et_multi_objectif}
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Introduction} % (fold)
+% \label{sub:introduction}
+% \itodo{À reprendre complètement}
+
+% L’optimisation multi-objectif est aujourd’hui largement utilisé dans le bâtiment.
+% On a par exemple \cite{Armand-Decker2015} qui a développé une méthode d’optimisation pour les
+% construction bois en utilisant un meta-modèle de bâtiment. Elle utilise un meta-heuristique
+% à population (Particule Swarm optimization) et évalue les besoins en énergie, le confort des
+% occupants, la sécurité de l’ouvrage et de l’impact environnemental. \cite{Rivallain2013}
+% a quand à lui utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
+% pour identifier des programmes séquentiels efficaces de réhabilitation énergétique.
+% Il a ainsi optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
+% dans lequel ces améliorations doivent être réalisées afin d’être le plus optimal
+% possible.
+% Pour les différentes solutions l’impact environnemental, le confort des occupants en
+% période estivale, et le coût ont été évaluées.
+% \itodo{Ajouter des sources vers des exemples d’optimisation de bâtiment}
+
+% On a aussi de nombreux exemples d’optimisation de système énergétique.
+% \itodo{Ajouter des sources vers des exemples d’optimisation de système}
+
+% On voit donc que l’optimisation est un outil qui a été largement utilisé dans
+% le bâtiment comme pour l’amélioration ou l’identification de solutions performantes
+% pour les systèmes.
+
+% \itodo{Ajouter du bla bla sur l’originalité et les perspectives de ces travaux}
+% L’originalité de ce travail provient principalement du couplage entre le bâtiment
+% et ses systèmes. La plupart des optimisations de bâtiment évalues les besoins
+% du bâtiment et considère donc un système de chauffage et de ventilation idéaux.
+% Dans ces travaux on cherche à optimiser la partie système et son algorithme de
+% contrôle en même temps que l’enveloppe du bâtiment. On évalue donc plus un besoin
+% en énergie mais une consommation qui est fonction de la performance des systèmes
+% envisagées. Les travaux se concentre sur l’évaluation de solutions utilisant fortement
+% l’énergie solaire comme vecteur énergétique. On cherche donc à couvrir les besoins
+% de chauffage, d’eau chaude sanitaire (ECS) et d’électricité.
+% Cette approche permettra d’évaluer le potentiel d’autonomie solaire disponible
+% pour différentes combinaisons systèmes/enveloppe.
+
+% Enfin ces travaux vise à l’élaboration d’un outil d’aide à la décision. Il existe
+% diverses methodes pour faire de l’aide à la décision (~\autoref{sec:vers_une_optimisation_multi_critere_et_multi_objectif}).
+% L’approche choisie est de déterminer un
+% ensemble de solutions non-dominées dans un premier temps, puis d’utiliser des
+% outils d’aide à la décision pour réduire le nombre de solution. On se trouve donc
+% dans une approche par front de Pareto.
+% \itodo{Ajouter du bla bla sur le choix de l’ordre entre optimisation et aide à la décision}
+
+% \itodo{Reformuler tout ça pour mieux introduire les parties qui suivent}
+% % subsection introduction (end)
+% % subsection les_approches_existantes (end)
+% % section vers_une_optimisation_multi_critere_et_multi_objectif (end)
 
 
 

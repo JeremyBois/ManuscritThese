@@ -19,7 +19,7 @@ _Armand-Decker2015_, _Rivallain2013_
   - Définition + vocabulaire
   - Introduction des type de variables (discrètes, continues, qualitatives)
   - Extension au cas multi-objectif
-    - Généralisation de la definition du problème
+    - Généralisation de la définition du problème
     - Description des approches existantes (arbre des méthodes)
     - Exemples d’applications dans le bâtiment et les systèmes énergétiques
     - Différentes manière de représenter le problème d’optimisation

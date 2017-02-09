@@ -87,6 +87,7 @@ docs/_build/
 *.tdo
 *.loa
 Manuscript/*.pdf
+Manuscript/Plan/*.pdf
 Demonstrations/*.pdf
 
 # Image folder always in the Dropbox
