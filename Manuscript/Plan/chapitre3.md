@@ -4,46 +4,45 @@
 
 ## Choix d’une méthodologie adaptée
 ### 1) Méthodologies existantes
-  - Formulation / Définition
-  - Optimisation puis décision (à posteriori)
-  - Décision puis optimisation (à priori --> agrégation)
-  - Décision + Optimisation (combinée, itératif)
-  - Introduire partie suivante
+  - Formulation
+      - Définition des objectifs
+      - Introduction des type de variables (discrètes, continues, qualitatives)
+      - Definition des contraintes
+  - Différentes approches
+      - Optimisation puis décision (à posteriori)
+      - Décision puis optimisation (à priori --> agrégation)
+      - Décision + Optimisation (combinée, itératif)
+  - Bilan et sélection d’une approche
 
 _Armand-Decker2015_, _Rivallain2013_
 
 <br/>
 
-### 2) Les méthodes d’optimisation
+### 2) Les méthodes d’optimisation pour les problèmes mixtes
 #### L’optimisation multi-objectif
-  - Définition + vocabulaire
-  - Introduction des type de variables (discrètes, continues, qualitatives)
-  - Extension au cas multi-objectif
-    - Généralisation de la définition du problème
-    - Description des approches existantes (arbre des méthodes)
-    - Exemples d’applications dans le bâtiment et les systèmes énergétiques
-    - Différentes manière de représenter le problème d’optimisation
-        - Scalaire
-        - Pareto (approches de dominance, techniques de diversité)
-            - Quel classement pour les solutions ?
-            - Dominance rank
-            - Dominance depth
-            - Dominance account
-        - Non Pareto / Non scalaire
-        - Limites les méthodes utilisables
-    - Connaissances sur le problème
-        - Connaissance de l’optimal à atteindre
-        - Connaissance du gradient
-        - Combinatoire vs continue
-        - Limites les méthodes utilisables
-    - Exactes / approchées
-        - Problème de cardinalité
-        - Limites les methodes utilisables
+  - Définition et définition
+      - Optimisation
+      - Dominance
+      - Front de Pareto
+      - Points de référence
+      - Convexité
+  - Description des approches existantes
+      - Méthodes continues
+          - Impossible avec variables discrètes
+          - Nécessite d’être dérivable, d’utiliser un gradient
+      - Méthodes exactes
+          - Problème de cardinalité
+          - Limiter par le temps de simulation
+      - Méthodes utilisant un heuristic
+          - Spécialisés
+          - Parallel
+          - Meta
+      - Arbre des méthodes pour le bilan
+      - Sélection d’une méthode adaptée
 
 _Basseur200639_, _Armand-Decker2015_, _Rivallain2013_
 
 #### Les Méta-heuristiques
-
 _Généralités_
 
   - Définition, différence heuristique et méta-heuristique, utilité, limites, ...
@@ -109,8 +108,10 @@ _Camazine1991547_, _Akbari201239_, _Karaboga2005_
   - Assurer l’élitisme
   - Fournir une base d’apprentissage (mémoire) pour progresser dans la recherche
   - Éviter la redondance
+  - Assurer la convergence
 
 #### Epsilon-Archive ($\epsilon$-archive)
+  - Introduire les techniques de convergence (Dominance rank, Dominance depth, Dominance account)
   - Introduire les techniques de diversité existantes (Kernel, nearest, hist)
   - Décrire le fonctionnement de cette approche
   - Comparer avec les autres approches existantes
@@ -122,6 +123,7 @@ _Camazine1991547_, _Akbari201239_, _Karaboga2005_
 
 
 _Laumanns2002263_, _Deb2005501_
+_37_, _47_, _141_
 
 <br/>
 

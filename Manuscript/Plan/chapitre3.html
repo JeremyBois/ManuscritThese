@@ -1019,48 +1019,52 @@ body .markdown-body
 <h2 id="choix-dune-methodologie-adaptee"><a name="user-content-choix-dune-methodologie-adaptee" href="#choix-dune-methodologie-adaptee" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Choix d’une méthodologie adaptée</h2>
 <h3 id="1-methodologies-existantes"><a name="user-content-1-methodologies-existantes" href="#1-methodologies-existantes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1) Méthodologies existantes</h3>
 <ul>
-<li>Formulation / Définition</li>
+<li>Formulation<ul>
+<li>Définition des objectifs</li>
+<li>Introduction des type de variables (discrètes, continues, qualitatives)</li>
+<li>Definition des contraintes</li>
+</ul>
+</li>
+<li>Différentes approches<ul>
 <li>Optimisation puis décision (à posteriori)</li>
 <li>Décision puis optimisation (à priori &ndash;&gt; agrégation)</li>
 <li>Décision + Optimisation (combinée, itératif)</li>
-<li>Introduire partie suivante</li>
+</ul>
+</li>
+<li>Bilan et sélection d’une approche</li>
 </ul>
 <p><em>Armand-Decker2015</em>, <em>Rivallain2013</em></p>
 <p><br/></p>
-<h3 id="2-les-methodes-doptimisation"><a name="user-content-2-les-methodes-doptimisation" href="#2-les-methodes-doptimisation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2) Les méthodes d’optimisation</h3>
+<h3 id="2-les-methodes-doptimisation-pour-les-problemes-mixtes"><a name="user-content-2-les-methodes-doptimisation-pour-les-problemes-mixtes" href="#2-les-methodes-doptimisation-pour-les-problemes-mixtes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2) Les méthodes d’optimisation pour les problèmes mixtes</h3>
 <h4 id="loptimisation-multi-objectif"><a name="user-content-loptimisation-multi-objectif" href="#loptimisation-multi-objectif" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>L’optimisation multi-objectif</h4>
 <ul>
-<li>Définition + vocabulaire</li>
-<li>Introduction des type de variables (discrètes, continues, qualitatives)</li>
-<li>Extension au cas multi-objectif<ul>
-<li>Généralisation de la definition du problème</li>
-<li>Description des approches existantes (arbre des méthodes)</li>
-<li>Exemples d’applications dans le bâtiment et les systèmes énergétiques</li>
-<li>Différentes manière de représenter le problème d’optimisation<ul>
-<li>Scalaire</li>
-<li>Pareto (approches de dominance, techniques de diversité)<ul>
-<li>Quel classement pour les solutions ?</li>
-<li>Dominance rank</li>
-<li>Dominance depth</li>
-<li>Dominance account</li>
+<li>Définition et définition<ul>
+<li>Optimisation</li>
+<li>Dominance</li>
+<li>Front de Pareto</li>
+<li>Points de référence</li>
+<li>Convexité</li>
 </ul>
 </li>
-<li>Non Pareto / Non scalaire</li>
-<li>Limites les méthodes utilisables</li>
+<li>Description des approches existantes<ul>
+<li>Méthodes continues<ul>
+<li>Impossible avec variables discrètes</li>
+<li>Nécessite d’être dérivable, d’utiliser un gradient</li>
 </ul>
 </li>
-<li>Connaissances sur le problème<ul>
-<li>Connaissance de l’optimal à atteindre</li>
-<li>Connaissance du gradient</li>
-<li>Combinatoire vs continue</li>
-<li>Limites les méthodes utilisables</li>
-</ul>
-</li>
-<li>Exactes / approchées<ul>
+<li>Méthodes exactes<ul>
 <li>Problème de cardinalité</li>
-<li>Limites les methodes utilisables</li>
+<li>Limiter par le temps de simulation</li>
 </ul>
 </li>
+<li>Méthodes utilisant un heuristic<ul>
+<li>Spécialisés</li>
+<li>Parallel</li>
+<li>Meta</li>
+</ul>
+</li>
+<li>Arbre des méthodes pour le bilan</li>
+<li>Sélection d’une méthode adaptée</li>
 </ul>
 </li>
 </ul>
@@ -1136,9 +1140,11 @@ body .markdown-body
 <li>Assurer l’élitisme</li>
 <li>Fournir une base d’apprentissage (mémoire) pour progresser dans la recherche</li>
 <li>Éviter la redondance</li>
+<li>Assurer la convergence</li>
 </ul>
 <h4 id="epsilon-archive-epsilon-archive"><a name="user-content-epsilon-archive-epsilon-archive" href="#epsilon-archive-epsilon-archive" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Epsilon-Archive ($\epsilon$-archive)</h4>
 <ul>
+<li>Introduire les techniques de convergence (Dominance rank, Dominance depth, Dominance account)</li>
 <li>Introduire les techniques de diversité existantes (Kernel, nearest, hist)</li>
 <li>Décrire le fonctionnement de cette approche</li>
 <li>Comparer avec les autres approches existantes<ul>
@@ -1150,7 +1156,8 @@ body .markdown-body
 </ul>
 </li>
 </ul>
-<p><em>Laumanns2002263</em>, <em>Deb2005501</em></p>
+<p><em>Laumanns2002263</em>, <em>Deb2005501</em><br />
+<em>37</em>, <em>47</em>, <em>141</em></p>
 <p><br/></p>
 <h3 id="3-prendre-en-compte-les-contraintes"><a name="user-content-3-prendre-en-compte-les-contraintes" href="#3-prendre-en-compte-les-contraintes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3) Prendre en compte les contraintes</h3>
 <ul>
