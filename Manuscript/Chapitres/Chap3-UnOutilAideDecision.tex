@@ -185,7 +185,7 @@ D’autres méthodes de dominance existent et certaines d’entre elles introdui
 une préférence tout en conservant le caractère multi-objectif.
 Dans l’approche lexicographique (\mtodo{Ajouter citation}) les différents objectifs
 sont ordonnées. Contrairement à l’approche de Pareto, les objectifs sont comparés
-suivant cet ordre et la solution est définie comme lexicographiquement dominée dès
+suivant cet ordre et la solution est considérée comme lexicographiquement dominée dès
 que un objectif est moins optimal.
 Une approche intéressant généralise l’approche de Pareto en permettant de régler
 la surface dominée : la cône optimalité. Un paramètre $\lambda$ est introduit et
@@ -241,6 +241,16 @@ la forme du front de Pareto dans le cas de problème multi-objectifs.
 % paragraph convexite (end)
 % subsubsection vocabulaire_et_definition (end)
 
+% \paragraph{Convergence} % (fold)
+% \label{par:convergence}
+% \itodo{Décrire convergence}
+% % paragraph convergence (end)
+
+% \paragraph{Diversité} % (fold)
+% \label{par:diversité}
+% \itodo{Décrire diversité}
+% % paragraph diversité (end)
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Description des approches existantes} % (fold)
 \label{ssub:description_des_approches_existantes}
@@ -249,36 +259,107 @@ de la performance est souvent effectuée de manière itérative à partir d’un
 de référence ou bien de manière empirique dans l’espace de décision. La direction et
 les variations évaluées résultant dans la plupart des cas de l’expérience du ou des
 décideur[s]. La recherche est alors fortement biaisé en amont et l’exploration
-d’alternatives comme l’obtention d’une solution optimale est fortement improbable.
+d’alternatives comme l’obtention d’une solution optimale est peu probable.
 Dans ces travaux l’approche de décision a posteriori a été retenu et le problème
 est de type combinatoire. En effet certaines variables de l’espace de décision
-sont discrètes, d’autres continues et enfin certaines sont qualitatives. Ainsi les
-approches continues ne seront pas détaillées.
+sont discrètes, d’autres continues et enfin certaines sont qualitatives. Les approches
+continues ne seront ainsi pas détaillées car elles ne sont pas adapté à ce type de
+problème.
 
 \paragraph{Méthodes exactes} % (fold)
 \label{par:methodes_exactes}
+Ces méthodes regroupent un ensemble de sous-méthodes et ont en commun de caractériser
+l’ensemble des solutions. Elles sont cependant couteuses car un nombre très important
+de simulations est requis. Une liste des principales méthodes adaptées aux problèmes
+multi-objectif est présenté ci-après.
 
+\subparagraph{Énumération exhaustive :} % (fold)
+\label{subp:enumeration_exhaustive}
+C’est l’approche la plus directe car elle ne nécessite pas de logique particulière.
+L’ensemble des solutions est évalué. Elle est donc trop couteuse pour des problèmes
+à forte cardinalité.
+% subparagraph enumeration_exhaustive (end)
+
+\subparagraph{Algorithmes de chemin optimal :} % (fold)
+\label{subp:algorithmes_de_chemin_optimal}
+Ces approches permettent de trouver un chemin optimal à l’intérieur d’un problème
+représenté à l’aide de graphes. De nombreuses variantes existes (A*, HPA*, IDA*, D*, ...)
+Ces approches sont très rapides mais nécessite la formulation du problème sous forme
+de graphe et de connaître le point à atteindre.
+% subparagraph algorithmes_de_chemin_optimal (end)
+
+
+\subparagraph{Programmation dynamique :} % (fold)
+\label{subp:programmation_dynamique}
+Cette approche se base sur la résolution de sous-problème pour résoudre le problème global
+et se représente sous forme d’un graphe. La recherche à l’intérieur du graphe est basée sur le théorème
+de Bellmann qui stipule qu’un chemin optimal ne peux être composé que de sous-chemin
+optimaux.  Cette approche évite ainsi l’évaluation de l’ensemble des chemins. Afin de
+pouvoir calculer la performance d’un sous-chemin les solutions déjà évaluées sont
+stockée en mémoire évitant de les réévaluer ensuite (\cite{Rivallain2013}).
+% subparagraph programmation_dynamique (end)
 % paragraph methodes_exactes (end)
 
-\paragraph{Heuristiques} % (fold)
-\label{par:heuristics}
-\itodo{Parallèles, heuristiques spécialisés, méta-heuristiques}
 
-% paragraph heuristics (end)
+% subparagraph bilan (end)
+\paragraph{Méthodes approchées} % (fold)
+\label{par:methodes_approchees}
+\itodo{parallèles heuristiques spécialisés, méta-heuristiques}
+Ces approches contrairement aux approches exactes ne garantissent pas de couvrir
+l’ensemble de du front de Pareto mais demande un nombre d’évaluation bien moins
+important, élément crucial pour notre étude de cas. On distingue deux familles,
+les heuristiques, et les méta-heuristiques.
+Un heuristique est spécifique au problème que l’on cherche à résoudre et est
+inspiré de l’expérience ou des contraintes du problème. Il représente ainsi une
+solution souvent sous-optimale et empirique mais permettant de guider vers la solution
+optimale.
+
+Prenons le problème suivant : Trouver la distance minimale pour aller d’un point A à un point B
+en considérant plusieurs obstacles (\mtodo{Ajouter ref figure}).
+Ce problème se prête particulièrement bien à la méthode exacte A* car nous connaissons
+le point de départ et le point d’arrivée. Cette approche nécessite un heuristique
+qui servira d’approximation permettant de guider la recherche vers le chemin optimal
+sans avoir à évaluer l’ensemble des chemins existants.
+
+Afin de résoudre ce problème, la connaissance de la solution pour un cas plus simple
+peut permettre de guider la recherche : ce sera notre heuristique.
+Si on ne considère aucuns obstacles (\mtodo{Ajouter ref figure}), le distance optimale
+est la distance euclidienne entre ces deux points. Maintenant, si on considère que
+les mouvements en diagonal ne sont pas admissibles alors c’est la distance de Manhattan.
+Si on veut interdire les mouvements diagonaux alors l’algorithme A* pourra utiliser
+la distance de Manhattan. Si on souhaite les autoriser la distance euclidienne.
+La recherche favorisera ainsi dans un premier temps les mouvements réduisant la
+valeur de la distance permettant de construire rapidement le chemin optimal.
+
+\ftodo{Ajouter illustration distances et recherche A*}
+
+Comme nous venons de le voir un heuristique est fortement lié au problème et doit tenir
+compte des contraintes propres au problème. Cependant dans l’optimisation multi-objectif combinatoire
+appliqué au bâtiment cette connaissance et souvent trop limité et l’utilisation
+d’un heuristique entrainerait un biais trop important dans la recherche de solutions.
+
+Dans l’optique d’une formulation plus générale des méta-heuristiques ont été développés.
+Ces formulations utilise un processus stochastique couplée à des heuristiques afin de guider
+la recherche et d’éviter l’évaluation complète des solutions (évaluation exhaustive). La partie
+suivante décrit de manière plus complète cette approche.
+% paragraph methodes_approchees (end)
 % subsubsection description_des_approches_existantes (end)
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Sélection d’une méthode adapté au problème} % (fold)
-\label{ssub:selection_d_une_methode_adapte_au_probleme}
-
-% subsubsection selection_d_une_methode_adapte_au_probleme (end)
-% subsection les_methodes_d_optimisation_multi_objectif_pour_les_probleme_mixtes (end)
-
+\subsubsection{Sélection d’une méthode adaptée} % (fold)
+\label{ssub:selection_d_une_methode_adaptee}
+L’algorithme A* n’est pas retenu car il nécessite la connaissance des optimums globaux.
+De plus compte tenu de la forte cardinalité de notre étude de cas les autres approches exactes
+sont trop couteuses et ne seront pas retenues.
+La connaissance limitée et la forte cardinalité du problème indique que l’utilisation
+de méta-heuristique est la méthode la plus adaptée à notre problème.
+% subsubsection selection_d_une_methode_adaptee (end)
 
 % ------------------------------------------------------------------------------
 \subsection{Les Méta-heuristiques} % (fold)
 \label{sub:les_meta_heuristiques}
-
+Les méta-heuristiques sont des approches générales utilisant des heuristiques
+couplée à une recherche stochastique.
+\itodo{Je suis ici !}
 % subsection les_meta_heuristiques (end)
 % section choix_d_une_methodologie_adaptee (end)
 

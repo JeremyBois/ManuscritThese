@@ -86,6 +86,7 @@ docs/_build/
 *.upb
 *.tdo
 *.loa
+*.synctex.gz(busy)
 Manuscript/*.pdf
 Manuscript/Plan/*.pdf
 Demonstrations/*.pdf

@@ -84,6 +84,7 @@ _Iooss2011_, _Saltelli2004_, _Campolongo199975_
   - Équilibre entre exploitation et exploration
   - Capacité à s’extraire des optimums locaux
   - Limiter le nombre d’évaluations nécessaires (vitesse de convergence)
+  - Irace package pour initialiser le meta-heuristique
 
 #### Artificial Bee Colony (ABC)
   - Décrire son histoire
@@ -91,6 +92,7 @@ _Iooss2011_, _Saltelli2004_, _Campolongo199975_
     - Les phases (exploitation / recherche locale / exploration)
     - L’apprentissage par la mise en commun
     - Recherche stochastique
+    - Sélection par roulette (vs proportionelle, rang, ...)
   - Extension aux problèmes multi-objectif
   - Améliorations
     - Existantes
