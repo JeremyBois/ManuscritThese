@@ -86,8 +86,10 @@ solution à chaque itération.
 Finalement la dernière méthode permet d’optimiser les différents objectifs en calculant
 la distance de chaque solution par rapport à une solution de référence. Le choix
 du point de référence est alors déterminant (\cite{Collette2002}, Fig. 2.10).
+
 \ftodo{Ajouter un graphique montrant le passage d’un problème multi-objectif à
 un problème mono-objectif}
+
 % paragraph decision_a_priori (end)
 
 \paragraph{Décision interactive} % (fold)
@@ -142,6 +144,10 @@ description plus détaillée est réalisé dans la partie suivante.
 \subsubsection{Vocabulaire et définition} % (fold)
 \label{ssub:vocabulaire_et_definition}
 Cette partie présente les notions importantes liées à l’optimisation multi-critère.
+Cette partie n’est en aucun cas exhaustif sur le sujet et n’a pas vocation à l’être.
+Seul les éléments indispensables sont présentés et le lecteur est invité à consulter
+les références si plus d’informations sont nécessaires.
+
 \paragraph{Optimisation multi-objectif :} % (fold)
 \label{par:optimisation_multi_objectif}
 L’optimisation multicritère est le processus visant à minimiser ou maximiser un ensemble
@@ -241,16 +247,6 @@ la forme du front de Pareto dans le cas de problème multi-objectifs.
 % paragraph convexite (end)
 % subsubsection vocabulaire_et_definition (end)
 
-% \paragraph{Convergence} % (fold)
-% \label{par:convergence}
-% \itodo{Décrire convergence}
-% % paragraph convergence (end)
-
-% \paragraph{Diversité} % (fold)
-% \label{par:diversité}
-% \itodo{Décrire diversité}
-% % paragraph diversité (end)
-
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Description des approches existantes} % (fold)
 \label{ssub:description_des_approches_existantes}
@@ -298,6 +294,9 @@ optimaux.  Cette approche évite ainsi l’évaluation de l’ensemble des chemi
 pouvoir calculer la performance d’un sous-chemin les solutions déjà évaluées sont
 stockée en mémoire évitant de les réévaluer ensuite (\cite{Rivallain2013}).
 % subparagraph programmation_dynamique (end)
+
+\ftodo{Ajouter graphique décrivant les différents méthodes exactes}
+
 % paragraph methodes_exactes (end)
 
 
@@ -357,24 +356,291 @@ de méta-heuristique est la méthode la plus adaptée à notre problème.
 % ------------------------------------------------------------------------------
 \subsection{Les Méta-heuristiques} % (fold)
 \label{sub:les_meta_heuristiques}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description :} % (fold)
+\label{ssub:description}
 Les méta-heuristiques sont des approches générales utilisant des heuristiques
-couplée à une recherche stochastique.
-\itodo{Je suis ici !}
+couplés à une recherche stochastique permettant d’explorer un domaine de recherche.
+Le caractère stochastique permet d’augmenter la capacité d’exploration alors que
+les heuristiques eux améliorent l’exploitation. Ce processus est le plus souvent
+itératif.
+
+\paragraph{Exploration :} % (fold)
+\label{par:exploration}
+Indicateur permettant de d’évaluer la capacité d’un méta-heuristique à explorer
+le domaine de décision. Plus l’exploration est forte plus grand est l’espace
+couvert.
+% paragraph exploration (end)
+
+\paragraph{Exploitation :} % (fold)
+\label{par:exploitation}
+Indicateur permettant d’évaluer la capacité d’un méta-heuristique à améliorer les
+solutions existante. Plus l’exploitation est forte plus la convergence est rapide.
+Comme ces méthodes sont des méthodes approchées converger ne signifie par forcement
+converger vers le front de Pareto. On parle alors d’optimum locaux.
+% paragraph exploitation (end)
+
+\paragraph{Optimum :} % (fold)
+\label{par:optimum}
+Il existe deux types d’optimum : les locaux (fort ou faible) et les globaux.
+Un optimum est considéré comme local fort quand il domine l’ensemble des solutions
+du \emph{voisinage} et faible si il non-dominé dans ce voisinage (plusieurs
+optimum locaux existent). Un optimum est considéré comme global lorsque il domine
+l’ensemble des solutions existantes dans le domaine de décision. Dans le cas d’une
+optimisation multi-objectif, l’ensemble des solutions du front de Pareto sont des
+optimum globaux.
+% paragraph optimum (end)
+
+Il apparaît ainsi important pour un méta-heuristique d’être capable de réaliser
+un compromis entre exploitation et exploration afin d’augmenter les chances de
+converger vers le front de Pareto. Il existe de nombreux algorithmes dans la littérature
+et ils peuvent tous être classé comme faisant partie de l’Intelligence Artificielle (IA).
+La notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
+dans de nombreux domaines comme le déplacement organisé en groupe (humains, oiseaux, poissons, ...)
+ou encore l’apprentissage et la réflexion. Deep Blue a ainsi été le premier programme
+informatique à battre le champion du monde d’échec de l’époque (\cite{Hsu199970}).
+Le jeu de Go est un autre exemple témoignant de la forte évolution de l’IA. Alors que
+les anciens programmes étaient loin d’être compétitifs contre le bas du classement
+des joueurs professionnels, AlphaGo (\cite{Silver2016484}) a battu le champion Européen (Fan Hui)
+puis un des meilleurs joueur au monde au titre de 9 dan professionnel (Lee Sedol).
+% subsubsection description (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Les méthodes existantes} % (fold)
+\label{ssub:les_methodes_existantes}
+La plupart des méta-heuristiques s’inspirent du vivant et des différents principes
+le décrivant. On distingue deux grande familles : les méta-heuristiques à population
+et les méta-heuristiques de voisinage. Parmi les approches par voisinage les plus
+connus sont le recuit simulé et la recherche tabou. Ces approches cherchent à optimiser
+une solution par recherche locale combiné à une stratégie leur permettant d’éviter
+de converger vers un optimum local. Parmi les approches par population il existe
+deux grandes familles : les algorithmes évolutionnaires et les algorithmes d’essaim.
+
+\paragraph{Algorithmes évolutionnaires :} % (fold)
+\label{par:algorithmes_évolutionnaires}
+Ces méthodes sont basées sur les mécanismes de la sélection naturelle. L’approche la plus
+répandue et l’utilisation de l’algorithme NSGA II (\cite{Deb2002182}) mais de nombreuses
+variations existent ayant leur point fort et leur point faible. L’algorithme
+SPEA2 par exemple améliore la diversité du front de Pareto grâce à une approche par
+clustering au prix d’une convergence plus lente (\cite{Zitzler2001}). À l’inverse
+l’algorithme PESA lui tant à améliorer la convergence au prix de la diversité des
+solutions du front final. Dans les applications liées au bâtiment, \cite{Rivallain2013}
+a utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
+pour identifier des programmes séquentiels efficaces de réhabilitation énergétique.
+Il a ainsi optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
+dans lequel ces améliorations doivent être réalisées.
+Pour les différentes solutions l’impact environnemental, le confort des occupants en
+période estivale, et le coût ont été évaluées.
+Plus récemment, (\mtodo{Ajouter Reich}) a utilisé l’algorithme NSGA II pour
+optimiser de manière combiné le coût, l’émission de Gaz à effet de serre et
+les besoins d’une maison à énergie positive.
+% paragraph algorithmes_évolutionnaires (end)
+
+\paragraph{Algorithmes d’essaim :} % (fold)
+\label{par:algorithmes_d_essaim}
+Ces méthodes sont basées sur l’expérience du vivant et plus particulièrement de
+l’organisation au sein d’un groupe ou d’une colonie. Parmi les plus connus, il peut être
+cité l’algorithme de colonie de fourmis proposé à l’origine par \cite{Colorni1992509}
+et comme pour les algorithmes évolutionnaires de nombreuses variations ont été développées
+pour des problèmes multi-objectif (\cite{MichaelGuntsch2003,Shea2006627}).
+Ces approches s’inspirent du comportement des colonies de fourmis où chaque individu
+explore une partie du domaine de décision laissant une trace de phéromone derrière lui.
+Chaque fourmis revient ensuite à la colonie est transmet les informations acquise.
+Une autre approche connus est l’algorithme PSO (Particule Swarm optimization) dont
+l’inspiration provient de l’observation des oiseaux volant de manière synchrone et
+pouvant changer brusquement de direction. Cette approche a été appliquée au domaine
+du bâtiment pour l’optimisation multi-objectif en tenant compte du confort des occupants,
+de l’impact environnemental, des besoins en énergie, et de la sécurité de l’ouvrage (\cite{Armand-Decker2015}).
+Il existe de nombreuses autres implémentations et le lecteur intéressé pourra consulter
+\cite{Aboul-EllaHassanien2015} qui décrit de manière non-exhaustive les différents
+approches existantes et leur applications.
+% paragraph algorithmes_d_essaim (end)
+% subsubsection les_methodes_existantes (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Bilan :} % (fold)
+\label{ssub:bilan}
+De nombreuses approches existent mais il n’existe cependant pas de méthode permettant de
+sélectionner celle qui est la plus adaptée au problème : \cite{Wolpert199767} formalise
+ce concept. Le choix est alors subjectif ou dicté par la complexité de mise en œuvre
+de l’approche.
+Cependant l’ensemble des méta-heuristiques ont en commun d’être stochastiques, nécessitant
+le réglage de différent paramètres spécifique à leur formulation. Ces paramètres
+influencent la performance d’un algorithme pour un problème donné. D’un algorithme à un autre le nombre de
+paramètres à régler varie fortement. De plus certains sont très sensible à la variation
+d’un paramètre (ex: réseau de neurones) alors que d’autre sont plus robustes (ex: PSO).
+Il est ainsi nécessaire de déterminer empiriquement ces paramètres ou bien de s’inspirer
+de problèmes similaires dans la littérature.
+Cependant certaines méthodes existent permettant d’automatiser le réglage des
+paramètres grâce à un entraînement comme l’algorithme F-Race (\cite{Birattari2010311}).
+Cette méthode à été adapté avec succès aux problèmes multi-objectif à travers un framework
+décrivant l’auto paramétrisation de différent algorithmes de colonies de fourmis (\cite{Lopez-Ibanez2012861}).
+Les auteurs montrent ainsi que un réglage optimisé permet d’améliorer la performance
+des algorithmes par rapport à un réglage empirique.
+Pour résumer, ces questions peuvent aider à la sélection d’une approche adaptée :
+\begin{itemize}
+  \item Implémentation existante ?
+  \item Couplage avec les outils que j’utilise aisé ?
+  \item Dur à implémenter ?
+  \item Formulation adaptée à mon problème ?
+  \item Combien de paramètres à régler ?
+  \item Le réglage de ces paramètres est-il fortement impactant ?
+  \item Le temps nécessaire pour une évaluation me permet-il de régler ces paramètres ?
+\end{itemize}
+
+\ftodo{Ajouter graphique décrivant les différents méta-heuristiques}
+\ftodo{Ajouter graphique décrivant les différents approches (mono-objectif, exactes , approchées)}
+% subsubsection bilan (end)
 % subsection les_meta_heuristiques (end)
-% section choix_d_une_methodologie_adaptee (end)
 
 
 % ------------------------------------------------------------------------------
 \subsection{Réduire la cardinalité du problème} % (fold)
 \label{sub:reduire_la_cardinalite_du_probleme}
+\iunsure{Cette partie devrait être dans l’étude de cas ???}
+Comme il a été décrit dans la section précédente, l’optimisation multi-critère de
+problème mixte est complexe et couteux. Pour cette raison les méta-heuristiques
+ont été développé réduisant le nombre d’évaluation nécessaire par rapport à une
+approche exacte.
+Cependant le domaine de décision a priori est aussi un facteur impactant sur le
+nombre d’évaluation nécessaire pour obtenir le front de Pareto lors de l’optimisation.
+Afin de limiter la complexité d’un problème, des méthodes dite d’analyse de sensibilité
+ont ainsi été développées.
+Dans \cite{Iooss2011} une distinction est faite entre les méthodes dites locales
+(évaluant les effets à partir d’un autour d’une position) et les méthodes globales qui
+s’intéressent à l’ensemble du domaine de définition. Afin de pouvoir caractériser
+un domaine de décision le plus petit possible, il est nécessaire d’avoir recours à
+ces méthodes globales.
+Ces méthodes permettent ainsi d’identifier et sélectionner les critères les plus influents
+au regard des objectifs retenues. Les critères non influent étant transformés en
+constante réduisant la cardinalité du problème. Le domaine de décision est ainsi
+réduit et le processus d’optimisation plus performant et moins couteux.
 
+\iunsure{Ajouter les graphes de Iooss ??}
+\cite{Iooss2011} regroupe les méthodes existantes en deux grande familles : les
+méthodes de criblage et les méthodes de la décomposition de la variance. Il propose
+aussi un diagramme de décision permettant de sélectionner la méthode en fonction
+du temps nécessaire pour une évaluation et du nombre de variables d’entrées.
+
+Dans notre cas, l’analyse de sensibilité choisie doit être globale, peu couteuse
+et identifier les critères non influents. Un classement quantitatif n’étant pas
+nécessaire, les méthodes de criblage et plus particulièrement la méthode de Morris
+a été sélectionnée.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{La méthode de Morris :} % (fold)
+\label{ssub:la_methode_de_morris}
+\itodo{Présenter l’analyse de sensibilité choisie (graphique, description, ...)}
+Il existe plusieurs méthodes de criblage mais la méthode de Morris (\cite{Morris1991161})
+est facilement adaptable à tout type de problèmes contrairement à d’autres approches
+comportant plus de contraintes. Cette méthode est par exemple toujours valide dans le cas où
+les facteurs se compenseraient ou encore si le signe de l’effet d’un facteur n’est pas
+connue a priori (\cite{Saltelli2004}).
+
+
+\paragraph{Principe :} % (fold)
+\label{par:principe}
+La méthode de Morris utilise un plan OAT (One (Factor) At the Time) et est basée sur
+l’EEM (Elementary Effect Method) (\cite{Saltelli2004}).
+Chaque facteur (entrée) est définie par une plage de variation discrétisée en fonction
+du nombre de \emph{niveaux} ($p$) et d’un intervalle définie par un \emph{pas} ($\delta$).
+Chaque facteur assume ainsi $p$ valeurs discrètes et $\delta$ doit être un multiple de
+$\frac{1}{(p - 1)}$. La littérature utilise couramment $\delta = \frac{p}{2 \times (p - 1)}$
+(\cite{Morris1991161, Campolongo20071509}).
+
+La méthode consiste alors en l’évaluation de l’effet élémentaire pour $r$ répétitions
+(trajectoires) à l’intérieur du plan OAT. Pour chaque trajectoire, une position de départ
+est tirée aléatoirement puis des variations élémentaires aléatoires (distribution uniforme)
+sont réalisées successivement. La méthode de Morris demande ainsi $r \times (k + 1)$ évaluations
+avec $k$ le nombre de facteur dont on cherche à évaluer l’influence. Pour chaque trajectoire
+on calcule les effets élémentaires sur le ou les objectifs et ce pour chaque facteurs $k$.
+Ainsi la précision de l’analyse est fonction du nombre de trajectoire mais aussi
+de leur diversité qui est définie par le choix des paramètres $r$ et $p$.
+Encore une fois la littérature suggère $r \geq 10$ et de $p = 4$.
+
+\ftodo{Ajouter un graphe explicitant la recherche (cube de Morris, ..)}
+% paragraph principe (end)
+
+
+\paragraph{Interprétation :} % (fold)
+\label{par:interpretation}
+La première implémentation de la méthode permet d’évaluer qualitativement l’influence de chaque
+paramètre grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$ \eqref{eq:ecart_type}.
+La moyenne permettant d’évaluer les effets linéaires chaque paramètre sur les indicateurs,
+et l’écart type lui d’identifier les influences non linéaires ou les couplages entre différents facteurs.
+
+\begin{equation}\label{eq:moyenne}
+    \mu = \sum_{i = 1}^{r} \frac{d_{i}}{r}
+\end{equation}
+
+\begin{equation}\label{eq:ecart_type}
+    \sigma = \sqrt{\sum_{i=1}^{r}\frac{(d_{i} - \mu)^{2}}{r}}
+\end{equation}
+
+\cite{Campolongo20071509} améliore la méthode en proposant deux modifications. La première
+est l’ajout de la moyenne absolue, $\mu^{*}$ \eqref{eq:moyenne_absolue}. Cet indicateur permet
+de voir l’importance des facteurs dont le signe de l’influence est variable là où
+la moyenne ne donnerais pas l’information (à cause des compensations dues au signes).
+La seconde modification proposée est la génération d’un grand nombre de trajectoires, $N$,
+dans lesquelles $r$ trajectoires sont sélectionnées. La méthode permet ainsi
+d’obtenir une meilleure répartition des trajectoires.
+La méthode de sélection proposée est faite par \emph{Brute force} et demande une
+importante puissance de calcul lorsque le nombre de trajectoires augmente.
+
+\begin{equation}\label{eq:moyenne_absolue}
+    \mu^{*} = \sum_{i = 1}^{r} \frac{\lvert d_{i} \rvert}{r}
+\end{equation}
+
+Afin de palier à ce problème, \cite{Ruano2012103} propose une approximation de
+la meilleure répartition dans un temps de calcul très court permettant d’obtenir
+une sélection représentatif du domaine d’exploitation.
+
+Il est ainsi possible de classer les facteurs en 3 catégories :
+\begin{itemize}
+  \item Non-influent ou effets négligeables
+  \item Influent avec des effets sans interactions et linéaires
+  \item Influent avec des effets non-linéaire ou des interactions
+\end{itemize}
+% paragraph interpretation (end)
+
+\paragraph{Exploitation :} % (fold)
+\label{par:exploitation}
+La méthode recommandée dans la littérature pour évaluer les résultats de l’analyse
+est graphique et consiste à tracer le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il est
+ainsi possible de juger de l’importance globale d’un facteur visuellement.
+Enfin la distance normalisée, $\hat{distance}$ \eqref{eq:distance_norm}, permet
+de classer l’ensemble des indicateurs sur un même graphe à l’aide d’une représentation
+en diagramme à barre permettant d’identifier rapidement l’ordre au sein des facteurs influents.
+Il est cependant important de ne pas oublier que $\hat{distance}$ est une distance
+normalisé, il existera toujours un facteur ayant une $\hat{distance} = 1$ et un autre
+$\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
+
+\begin{align}\label{eq:distance_norm}
+    \begin{split}
+        distance        &= \sqrt{{\mu^{*}}^2 + \sigma^{2}} \\
+        \hat{distance}  &=  \frac{distance - distance_{min}}{distance_{max} - distance_{min}}
+    \end{split}
+\end{align}
+
+\ftodo{Ajouter un graphe explicitant ces deux approches}
+% paragraph exploitation (end)
+% subsubsection la_methode_de_morris (end)
 % subsection reduire_la_cardinalite_du_probleme (end)
+% section choix_d_une_methodologie_adaptee (end)
+
+
 
 
 % % ..............................................................................
 % % ..............................................................................
-% \section{Vers une optimisation multi-critère et multi-objectif} % (fold)
-% \label{sec:vers_une_optimisation_multi_critere_et_multi_objectif}
+\section{Construction d’un méta-heuristique adapté} % (fold)
+\label{sec:construction_d_un_meta_heuristique_adapte}
+\itodo{Je suis ici !}
+
+
+% section construction_d_un_meta_heuristique_adapte (end)
+
 
 
 % % ------------------------------------------------------------------------------
@@ -432,135 +698,17 @@ couplée à une recherche stochastique.
 
 
 
-% ..............................................................................
-% ..............................................................................
-\section{L’analyse de sensibilité} % (fold)
-\label{sec:l_analyse_de_sensibilite}
-
-% ------------------------------------------------------------------------------
-\subsection{Les méthodes existantes} % (fold)
-\label{sub:les_méthodes_existantes}
-\itodo{
-Nécessiter de limiter le nombre de variables à évaluer pour réduire la cardinalité
-du problème.}
-Réduction du nombre de variables par l’étude de sensibilité:
-\begin{itemize}
-    \item Méthodes locales
-    \item Méthodes globales
-    \item Screening
-\end{itemize}
-
-Les méthodes de screening sont plus limitées que les methodes d’analyse de sensibilité
-globales. Elles ne permettent d’obtenir qu’une évaluation qualitative des différents
-facteurs influents, permettant de les classer relativement les uns par rapports au autres.
-Cependant un des principaux avantages est le faible nombre d’évaluations nécessaires
-pour évaluer l’influence de chaque facteurs.
-% subsection les_méthodes_existantes (end)
-
-% ------------------------------------------------------------------------------
-\subsection{Réduction de la cardinalité par screening} % (fold)
-\label{sub:reduction_de_la_cardinalite_par_screening}
-\itodo{Présenter l’analyse de sensibilité choisie (graphique, description, ...)}
-
-\itodo{Motiver le choix d’une méthode de screening}
-Dans le cadre de notre étude nous cherchons à sélectionner seulement des facteurs
-ayant un impact important pour limiter la cardinalité de l’étude. Il est en effet important
-d’éliminer à priori les facteurs faiblement impactant pour permettre dans un premier temps
-la simplification du modèle, puis dans un second temps améliorer la convergence
-de la méthode d’optimisation retenue.
-Les méthodes de screening sont alors parfaitement adaptées à notre problème.
-
-\itodo{Motiver le choix de Morris}
-Il existe plusieurs methodes de screening mais la methode de Morris  (\cite{Morris1991161})
-est facilement adaptable à tout type de problèmes. Elle est par exemple utilisable dans le cas où
-les facteurs se compensent ou encore si le signe de l’effet d’un facteur n’est pas
-connue à-priori (\cite{Saltelli2004}).
 
 
-\itodo{Décrire Morris}
-\itodo{Décrire les math derrière Morris ?}
-La méthode de Morris utilise un plan OAT (One (Factor) At the Time) et est basée sur
-l’EEM (Elementary Effect Method).
-Chaque facteur est définie par une intervalle (suivant une loi uniforme) et un certain
-nombre de valeur discrètes (\emph{niveaux} ($p$) sont sélectionnée suivant une discrétisation
-de l’intervalle définie par un \emph{pas} ($\delta$. L’espace des facteurs peut être représenté
-comme un vecteur position dont la longueur correspond au nombre de facteur (noté $k$) et dont chaque élément i
-est la valeur discrète associé au facteur i.
+% \paragraph{Convergence} % (fold)
+% \label{par:convergence}
+% \itodo{Décrire convergence}
+% % paragraph convergence (end)
 
-On définie alors une \emph{matrice d’orientation} (ou \emph{trajectoire}) noté $r$
-permettant d’évaluer un effet élémentaire, $d_{i}$. La matrice étant composée de $k$ lignes représentant
-chacune un vecteur position, la méthode de Morris demande $r \times (k + 1)$ évaluations.
-
-
-La première implémentation de la méthode permet d’évaluer qualitativement l’influence de chaque
-paramètre grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$ \eqref{eq:ecart_type}.
-La moyenne permettant d’évaluer les effets linéaires chaque paramètre sur les indicateurs,
-et l’écart type lui d’identifier les influences non linéaires ou les couplages entre différents facteurs.
-
-\begin{equation}\label{eq:moyenne}
-    \mu = \sum_{i = 1}^{r} \frac{d_{i}}{r}
-\end{equation}
-
-\begin{equation}\label{eq:ecart_type}
-    \sigma = \sqrt{\sum_{i=1}^{r}\frac{(d_{i} - \mu)^{2}}{r}}
-\end{equation}
-
-\begin{equation}\label{eq:moyenne_absolue}
-    \mu^{*} = \sum_{i = 1}^{r} \frac{\lvert d_{i} \rvert}{r}
-\end{equation}
-
-\cite{Campolongo20071509} améliore la méthode en proposant deux modifications. La première
-est l’ajout de la moyenne absolue, $\mu^{*}$ \eqref{eq:moyenne_absolue}. Cet indicateur permet
-de voir l’importance des facteurs dont le signe de l’influence est variable là où
-la moyenne ne donnerais pas l’information. En effet le changement de signe
-entraîne des compensations dans le calcul de la moyenne.
-Enfin, l’utilisation cumulé de $\mu$ et de $\mu^{*}$ permet d’évaluer le sens de
-l’influence.
-La seconde modification proposée est la génération d’un grand nombre de trajectoires, $N$,
-dans lesquelles $r$ trajectoires sont sélectionnées. La méthode permet ainsi
-d’obtenir une meilleure répartition des trajectoires dans l’échantillon.
-La méthode de sélection proposée est faite par \emph{Brute force} et demande une forte puissance
-de calcul pour un nombre important de trajectoires.
-
-Afin de palier à ce problème, \cite{Ruano2012103} propose une approximation de
-la meilleure répartition dans un temps de calcul très court permettant d’obtenir
-une sélection représentatif du domaine d’exploitation.
-
-\itodo{Évaluation des résultats}
-La méthode recommandée dans la littérature pour évaluer les résultats de l’analyse
-est graphique et consiste à tracer le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il est
-ainsi possible de juger de l’importance globale d’un facteur.
-Enfin la distance normalisée, $\hat{distance}$ \eqref{eq:distance_norm}, permet
-de classer l’ensemble des indicateurs sur un même graphe à l’aide d’une représentation
-en diagramme à barre permettant d’identifier rapidement les facteurs influents.
-
-\begin{align}\label{eq:distance_norm}
-    \begin{split}
-        distance        &= \sqrt{{\mu^{*}}^2 + \sigma^{2}} \\
-        \hat{distance}  &=  \frac{distance - distance_{min}}{distance_{max} - distance_{min}}
-    \end{split}
-\end{align}
-
-\itodo{Décrire le choix des paramètres}
-Le choix des paramètres $r$ et $p$ a un impact direct sur la qualité du plan OAT.
-Prenons l’exemple d’un $r$ faible ($r=1$), et d’un $p$ important ($p=20$).
-On va alors obtenir 20 valeurs discrètes par facteurs mais une unique trajectoire
-sera générer: le risque de ne pas explorer l’ensemble des facteurs est donc important.
-De bon résultats ont été obtenues pour $r >= 10$ et $p = 4$, (\cite{Campolongo199975,Campolongo2000377,Campolongo199749}).
-Le dernier paramètre, le saut, $grid_{jump}$ permet de définir le pas de discrétisation, $\delta$ \eqref{eq:delta}
-qui doit être un multiple de $\frac{1}{(p - 1)}$.
-\begin{equation}\label{eq:delta}
-  \delta = grid_{jump} \times \frac{1}{(p - 1)}
-\end{equation}
-La littérature utilise principalement $grid_{jump} = \frac{p}{2}$.
-
-Il est important de noter que les améliorations de la méthode d’origine permettent
-d’obtenir une meilleure répartition pour un temps de calcul très faible.
-
-% subsection reduction_de_la_cardinalite_par_screening (end)
-% section l_analyse_de_sensibilite (end)
-
-
+% \paragraph{Diversité} % (fold)
+% \label{par:diversité}
+% \itodo{Décrire diversité}
+% % paragraph diversité (end)
 
 
 % ..............................................................................
