@@ -147,6 +147,7 @@
             commentsnumbered]{algorithm2e}
 % Comments
 \definecolor{commcolor}{HTML}{93a1a1}
+\definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
 \newcommand\commfont[1]{\footnotesize\ttfamily\textcolor{commcolor}{#1}}
 \SetCommentSty{commfont}
 \SetKwComment{AComment}{\#~}{}
@@ -178,8 +179,9 @@
             prependcaption,
             textsize=tiny]{todonotes}      % Note support
 
-% Redefine \missingfigure command from todonotes packages
 \makeatletter
+
+% Redefine \missingfigure command from todonotes packages
     \renewcommand{\missingfigure}[2][]{%
     \setkeys{todonotes}{#1}%
     \addcontentsline{tdo}{todo}{%
@@ -199,7 +201,7 @@
     \end{tikzpicture}\hfill
     }% Ending \missingfigure command
 
-    % Define \missingequation command using \missingfigure command
+% Define \missingequation command using \missingfigure command
     \newcommand{\missingequation}[2][]{%
     \setkeys{todonotes}{#1}%
     \addcontentsline{tdo}{todo}{%
@@ -219,6 +221,28 @@
         \draw (0, -0.4) node {Equation};
     \end{tikzpicture}\hfill
     }% Ending \missingequation command
+
+
+% Define \missingtable command using \missingfigure command
+    \newcommand{\missingtable}[2][]{%
+    \setkeys{todonotes}{#1}%
+    \addcontentsline{tdo}{todo}{%
+        \fcolorbox{\@todonotes@currentbordercolor}%
+        {\@todonotes@currentbackgroundcolor}%
+        {\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
+        \ Table: #2}%
+    \par
+    \noindent
+    \begin{tikzpicture}
+        \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+             (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
+        \draw (2, -1.5) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
+        \draw[BrickRed, fill=white, rounded corners = 5pt, line width=5pt]
+             (-1, -1.5) rectangle (1, 0);
+        \draw (0, -0.5) node {Table};
+    \end{tikzpicture}\hfill
+    }% Ending \missingtable command
+
 \makeatother
 
 % Note if not sure about that
@@ -226,14 +250,14 @@
     \todo[linecolor=red,
           backgroundcolor=red!25,
           bordercolor=red,
-          #1]{#2}}
+          #1]{?? \hfill #2 \hfill ??}}
 \newcommandx{\iunsure}[2][1=]{
     \todo[linecolor=red,
           backgroundcolor=red!25,
           bordercolor=red,
           inline,
           size=\small,
-          #1]{#2}}
+          #1]{?? \hfill #2 \hfill ??}}
 
 % Note with highlighted text
 \newcommandx{\mfix}[3][1=]{
@@ -275,7 +299,6 @@
                    size=\normalsize,
                    #1]{#2}}
 
-
 % Note for missing equation
 \newcommandx{\etodo}[2][1=]{
     \missingequation[figcolor=CornflowerBlue!25,
@@ -290,6 +313,16 @@
           backgroundcolor=CornflowerBlue!25,
           bordercolor=CornflowerBlue,
           #1]{Equation: #2}}
+
+% Note for missing table
+\newcommandx{\ttodo}[2][1=]{
+    \missingtable[figcolor=carolinablue!25,
+                  backgroundcolor=carolinablue!25,
+                  bordercolor=carolinablue,
+                  color=carolinablue!25,
+                  figheight=2cm,
+                  size=\normalsize,
+                  #1]{#2}}
 
 
 % ------------------------------------------------------------------------------

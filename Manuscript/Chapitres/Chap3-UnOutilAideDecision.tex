@@ -128,6 +128,7 @@ description plus détaillée est réalisé dans la partie suivante.
 
 \paragraph{Bilan et sélection d’une approche :} % (fold)
 \label{par:bilan_et_selection_d_une_approche}
+
 \itodo{Expliquer la raison du choix d’une approche a posteriori}
 % paragraph bilan_et_selection_d_une_approche (end)
 % subsubsection les_differentes_approches (end)
@@ -303,7 +304,6 @@ stockée en mémoire évitant de les réévaluer ensuite (\cite{Rivallain2013}).
 % subparagraph bilan (end)
 \paragraph{Méthodes approchées} % (fold)
 \label{par:methodes_approchees}
-\itodo{parallèles heuristiques spécialisés, méta-heuristiques}
 Ces approches contrairement aux approches exactes ne garantissent pas de couvrir
 l’ensemble de du front de Pareto mais demande un nombre d’évaluation bien moins
 important, élément crucial pour notre étude de cas. On distingue deux familles,
@@ -517,7 +517,7 @@ au regard des objectifs retenues. Les critères non influent étant transformés
 constante réduisant la cardinalité du problème. Le domaine de décision est ainsi
 réduit et le processus d’optimisation plus performant et moins couteux.
 
-\iunsure{Ajouter les graphes de Iooss ??}
+\iunsure{Ajouter les graphes de Iooss montrant le classement des méthodes}
 \cite{Iooss2011} regroupe les méthodes existantes en deux grande familles : les
 méthodes de criblage et les méthodes de la décomposition de la variance. Il propose
 aussi un diagramme de décision permettant de sélectionner la méthode en fonction
@@ -604,8 +604,8 @@ Il est ainsi possible de classer les facteurs en 3 catégories :
 \end{itemize}
 % paragraph interpretation (end)
 
-\paragraph{Exploitation :} % (fold)
-\label{par:exploitation}
+\paragraph{Analyse :} % (fold)
+\label{par:analyse}
 La méthode recommandée dans la littérature pour évaluer les résultats de l’analyse
 est graphique et consiste à tracer le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il est
 ainsi possible de juger de l’importance globale d’un facteur visuellement.
@@ -624,7 +624,7 @@ $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 \end{align}
 
 \ftodo{Ajouter un graphe explicitant ces deux approches}
-% paragraph exploitation (end)
+% paragraph analyse (end)
 % subsubsection la_methode_de_morris (end)
 % subsection reduire_la_cardinalite_du_probleme (end)
 % section choix_d_une_methodologie_adaptee (end)
@@ -636,7 +636,164 @@ $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 % % ..............................................................................
 \section{Construction d’un méta-heuristique adapté} % (fold)
 \label{sec:construction_d_un_meta_heuristique_adapte}
+% ------------------------------------------------------------------------------
+\subsection{Artificial Bee Colony (ABC)} % (fold)
+\label{sub:artificial_bee_colony}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Introduction :} % (fold)
+\label{ssub:introduction}
+Compte tenu de la nature du problème, une approche par méta-heuristique
+a été retenue. Les questions soulevées dans la section précédente vont ici être utilisées
+afin de sélectionner une approche. Dans un premier temps nous discuterons le choix
+du méta-heuristique puis dans les sections suivantes les composants extérieurs
+nécessaires.
+
+Notre problème étant de nature mixte (paramètres discrets, continues, et qualitatifs)
+la formulation de l’algorithme doit être flexible. Les approches stricte sur leur
+formulation comme les algorithmes de colonie de fourmis ne sont alors pas applicables.
+
+De plus au vu des temps de simulation important, l’algorithme doit être robuste
+et converger vers le front de Pareto sans être trop dépendant d’un nombre important
+de paramètres dont les valeurs doivent être déterminées. En effet, ces paramètres
+sont sélectionnés de manière empirique et trouver la bonne combinaison est un problème
+d’optimisation en lui-même.
+
+L’algorithme ABC pour Artificial Bee Colony est un méta-heuristique nécessitant
+que peu de paramètres à fixer si on le compare avec les approches les plus
+couramment retenues(\mtodo{Ajouter lien vers tableau}).
+\ttodo{Ajouter comparatif du nombre de paramètres en fonction des approches
+       (PSO, ABC, NSGA II, ...)}
+La section suivante présente ainsi plus en détail son fonctionnement et les améliorations
+retenues à travers une recherche bibliographique.
+
+\iunsure{Ajouter application ici ou dans la sous sous section suivante}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Origine de la méthode :} % (fold)
+\label{ssub:origine_de_la_méthode}
+Comme de nombreux méta-heuristiques, l’ABC est inspiré du comportement des êtres
+vivants, ici plus particulièrement, du comportement des abeilles mellifères. De nombreux
+travaux ont vu le jour sur le comportement de ces abeilles et les méthodes de
+communication et de récolte. \cite{Visscher19821790} montre que le choix de chaque abeille
+est guidé par l’ensemble des informations acquises par l’essaim afin de constamment
+ajuster les sources utilisées pour la récolte.
+\cite{Camazine1991547} fort des travaux de ses pairs décrit un modèle mathématique
+simulant le comportement social de ces abeilles.
+Cependant, l’idée d’utiliser le comportement social des abeilles mellifères pour l’optimisation
+n’est introduit que en 2005, et cette approche fait donc partie des plus récentes (\cite{Karaboga2005}).
+% subsubsection origine_de_la_méthode (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Principe de fonctionnement :} % (fold)
+\label{ssub:principe_de_fonctionnement}
+L’algorithme s’appuie sur sur les mécanisme d’organisation sociale des insectes (\cite{Bonabeau1999}).
+\paragraph{Retours positifs (Positive feedback) :} % (fold)
+\label{par:positive_feedback}
+Chaque individu partage ses connaissances avec le reste du groupe afin de guider
+la recherche vers des sources de bonne qualité.
+% paragraph positive_feedback (end)
+
+\paragraph{Retours négatifs (Negative feedback) :} % (fold)
+\label{par:negative_feedback}
+Afin de prévenir les dangers ou les sources de mauvaises qualités, un mécanisme est
+aussi nécessaire. Celui-ci permet de contrebalancer le premier pour équilibrer
+et améliorer le travail de groupe.
+% paragraph negative_feedback (end)
+
+\paragraph{Fluctuation :} % (fold)
+\label{par:fluctuation}
+Afin de pouvoir faire émerger de nouvelles solutions et remplacer celle qui se
+tarissent, il est nécessaire d’explorer l’inconnu de manière aléatoire. Ce comportement est observé
+à travers les Scout chez les abeilles qui ne tiennent pas compte des danses et
+cherche par eux-même de nouvelles sources assurant la diversité et le renouvellement.
+% paragraph fluctuation (end)
+
+\paragraph{Interactions :} % (fold)
+\label{par:intractions}
+Finalement, il est nécessaire que les individus partagent l’ensemble de ces
+informations : bonnes sources, dangers, mauvaise source, source qui semble prometteuse, ...
+Les abeilles transmettent les informations positives et négatives de la même manière : grâce à la danse.
+Ce mécanisme est très poussée et permet de définir de manière détaillé la qualité
+d’une source, sa distance par rapport à l’essaim, et les dangers (\mtodo{Ajouter ref figure}).
+
+\ftodo{Ajouter illustration de la danse des abeilles (wikipedia)}
+% paragraph intractions (end)
+
+\paragraph{Formulation :} % (fold)
+\label{par:formulation}
+L’algorithme s’articule en 3 phases permettant de respecter les différentes règles
+explicité ci-avant. Le principe est le suivant : Un certain nombre de source est
+initialisé aléatoirement. Chaque source est ensuite améliorée par les différentes
+abeilles de la ruche. Trois types d’abeilles est identifié :
+\begin{itemize}
+  \item Les \emph{Employed} ou butineuses : Elles sont responsable de l’exploration
+        et ramène les informations recueillis à la ruche et les partages grâce à
+        leur danse.
+  \item Les \emph{Onlookers} ou ouvrières : Elles assistent à la danse des butineuses
+        et sélectionne ensuite une source. La sélection est aléatoire mais plus
+        la source est de qualité (bonne danse de la butineuse) plus la probabilité
+        de la sélectionner est importante. Ces abeilles sont donc responsables
+        de l’exploitation.
+  \item Les \emph{Scouts} ou éclaireuses : Elles explorent aléatoirement à la recherche
+        d’une source prometteuse et ramène cette information à la ruche. Ce mécanisme
+        permet de diversifier la recherche. La quantité d’éclaireuses dans les ruches
+        est estimé à 5/10~\percent (\cite{Seeley1996})
+\end{itemize}
+Dans un premier temps les butineuses partage les informations recueillis, ensuite
+une probabilité est attribuée à chaque source (solution). Les ouvrières en sélectionnent
+chacune une par roulette et cherchent à l’améliorer. Finalement si une source apparaît
+non productive elle est remplacée par une nouvelle durant la phase des éclaireuses.
+Ce processus est ainsi répété jusqu’à un critère d’arrêt, soit un nombre maximum
+d’évaluation, soit un critère indiquant la convergence.
+
+\iunsure{Ajouter formulation utilisé pour la mise à jour ou juste pointer vers littérature}
+
+Ces travaux portant sur l’optimisation multi-objectif, le lecteur souhaitant avoir
+plus d’information sur l’algorithme, son origine et/ou son fonctionnement pourra
+lire : \cite{Karaboga201221,Aboul-EllaHassanien2015}.
+% paragraph formulation (end)
+
+\paragraph{Extensions :} % (fold)
+\label{par:extensions}
+
+\itodo{Ajouter limites et solutions proposées}
+Au cours des années de nombreuses variation de la formulation de base ont été
+proposées.
+% paragraph extensions (end)
+
+
+% subsubsection principe_de_fonctionnement (end)
+% subsection artificial_bee_colony (end)
+
+% % À mettre ailleurs
+% Ensuite il est nécessaire que l’approche soit simple à coupler avec les outils
+% utilisés. La restriction principale étant le couplage avec le logiciel Dymola.
+% Comme il a été décrit dans le chapitre précédent, un outil a été développé sur la
+% base de la bibliothèque BuildingsPy afin de simuler de manière concurrente le modèle.
+% Afin de profiter de ces outils, seul les solutions développées en Python et donc
+% simplement interfaçable avec les outils précédent sont retenus.
+% DEAP (\mtodo{Ajouter source}) est une bibliothèque Python développée afin de
+% permettre la construction de méta-heuristiques. Il est construit de manière à
+% permettre à l’utilisateur de se concentrer sur la formulation du problème et
+% faire abstraction des structures nécessaires. Il fournit ainsi les briques
+% nécessaires à la construction de différents méta-heuristique et propose des
+% exemples d’implémentation d’algorithmes évolutionnaires.
+% Ce bibliothèque ne sera finalement pas utilisée pour plusieurs raisons.
+% \begin{itemize}
+%   \item Les structures de données nécessaires à l’approche retenue
+%         ne sont pas disponibles
+%   \item La bibliothèque ne propose pas de solution pour gérer la mixité des
+%         critères de décisions
+%   \item Pas de support pour les marches aléatoires
+% \end{itemize}
+
+Cette section décrit ainsi les choix qui ont été fait sur la structure de l’algorithme
+et les raisons motivant ce choix.
+
 \itodo{Je suis ici !}
+% subsection choix_du_générateur (end)
 
 
 % section construction_d_un_meta_heuristique_adapte (end)
