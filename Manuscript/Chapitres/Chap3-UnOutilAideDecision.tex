@@ -149,9 +149,8 @@ Cette partie n’est en aucun cas exhaustif sur le sujet et n’a pas vocation �
 Seul les éléments indispensables sont présentés et le lecteur est invité à consulter
 les références si plus d’informations sont nécessaires.
 
-\paragraph{Optimisation multi-objectif :} % (fold)
-\label{par:optimisation_multi_objectif}
-L’optimisation multicritère est le processus visant à minimiser ou maximiser un ensemble
+\begin{Def}[Optimisation multi-objectif]\label{def:optimisation_multi_objectif}
+L’optimisation multi-objectif est le processus visant à minimiser ou maximiser un ensemble
 d’objectifs tout en respectant un nombre fini de contraintes.
 Il peut être formulé de la manière suivante dans le cas d’une minimisation :
 \begin{equation}\label{eq:def_optimisation}
@@ -167,25 +166,28 @@ respectivement les $J$ contraintes d’inégalité et $K$ contraintes d’égali
 d’optimisation. L’optimisation multi-objectif est donc le processus qui cherche à améliorer la
 qualité des solutions en faisant varier la valeur des variables de décisions ($\vec{x}$).
 Lorsque $J > 0$ ou $K > 0$ on parle de problème d’optimisation sous contraintes.
-Ainsi on a un espace de recherche multidimensionnel tant pour les objectifs que pour
+\end{Def}
+Ainsi l’espace de recherche est multidimensionnel, pour les objectifs comme pour
 les variables de décisions contrairement à une recherche mono objectif où seul
 l’espace de décision est multi dimensionnel.
-% paragraph optimisation_multi_objectif (end)
 
 \paragraph{Relation de dominance :} % (fold)
 \label{par:relation_de_dominance}
 Afin de pouvoir classer et sélectionner les solutions en fonction de leur fonction
 objectif, il est nécessaire de définir une relation de dominance.
-L’approche la plus répandue est la dominance au sens de Pareto.
+L’approche la plus répandue étant la dominance au sens de Pareto.
 
-\noindent On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{x}_{b}$ si :
+\begin{Def}[Dominance au sens de Pareto]\label{def:dominance_de_pareto}
+On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{x}_{b}$ si :
 \begin{itemize}
   \item $\vec{x}_{a}$ est aussi bon que $\vec{x}_{b}$ sur tous les objectifs
   \item $\vec{x}_{a}$ est meilleur que $\vec{x}_{b}$ sur au moins un objectif
 \end{itemize}
 Mathématiquement la relation sera notée : $\vec{x}_{a} \prec \vec{x}_{b}$.
-Une point est ainsi dit optimal au sens de Pareto si aucuns autres point dans
-l’ensemble la comprenant ne la domine (\mtodo{ajouter référence figure}).
+Un point est ainsi dit optimal au sens de Pareto lorsque aucun autre point dans
+l’ensemble le comprenant ne le domine ().
+\end{Def} \mtodo{ajouter référence figure}
+
 \ftodo{Ajouter figure montrant la relation de dominance. Partie dominée, dominante, neutre}
 
 D’autres méthodes de dominance existent et certaines d’entre elles introduisent
@@ -205,8 +207,7 @@ dominance au sens de Pareto a été sélectionnée car c’est la méthode la pl
 et qu’elle n’introduit pas de préférence a priori.
 % paragraph relation_de_dominance (end)
 
-\paragraph{Front de Pareto :} % (fold)
-\label{par:front_de_pareto}
+\begin{Def}[Front de Pareto~:~PF]\label{def:front_de_pareto}
 Il représente l’ensemble formé par les solutions non-dominées (espace des objectifs)
 dont les vecteurs de décisions sont non-dominés.
 Le front de Pareto est donc la représentation dans l’espace des objectifs
@@ -220,7 +221,7 @@ Mathématiquement la relation peut être notée :
 \end{equation}
 avec $POS$ l’ensemble optimal de Pareto (Pareto Optimal Set) et $PF$ le front de Pareto
 (Pareto Front).
-% paragraph front_de_pareto (end)
+\end{Def}
 
 \paragraph{Points de références : } % (fold)
 \label{par:points_de_references}
@@ -229,8 +230,8 @@ Certaines méthodes d’aide à la décision utilisent des points singuliers.
 Le \emph{point idéal} (\mtodo{ajouter référence figure}) est le point dans l’espace des objectifs dont
 les coordonnées correspondent à l’optimal de chaque objectif pris séparément. Ce point
 peut être utilisé pour guider la recherche mais n’est pas dans la plupart des cas
-une solution du problème multi-objectif qui est souvent composé d’objectifs
-\mfix{Autre mot}{contradictoires}.
+une solution du problème multi-objectif qui est le plus souvent composé d’objectifs
+antinomiques.
 
 Le \emph{point Nadir} (\mtodo{ajouter référence figure}) a pour coordonnées la
 valeur de la borne supérieure (cas d’une minimisation) pour chaque objectif du front
@@ -243,8 +244,8 @@ de recherche ou évaluer la qualité des solutions trouvées.
 \label{par:convexite}
 Terme permettant de caractériser la forme d’un ensemble.
 Il est dit \emph{convexe} lorsque pour deux points distincts, la droite les reliant
-est contenu dans cet ensemble (\cite{Collette2002}). Ce terme permet ainsi de décrire
-la forme du front de Pareto dans le cas de problème multi-objectifs.
+est contenu dans cet ensemble (\cite{Collette2002}). Ce terme est utilisé pour décrire
+la forme du front de Pareto dans le cas de problèmes multi-objectifs.
 % paragraph convexite (end)
 % subsubsection vocabulaire_et_definition (end)
 
@@ -360,9 +361,8 @@ de méta-heuristique est la méthode la plus adaptée à notre problème.
 \subsubsection{Description :} % (fold)
 \label{ssub:description}
 Les méta-heuristiques sont des approches générales utilisant des heuristiques
-couplés à une recherche stochastique permettant d’explorer un domaine de recherche.
-Le caractère stochastique permet d’augmenter la capacité d’exploration alors que
-les heuristiques eux améliorent l’exploitation. Ce processus est le plus souvent
+couplés à une recherche stochastique permettant d’explorer un domaine de recherche
+en combinant exploration et exploitation. Ce processus est le plus souvent
 itératif.
 
 \paragraph{Exploration :} % (fold)
@@ -375,9 +375,10 @@ couvert.
 \paragraph{Exploitation :} % (fold)
 \label{par:exploitation}
 Indicateur permettant d’évaluer la capacité d’un méta-heuristique à améliorer les
-solutions existante. Plus l’exploitation est forte plus la convergence est rapide.
+solutions existantes. Plus l’exploitation est forte plus la convergence est rapide.
 Comme ces méthodes sont des méthodes approchées converger ne signifie par forcement
-converger vers le front de Pareto. On parle alors d’optimum locaux.
+converger vers le front de Pareto. Il est ainsi nécessaire de faire la distinction
+entre les optimums locaux et globaux.
 % paragraph exploitation (end)
 
 \paragraph{Optimum :} % (fold)
@@ -391,6 +392,7 @@ optimisation multi-objectif, l’ensemble des solutions du front de Pareto sont 
 optimum globaux.
 % paragraph optimum (end)
 
+\paragraph{} % (fold)
 Il apparaît ainsi important pour un méta-heuristique d’être capable de réaliser
 un compromis entre exploitation et exploration afin d’augmenter les chances de
 converger vers le front de Pareto. Il existe de nombreux algorithmes dans la littérature
@@ -403,6 +405,7 @@ Le jeu de Go est un autre exemple témoignant de la forte évolution de l’IA. 
 les anciens programmes étaient loin d’être compétitifs contre le bas du classement
 des joueurs professionnels, AlphaGo (\cite{Silver2016484}) a battu le champion Européen (Fan Hui)
 puis un des meilleurs joueur au monde au titre de 9 dan professionnel (Lee Sedol).
+% paragraph  (end)
 % subsubsection description (end)
 
 
@@ -465,25 +468,22 @@ De nombreuses approches existent mais il n’existe cependant pas de méthode pe
 sélectionner celle qui est la plus adaptée au problème : \cite{Wolpert199767} formalise
 ce concept. Le choix est alors subjectif ou dicté par la complexité de mise en œuvre
 de l’approche.
-Cependant l’ensemble des méta-heuristiques ont en commun d’être stochastiques, nécessitant
-le réglage de différent paramètres spécifique à leur formulation. Ces paramètres
-influencent la performance d’un algorithme pour un problème donné. D’un algorithme à un autre le nombre de
-paramètres à régler varie fortement. De plus certains sont très sensible à la variation
-d’un paramètre (ex: réseau de neurones) alors que d’autre sont plus robustes (ex: PSO).
+Cependant l’ensemble des méta-heuristiques ont en commun d’être stochastiques, et comporte
+différents paramètres impactant leur performance.
 Il est ainsi nécessaire de déterminer empiriquement ces paramètres ou bien de s’inspirer
 de problèmes similaires dans la littérature.
-Cependant certaines méthodes existent permettant d’automatiser le réglage des
-paramètres grâce à un entraînement comme l’algorithme F-Race (\cite{Birattari2010311}).
-Cette méthode à été adapté avec succès aux problèmes multi-objectif à travers un framework
+Certaines méthodes existantes permettent d’automatiser le réglage des
+paramètres grâce à une population d’entraînement comme l’algorithme F-Race (\cite{Birattari2010311}).
+Cette méthode a été adapté avec succès aux problèmes multi-objectif à travers un outil
 décrivant l’auto paramétrisation de différent algorithmes de colonies de fourmis (\cite{Lopez-Ibanez2012861}).
 Les auteurs montrent ainsi que un réglage optimisé permet d’améliorer la performance
 des algorithmes par rapport à un réglage empirique.
-Pour résumer, ces questions peuvent aider à la sélection d’une approche adaptée :
+Le choix de la méthode est ainsi le bilan des réponses aux question ci-dessous :
 \begin{itemize}
   \item Implémentation existante ?
   \item Couplage avec les outils que j’utilise aisé ?
-  \item Dur à implémenter ?
-  \item Formulation adaptée à mon problème ?
+  \item Si non existant quelle difficultés pour l’implémenter ?
+  \item Formulation adaptée à mon problème (continue, discret, mixte) ?
   \item Combien de paramètres à régler ?
   \item Le réglage de ces paramètres est-il fortement impactant ?
   \item Le temps nécessaire pour une évaluation me permet-il de régler ces paramètres ?
@@ -611,9 +611,9 @@ est graphique et consiste à tracer le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il e
 ainsi possible de juger de l’importance globale d’un facteur visuellement.
 Enfin la distance normalisée, $\hat{distance}$ \eqref{eq:distance_norm}, permet
 de classer l’ensemble des indicateurs sur un même graphe à l’aide d’une représentation
-en diagramme à barre permettant d’identifier rapidement l’ordre au sein des facteurs influents.
+en diagramme à barre renseignant l’ordre au sein des facteurs évalués.
 Il est cependant important de ne pas oublier que $\hat{distance}$ est une distance
-normalisé, il existera toujours un facteur ayant une $\hat{distance} = 1$ et un autre
+normalisée, il existera toujours un facteur ayant une $\hat{distance} = 1$ et un autre
 $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 
 \begin{align}\label{eq:distance_norm}
@@ -662,7 +662,7 @@ L’algorithme ABC pour Artificial Bee Colony est un méta-heuristique nécessit
 que peu de paramètres à fixer si on le compare avec les approches les plus
 couramment retenues(\mtodo{Ajouter lien vers tableau}).
 \ttodo{Ajouter comparatif du nombre de paramètres en fonction des approches
-       (PSO, ABC, NSGA II, ...)}
+       (PSO, ABC, NSGA II, ...). }
 La section suivante présente ainsi plus en détail son fonctionnement et les améliorations
 retenues à travers une recherche bibliographique.
 
@@ -682,6 +682,8 @@ ajuster les sources utilisées pour la récolte.
 simulant le comportement social de ces abeilles.
 Cependant, l’idée d’utiliser le comportement social des abeilles mellifères pour l’optimisation
 n’est introduit que en 2005, et cette approche fait donc partie des plus récentes (\cite{Karaboga2005}).
+Bien que de nombreuses approches existent (VirtualBee, Bee Colony Optimization (BCO), ...)
+la formulation de l’ABC respecte la plus répandue (\cite{Karaboga201221}).
 % subsubsection origine_de_la_méthode (end)
 
 
@@ -719,18 +721,20 @@ Ce mécanisme est très poussée et permet de définir de manière détaillé la
 d’une source, sa distance par rapport à l’essaim, et les dangers (\mtodo{Ajouter ref figure}).
 
 \ftodo{Ajouter illustration de la danse des abeilles (wikipedia)}
+\ftodo{Ajouter illustration du fonctionnement avec dessins abeilles + ruche}
 % paragraph intractions (end)
 
 \paragraph{Formulation :} % (fold)
 \label{par:formulation}
-L’algorithme s’articule en 3 phases permettant de respecter les différentes règles
-explicité ci-avant. Le principe est le suivant : Un certain nombre de source est
-initialisé aléatoirement. Chaque source est ensuite améliorée par les différentes
-abeilles de la ruche. Trois types d’abeilles est identifié :
+$N$ sources sont initialisées aléatoirement et les abeilles de la
+ruche améliore la solution itérativement. Chaque source $x_{i}(i = 1, 2, \dotsc, N)$ est un vecteur
+de dimension $D$, où $D$ représente le nombre de critères de l’optimisation.
+On distingue 3 abeilles différentes :
 \begin{itemize}
   \item Les \emph{Employed} ou butineuses : Elles sont responsable de l’exploration
-        et ramène les informations recueillis à la ruche et les partages grâce à
-        leur danse.
+        et ramène les informations recueillis à la ruche et réalise une danse
+        permettant au autres individus d’identifier la qualité et direction de la
+        source.
   \item Les \emph{Onlookers} ou ouvrières : Elles assistent à la danse des butineuses
         et sélectionne ensuite une source. La sélection est aléatoire mais plus
         la source est de qualité (bonne danse de la butineuse) plus la probabilité
@@ -739,16 +743,40 @@ abeilles de la ruche. Trois types d’abeilles est identifié :
   \item Les \emph{Scouts} ou éclaireuses : Elles explorent aléatoirement à la recherche
         d’une source prometteuse et ramène cette information à la ruche. Ce mécanisme
         permet de diversifier la recherche. La quantité d’éclaireuses dans les ruches
-        est estimé à 5/10~\percent (\cite{Seeley1996})
+        est estimé à 5/10\si{\percent} (\cite{Seeley1996})
 \end{itemize}
-Dans un premier temps les butineuses partage les informations recueillis, ensuite
-une probabilité est attribuée à chaque source (solution). Les ouvrières en sélectionnent
-chacune une par roulette et cherchent à l’améliorer. Finalement si une source apparaît
-non productive elle est remplacée par une nouvelle durant la phase des éclaireuses.
-Ce processus est ainsi répété jusqu’à un critère d’arrêt, soit un nombre maximum
-d’évaluation, soit un critère indiquant la convergence.
 
-\iunsure{Ajouter formulation utilisé pour la mise à jour ou juste pointer vers littérature}
+L’Algorithm~\ref{alg:ABC_phases} décrit le processus itération qui permet d’améliorer
+les solutions optimales.
+\begin{algorithm}\label{alg:ABC_phases}
+  \SetAlgoVlined
+  \emph{Initialisation des sources (population) selon \eqref{eq:init_source}}\;
+  \While{Critère d’arrêt non respecté}
+  {
+  \For{$i \leftarrow 0$ \KwTo $N$}
+  {
+    \For{$j \leftarrow 0$ \KwTo $D$}
+    {
+    \emph{Amélioration des sources par les butineuses avec une autre source $k$ \eqref{eq:update_source}}\;
+    \emph{Attribution des probabilités à chaque source en fonction de la qualité}\;
+    \emph{Amélioration des sources par les ouvrières avec une autre source $k$ \eqref{eq:update_source}}\;
+    \emph{Si la qualité de la source stagne réinitialiser sa position selon \eqref{eq:init_source}}\;
+    }
+  }
+  }
+  \caption{Principe de l’algorithme ABC.}
+\end{algorithm}
+
+\begin{equation}\label{eq:init_source}
+  x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min}) \\
+\end{equation}
+
+\begin{equation}\label{eq:update_source}
+  \check{x_{ij}} = x_{ij} + RandUniform(-1, 1) \times (x_{ij} - x_{kj}) \\
+\end{equation}
+$x_{ij}$ étant la position d’une source $i$ ($i \in \{1, 2, \dotsc, N\}$) pour le
+critère $j$ ($j \in \{1, 2, \dotsc, D\}$) et $x_{j}^{max}$ et $x_{j}^{min}$
+étant respectivement ces bornes maximales et minimales.
 
 Ces travaux portant sur l’optimisation multi-objectif, le lecteur souhaitant avoir
 plus d’information sur l’algorithme, son origine et/ou son fonctionnement pourra
@@ -757,16 +785,158 @@ lire : \cite{Karaboga201221,Aboul-EllaHassanien2015}.
 
 \paragraph{Extensions :} % (fold)
 \label{par:extensions}
+À l’origine pensé pour résoudre des problèmes continues il a été adapté pour traiter des problèmes
+d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-objectifs
+\cite{Akbari201239,Omkar2011489}.
+Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
+neurones (\cite{Karaboga2007}), le génie électrique/mécanique/civil (\cite{Rao2009887}), ou encore le clustering (\cite{Zhang20104761}).
+On retrouve aussi cet algorithme dans l’optimisation de système de chauffage (\cite{Atashkari2011}) ou dans des problèmes sous
+contraintes (\cite{Tsai201480,Karaboga20113021}).
+Malgré son jeune âge, la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
+pour mieux répondre aux différents problèmes d’optimisations.
+\ftodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
 
-\itodo{Ajouter limites et solutions proposées}
-Au cours des années de nombreuses variation de la formulation de base ont été
-proposées.
-% paragraph extensions (end)
+Le méta-heuristique étant plus faible en exploitation que en exploration, de nombreuses
+propositions d’améliorations ont vu le jour.
+Certains s’inspirent des algorithmes évolutionnaires (\cite{Bi2011174,Zhao2010558}),
+d’autres du PSO (\cite{Zhu20103166}) en ajoutant la prise en compte de l’inertie
+et de la meilleure solution actuelle et le nomme GBest ABC (GABC). \cite{Li2012320}
+mimique la formulation du PSO en ajoutant une inertie, l’accélération et la prise
+en compte de la meilleure solution et le nomme Improved Artificial Bee Colony (I-ABC).
+Afin d’améliorer la diversité dans la population initiale, \cite{Xiang20131256}
+utilise la théorie du chaos pour générer la position initiale des sources en place
+d’une attribution aléatoire. Il peut aussi être cité une modification du comportement
+des exploratrices proposée par \cite{Sharma2012213} basée sur la distribution de
+Lévy.
+
+L’algorithme a aussi était adapté afin de résoudre des problèmes multi-objectifs.
+Une approche comprenant un unique essaim est proposé par \cite{Akbari201239}
+et le nomme MO-ABC pour Multi-Objective ABC.
+L’auteur utilise une archive basée sur l’$\epsilon$-dominance afin de maintenir
+la diversité et assurer la convergence vers le front de Pareto. Durant les phases
+des butineuses et des ouvrières seulement un critère est mis à jour en utilisant
+une version modifiée de l’équation \eqref{eq:update_source} où $k$ représente une
+solution de l’archive sélectionnée aléatoirement.
+\cite{Omkar2011489} considère un essaim par objectif et nomme son approche : VEABC  (Vector Evaluated ABC).
+Une collaboration est mise en place permettant aux sources d’un essaim d’être mis
+à jour à partir des sources d’un autre essaim. L’approche est alors appliquée pour un
+problème sous contraintes afin de minimiser le coût de fabrication (matériaux + production)
+et le poids du composant tout en garantissant une résistance suffisante.
+\cite{Zhang20121} développe aussi une approche basée sur plusieurs essaims mais ici,
+chaque essaim considère l’ensemble des objectifs. En utilisant les distances de Hamming
+et de Crowding, l’auteur ajoute une coopération entre les essaims lors de la sélection
+des sources de référence. L’auteur intègre une méthode de pénalité adaptative (\cite{Woldesenbet20073077})
+afin de pouvoir traiter des problème sous contraintes.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Vol de Lévy} % (fold)
+\label{ssub:vol_de_levy}
+Il a été observé chez diverses espèces comme les atèles (singes), les albatros, ou encore la famille des
+Tephritidae (petites mouches) un comportement respectant une marche aléatoire (Definition~\ref{def:marche_aleatoire}) connu
+sous le nom de Vol de Lévy.
+Dans \cite{Sharma2012213}, le vol de Lévy est utilisé afin de réaliser une recherche locale
+et \cite{Hakli2013254} l’utilise pour améliorer l’exploitation durant la phase des exploratrices.
+Le vol de Lévy est aussi utilisé dans un méta-heuristique récent: le Cuckko search.
+Inspiré du comportement parasitaire de la reproduction des cuculidés, il a aussi fait l’objet
+d’une adaptation aux problèmes multi-critères (\cite{Yang20131616}).
+
+Afin d’améliorer l’exploitation et l’exploration un vol de Lévy (Definition~\ref{def:vol_levy})
+a été implémentée comme marche aléatoire pour les exploratrices et les butineuses.
+
+
+\begin{Def}[Marche aléatoire]\label{def:marche_aleatoire}
+Une marche aléatoire (\cite{Yang201445}) peut être définie comme une succession de pas
+aléatoire dont chaque état ne dépend que de l’état précédent. Si on note $S_{N}$
+la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche aléatoire:
+\begin{equation}\label{eq:marche_aleatoire}
+    \begin{split}
+        S_{N} &= \sum_{i=1}^{N} X_{i} = X_{1} + ... + X_{N}\\
+              &= S_{N-1} + X_{N}
+    \end{split}
+\end{equation}
+\end{Def}
+
+Les marches aléatoires sont souvent utilisés dans les méta-heuristiques pour faire
+évoluer les solutions dans l’espace de décision en utilisant dans la plupart des cas
+des lois uniformes ou gaussiennes. Fig.~\ref{fig:levy_vs_gaussian} met en évidence
+les formes caractéristiques de différentes distributions.
+\begin{figure}
+    \begin{center}
+        \includegraphics{LevyFlight/distribution_pdf.png}
+    \end{center}
+    \caption{Densité de probabilité des lois de cauchy, uniforme, normale, Lévy stable et symétrique.
+             L’expression analytique est représentée par la courbe noire.
+             \label{fig:distribution_pdf}}
+\end{figure}
+
+\begin{Def}[Vol de Lévy]\label{def:vol_levy}
+Un vol de Lévy est une marche aléatoire dont la longueur du pas (positif ou négatif)
+est définie aléatoirement à partir d’une distribution de Lévy stable et symétrique
+couramment décrite par la transformée de Fourier suivante:
+\begin{equation}\label{eq:fourier_levy}
+    \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
+\end{equation}
+\begin{equation}\label{eq:dist_levy}
+    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
+\end{equation}
+On peut alors définir un Vol de Lévy pour une position initiale $x$ comme :
+\begin{equation}
+  x(t + 1) = x(t) + \alpha \times longueurPas \times \Delta
+\end{equation}
+avec $\alpha$ un facteur d’échelle permettant de limiter l’agressivité du pas,
+$longueurPas$ un nombre tiré aléatoirement dans la distribution de Lévy et $\Delta$
+un composant d’apprentissage propre au méta-heuristique.
+\end{Def}
+
+Sa forme analytique \eqref{eq:dist_levy} est uniquement connue pour $\beta = 2$ (distribution gaussienne)
+et $\beta = 1$ (distribution de Cauchy).
+L’algorithme de Mantegna (\cite{Mantegna19944677}) est alors utilisé afin d’approximer cette distribution
+pour $0.3 < \beta < 1.99$.
+\begin{equation}\label{eq:step_len}
+    s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
+\end{equation}
+avec:
+\begin{equation}\label{eq:sigmas}
+    \sigma_{u} = \left[ \frac{\mathbf{\Gamma}(1+\beta)\sin(\pi\frac{\beta}{2})}%
+                             {\mathbf{\Gamma} \left[\frac{(1+\beta)}{2}\beta 2^{\frac{(\beta-1)}{2}}\right]}\right]^{\nicefrac{1}{\beta}},%
+    \qquad \sigma_{v} = 1
+\end{equation}
+Où $\mathbf{\Gamma}$ représentant la fonction Gamma qui est l’extension analytique de la fonction factoriel pour
+les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!, \quad \beta\in \mathbb{N}$) et est définie par:
+\begin{equation}
+    \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
+\end{equation}
+
+Le vol de Lévy peut ainsi être assimilé à une intensification (forte probabilité de générer un petit pas)
+couplé à de l’exploration (faible probabilité de générer un saut important) décrit par
+l’effet d’île caractéristique du vol de Lévy (Fig.~\ref{fig:levy_vs_gaussian})
+Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager des optimums locaux.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{LevyFlight/levy_vs_gaussian.pdf}
+    \end{center}
+    \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
+             \label{fig:levy_vs_gaussian}}
+\end{figure}
+% subsubsection vol_de_levy (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Apprentissage par Vecteur opposée} % (fold)
+\label{ssub:apprentissage_par_vecteur_opposee}
+
+\itodo{Je suis ici !}
+
+
+
+% subsubsection apprentissage_par_vecteur_opposee (end)
+% section construction_d_un_meta_heuristique_adapte (end)
 
 
 % subsubsection principe_de_fonctionnement (end)
 % subsection artificial_bee_colony (end)
-
 % % À mettre ailleurs
 % Ensuite il est nécessaire que l’approche soit simple à coupler avec les outils
 % utilisés. La restriction principale étant le couplage avec le logiciel Dymola.
@@ -788,17 +958,7 @@ proposées.
 %         critères de décisions
 %   \item Pas de support pour les marches aléatoires
 % \end{itemize}
-
-Cette section décrit ainsi les choix qui ont été fait sur la structure de l’algorithme
-et les raisons motivant ce choix.
-
-\itodo{Je suis ici !}
 % subsection choix_du_générateur (end)
-
-
-% section construction_d_un_meta_heuristique_adapte (end)
-
-
 
 % % ------------------------------------------------------------------------------
 % \subsection{Introduction} % (fold)
@@ -868,213 +1028,212 @@ et les raisons motivant ce choix.
 % % paragraph diversité (end)
 
 
-% ..............................................................................
-% ..............................................................................
-\section{Construction d’un outil d’aide à la décision} % (fold)
-\label{sec:construction_d_un_outil_d_aide_à_la_decision}
+% % ..............................................................................
+% % ..............................................................................
+% \section{Construction d’un outil d’aide à la décision} % (fold)
+% \label{sec:construction_d_un_outil_d_aide_à_la_decision}
 
 
-% ------------------------------------------------------------------------------
-\subsection{Génération de solutions: quelle méthode ?} % (fold)
-\label{sub:generation_de_solutions_quelle_methode}
-% Description du Meta-heuristique choisi:
-%  - Origine de l’algorithme (inspiration des abeilles):
-% Décrire l’origine de cet algorithme. Décrire les recherches qui ont été faites sur
-% les abeilles et ensuite les conclusions tirées par l’inventeur pour formuler ce
-% meta-heuristique.
-% Les sources suivantes non pas encore été lues: \cite{Camazine1991547}, \cite{Seeley1996}
-% mais traitent du comportement des abeilles.
-%  - Formulation théorique:
-%     + Description des différentes étape de résolution de la méthode:
-%       Détails pour onlookers, employed, scout, ...
-%       Détails pour les paramètres nécessaires au fonctionnement de l’heuristique.
-%     + Description de la mise à jour de la position d’une source:
-%       Dans le cas de variables continues la formulation de base est applicable et sera
-%       donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
-%       développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
+% % ------------------------------------------------------------------------------
+% \subsection{Génération de solutions: quelle méthode ?} % (fold)
+% \label{sub:generation_de_solutions_quelle_methode}
+% % Description du Meta-heuristique choisi:
+% %  - Origine de l’algorithme (inspiration des abeilles):
+% % Décrire l’origine de cet algorithme. Décrire les recherches qui ont été faites sur
+% % les abeilles et ensuite les conclusions tirées par l’inventeur pour formuler ce
+% % meta-heuristique.
+% % Les sources suivantes non pas encore été lues: \cite{Camazine1991547}, \cite{Seeley1996}
+% % mais traitent du comportement des abeilles.
+% %  - Formulation théorique:
+% %     + Description des différentes étape de résolution de la méthode:
+% %       Détails pour onlookers, employed, scout, ...
+% %       Détails pour les paramètres nécessaires au fonctionnement de l’heuristique.
+% %     + Description de la mise à jour de la position d’une source:
+% %       Dans le cas de variables continues la formulation de base est applicable et sera
+% %       donc conservée. Dans le cas de variables discrètes on utilisera une méthode alternative
+% %       développée dans `10.1177/0021998308097681` et `tel-01234197, version 1`.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Quelle approche d’optimisation ?} % (fold)
-\label{ssub:quelle_approche_d_optimisation_}
-Comme nous l’avons vu précédemment, il existe de nombreux meta-heuristiques dans
-la littérature. Cependant il n’existe pas à la connaissance de l’auteur de méthode
-pour sélectionner un algorithme qui sera le plus performant pour un problème donnée.
-Ce principe a été formalisé par \cite{Wolpert199767} \itodo{Pas encore lu ...}. Il démontre qu’il
-n’y a aucunes \emph{à priori} différences entre les algorithmes. Les critères
-permettant de sélectionner un meta-heuristique sont donc à caractère subjectif.
-Un des arguments pertinent qui peut être mis en avant est le nombre de paramètres
-nécessaires pour le réglage de l’algorithme. En effet sur ce point les algorithmes
-sont très différents, certains demandant de nombreux paramètres à configurer
-\itodo{Citer des exemple de algo génétique, réseaux de neuronnes, ...} contrairement
-à d’autres \itodo{Citer des exemples de PSO, ABC, ...}. Un autre critère pertinent
-est la robustesse des algorithmes. On entend par \emph{robuste} la capacité des algorithmes
-à converger pour différentes valeurs de paramètre. Par exemple le meta-heuristique PSO
-peut être considérée comme robuste \itodo{Mettre des sources} car la solution n’est
-pas fortement influencée par le choix de la configuration.
-À l’opposée des approches par réseau de neurones \itodo{Mettre des sources} sont
-très sensibles, et la variation d’un paramètre peut donner une solution complètement
-différente (pour le meilleur et le pire).
-Afin de pallier à ces problème, des outils existent pour paramétrer ces meta-heuristique.
-C’est particulièrement vrai dans le cas d’optimisation mono-critère mais commence
-aussi à émerger pour des problème plus complexe. \cite{Lopez-Ibanez2012861}
-présente un framework pour faire de l’optimisation multi-objectifs en utilisant
-différents algorithmes de colonies de fourmis (MOACO). Il propose aussi un outil
-pour configurer automatiquement les paramètres du meta-heuristique en utilisant un jeu de solution
-d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} (\cite{Lopez-Ibanez2011})
-au problème multi-objectif pour différentes (\cite{Birattari2010311,Zitzler2003117}). Les auteurs montrent
-alors que les configurations trouvées automatiquement sont meilleures que celles
-de la littérature pour différents type de problèmes. Cette approche permet alors
-de se passer de l’étape de configuration manuelle et pourrait si généralisée/généralisable
-permettre au meta-heuristique très dépendant de ces paramètres d’être plus simples
-à utiliser.
-\itodo{Vu le nombre de choses à dire, faire le tri entre ce qui va ici et ce qui
-      va dans le chapitre précédent. . .}
-Au vu des remarques précédentes le meta-heuristique choisi est basé sur le
-comportement des abeilles, une approche assez récente \itodo{Mettre citation}.Il est
-robuste \itodo{Ben ouais citation} et comporte peu de paramètre à tuner. Enfin il
-a montré sa capacité à sortir des minimums locaux \itodo{citation toujours citation}.
-La partie suivante présente ce générateur de solution de manière plus détaillée.
-\itodo{Faire un comparatif des solutions existantes convergence/répartition/vitesse
-      et mettre en exergue la lenteur de mes simulations ...}
-% subsubsection quelle_approche_d_optimisation_ (end)
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Quelle approche d’optimisation ?} % (fold)
+% \label{ssub:quelle_approche_d_optimisation_}
+% Comme nous l’avons vu précédemment, il existe de nombreux meta-heuristiques dans
+% la littérature. Cependant il n’existe pas à la connaissance de l’auteur de méthode
+% pour sélectionner un algorithme qui sera le plus performant pour un problème donnée.
+% Ce principe a été formalisé par \cite{Wolpert199767} \itodo{Pas encore lu ...}. Il démontre qu’il
+% n’y a aucunes \emph{à priori} différences entre les algorithmes. Les critères
+% permettant de sélectionner un meta-heuristique sont donc à caractère subjectif.
+% Un des arguments pertinent qui peut être mis en avant est le nombre de paramètres
+% nécessaires pour le réglage de l’algorithme. En effet sur ce point les algorithmes
+% sont très différents, certains demandant de nombreux paramètres à configurer
+% \itodo{Citer des exemple de algo génétique, réseaux de neuronnes, ...} contrairement
+% à d’autres \itodo{Citer des exemples de PSO, ABC, ...}. Un autre critère pertinent
+% est la robustesse des algorithmes. On entend par \emph{robuste} la capacité des algorithmes
+% à converger pour différentes valeurs de paramètre. Par exemple le meta-heuristique PSO
+% peut être considérée comme robuste \itodo{Mettre des sources} car la solution n’est
+% pas fortement influencée par le choix de la configuration.
+% À l’opposée des approches par réseau de neurones \itodo{Mettre des sources} sont
+% très sensibles, et la variation d’un paramètre peut donner une solution complètement
+% différente (pour le meilleur et le pire).
+% Afin de pallier à ces problème, des outils existent pour paramétrer ces meta-heuristique.
+% C’est particulièrement vrai dans le cas d’optimisation mono-critère mais commence
+% aussi à émerger pour des problème plus complexe. \cite{Lopez-Ibanez2012861}
+% présente un framework pour faire de l’optimisation multi-objectifs en utilisant
+% différents algorithmes de colonies de fourmis (MOACO). Il propose aussi un outil
+% pour configurer automatiquement les paramètres du meta-heuristique en utilisant un jeu de solution
+% d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} (\cite{Lopez-Ibanez2011})
+% au problème multi-objectif pour différentes (\cite{Birattari2010311,Zitzler2003117}). Les auteurs montrent
+% alors que les configurations trouvées automatiquement sont meilleures que celles
+% de la littérature pour différents type de problèmes. Cette approche permet alors
+% de se passer de l’étape de configuration manuelle et pourrait si généralisée/généralisable
+% permettre au meta-heuristique très dépendant de ces paramètres d’être plus simples
+% à utiliser.
+% \itodo{Vu le nombre de choses à dire, faire le tri entre ce qui va ici et ce qui
+%       va dans le chapitre précédent. . .}
+% Au vu des remarques précédentes le meta-heuristique choisi est basé sur le
+% comportement des abeilles, une approche assez récente \itodo{Mettre citation}.Il est
+% robuste \itodo{Ben ouais citation} et comporte peu de paramètre à tuner. Enfin il
+% a montré sa capacité à sortir des minimums locaux \itodo{citation toujours citation}.
+% La partie suivante présente ce générateur de solution de manière plus détaillée.
+% \itodo{Faire un comparatif des solutions existantes convergence/répartition/vitesse
+%       et mettre en exergue la lenteur de mes simulations ...}
+% % subsubsection quelle_approche_d_optimisation_ (end)
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Histoire de l’Artificial Bee Colony (ABC)} % (fold)
-\label{ssub:histoire_de_l_artificial_bee_colony}
-L’intelligence artificielle se traduit par la construction de programmes informatiques
-pour la réalisation de tâches demandant une démarche critique, et de l’apprentissage. La
-notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
-dans de nombreux domaines comme le déplacement organisé de groupe important d’animaux (humains, oiseaux, poissons, ...)
-ou encore l’apprentissage et la réflexion (\cite{Hsu199970,Silver2016484}).
-Une des branches de l’intelligence artificielle s’intéresse particulièrement au comportement
-du monde animal. Dans notre cas on s’intéresse à la branche de l’intelligence des
-essaims (Swarm Intelligence). \cite{Bonabeau1999} a définit quatre caractéristiques
-définissant l’organisation dans ces essaims:
-\begin{itemize}
-    \item \emph{positive feedback}, se traduisant par le renforcement de chemins ou le recrutement d’individus suite à un constat
-          d’un des individus
-    \item \emph{negative feedback}, permettant de stabiliser la structure évitant la saturation du au positive feedback
-    \item \emph{fluctuations ou amplification}, faisant émerger des solutions nouvelles (facteur aléatoire)
-    \item \emph{multiple interactions}, pouvant se traduire par le partage d’informations entre les individus de la population
-\end{itemize}
-Les algorithmes les plus connues étant inspirées des oiseaux (Particule Swarm Intelligence),
-des fourmis (Ant Colony), ou encore des abeilles qui a été choisi pour les raisons explicité ci-avant.
-Il existe plusieurs approches d’algorithmes d’essaims d’abeilles. Certaines sont basées
-sur le comportement des butineuses faisant intervenir la fameuse danse des abeilles pour partager
-les informations sur la qualité d’une source aux autres abeilles. D’autres s’inspirent de la
-reproduction des reines ou encore du mariage.
-Parmi les plus utilisés on peut citer le mariage entre abeilles introduit par \cite{Abbass20011}, l’algorithme VirtualBee
-créé à l’origine pour l’optimisation de fonction numérique \cite{Yang2005317}, l’algorithme Bee Colony Optimization (BCO)
-\cite{Lucic2001441} pour l’optimisation de problèmes combinatoire. Enfin on peut citer les
-algorithmes BeeHive proposé par \cite{Wedde200483} et les algorithmes Artificial Bee Colony (ABC) introduit par
-\cite{Karaboga2005}. ABC simule le comportement des butineuses pour la recherche de sources prometteuses.
-Comme le montre l’état de l’art de \cite{Karaboga201221} il est l’algorithme le plus
-utilisé pour la résolution de problèmes d’optimisation et peut être appliqué à toute sorte de problème: continues,
-combinatoires, mono et multi-objectifs, contraints, ou encore pour faire du clustering.
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Histoire de l’Artificial Bee Colony (ABC)} % (fold)
+% \label{ssub:histoire_de_l_artificial_bee_colony}
+% L’intelligence artificielle se traduit par la construction de programmes informatiques
+% pour la réalisation de tâches demandant une démarche critique, et de l’apprentissage. La
+% notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
+% dans de nombreux domaines comme le déplacement organisé de groupe important d’animaux (humains, oiseaux, poissons, ...)
+% ou encore l’apprentissage et la réflexion (\cite{Hsu199970,Silver2016484}).
+% Une des branches de l’intelligence artificielle s’intéresse particulièrement au comportement
+% du monde animal. Dans notre cas on s’intéresse à la branche de l’intelligence des
+% essaims (Swarm Intelligence). \cite{Bonabeau1999} a définit quatre caractéristiques
+% définissant l’organisation dans ces essaims:
+% \begin{itemize}
+%     \item \emph{positive feedback}, se traduisant par le renforcement de chemins ou le recrutement d’individus suite à un constat
+%           d’un des individus
+%     \item \emph{negative feedback}, permettant de stabiliser la structure évitant la saturation du au positive feedback
+%     \item \emph{fluctuations ou amplification}, faisant émerger des solutions nouvelles (facteur aléatoire)
+%     \item \emph{multiple interactions}, pouvant se traduire par le partage d’informations entre les individus de la population
+% \end{itemize}
+% Les algorithmes les plus connues étant inspirées des oiseaux (Particule Swarm Intelligence),
+% des fourmis (Ant Colony), ou encore des abeilles qui a été choisi pour les raisons explicité ci-avant.
+% Il existe plusieurs approches d’algorithmes d’essaims d’abeilles. Certaines sont basées
+% sur le comportement des butineuses faisant intervenir la fameuse danse des abeilles pour partager
+% les informations sur la qualité d’une source aux autres abeilles. D’autres s’inspirent de la
+% reproduction des reines ou encore du mariage.
+% Parmi les plus utilisés on peut citer le mariage entre abeilles introduit par \cite{Abbass20011}, l’algorithme VirtualBee
+% créé à l’origine pour l’optimisation de fonction numérique \cite{Yang2005317}, l’algorithme Bee Colony Optimization (BCO)
+% \cite{Lucic2001441} pour l’optimisation de problèmes combinatoire. Enfin on peut citer les
+% algorithmes BeeHive proposé par \cite{Wedde200483} et les algorithmes Artificial Bee Colony (ABC) introduit par
+% \cite{Karaboga2005}. ABC simule le comportement des butineuses pour la recherche de sources prometteuses.
+% Comme le montre l’état de l’art de \cite{Karaboga201221} il est l’algorithme le plus
+% utilisé pour la résolution de problèmes d’optimisation et peut être appliqué à toute sorte de problème: continues,
+% combinatoires, mono et multi-objectifs, contraints, ou encore pour faire du clustering.
 
-À l’origine pensé pour résoudre des problèmes continues il a été adapté pour traiter des problèmes
-d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-objectifs
-\cite{Akbari201239,Omkar2011489}.
-Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
-neurones (\cite{Karaboga2007}), le génie électrique/mécanique/civil (\cite{Rao2009887}), ou encore le clustering (\cite{Zhang20104761}).
-On retrouve aussi cet algorithme dans l’optimisation de système de chauffage (\cite{Atashkari2011}) ou dans des problèmes avec
-contrainte (\cite{Tsai201480,Karaboga20113021}).
-Malgré son jeune âge la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
-pour mieux répondre aux différents types de problèmes d’optimisations.
-\itodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
-% subsubsection histoire_de_l_artificial_bee_colony (end)
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description de l’algorithme ABC} % (fold)
-\label{ssub:description_de_l_algorithme_abc}
-
-Dans la partie qui suit l’approche retenue pour ces travaux, l’algorithme ABC, est détaillée.
-Dans la nature les abeilles communiquent entres elles pour découvrir et récupérer le plus
-de nectar possible. Leur comportement est défini par principalement 3 composants:
-\begin{description}
-    \item La source de nourriture: Elle est caractériser par sa quantité, proximité, et accessibilité.
-    \item Les butineuses (employed foragers): Elles évaluent la qualité des sources explorées et ramènent cette information
-          au reste des abeilles dit réceptrices (unemployed foragers). L’information de chaque source est transmisse
-          grâce à une danse. Celle-ci permettant de donner la qualité et la direction d’une source.
-    \item Les réceptrices (unemployed foragers) se décomposent en deux groupes:
-    \begin{itemize}
-        \item Les ouvrières (onlookers) qui utilisent l’information des butineuses pour sélectionner une source à exploiter.
-              Plus la source est de qualité plus grande est la probabilité qu’une spectatrice la choisisse.
-        \item Les éclaireuses (scouts) qui explorent aléatoirement les environs, à la recherche d’une nouvelle source. On estime à
-        5-10\,\% la quantité de d’éclaireurs dans un essaim \cite{Seeley1996}
-    \end{itemize}
-\end{description}
-\etodo{Ajouter les formulations mathématique et algorithmiques}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics{abc/BeeDance.png}
-    \end{center}
-    \caption{Description du fonctionnement de l’algorithme ABC.
-             \label{fig:abc_fonc}}
-\end{figure}
-
-\itodo{Description de l’algorithme au niveau global avec des renvois vers chaque phase.
-      Faire un table avec une description des différentes phases et l’algorithme global au-dessus ?}
-L’algorithme ABC peut ainsi se traduire par les différentes étapes suivantes:
+% À l’origine pensé pour résoudre des problèmes continues il a été adapté pour traiter des problèmes
+% d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-objectifs
+% \cite{Akbari201239,Omkar2011489}.
+% Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
+% neurones (\cite{Karaboga2007}), le génie électrique/mécanique/civil (\cite{Rao2009887}), ou encore le clustering (\cite{Zhang20104761}).
+% On retrouve aussi cet algorithme dans l’optimisation de système de chauffage (\cite{Atashkari2011}) et dans des problèmes avec
+% contraintes (\cite{Tsai201480,Karaboga20113021}).
+% Malgré son jeune âge la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
+% pour mieux répondre aux différents types de problèmes d’optimisations.
+% \itodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
+% % subsubsection histoire_de_l_artificial_bee_colony (end)
 
 
-\itodo{Inspiration, formalisation, détail des groupes d’abeilles, points forts.}
-% subsubsection description_de_l_algorithme_abc (end)
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Description de l’algorithme ABC} % (fold)
+% \label{ssub:description_de_l_algorithme_abc}
+% Dans la partie qui suit l’approche retenue pour ces travaux, l’algorithme ABC, est détaillée.
+% Dans la nature les abeilles communiquent entres elles pour découvrir et récupérer le plus
+% de nectar possible. Leur comportement est défini par principalement 3 composants:
+% \begin{description}
+%     \item La source de nourriture: Elle est caractériser par sa quantité, proximité, et accessibilité.
+%     \item Les butineuses (employed foragers): Elles évaluent la qualité des sources explorées et ramènent cette information
+%           au reste des abeilles dit réceptrices (unemployed foragers). L’information de chaque source est transmisse
+%           grâce à une danse. Celle-ci permettant de donner la qualité et la direction d’une source.
+%     \item Les réceptrices (unemployed foragers) se décomposent en deux groupes:
+%     \begin{itemize}
+%         \item Les ouvrières (onlookers) qui utilisent l’information des butineuses pour sélectionner une source à exploiter.
+%               Plus la source est de qualité plus grande est la probabilité qu’une spectatrice la choisisse.
+%         \item Les éclaireuses (scouts) qui explorent aléatoirement les environs, à la recherche d’une nouvelle source. On estime à
+%         5-10\,\% la quantité de d’éclaireurs dans un essaim \cite{Seeley1996}
+%     \end{itemize}
+% \end{description}
+% \etodo{Ajouter les formulations mathématique et algorithmiques}
+
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{abc/BeeDance.png}
+%     \end{center}
+%     \caption{Description du fonctionnement de l’algorithme ABC.
+%              \label{fig:abc_fonc}}
+% \end{figure}
+
+% \itodo{Description de l’algorithme au niveau global avec des renvois vers chaque phase.
+%       Faire un table avec une description des différentes phases et l’algorithme global au-dessus ?}
+% L’algorithme ABC peut ainsi se traduire par les différentes étapes suivantes:
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Extensions de l’algorithme original} % (fold)
-\label{ssub:extensions_de_l_algorithme_original}
-\itodo{Ajouter une description des approches pour améliorer ABC à cause des problème d’exploitation (Sharma2012213 p.217 pour blabla)}
-Un meta-heuristique se compose de deux étapes principales, l’exploration et l’exploitation.
-L’exploration est mesurée par la capacité à explorer l’espace de solution à la recherche
-des zones prometteuse pour un optimum.
-Cependant une fois ces zones trouvées, une autre approche est nécessaire: l’exploitation.
-L’exploitation consiste à l’aide de l’information disponible sur le voisinage et sur la solution actuelle
-de l’améliorer et donc de converger vers un optimum.
-Afin d’éviter de tomber dans un optimum local ou bien de converger très lentement, un équilibre entre exploration et
-exploitation est nécessaire.
-Dans notre cas l’algorithme ABC est reconnue pour être bon en exploration mais faible en exploitation (\cite{Karaboga2009108,Zhu20103166,Karaboga201221}).
-En effet le paramètre $limit$ et les éclaireuses permettent d’éviter de se coincer dans un optimum local, cependant
-l’essaim n’utilise pas autant d’informations pour diriger la recherche locale, se traduisant par une convergence
-plus lente vers l’optimum.
-L’algorithme étant encore jeune de nombreuses améliorations et/ou modifications on été ajouté au cours des dernières années.
-Certaines améliorations s’inspirent du PSO en tenant compte d’un facteur d’inertie ou de
-la meilleure solution globale (\cite{Lei2010,Zou20109}). D’autres s’inspirent de algorithmes évolutionnaires
-et génétiques (\cite{Bi2011174,Zhao2010558}) où encore avec des approches hybrides dont \cite{Pulikanti2009196} qui utilise un heuristique.
-\cite{Zhu20103166} ajoute la prise en compte de la meilleure solution actuelle dans l’équation de mise à jour.
-Il nomme le nouvel algorithme Gbest Artificial Bee Colony (GABC) et la nouvelle formulation
-de la mise à jour\emtodo{Ajoute mise à jour de l’équation} est décrite ci-dessous:
-Pour contrôler l’importance de la meilleure solution actuelle un coefficient est tiré aléatoirement
-selon une distribution uniforme ($\psi_{ij}$). La borne maximale $C$ de la distribution est définie par l’utilisateur et
-l’augmenter correspond à augmenter l’importance de la meilleure solution actuelle.
-\cite{Li2012320} propose une autre variante en ajoutant une inertie, une accélération, et l’influence de la meilleure actuelle et
-le nomme Improved Artificial Bee Colony (I-ABC).
-Il propose aussi une seconde variante faisant évoluer 3 essaims avec 3 algorithmes différents (PS-ABC). Il est cependant
-important de rester prudent sur l’interprétation des résultats, particulièrement sur la variante PS-ABC. En effet comme
-le décrit \cite{Mernik2015115}, les algorithmes doivent être comparés suivant le nombre d’évaluations de la/les fonctions
-objectifs et non par rapport au nombre d’itérations. En effet la variante PS-ABC ici utilise 3 populations et réalise donc
-en moyenne 6 fois plus d’évaluation de fonction par itération que l’approche standard.
-On peut aussi citer \cite{Aderhold2010283,Karaboga2014227} qui ajoutent respectivement la distance euclidienne pour la sélection
-de solution optimales proches, et la différenciation entre butineuses et ouvrières pour la mise à jour des sources.
+% \itodo{Inspiration, formalisation, détail des groupes d’abeilles, points forts.}
+% % subsubsection description_de_l_algorithme_abc (end)
 
-Plusieurs approches ont aussi été envisagées pour les problèmes multi-objectifs. On a par exemple l’approche MO-ABC, VABC, MHABC-CMO
-\cite{Hedayatzadeh2010, Akbari201239} adapte l’algorithme ABC pour résoudre des problèmes multi-objectifs. Ils proposent
-principalement deux modifications. La première est l’utilisation de l’$\varepsilon$-dominance
-(~\autoref{sub:mise_a_jour_du_front_de_pareto})
-pour la gestion de l’archive assurant ainsi la diversité des solutions. La seconde modifie la mise à jour des sources en
-exploitant la population et les solutions de l’archive.
-\cite{Zhang20121} introduit une approche basée sur plusieurs essaims se partageant les informations et une sélection
-des solutions du front de Pareto par crowding distance. Le papier propose une comparaison avec d’autres approches sur un ensemble de
-problèmes multi-objectif avec contraintes.
-Enfin on peut aussi noter l’approche de \cite{Omkar2011489} qui cherche à optimiser chaque objectifs séparément et nomme l’approche
-Vector Evaluated Artificial Bee Colony (VEABC). Chaque individus d’un
-essaim sont mis à jour en utilisant les individus des autres essaims. C’est cette collaboration qui permet à l’algorithme
-de trouver l’espace de compromis.
-% subsubsection extensions_de_l_algorithme_original (end)
-% subsection generation_de_solutions_quelle_methode (end)
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Extensions de l’algorithme original} % (fold)
+% \label{ssub:extensions_de_l_algorithme_original}
+% \itodo{Ajouter une description des approches pour améliorer ABC à cause des problème d’exploitation (Sharma2012213 p.217 pour blabla)}
+% Un meta-heuristique se compose de deux étapes principales, l’exploration et l’exploitation.
+% L’exploration est mesurée par la capacité à explorer l’espace de solution à la recherche
+% des zones prometteuse pour un optimum.
+% Cependant une fois ces zones trouvées, une autre approche est nécessaire: l’exploitation.
+% L’exploitation consiste à l’aide de l’information disponible sur le voisinage et sur la solution actuelle
+% de l’améliorer et donc de converger vers un optimum.
+% Afin d’éviter de tomber dans un optimum local ou bien de converger très lentement, un équilibre entre exploration et
+% exploitation est nécessaire.
+% Dans notre cas l’algorithme ABC est reconnue pour être bon en exploration mais faible en exploitation (\cite{Karaboga2009108,Zhu20103166,Karaboga201221}).
+% En effet le paramètre $limit$ et les éclaireuses permettent d’éviter de se coincer dans un optimum local, cependant
+% l’essaim n’utilise pas autant d’informations pour diriger la recherche locale, se traduisant par une convergence
+% plus lente vers l’optimum.
+% L’algorithme étant encore jeune de nombreuses améliorations et/ou modifications on été ajouté au cours des dernières années.
+% Certaines améliorations s’inspirent du PSO en tenant compte d’un facteur d’inertie ou de
+% la meilleure solution globale (\cite{Lei2010,Zou20109}). D’autres s’inspirent de algorithmes évolutionnaires
+% et génétiques (\cite{Bi2011174,Zhao2010558}) où encore avec des approches hybrides dont \cite{Pulikanti2009196} qui utilise un heuristique.
+% \cite{Zhu20103166} ajoute la prise en compte de la meilleure solution actuelle dans l’équation de mise à jour.
+% Il nomme le nouvel algorithme Gbest Artificial Bee Colony (GABC) et la nouvelle formulation
+% de la mise à jour\emtodo{Ajoute mise à jour de l’équation} est décrite ci-dessous:
+% Pour contrôler l’importance de la meilleure solution actuelle un coefficient est tiré aléatoirement
+% selon une distribution uniforme ($\psi_{ij}$). La borne maximale $C$ de la distribution est définie par l’utilisateur et
+% l’augmenter correspond à augmenter l’importance de la meilleure solution actuelle.
+% \cite{Li2012320} propose une autre variante en ajoutant une inertie, une accélération, et l’influence de la meilleure actuelle et
+% le nomme Improved Artificial Bee Colony (I-ABC).
+% Il propose aussi une seconde variante faisant évoluer 3 essaims avec 3 algorithmes différents (PS-ABC). Il est cependant
+% important de rester prudent sur l’interprétation des résultats, particulièrement sur la variante PS-ABC. En effet comme
+% le décrit \cite{Mernik2015115}, les algorithmes doivent être comparés suivant le nombre d’évaluations de la/les fonctions
+% objectifs et non par rapport au nombre d’itérations. En effet la variante PS-ABC ici utilise 3 populations et réalise donc
+% en moyenne 6 fois plus d’évaluation de fonction par itération que l’approche standard.
+% On peut aussi citer \cite{Aderhold2010283,Karaboga2014227} qui ajoutent respectivement la distance euclidienne pour la sélection
+% de solution optimales proches, et la différenciation entre butineuses et ouvrières pour la mise à jour des sources.
+
+% Plusieurs approches ont aussi été envisagées pour les problèmes multi-objectifs. On a par exemple l’approche MO-ABC, VABC, MHABC-CMO
+% \cite{Hedayatzadeh2010, Akbari201239} adapte l’algorithme ABC pour résoudre des problèmes multi-objectifs. Ils proposent
+% principalement deux modifications. La première est l’utilisation de l’$\varepsilon$-dominance
+% (~\autoref{sub:mise_a_jour_du_front_de_pareto})
+% pour la gestion de l’archive assurant ainsi la diversité des solutions. La seconde modifie la mise à jour des sources en
+% exploitant la population et les solutions de l’archive.
+% \cite{Zhang20121} introduit une approche basée sur plusieurs essaims se partageant les informations et une sélection
+% des solutions du front de Pareto par crowding distance. Le papier propose une comparaison avec d’autres approches sur un ensemble de
+% problèmes multi-objectif avec contraintes.
+% Enfin on peut aussi noter l’approche de \cite{Omkar2011489} qui cherche à optimiser chaque objectifs séparément et nomme l’approche
+% Vector Evaluated Artificial Bee Colony (VEABC). Chaque individus d’un
+% essaim sont mis à jour en utilisant les individus des autres essaims. C’est cette collaboration qui permet à l’algorithme
+% de trouver l’espace de compromis.
+% % subsubsection extensions_de_l_algorithme_original (end)
+% % subsection generation_de_solutions_quelle_methode (end)
 
 
 % ------------------------------------------------------------------------------
@@ -1156,170 +1315,170 @@ solution par hypercube.
 \subsection{Améliorer l’exploration et l’exploitation} % (fold)
 \label{sub:ameliorer_l_exploration_et_l_exploitation}
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Vol de Lévy} % (fold)
-\label{ssub:vol_de_levy}
-Nous avons vu que le maintien de l’équilibre entre exploitation et exploration est un
-critère fondamental pour la formulation d’un meta-heuristique performant. Cependant il y a un caractère
-inhérent à chaque méta-heuristique dont nous n’avons pas parlé: l’aléatoire.
-Les méta-heuristiques sont alors dits stochastiques; en plus de l’échange d’informations entre les individus, l’aléatoire
-à un rôle très important.
-Les méthodes approchées ont en effet été développées afin de répondre aux besoins d’optimisation sur des
-problèmes dont la connaissance à-priori est insuffisante pour formuler le problème sous une forme classique.
-Certains auteurs ont alors cherché à améliorer les algorithmes en modifiant la loi de
-distribution utilisée, s’inspirant encore une fois du monde du vivant
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Vol de Lévy} % (fold)
+% \label{ssub:vol_de_levy}
+% Nous avons vu que le maintien de l’équilibre entre exploitation et exploration est un
+% critère fondamental pour la formulation d’un meta-heuristique performant. Cependant il y a un caractère
+% inhérent à chaque méta-heuristique dont nous n’avons pas parlé: l’aléatoire.
+% Les méta-heuristiques sont alors dits stochastiques; en plus de l’échange d’informations entre les individus, l’aléatoire
+% à un rôle très important.
+% Les méthodes approchées ont en effet été développées afin de répondre aux besoins d’optimisation sur des
+% problèmes dont la connaissance à-priori est insuffisante pour formuler le problème sous une forme classique.
+% Certains auteurs ont alors cherché à améliorer les algorithmes en modifiant la loi de
+% distribution utilisée, s’inspirant encore une fois du monde du vivant
 
-Dans un premier temps, il est important de définir le terme de marche aléatoire inhérent
-à beaucoup de méthodes approchées.
-Une marche aléatoire (\cite{Yang201445}) peut être définie comme une succession de pas
-aléatoire dont chaque état ne dépend que de l’état précédent. Si on note $S_{N}$
-la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche aléatoire:
-\begin{equation}\label{eq:marche_aleatoire}
-    \begin{split}
-        S_{N} &= \sum_{i=1}^{N} X_{i} = X_{1} + ... + X_{N}\\
-              &= S_{N-1} + X_{N}
-    \end{split}
-\end{equation}
-Il est alors clair d’après la forme récursive de \eqref{eq:marche_aleatoire} que chaque pas
-ne dépend que du pas précédent; une marche aléatoire est alors un processus de Markov.
+% Dans un premier temps, il est important de définir le terme de marche aléatoire inhérent
+% à beaucoup de méthodes approchées.
+% Une marche aléatoire (\cite{Yang201445}) peut être définie comme une succession de pas
+% aléatoire dont chaque état ne dépend que de l’état précédent. Si on note $S_{N}$
+% la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche aléatoire:
+% \begin{equation}\label{eq:marche_aleatoire}
+%     \begin{split}
+%         S_{N} &= \sum_{i=1}^{N} X_{i} = X_{1} + ... + X_{N}\\
+%               &= S_{N-1} + X_{N}
+%     \end{split}
+% \end{equation}
+% Il est alors clair d’après la forme récursive de \eqref{eq:marche_aleatoire} que chaque pas
+% ne dépend que du pas précédent; une marche aléatoire est alors un processus de Markov.
 
 
-La longueur du pas peut varier en fonction de la distribution de probabilité (Fig.~\ref{fig:distribution_pdf})
-à laquelle il est associé. Les plus utilisées dans les méta-heuristiques étant les loi uniformes ou gaussiennes.
-\begin{figure}
-    \begin{center}
-        \includegraphics{LevyFlight/distribution_pdf.png}
-    \end{center}
-    \caption{Densité de probabilité des lois de cauchy, uniforme, normale, Lévy stable et symétrique.
-             L’expression analytique est représentée par la courbe noire.
-             \label{fig:distribution_pdf}}
-\end{figure}
+% La longueur du pas peut varier en fonction de la distribution de probabilité (Fig.~\ref{fig:distribution_pdf})
+% à laquelle il est associé. Les plus utilisées dans les méta-heuristiques étant les loi uniformes ou gaussiennes.
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{LevyFlight/distribution_pdf.png}
+%     \end{center}
+%     \caption{Densité de probabilité des lois de cauchy, uniforme, normale, Lévy stable et symétrique.
+%              L’expression analytique est représentée par la courbe noire.
+%              \label{fig:distribution_pdf}}
+% \end{figure}
 
-C’est cette dernière qui nous intéresse plus particulièrement pour une application en méta-heuristique.
-Il a en effet été observé chez diverses espèces comme les atèles (singes), les albatros,
-ou encore la famille des Tephritidae (petites mouches) un comportement respectant
-une marche aléatoire connu sous le nom de Lévy Flight (\cite{Sharma2012213,Yang201445}).
-Cette marche aléatoire est une marche aléatoire utilisant une distribution de Lévy pour
-déterminer la longueur du pas aléatoirement.
-La distribution de Lévy de son auteur Paul Lévy est une distribution à queue lourde, indiquant que son comportement
-éloignée de la zone centrale de la distribution n’est pas exponentiellement bornée.
-La loi de Lévy dépend de deux paramètres: $\nu > 0$ qui est le pas minimum et $\gamma > 0$ qui est le
-facteur d’échelle.
-La densité de probabilités peut ainsi s’écrire sous la forme analytique simplifiée suivante (\cite{Yang201445}):
-\begin{align}\label{eq:dens_levy}
-    L(s, \gamma, \mu) = \begin{cases}
-                            \sqrt{\frac{\gamma}{2\pi}} \exp\left[-\frac{\gamma}{2(s-\mu)}\right] \frac{1}{(s-\mu)^{\nicefrac{3}{2}}} &\ 0 < \mu < s < \infty \\
-                            0                                                                                                        &\ sinon
-                        \end{cases}
-\end{align}
-La distribution est le plus souvent exprimée sous la forme d’une transformée de Fourier:
-\begin{equation}\label{eq:fourier_levy}
-    \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
-\end{equation}
-Il existe des cas spéciaux où la transformée inverse de Fourier correspond à une distribution
-normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
+% C’est cette dernière qui nous intéresse plus particulièrement pour une application en méta-heuristique.
+% Il a en effet été observé chez diverses espèces comme les atèles (singes), les albatros,
+% ou encore la famille des Tephritidae (petites mouches) un comportement respectant
+% une marche aléatoire connu sous le nom de Lévy Flight (\cite{Sharma2012213,Yang201445}).
+% Cette marche aléatoire est une marche aléatoire utilisant une distribution de Lévy pour
+% déterminer la longueur du pas aléatoirement.
+% La distribution de Lévy de son auteur Paul Lévy est une distribution à queue lourde, indiquant que son comportement
+% éloignée de la zone centrale de la distribution n’est pas exponentiellement bornée.
+% La loi de Lévy dépend de deux paramètres: $\nu > 0$ qui est le pas minimum et $\gamma > 0$ qui est le
+% facteur d’échelle.
+% La densité de probabilités peut ainsi s’écrire sous la forme analytique simplifiée suivante (\cite{Yang201445}):
+% \begin{align}\label{eq:dens_levy}
+%     L(s, \gamma, \mu) = \begin{cases}
+%                             \sqrt{\frac{\gamma}{2\pi}} \exp\left[-\frac{\gamma}{2(s-\mu)}\right] \frac{1}{(s-\mu)^{\nicefrac{3}{2}}} &\ 0 < \mu < s < \infty \\
+%                             0                                                                                                        &\ sinon
+%                         \end{cases}
+% \end{align}
+% La distribution est le plus souvent exprimée sous la forme d’une transformée de Fourier:
+% \begin{equation}\label{eq:fourier_levy}
+%     \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
+% \end{equation}
+% Il existe des cas spéciaux où la transformée inverse de Fourier correspond à une distribution
+% normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
 
-La forme analytique de la \emph{distribution de Lévy stable et symétrique} (symmetrical Lévy stable distribution with index $\beta$) peut
-s’exprimer sous la forme suivante (\cite{Gutowski2001}):
-\begin{equation}\label{eq:dist_levy}
-    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
-\end{equation}
-L’intégrale \eqref{eq:dist_levy} est souvent approximée à une simple loi de puissance de la forme:
-\begin{equation}\label{eq:power_levy}
-    L(s) \sim \mathopen{|}s\mathclose{|}^{-1-\beta} \qquad  0 < \beta \leq 2, \quad s \to \infty
-\end{equation}
-Pour rappel, une distribution est dite stable\munsure{\url{https://en.wikipedia.org/wiki/Stable_distribution}} si la
-combinaison linéaire de deux échantillons, a la même distribution indépendamment du pas minimum ($\nu$) et du facteur
-d’échelle ($\gamma$).
-Il est important de noter que son espérance et sa variance sont infinies.
-D’après \eqref{eq:dist_levy}, la distribution peut être estimée seulement quand $s$ est grand:
-\begin{equation}
-    L(s) \approx \frac{\mathbf{\Gamma}(\beta)sin(\pi\frac{\beta}{2})}{\pi\mathopen{|}s\mathclose{|}^{1+\beta}}, \qquad s \to \infty
-\end{equation}
-$\mathbf{\Gamma}$ représentant la fonction Gamma qui est l’extension analytique de la fonction factoriel pour
-les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!, \quad \beta\in \mathbb{N}$) et est définie par:
-\begin{equation}
-    \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
-\end{equation}
-L’algorithme de Mantegna (\cite{Mantegna19944677}) est souvent utilisé pour générer aléatoirement des nombres
-dont la densité de probabilité est proche de celle d’une distribution de Lévy stable et symétrique (le pas peut
-être positif ou négatif).
-La longueur du pas est alors calculé à l’aide de deux distributions normales de la manière suivante:
-\begin{equation}\label{eq:step_len}
-    s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
-\end{equation}
-avec:
-\begin{equation}\label{eq:sigmas}
-    \sigma_{u} = \left[ \frac{\mathbf{\Gamma}(1+\beta)\sin(\pi\frac{\beta}{2})}%
-                             {\mathbf{\Gamma} \left[\frac{(1+\beta)}{2}\beta 2^{\frac{(\beta-1)}{2}}\right]}\right]^{\nicefrac{1}{\beta}},%
-    \qquad \sigma_{v} = 1
-\end{equation}
+% La forme analytique de la \emph{distribution de Lévy stable et symétrique} (symmetrical Lévy stable distribution with index $\beta$) peut
+% s’exprimer sous la forme suivante (\cite{Gutowski2001}):
+% \begin{equation}\label{eq:dist_levy}
+%     L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
+% \end{equation}
+% L’intégrale \eqref{eq:dist_levy} est souvent approximée à une simple loi de puissance de la forme:
+% \begin{equation}\label{eq:power_levy}
+%     L(s) \sim \mathopen{|}s\mathclose{|}^{-1-\beta} \qquad  0 < \beta \leq 2, \quad s \to \infty
+% \end{equation}
+% Pour rappel, une distribution est dite stable\munsure{\url{https://en.wikipedia.org/wiki/Stable_distribution}} si la
+% combinaison linéaire de deux échantillons, a la même distribution indépendamment du pas minimum ($\nu$) et du facteur
+% d’échelle ($\gamma$).
+% Il est important de noter que son espérance et sa variance sont infinies.
+% D’après \eqref{eq:dist_levy}, la distribution peut être estimée seulement quand $s$ est grand:
+% \begin{equation}
+%     L(s) \approx \frac{\mathbf{\Gamma}(\beta)sin(\pi\frac{\beta}{2})}{\pi\mathopen{|}s\mathclose{|}^{1+\beta}}, \qquad s \to \infty
+% \end{equation}
+% $\mathbf{\Gamma}$ représentant la fonction Gamma qui est l’extension analytique de la fonction factoriel pour
+% les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!, \quad \beta\in \mathbb{N}$) et est définie par:
+% \begin{equation}
+%     \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
+% \end{equation}
+% L’algorithme de Mantegna (\cite{Mantegna19944677}) est souvent utilisé pour générer aléatoirement des nombres
+% dont la densité de probabilité est proche de celle d’une distribution de Lévy stable et symétrique (le pas peut
+% être positif ou négatif).
+% La longueur du pas est alors calculé à l’aide de deux distributions normales de la manière suivante:
+% \begin{equation}\label{eq:step_len}
+%     s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
+% \end{equation}
+% avec:
+% \begin{equation}\label{eq:sigmas}
+%     \sigma_{u} = \left[ \frac{\mathbf{\Gamma}(1+\beta)\sin(\pi\frac{\beta}{2})}%
+%                              {\mathbf{\Gamma} \left[\frac{(1+\beta)}{2}\beta 2^{\frac{(\beta-1)}{2}}\right]}\right]^{\nicefrac{1}{\beta}},%
+%     \qquad \sigma_{v} = 1
+% \end{equation}
 
-Équations~\eqref{eq:step_len}, \eqref{eq:sigmas} il est ainsi possible de définir une longueur de pas aléatoirement et qui
-grâce au caractère symétrique de la distribution peut être positif ou négatif.
-Fig.~\ref{fig:levy_length} permet de mettre en évidence ce comportement avec 100 tirages aléatoires
-obéissant à une distribution de Lévy, et, Fig.~\ref{fig:levy_flight} montre le chemin parcouru durant
-une séquence de vol de Lévy. Il est intéressant de noter que le comportement de la
-vol de Lévy peut être assimilé à une intensification (forte probabilité de générer un petit saut)
-couplé à une exploration (faible probabilité de générer un saut important).
+% Équations~\eqref{eq:step_len}, \eqref{eq:sigmas} il est ainsi possible de définir une longueur de pas aléatoirement et qui
+% grâce au caractère symétrique de la distribution peut être positif ou négatif.
+% Fig.~\ref{fig:levy_length} permet de mettre en évidence ce comportement avec 100 tirages aléatoires
+% obéissant à une distribution de Lévy, et, Fig.~\ref{fig:levy_flight} montre le chemin parcouru durant
+% une séquence de vol de Lévy. Il est intéressant de noter que le comportement de la
+% vol de Lévy peut être assimilé à une intensification (forte probabilité de générer un petit saut)
+% couplé à une exploration (faible probabilité de générer un saut important).
 
-De plus la variance d’un vol de Lévy~\eqref{eq:variance_brownien_levy} augmente plus rapidement que celle d’un mouvement
-brownien\footnote{marche aléatoire obéissent à une distribution normale/gaussienne}
-permettant aux longueurs des marches aléatoires d’être plus importante (Fig.~\ref{fig:levy_vs_gaussian}).
-Cette dernière caractéristique permet d’augmenter l’exploration mais aussi d’éviter
-de se coincer dans un optimum local contrairement à un mouvement brownien. En effet
-bien que statistiquement similaires, la densité de probabilité dans l’espace du mouvement brownien
-est fortement concentré localement contrairement à l’effet d’île caractéristique du vol de Lévy.
-C’est une caractéristique aussi partagée par les marche aléatoire dite sous-diffuse \eqref{eq:distance_moy}.
+% De plus la variance d’un vol de Lévy~\eqref{eq:variance_brownien_levy} augmente plus rapidement que celle d’un mouvement
+% brownien\footnote{marche aléatoire obéissent à une distribution normale/gaussienne}
+% permettant aux longueurs des marches aléatoires d’être plus importante (Fig.~\ref{fig:levy_vs_gaussian}).
+% Cette dernière caractéristique permet d’augmenter l’exploration mais aussi d’éviter
+% de se coincer dans un optimum local contrairement à un mouvement brownien. En effet
+% bien que statistiquement similaires, la densité de probabilité dans l’espace du mouvement brownien
+% est fortement concentré localement contrairement à l’effet d’île caractéristique du vol de Lévy.
+% C’est une caractéristique aussi partagée par les marche aléatoire dite sous-diffuse \eqref{eq:distance_moy}.
 
-La distance moyenne \eqref{eq:distance_moy} d’une marche aléatoire est fonction du temps $t$. La diffusion est
-dite \emph{améliorée} pour $v > 1$ (\cite{Gutowski2001}):
-\begin{equation}\label{eq:distance_moy}
-    \langle RMS^{2}(t) \rangle = Dt^{v}, \qquad \text{D étant la constante de diffusion}\\\\
-\end{equation}
-La variance ($Var(\mathbf{X}) \sim \langle RMS^{2}\rangle$) pour un mouvement Brownien
-et un vol de Lévy est définie par:
-\begin{align}\label{eq:variance_brownien_levy}
-    \begin{split}
-        \text{Mouvement brownien }  \quad \Rightarrow \quad & Var(\mathbf{X}) \sim \ t\\
-        \text{Vol de Lévy }         \quad \Rightarrow \quad & Var(\mathbf{X}) \sim \ t^{3-\beta}, \qquad 0 < \beta \leq 2
-    \end{split}
-\end{align}
+% La distance moyenne \eqref{eq:distance_moy} d’une marche aléatoire est fonction du temps $t$. La diffusion est
+% dite \emph{améliorée} pour $v > 1$ (\cite{Gutowski2001}):
+% \begin{equation}\label{eq:distance_moy}
+%     \langle RMS^{2}(t) \rangle = Dt^{v}, \qquad \text{D étant la constante de diffusion}\\\\
+% \end{equation}
+% La variance ($Var(\mathbf{X}) \sim \langle RMS^{2}\rangle$) pour un mouvement Brownien
+% et un vol de Lévy est définie par:
+% \begin{align}\label{eq:variance_brownien_levy}
+%     \begin{split}
+%         \text{Mouvement brownien }  \quad \Rightarrow \quad & Var(\mathbf{X}) \sim \ t\\
+%         \text{Vol de Lévy }         \quad \Rightarrow \quad & Var(\mathbf{X}) \sim \ t^{3-\beta}, \qquad 0 < \beta \leq 2
+%     \end{split}
+% \end{align}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{LevyFlight/levy_length.pdf}
-    \end{center}
-    \caption{Distribution de 100 tirages aléatoire obéissant à une distribution de Lévy.
-             \label{fig:levy_length}}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{LevyFlight/levy_length.pdf}
+%     \end{center}
+%     \caption{Distribution de 100 tirages aléatoire obéissant à une distribution de Lévy.
+%              \label{fig:levy_length}}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{LevyFlight/levy_flight.pdf}
-    \end{center}
-    \caption{Multiples vols de Lévy de 200 pas.
-             \label{fig:levy_flight}}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{LevyFlight/levy_flight.pdf}
+%     \end{center}
+%     \caption{Multiples vols de Lévy de 200 pas.
+%              \label{fig:levy_flight}}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{LevyFlight/levy_vs_gaussian.pdf}
-    \end{center}
-    \caption{Mouvement browien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
-             \label{fig:levy_vs_gaussian}}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{LevyFlight/levy_vs_gaussian.pdf}
+%     \end{center}
+%     \caption{Mouvement browien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
+%              \label{fig:levy_vs_gaussian}}
+% \end{figure}
 
-\itodo{Ajouter des applications aux problèmes multi-objectifs}
-Dans \cite{Sharma2012213}, vol de Lévy est employé pour améliorer l’algorithme ABC
-pour faire une recherche locale autour de la meilleure solution actuelle. L’auteur
-utilise un multiplicateur pour réduire la longueur des pas généré d’après \eqref{eq:step_len}.
-De plus la meilleure solution actuelle est utilisée pour guider la recherche aléatoire et
-peu être assimilé à un apprentissage. Le vol de Lévy a aussi été utilisé dans un algorithme
-d’optimisation approchée, le Cuckko search. Cet algorithme est inspiré du comportement
-parasitaire de la reproduction des cuculidés et a était adapté aux problèmes
-multi-objectifs (\cite{Yang20131616}).
-% subsubsection vol_de_lévy (end)
+% \itodo{Ajouter des applications aux problèmes multi-objectifs}
+% Dans \cite{Sharma2012213}, vol de Lévy est employé pour améliorer l’algorithme ABC
+% pour faire une recherche locale autour de la meilleure solution actuelle. L’auteur
+% utilise un multiplicateur pour réduire la longueur des pas généré d’après \eqref{eq:step_len}.
+% De plus la meilleure solution actuelle est utilisée pour guider la recherche aléatoire et
+% peu être assimilé à un apprentissage. Le vol de Lévy a aussi été utilisé dans un algorithme
+% d’optimisation approchée, le Cuckko search. Cet algorithme est inspiré du comportement
+% parasitaire de la reproduction des cuculidés et a était adapté aux problèmes
+% multi-objectifs (\cite{Yang20131616}).
+% % subsubsection vol_de_lévy (end)
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Apprentissage par opposition} % (fold)
