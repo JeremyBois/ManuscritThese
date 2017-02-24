@@ -74,7 +74,7 @@ Dans cette approche, le problème multi-objectif est réduit à un problème mon
 Ce processus de réduction est réalisé à l’aide de méthodes d’agrégation parmi lesquelles
 il est possible de citer les méthodes de pondération, de compromis,
 ou encore de distance. Dans tout les cas la réduction nécessite de normaliser les
-objectifs et le décideur introduit un caractère préférentiel (\cite{Rivallain2013,Armand-Decker2015}).
+objectifs et le décideur introduit un caractère préférentiel \parencite{Rivallain2013,Armand-Decker2015}.
 Dans le cas de la pondération, un coefficient est attribuer à chaque objectifs. Bien que
 algorithmiquement relativement simple à mettre en place, le choix des coefficient peut être complexe.
 En effet les divers objectifs peuvent être à des échelles / unités différentes
@@ -85,7 +85,7 @@ Dans ces deux approches, les méthodes ne permettent d’obtenir qu’une seule
 solution à chaque itération.
 Finalement la dernière méthode permet d’optimiser les différents objectifs en calculant
 la distance de chaque solution par rapport à une solution de référence. Le choix
-du point de référence est alors déterminant (\cite{Collette2002}, Fig. 2.10).
+du point de référence est alors déterminant \parencite{Collette2002}, Fig. 2.10).
 
 \ftodo{Ajouter un graphique montrant le passage d’un problème multi-objectif à
 un problème mono-objectif}
@@ -183,7 +183,7 @@ On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{
   \item $\vec{x}_{a}$ est aussi bon que $\vec{x}_{b}$ sur tous les objectifs
   \item $\vec{x}_{a}$ est meilleur que $\vec{x}_{b}$ sur au moins un objectif
 \end{itemize}
-Mathématiquement la relation sera notée : $\vec{x}_{a} \prec \vec{x}_{b}$.
+Cette relation sera notée sera notée : $\vec{x}_{a} \prec \vec{x}_{b}$.
 Un point est ainsi dit optimal au sens de Pareto lorsque aucun autre point dans
 l’ensemble le comprenant ne le domine ().
 \end{Def} \mtodo{ajouter référence figure}
@@ -212,7 +212,7 @@ Il représente l’ensemble formé par les solutions non-dominées (espace des o
 dont les vecteurs de décisions sont non-dominés.
 Le front de Pareto est donc la représentation dans l’espace des objectifs
 de l’ensemble optimal de Pareto qui lui est définie dans l’espace de décision.
-Mathématiquement la relation peut être notée :
+Cette relation sera notée :
 \begin{equation}
   \begin{aligned}
     PF   =& \left\{ \vec{f}(\vec{x}_{*}), \  \vec{x}_{*} \in POS \right\} \\
@@ -244,7 +244,7 @@ de recherche ou évaluer la qualité des solutions trouvées.
 \label{par:convexite}
 Terme permettant de caractériser la forme d’un ensemble.
 Il est dit \emph{convexe} lorsque pour deux points distincts, la droite les reliant
-est contenu dans cet ensemble (\cite{Collette2002}). Ce terme est utilisé pour décrire
+est contenu dans cet ensemble \parencite{Collette2002}. Ce terme est utilisé pour décrire
 la forme du front de Pareto dans le cas de problèmes multi-objectifs.
 % paragraph convexite (end)
 % subsubsection vocabulaire_et_definition (end)
@@ -294,7 +294,7 @@ et se représente sous forme d’un graphe. La recherche à l’intérieur du gr
 de Bellmann qui stipule qu’un chemin optimal ne peux être composé que de sous-chemin
 optimaux.  Cette approche évite ainsi l’évaluation de l’ensemble des chemins. Afin de
 pouvoir calculer la performance d’un sous-chemin les solutions déjà évaluées sont
-stockée en mémoire évitant de les réévaluer ensuite (\cite{Rivallain2013}).
+stockée en mémoire évitant de les réévaluer ensuite \parencite{Rivallain2013}.
 % subparagraph programmation_dynamique (end)
 
 \ftodo{Ajouter graphique décrivant les différents méthodes exactes}
@@ -400,10 +400,10 @@ et ils peuvent tous être classé comme faisant partie de l’Intelligence Artif
 La notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
 dans de nombreux domaines comme le déplacement organisé en groupe (humains, oiseaux, poissons, ...)
 ou encore l’apprentissage et la réflexion. Deep Blue a ainsi été le premier programme
-informatique à battre le champion du monde d’échec de l’époque (\cite{Hsu199970}).
+informatique à battre le champion du monde d’échec de l’époque \parencite{Hsu199970}.
 Le jeu de Go est un autre exemple témoignant de la forte évolution de l’IA. Alors que
 les anciens programmes étaient loin d’être compétitifs contre le bas du classement
-des joueurs professionnels, AlphaGo (\cite{Silver2016484}) a battu le champion Européen (Fan Hui)
+des joueurs professionnels, AlphaGo \parencite{Silver2016484} a battu le champion Européen (Fan Hui)
 puis un des meilleurs joueur au monde au titre de 9 dan professionnel (Lee Sedol).
 % paragraph  (end)
 % subsubsection description (end)
@@ -423,10 +423,10 @@ deux grandes familles : les algorithmes évolutionnaires et les algorithmes d’
 \paragraph{Algorithmes évolutionnaires :} % (fold)
 \label{par:algorithmes_évolutionnaires}
 Ces méthodes sont basées sur les mécanismes de la sélection naturelle. L’approche la plus
-répandue et l’utilisation de l’algorithme NSGA II (\cite{Deb2002182}) mais de nombreuses
+répandue et l’utilisation de l’algorithme NSGA II \parencite{Deb2002182} mais de nombreuses
 variations existent ayant leur point fort et leur point faible. L’algorithme
 SPEA2 par exemple améliore la diversité du front de Pareto grâce à une approche par
-clustering au prix d’une convergence plus lente (\cite{Zitzler2001}). À l’inverse
+clustering au prix d’une convergence plus lente \parencite{Zitzler2001}. À l’inverse
 l’algorithme PESA lui tant à améliorer la convergence au prix de la diversité des
 solutions du front final. Dans les applications liées au bâtiment, \cite{Rivallain2013}
 a utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
@@ -446,7 +446,7 @@ Ces méthodes sont basées sur l’expérience du vivant et plus particulièreme
 l’organisation au sein d’un groupe ou d’une colonie. Parmi les plus connus, il peut être
 cité l’algorithme de colonie de fourmis proposé à l’origine par \cite{Colorni1992509}
 et comme pour les algorithmes évolutionnaires de nombreuses variations ont été développées
-pour des problèmes multi-objectif (\cite{MichaelGuntsch2003,Shea2006627}).
+pour des problèmes multi-objectif \parencite{MichaelGuntsch2003,Shea2006627}.
 Ces approches s’inspirent du comportement des colonies de fourmis où chaque individu
 explore une partie du domaine de décision laissant une trace de phéromone derrière lui.
 Chaque fourmis revient ensuite à la colonie est transmet les informations acquise.
@@ -454,7 +454,7 @@ Une autre approche connus est l’algorithme PSO (Particule Swarm optimization) 
 l’inspiration provient de l’observation des oiseaux volant de manière synchrone et
 pouvant changer brusquement de direction. Cette approche a été appliquée au domaine
 du bâtiment pour l’optimisation multi-objectif en tenant compte du confort des occupants,
-de l’impact environnemental, des besoins en énergie, et de la sécurité de l’ouvrage (\cite{Armand-Decker2015}).
+de l’impact environnemental, des besoins en énergie, et de la sécurité de l’ouvrage \parencite{Armand-Decker2015}.
 Il existe de nombreuses autres implémentations et le lecteur intéressé pourra consulter
 \cite{Aboul-EllaHassanien2015} qui décrit de manière non-exhaustive les différents
 approches existantes et leur applications.
@@ -473,9 +473,9 @@ différents paramètres impactant leur performance.
 Il est ainsi nécessaire de déterminer empiriquement ces paramètres ou bien de s’inspirer
 de problèmes similaires dans la littérature.
 Certaines méthodes existantes permettent d’automatiser le réglage des
-paramètres grâce à une population d’entraînement comme l’algorithme F-Race (\cite{Birattari2010311}).
+paramètres grâce à une population d’entraînement comme l’algorithme F-Race \parencite{Birattari2010311}.
 Cette méthode a été adapté avec succès aux problèmes multi-objectif à travers un outil
-décrivant l’auto paramétrisation de différent algorithmes de colonies de fourmis (\cite{Lopez-Ibanez2012861}).
+décrivant l’auto paramétrisation de différent algorithmes de colonies de fourmis \parencite{Lopez-Ibanez2012861}.
 Les auteurs montrent ainsi que un réglage optimisé permet d’améliorer la performance
 des algorithmes par rapport à un réglage empirique.
 Le choix de la méthode est ainsi le bilan des réponses aux question ci-dessous :
@@ -532,22 +532,22 @@ a été sélectionnée.
 \subsubsection{La méthode de Morris :} % (fold)
 \label{ssub:la_methode_de_morris}
 \itodo{Présenter l’analyse de sensibilité choisie (graphique, description, ...)}
-Il existe plusieurs méthodes de criblage mais la méthode de Morris (\cite{Morris1991161})
+Il existe plusieurs méthodes de criblage mais la méthode de Morris \parencite{Morris1991161}
 est facilement adaptable à tout type de problèmes contrairement à d’autres approches
 comportant plus de contraintes. Cette méthode est par exemple toujours valide dans le cas où
 les facteurs se compenseraient ou encore si le signe de l’effet d’un facteur n’est pas
-connue a priori (\cite{Saltelli2004}).
+connue a priori \parencite{Saltelli2004}.
 
 
 \paragraph{Principe :} % (fold)
 \label{par:principe}
 La méthode de Morris utilise un plan OAT (One (Factor) At the Time) et est basée sur
-l’EEM (Elementary Effect Method) (\cite{Saltelli2004}).
+l’EEM (Elementary Effect Method) \parencite{Saltelli2004}.
 Chaque facteur (entrée) est définie par une plage de variation discrétisée en fonction
 du nombre de \emph{niveaux} ($p$) et d’un intervalle définie par un \emph{pas} ($\delta$).
 Chaque facteur assume ainsi $p$ valeurs discrètes et $\delta$ doit être un multiple de
 $\frac{1}{(p - 1)}$. La littérature utilise couramment $\delta = \frac{p}{2 \times (p - 1)}$
-(\cite{Morris1991161, Campolongo20071509}).
+\parencite{Morris1991161, Campolongo20071509}.
 
 La méthode consiste alors en l’évaluation de l’effet élémentaire pour $r$ répétitions
 (trajectoires) à l’intérieur du plan OAT. Pour chaque trajectoire, une position de départ
@@ -681,16 +681,16 @@ ajuster les sources utilisées pour la récolte.
 \cite{Camazine1991547} fort des travaux de ses pairs décrit un modèle mathématique
 simulant le comportement social de ces abeilles.
 Cependant, l’idée d’utiliser le comportement social des abeilles mellifères pour l’optimisation
-n’est introduit que en 2005, et cette approche fait donc partie des plus récentes (\cite{Karaboga2005}).
+n’est introduit que en 2005, et cette approche fait donc partie des plus récentes \parencite{Karaboga2005}.
 Bien que de nombreuses approches existent (VirtualBee, Bee Colony Optimization (BCO), ...)
-la formulation de l’ABC respecte la plus répandue (\cite{Karaboga201221}).
+la formulation de l’ABC respecte la plus répandue \parencite{Karaboga201221}.
 % subsubsection origine_de_la_méthode (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Principe de fonctionnement :} % (fold)
 \label{ssub:principe_de_fonctionnement}
-L’algorithme s’appuie sur sur les mécanisme d’organisation sociale des insectes (\cite{Bonabeau1999}).
+L’algorithme s’appuie sur sur les mécanisme d’organisation sociale des insectes \parencite{Bonabeau1999}.
 \paragraph{Retours positifs (Positive feedback) :} % (fold)
 \label{par:positive_feedback}
 Chaque individu partage ses connaissances avec le reste du groupe afin de guider
@@ -743,7 +743,7 @@ On distingue 3 abeilles différentes :
   \item Les \emph{Scouts} ou éclaireuses : Elles explorent aléatoirement à la recherche
         d’une source prometteuse et ramène cette information à la ruche. Ce mécanisme
         permet de diversifier la recherche. La quantité d’éclaireuses dans les ruches
-        est estimé à 5/10\si{\percent} (\cite{Seeley1996})
+        est estimé à 5/10\si{\percent} \parencite{Seeley1996}
 \end{itemize}
 
 L’Algorithm~\ref{alg:ABC_phases} décrit le processus itération qui permet d’améliorer
@@ -789,17 +789,17 @@ lire : \cite{Karaboga201221,Aboul-EllaHassanien2015}.
 d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-objectifs
 \cite{Akbari201239,Omkar2011489}.
 Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
-neurones (\cite{Karaboga2007}), le génie électrique/mécanique/civil (\cite{Rao2009887}), ou encore le clustering (\cite{Zhang20104761}).
-On retrouve aussi cet algorithme dans l’optimisation de système de chauffage (\cite{Atashkari2011}) ou dans des problèmes sous
-contraintes (\cite{Tsai201480,Karaboga20113021}).
+neurones \parencite{Karaboga2007}, le génie électrique/mécanique/civil \parencite{Rao2009887}, ou encore le clustering \parencite{Zhang20104761}.
+On retrouve aussi cet algorithme dans l’optimisation de système de chauffage \parencite{Atashkari2011} ou dans des problèmes sous
+contraintes \parencite{Tsai201480,Karaboga20113021}.
 Malgré son jeune âge, la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
 pour mieux répondre aux différents problèmes d’optimisations.
 \ftodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
 
 Le méta-heuristique étant plus faible en exploitation que en exploration, de nombreuses
 propositions d’améliorations ont vu le jour.
-Certains s’inspirent des algorithmes évolutionnaires (\cite{Bi2011174,Zhao2010558}),
-d’autres du PSO (\cite{Zhu20103166}) en ajoutant la prise en compte de l’inertie
+Certains s’inspirent des algorithmes évolutionnaires \parencite{Bi2011174,Zhao2010558},
+d’autres du PSO \parencite{Zhu20103166} en ajoutant la prise en compte de l’inertie
 et de la meilleure solution actuelle et le nomme GBest ABC (GABC). \cite{Li2012320}
 mimique la formulation du PSO en ajoutant une inertie, l’accélération et la prise
 en compte de la meilleure solution et le nomme Improved Artificial Bee Colony (I-ABC).
@@ -825,7 +825,7 @@ et le poids du composant tout en garantissant une résistance suffisante.
 \cite{Zhang20121} développe aussi une approche basée sur plusieurs essaims mais ici,
 chaque essaim considère l’ensemble des objectifs. En utilisant les distances de Hamming
 et de Crowding, l’auteur ajoute une coopération entre les essaims lors de la sélection
-des sources de référence. L’auteur intègre une méthode de pénalité adaptative (\cite{Woldesenbet20073077})
+des sources de référence. L’auteur intègre une méthode de pénalité adaptative \parencite{Woldesenbet20073077}
 afin de pouvoir traiter des problème sous contraintes.
 
 
@@ -833,20 +833,25 @@ afin de pouvoir traiter des problème sous contraintes.
 \subsubsection{Vol de Lévy} % (fold)
 \label{ssub:vol_de_levy}
 Il a été observé chez diverses espèces comme les atèles (singes), les albatros, ou encore la famille des
-Tephritidae (petites mouches) un comportement respectant une marche aléatoire (Definition~\ref{def:marche_aleatoire}) connu
+Tephritidae (petites mouches) un comportement respectant une marche aléatoire (Définition~\ref{def:marche_aleatoire}) connu
 sous le nom de Vol de Lévy.
+Les marches aléatoires sont souvent utilisés dans les méta-heuristiques pour faire
+évoluer les solutions dans l’espace de décision. Par exemple, une loi normale permet
+de renforcer une solution localement alors qu’une loi uniforme permet d’explorer
+globalement le domaine. Le lecteur pourra noter la forme caractéristique d’une distribution
+de Lévy par rapport aux approches courantes à travers la Fig.~\ref{fig:levy_vs_gaussian}.
+
 Dans \cite{Sharma2012213}, le vol de Lévy est utilisé afin de réaliser une recherche locale
 et \cite{Hakli2013254} l’utilise pour améliorer l’exploitation durant la phase des exploratrices.
 Le vol de Lévy est aussi utilisé dans un méta-heuristique récent: le Cuckko search.
 Inspiré du comportement parasitaire de la reproduction des cuculidés, il a aussi fait l’objet
-d’une adaptation aux problèmes multi-critères (\cite{Yang20131616}).
+d’une adaptation aux problèmes multi-critères \parencite{Yang20131616}.
 
-Afin d’améliorer l’exploitation et l’exploration un vol de Lévy (Definition~\ref{def:vol_levy})
+Afin d’améliorer l’exploitation et l’exploration un vol de Lévy (Définition~\ref{def:vol_levy})
 a été implémentée comme marche aléatoire pour les exploratrices et les butineuses.
 
-
 \begin{Def}[Marche aléatoire]\label{def:marche_aleatoire}
-Une marche aléatoire (\cite{Yang201445}) peut être définie comme une succession de pas
+Une marche aléatoire \parencite{Yang201445} peut être définie comme une succession de pas
 aléatoire dont chaque état ne dépend que de l’état précédent. Si on note $S_{N}$
 la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche aléatoire:
 \begin{equation}\label{eq:marche_aleatoire}
@@ -857,10 +862,6 @@ la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche a
 \end{equation}
 \end{Def}
 
-Les marches aléatoires sont souvent utilisés dans les méta-heuristiques pour faire
-évoluer les solutions dans l’espace de décision en utilisant dans la plupart des cas
-des lois uniformes ou gaussiennes. Fig.~\ref{fig:levy_vs_gaussian} met en évidence
-les formes caractéristiques de différentes distributions.
 \begin{figure}
     \begin{center}
         \includegraphics{LevyFlight/distribution_pdf.png}
@@ -891,7 +892,7 @@ un composant d’apprentissage propre au méta-heuristique.
 
 Sa forme analytique \eqref{eq:dist_levy} est uniquement connue pour $\beta = 2$ (distribution gaussienne)
 et $\beta = 1$ (distribution de Cauchy).
-L’algorithme de Mantegna (\cite{Mantegna19944677}) est alors utilisé afin d’approximer cette distribution
+L’algorithme de Mantegna \parencite{Mantegna19944677} est alors utilisé afin d’approximer cette distribution
 pour $0.3 < \beta < 1.99$.
 \begin{equation}\label{eq:step_len}
     s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
@@ -920,18 +921,240 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
     \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
              \label{fig:levy_vs_gaussian}}
 \end{figure}
+\FloatBarrier
 % subsubsection vol_de_levy (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Apprentissage par Vecteur opposée} % (fold)
 \label{ssub:apprentissage_par_vecteur_opposee}
+Les méthodes d’optimisation et spécifiquement les approchées sont fortement
+dépendantes de la population initiale (\mtodo{Ajouter source}). Il est ainsi nécessaire
+de constituer une population couvrant de manière homogène l’espace de décision.
+L’approche la plus répandu est d’initialiser la population initiale suivant une
+distribution uniforme suivant \eqref{alg:init_phase}.
+Afin d’améliorer la diversité sans connaissances a priori,\cite{Tizhoosh2005695}
+développe l’Opposite Based Learning (OBL) (Définition~\ref{def:oblm}).
+
+\begin{Def}[OBL~:~Apprentissage par vecteur opposé]\label{def:oblm}
+Admettons un point de dimension $D$, $\vec{x}(x_{1}, x_{2}, ..., x_{D})$ avec
+$x_{1}, x_{2}, ..., x_{D}$ des valeurs bornées. Si $x_{i} \in [a_{i}, b_{i}]$ pour
+$i = 1, 2, ..., D$ alors le point opposée est $\vec{\check{x}}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$ est définie par:
+\[\check{x_{i}} = a_{i} + b_{i} - x_{i}\]
+\end{Def}
+
+\cite{Rahnamayan2008906} l’adapte pour l’algorithme Differential evolution (DE)
+et montre que la probabilité d’améliorer une solution est plus grande
+avec sa position opposée que avec une nouvelle position aléatoire.
+Il l’utilise pour l’initialisation et aussi durant l’optimisation. Les bornes
+($a_{i}$ et $b_{i}$) sont alors définies dynamiquement afin d’éviter de ralentir la convergence.
+Cette approche a aussi été appliquée avec succès dans le cas de l’algorithme ABC en couplage
+avec un opérateur de mutation \parencite{Bi2011174} ou encore en coopération avec une marche
+aléatoire \parencite{Sharma2012213}.
+Il a aussi été appliqué pour résoudre des problèmes à objectifs multiples,
+en combinaison avec un algorithme évolutionnaire \parencite{Ma201448}, ou encore avec le PSO \parencite{Gao2013114}.
+
+L’approche est ainsi retenue afin d’améliorer la diversité de la population initiale
+et sera aussi utilisé durant la phase des exploratrices permettant d’augmenter l’exploration.
+Pour chaque source, une position candidate ($\vec{x}$) et son opposée ($\vec{\check{x}}$) sont évaluées.
+Un tournoi binaire est alors organisé et seule la meilleure solution est conservé comme source.
+% subsubsection apprentissage_par_vecteur_opposee (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{L’$\epsilon$-dominance} % (fold)
+\label{ssub:epsilon_dominance}
+Contrairement à une approche mono objectif, il existe plusieurs solutions optimales.
+Il est alors nécessaire de conserver l’évolution du front de Pareto à travers une
+archive (\mtodo{Lien vers figure}).
+
+\ftodo{Ajouter graphe décrivant l’utilité de l’archive pour la recherche \cite{Laumanns2002263}}
+
+Afin de garantir la convergence il est nécessaire d’utiliser une approche élitiste
+en limitant la taille de l’archive au solution les plus performantes afin d’éviter
+une convergence trop lente \parencite{Zitzler2000173}. De plus afin d’éviter de converger vers un front local,
+il est nécessaire de maintenir de la diversité dans la population.
+Dans les approches couramment utilisées on peut citer le Fast Non Dominated Sorting Algorithm utilisé dans la version
+de base du NSGA-II \parencite{Deb2002182}. Dans cette approche une sélection par rang
+est appliqué permettant de trier le front en différents niveaux et la distance dite
+de crowding (distance moyenne entre deux solutions) est utilisée afin de maintenir la diversité.
+L’algorithme SPEA II améliore la diversité du front final au prix d’une convergence
+plus lente en utilisant une approche par clustering. $N$ clusters (taille de l’archive)
+sont formés en se basant sur la distance euclidienne et une solution par cluster
+est retenue.
+\cite{Laumanns2002263} propose de séparer l’espace des solutions en une grille en ajoutant la notion
+de $\epsilon$-dominance. Dans cette approche l’espace des objectifs est divisé en hypercubes,
+et chaque hypercube est comparé selon l’$\epsilon$-dominance (Définition~\ref{def:eps_dominance}).
+Bien que d’autres approches utilisent une grille similaire (PAES, \cite{Knowles2000149}
+l’$\epsilon$-dominance n’accepte qu’une unique solution par hypercube assurant une
+plus grande diversité de la population. La taille de l’archive est donc fonction
+des $\epsilon$ choisis pour chaque objectif mais est toujours finie.
+
+
+\begin{Def}[$\epsilon$-dominance]\label{def:eps_dominance}
+L’$\epsilon$-dominance assume que deux solutions sont identiques lorsqu’elles appartiennent
+au même hypercube dont les dimensions des arrêtes sont définies par $\vec{\epsilon}_{i}, i \in \{1, ..., M\}$ avec $M$ le nombre
+de fonction objectif.
+Dans le cas d’une maximisation il est dit que $\vec{x}_{a}$ $\epsilon$-domine $\vec{x}_{b}$ si :
+\begin{align*}
+  \forall j \in \{1, M\}, \qquad \left\lceil\frac{f_{j}(\vec{x}_{a})}{\epsilon}\right\rceil &\leq \left\lceil\frac{f_{j}(\vec{x}_{b})}{\epsilon}\right\rceil  \\
+  \intertext{et}
+  \exists i \in \{1, M\}, \qquad \left\lceil\frac{f_{i}(\vec{x}_{a})}{\epsilon}\right\rceil &< \left\lceil\frac{f_{i}(\vec{x}_{b})}{\epsilon}\right\rceil  \\
+\end{align*}
+Cette relation sera notée sera notée : $\vec{x}_{a} \prec_{\epsilon} \vec{x}_{b}$.
+\end{Def}
+
+Une solution peut ainsi être ou dominée, dominante, identique, ou non-dominée au
+sens de l’$\epsilon$-dominance, les solutions $\epsilon$-non-dominées formant alors
+le front d’$\epsilon$-Pareto (Fig.~\ref{fig:epsilon_dominance}).
+Dans un premier temps les solutions sont alors départagées selon l’$\epsilon$-dominance.
+Dans le cas où une nouvelle solution serait $\epsilon$-identique elle est uniquement
+comparée avec celle déjà archivée dans le même hypercube en utilisant la distance euclidienne.
+Afin d’éviter l’ajout de biais, les objectifs sont normalisés en fonction des dimensions
+de l’hypercube.
+Ensuite dans le cas d’une maximisation la solution retenue est celle la plus proche
+du maximum de l’hypercube. Contrairement à une sélection par dominance stricte le
+calcul de la distance euclidienne permet de tenir compte de l’ensemble des amélioration
+en étant moins élitiste.
+L’$\epsilon$-archive permet ainsi d’assurer :
+\begin{itemize}
+  \item L’élitisme : seule les solutions non-dominées sont retenues
+  \item La diversification : une unique solution par hypercube
+  \item Une taille limite : La taille maximale est fonction des $\epsilon$ et finie
+  \item Une intensification : En réduisant les $\epsilon$ on augmente la taille maximale
+  \item Une épuration : En augmentant les $\epsilon$ on réduit la taille maximale
+\end{itemize}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{abc/selection_boxes.png}
+    \end{center}
+    \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
+             Adapté de \cite{Deb2005501}.
+             \label{fig:epsilon_dominance}}
+\end{figure}
+
+L’étude réalisé par \cite{Deb2005501} montre que cette méthode d’archivage permet
+d’obtenir une très bonne convergence et une grande diversité sur le front final. Les résultats
+indiquent que les approches PESA et NSGA II obtiennent une moins bonne représentation
+du front de Pareto que celles utilisant le clustering (C-NSGA II, SPEA) et l’$\epsilon$-dominance ($\epsilon$-MOEA).
+Cette observation est d’autant plus vrai pour des problèmes ayant 3 objectifs (DTLZ1, ..., DTLZ7).
+De plus les résultats mettent aussi en évidence que le NSGA II et le $\epsilon$-MOEA
+converge plus rapidement que le SPEA II.
+Un désavantage de cette méthode peut cependant être noté. De part sa formulation
+les solutions au niveau des extrêmes sur le front de Pareto sont plus difficilement
+atteignable.
+
+L’$\epsilon$-archive est donc retenue comme solution d’archivage dans ces travaux
+car il représente un bon compromis entre diversité et convergence.
+% subsubsection epsilon_dominance (end)
+
+
+\subsubsection{Prise en compte des contraintes :} % (fold)
+\label{ssub:prise_en_compte_des_contraintes}
+Les problèmes multi-objectif dans le domaine de l’ingénierie sont souvent
+dépendantes de contraintes limitant l’ensemble des solution optimales au domaine
+de faisabilité. L’optimisation consiste alors à améliorer les objectifs tout en
+respectant les contraintes spécifiques au problème \eqref{eq:def_optimisation}.
+
+La littérature introduit de nombreuses variation permettant de tenir compte des
+contraintes. L’approche la plus courante est d’utiliser un facteur de pénalité.
+Ce facteur est dit statique si il est fixe durant l’ensemble de l’optimisation, dynamique
+si il est adapté en fonction du nombre d’itération, et adaptatif si les informations
+acquises par la recherche aide à sa détermination \parencite{Coello2002}.
+Parmi les approches existante il peut être cité la méthode de la peine de mort
+qui consiste à appliquer une pénalité très importante afin de rejeter les solutions
+sous contraintes. D’autres moins exclusives désavantagent les solutions ne respectant
+pas les contraintes en fonction du niveau de violation des contraintes. D’autres approches
+ajustent dynamiquement la pénalité en fonction des itération de l’algorithme. Le
+problème récurrent avec ces approches réside dans l’ajout de paramètres supplémentaires
+devant être déterminés empiriquement.
+
+\cite{Coello2002} explique qu’une bonne prise en compte des contraintes ne devraient
+pas nécessité le paramétrage de facteurs. Il explique aussi que ces facteurs impactent
+fortement la performance de la méthode de prise en compte des contraintes. De plus
+la méthode sélectionnée ne devrait pas demandé un nombre plus important d’évaluation
+qui peuvent être très couteuses. \cite{Deb2000311} propose une méthode de
+sélection par tournoi dont les règles sont les suivantes :
+\begin{itemize}
+  \item Une solution sous contrainte est inférieure à une solution sans contrainte
+  \item Si les deux solutions sont sans contraintes la solution dominante est préférée
+  \item Si les deux solutions sont sous contraintes, la solution violant le moins les contraintes est préférée
+\end{itemize}
+La méthode a l’avantage d’être simple à mettre en place et est utilisé pour de nombreux
+cas d’application (\mtodo{Ajouter des ref dans le bâtiment}). La méthode est cependant
+très élitiste car les solutions non faisables sont toujours écartées durant la
+recherche.
+
+
+
 
 \itodo{Je suis ici !}
 
 
 
-% subsubsection apprentissage_par_vecteur_opposee (end)
+
+% \subsection{Prendre en compte les contraintes: quelle méthode ?} % (fold)
+% \label{sub:prendre_en_compte_les_contraintes_quelle_methode}
+% \itodo{Décrire les approches pour tacler les problèmes avec contraintes.
+%        Homorphous mapping, assimilation à un autre objectif (Voir Karaboga20113021)}
+
+% De nombreuses améliorations ont été proposées pour améliorer la vitesse de convergence
+% vers le ou les optimaux tout en évitant les optimums locaux. Cependant dans certaines
+% optimisation les objectifs sont dépendant de contraintes. Dans certaines conditions, il
+% est possible de résoudre ce problème de contrainte en bornant les variables à des solutions
+% réalisables mais ce n’est pas toujours possible. Lorsque ces contraintes ne peuvent pas être vérifiées
+% en amont de l’optimisation, il faut alors en tenir compte durant ce processus à l’aide
+% de méthode plus ou moins complexes.
+
+% La pénalité est l’approche la plus souvent retenue .
+% Cette approche demande la définition d’un facteur de pénalité qui doit être définie
+% avec précision pour pouvoir converger vers le/les solutions optimales qui respectent les
+% contraintes. Ce paramètre est dit: (i) statique si la pénalité est la somme pondérée des contraintes,
+% (ii) dynamique si le nombre d’itération influence le paramètre, (iii) adaptatif si l’information de la
+% recherche aide à sa détermination \parencite{Woldesenbet20073077}.
+% Enfin il est important de noter que une solution respectant toutes les contraintes sera toujours préférée
+% à une solution violant des contraintes même si l’évaluation des objectifs est meilleur. Il peut ainsi être
+% difficile d’atteindre certaines optimums\mtodo{Ceux qui sont entourés de violeur de contraintes} particulièrement
+% dans un espace de solutions faisables limitée.
+% \cite{Tsai201480} l’utilise avec deux essaims d’abeilles respectant respectivement l’algorithme
+% ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
+% qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
+% utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement
+% \parencite{Deb2000311}\mtodo{Lire cet article !!} comme les approches plus classiques de pénalité.
+% \\
+
+% \cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
+% déterministe permettant d’accepter des solutions infaisables. La probabilité de sélectionner une solution
+% seulement sur la performance des fonctions objectifs évolue est un paramètre adaptatif. Si durant une
+% certaine intervalle la déviation moyenne évolue faiblement alors la probabilité de pouvoir sélectionner
+% une solution uniquement sur optimalité des objectifs augmente et inversement.
+
+
+% \cite{Woldesenbet20073077} propose aussi une méthode ne demandant pas de paramètres supplémentaires
+% qui doivent être déterminé empiriquement. La première étape est de normalisé les objectifs et contraintes
+% grâce aux minimums et maximums à chaque itération. Ensuite une distance $d_{i}$ est
+% évaluée et la distance minimale est conservée. Soit $\tilde{f}$ respectivement la fonction objectif $i$ normalisée
+% et la somme des contraintes normalisées alors la distance s’écrit:
+% \begin{align}\label{eq:distance_measure}
+%     d_{i} = \begin{cases}
+%                 v(x),                               \qquad & if\  r_{f} = 0\\
+%                 \sqrt{\tilde{f}(x)^{2} + v(x)^{2}}, \qquad & otherwise\\
+%             \end{cases}
+% \end{align}
+% avec:
+% \begin{equation*}
+%     r_{f} = \frac{\text{Nbr de solutions faisable dans la population}}{\text{Taille de la population}}
+% \end{equation*}
+% Afin d’orienter la recherche vers un espace de solution faisables, une pénalité adaptative
+% est utilisé, $p_{i}(x)$, donnant un objectif final modifié de la forme: $F_{i}(x) = d_{i}(x) + p_{i}(x)$.
+% La population peut ainsi accepter des solutions ne respectant pas les contraintes mais
+% l’archive (optimisation multi-objectifs) elle n’accepte que des solutions faisables.
+
+
+
+
+% subsubsection prise_en_compte_des_contraintes (end)
 % section construction_d_un_meta_heuristique_adapte (end)
 
 
@@ -1080,8 +1303,8 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
 % présente un framework pour faire de l’optimisation multi-objectifs en utilisant
 % différents algorithmes de colonies de fourmis (MOACO). Il propose aussi un outil
 % pour configurer automatiquement les paramètres du meta-heuristique en utilisant un jeu de solution
-% d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} (\cite{Lopez-Ibanez2011})
-% au problème multi-objectif pour différentes (\cite{Birattari2010311,Zitzler2003117}). Les auteurs montrent
+% d’entrainement. Pour ce faire les auteurs ont adapté l’algorithme \emph{F-Race} \parencite{Lopez-Ibanez2011})
+% au problème multi-objectif pour différentes \parencite{Birattari2010311,Zitzler2003117}). Les auteurs montrent
 % alors que les configurations trouvées automatiquement sont meilleures que celles
 % de la littérature pour différents type de problèmes. Cette approche permet alors
 % de se passer de l’étape de configuration manuelle et pourrait si généralisée/généralisable
@@ -1105,7 +1328,7 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
 % pour la réalisation de tâches demandant une démarche critique, et de l’apprentissage. La
 % notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
 % dans de nombreux domaines comme le déplacement organisé de groupe important d’animaux (humains, oiseaux, poissons, ...)
-% ou encore l’apprentissage et la réflexion (\cite{Hsu199970,Silver2016484}).
+% ou encore l’apprentissage et la réflexion \parencite{Hsu199970,Silver2016484}).
 % Une des branches de l’intelligence artificielle s’intéresse particulièrement au comportement
 % du monde animal. Dans notre cas on s’intéresse à la branche de l’intelligence des
 % essaims (Swarm Intelligence). \cite{Bonabeau1999} a définit quatre caractéristiques
@@ -1136,9 +1359,9 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
 % d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-objectifs
 % \cite{Akbari201239,Omkar2011489}.
 % Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
-% neurones (\cite{Karaboga2007}), le génie électrique/mécanique/civil (\cite{Rao2009887}), ou encore le clustering (\cite{Zhang20104761}).
-% On retrouve aussi cet algorithme dans l’optimisation de système de chauffage (\cite{Atashkari2011}) et dans des problèmes avec
-% contraintes (\cite{Tsai201480,Karaboga20113021}).
+% neurones \parencite{Karaboga2007}), le génie électrique/mécanique/civil \parencite{Rao2009887}), ou encore le clustering \parencite{Zhang20104761}).
+% On retrouve aussi cet algorithme dans l’optimisation de système de chauffage \parencite{Atashkari2011}) et dans des problèmes avec
+% contraintes \parencite{Tsai201480,Karaboga20113021}).
 % Malgré son jeune âge la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
 % pour mieux répondre aux différents types de problèmes d’optimisations.
 % \itodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
@@ -1195,14 +1418,14 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
 % de l’améliorer et donc de converger vers un optimum.
 % Afin d’éviter de tomber dans un optimum local ou bien de converger très lentement, un équilibre entre exploration et
 % exploitation est nécessaire.
-% Dans notre cas l’algorithme ABC est reconnue pour être bon en exploration mais faible en exploitation (\cite{Karaboga2009108,Zhu20103166,Karaboga201221}).
+% Dans notre cas l’algorithme ABC est reconnue pour être bon en exploration mais faible en exploitation \parencite{Karaboga2009108,Zhu20103166,Karaboga201221}).
 % En effet le paramètre $limit$ et les éclaireuses permettent d’éviter de se coincer dans un optimum local, cependant
 % l’essaim n’utilise pas autant d’informations pour diriger la recherche locale, se traduisant par une convergence
 % plus lente vers l’optimum.
 % L’algorithme étant encore jeune de nombreuses améliorations et/ou modifications on été ajouté au cours des dernières années.
 % Certaines améliorations s’inspirent du PSO en tenant compte d’un facteur d’inertie ou de
-% la meilleure solution globale (\cite{Lei2010,Zou20109}). D’autres s’inspirent de algorithmes évolutionnaires
-% et génétiques (\cite{Bi2011174,Zhao2010558}) où encore avec des approches hybrides dont \cite{Pulikanti2009196} qui utilise un heuristique.
+% la meilleure solution globale \parencite{Lei2010,Zou20109}). D’autres s’inspirent de algorithmes évolutionnaires
+% et génétiques \parencite{Bi2011174,Zhao2010558}) où encore avec des approches hybrides dont \cite{Pulikanti2009196} qui utilise un heuristique.
 % \cite{Zhu20103166} ajoute la prise en compte de la meilleure solution actuelle dans l’équation de mise à jour.
 % Il nomme le nouvel algorithme Gbest Artificial Bee Colony (GABC) et la nouvelle formulation
 % de la mise à jour\emtodo{Ajoute mise à jour de l’équation} est décrite ci-dessous:
@@ -1236,84 +1459,84 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
 % % subsection generation_de_solutions_quelle_methode (end)
 
 
-% ------------------------------------------------------------------------------
-\subsection{Mise à jour du front de Pareto} % (fold)
-\label{sub:mise_a_jour_du_front_de_pareto}
-L’une des principales difficultés lors d’une optimisation multi-objectif est de
-déterminer quelles solutions conservées sachant que autant objectif n’est prioritaire.
-Si tel était le cas, le problème pourrait être formuler sous la forme d’une optimisation
-à objectif unique en ajoutant des poids aux divers objectifs par exemple.
-La conservation de l’ensemble des solutions n’est pas une solution convenable. Des
-solutions trop similaires vont parasiter l’efficacité de la recherche et ralentir la
-convergence à cause d’un nombre conséquent de solution "clone".
-Ainsi de nombreuses solution on cherché à définir des solution permettant de trier
-le front de Pareto à chaque itérations pour converger efficacement vers le vrai front
-de Pareto tout en assurant une bonne répartition sur celui-ci (\cite{Laumanns2002263}).
-La mise à jour du front de Pareto doit ainsi
-\\
+% % ------------------------------------------------------------------------------
+% \subsection{Mise à jour du front de Pareto} % (fold)
+% \label{sub:mise_a_jour_du_front_de_pareto}
+% L’une des principales difficultés lors d’une optimisation multi-objectif est de
+% déterminer quelles solutions conservées sachant que autant objectif n’est prioritaire.
+% Si tel était le cas, le problème pourrait être formuler sous la forme d’une optimisation
+% à objectif unique en ajoutant des poids aux divers objectifs par exemple.
+% La conservation de l’ensemble des solutions n’est pas une solution convenable. Des
+% solutions trop similaires vont parasiter l’efficacité de la recherche et ralentir la
+% convergence à cause d’un nombre conséquent de solution "clone".
+% Ainsi de nombreuses solution on cherché à définir des solution permettant de trier
+% le front de Pareto à chaque itérations pour converger efficacement vers le vrai front
+% de Pareto tout en assurant une bonne répartition sur celui-ci \parencite{Laumanns2002263}).
+% La mise à jour du front de Pareto doit ainsi
+% \\
 
-Couramment utilisé, le \emph{Elitist Non-Dominated
-Sorting Genetic Algorithm} (NSGA-II, \cite{Deb2002182}) s’articule en 3 étapes:
-(i) classement des solutions du front précédent plus les nouvelles solutions
-en niveau en fonction de leur dominance (Fast Nondominated Sorting Approach),
-(ii) la mesure de la distance moyenne normalisée pour chaque
-solution, tenant compte de tous les objectifs (crowing distance assignment), (iii)
-la sélection de solution pour former le nouveau front (crowed-comparaison).
-Dans cette approche les solutions de rang faible (non-dominées ou faiblement)
-sont prioritaires. La taille de l’archive étant fixe, les solutions appartenant au
-même rang sont triées selon le critère de distance. La compléxité de l’approche
-étant alors de $\mathcal{O} \left (MN^{2} \right)$ avec $M$ le nombre d’objectifs.
-\ftodo{Ajout de l’image descriptive du trie de cette approche (voir Deb2002182)
-       avec des modifications pour la rendre plus compréhensive}
-La méthode utilisée dans \emph{Strength Pareto Evolutionary Algorithm} (SPEA, \cite{Zitzler1999257})
-est elle plus complexe, la distance euclidienne est utilisée pour former $N$ cluster
-avec $N$ le taille de l’archive. Elle permet
-d’obtenir une meilleure diversité que l’approche par NSGA-II mais est d’ordre plus
-important ($\mathcal{O} \left (N^{3} \right)$) et demande donc plus de temps de calcul.
+% Couramment utilisé, le \emph{Elitist Non-Dominated
+% Sorting Genetic Algorithm} (NSGA-II, \cite{Deb2002182}) s’articule en 3 étapes:
+% (i) classement des solutions du front précédent plus les nouvelles solutions
+% en niveau en fonction de leur dominance (Fast Nondominated Sorting Approach),
+% (ii) la mesure de la distance moyenne normalisée pour chaque
+% solution, tenant compte de tous les objectifs (crowing distance assignment), (iii)
+% la sélection de solution pour former le nouveau front (crowed-comparaison).
+% Dans cette approche les solutions de rang faible (non-dominées ou faiblement)
+% sont prioritaires. La taille de l’archive étant fixe, les solutions appartenant au
+% même rang sont triées selon le critère de distance. La compléxité de l’approche
+% étant alors de $\mathcal{O} \left (MN^{2} \right)$ avec $M$ le nombre d’objectifs.
+% \ftodo{Ajout de l’image descriptive du trie de cette approche (voir Deb2002182)
+%        avec des modifications pour la rendre plus compréhensive}
+% La méthode utilisée dans \emph{Strength Pareto Evolutionary Algorithm} (SPEA, \cite{Zitzler1999257})
+% est elle plus complexe, la distance euclidienne est utilisée pour former $N$ cluster
+% avec $N$ le taille de l’archive. Elle permet
+% d’obtenir une meilleure diversité que l’approche par NSGA-II mais est d’ordre plus
+% important ($\mathcal{O} \left (N^{3} \right)$) et demande donc plus de temps de calcul.
 
-\cite{Laumanns2002263} propose de séparer l’espace des solutions en une grille en ajoutant la notion
-de $\epsilon$-dominance. Dans cette approche l’espace des objectifs est divisé en hypercubes,
-et chaque hypercube est comparé selon l’$\epsilon$-dominance. D’autres approches
-utilisent une grille pour la mise à jour du front de Pareto (PAES, \cite{Knowles2000149}) mais
-sans limiter le nombre de solutions par hypercubes limitant l’espace des objectifs. Ici,
-chaque hypercube accepte une unique solution; la taille de l’archive est alors dépendante de la valeur
-$\epsilon$ choisie pour chaque objectif.
+% \cite{Laumanns2002263} propose de séparer l’espace des solutions en une grille en ajoutant la notion
+% de $\epsilon$-dominance. Dans cette approche l’espace des objectifs est divisé en hypercubes,
+% et chaque hypercube est comparé selon l’$\epsilon$-dominance. D’autres approches
+% utilisent une grille pour la mise à jour du front de Pareto (PAES, \cite{Knowles2000149}) mais
+% sans limiter le nombre de solutions par hypercubes limitant l’espace des objectifs. Ici,
+% chaque hypercube accepte une unique solution; la taille de l’archive est alors dépendante de la valeur
+% $\epsilon$ choisie pour chaque objectif.
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{abc/selection_boxes.png}
-    \end{center}
-    \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
-             \label{fig:epsilon_dominance}}
-\end{figure}
-L’archive (Fig.~\ref{fig:epsilon_dominance}) accepte une unique solution par hypercube dont la taille est définie par le
-choix des epsilon (la tolérance de chaque objectif).
-Lors de l’ajout d’une solution à l’archive on va ainsi en premier lieu vérifier que
-l’hypercube à laquelle elle appartient n’est pas dominé. Si il est non-dominé la
-nouvelle solution est ajoutée. Cependant si la solution est dans un hypercube contenant
-déjà une solution, alors il est nécessaire de choisir entre les deux.
-Ce choix peut être fait de deux manières: (i) On calcule la dominance stricte entre les
-deux solutions, (ii) On calcule la distance euclidienne entre le coin supérieur droit
-(dans le cas d’une maximisation) et les deux solutions, et on conserve celle ayant
-la distance la plus faible.
-Cette approche permet de garantir une diversité sur l’ensemble de l’espace de
-décision pour un temps de calcul très faible.
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{abc/selection_boxes.png}
+%     \end{center}
+%     \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
+%              \label{fig:epsilon_dominance}}
+% \end{figure}
+% L’archive (Fig.~\ref{fig:epsilon_dominance}) accepte une unique solution par hypercube dont la taille est définie par le
+% choix des epsilon (la tolérance de chaque objectif).
+% Lors de l’ajout d’une solution à l’archive on va ainsi en premier lieu vérifier que
+% l’hypercube à laquelle elle appartient n’est pas dominé. Si il est non-dominé la
+% nouvelle solution est ajoutée. Cependant si la solution est dans un hypercube contenant
+% déjà une solution, alors il est nécessaire de choisir entre les deux.
+% Ce choix peut être fait de deux manières: (i) On calcule la dominance stricte entre les
+% deux solutions, (ii) On calcule la distance euclidienne entre le coin supérieur droit
+% (dans le cas d’une maximisation) et les deux solutions, et on conserve celle ayant
+% la distance la plus faible.
+% Cette approche permet de garantir une diversité sur l’ensemble de l’espace de
+% décision pour un temps de calcul très faible.
 
-\cite{Deb2005501} implémente la méthode et la compare à 4 autres approches dont SPEA2 et NSGA-II.
-La comparaison prend en compte la convergence, la diversité des solutions, et le temps
-de calcul nécessaire. Nommé $\epsilon$-MOEA, l’algorithme se révèle performant sur les
-trois aspects évalués. Il peut être considéré comme un bon compromis entre la qualité
-de la diversité apportée par les approches par clustering (SPEA2, C-NSGA-II), et la
-vitesse de convergence des approches très élitistes (PESA, NSGA-II) pour un temps de
-calcul bien inférieur. L’approche $\epsilon$-MOEA a cependant du mal à trouver des
-solutions sur les extrêmes du front de Pareto à cause de la limitation du nombre de
-solution par hypercube.
-% subsection mise_a_jour_du_front_de_pareto (end)
+% \cite{Deb2005501} implémente la méthode et la compare à 4 autres approches dont SPEA2 et NSGA-II.
+% La comparaison prend en compte la convergence, la diversité des solutions, et le temps
+% de calcul nécessaire. Nommé $\epsilon$-MOEA, l’algorithme se révèle performant sur les
+% trois aspects évalués. Il peut être considéré comme un bon compromis entre la qualité
+% de la diversité apportée par les approches par clustering (SPEA2, C-NSGA-II), et la
+% vitesse de convergence des approches très élitistes (PESA, NSGA-II) pour un temps de
+% calcul bien inférieur. L’approche $\epsilon$-MOEA a cependant du mal à trouver des
+% solutions sur les extrêmes du front de Pareto à cause de la limitation du nombre de
+% solution par hypercube.
+% % subsection mise_a_jour_du_front_de_pareto (end)
 
 
-% ------------------------------------------------------------------------------
-\subsection{Améliorer l’exploration et l’exploitation} % (fold)
-\label{sub:ameliorer_l_exploration_et_l_exploitation}
+% % ------------------------------------------------------------------------------
+% \subsection{Améliorer l’exploration et l’exploitation} % (fold)
+% \label{sub:ameliorer_l_exploration_et_l_exploitation}
 
 % % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % \subsubsection{Vol de Lévy} % (fold)
@@ -1330,7 +1553,7 @@ solution par hypercube.
 
 % Dans un premier temps, il est important de définir le terme de marche aléatoire inhérent
 % à beaucoup de méthodes approchées.
-% Une marche aléatoire (\cite{Yang201445}) peut être définie comme une succession de pas
+% Une marche aléatoire \parencite{Yang201445}) peut être définie comme une succession de pas
 % aléatoire dont chaque état ne dépend que de l’état précédent. Si on note $S_{N}$
 % la somme des pas aléatoires consécutifs $X_{i}$ alors $S_{N}$ est une marche aléatoire:
 % \begin{equation}\label{eq:marche_aleatoire}
@@ -1357,14 +1580,14 @@ solution par hypercube.
 % C’est cette dernière qui nous intéresse plus particulièrement pour une application en méta-heuristique.
 % Il a en effet été observé chez diverses espèces comme les atèles (singes), les albatros,
 % ou encore la famille des Tephritidae (petites mouches) un comportement respectant
-% une marche aléatoire connu sous le nom de Lévy Flight (\cite{Sharma2012213,Yang201445}).
+% une marche aléatoire connu sous le nom de Lévy Flight \parencite{Sharma2012213,Yang201445}).
 % Cette marche aléatoire est une marche aléatoire utilisant une distribution de Lévy pour
 % déterminer la longueur du pas aléatoirement.
 % La distribution de Lévy de son auteur Paul Lévy est une distribution à queue lourde, indiquant que son comportement
 % éloignée de la zone centrale de la distribution n’est pas exponentiellement bornée.
 % La loi de Lévy dépend de deux paramètres: $\nu > 0$ qui est le pas minimum et $\gamma > 0$ qui est le
 % facteur d’échelle.
-% La densité de probabilités peut ainsi s’écrire sous la forme analytique simplifiée suivante (\cite{Yang201445}):
+% La densité de probabilités peut ainsi s’écrire sous la forme analytique simplifiée suivante \parencite{Yang201445}):
 % \begin{align}\label{eq:dens_levy}
 %     L(s, \gamma, \mu) = \begin{cases}
 %                             \sqrt{\frac{\gamma}{2\pi}} \exp\left[-\frac{\gamma}{2(s-\mu)}\right] \frac{1}{(s-\mu)^{\nicefrac{3}{2}}} &\ 0 < \mu < s < \infty \\
@@ -1379,7 +1602,7 @@ solution par hypercube.
 % normale ($\beta = 2$), ou une distribution de Gauchy ($\beta = 1$).
 
 % La forme analytique de la \emph{distribution de Lévy stable et symétrique} (symmetrical Lévy stable distribution with index $\beta$) peut
-% s’exprimer sous la forme suivante (\cite{Gutowski2001}):
+% s’exprimer sous la forme suivante \parencite{Gutowski2001}):
 % \begin{equation}\label{eq:dist_levy}
 %     L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
 % \end{equation}
@@ -1400,7 +1623,7 @@ solution par hypercube.
 % \begin{equation}
 %     \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
 % \end{equation}
-% L’algorithme de Mantegna (\cite{Mantegna19944677}) est souvent utilisé pour générer aléatoirement des nombres
+% L’algorithme de Mantegna \parencite{Mantegna19944677}) est souvent utilisé pour générer aléatoirement des nombres
 % dont la densité de probabilité est proche de celle d’une distribution de Lévy stable et symétrique (le pas peut
 % être positif ou négatif).
 % La longueur du pas est alors calculé à l’aide de deux distributions normales de la manière suivante:
@@ -1432,7 +1655,7 @@ solution par hypercube.
 % C’est une caractéristique aussi partagée par les marche aléatoire dite sous-diffuse \eqref{eq:distance_moy}.
 
 % La distance moyenne \eqref{eq:distance_moy} d’une marche aléatoire est fonction du temps $t$. La diffusion est
-% dite \emph{améliorée} pour $v > 1$ (\cite{Gutowski2001}):
+% dite \emph{améliorée} pour $v > 1$ \parencite{Gutowski2001}):
 % \begin{equation}\label{eq:distance_moy}
 %     \langle RMS^{2}(t) \rangle = Dt^{v}, \qquad \text{D étant la constante de diffusion}\\\\
 % \end{equation}
@@ -1477,74 +1700,74 @@ solution par hypercube.
 % peu être assimilé à un apprentissage. Le vol de Lévy a aussi été utilisé dans un algorithme
 % d’optimisation approchée, le Cuckko search. Cet algorithme est inspiré du comportement
 % parasitaire de la reproduction des cuculidés et a était adapté aux problèmes
-% multi-objectifs (\cite{Yang20131616}).
+% multi-objectifs \parencite{Yang20131616}).
 % % subsubsection vol_de_lévy (end)
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Apprentissage par opposition} % (fold)
-\label{ssub:apprentissage_par_opposition}
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Apprentissage par opposition} % (fold)
+% \label{ssub:apprentissage_par_opposition}
 
-La recherche par vecteur opposé (opposition-based learning) a été implémenté pour la première fois
-en optimisation par \cite{Tizhoosh2005695,Rahnamayan2008155}. Il propose une méthode permettant de diversifier la
-population sans connaissances à-priori.
-% Opposite based learning method
-\begin{Def}[OBLM~:~Opposition-Based Learning Method]\label{def:oblm}
-La recherche par vecteur opposé (Opposition-Based Learning) permet de diversifier la
-population sans connaissances à-priori.
-Admettons un point de dimension $D$, $P(x_{1}, x_{2}, ..., x_{D})$ avec
-$x_{1}, x_{2}, ..., x_{D}$ des valeurs bornées. Si $x_{i} \in [a_{i}, b_{i}]$ pour
-$i = 1, 2, ..., D$ alors le point opposée est $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$ suivant:
-\[\check{x_{i}} = a_{i} + b_{i} - x_{i}\]
-\end{Def}
+% La recherche par vecteur opposé (opposition-based learning) a été implémenté pour la première fois
+% en optimisation par \cite{Tizhoosh2005695,Rahnamayan2008155}. Il propose une méthode permettant de diversifier la
+% population sans connaissances à-priori.
+% % Opposite based learning method
+% \begin{Def}[OBLM~:~Opposition-Based Learning Method]\label{def:oblm}
+% La recherche par vecteur opposé (Opposition-Based Learning) permet de diversifier la
+% population sans connaissances à-priori.
+% Admettons un point de dimension $D$, $P(x_{1}, x_{2}, ..., x_{D})$ avec
+% $x_{1}, x_{2}, ..., x_{D}$ des valeurs bornées. Si $x_{i} \in [a_{i}, b_{i}]$ pour
+% $i = 1, 2, ..., D$ alors le point opposée est $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$ suivant:
+% \[\check{x_{i}} = a_{i} + b_{i} - x_{i}\]
+% \end{Def}
 
-Il est important de noter que les solutions sont comparées deux à deux par tournoi binaire, où
-seule la meilleure solution entre l’initiale et son opposée est conservée. Admettons une solution
-candidate $P(x_{1}, x_{2}, ..., x_{D})$ et son opposée $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$,
-alors si $f(\check{P}) \geq f(P)$ alors la solution $P$ est remplacé par $\check{P}$.
-\ftodo{Illustration du tournoi binaire graphiquement}
+% Il est important de noter que les solutions sont comparées deux à deux par tournoi binaire, où
+% seule la meilleure solution entre l’initiale et son opposée est conservée. Admettons une solution
+% candidate $P(x_{1}, x_{2}, ..., x_{D})$ et son opposée $\check{P}(\check{x_{1}}, \check{x_{2}}, ..., \check{x_{D}})$,
+% alors si $f(\check{P}) \geq f(P)$ alors la solution $P$ est remplacé par $\check{P}$.
+% \ftodo{Illustration du tournoi binaire graphiquement}
 
-Cette méthode a ensuite été améliorée (\cite{Rahnamayan2008155}) puis adaptée à
-l’algorithme Differential evolution (DE). La méthode reprend la définition de base
-mais définit plus clairement les limites et la portée de la méthode.
-La méthode est utilisée durant la phase d’initialisation pour améliorer la diversité
-en générant une population aléatoire de $n$ individus puis $n$ opposées.
-Les solutions les plus performantes étant ensuite conservées pour obtenir une population
-finale de $n$ individus.
-Ensuite durant l’exécution de l’algorithme de nouvelles populations opposées sont générées.
-Un coefficient $J_r$ est utilisé pour contrôler la probabilité de générer cette nouvelle
-population opposée pour chaque itération.
+% Cette méthode a ensuite été améliorée \parencite{Rahnamayan2008155}) puis adaptée à
+% l’algorithme Differential evolution (DE). La méthode reprend la définition de base
+% mais définit plus clairement les limites et la portée de la méthode.
+% La méthode est utilisée durant la phase d’initialisation pour améliorer la diversité
+% en générant une population aléatoire de $n$ individus puis $n$ opposées.
+% Les solutions les plus performantes étant ensuite conservées pour obtenir une population
+% finale de $n$ individus.
+% Ensuite durant l’exécution de l’algorithme de nouvelles populations opposées sont générées.
+% Un coefficient $J_r$ est utilisé pour contrôler la probabilité de générer cette nouvelle
+% population opposée pour chaque itération.
 
-La méthode a ensuite été testée sur un jeu de 15 fonctions de références (7 uni-modales
-et 8 multi-modales). La nouvelle approche permet alors de trouver de meilleurs
-résultats sur 14 des 15 fonctions. Il est aussi montré la supériorité de la
-sélection par opposition par rapport au caractère aléatoire (\cite{Rahnamayan2008155,Rahnamayan2008906})
-Il est aussi mis en avant que la probabilité de générer une population opposée
-doit décroitre au fur et à mesure des itérations. En effet, la méthode permet de
-réduire l’espace de recherche mais ralenti la convergence une fois cette intervalle
-faible. Finalement il est proposé une intervalle de performance pour le coefficient si le problème
-ne permet pas de déterminer un nombre fixe d’itération à-priori: $[0.1 < J_r < 0.4]$.
+% La méthode a ensuite été testée sur un jeu de 15 fonctions de références (7 uni-modales
+% et 8 multi-modales). La nouvelle approche permet alors de trouver de meilleurs
+% résultats sur 14 des 15 fonctions. Il est aussi montré la supériorité de la
+% sélection par opposition par rapport au caractère aléatoire \parencite{Rahnamayan2008155,Rahnamayan2008906})
+% Il est aussi mis en avant que la probabilité de générer une population opposée
+% doit décroitre au fur et à mesure des itérations. En effet, la méthode permet de
+% réduire l’espace de recherche mais ralenti la convergence une fois cette intervalle
+% faible. Finalement il est proposé une intervalle de performance pour le coefficient si le problème
+% ne permet pas de déterminer un nombre fixe d’itération à-priori: $[0.1 < J_r < 0.4]$.
 
-Cette approche a été appliquée avec succès dans le cas de l’algorithme ABC en couplage
-avec un opérateur de mutation (\cite{Bi2011174}) ou encore en coopération avec une marche
-aléatoire (\cite{Sharma2012213}).
-Il a aussi été appliqué pour résoudre des problèmes plus complexe à objectifs multiples,
-en combinaison avec un algorithme évolutionnaire (\cite{Ma201448}), ou encore avec le PSO (\cite{Gao2013114}).
+% Cette approche a été appliquée avec succès dans le cas de l’algorithme ABC en couplage
+% avec un opérateur de mutation \parencite{Bi2011174}) ou encore en coopération avec une marche
+% aléatoire \parencite{Sharma2012213}).
+% Il a aussi été appliqué pour résoudre des problèmes plus complexe à objectifs multiples,
+% en combinaison avec un algorithme évolutionnaire \parencite{Ma201448}), ou encore avec le PSO \parencite{Gao2013114}).
 
-Notre problème ne nous permettant pas d’avoir de connaissance à-priori, il nous est
-impossible d’estimer le nombre d’itération nécessaires et l’utilisation d’un coefficient $J_r$
-dynamique difficile.
-% Au vu des recommandations et des applications déjà faites pour des problèmes mono-critères,
-% ce coefficient sera fixé à 0.1 dans un premier temps.
+% Notre problème ne nous permettant pas d’avoir de connaissance à-priori, il nous est
+% impossible d’estimer le nombre d’itération nécessaires et l’utilisation d’un coefficient $J_r$
+% dynamique difficile.
+% % Au vu des recommandations et des applications déjà faites pour des problèmes mono-critères,
+% % ce coefficient sera fixé à 0.1 dans un premier temps.
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{abc/principe_obl.pdf}
-    \end{center}
-    \caption{Principe de fonctionnement de la recherche par vecteur opposée.
-             \label{fig:OBL_method}}
-\end{figure}
-% subsubsection apprentissage_par_opposition (end)
-% subsection ameliorer_l_exploration_et_l_exploitation (end)
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{abc/principe_obl.pdf}
+%     \end{center}
+%     \caption{Principe de fonctionnement de la recherche par vecteur opposée.
+%              \label{fig:OBL_method}}
+% \end{figure}
+% % subsubsection apprentissage_par_opposition (end)
+% % subsection ameliorer_l_exploration_et_l_exploitation (end)
 
 
 % ------------------------------------------------------------------------------
@@ -1561,12 +1784,12 @@ réalisables mais ce n’est pas toujours possible. Lorsque ces contraintes ne p
 en amont de l’optimisation, il faut alors en tenir compte durant ce processus à l’aide
 de méthode plus ou moins complexes.
 
-La pénalité est l’approche la plus souvent retenue (\cite{EfrEnMezura-Montes2003}\munsure{Peut être mettre un vrai article ?}).
+La pénalité est l’approche la plus souvent retenue \parencite{EfrEnMezura-Montes2003}\munsure{Peut être mettre un vrai article ?}).
 Cette approche demande la définition d’un facteur de pénalité qui doit être définie
 avec précision pour pouvoir converger vers le/les solutions optimales qui respectent les
 contraintes. Ce paramètre est dit: (i) statique si la pénalité est la somme pondérée des contraintes,
 (ii) dynamique si le nombre d’itération influence le paramètre, (iii) adaptatif si l’information de la
-recherche aide à sa détermination (\cite{Woldesenbet20073077}).
+recherche aide à sa détermination \parencite{Woldesenbet20073077}.
 Enfin il est important de noter que une solution respectant toutes les contraintes sera toujours préférée
 à une solution violant des contraintes même si l’évaluation des objectifs est meilleur. Il peut ainsi être
 difficile d’atteindre certaines optimums\mtodo{Ceux qui sont entourés de violeur de contraintes} particulièrement
@@ -1575,7 +1798,7 @@ dans un espace de solutions faisables limitée.
 ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
 qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
 utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement
-(\cite{Deb2000311}\mtodo{Lire cet article !!}) comme les approches plus classiques de pénalité.
+\parencite{Deb2000311}\mtodo{Lire cet article !!} comme les approches plus classiques de pénalité.
 \\
 
 \cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
@@ -1668,7 +1891,7 @@ La probabilité de choisir une source $k$ par une ouvrière est elle définie co
       avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
       respectivement le minimum et le maximum du critère $j$\;
       \vspace{1em}  % Add some space between two blocs
-      \AComment{Génération de la position opposée suivant Definition~\ref{def:oblm}}
+      \AComment{Génération de la position opposée suivant Définition~\ref{def:oblm}}
       $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
       avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieurs du critère
     }

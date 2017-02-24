@@ -37,7 +37,7 @@
 % Text font pack
 \usepackage[OT1, T1]{fontenc}              % .pdf Encoding spec
 \usepackage[utf8]{inputenc}                % .tex Encoding spec
-\usepackage[greek, french]{babel}          % language used
+\usepackage[greek, french, english]{babel}          % language used
 \usepackage{csquotes}                      % Ensure correct quote text
 \usepackage[dvipsnames, svgnames, table]{xcolor}  % Color support
 \usepackage{./Template/graphics_support}   % Image support
@@ -147,7 +147,6 @@
             commentsnumbered]{algorithm2e}
 % Comments
 \definecolor{commcolor}{HTML}{93a1a1}
-\definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
 \newcommand\commfont[1]{\footnotesize\ttfamily\textcolor{commcolor}{#1}}
 \SetCommentSty{commfont}
 \SetKwComment{AComment}{\#~}{}
@@ -265,7 +264,7 @@
     \todo[linecolor=orange,
           backgroundcolor=orange!25,
           bordercolor=orange,
-          #1]{#2}}
+          #1]{{!! \hfill #2 \hfill !!}}}
 \newcommandx{\ifix}[3][1=]{
     \texthl{#3}%
     \todo[linecolor=orange,
@@ -273,7 +272,7 @@
           bordercolor=orange,
           inline,
           size=\small,
-          #1]{#2}}
+          #1]{{!! \hfill #2 \hfill !!}}}
 
 % Note for part that need change
 \newcommandx{\mtodo}[2][1=]{
@@ -329,10 +328,26 @@
 % Others
 % ------------------------------------------------------------------------------
 % Bibliography support
+%   \parencite{bib_id} Add parenthesis (Name, year)
+%   \cite{bib_id}      Normal
+%   \citet{bib_id}     ??
 \usepackage[backend=biber,
-            style=authoryear,
+            maxcitenames=2,
+            maxbibnames=100,
+            style=apa,
+            sorting=nyt,
+            hyperref=true,
+            backref=true,
+            backrefstyle=none,
+            idemtracker=true,
             ]{biblatex}                           % Bibliography support
+
 \addbibresource{./Bibliographie/references.bib}   % Where to find bibliography
+
+\DeclareLanguageMapping{english}{english-apa}    % Match babel lang to biblatex apa style
+\DeclareLanguageMapping{french}{french-apa}      % Match babel lang to biblatex apa style
+\DeclareFieldFormat[article,periodical]{volume}{\mkbibparens{#1}}     % volume of a journal
+\DeclareFieldFormat[article, incollection, inproceedings]{pages}{#1}  % no p. for articles
 
 % Add table support
 \usepackage{booktabs}                             % Easy pro tables
@@ -361,7 +376,7 @@
 \definecolor{Subtitle}{HTML}{859900}
 \definecolor{emphase}{rgb}{0.9, 0.17, 0.31}
 \definecolor{BrownGreen}{HTML}{586E75}
-
+\definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
 % ------------------------------------------------------------------------------
 
 
