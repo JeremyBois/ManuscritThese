@@ -161,7 +161,7 @@ Il peut être formulé de la manière suivante dans le cas d’une minimisation 
   \end{aligned}
 \end{equation}
 Avec $\vec{x}$ représentant la valeur des $n$ variables de décisions et $\vec{f}(\vec{x})$
-l’ensemble des $M$ fonctions objectif.  $\vec{g}(\vec{x})$ et $\vec{g}(\vec{x})$ représente
+l’ensemble des $M$ fonctions objectif.  $\vec{g}(\vec{x})$ et $\vec{h}(\vec{x})$ représente
 respectivement les $J$ contraintes d’inégalité et $K$ contraintes d’égalité imposées au problème
 d’optimisation. L’optimisation multi-objectif est donc le processus qui cherche à améliorer la
 qualité des solutions en faisant varier la valeur des variables de décisions ($\vec{x}$).
@@ -738,16 +738,16 @@ On distingue 3 abeilles différentes :
   \item Les \emph{Onlookers} ou ouvrières : Elles assistent à la danse des butineuses
         et sélectionne ensuite une source. La sélection est aléatoire mais plus
         la source est de qualité (bonne danse de la butineuse) plus la probabilité
-        de la sélectionner est importante. Ces abeilles sont donc responsables
-        de l’exploitation.
+        de la sélectionner est importante.
+        Ces abeilles sont donc responsables de l’exploitation.
   \item Les \emph{Scouts} ou éclaireuses : Elles explorent aléatoirement à la recherche
         d’une source prometteuse et ramène cette information à la ruche. Ce mécanisme
         permet de diversifier la recherche. La quantité d’éclaireuses dans les ruches
         est estimé à 5/10\si{\percent} \parencite{Seeley1996}
 \end{itemize}
 
-L’Algorithm~\ref{alg:ABC_phases} décrit le processus itération qui permet d’améliorer
-les solutions optimales.
+
+L’Algorithm~\ref{alg:ABC_phases} décrit le principe de l’algorithme ABC original.
 \begin{algorithm}\label{alg:ABC_phases}
   \SetAlgoVlined
   \emph{Initialisation des sources (population) selon \eqref{eq:init_source}}\;
@@ -755,13 +755,12 @@ les solutions optimales.
   {
   \For{$i \leftarrow 0$ \KwTo $N$}
   {
-    \For{$j \leftarrow 0$ \KwTo $D$}
-    {
     \emph{Amélioration des sources par les butineuses avec une autre source $k$ \eqref{eq:update_source}}\;
-    \emph{Attribution des probabilités à chaque source en fonction de la qualité}\;
-    \emph{Amélioration des sources par les ouvrières avec une autre source $k$ \eqref{eq:update_source}}\;
+    \emph{Attribution des probabilités à chaque source en fonction de la qualité
+          \eqref{eq:attribution_prob_to_source}}\;
+    \emph{Amélioration des sources par les ouvrières avec une autre source $k$ \eqref{eq:update_source}
+          sélectionnée suivant les probabilités}\;
     \emph{Si la qualité de la source stagne réinitialiser sa position selon \eqref{eq:init_source}}\;
-    }
   }
   }
   \caption{Principe de l’algorithme ABC.}
@@ -771,6 +770,17 @@ les solutions optimales.
   x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min}) \\
 \end{equation}
 
+% Attribution des probabilités
+La probabilité de choisir une source $k$ par une ouvrière est elle définie comme:
+\begin{subequations}\label{eq:attribution_prob_to_source}
+  \begin{align}
+    prob_{k} = &\frac{Qualite(\vec{x}_{k})}{\sum_{i=1}^{NbrSources} Qualite(\vec{x}_{i})} \\[1em]
+    \shortintertext{avec}
+    Qualite(\vec{x}_{k}) = &\frac{Dominance(k)}{NbrSources}
+  \end{align}
+  Où \emph{Dominance(k)} est le nombre de source que la source $k$ domine.
+\end{subequations}
+
 \begin{equation}\label{eq:update_source}
   \check{x_{ij}} = x_{ij} + RandUniform(-1, 1) \times (x_{ij} - x_{kj}) \\
 \end{equation}
@@ -778,9 +788,9 @@ $x_{ij}$ étant la position d’une source $i$ ($i \in \{1, 2, \dotsc, N\}$) pou
 critère $j$ ($j \in \{1, 2, \dotsc, D\}$) et $x_{j}^{max}$ et $x_{j}^{min}$
 étant respectivement ces bornes maximales et minimales.
 
-Ces travaux portant sur l’optimisation multi-objectif, le lecteur souhaitant avoir
-plus d’information sur l’algorithme, son origine et/ou son fonctionnement pourra
-lire : \cite{Karaboga201221,Aboul-EllaHassanien2015}.
+
+Le lecteur souhaitant avoir plus d’information sur l’algorithme, son origine
+et/ou son fonctionnement pourra lire : \cite{Karaboga201221,Aboul-EllaHassanien2015}.
 % paragraph formulation (end)
 
 \paragraph{Extensions :} % (fold)
@@ -1050,6 +1060,7 @@ car il représente un bon compromis entre diversité et convergence.
 % subsubsection epsilon_dominance (end)
 
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Prise en compte des contraintes :} % (fold)
 \label{ssub:prise_en_compte_des_contraintes}
 Les problèmes multi-objectif dans le domaine de l’ingénierie sont souvent
@@ -1077,7 +1088,7 @@ la méthode sélectionnée ne devrait pas demandé un nombre plus important d’
 qui peuvent être très couteuses. \cite{Deb2000311} propose une méthode de
 sélection par tournoi dont les règles sont les suivantes :
 \begin{itemize}
-  \item Une solution sous contrainte est inférieure à une solution sans contrainte
+  \item Une solution avec contraintes est inférieure à une solution sans contraintes
   \item Si les deux solutions sont sans contraintes la solution dominante est préférée
   \item Si les deux solutions sont sous contraintes, la solution violant le moins les contraintes est préférée
 \end{itemize}
@@ -1086,75 +1097,291 @@ cas d’application (\mtodo{Ajouter des ref dans le bâtiment}). La méthode est
 très élitiste car les solutions non faisables sont toujours écartées durant la
 recherche.
 
+Dans ces travaux, une méthode adaptative moins élitiste est retenue. Adaptée
+aux problèmes multi-objectif par \cite{Woldesenbet20073077}, la méthode ne demande
+aucun paramétrage, et l’objectif modifié est calculé de la manière suivante :
+\begin{itemize}
+  \item Normaliser les objectifs selon \eqref{eq:norm_obj}
+  \item Normaliser les contraintes et les agréger pour former une unique contrainte selon \eqref{eq:norm_contrainte}
+  \item Calculer les objectifs modifiés par agrégation des contraintes et des objectifs selon \eqref{eq:calc_modif_obj}
+\end{itemize}
 
+\begin{align}\label{eq:norm_obj}
+  \tilde{f}_{i}(\vec{x}) &= \begin{cases}
+    \frac{f_{i}(\vec{x}) - min(f_{i}(\vec{x}))}{max(f_{i}(\vec{x})) - min(f_{i}(\vec{x}))} & \text{(minimisation)} \\ \\
+    1 - \left[\frac{f_{i}(\vec{x}) - min(f_{i}(\vec{x}))}{max(f_{i}(\vec{x})) - min(f_{i}(\vec{x}))}\right] & \text{(maximisation)} \\
+  \end{cases}
+\end{align}
+avec $f_{i}(\vec{x})$ la valeur de l’objectif $i$, pour la position $\vec{x}$ dans l’espace de décision.
+\iunsure{Détailler pourquoi différence entre max et min}
+
+\begin{equation}\label{eq:norm_contrainte}
+  v(\vec{x}) = \frac{1}{J+K} \sum_{j=1}^{J+K} \frac{g_{j}(\vec{x})}{max(g_{j}(\vec{x}))}
+\end{equation}
+avec $J$ le nombre de contraintes d’inégalités et $K$ le nombre de contrainte d’égalités
+transformées en contraintes d’inégalités. $g_{j}$ représente alors la fonction contrainte
+associée à la contrainte $j$ avec $g_{j} \geq 0$.
+
+\begin{equation}\label{eq:calc_modif_obj}
+  F_{i}(\vec{x}) = d_{i}(\vec{x}) + p_{i}(\vec{x})
+\end{equation}
+avec $d_{i}(\vec{x})$ calculé selon \eqref{eq:dist_obj} et $ p_{i}(\vec{x})$ selon \eqref{eq:penalty_norm}.
+
+
+\begin{align}\label{eq:dist_obj}
+  d_{i}(\vec{x}) = \begin{cases}
+                          v(\vec{x})                                     & \qquad si\  r_{f} = 0 \\
+                          \sqrt{v(\vec{x})^2 + \tilde{f}_{i}(\vec{x})^2} & \qquad sinon          \\
+                    \end{cases}
+\end{align}
+\begin{equation}\label{eq:penalty_norm}
+  p_{i}(\vec{x}) = (1 - r_{f})  X(\vec{x}) + r_{f} Y_{i}(\vec{x}) \\
+\end{equation}
+
+\begin{align*}
+  \shortintertext{où} \\
+    r_{f} &= \frac{\text{Nombre de solution réalisables}}{\text{Taille de la population}} \\
+  \shortintertext{et} \\
+  X(\vec{x})     &= \begin{cases}
+                0,          \qquad     & si\  r_{f} = 0\\
+                v(\vec{x}), \qquad     & sinon\\
+                \end{cases} \\
+  Y_{i}(\vec{x}) &= \begin{cases}
+                    0,          \quad \qquad & \text{si} \ \forall j, \ g_{j}(\vec{x}) = 0\\
+                      \tilde{f}_{i}(\vec{x})  \\
+            \end{cases}\\
+\end{align*}
+
+L’algorithme s’adapte ainsi dynamiquement à la population et peut accepter des
+solutions ne respectant pas les contraintes. Plus il y a de solutions non
+réalisables dans la population, moins une solution ne respectant pas les contraintes à
+de chances d’être sélectionnée. L’approche permet d’améliorer l’exploration de
+l’espace de décision et ainsi de pouvoir trouver des solutions existantes même
+lorsque l’espace de faisabilité est faible.
+L’approche est donc retenue dans ces travaux mais uniquement utilisée lors de la mise à jour
+des solutions de la population. L’archive elle, n’accepte que des solutions respectant les
+contraintes.
+% subsubsection prise_en_compte_des_contraintes (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description globale de l’approche} % (fold)
+\label{ssub:description_globale_de_l_approche}
+Dans la section précédente, chaque élément utilisé dans l’algorithme a été détaillé.
+Les avantages et inconvénients des approches retenues ont aussi été explicité. Cette
+section est la mise en commun de l’ensemble des améliorations retenues permettant
+de construire le méta-heuristique MOABC utilisé dans ces travaux.
+
+L’algorithme multi-objectif ABC retenue peux être définie par Fig.~\ref{fig:abc_complet}.
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=10cm]{abc/algorithme_complet.pdf}
+    \end{center}
+    \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.
+             \label{fig:abc_complet}}
+\end{figure}
+
+Les sources sont initialisées (Algorithm~\ref{alg:init_phase}) suivant la méthode
+OBL (Définition~\ref{def:oblm}) afin d’obtenir une meilleure représentation du
+domaine de décision en amont de l’optimisation.
+Durant la phase des butineuses (Algorithm~\ref{alg:employed_phase}), chaque source
+subit une variation en tenant compte d’une source de l’archive et d’une autre source.
+Durant la phase des ouvrières (Algorithm~\ref{alg:onlooker_phase}), la qualité de chaque source \eqref{eq:attribution_prob_to_source}
+est utilisée afin d’exploiter les plus prometteuses.
+Finalement, si une source a subit le \emph{nombre maximum d’essai}
+alors une exploratrice (Algorithm~\ref{alg:scout_phase}) réinitialise sa position.
+Les phases des butineuses, des ouvrières, et des exploratrices sont ainsi répétées tant que
+la condition d’arrêt n’est pas atteinte. L’archive est mis à jour après chaque phase
+ne conservant que les meilleures solutions formant le front de Pareto.
 
 
 \itodo{Je suis ici !}
 
 
+% Phase d’initialisation
+\begin{algorithm}\label{alg:init_phase}
+  \SetAlgoVlined
+  \emph{Initialisation des sources sur l’ensemble de l’espace de décision}\;
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    \emph{Initialisation des critères pour chaque source}\;
+    \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+    {
+      \AComment{Génération aléatoire de la position initiale}
+      $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
+      avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
+      respectivement le minimum et le maximum du critère $j$\;
+      % \vspace{1em}  % Add some space between two blocs
+      \AComment{Génération de la position opposée suivant Définition~\ref{def:oblm}}
+      $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
+      avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieures du critère
+    }
+    \If{$\ASource_{i}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la source initial à l’archive}
+      $\AArchive \pluseq \ASource_{i}$\;
+    }
+    \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la source opposée à l’archive}
+      $\AArchive \pluseq \check{\ASource_{i}}$\;
+    }
+  }
+  \AComment{On ne conserve que une seule position par source}
+  Mise à jour des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Initialisation des sources par OBLM (Définition~\ref{def:oblm}).}
+\end{algorithm}
 
+% Maj des sources
+\begin{algorithm}\label{alg:maj_phase}
+  \SetAlgoVlined
+  Récupérer le maximum et minimum pour chaque objectif dans l’\AHive\;
+  Récupérer le maximum pour chaque contrainte dans l’\AHive\;
+  \For{$\ABee \in \ABees$}
+  {
+    Calcul du vecteur objectif pour l’\ABee ($\check{\vec{F}}$) et pour sa \ASource $i$ ($\vec{F}$),
+    respectivement aux positions $\check{\vec{x_{i}}}$ et $\vec{x_{i}}$
+    selon \eqref{eq:calc_modif_obj}\;
+    \For{$m \leftarrow 1$ \KwTo M}
+    {
+      \begin{algomathdisplay}
+      \begin{aligned}
+      \check{F}_{m} &= d_{m}(\check{\vec{x_{i}}}) + p_{m}(\check{\vec{x_{i}}}) \\
+      F_{m}         &= d_{m}(\vec{x_{i}}) + p_{m}(\vec{x_{i}}) \\
+      \end{aligned}
+      \end{algomathdisplay}
+    }
+    \If{$\check{\vec{x_{i}}} \succ \vec{x_{i}}$}
+    {
+      \AComment{Mise à jour de la \ASource à partir de l’\ABee}
+      $\ASource_{i} \leftarrow \ABee$\;
+      \AComment{On réinitialise le nombre d’essais pour la \ASource $i$}
+      $\ATrial_{i} \leftarrow 0$\;
+    }
+    \Else
+    {
+      \AComment{On incrémente le nombre d’essais pour la \ASource $i$}
+      $\ATrial_{i} \pluseq 1$\;
+    }
+  }
+  \caption{Mise à jour des \textbf{Sources} par les \textbf{Abeilles}}
+\end{algorithm}
 
-% \subsection{Prendre en compte les contraintes: quelle méthode ?} % (fold)
-% \label{sub:prendre_en_compte_les_contraintes_quelle_methode}
-% \itodo{Décrire les approches pour tacler les problèmes avec contraintes.
-%        Homorphous mapping, assimilation à un autre objectif (Voir Karaboga20113021)}
+% Phase des butineuses
+\begin{algorithm}\label{alg:employed_phase}
+  \SetAlgoVlined
+  \AComment{Exploration des sources par les \AEmployed}
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    Sélection aléatoire d’une source $k$ ($k \neq i$) dans l’\AArchive\;
+    Sélection aléatoire d’une source $p$ ($p \neq i$) dans la \APopulation\;
+    \vspace{1em}  % Add some space between two blocs
+    Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
+    position $\vec{x_{i}}$ de la \ASource $i$ pour chaque \AButineuse $i$\;
+    \If{$\ATirageA < \ARatio $ }
+      {
+      \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+      {
+      \begin{algomathdisplay}
+        \check{x_{ij}} =%
+          \begin{cases}
+            \begin{aligned}
+              x_{ij}  &+ 0.01 \times  \ALevy  &\times \ (x_{ij} - x_{pj})  \\
+                      &+ 0.01 \times |\ALevy| &\times \ (x_{kj} - x_{ij})  \\
+            \end{aligned} &\ \ATirageB < \AMR \\
+            x_{ij}        &\ sinon
+          \end{cases}
+      \end{algomathdisplay}
+      \ALevy est nombre aléatoire dans une distribution de Lévy
+      permettant de réaliser un vol de Lévy (Définition~\ref{def:vol_levy})\;
+      }
+      }
+    \Else
+      {
+      \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+      {
+      \begin{algomathdisplay}
+        \check{x_{ij}} =%
+          \begin{cases}
+            \begin{aligned}
+              x_{ij}  &+ RandUniform(-1, 1)   &\times \ (x_{ij} - x_{pj})  \\
+                      &+ RandUniform(0, 1)    &\times \ (x_{kj} - x_{ij})  \\
+            \end{aligned} &\ \ATirageB < \AMR \\
+            x_{ij}        &\ sinon
+          \end{cases}
+      \end{algomathdisplay}
+      }
+      }
+      Où \ARatio est la probabilité de réaliser un vol de Lévy (fixée à 0,5), et \AMR la probabilité
+      de réaliser une modification (fixée à 0,8). \ATirageA et \ATirageB étant des nombres aléatoires
+      (entre 0 et 1) tirés dans une distribution uniforme\;
+    \vspace{1em}  % Add some space between two blocs
+    Évaluation des objectifs pour la nouvelle position $\check{\vec{x_{i}}}$\;
+    \If{$\AButineuse_{i}$ respecte toutes les contraintes}
+    {
+      \AComment{On ajoute la nouvelle source à l’archive}
+      $\AArchive \pluseq \AButineuse_{i}$\;
+    }
+  }
+  \AComment{On ne conserve que une seule position par source}
+  Mise à jour de la position des \ASources d’après Algorithme~\ref{alg:maj_phase}\;
+  \caption{Phase des butineuses.}
+\end{algorithm}
 
-% De nombreuses améliorations ont été proposées pour améliorer la vitesse de convergence
-% vers le ou les optimaux tout en évitant les optimums locaux. Cependant dans certaines
-% optimisation les objectifs sont dépendant de contraintes. Dans certaines conditions, il
-% est possible de résoudre ce problème de contrainte en bornant les variables à des solutions
-% réalisables mais ce n’est pas toujours possible. Lorsque ces contraintes ne peuvent pas être vérifiées
-% en amont de l’optimisation, il faut alors en tenir compte durant ce processus à l’aide
-% de méthode plus ou moins complexes.
+% Phase des ouvrières
+\begin{algorithm}\label{alg:onlooker_phase}
+  \SetAlgoVlined
+  \AComment{Exploitation des sources par les \AOnlookers}
+  \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
+  \For{$\AOuvriere \in \AOnlookers$}
+    {
+      Sélection aléatoire d’une \ASource $i$ selon la probabilité
+      définie par l’équation \eqref{eq:attribution_prob_to_source}\;
+      Sélection aléatoire d’une source $k$ ($k \neq i$) dans l’\AArchive\;
+      Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
+      position $\vec{x_{i}}$ de la \ASource $i$\;
+      \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+      {
+      \begin{algomathdisplay}
+        \check{x_{ij}} =%
+          \begin{cases}
+            x_{ij}  + RandUniform(-1, 1)   \times \ (x_{ij} - x_{kj}) &\ \ATirageB < \AMR \\
+            x_{ij}                                                    &\ sinon
+          \end{cases}
+      \end{algomathdisplay}
+      }
+      Où \AMR est la probabilité de réaliser une modification (fixée à 0,5) et
+      \ATirageB un nombre aléatoire entre 0 et 1\;
+      \If{\AOuvriere respecte toutes les contraintes}
+      {
+        \AComment{Ajout de la solution trouvée par l’\AOuvriere à l’archive}
+        $\AArchive \pluseq \AOuvriere$\;
+      }
+    }
 
-% La pénalité est l’approche la plus souvent retenue .
-% Cette approche demande la définition d’un facteur de pénalité qui doit être définie
-% avec précision pour pouvoir converger vers le/les solutions optimales qui respectent les
-% contraintes. Ce paramètre est dit: (i) statique si la pénalité est la somme pondérée des contraintes,
-% (ii) dynamique si le nombre d’itération influence le paramètre, (iii) adaptatif si l’information de la
-% recherche aide à sa détermination \parencite{Woldesenbet20073077}.
-% Enfin il est important de noter que une solution respectant toutes les contraintes sera toujours préférée
-% à une solution violant des contraintes même si l’évaluation des objectifs est meilleur. Il peut ainsi être
-% difficile d’atteindre certaines optimums\mtodo{Ceux qui sont entourés de violeur de contraintes} particulièrement
-% dans un espace de solutions faisables limitée.
-% \cite{Tsai201480} l’utilise avec deux essaims d’abeilles respectant respectivement l’algorithme
-% ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
-% qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
-% utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement
-% \parencite{Deb2000311}\mtodo{Lire cet article !!} comme les approches plus classiques de pénalité.
-% \\
+  \AComment{On ne conserve que une seule position par source}
+  Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithme~\ref{alg:maj_phase}\;
+  \caption{Phase des ouvrières.}
+\end{algorithm}
 
-% \cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
-% déterministe permettant d’accepter des solutions infaisables. La probabilité de sélectionner une solution
-% seulement sur la performance des fonctions objectifs évolue est un paramètre adaptatif. Si durant une
-% certaine intervalle la déviation moyenne évolue faiblement alors la probabilité de pouvoir sélectionner
-% une solution uniquement sur optimalité des objectifs augmente et inversement.
+% Phase des éclaireuses
+\begin{algorithm}\label{alg:scout_phase}
+  \SetAlgoVlined
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    \If{$\ATrial_{i} > \AMaxTrial$ }
+    {
+      \AComment{Exploration par les \AScouts}
+      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}
+      (lignes 4 à 16)\;
+    }
+  }
+  \AComment{On conserve la meilleure solution parmi les deux nouvelles}
+  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Phase des éclaireuses.}
+\end{algorithm}
 
-
-% \cite{Woldesenbet20073077} propose aussi une méthode ne demandant pas de paramètres supplémentaires
-% qui doivent être déterminé empiriquement. La première étape est de normalisé les objectifs et contraintes
-% grâce aux minimums et maximums à chaque itération. Ensuite une distance $d_{i}$ est
-% évaluée et la distance minimale est conservée. Soit $\tilde{f}$ respectivement la fonction objectif $i$ normalisée
-% et la somme des contraintes normalisées alors la distance s’écrit:
-% \begin{align}\label{eq:distance_measure}
-%     d_{i} = \begin{cases}
-%                 v(x),                               \qquad & if\  r_{f} = 0\\
-%                 \sqrt{\tilde{f}(x)^{2} + v(x)^{2}}, \qquad & otherwise\\
-%             \end{cases}
-% \end{align}
-% avec:
-% \begin{equation*}
-%     r_{f} = \frac{\text{Nbr de solutions faisable dans la population}}{\text{Taille de la population}}
-% \end{equation*}
-% Afin d’orienter la recherche vers un espace de solution faisables, une pénalité adaptative
-% est utilisé, $p_{i}(x)$, donnant un objectif final modifié de la forme: $F_{i}(x) = d_{i}(x) + p_{i}(x)$.
-% La population peut ainsi accepter des solutions ne respectant pas les contraintes mais
-% l’archive (optimisation multi-objectifs) elle n’accepte que des solutions faisables.
-
-
-
-
-% subsubsection prise_en_compte_des_contraintes (end)
+% subsubsection description_globale_de_l_approche (end)
 % section construction_d_un_meta_heuristique_adapte (end)
 
 
@@ -1770,251 +1997,252 @@ recherche.
 % % subsection ameliorer_l_exploration_et_l_exploitation (end)
 
 
-% ------------------------------------------------------------------------------
-\subsection{Prendre en compte les contraintes: quelle méthode ?} % (fold)
-\label{sub:prendre_en_compte_les_contraintes_quelle_methode}
-\itodo{Décrire les approches pour tacler les problèmes avec contraintes.
-       Homorphous mapping, assimilation à un autre objectif (Voir Karaboga20113021)}
+% % ------------------------------------------------------------------------------
+% \subsection{Prendre en compte les contraintes: quelle méthode ?} % (fold)
+% \label{sub:prendre_en_compte_les_contraintes_quelle_methode}
+% \itodo{Décrire les approches pour tacler les problèmes avec contraintes.
+%        Homorphous mapping, assimilation à un autre objectif (Voir Karaboga20113021)}
 
-De nombreuses améliorations ont été proposées pour améliorer la vitesse de convergence
-vers le ou les optimaux tout en évitant les optimums locaux. Cependant dans certaines
-optimisation les objectifs sont dépendant de contraintes. Dans certaines conditions, il
-est possible de résoudre ce problème de contrainte en bornant les variables à des solutions
-réalisables mais ce n’est pas toujours possible. Lorsque ces contraintes ne peuvent pas être vérifiées
-en amont de l’optimisation, il faut alors en tenir compte durant ce processus à l’aide
-de méthode plus ou moins complexes.
+% De nombreuses améliorations ont été proposées pour améliorer la vitesse de convergence
+% vers le ou les optimaux tout en évitant les optimums locaux. Cependant dans certaines
+% optimisation les objectifs sont dépendant de contraintes. Dans certaines conditions, il
+% est possible de résoudre ce problème de contrainte en bornant les variables à des solutions
+% réalisables mais ce n’est pas toujours possible. Lorsque ces contraintes ne peuvent pas être vérifiées
+% en amont de l’optimisation, il faut alors en tenir compte durant ce processus à l’aide
+% de méthode plus ou moins complexes.
 
-La pénalité est l’approche la plus souvent retenue \parencite{EfrEnMezura-Montes2003}\munsure{Peut être mettre un vrai article ?}).
-Cette approche demande la définition d’un facteur de pénalité qui doit être définie
-avec précision pour pouvoir converger vers le/les solutions optimales qui respectent les
-contraintes. Ce paramètre est dit: (i) statique si la pénalité est la somme pondérée des contraintes,
-(ii) dynamique si le nombre d’itération influence le paramètre, (iii) adaptatif si l’information de la
-recherche aide à sa détermination \parencite{Woldesenbet20073077}.
-Enfin il est important de noter que une solution respectant toutes les contraintes sera toujours préférée
-à une solution violant des contraintes même si l’évaluation des objectifs est meilleur. Il peut ainsi être
-difficile d’atteindre certaines optimums\mtodo{Ceux qui sont entourés de violeur de contraintes} particulièrement
-dans un espace de solutions faisables limitée.
-\cite{Tsai201480} l’utilise avec deux essaims d’abeilles respectant respectivement l’algorithme
-ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
-qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
-utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement
-\parencite{Deb2000311}\mtodo{Lire cet article !!} comme les approches plus classiques de pénalité.
-\\
+% La pénalité est l’approche la plus souvent retenue \parencite{EfrEnMezura-Montes2003}\munsure{Peut être mettre un vrai article ?}).
+% Cette approche demande la définition d’un facteur de pénalité qui doit être définie
+% avec précision pour pouvoir converger vers le/les solutions optimales qui respectent les
+% contraintes. Ce paramètre est dit: (i) statique si la pénalité est la somme pondérée des contraintes,
+% (ii) dynamique si le nombre d’itération influence le paramètre, (iii) adaptatif si l’information de la
+% recherche aide à sa détermination \parencite{Woldesenbet20073077}.
+% Enfin il est important de noter que une solution respectant toutes les contraintes sera toujours préférée
+% à une solution violant des contraintes même si l’évaluation des objectifs est meilleur. Il peut ainsi être
+% difficile d’atteindre certaines optimums\mtodo{Ceux qui sont entourés de violeur de contraintes} particulièrement
+% dans un espace de solutions faisables limitée.
+% \cite{Tsai201480} l’utilise avec deux essaims d’abeilles respectant respectivement l’algorithme
+% ABC et l’algorithme Bee Algorithm (BA) avec une population ajustée dynamiquement ou encore \cite{Karaboga20113021}
+% qui autorise des solutions ne respectant pas les contraintes à être ajoutées à la population. Ce dernier
+% utilise une facteur de pénalité déterminer dynamiquement évitant sa détermination empiriquement
+% \parencite{Deb2000311}\mtodo{Lire cet article !!} comme les approches plus classiques de pénalité.
+% \\
 
-\cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
-déterministe permettant d’accepter des solutions infaisables. La probabilité de sélectionner une solution
-seulement sur la performance des fonctions objectifs évolue est un paramètre adaptatif. Si durant une
-certaine intervalle la déviation moyenne évolue faiblement alors la probabilité de pouvoir sélectionner
-une solution uniquement sur optimalité des objectifs augmente et inversement.
-
-
-\cite{Woldesenbet20073077} propose aussi une méthode ne demandant pas de paramètres supplémentaires
-qui doivent être déterminé empiriquement. La première étape est de normalisé les objectifs et contraintes
-grâce aux minimums et maximums à chaque itération. Ensuite une distance $d_{i}$ est
-évaluée et la distance minimale est conservée. Soit $\tilde{f}$ respectivement la fonction objectif $i$ normalisée
-et la somme des contraintes normalisées alors la distance s’écrit:
-\begin{align}\label{eq:distance_measure}
-    d_{i} = \begin{cases}
-                v(x),                               \qquad & if\  r_{f} = 0\\
-                \sqrt{\tilde{f}(x)^{2} + v(x)^{2}}, \qquad & otherwise\\
-            \end{cases}
-\end{align}
-avec:
-\begin{equation*}
-    r_{f} = \frac{\text{Nbr de solutions faisable dans la population}}{\text{Taille de la population}}
-\end{equation*}
-Afin d’orienter la recherche vers un espace de solution faisables, une pénalité adaptative
-est utilisé, $p_{i}(x)$, donnant un objectif final modifié de la forme: $F_{i}(x) = d_{i}(x) + p_{i}(x)$.
-La population peut ainsi accepter des solutions ne respectant pas les contraintes mais
-l’archive (optimisation multi-objectifs) elle n’accepte que des solutions faisables.
-% subsection prendre_en_compte_les_contraintes_quelle_methode (end)
+% \cite{EfrEnMezura-Montes2003} propose une méthode basée sur la sélection par tournoi binaire couplé à un mécanisme
+% déterministe permettant d’accepter des solutions infaisables. La probabilité de sélectionner une solution
+% seulement sur la performance des fonctions objectifs évolue est un paramètre adaptatif. Si durant une
+% certaine intervalle la déviation moyenne évolue faiblement alors la probabilité de pouvoir sélectionner
+% une solution uniquement sur optimalité des objectifs augmente et inversement.
 
 
-% ------------------------------------------------------------------------------
-\subsection{Vers un outil d’aide à la décision par optimisation multi-objectif} % (fold)
-\label{sub:vers_un_outil_d_aide_à_la_décision_par_optimisation_multi_objectif}
-\itodo{Ajouter une vision globale du processus d’optimisation sous forme de graphique
-      servant de résumé du chapitre.}
-
-L’algorithme ABC modifié (Fig.~\ref{fig:abc_modifie}) comprend les même phases que l’original. La différence réside
-dans le déroulement de ces phases. En effet plusieurs technique présentées ci-avant
-ont été implémentées afin d’améliorer l’exploitation et l’exploration de l’algorithme.
-Enfin une archive par $\epsilon$-dominance est utilisé pour maintenir les solutions
-non-dominées formant le front de Pareto. Cette archive est mise à jour après chaque
-évaluation contrairement aux sources qui ne sont mis à jour que après chaque phase.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=10cm, height=15cm]{abc/algorithme_complet.png}
-    \end{center}
-    \caption{Description globale de l’algorithme ABC modifié. Chaque phase renvois à un algorithme.
-             \label{fig:abc_modifie}}
-\end{figure}
-
-Dans un premier temps l’algorithme initialise l’archive grâce aux objectifs et aux valeurs
-d’epsilons puis la population est initialisé aléatoirement par OBL afin d’obtenir une meilleure diversité
-(Algorithm~\ref{alg:init_phase}). Ensuite on entre dans le processus itératif
-tant que la ou les conditions d’arrêts ne sont pas atteintes. Les différentes phases
-sont les suivantes: (i) Phase des butineuses (Algorithm~\ref{alg:employed_phase}) qui explore l’espace de décision avec des vols de
-Lévy, (ii) Phase des ouvrières (Algorithm~\ref{alg:onlooker_phase}) qui utilisent les informations acquises par les butineuses
-et améliorent les sources choisies \eqref{eq:attribution_prob_to_source}, (iii) Phase des éclaireuses
-(Algorithm~\ref{alg:scout_phase}) qui réinitialisent une source si elle est non fructueuse.
-La longueur du vol de Lévy est définie par:
-\begin{equation}\label{eq:levy_flight}
-  LevyFlight = scaleFactor \times stepLength \times RandUniform(0, 1)
-\end{equation}
-avec $stepLength$ définie par \eqref{eq:step_len} et $scaleFactor$ fixé à 0.01.\\
+% \cite{Woldesenbet20073077} propose aussi une méthode ne demandant pas de paramètres supplémentaires
+% qui doivent être déterminé empiriquement. La première étape est de normalisé les objectifs et contraintes
+% grâce aux minimums et maximums à chaque itération. Ensuite une distance $d_{i}$ est
+% évaluée et la distance minimale est conservée. Soit $\tilde{f}$ respectivement la fonction objectif $i$ normalisée
+% et la somme des contraintes normalisées alors la distance s’écrit:
+% \begin{align}\label{eq:distance_measure}
+%     d_{i} = \begin{cases}
+%                 v(x),                               \qquad & if\  r_{f} = 0\\
+%                 \sqrt{\tilde{f}(x)^{2} + v(x)^{2}}, \qquad & otherwise\\
+%             \end{cases}
+% \end{align}
+% avec:
+% \begin{equation*}
+%     r_{f} = \frac{\text{Nbr de solutions faisable dans la population}}{\text{Taille de la population}}
+% \end{equation*}
+% Afin d’orienter la recherche vers un espace de solution faisables, une pénalité adaptative
+% est utilisé, $p_{i}(x)$, donnant un objectif final modifié de la forme: $F_{i}(x) = d_{i}(x) + p_{i}(x)$.
+% La population peut ainsi accepter des solutions ne respectant pas les contraintes mais
+% l’archive (optimisation multi-objectifs) elle n’accepte que des solutions faisables.
+% % subsection prendre_en_compte_les_contraintes_quelle_methode (end)
 
 
-% Attribution des probabilités
-La probabilité de choisir une source $k$ par une ouvrière est elle définie comme:
-\begin{subequations}\label{eq:attribution_prob_to_source}
-  \begin{align}
-    prob_{k} = &\frac{Qualite(\vec{x}_{k})}{\sum_{i=1}^{NbrSources} Qualite(\vec{x}_{i})} \\[1em]
-    Qualite(\vec{x}_{k}) = &\frac{Dominance(k)}{NbrSources}
-  \end{align}
-  avec \emph{Dominance(k)} le nombre de source que la source $k$ domine, et \emph{Fitness}
-  la qualité de la source en tenant comptes des contraintes comme définies en.
-\end{subequations}
+% % ------------------------------------------------------------------------------
+% \subsection{Vers un outil d’aide à la décision par optimisation multi-objectif} % (fold)
+% \label{sub:vers_un_outil_d_aide_à_la_décision_par_optimisation_multi_objectif}
+% \itodo{Ajouter une vision globale du processus d’optimisation sous forme de graphique
+%       servant de résumé du chapitre.}
 
-% Phase d’initialisation
-\begin{algorithm}\label{alg:init_phase}
-  \SetAlgoVlined
-  \emph{Initialisation des sources sur l’ensemble de l’espace de décision}\;
-  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
-  {
-    \emph{Initialisation des critères pour chaque source}\;
-    \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
-    {
-      \AComment{Génération aléatoire de la position initiale}
-      $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
-      avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
-      respectivement le minimum et le maximum du critère $j$\;
-      \vspace{1em}  % Add some space between two blocs
-      \AComment{Génération de la position opposée suivant Définition~\ref{def:oblm}}
-      $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
-      avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieurs du critère
-    }
-    \If{$\ASource_{i}$ respecte toutes les contraintes}
-    {
-      \AComment{On ajoute la source initial à l’archive}
-      $\AArchive \pluseq \ASource_{i}$\;
-    }
-    \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
-    {
-      \AComment{On ajoute la source opposée à l’archive}
-      $\AArchive \pluseq \check{\ASource_{i}}$\;
-    }
-  }
-  \AComment{On ne conserve que une seule position par source}
-  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Initialisation des sources par OBLM (Opposite-Based Learning Method).}
-\end{algorithm}
+% L’algorithme ABC modifié (Fig.~\ref{fig:abc_modifie}) comprend les même phases que l’original. La différence réside
+% dans le déroulement de ces phases. En effet plusieurs technique présentées ci-avant
+% ont été implémentées afin d’améliorer l’exploitation et l’exploration de l’algorithme.
+% Enfin une archive par $\epsilon$-dominance est utilisé pour maintenir les solutions
+% non-dominées formant le front de Pareto. Cette archive est mise à jour après chaque
+% évaluation contrairement aux sources qui ne sont mis à jour que après chaque phase.
 
-% Maj des sources
-\begin{algorithm}\label{alg:maj_phase}
-  \SetAlgoVlined
-  Récupérer le maximum et minimum pour chaque objectif\;
-  Récupérer le maximum pour chaque contrainte\;
-  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
-  {
-    Normaliser les objectifs et les contraintes avec ()\;
-    Calculer la valeur de distance $\vec{d_{i}}$ en utilisant \eqref{eq:distance_measure}\;
-    Calculer la pénalité $\vec{p_{i}}$ d’après ()\;
-    \AComment{Attribuer les nouvelles valeurs d’objectifs aux sources}
-    $\vec{F_{i}} = \vec{d_{i}} + \vec{p_{i}}$\;
-    \If{$\check{\vec{F_{i}}} \succ \vec{F_{i}}$}
-    {
-      \AComment{On remplace la position de la source par la nouvelle}
-      $\vec{x_{i}} \leftarrow \check{\vec{x_{i}}}$\;
-      \AComment{On réinitialise le nombre d’échec pour la source $i$}
-      $\ATrial_{i} \leftarrow 0$\;
-    }
-    \Else
-    {
-      \AComment{On incrémente le nombre d’échec pour la source $i$}
-      $\ATrial_{i} \pluseq 1$\;
-    }
-    avec $\vec{F_{i}}$, $\check{\vec{F_{i}}}$ respectivement les vecteurs objectifs
-    normalisés pour l’ancienne et la nouvelle position.\;
-  }
-  \caption{Mise à jour des sources}
-\end{algorithm}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=10cm, height=15cm]{abc/algorithme_complet.png}
+%     \end{center}
+%     \caption{Description globale de l’algorithme ABC modifié. Chaque phase renvois à un algorithme.
+%              \label{fig:abc_modifie}}
+% \end{figure}
 
-% Phase des butineuses
-\begin{algorithm}\label{alg:employed_phase}
-  \SetAlgoVlined
-  \AComment{Exploration des sources par les \AEmployed}
-  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
-  {
-    Sélection aléatoire d’une source $k$ dans l’\AArchive\;
-    \AComment{Génération d’une nouvelle position pour la \ASource $i$}
-    \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
-    {
-      \begin{algomathdisplay}
-        \check{x_{ij}} =%
-          \begin{cases}
-            x_{ij} + \ALevyFlight_{ij} \times (x_{ij} - x_{kj}) &\ \ATirage < \AMR \\
-            x_{ij}                                      &\ sinon
-          \end{cases}
-      \end{algomathdisplay}
-      avec \ATirage un nombre aléatoire uniforme (entre 0 et 1),
-      \AMR un paramètre contrôlant le nombre de modifications
-      et \ALevyFlight définie par \eqref{eq:levy_flight}\;
-    }
-    \If{aucun critère n’a été modifié}
-      {
-        \AComment{Sélection aléatoire d’un critère $j$ à mettre à jour}
-        $\check{x_{ij}} = x_{ij} + \ALevyFlight_{ij} \times (x_{ij} - x_{kj})$\;
-      }
-    \If{$\ASource_{i}$ respecte toutes les contraintes}
-    {
-      \AComment{On ajoute la source initial à l’archive}
-      $\AArchive \pluseq \ASource_{i}$\;
-    }
-    \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
-    {
-      \AComment{On ajoute la source opposée à l’archive}
-      $\AArchive \pluseq \check{\ASource_{i}}$\;
-    }
-  }
-  \AComment{On ne conserve que une seule position par source}
-  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Phase des butineuses.}
-\end{algorithm}
+% Dans un premier temps l’algorithme initialise l’archive grâce aux objectifs et aux valeurs
+% d’epsilons puis la population est initialisé aléatoirement par OBL afin d’obtenir une meilleure diversité
+% (Algorithm~\ref{alg:init_phase}). Ensuite on entre dans le processus itératif
+% tant que la ou les conditions d’arrêts ne sont pas atteintes. Les différentes phases
+% sont les suivantes: (i) Phase des butineuses (Algorithm~\ref{alg:employed_phase}) qui explore l’espace de décision avec des vols de
+% Lévy, (ii) Phase des ouvrières (Algorithm~\ref{alg:onlooker_phase}) qui utilisent les informations acquises par les butineuses
+% et améliorent les sources choisies \eqref{eq:attribution_prob_to_source}, (iii) Phase des éclaireuses
+% (Algorithm~\ref{alg:scout_phase}) qui réinitialisent une source si elle est non fructueuse.
 
-% Phase des ouvrières
-\begin{algorithm}\label{alg:onlooker_phase}
-  \SetAlgoVlined
-  \AComment{Exploitation des sources par les \AOnlookers}
-  \For{$\ABee \in \AOnlookers$}
-    {
-      Sélection aléatoire d’une \ASource $i$ selon la probabilité
-      définie par l’équation \eqref{eq:attribution_prob_to_source} (Sélection par roulette)\;
-      Génération d’une nouvelle position pour la \ASource $i$ selon Algorithm~\ref{alg:employed_phase}
-      (lignes 3 à 16)\;
-    }
-  \AComment{On ne conserve que une seule position par source}
-  \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
-  Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Phase des ouvrières.}
-\end{algorithm}
+% La longueur du vol de Lévy est définie par:
+% \begin{equation}\label{eq:levy_flight}
+%   LevyFlight = scaleFactor \times stepLength \times RandUniform(0, 1)
+% \end{equation}
+% avec $stepLength$ définie par \eqref{eq:step_len} et $scaleFactor$ fixé à 0.01.\\
 
-% Phase des éclaireuses
-\begin{algorithm}\label{alg:scout_phase}
-  \SetAlgoVlined
-  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
-  {
-    \If{$\ATrial_{i} > \AMaxTrial$ }
-    {
-      \AComment{Exploration par les \AScouts}
-      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}
-      (lignes 4 à 16)\;
-    }
-  }
-  \AComment{On conserve la meilleure solution parmi les deux nouvelles}
-  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Phase des éclaireuses.}
-\end{algorithm}
-% subsection vers_un_outil_d_aide_à_la_décision_par_optimisation_multi_objectif (end)
-% section construction_d_un_outil_d_aide_à_la_decision (end)
+
+% % Attribution des probabilités
+% La probabilité de choisir une source $k$ par une ouvrière est elle définie comme:
+% \begin{subequations}\label{eq:attribution_prob_to_source}
+%   \begin{align}
+%     prob_{k} = &\frac{Qualite(\vec{x}_{k})}{\sum_{i=1}^{NbrSources} Qualite(\vec{x}_{i})} \\[1em]
+%     Qualite(\vec{x}_{k}) = &\frac{Dominance(k)}{NbrSources}
+%   \end{align}
+%   avec \emph{Dominance(k)} le nombre de source que la source $k$ domine, et \emph{Fitness}
+%   la qualité de la source en tenant comptes des contraintes comme définies en.
+% \end{subequations}
+
+% % Phase d’initialisation
+% \begin{algorithm}\label{alg:init_phase}
+%   \SetAlgoVlined
+%   \emph{Initialisation des sources sur l’ensemble de l’espace de décision}\;
+%   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+%   {
+%     \emph{Initialisation des critères pour chaque source}\;
+%     \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+%     {
+%       \AComment{Génération aléatoire de la position initiale}
+%       $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
+%       avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
+%       respectivement le minimum et le maximum du critère $j$\;
+%       \vspace{1em}  % Add some space between two blocs
+%       \AComment{Génération de la position opposée suivant Définition~\ref{def:oblm}}
+%       $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
+%       avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieurs du critère
+%     }
+%     \If{$\ASource_{i}$ respecte toutes les contraintes}
+%     {
+%       \AComment{On ajoute la source initial à l’archive}
+%       $\AArchive \pluseq \ASource_{i}$\;
+%     }
+%     \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
+%     {
+%       \AComment{On ajoute la source opposée à l’archive}
+%       $\AArchive \pluseq \check{\ASource_{i}}$\;
+%     }
+%   }
+%   \AComment{On ne conserve que une seule position par source}
+%   Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+%   \caption{Initialisation des sources par OBLM (Opposite-Based Learning Method).}
+% \end{algorithm}
+
+% % Maj des sources
+% \begin{algorithm}\label{alg:maj_phase}
+%   \SetAlgoVlined
+%   Récupérer le maximum et minimum pour chaque objectif\;
+%   Récupérer le maximum pour chaque contrainte\;
+%   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+%   {
+%     Normaliser les objectifs et les contraintes avec ()\;
+%     Calculer la valeur de distance $\vec{d_{i}}$ en utilisant \eqref{eq:distance_measure}\;
+%     Calculer la pénalité $\vec{p_{i}}$ d’après ()\;
+%     \AComment{Attribuer les nouvelles valeurs d’objectifs aux sources}
+%     $\vec{F_{i}} = \vec{d_{i}} + \vec{p_{i}}$\;
+%     \If{$\check{\vec{F_{i}}} \succ \vec{F_{i}}$}
+%     {
+%       \AComment{On remplace la position de la source par la nouvelle}
+%       $\vec{x_{i}} \leftarrow \check{\vec{x_{i}}}$\;
+%       \AComment{On réinitialise le nombre d’échec pour la source $i$}
+%       $\ATrial_{i} \leftarrow 0$\;
+%     }
+%     \Else
+%     {
+%       \AComment{On incrémente le nombre d’échec pour la source $i$}
+%       $\ATrial_{i} \pluseq 1$\;
+%     }
+%     avec $\vec{F_{i}}$, $\check{\vec{F_{i}}}$ respectivement les vecteurs objectifs
+%     normalisés pour l’ancienne et la nouvelle position.\;
+%   }
+%   \caption{Mise à jour des sources}
+% \end{algorithm}
+
+% % Phase des butineuses
+% \begin{algorithm}\label{alg:employed_phase}
+%   \SetAlgoVlined
+%   \AComment{Exploration des sources par les \AEmployed}
+%   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+%   {
+%     Sélection aléatoire d’une source $k$ dans l’\AArchive\;
+%     \AComment{Génération d’une nouvelle position pour la \ASource $i$}
+%     \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+%     {
+%       \begin{algomathdisplay}
+%         \check{x_{ij}} =%
+%           \begin{cases}
+%             x_{ij} + \ALevyFlight_{ij} \times (x_{ij} - x_{kj}) &\ \ATirage < \AMR \\
+%             x_{ij}                                      &\ sinon
+%           \end{cases}
+%       \end{algomathdisplay}
+%       avec \ATirage un nombre aléatoire uniforme (entre 0 et 1),
+%       \AMR un paramètre contrôlant le nombre de modifications
+%       et \ALevyFlight définie par \eqref{eq:levy_flight}\;
+%     }
+%     \If{aucun critère n’a été modifié}
+%       {
+%         \AComment{Sélection aléatoire d’un critère $j$ à mettre à jour}
+%         $\check{x_{ij}} = x_{ij} + \ALevyFlight_{ij} \times (x_{ij} - x_{kj})$\;
+%       }
+%     \If{$\ASource_{i}$ respecte toutes les contraintes}
+%     {
+%       \AComment{On ajoute la source initial à l’archive}
+%       $\AArchive \pluseq \ASource_{i}$\;
+%     }
+%     \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
+%     {
+%       \AComment{On ajoute la source opposée à l’archive}
+%       $\AArchive \pluseq \check{\ASource_{i}}$\;
+%     }
+%   }
+%   \AComment{On ne conserve que une seule position par source}
+%   Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+%   \caption{Phase des butineuses.}
+% \end{algorithm}
+
+% % Phase des ouvrières
+% \begin{algorithm}\label{alg:onlooker_phase}
+%   \SetAlgoVlined
+%   \AComment{Exploitation des sources par les \AOnlookers}
+%   \For{$\ABee \in \AOnlookers$}
+%     {
+%       Sélection aléatoire d’une \ASource $i$ selon la probabilité
+%       définie par l’équation \eqref{eq:attribution_prob_to_source} (Sélection par roulette)\;
+%       Génération d’une nouvelle position pour la \ASource $i$ selon Algorithm~\ref{alg:employed_phase}
+%       (lignes 3 à 16)\;
+%     }
+%   \AComment{On ne conserve que une seule position par source}
+%   \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
+%   Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithm~\ref{alg:maj_phase}\;
+%   \caption{Phase des ouvrières.}
+% \end{algorithm}
+
+% % Phase des éclaireuses
+% \begin{algorithm}\label{alg:scout_phase}
+%   \SetAlgoVlined
+%   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+%   {
+%     \If{$\ATrial_{i} > \AMaxTrial$ }
+%     {
+%       \AComment{Exploration par les \AScouts}
+%       Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}
+%       (lignes 4 à 16)\;
+%     }
+%   }
+%   \AComment{On conserve la meilleure solution parmi les deux nouvelles}
+%   Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+%   \caption{Phase des éclaireuses.}
+% \end{algorithm}
+% % subsection vers_un_outil_d_aide_à_la_décision_par_optimisation_multi_objectif (end)
+% % section construction_d_un_outil_d_aide_à_la_decision (end)
