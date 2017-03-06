@@ -1167,12 +1167,11 @@ contraintes.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Description globale de l’approche} % (fold)
 \label{ssub:description_globale_de_l_approche}
-Dans la section précédente, chaque élément utilisé dans l’algorithme a été détaillé.
-Les avantages et inconvénients des approches retenues ont aussi été explicité. Cette
-section est la mise en commun de l’ensemble des améliorations retenues permettant
-de construire le méta-heuristique MOABC utilisé dans ces travaux.
+Dans la section précédente, chaque élément utilisé dans l’algorithme a été détaillé et
+les avantages et inconvénients des approches retenues ont aussi été explicités.
+Dans cette section le fonctionnement global de la méthode approchée d’optimisation
+multi-objectif retenue est décrite.
 
-L’algorithme multi-objectif ABC retenue peux être définie par Fig.~\ref{fig:abc_complet}.
 \begin{figure}
     \begin{center}
         \includegraphics[width=10cm]{abc/algorithme_complet.pdf}
@@ -1181,50 +1180,74 @@ L’algorithme multi-objectif ABC retenue peux être définie par Fig.~\ref{fig:
              \label{fig:abc_complet}}
 \end{figure}
 
+L’algorithme peut être définie par Fig.~\ref{fig:abc_complet}.
 Les sources sont initialisées (Algorithm~\ref{alg:init_phase}) suivant la méthode
 OBL (Définition~\ref{def:oblm}) afin d’obtenir une meilleure représentation du
 domaine de décision en amont de l’optimisation.
 Durant la phase des butineuses (Algorithm~\ref{alg:employed_phase}), chaque source
-subit une variation en tenant compte d’une source de l’archive et d’une autre source.
-Durant la phase des ouvrières (Algorithm~\ref{alg:onlooker_phase}), la qualité de chaque source \eqref{eq:attribution_prob_to_source}
-est utilisée afin d’exploiter les plus prometteuses.
-Finalement, si une source a subit le \emph{nombre maximum d’essai}
-alors une exploratrice (Algorithm~\ref{alg:scout_phase}) réinitialise sa position.
-Les phases des butineuses, des ouvrières, et des exploratrices sont ainsi répétées tant que
-la condition d’arrêt n’est pas atteinte. L’archive est mis à jour après chaque phase
-ne conservant que les meilleures solutions formant le front de Pareto.
+subit une variation en tenant compte de deux sources, une de l’essaim et une de l’archive.
+Durant la phase des ouvrières (Algorithm~\ref{alg:onlooker_phase}), la qualité de
+chaque source \eqref{eq:attribution_prob_to_source} est utilisée afin de sélectionner
+et d’exploiter seulement les plus prometteuses. Finalement, si une source a subit le
+nombre maximum d’échec ($MaxEchec$) alors une exploratrice (Algorithm~\ref{alg:scout_phase})
+réinitialise sa position de manière aléatoire.
+Tant que la condition d’arrêt n’est pas atteinte, les phases des butineuses,
+des ouvrières, et des exploratrices sont répétées de manière cyclique. Au cours de
+la recherche les nouvelles sources sont ajoutées à l’archive qui seront ensuite utilisées
+comme élément d’apprentissage pour les butineuses et les ouvrières mais pas pour les
+exploratrices. Une fois la condition d’arrêt atteinte l’ensemble des solutions
+de l’archive forment le front de Pareto.
 
-
-\itodo{Je suis ici !}
+Dans l’optique de l’optimisation d’un modèle solaire développé sous Dymola, l’algorithme
+a été implémenté en \emph{Python} afin de faciliter le couplage avec la bibliothèque
+\emph{BuildingsPy} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
+la simulation de modèle \emph{Modelica} sous \emph{Dymola}. La bibliothèque est
+disponible sous le nom de \emph{pyMOABC} et comprend une architecture orientée objet.
+La bibliothèque implémente ainsi :
+\begin{itemize}
+  \item L’archive
+  \item La dominance au sens de Pareto
+  \item La prise en compte des contraintes suivant \cite{Woldesenbet20073077}
+  \item Une abstraction permettant de traiter de manière similaire les critères quantitatif et qualitatif.
+  \item Les sources et abeilles
+  \item L’algorithme tel que décrit dans ce chapitre
+  \item Une suite de fonctions test permettant d’évaluer la performance de l’approche
+\end{itemize}
 
 
 % Phase d’initialisation
 \begin{algorithm}\label{alg:init_phase}
   \SetAlgoVlined
-  \emph{Initialisation des sources sur l’ensemble de l’espace de décision}\;
+  \emph{Initialisation des \ASources sur l’ensemble de l’espace de décision}\;
   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
   {
     \emph{Initialisation des critères pour chaque source}\;
     \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
     {
-      \AComment{Génération aléatoire de la position initiale}
+      \encircle{a} \emph{Initialisation de la position de la $\ASource_{i}$ de manière aléatoire}\;
+      \Indp
       $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
+      \Indm
+      \BlankLine
+      \encircle{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est générée suivant Définition~\ref{def:oblm}}\;
+      \Indp
+      $ \check{x_{ij}} = x_{j}^{min} + x_{j}^{max} - x_{ij}$\;
+      \Indm
+      \BlankLine
+      \encircle{c} \emph{Évaluation de la $\ASource_{i}$ et de l’$\ABee_{i}$}\;
+      \BlankLine
       avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
       respectivement le minimum et le maximum du critère $j$\;
-      % \vspace{1em}  % Add some space between two blocs
-      \AComment{Génération de la position opposée suivant Définition~\ref{def:oblm}}
-      $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
-      avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieures du critère
     }
     \If{$\ASource_{i}$ respecte toutes les contraintes}
     {
       \AComment{On ajoute la source initial à l’archive}
       $\AArchive \pluseq \ASource_{i}$\;
     }
-    \If{$\check{\ASource_{i}}$ respecte toutes les contraintes}
+    \If{$\ABee_{i}$ respecte toutes les contraintes}
     {
       \AComment{On ajoute la source opposée à l’archive}
-      $\AArchive \pluseq \check{\ASource_{i}}$\;
+      $\AArchive \pluseq \ABee_{i}$\;
     }
   }
   \AComment{On ne conserve que une seule position par source}
@@ -1239,15 +1262,15 @@ ne conservant que les meilleures solutions formant le front de Pareto.
   Récupérer le maximum pour chaque contrainte dans l’\AHive\;
   \For{$\ABee \in \ABees$}
   {
-    Calcul du vecteur objectif pour l’\ABee ($\check{\vec{F}}$) et pour sa \ASource $i$ ($\vec{F}$),
+    Calcul du vecteur objectif pour l’\ABee ($\check{\vec{F}}_{i}$) et pour sa \ASource $i$ ($\vec{F}_{i}$),
     respectivement aux positions $\check{\vec{x_{i}}}$ et $\vec{x_{i}}$
     selon \eqref{eq:calc_modif_obj}\;
     \For{$m \leftarrow 1$ \KwTo M}
     {
       \begin{algomathdisplay}
       \begin{aligned}
-      \check{F}_{m} &= d_{m}(\check{\vec{x_{i}}}) + p_{m}(\check{\vec{x_{i}}}) \\
-      F_{m}         &= d_{m}(\vec{x_{i}}) + p_{m}(\vec{x_{i}}) \\
+      \check{F}_{im} &= d_{m}(\check{\vec{x_{i}}}) + p_{m}(\check{\vec{x_{i}}}) \\
+      F_{im}         &= d_{m}(\vec{x_{i}}) + p_{m}(\vec{x_{i}}) \\
       \end{aligned}
       \end{algomathdisplay}
     }
@@ -1270,14 +1293,15 @@ ne conservant que les meilleures solutions formant le front de Pareto.
 % Phase des butineuses
 \begin{algorithm}\label{alg:employed_phase}
   \SetAlgoVlined
+  \DontPrintSemicolon
   \AComment{Exploration des sources par les \AEmployed}
   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
   {
     Sélection aléatoire d’une source $k$ ($k \neq i$) dans l’\AArchive\;
-    Sélection aléatoire d’une source $p$ ($p \neq i$) dans la \APopulation\;
-    \vspace{1em}  % Add some space between two blocs
-    Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
-    position $\vec{x_{i}}$ de la \ASource $i$ pour chaque \AButineuse $i$\;
+    Sélection aléatoire d’une source $p$ ($p \neq i$) dans l’\AHive\;
+    \BlankLine
+    \encircle{a} \emph{Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la %
+                       position $\vec{x_{i}}$ pour la \AButineuse $i$}\;
     \If{$\ATirageA < \ARatio $ }
       {
       \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
@@ -1315,8 +1339,8 @@ ne conservant que les meilleures solutions formant le front de Pareto.
       Où \ARatio est la probabilité de réaliser un vol de Lévy (fixée à 0,5), et \AMR la probabilité
       de réaliser une modification (fixée à 0,8). \ATirageA et \ATirageB étant des nombres aléatoires
       (entre 0 et 1) tirés dans une distribution uniforme\;
-    \vspace{1em}  % Add some space between two blocs
-    Évaluation des objectifs pour la nouvelle position $\check{\vec{x_{i}}}$\;
+      \BlankLine
+    \encircle{b} \emph{Évaluation des objectifs pour la nouvelle position $\check{\vec{x_{i}}}$}\;
     \If{$\AButineuse_{i}$ respecte toutes les contraintes}
     {
       \AComment{On ajoute la nouvelle source à l’archive}
@@ -1331,6 +1355,7 @@ ne conservant que les meilleures solutions formant le front de Pareto.
 % Phase des ouvrières
 \begin{algorithm}\label{alg:onlooker_phase}
   \SetAlgoVlined
+  \DontPrintSemicolon
   \AComment{Exploitation des sources par les \AOnlookers}
   \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
   \For{$\AOuvriere \in \AOnlookers$}
@@ -1338,8 +1363,8 @@ ne conservant que les meilleures solutions formant le front de Pareto.
       Sélection aléatoire d’une \ASource $i$ selon la probabilité
       définie par l’équation \eqref{eq:attribution_prob_to_source}\;
       Sélection aléatoire d’une source $k$ ($k \neq i$) dans l’\AArchive\;
-      Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
-      position $\vec{x_{i}}$ de la \ASource $i$\;
+      \encircle{a} \emph{Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
+                         position $\vec{x_{i}}$ pour l’\AOuvriere }\;
       \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
       {
       \begin{algomathdisplay}
@@ -1350,8 +1375,12 @@ ne conservant que les meilleures solutions formant le front de Pareto.
           \end{cases}
       \end{algomathdisplay}
       }
-      Où \AMR est la probabilité de réaliser une modification (fixée à 0,5) et
+      \BlankLine
+      Avec \AMR est la probabilité de réaliser une modification (fixée à 0,5) et
       \ATirageB un nombre aléatoire entre 0 et 1\;
+      \BlankLine
+      \encircle{b} \emph{Évaluation des objectifs pour la nouvelle position $\check{\vec{x_{i}}}$}\;
+      \BlankLine
       \If{\AOuvriere respecte toutes les contraintes}
       {
         \AComment{Ajout de la solution trouvée par l’\AOuvriere à l’archive}
@@ -1372,16 +1401,25 @@ ne conservant que les meilleures solutions formant le front de Pareto.
     \If{$\ATrial_{i} > \AMaxTrial$ }
     {
       \AComment{Exploration par les \AScouts}
-      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}
-      (lignes 4 à 16)\;
+      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}\;
     }
   }
   \AComment{On conserve la meilleure solution parmi les deux nouvelles}
   Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
   \caption{Phase des éclaireuses.}
 \end{algorithm}
-
 % subsubsection description_globale_de_l_approche (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Validation par benchmarks} % (fold)
+\label{ssub:validation_par_benchmarks}
+
+
+
+\itodo{Je suis ici !}
+
+% subsubsection validation_par_benchmarks (end)
 % section construction_d_un_meta_heuristique_adapte (end)
 
 
@@ -2118,7 +2156,7 @@ ne conservant que les meilleures solutions formant le front de Pareto.
 %       $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
 %       avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
 %       respectivement le minimum et le maximum du critère $j$\;
-%       \vspace{1em}  % Add some space between two blocs
+      \BlankLine
 %       \AComment{Génération de la position opposée suivant Définition~\ref{def:oblm}}
 %       $ \check{x_{ij}} = a_{j} + b_{j} - x_{ij}$\;
 %       avec $a_{j}$, $b_{j}$ respectivement les bornes inférieures et supérieurs du critère

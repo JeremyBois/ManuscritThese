@@ -177,6 +177,12 @@
 \SetKwData{ATrial}{Echec}
 \SetKwData{AMaxTrial}{MaxEchec}
 
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)]
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+
 % ------------------------------------------------------------------------------
 % Notes support
 % ------------------------------------------------------------------------------
