@@ -175,7 +175,7 @@ l’espace de décision est multi dimensionnel.
 \label{par:relation_de_dominance}
 Afin de pouvoir classer et sélectionner les solutions en fonction de leur fonction
 objectif, il est nécessaire de définir une relation de dominance.
-L’approche la plus répandue étant la dominance au sens de Pareto.
+L’approche la plus répandue étant la dominance au sens de Pareto (Définition~\ref{def:dominance_de_pareto}).
 
 \begin{Def}[Dominance au sens de Pareto]\label{def:dominance_de_pareto}
 On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{x}_{b}$ si :
@@ -267,14 +267,14 @@ problème.
 \paragraph{Méthodes exactes} % (fold)
 \label{par:methodes_exactes}
 Ces méthodes regroupent un ensemble de sous-méthodes et ont en commun de caractériser
-l’ensemble des solutions. Elles sont cependant couteuses car un nombre très important
+l’ensemble des solutions. Elles sont cependant coûteuses car un nombre très important
 de simulations est requis. Une liste des principales méthodes adaptées aux problèmes
 multi-objectif est présenté ci-après.
 
 \subparagraph{Énumération exhaustive :} % (fold)
 \label{subp:enumeration_exhaustive}
 C’est l’approche la plus directe car elle ne nécessite pas de logique particulière.
-L’ensemble des solutions est évalué. Elle est donc trop couteuse pour des problèmes
+L’ensemble des solutions est évalué. Elle est donc trop coûteuse pour des problèmes
 à forte cardinalité.
 % subparagraph enumeration_exhaustive (end)
 
@@ -336,7 +336,7 @@ valeur de la distance permettant de construire rapidement le chemin optimal.
 Comme nous venons de le voir un heuristique est fortement lié au problème et doit tenir
 compte des contraintes propres au problème. Cependant dans l’optimisation multi-objectif combinatoire
 appliqué au bâtiment cette connaissance et souvent trop limité et l’utilisation
-d’un heuristique entrainerait un biais trop important dans la recherche de solutions.
+d’un heuristique entraînerait un biais trop important dans la recherche de solutions.
 
 Dans l’optique d’une formulation plus générale des méta-heuristiques ont été développés.
 Ces formulations utilise un processus stochastique couplée à des heuristiques afin de guider
@@ -349,7 +349,7 @@ suivante décrit de manière plus complète cette approche.
 \label{ssub:selection_d_une_methode_adaptee}
 L’algorithme A* n’est pas retenu car il nécessite la connaissance des optimums globaux.
 De plus compte tenu de la forte cardinalité de notre étude de cas les autres approches exactes
-sont trop couteuses et ne seront pas retenues.
+sont trop coûteuses et ne seront pas retenues.
 La connaissance limitée et la forte cardinalité du problème indique que l’utilisation
 de méta-heuristique est la méthode la plus adaptée à notre problème.
 % subsubsection selection_d_une_methode_adaptee (end)
@@ -362,41 +362,76 @@ de méta-heuristique est la méthode la plus adaptée à notre problème.
 \label{ssub:description}
 Les méta-heuristiques sont des approches générales utilisant des heuristiques
 couplés à une recherche stochastique permettant d’explorer un domaine de recherche
-en combinant exploration et exploitation. Ce processus est le plus souvent
-itératif.
+en combinant exploration (Définition~\ref{def:exploration}) et exploitation (Définition~\ref{def:exploitation})
+dans les bonnes proportions. Ce processus utilise ainsi souvent la mémoire et
+l’expérience acquise dans un processus itératif.
 
-\paragraph{Exploration :} % (fold)
-\label{par:exploration}
-Indicateur permettant de d’évaluer la capacité d’un méta-heuristique à explorer
-le domaine de décision. Plus l’exploration est forte plus grand est l’espace
-couvert.
-% paragraph exploration (end)
 
-\paragraph{Exploitation :} % (fold)
-\label{par:exploitation}
-Indicateur permettant d’évaluer la capacité d’un méta-heuristique à améliorer les
-solutions existantes. Plus l’exploitation est forte plus la convergence est rapide.
-Comme ces méthodes sont des méthodes approchées converger ne signifie par forcement
-converger vers le front de Pareto. Il est ainsi nécessaire de faire la distinction
-entre les optimums locaux et globaux.
-% paragraph exploitation (end)
+\begin{Def}[Exploration]\label{def:exploration}
+Caractérise la capacité d’un méta-heuristique à explorer le domaine de décision.
+Plus l’exploration est forte plus grand est l’espace couvert.
+\end{Def}
 
-\paragraph{Optimum :} % (fold)
-\label{par:optimum}
+\begin{Def}[Exploitation]\label{def:exploitation}
+Caractérise la capacité d’un méta-heuristique à améliorer les solutions existantes
+afin de s’approcher des solutions optimales. Plus l’exploitation est grande plus
+la convergence de l’algorithme est rapide au prix d’une moins bonne exploration
+de l’espace de définition.
+\end{Def}
+
+\begin{Def}[Convergence]\label{def:convergence}
+Dans le cas des méthodes approchées la convergence est caractériser par l’arrêt
+de l’amélioration des solutions existantes. Les méta-heuristiques étant des méthodes
+approchées, cette stagnation ne permet pas de conclure que le front de Pareto a été
+atteint, seulement que les solutions ne progressent plus. Il est ainsi nécessaire
+de faire la distinction entre les optimums dits locaux et ceux dits globaux.
+\end{Def}
+
+\begin{Def}[Optimum locaux et globaux]\label{def:optimum}
 Il existe deux types d’optimum : les locaux (fort ou faible) et les globaux.
 Un optimum est considéré comme local fort quand il domine l’ensemble des solutions
 du \emph{voisinage} et faible si il non-dominé dans ce voisinage (plusieurs
-optimum locaux existent). Un optimum est considéré comme global lorsque il domine
+optimum locaux identiques existent). Un optimum est considéré comme global lorsque il domine
 l’ensemble des solutions existantes dans le domaine de décision. Dans le cas d’une
 optimisation multi-objectif, l’ensemble des solutions du front de Pareto sont des
-optimum globaux.
-% paragraph optimum (end)
+optimum globaux formant la surface de compromis dans le respect de l’espace de
+décision.
+\end{Def}
+
+
+% \paragraph{Exploration :} % (fold)
+% \label{par:exploration}
+% Indicateur permettant de d’évaluer la capacité d’un méta-heuristique à explorer
+% le domaine de décision. Plus l’exploration est forte plus grand est l’espace
+% couvert.
+% % paragraph exploration (end)
+
+% \paragraph{Exploitation :} % (fold)
+% \label{par:exploitation}
+% Indicateur permettant d’évaluer la capacité d’un méta-heuristique à améliorer les
+% solutions existantes. Plus l’exploitation est forte plus la convergence est rapide.
+% Comme ces méthodes sont des méthodes approchées converger ne signifie par forcement
+% converger vers le front de Pareto. Il est ainsi nécessaire de faire la distinction
+% entre les optimums locaux et globaux.
+% % paragraph exploitation (end)
+
+% \paragraph{Optimum :} % (fold)
+% \label{par:optimum}
+% Il existe deux types d’optimum : les locaux (fort ou faible) et les globaux.
+% Un optimum est considéré comme local fort quand il domine l’ensemble des solutions
+% du \emph{voisinage} et faible si il non-dominé dans ce voisinage (plusieurs
+% optimum locaux existent). Un optimum est considéré comme global lorsque il domine
+% l’ensemble des solutions existantes dans le domaine de décision. Dans le cas d’une
+% optimisation multi-objectif, l’ensemble des solutions du front de Pareto sont des
+% optimum globaux.
+% % paragraph optimum (end)
+
 
 \paragraph{} % (fold)
 Il apparaît ainsi important pour un méta-heuristique d’être capable de réaliser
 un compromis entre exploitation et exploration afin d’augmenter les chances de
 converger vers le front de Pareto. Il existe de nombreux algorithmes dans la littérature
-et ils peuvent tous être classé comme faisant partie de l’Intelligence Artificielle (IA).
+et peuvent tous être classés dans la branche de l’Intelligence Artificielle (IA).
 La notion a été inventé par John McCarthy et Marvin Lee Minsky et ne cesse de s’améliorer
 dans de nombreux domaines comme le déplacement organisé en groupe (humains, oiseaux, poissons, ...)
 ou encore l’apprentissage et la réflexion. Deep Blue a ainsi été le premier programme
@@ -428,7 +463,7 @@ variations existent ayant leur point fort et leur point faible. L’algorithme
 SPEA2 par exemple améliore la diversité du front de Pareto grâce à une approche par
 clustering au prix d’une convergence plus lente \parencite{Zitzler2001}. À l’inverse
 l’algorithme PESA lui tant à améliorer la convergence au prix de la diversité des
-solutions du front final. Dans les applications liées au bâtiment, \cite{Rivallain2013}
+solutions du front final. Appliqué au bâtiment, \cite{Rivallain2013}
 a utilisé une méthode approchée (NSGA-II) et une exacte (programmation dynamique)
 pour identifier des programmes séquentiels efficaces de réhabilitation énergétique.
 Il a ainsi optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
@@ -445,11 +480,11 @@ les besoins d’une maison à énergie positive.
 Ces méthodes sont basées sur l’expérience du vivant et plus particulièrement de
 l’organisation au sein d’un groupe ou d’une colonie. Parmi les plus connus, il peut être
 cité l’algorithme de colonie de fourmis proposé à l’origine par \cite{Colorni1992509}
-et comme pour les algorithmes évolutionnaires de nombreuses variations ont été développées
-pour des problèmes multi-objectif \parencite{MichaelGuntsch2003,Shea2006627}.
+et comme pour les algorithmes évolutionnaires de nombreuses variations ont été proposées
+étendant l’application aux problèmes multi-objectif \parencite{MichaelGuntsch2003,Shea2006627}.
 Ces approches s’inspirent du comportement des colonies de fourmis où chaque individu
 explore une partie du domaine de décision laissant une trace de phéromone derrière lui.
-Chaque fourmis revient ensuite à la colonie est transmet les informations acquise.
+Chaque fourmis revient ensuite à la colonie et transmet les informations acquises.
 Une autre approche connus est l’algorithme PSO (Particule Swarm optimization) dont
 l’inspiration provient de l’observation des oiseaux volant de manière synchrone et
 pouvant changer brusquement de direction. Cette approche a été appliquée au domaine
@@ -1202,22 +1237,34 @@ Dans l’optique de l’optimisation d’un modèle solaire développé sous Dym
 a été implémenté en \emph{Python} afin de faciliter le couplage avec la bibliothèque
 \emph{BuildingsPy} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
 la simulation de modèle \emph{Modelica} sous \emph{Dymola}. La bibliothèque est
-disponible sous le nom de \emph{pyMOABC} et comprend une architecture orientée objet.
-La bibliothèque implémente ainsi :
+disponible sous le nom de \emph{pyMOABC} et implémente :
 \begin{itemize}
-  \item L’archive
-  \item La dominance au sens de Pareto
-  \item La prise en compte des contraintes suivant \cite{Woldesenbet20073077}
-  \item Une abstraction permettant de traiter de manière similaire les critères quantitatif et qualitatif.
-  \item Les sources et abeilles
-  \item L’algorithme tel que décrit dans ce chapitre
-  \item Une suite de fonctions test permettant d’évaluer la performance de l’approche
+  \item une $\epsilon$-archive et la box-dominance
+  \item la dominance au sens de Pareto
+  \item la prise en compte des contraintes suivant \cite{Woldesenbet20073077}
+  \item une interface commune permettant l’abstraction du type de variable (discrète, continue, qualitative)
+  \item une représentation des solutions (sources et abeilles)
+  \item l’algorithme tel que décrit dans ces travaux
+  \item une suite de test pour des optimisation avec ou sans contraintes
 \end{itemize}
 
+L’approche retenue contrairement à la majorité des méta-heuristiques est robuste et demande
+peu de paramètre à définir de manière empirique. En effet seul la taille de la population
+et le nombre d’essai maximum sont à définir. De plus la taille de la population
+n’impacte pas le nombre de solutions dans l’archive car le stockage est réalisé dans
+une structure indépendante. Il est aussi important de noter que ces deux paramètres
+on un comportement prévisible facilitant leur paramétrage. La
+taille de la population en augmentant améliore l’exploration réduisant le risque
+de se bloquer dans les optimums locaux mais réduit la vitesse de convergence (Définition~\ref{def:convergence}).
+Le nombre d’essai maximum lui est directement lié au nombre de critères variant
+dans l’espace de décision et à la taille de la population. Une valeur faible traduisant
+l’abandon rapide d’une solution. Ainsi on note clairement que la taille de la population
+impacte fortement l’exploration là où le nombre d’essai maximum impacte l’exploitation.
 
 % Phase d’initialisation
 \begin{algorithm}\label{alg:init_phase}
   \SetAlgoVlined
+  \DontPrintSemicolon
   \emph{Initialisation des \ASources sur l’ensemble de l’espace de décision}\;
   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
   {
@@ -1241,23 +1288,77 @@ La bibliothèque implémente ainsi :
     }
     \If{$\ASource_{i}$ respecte toutes les contraintes}
     {
-      \AComment{On ajoute la source initial à l’archive}
-      $\AArchive \pluseq \ASource_{i}$\;
+      $\AArchive \pluseq \ASource_{i}$ \AComment{On ajoute la source initial à l’archive}
     }
     \If{$\ABee_{i}$ respecte toutes les contraintes}
     {
-      \AComment{On ajoute la source opposée à l’archive}
-      $\AArchive \pluseq \ABee_{i}$\;
+      $\AArchive \pluseq \ABee_{i}$ \AComment{On ajoute la source opposée à l’archive}
     }
   }
-  \AComment{On ne conserve que une seule position par source}
   Mise à jour des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
   \caption{Initialisation des sources par OBLM (Définition~\ref{def:oblm}).}
+\end{algorithm}
+
+% Phase des éclaireuses
+\begin{algorithm}\label{alg:scout_phase}
+  \SetAlgoVlined
+  \DontPrintSemicolon
+  \AComment{Exploration par les \AScouts}
+  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
+  {
+    \If{$\ATrial_{i} > \AMaxTrial$ }
+    {
+      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}\;
+    }
+  }
+  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
+  \caption{Phase des éclaireuses.}
+\end{algorithm}
+
+
+% Phase des ouvrières
+\begin{algorithm}\label{alg:onlooker_phase}
+  \SetAlgoVlined
+  \DontPrintSemicolon
+  \AComment{Exploitation des sources par les \AOnlookers}
+  \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
+  \For{$\AOuvriere \in \AOnlookers$}
+    {
+      Sélection aléatoire d’une \ASource $i$ selon la probabilité
+      définie par l’équation \eqref{eq:attribution_prob_to_source}\;
+      Sélection aléatoire d’une source $k$ ($k \neq i$) dans l’\AArchive\;
+      \encircle{a} \emph{Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
+                         position $\vec{x_{i}}$ pour l’\AOuvriere }\;
+      \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
+      {
+      \begin{algomathdisplay}
+        \check{x_{ij}} =%
+          \begin{cases}
+            x_{ij}  + RandUniform(-1, 1)   \times \ (x_{ij} - x_{kj}) &\ \ATirageB < \AMR \\
+            x_{ij}                                                    &\ sinon
+          \end{cases}
+      \end{algomathdisplay}
+      }
+      \BlankLine
+      Avec \AMR est la probabilité de réaliser une modification (fixée à 0,5) et
+      \ATirageB un nombre aléatoire entre 0 et 1\;
+      \BlankLine
+      \encircle{b} \emph{Évaluation des objectifs pour la nouvelle position $\check{\vec{x_{i}}}$}\;
+      \BlankLine
+      \If{\AOuvriere respecte toutes les contraintes}
+      {
+        $\AArchive \pluseq \AOuvriere$ \AComment{Ajout de la solution trouvée par l’\AOuvriere à l’archive}
+      }
+    }
+
+  Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithme~\ref{alg:maj_phase}\;
+  \caption{Phase des ouvrières.}
 \end{algorithm}
 
 % Maj des sources
 \begin{algorithm}\label{alg:maj_phase}
   \SetAlgoVlined
+  \DontPrintSemicolon
   Récupérer le maximum et minimum pour chaque objectif dans l’\AHive\;
   Récupérer le maximum pour chaque contrainte dans l’\AHive\;
   \For{$\ABee \in \ABees$}
@@ -1276,15 +1377,14 @@ La bibliothèque implémente ainsi :
     }
     \If{$\check{\vec{x_{i}}} \succ \vec{x_{i}}$}
     {
-      \AComment{Mise à jour de la \ASource à partir de l’\ABee}
-      $\ASource_{i} \leftarrow \ABee$\;
-      \AComment{On réinitialise le nombre d’essais pour la \ASource $i$}
-      $\ATrial_{i} \leftarrow 0$\;
+
+      $\ASource_{i} \leftarrow \ABee$ \AComment{Mise à jour de la \ASource à partir de l’\ABee}
+
+      $\ATrial_{i} \leftarrow 0$ \AComment{On réinitialise le nombre d’essais pour la \ASource $i$}
     }
     \Else
     {
-      \AComment{On incrémente le nombre d’essais pour la \ASource $i$}
-      $\ATrial_{i} \pluseq 1$\;
+      $\ATrial_{i} \pluseq 1$ \AComment{On incrémente le nombre d’essais pour la \ASource $i$}
     }
   }
   \caption{Mise à jour des \textbf{Sources} par les \textbf{Abeilles}}
@@ -1352,74 +1452,48 @@ La bibliothèque implémente ainsi :
   \caption{Phase des butineuses.}
 \end{algorithm}
 
-% Phase des ouvrières
-\begin{algorithm}\label{alg:onlooker_phase}
-  \SetAlgoVlined
-  \DontPrintSemicolon
-  \AComment{Exploitation des sources par les \AOnlookers}
-  \AComment{Plusieurs \AOnlookers peuvent modifier la même source}
-  \For{$\AOuvriere \in \AOnlookers$}
-    {
-      Sélection aléatoire d’une \ASource $i$ selon la probabilité
-      définie par l’équation \eqref{eq:attribution_prob_to_source}\;
-      Sélection aléatoire d’une source $k$ ($k \neq i$) dans l’\AArchive\;
-      \encircle{a} \emph{Génération d’une nouvelle position $\check{\vec{x_{i}}}$ à partir de la
-                         position $\vec{x_{i}}$ pour l’\AOuvriere }\;
-      \For{$j \leftarrow 0$ \KwTo \ANbrCriteria}
-      {
-      \begin{algomathdisplay}
-        \check{x_{ij}} =%
-          \begin{cases}
-            x_{ij}  + RandUniform(-1, 1)   \times \ (x_{ij} - x_{kj}) &\ \ATirageB < \AMR \\
-            x_{ij}                                                    &\ sinon
-          \end{cases}
-      \end{algomathdisplay}
-      }
-      \BlankLine
-      Avec \AMR est la probabilité de réaliser une modification (fixée à 0,5) et
-      \ATirageB un nombre aléatoire entre 0 et 1\;
-      \BlankLine
-      \encircle{b} \emph{Évaluation des objectifs pour la nouvelle position $\check{\vec{x_{i}}}$}\;
-      \BlankLine
-      \If{\AOuvriere respecte toutes les contraintes}
-      {
-        \AComment{Ajout de la solution trouvée par l’\AOuvriere à l’archive}
-        $\AArchive \pluseq \AOuvriere$\;
-      }
-    }
-
-  \AComment{On ne conserve que une seule position par source}
-  Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithme~\ref{alg:maj_phase}\;
-  \caption{Phase des ouvrières.}
-\end{algorithm}
-
-% Phase des éclaireuses
-\begin{algorithm}\label{alg:scout_phase}
-  \SetAlgoVlined
-  \For{$i \leftarrow 0$ \KwTo \ANbrSources}
-  {
-    \If{$\ATrial_{i} > \AMaxTrial$ }
-    {
-      \AComment{Exploration par les \AScouts}
-      Génération de deux nouvelles positions suivant Algorithm~\ref{alg:init_phase}\;
-    }
-  }
-  \AComment{On conserve la meilleure solution parmi les deux nouvelles}
-  Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Phase des éclaireuses.}
-\end{algorithm}
+\FloatBarrier
 % subsubsection description_globale_de_l_approche (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Validation par benchmarks} % (fold)
-\label{ssub:validation_par_benchmarks}
+\subsubsection{Validation par étalon} % (fold)
+\label{ssub:validation_par_etalon}
 
+Cette section permet d’apprécier la performance de l’approche pour différent types
+de problèmes pouvant être rencontrés dans un problème d’optimisation.
+
+Premièrement la convergence vers le front de Pareto a été vérifié à travers de nombreux
+problèmes d’optimisation multi-objectif comportant ou non des contraintes.
+Dans cette optique la bibliothèque \emph{pyMOABC} a été développée autour de tests unitaires
+(Test-driven development).
+Chaque éléments (fonction / méthodes / ...) et comportements (minimisation / maximisation / ...)
+ont ainsi été testés afin de garantir que la bibliothèque implémente correctement
+les éléments et comportements nécessaires. De plus une fois le test réussi son existence
+permet de garantir que les modifications futures respecteront l’ensemble des contraintes
+déjà existantes.
+Cette approche couplée aux problèmes étalon existants a ainsi permit de valider
+l’implémentation de l’approche.
+Deuxièmement bien que la réussite d’un problème étalon ne suffise à garantir la
+convergence sur un problème réel, il apporte une information importante : la capacité
+du méta-heuristique à résoudre ce type de problèmes. Dans cette optique les résultats
+qui seront présentés dans cette section sont sélectionnés afin d’évaluer la performance
+de l’algorithme sur des étalons \ftodo{trouvé mieux}{variés}.
+
+Les problèmes retenus sont ainsi les suivants :
+\begin{itemize}
+  \item front convexe : ZDT1 (2 objectifs)
+  \item front concave : ZDT2 (2 objectifs)
+  \item multi-modal : ZDT4 (2 objectifs)
+  \item Non-uniformité avec faible densité près de l’optimal : DTLZ5, ZDT6, ConvexGlobalNonConvexLocalHive
+  \item Discontinue : DTLZ6, Kursawe
+  \item Avec contraintes :
+\end{itemize}
 
 
 \itodo{Je suis ici !}
 
-% subsubsection validation_par_benchmarks (end)
+% subsubsection validation_par_etalon (end)
 % section construction_d_un_meta_heuristique_adapte (end)
 
 
