@@ -13,64 +13,69 @@
 % Lorsque l’ensemble des variables de décisions incluent des variables continues
 % et des variables discrètes on parle de problème à variables mixtes.
 
-La première étape est la pré-analyse. Elle permet d’évaluer la ou les raisons
-motivant la formulation d’un problème d’aide à la décision. Dans cette première étape,
-il est ainsi nécessaire de faire le bilan entre l’état actuel, les résultats précédemment
-obtenus et les points qui pourraient être améliorés.
-L’expérience et les résultats obtenues en amont permettent d’alimenter
+L’utilisation de méthodes d’aide à la décision fait toujours suite à une pré-analyse
+permettant d’évaluer la ou les raisons motivant sa formulation.
+À travers cette première étape, il est ainsi nécessaire de faire le bilan de la
+performance actuelle, le résultats voulus, et les pistes permettant de définir a
+priori si ces outils peuvent apporter une réponse aux questions que l’on se pose.
+L’expérience et les résultats obtenues en amont permettent alors d’alimenter
 la réflexion amenant à la formulation des objectifs de manière précise.
-Ce processus permet ainsi de passer d’une observation ou d’un questionnement plus global
-à une formulation plus structurée.
-Ces objectifs permettront de caractériser la qualité d’une solution par rapport à une autre.
-La définition de ces fonctions objectifs est propre à chaque problème et des informations disponibles.
+Ce processus permettant de passer d’une observation ou d’un questionnement à une
+formulation plus structurée nécessaire pour sélectionner une méthode d’aide à la décision
+adaptée.
+La définition des fonctions objectifs et des contraintes est propre à chaque problème
+et est directement dépendant des données disponibles.
 Dans le secteur du bâtiment, il est courant de considérer certaines sorties des
-logiciels de simulation dynamique (STD, CFD, ...) comme objectifs. On parle alors
-de fonction quantitative.
-Dans le cas d’études sur la performance des bâtiment passifs la consommation, le coût,
-et le confort son couramment utilisés (Attia et al. 2013).
+logiciels de simulation dynamique (STD, CFD, ...) comme objectifs.
+(\mtodo{Citation Attia et al. 2013}) montre que dans le cas d’études sur la
+performance des bâtiment passifs la consommation, le coût, et le confort son
+couramment sélectionnés .
 \itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
 
 La seconde étape est de déterminer les variables de décisions dont la variation
-semble intéressante à priori. Les variables peuvent être classées en deux grandes
+semble intéressante a priori. Les variables peuvent être classées en deux grandes
 familles : les quantitatives et les qualitatives (\mtodo{ajouter référence figure}).
-\ftodo{Diagramme décrivant les différents types de variables}
 Les variables quantitatives exprime une quantité à travers un nombre et
 peuvent être discrètes ou continues. On considère ainsi respectivement un nombre de
 valeurs discrètes (ex : épaisseur d’un isolant) ou une plage de variation définissant
 ces limites/bornes (ex : épaisseur d’une dalle en béton).
 Enfin, les variables qualitatives permettent de décrire une variation non ordonnable
 (ex : couleur) ou bien floue (ex : beau / laid).
+\ftodo{Diagramme décrivant les différents types de variables}
 
 Finalement des contraintes peuvent être ajoutées afin de répondre aux exigences
-techniques en se basant sur les connaissances à priori du problème ou bien afin de
-limiter l’espace de recherche.
-Certaines de ces contraintes peuvent être exprimés à priori (ex : surface disponible
-en toiture pour installer des panneaux photovoltaïques). Elles peuvent aussi être définies
-à posteriori afin par exemple de borner certains objectifs (ex : Consommation < 10~\si{kWh/m^{2}})
-ou encore être utilisées afin de pondérer les objectifs existants (ex: pénaliser le coût global en fonction de l’inconfort
-thermique). Certaines approches cherchent à exprimer ces contraintes sous forme de
-nouveaux objectifs.
-Elle peuvent ainsi s’exprimer sous la forme de bornes, d’équations ou inéquations.
+techniques en se basant sur les connaissances à priori du problème ou bien dans
+l’optique de limiter l’espace de recherche. On distingue deux types de contraintes.
+Le premier définie a priori et dont l’impact n’est pas considéré dans le processus
+d’aide à la décision (ex : surface disponible en toiture pour installer des
+panneaux photovoltaïques).
+Le second type est plus complexe et ne peut pas être pris en compte en amont de
+l’analyse car des informations sont manquantes. On peut vouloir par exemple limiter
+un objectif ou éviter des combinaisons non réalisables. Ces contraintes sont donc
+parti intégrante de la méthode d’aide à la décision.
+Elle peuvent s’exprimer sous la forme de bornes, d’équations ou inéquations.
+
+
+% ou encore être utilisées afin de pondérer les objectifs existants (ex: pénaliser le coût global en fonction de l’inconfort
+% thermique). Certaines approches cherchent à exprimer ces contraintes sous forme de
+% nouveaux objectifs.
+
 % subsection introduction (end)
 
 % ------------------------------------------------------------------------------
 \subsection{Les approches existantes} % (fold)
 \label{sub:les_approches_existantes}
-Plusieurs approches existent pour répondre à des problèmes multi-objectifs et
-comportent des avantages et des inconvénients.
-
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Décision a priori} % (fold)
 \label{ssub:decision_a_priori}
 Dans cette approche, le problème multi-objectif est réduit à un problème mono-objectif.
 Ce processus de réduction est réalisé à l’aide de méthodes d’agrégation parmi lesquelles
 il est possible de citer les méthodes de pondération, de compromis,
-ou encore de distance (Fig.~\ref{fig:multi_to_mono}). Dans tout les cas la réduction
+ou encore de distance (Fig.~\ref{fig:multi_to_mono}). Dans tous les cas la réduction
 nécessite de normaliser les objectifs et le décideur introduit un caractère préférentiel.
 Dans le cas de la pondération, un coefficient est attribuer à chaque objectifs. Bien que
-algorithmiquement relativement simple à mettre en place, le choix des coefficient peut être complexe.
-En effet les divers objectifs peuvent être à des échelles / unités différentes
-et la connaissance a priori limitée rend difficile l’exploitation des résultats .
+algorithmiquement relativement simple à mettre en place, le choix des coefficients peut
+lui être complexe lorsque les divers objectifs ont des échelles ou unités différentes.
 La méthode du compromis, considère un objectif et les autres doivent être formulés
 sous forme de contraintes.
 Dans ces deux approches, les méthodes ne permettent d’obtenir qu’une seule
@@ -78,6 +83,15 @@ solution à chaque itération.
 Finalement la dernière méthode permet d’optimiser les différents objectifs en calculant
 la distance de chaque solution par rapport à une solution de référence. Le choix
 du point de référence est alors déterminant \parencite{Collette2002}, Fig. 2.10).
+Cette dernière approche est donc fortement dépendante de la position du point de
+référence et donc encore une fois de la connaissance a priori du problème.
+
+Dans ces approches, l’introduction d’un caractère préférentiel lorsque la connaissance a priori
+est limitée implique une recherche biaisé dont le risque est d’écarter des zones
+de recherche qui pourraient être prometteuses. Ces méthodes ont cependant l’avantage
+de réduire la complexité en transformant un problème multi-objectif en un problème
+mono-objectif. Cette nouvelle formulation assure ainsi de trouver une unique solution
+optimale au cours du processus d’optimisation.
 
 \begin{figure}
     \begin{center}
@@ -92,7 +106,12 @@ du point de référence est alors déterminant \parencite{Collette2002}, Fig. 2.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Décision interactive} % (fold)
 \label{ssub:decision_interactive}
-Dans cette approche le décideur oriente la recherche de manière itérative.
+Dans cette approche le décideur oriente la recherche de manière itérative. Dans cette
+approche le décideur intervient de manière récurrente pour orienter la recherche
+en fonction des résultats de l’opimisation. L’alternance entre optimisation,
+analyse, et sélection de nouvelles contraintes permet de réduire l’espace de
+recherche pour converger vers une solution répondant aux critères du décideur.
+
 \itodo{Ajouter description plus complète}
 % subsubsection decision_interactive (end)
 
@@ -103,12 +122,14 @@ Dans cette configuration, on conserve la formulation multi-objectif et l’optim
 est réalisé en amont de la décision. Cette approche n’introduit pas de
 caractère préférentiel et permet de générer un ensemble de solution par itération
 appelé surface de compromis.
-Le choix du décideur intervient alors a posteriori
-Le décideur peut alors faire appel à des méthodes d’aide à la décision (ELECTRE I, ...)
-Elles permettant de classer ou de sélectionner un ensemble de solutions
-à partir d’une surface de compromis grâce à des critères subjectifs. En effet, la
-surface de compromis étant composées uniquement de solutions optimales, l’expérience ou/et
-les préférences du décideur deviennent alors des critères de choix.
+
+
+Contrairement aux autres approches, l’optimisation retourne un ensemble de solution
+optimale et non plus une unique solution. Il est alors nécessaire d’utiliser
+l’expérience et les préférences du décideur a posteriori de l’optimisation
+à l’aide de méthode comme ELECTRE I, ELECTRE II, ...
+Ces methodes permettent de classer ou de sélectionner un ensemble de solutions
+à partir d’une surface de compromis en introduisant un caractère préférentiel.
 
 % Manquants
 \itodo{Décrire les approches d’aide à la décision}
@@ -117,12 +138,12 @@ les préférences du décideur deviennent alors des critères de choix.
 \itodo{Approche itératives}
 
 Cette approche à l’avantage d’apporter une meilleure compréhension du problème à
-travers l’exploration des variables de décisions et de la surface de compromis.
-De plus il ne nécessite pas d’expertise importante contrairement aux approches a priori.
-Il est cependant nécessaire de définir des règles permettant de trier les multiples solutions.
-
-Il existe de nombreuses manière de réaliser une optimisation multi-objectif et une
-description plus détaillée est réalisé dans la partie suivante.
+travers l’exploration de l’espace de recherche et des objectifs.
+De plus elle ne nécessite pas d’expertise importante contrairement aux approches a priori.
+Enfin le caratère préférentiel étant introduit en aval de l’optimisation, le décideur
+profite des connaissances acquisent à travers l’optimisation pour formuler ses préférences.
+Cependant conserver plusieurs objectifs augmente la complexité et de nouveaux opérateur
+sont alors nécessaire pour permettre un classement des solutions.
 % subsubsection decision_a_posteriori (end)
 
 \subsubsection{Approche retenue} % (fold)
@@ -130,18 +151,24 @@ description plus détaillée est réalisé dans la partie suivante.
 L’aide à la décision dans le secteur du bâtiment fait intervenir de nombreux acteurs
 et le choix est alors le résultat d’un compromis. Afin de ne pas écarter prématurément
 des solutions, une approche d’aide à la décision a posteriori a été retenue. Cette approche
-permet en effet de fournir une meilleure compréhension du problème en proposant un
-ensemble de solution optimales sans introduction de caractères préférentiels en amont.
+permet en effet de fournir une meilleure compréhension du problème. L’ensemble
+de solution optimales offre en effet une nouvelle connaissance sur le problème
+facilitant l’introduction de préférences.
 De plus il a été montré que la reformulation d’un problème multi-objectif sous la
 forme d’un objectif unique introduit un biais impactant directement la qualité de
 la solution finale. L’approche a posteriori apporte ainsi plus de souplesse dans
-l’aide à la décision.
+l’aide à la décision et permet une meilleure exploration de l’espace de décision.
 
 Une fois la surface de compromis atteinte, l’introduction de la préférence de
 du décideur permet de réduire le nombre de solution et/ou de les classer.
 Dans ces travaux, une méthode par paramétrisation a été retenue pour sa simplicité
 et pour son caractère interactif. Il est ainsi possible graphiquement de sélectionner
-la solution adaptée aux préférences du projet.
+la solution adaptée aux préférences du projet et le décideur est acteur de ces choix.
+
+Dans l’optique d’une aide à la décision a posteriori, il est ainsi nécessaire
+dans un premier temps de sélectionner et de réaliser une optimisation multi-objectif.
+La section suivante introduit le concept d’optimisation multi-objectif ainsi que
+les différentes approches existantes.
 
 \itodo{Expliquer la raison du choix d’une approche a posteriori}
 % subsubsection approche_retenue (end)
