@@ -13,7 +13,7 @@
 % Lorsque l’ensemble des variables de décisions incluent des variables continues
 % et des variables discrètes on parle de problème à variables mixtes.
 
-L’utilisation de méthodes d’aide à la décision fait toujours suite à une pré-analyse
+L’utilisation d’une méthode multi-critère d’aide à la décision (MCDA) fait toujours suite à une pré-analyse
 permettant d’évaluer la ou les raisons motivant sa formulation.
 À travers cette première étape, il est ainsi nécessaire de faire le bilan de la
 performance actuelle, le résultats voulus, et les pistes permettant de définir a
@@ -21,27 +21,34 @@ priori si ces outils peuvent apporter une réponse aux questions que l’on se p
 L’expérience et les résultats obtenues en amont permettent alors d’alimenter
 la réflexion amenant à la formulation des objectifs de manière précise.
 Ce processus permettant de passer d’une observation ou d’un questionnement à une
-formulation plus structurée nécessaire pour sélectionner une méthode d’aide à la décision
+formulation plus structurée est nécessaire pour sélectionner une méthode d’aide à la décision
 adaptée.
 La définition des fonctions objectifs et des contraintes est propre à chaque problème
 et est directement dépendant des données disponibles.
 Dans le secteur du bâtiment, il est courant de considérer certaines sorties des
 logiciels de simulation dynamique (STD, CFD, ...) comme objectifs.
-(\mtodo{Citation Attia et al. 2013}) montre que dans le cas d’études sur la
+\mtodo{Citation Attia et al. 2013}{Auteur} montre que dans le cas d’études sur la
 performance des bâtiment passifs la consommation, le coût, et le confort son
 couramment sélectionnés .
 \itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
 
 La seconde étape est de déterminer les variables de décisions dont la variation
 semble intéressante a priori. Les variables peuvent être classées en deux grandes
-familles : les quantitatives et les qualitatives (\mtodo{ajouter référence figure}).
+familles : les quantitatives et les qualitatives (Fig~\ref{fig:type_variable}).
 Les variables quantitatives exprime une quantité à travers un nombre et
 peuvent être discrètes ou continues. On considère ainsi respectivement un nombre de
 valeurs discrètes (ex : épaisseur d’un isolant) ou une plage de variation définissant
 ces limites/bornes (ex : épaisseur d’une dalle en béton).
-Enfin, les variables qualitatives permettent de décrire une variation non ordonnable
-(ex : couleur) ou bien floue (ex : beau / laid).
-\ftodo{Diagramme décrivant les différents types de variables}
+Enfin, les variables qualitatives permettent de décrire une variation non ordonnable,
+dite catégorielle (ex : couleur) ou bien floue (ex : beau / laid).
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/optimisation/type_variable.pdf}
+    \end{center}
+    \caption{Description des catégories existantes pour une variable.
+             \label{fig:type_variable}}
+\end{figure}
 
 Finalement des contraintes peuvent être ajoutées afin de répondre aux exigences
 techniques en se basant sur les connaissances à priori du problème ou bien dans
@@ -108,43 +115,84 @@ optimale au cours du processus d’optimisation.
 \label{ssub:decision_interactive}
 Dans cette approche le décideur oriente la recherche de manière itérative. Dans cette
 approche le décideur intervient de manière récurrente pour orienter la recherche
-en fonction des résultats de l’opimisation. L’alternance entre optimisation,
+en fonction des résultats de l’optimisation. L’alternance entre optimisation,
 analyse, et sélection de nouvelles contraintes permet de réduire l’espace de
 recherche pour converger vers une solution répondant aux critères du décideur.
 
-\itodo{Ajouter description plus complète}
+\iunsure{Ajouter description plus complète}
 % subsubsection decision_interactive (end)
 
 
 \subsubsection{Décision a posteriori} % (fold)
 \label{ssub:decision_a_posteriori}
-Dans cette configuration, on conserve la formulation multi-objectif et l’optimisation
-est réalisé en amont de la décision. Cette approche n’introduit pas de
-caractère préférentiel et permet de générer un ensemble de solution par itération
-appelé surface de compromis.
+Contrairement aux autres approches, l’aide à la décision multi-objectif a posteriori
+suppose qu’un ensemble de solution optimales ont été généré grâce à un processus
+d’optimisation en amont. Lors de l’optimisation aucun caractère préférentiel
+n’est introduit permettant d’explorer l’espace de décision sans restrictions.
+De plus ce processus permet d’améliorer la compréhension du problème et ainsi
+de simplifier la formulation des préférences sans nécessiter une expertise importante
+contrairement aux approches a priori.
+L’aide à la décision permet ainsi de trier, organiser ou encore sélectionner un
+ensemble de solution dans l’espace de compromis formé par les solutions optimales.
+Ces solutions étant toutes considérées comme optimales il est nécessaire d’introduire
+un caractère subjectif à travers l’expérience et les préférences du décideur.
 
 
-Contrairement aux autres approches, l’optimisation retourne un ensemble de solution
-optimale et non plus une unique solution. Il est alors nécessaire d’utiliser
-l’expérience et les préférences du décideur a posteriori de l’optimisation
-à l’aide de méthode comme ELECTRE I, ELECTRE II, ...
-Ces methodes permettent de classer ou de sélectionner un ensemble de solutions
-à partir d’une surface de compromis en introduisant un caractère préférentiel.
 
-% Manquants
-\itodo{Décrire les approches d’aide à la décision}
-\itodo{Approche par critère de synthèse}
-\itodo{Approche par surclassement}
-\itodo{Approche itératives}
+\paragraph{Approche par critère de synthèse :} % (fold)
+\label{par:approche_par_critère_de_synthèse}
+Dans cette approche l’ensemble des objectifs est réduit à une note unique permettant
+de trier l’ensemble des solutions de l’espace de compromis, l’ordre est alors total.
+L’approche est similaire aux méthodes d’aide à la décision a priori mais est dans
+ce cas uniquement appliquée à l’ensemble de solutions optimales.
 
-Cette approche à l’avantage d’apporter une meilleure compréhension du problème à
-travers l’exploration de l’espace de recherche et des objectifs.
-De plus elle ne nécessite pas d’expertise importante contrairement aux approches a priori.
-Enfin le caratère préférentiel étant introduit en aval de l’optimisation, le décideur
-profite des connaissances acquisent à travers l’optimisation pour formuler ses préférences.
-Cependant conserver plusieurs objectifs augmente la complexité et de nouveaux opérateur
-sont alors nécessaire pour permettre un classement des solutions.
-% subsubsection decision_a_posteriori (end)
+Une fonction unique dite d’utilité est formulée à partir de l’ensemble des critères
+de décision. Pour chaque critère une fonction de valeur associée est construite en
+fonction de l’appréciation par le décideur basé sur des éléments subjectifs.
+L’ensemble de ces fonctions sont ensuite agrégées afin de construire la note unique.
+De nombreuses techniques comme la somme, la moyenne, le produit, ou encore la distance
+pondérée sont utilisées pour réaliser l’agrégation.
+Les méthodes MAVT ou AHP sont deux exemples utilisant l’approche par critère de
+synthèse.
+
+Ces approches comportent cependant un fort effet compensatoire du fait de la formulation
+de la note unique par agrégation pondérée. Un critère ayant une valeur hautement
+pénalisante peut ainsi être retenue si les autres critères ont en moyenne une valeur élevée.
+
+\iunsure{Ajouter exemple d’application}
+% paragraph approche_par_critère_de_synthèse (end)
+
+
+\paragraph{Approche par surclassement :} % (fold)
+\label{par:approche_par_surclassement}
+Contrairement à l’approche par critère de synthèse, la méthode de surclassement
+permet de construire un ordre partiel entre les solutions. Il peut ainsi exister
+des solutions non comparable après ce processus.
+Afin de classer les solutions, une relation de surclassement est définie entre les
+solutions optimales grâce à des éléments subjectifs.
+Une solution $a$ surclasse une solution $b$ notée $aSb$ si $a$ est au moins aussi bon que
+$b$ au regard des préférences du décideur.
+
+Un ensemble de règle est alors défini pour chaque critère de décision : préférence,
+indifférence, seuils, ...
+Le surclassement est ensuite définie par l’agrégation des critères pondérés par
+des coefficients dans le respect de deux principes essentiels limitant les effets
+compensatoires :
+\begin{itemize}
+  \item Le principe de concordance stipule que la majorité des critères doivent
+        vérifier la relation de surclassement.
+  \item Le principe de non discordance stipule que les critères ne vérifiant pas
+        la relation de surclassement ne doivent pas exprimer un désaccord trop
+        important.
+\end{itemize}
+Les solutions sont ainsi comparées deux à deux permettant de réduire le nombre de
+solutions optimales dans le respect des préférences du décideur.
+Les méthodes ELECTRE (I, II, III, TRI) ou encore PROMETHEE font partis des nombreuses
+méthodes développées (\mtodo{Ajouter ref}) à partir de cette approche.
+
+\iunsure{Ajouter exemple d’application}
+% paragraph approche_par_surclassement (end)
+
 
 \subsubsection{Approche retenue} % (fold)
 \label{ssub:approche_retenue}
@@ -682,8 +730,8 @@ de nombreuses améliorations proposées dans la littérature a ainsi été mis e
 permettant de construire une méthode alternative aux approches traditionnelles.
 La section suivante présente plus en détail l’histoire de l’ABC et l’évolution de
 son fonctionnement à travers les améliorations sélectionnées.
-L’optique étant d’améliorer l’exploration et l’exploitation tout en limitant la quantité
-de paramètres à définir de manière empirique pour simplifier son utilisation.
+Le but étant d’améliorer l’exploration et l’exploitation tout en limitant la quantité
+de paramètres à définir de manière empirique afin de simplifier son utilisation.
 
 
 
@@ -696,12 +744,15 @@ travaux ont vu le jour sur le comportement de ces abeilles et les méthodes de
 communication et de récolte. \cite{Visscher19821790} montre que le choix de chaque abeille
 est guidé par l’ensemble des informations acquises par l’essaim afin de constamment
 ajuster les sources utilisées pour la récolte.
-\cite{Camazine1991547} fort des travaux de ses pairs décrit un modèle mathématique
-simulant le comportement social de ces abeilles.
+Un modèle mathématique est décrit par \cite{Camazine1991547} permettant de simuler
+le comportement des social de ces abeilles.
 Cependant, l’idée d’utiliser le comportement social des abeilles mellifères pour l’optimisation
 n’est introduit que en 2005, et cette approche fait donc partie des plus récentes \parencite{Karaboga2005}.
 Bien que de nombreuses approches existent (VirtualBee, Bee Colony Optimization (BCO), ...)
-la formulation de l’ABC respecte la plus répandue \parencite{Karaboga201221}.
+la formulation de l’ABC respecte la plus répandue (\parencite{Karaboga201221}) et
+sera retenue dans ces travaux.
+
+\iunsure{Ajouter figure explicitant le pourcentage d’utilisation des différentes approches}
 % subsection inspiration (end)
 
 
@@ -728,9 +779,9 @@ et améliorer le travail de groupe.
 \paragraph{Fluctuation :} % (fold)
 \label{par:fluctuation}
 Afin de pouvoir faire émerger de nouvelles solutions et remplacer celle qui se
-tarissent, il est nécessaire d’explorer l’inconnu de manière aléatoire permettant
-ainsi aux essaims de prévenir la raréfaction des ressources. Ce comportement est observé
-à travers les Scout chez les abeilles qui ne tiennent pas compte des retours positifs
+tarissent, il est nécessaire d’explorer de manière aléatoire afin de prévenir la
+raréfaction des ressources. Ce comportement est observé
+à travers les $Scout$s chez les abeilles qui ne tiennent pas compte des retours positifs
 et/ou négatifs et cherche par eux-même de nouvelles sources. Ce mécanisme est ainsi
 responsable de la diversité et du renouvellement.
 % paragraph fluctuation (end)
@@ -739,13 +790,20 @@ responsable de la diversité et du renouvellement.
 \label{par:intractions}
 Finalement afin de partager les retours négatifs et positifs un mécanisme de communication
 est nécessaire.
-Les abeilles transmettent les informations positives et négatives de la même manière : grâce à une danse.
+Les abeilles transmettent les informations positives et négatives de la même
+manière : grâce à la danse (en rond et en huit).
 Ce mécanisme permet de renseigner de manière détaillé de la qualité
 d’une source, de sa distance par rapport à l’essaim, et des dangers potentiels
-(\mtodo{Ajouter ref figure}).
+(Fig~\ref{fig:bee_dance}).
 
-\ftodo{Ajouter illustration de la danse des abeilles (wikipedia)}
-\ftodo{Ajouter illustration du fonctionnement avec dessins abeilles + ruche}
+\begin{figure}
+    \begin{center}
+        \includegraphics{abc/BeeDance.png}
+    \end{center}
+    \caption{Description du comportement social des abeilles.
+             \label{fig:bee_dance}}
+\end{figure}
+\FloatBarrier
 % paragraph intractions (end)
 
 
@@ -779,9 +837,9 @@ avec $D$ le nombre de variable de décision définit dans l’espace de recherch
 
 L’Algorithme~\ref{alg:ABC_phases} décrit le principe de l’algorithme ABC original.
 À chaque itération les sources sont mises à jour par les butineuses. Ensuite une
-table de probabilité est créé attribuant une probabilité à chaque source. Durant la
-phase suivante, les ouvrières exploitent les sources sélectionnées suivant cette
-table et mettent à jour les sources. Finalement les sources non fructueuses sont
+table de probabilité est créé attribuant une probabilité à chaque source en fonction
+de leur qualité. Ensuite, les ouvrières exploitent les sources sélectionnées et
+la position des sources est mise à jour. Finalement les sources non fructueuses sont
 remplacées par une nouvelle position aléatoire définit par les éclaireuses.
 \begin{algorithm}\label{alg:ABC_phases}
   \SetAlgoVlined
@@ -790,10 +848,10 @@ remplacées par une nouvelle position aléatoire définit par les éclaireuses.
   {
   \For{$i \leftarrow 0$ \KwTo $N$}
   {
-    \emph{Amélioration des sources par les butineuses avec une autre source $k$ \eqref{eq:update_source}}\;
+    \emph{Amélioration des sources par les butineuses grâce à une autre source $k$ \eqref{eq:update_source}}\;
     \emph{Attribution des probabilités à chaque source en fonction de leur qualité
           \eqref{eq:attribution_prob_to_source}}\;
-    \emph{Amélioration des sources par les ouvrières avec une autre source $k$ \eqref{eq:update_source}
+    \emph{Amélioration des sources par les ouvrières grâce une autre source $k$ \eqref{eq:update_source}
           sélectionnée suivant la table de probabilité}\;
     \emph{Si la qualité de la source stagne réinitialiser sa position selon \eqref{eq:init_source}}\;
   }
@@ -827,16 +885,14 @@ et/ou son fonctionnement pourra lire : \cite{Karaboga201221,Aboul-EllaHassanien2
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Extensions} % (fold)
 \label{ssub:extensions}
-
-\iunsure{Je suis ici}
 À l’origine pensé pour résoudre des problèmes continues il a été adapté pour traiter des problèmes
 d’optimisation binaire \cite{Kashan2012342}, combinatoire \cite{Karaboga20113021}, et pour des cas multi-objectifs
 \cite{Akbari201239,Omkar2011489}.
-Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entrainement de réseaux de
+Ce méta-heuristique a été utilisé pour résoudre des problèmes de tout type, dont l’entraînement de réseaux de
 neurones \parencite{Karaboga2007}, le génie électrique/mécanique/civil \parencite{Rao2009887}, ou encore le clustering \parencite{Zhang20104761}.
 On retrouve aussi cet algorithme dans l’optimisation de système de chauffage \parencite{Atashkari2011} ou dans des problèmes sous
 contraintes \parencite{Tsai201480,Karaboga20113021}.
-Malgré son jeune âge, la littérature sur les colonies d’abeilles augmente exponentiellement et continue de se diversifier
+Malgré son jeune âge, la littérature sur les colonies d’abeilles augmente et continue de se diversifier
 pour mieux répondre aux différents problèmes d’optimisations.
 \ftodo{Ajouter un graphique montrant l’attrait pour ces techniques (nombre d’utilisation en cours des années) \cite{Karaboga201221}}
 
@@ -844,8 +900,8 @@ Le méta-heuristique étant plus faible en exploitation que en exploration, de n
 propositions d’améliorations ont vu le jour.
 Certains s’inspirent des algorithmes évolutionnaires \parencite{Bi2011174,Zhao2010558},
 d’autres du PSO \parencite{Zhu20103166} en ajoutant la prise en compte de l’inertie
-et de la meilleure solution actuelle et le nomme GBest ABC (GABC). \cite{Li2012320}
-mimique la formulation du PSO en ajoutant une inertie, l’accélération et la prise
+et de la meilleure solution actuelle. L’algorithme est alors nommé GBest ABC (GABC).
+\cite{Li2012320} mimique la formulation du PSO en ajoutant une inertie, l’accélération et la prise
 en compte de la meilleure solution et le nomme Improved Artificial Bee Colony (I-ABC).
 Afin d’améliorer la diversité dans la population initiale, \cite{Xiang20131256}
 utilise la théorie du chaos pour générer la position initiale des sources en place
@@ -868,9 +924,14 @@ problème sous contraintes afin de minimiser le coût de fabrication (matériaux
 et le poids du composant tout en garantissant une résistance suffisante.
 \cite{Zhang20121} développe aussi une approche basée sur plusieurs essaims mais ici,
 chaque essaim considère l’ensemble des objectifs. En utilisant les distances de Hamming
-et de Crowding, l’auteur ajoute une coopération entre les essaims lors de la sélection
-des sources de référence. L’auteur intègre une méthode de pénalité adaptative \parencite{Woldesenbet20073077}
-afin de pouvoir traiter des problème sous contraintes.
+et de Crowding, l’auteur ajoute une coopération entre les essaims pour la sélection
+des sources de référence. L’auteur intègre de plus une méthode de pénalité adaptative
+\parencite{Woldesenbet20073077} afin de pouvoir traiter des problème sous contraintes.
+
+La sous-section suivante présente les améliorations retenues dans ces travaux.
+Le but étant d’améliorer l’exploration et l’exploitation tout en limitant la
+quantité de paramètres à définir de manière empirique afin de conserver un
+méta-heuristique simple d’utilisation.
 % subsubsection extensions (end)
 % subsection principe_de_fonctionnement (end)
 
@@ -880,13 +941,14 @@ afin de pouvoir traiter des problème sous contraintes.
 \subsection{Vol de Lévy} % (fold)
 \label{sub:vol_de_levy}
 Il a été observé chez diverses espèces comme les atèles (singes), les albatros, ou encore la famille des
-Tephritidae (petites mouches) un comportement respectant une marche aléatoire (Définition\ref{def:marche_aleatoire}) connu
-sous le nom de Vol de Lévy.
+Tephritidae (petites mouches) un comportement respectant une marche aléatoire
+Définition\ref{def:marche_aleatoire}) connu sous le nom de Vol de Lévy (Définition\ref{def:vol_levy}).
 Les marches aléatoires sont souvent utilisés dans les méta-heuristiques pour faire
 évoluer les solutions dans l’espace de décision. Par exemple, une loi normale permet
 de renforcer une solution localement alors qu’une loi uniforme permet d’explorer
-globalement le domaine. Le lecteur pourra noter la forme caractéristique d’une distribution
-de Lévy par rapport aux approches courantes à travers la Fig.~\ref{fig:levy_vs_gaussian}.
+globalement le domaine. Le lecteur pourra noter la forme caractéristique de la
+distribution de Lévy retenue par rapport aux approches courantes à travers
+la Fig.~\ref{fig:distribution_pdf}.
 
 Dans \cite{Sharma2012213}, le vol de Lévy est utilisé afin de réaliser une recherche locale
 et \cite{Hakli2013254} l’utilise pour améliorer l’exploitation durant la phase des exploratrices.
@@ -894,8 +956,8 @@ Le vol de Lévy est aussi utilisé dans un méta-heuristique récent: le Cuckko 
 Inspiré du comportement parasitaire de la reproduction des cuculidés, il a aussi fait l’objet
 d’une adaptation aux problèmes multi-critères \parencite{Yang20131616}.
 
-Afin d’améliorer l’exploitation et l’exploration un vol de Lévy (Définition\ref{def:vol_levy})
-a été implémentée comme marche aléatoire pour les exploratrices et les butineuses.
+Afin d’améliorer l’exploitation et l’exploration un vol de Lévy a été implémentée
+comme marche aléatoire durant la phase des butineuses.
 
 \begin{Def}[Marche aléatoire]\label{def:marche_aleatoire}
 Une marche aléatoire \parencite{Yang201445} peut être définie comme une succession de pas
@@ -926,7 +988,8 @@ couramment décrite par la transformée de Fourier suivante:
     \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
 \end{equation}
 \begin{equation}\label{eq:dist_levy}
-    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2, \quad \alpha > 0
+    L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2,
+           \quad \alpha > 0
 \end{equation}
 On peut alors définir un Vol de Lévy pour une position initiale $x$ comme :
 \begin{equation}
@@ -942,7 +1005,8 @@ et $\beta = 1$ (distribution de Cauchy).
 L’algorithme de Mantegna \parencite{Mantegna19944677} est alors utilisé afin d’approximer cette distribution
 pour $0.3 < \beta < 1.99$.
 \begin{equation}\label{eq:step_len}
-    s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}), \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
+    s = \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}),
+        \quad v \sim \mathcal{N}(0, \sigma_{v}^{2})
 \end{equation}
 avec:
 \begin{equation}\label{eq:sigmas}
@@ -959,7 +1023,8 @@ les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!, \quad \beta\
 Le vol de Lévy peut ainsi être assimilé à une intensification (forte probabilité de générer un petit pas)
 couplé à de l’exploration (faible probabilité de générer un saut important) décrit par
 l’effet d’île caractéristique du vol de Lévy (Fig.~\ref{fig:levy_vs_gaussian})
-Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager des optimums locaux.
+Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager des optimums locaux
+ou des solutions non prometteuses.
 
 \begin{figure}
     \begin{center}
@@ -975,13 +1040,13 @@ Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager d
 % ------------------------------------------------------------------------------
 \subsection{Apprentissage par vecteur opposé} % (fold)
 \label{sub:apprentissage_par_vecteur_oppose}
-Les méthodes d’optimisation et spécifiquement les approchées sont fortement
+Les méthodes d’optimisation et spécifiquement les méthodes approchées sont fortement
 dépendantes de la population initiale (\mtodo{Ajouter source}). Il est ainsi nécessaire
 de constituer une population couvrant de manière homogène l’espace de décision.
 L’approche la plus répandu est d’initialiser la population initiale suivant une
 distribution uniforme suivant \eqref{alg:init_phase}.
 Afin d’améliorer la diversité sans connaissances a priori,\cite{Tizhoosh2005695}
-développe l’Opposite Based Learning (OBL) (Définition\ref{def:oblm}).
+a développé l’Opposite Based Learning (OBL) (Définition\ref{def:oblm}).
 
 \begin{Def}[OBL~:~Apprentissage par vecteur opposé]\label{def:oblm}
 Admettons un point de dimension $D$, $\vec{x}(x_{1}, x_{2}, ..., x_{D})$ avec
@@ -992,19 +1057,23 @@ $i = 1, 2, ..., D$ alors le point opposée est $\vec{\check{x}}(\check{x_{1}}, \
 
 \cite{Rahnamayan2008906} l’adapte pour l’algorithme Differential evolution (DE)
 et montre que la probabilité d’améliorer une solution est plus grande
-avec sa position opposée que avec une nouvelle position aléatoire.
-Il l’utilise pour l’initialisation et aussi durant l’optimisation. Les bornes
-($a_{i}$ et $b_{i}$) sont alors définies dynamiquement afin d’éviter de ralentir la convergence.
+si on évalue sa position opposée que si on tire aléatoirement une autre position.
+Dans son implémentation, il l’utilise pour l’initialisation et durant le processus
+d’optimisation. Les bornes ($a_{i}$ et $b_{i}$) sont alors définies dynamiquement
+afin d’éviter de ralentir la convergence.
 Cette approche a aussi été appliquée avec succès dans le cas de l’algorithme ABC en couplage
 avec un opérateur de mutation \parencite{Bi2011174} ou encore en coopération avec une marche
 aléatoire \parencite{Sharma2012213}.
 Il a aussi été appliqué pour résoudre des problèmes à objectifs multiples,
-en combinaison avec un algorithme évolutionnaire \parencite{Ma201448}, ou encore avec le PSO \parencite{Gao2013114}.
+en combinaison avec un algorithme évolutionnaire \parencite{Ma201448}, ou encore avec
+le PSO \parencite{Gao2013114}.
 
 L’approche est ainsi retenue afin d’améliorer la diversité de la population initiale
-et sera aussi utilisé durant la phase des exploratrices permettant d’augmenter l’exploration.
-Pour chaque source, une position candidate ($\vec{x}$) et son opposée ($\vec{\check{x}}$) sont évaluées.
-Un tournoi binaire est alors organisé et seule la meilleure solution est conservé comme source.
+et sera aussi utilisé durant la phase des exploratrices permettant d’augmenter la qualité
+de la nouvelle position.
+Pour chaque source abandonnée, une position candidate ($\vec{x}$) et son opposée ($\vec{\check{x}}$) sont
+ainsi évaluées. La meilleure position est ensuite sélectionné par tournoi binaire et
+devient la nouvelle position de la source.
 % subsection apprentissage_par_vecteur_oppose (end)
 
 
@@ -1012,19 +1081,19 @@ Un tournoi binaire est alors organisé et seule la meilleure solution est conser
 \label{sub:l_epsilon_dominance}
 Contrairement à une approche mono objectif, il existe plusieurs solutions optimales.
 Il est alors nécessaire de conserver l’évolution du front de Pareto à travers une
-archive (\mtodo{Lien vers figure}).
+archive (\munsure{Lien vers figure}).
 
-\ftodo{Ajouter graphe décrivant l’utilité de l’archive pour la recherche \cite{Laumanns2002263}}
+\iunsure{Ajouter graphe décrivant l’utilité de l’archive pour la recherche \cite{Laumanns2002263}}
 
 Afin de garantir la convergence il est nécessaire d’utiliser une approche élitiste
-en limitant la taille de l’archive au solution les plus performantes afin d’éviter
-une convergence trop lente \parencite{Zitzler2000173}. De plus afin d’éviter de converger vers un front local,
-il est nécessaire de maintenir de la diversité dans la population.
-Dans les approches couramment utilisées on peut citer le Fast Non Dominated Sorting Algorithm utilisé dans la version
-de base du NSGA-II \parencite{Deb2002182}. Dans cette approche une sélection par rang
+en limitant la population de l’archive aux solutions les plus performantes \parencite{Zitzler2000173}.
+De plus afin d’éviter de converger vers un front local, il est nécessaire de maintenir une
+bonne diversité dans la population de cette archive.
+L’algorithme de base du NSGA-II \parencite{Deb2002182}, utilise le Fast Non
+Dominated Sorting Algorithm afin de construire son archive. Dans cette approche une sélection par rang
 est appliqué permettant de trier le front en différents niveaux et la distance dite
 de crowding (distance moyenne entre deux solutions) est utilisée afin de maintenir la diversité.
-L’algorithme SPEA II améliore la diversité du front final au prix d’une convergence
+L’algorithme SPEA II cherche à améliore la diversité du front final au prix d’une convergence
 plus lente en utilisant une approche par clustering. $N$ clusters (taille de l’archive)
 sont formés en se basant sur la distance euclidienne et une solution par cluster
 est retenue.
@@ -1040,7 +1109,7 @@ des $\epsilon$ choisis pour chaque objectif mais est toujours finie.
 \begin{Def}[$\epsilon$-dominance]\label{def:eps_dominance}
 L’$\epsilon$-dominance assume que deux solutions sont identiques lorsqu’elles appartiennent
 au même hypercube dont les dimensions des arrêtes sont définies par $\vec{\epsilon}_{i}, i \in \{1, ..., M\}$ avec $M$ le nombre
-de fonction objectif.
+de fonctions objectif.
 Dans le cas d’une maximisation il est dit que $\vec{x}_{a}$ $\epsilon$-domine $\vec{x}_{b}$ si :
 \begin{align*}
   \forall j \in \{1, M\}, \qquad \left\lceil\frac{f_{j}(\vec{x}_{a})}{\epsilon}\right\rceil &\leq \left\lceil\frac{f_{j}(\vec{x}_{b})}{\epsilon}\right\rceil  \\
@@ -1056,12 +1125,12 @@ le front d’$\epsilon$-Pareto (Fig.~\ref{fig:epsilon_dominance}).
 Dans un premier temps les solutions sont alors départagées selon l’$\epsilon$-dominance.
 Dans le cas où une nouvelle solution serait $\epsilon$-identique elle est uniquement
 comparée avec celle déjà archivée dans le même hypercube en utilisant la distance euclidienne.
-Afin d’éviter l’ajout de biais, les objectifs sont normalisés en fonction des dimensions
-de l’hypercube.
-Ensuite dans le cas d’une maximisation la solution retenue est celle la plus proche
-du maximum de l’hypercube. Contrairement à une sélection par dominance stricte le
+La solution retenue est celle la plus proche de l’optimum de l’hypercube (coin supérieur
+droit dans le cas d’une maximisation).
+Contrairement à une sélection par dominance stricte le
 calcul de la distance euclidienne permet de tenir compte de l’ensemble des amélioration
-en étant moins élitiste.
+et est moins élitiste. Afin d’éviter l’ajout de biais, les objectifs sont normalisés
+dans l’espace de l’hypercube.
 L’$\epsilon$-archive permet ainsi d’assurer :
 \begin{itemize}
   \item L’élitisme : seule les solutions non-dominées sont retenues
@@ -1087,9 +1156,9 @@ du front de Pareto que celles utilisant le clustering (C-NSGA II, SPEA) et l’$
 Cette observation est d’autant plus vrai pour des problèmes ayant 3 objectifs (DTLZ1, ..., DTLZ7).
 De plus les résultats mettent aussi en évidence que le NSGA II et le $\epsilon$-MOEA
 converge plus rapidement que le SPEA II.
-Un désavantage de cette méthode peut cependant être noté. De part sa formulation
+Un désavantage à cette méthode peut cependant être noté. De part sa formulation
 les solutions au niveau des extrêmes sur le front de Pareto sont plus difficilement
-atteignable.
+atteignables.
 
 L’$\epsilon$-archive est donc retenue comme solution d’archivage dans ces travaux
 car il représente un bon compromis entre diversité et convergence.
@@ -1104,16 +1173,16 @@ dépendantes de contraintes limitant l’ensemble des solution optimales au doma
 de faisabilité. L’optimisation consiste alors à améliorer les objectifs tout en
 respectant les contraintes spécifiques au problème \eqref{eq:def_optimisation}.
 
-La littérature introduit de nombreuses variation permettant de tenir compte des
+La littérature introduit de nombreuses méthodes permettant de tenir compte des
 contraintes. L’approche la plus courante est d’utiliser un facteur de pénalité.
 Ce facteur est dit statique si il est fixe durant l’ensemble de l’optimisation, dynamique
 si il est adapté en fonction du nombre d’itération, et adaptatif si les informations
 acquises par la recherche aide à sa détermination \parencite{Coello2002}.
 Parmi les approches existante il peut être cité la méthode de la peine de mort
 qui consiste à appliquer une pénalité très importante afin de rejeter les solutions
-sous contraintes. D’autres moins exclusives désavantagent les solutions ne respectant
-pas les contraintes en fonction du niveau de violation des contraintes. D’autres approches
-ajustent dynamiquement la pénalité en fonction des itération de l’algorithme. Le
+sous contraintes. Certaines moins exclusives désavantagent les solutions ne respectant
+pas les contraintes en fonction de leur niveau de violation. D’autres approches
+ajustent dynamiquement la pénalité en fonction du nombre d’itérations de l’algorithme. Le
 problème récurrent avec ces approches réside dans l’ajout de paramètres supplémentaires
 devant être déterminés empiriquement.
 
@@ -1121,7 +1190,7 @@ devant être déterminés empiriquement.
 pas nécessité le paramétrage de facteurs. Il explique aussi que ces facteurs impactent
 fortement la performance de la méthode de prise en compte des contraintes. De plus
 la méthode sélectionnée ne devrait pas demandé un nombre plus important d’évaluation
-qui peuvent être très couteuses. \cite{Deb2000311} propose une méthode de
+qui peuvent être très coûteuses. \cite{Deb2000311} propose une méthode de
 sélection par tournoi dont les règles sont les suivantes :
 \begin{itemize}
   \item Une solution avec contraintes est inférieure à une solution sans contraintes
@@ -1149,10 +1218,10 @@ aucun paramétrage, et l’objectif modifié est calculé de la manière suivant
   \end{cases}
 \end{align}
 avec $f_{i}(\vec{x})$ la valeur de l’objectif $i$, pour la position $\vec{x}$ dans l’espace de décision.
-\iunsure{Détailler pourquoi différence entre max et min}
+\iunsure{Détailler pourquoi différence entre maximisation et minimisation}
 
 \begin{equation}\label{eq:norm_contrainte}
-  v(\vec{x}) = \frac{1}{J+K} \sum_{j=1}^{J+K} \frac{g_{j}(\vec{x})}{max(g_{j}(\vec{x}))}
+  v(\vec{x}) = \frac{1}{J+K} \sum_{j=1}^{J+K} \left(\frac{g_{j}(\vec{x})}{max(g_{j}(\vec{x}))}\right)
 \end{equation}
 avec $J$ le nombre de contraintes d’inégalités et $K$ le nombre de contrainte d’égalités
 transformées en contraintes d’inégalités. $g_{j}$ représente alors la fonction contrainte
@@ -1194,28 +1263,19 @@ réalisables dans la population, moins une solution ne respectant pas les contra
 de chances d’être sélectionnée. L’approche permet d’améliorer l’exploration de
 l’espace de décision et ainsi de pouvoir trouver des solutions existantes même
 lorsque l’espace de faisabilité est faible.
-L’approche est donc retenue dans ces travaux mais uniquement utilisée lors de la mise à jour
-des solutions de la population. L’archive elle, n’accepte que des solutions respectant les
-contraintes.
+L’approche est donc retenue dans ces travaux afin de mettre à jour la position des
+sources mais les solutions de l’archive elles n’acceptent que des solutions respectant
+l’ensemble des contraintes.
 % subsection tenir_compte_des_contraintes (end)
 
 
 % ------------------------------------------------------------------------------
 \subsection{Description de l’approche globale} % (fold)
 \label{sub:description_de_l_approche_globale}
-
 Dans la section précédente, chaque élément utilisé dans l’algorithme a été détaillé et
 les avantages et inconvénients des approches retenues ont aussi été explicités.
 Dans cette section le fonctionnement global de la méthode approchée d’optimisation
 multi-objectif retenue est décrite.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=10cm]{abc/algorithme_complet.pdf}
-    \end{center}
-    \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.
-             \label{fig:abc_complet}}
-\end{figure}
 
 L’algorithme peut être définie par Fig.~\ref{fig:abc_complet}.
 Les sources sont initialisées (Algorithm~\ref{alg:init_phase}) suivant la méthode
@@ -1230,12 +1290,20 @@ nombre maximum d’échec ($MaxEchec$) alors une exploratrice (Algorithm~\ref{al
 réinitialise sa position de manière aléatoire.
 Tant que la condition d’arrêt n’est pas atteinte, les phases des butineuses,
 des ouvrières, et des exploratrices sont répétées de manière cyclique. Au cours de
-la recherche les nouvelles sources sont ajoutées à l’archive qui seront ensuite utilisées
+la recherche les nouvelles sources sont ajoutées à l’archive utilisée
 comme élément d’apprentissage pour les butineuses et les ouvrières mais pas pour les
 exploratrices. Une fois la condition d’arrêt atteinte l’ensemble des solutions
-de l’archive forment le front de Pareto.
+de l’archive forme le front de Pareto.
 
-Dans l’optique de l’optimisation d’un modèle solaire développé sous Dymola, l’algorithme
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=10cm]{abc/algorithme_complet.pdf}
+    \end{center}
+    \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.
+             \label{fig:abc_complet}}
+\end{figure}
+
+Dans l’optique de l’optimisation d’un modèle solaire développé sous \emph{Dymola}, l’algorithme
 a été implémenté en \emph{Python} afin de faciliter le couplage avec la bibliothèque
 \emph{BuildingsPy} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
 la simulation de modèle \emph{Modelica} sous \emph{Dymola}. La bibliothèque est
@@ -1247,16 +1315,17 @@ disponible sous le nom de \emph{pyMOABC} et implémente :
   \item une interface commune permettant l’abstraction du type de variable (discrète, continue, qualitative)
   \item une représentation des solutions (sources et abeilles)
   \item l’algorithme tel que décrit dans ces travaux
-  \item une suite de test pour des optimisation avec ou sans contraintes
+  \item une suite de test unitaires et des cas théorique validant l’approche avec
+        et sans contraintes
 \end{itemize}
 
-L’approche retenue contrairement à la majorité des méta-heuristiques est robuste et demande
-peu de paramètre à définir de manière empirique. En effet seul la taille de la population
-et le nombre d’essai maximum sont à définir. De plus la taille de la population
-n’impacte pas le nombre de solutions dans l’archive car le stockage est réalisé dans
-une structure indépendante. Il est aussi important de noter que ces deux paramètres
-on un comportement prévisible facilitant leur paramétrage. La
-taille de la population en augmentant améliore l’exploration réduisant le risque
+L’approche retenue contrairement à la majorité des méta-heuristiques demande
+peu de paramètre à définir de manière empirique et est ainsi robuste. En effet
+seule la taille de la population et le nombre d’essai maximum sont à définir.
+De plus la taille de la population n’impacte pas le nombre de solutions dans l’archive
+car le stockage est réalisé dans une structure indépendante. Il est aussi important
+de noter que les deux uniques paramètres on un comportement prévisible facilitant
+leur paramétrage. La taille de la population en augmentant améliore l’exploration réduisant le risque
 de se bloquer dans les optimums locaux mais réduit la vitesse de convergence (Définition\ref{def:convergence}).
 Le nombre d’essai maximum lui est directement lié au nombre de critères variant
 dans l’espace de décision et à la taille de la population. Une valeur faible traduisant
@@ -1474,25 +1543,29 @@ ont ainsi été testés afin de garantir que la bibliothèque implémente correc
 les éléments et comportements nécessaires. De plus une fois le test réussi son existence
 permet de garantir que les modifications futures respecteront l’ensemble des contraintes
 déjà existantes.
-Cette approche couplée aux problèmes étalon existants a ainsi permit de valider
-l’implémentation de l’approche.
-Deuxièmement bien que la réussite d’un problème étalon ne suffise à garantir la
-convergence sur un problème réel, il apporte une information importante : la capacité
-du méta-heuristique à résoudre ce type de problèmes. Dans cette optique les résultats
+Cette approche couplée aux problèmes étalon existants a ainsi permis de valider
+l’implémentation de l’approche. Bien que la réussite d’un problème étalon ne soit
+pas une condition suffisante pour garantir la convergence sur un problème réel,
+il apporte une information importante : la capacité du méta-heuristique à s’adapter
+à différent type de contraintes. Dans cette optique les résultats
 qui seront présentés dans cette section sont sélectionnés afin d’évaluer la performance
-de l’algorithme sur des étalons \ftodo{trouvé mieux}{variés}.
+de l’algorithme sur des étalons couvrant les principales difficultés existantes.
 
 Les problèmes retenus sont ainsi les suivants :
 \begin{itemize}
   \item front convexe : ZDT1 (2 objectifs)
+  \item front linéaire : Hanne 1 (2 objectifs)
   \item front concave : ZDT2 (2 objectifs)
   \item multi-modal : ZDT4 (2 objectifs)
   \item Non-uniformité avec faible densité près de l’optimal : DTLZ5, ZDT6, ConvexGlobalNonConvexLocalHive
   \item Discontinue : DTLZ6, Kursawe
 \end{itemize}
 
+La méthode retenue pour la prise en compte des contraintes a déjà été testé et
+comparée par l’auteur (\mtodo{Ajouter ref}) et ne font donc pas parti des tests
+retenus.
 
-\itodo{Je suis ici !}
+
 % subsection validation_de_la_methode (end)
 % section artificial_bee_colony (end)
 
