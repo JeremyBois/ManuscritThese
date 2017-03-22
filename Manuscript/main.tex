@@ -432,6 +432,9 @@
 % ------------------------------------------------------------------------------
 \begin{document}
 
+% Wrap column without lossing alignment
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+
 % First page
 \pagenumbering{Alph}
 \begin{titlepage}
