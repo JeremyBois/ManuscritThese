@@ -62,6 +62,7 @@ La référence d’un article vers un autre est donc maintenant dans le champs n
   - pas $p$ --> $P$
   - taille du pas $\omega$
   - apprentissage $\Phi$
+  - tirage aléatoire $\sigma_{u}$ et $\sigma_{v}$
 
 **Morris:**
 
