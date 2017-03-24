@@ -1031,44 +1031,65 @@ Les champs <code>@InProceedings</code> lèvent l’erreur <code>Undefined contro
 L’ajout de référence croisé (crossref) empêche la compilation du fichier latex.<br />
 La référence d’un article vers un autre est donc maintenant dans le champs note.</p>
 <h2 id="nomenclature"><a name="user-content-nomenclature" href="#nomenclature" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Nomenclature :</h2>
-<p><strong>solution, source :</strong></p>
+<p><strong>Optimisation:</strong></p>
 <ul>
-<li>$x$</li>
-<li>$i$ &ndash;&gt; $N$ (énumeration)</li>
-<li>&ndash;&gt; sélection $a$ et $b$</li>
-</ul>
-<p><strong>variable:</strong></p>
+<li>
+<p>Énumération :</p>
 <ul>
-<li>$j$ &ndash;&gt; $D$</li>
-</ul>
-<p><strong>contrainte:</strong></p>
-<ul>
-<li>inégalités : $q$ &ndash;&gt; $Q$</li>
+<li>objectifs : $m$ &mdash;&gt; $M$</li>
 <li>égalités : $c$ &ndash;&gt; $C$</li>
+<li>inégalités : $q$ &ndash;&gt; $Q$</li>
+<li>sources / solutions : $i$ &mdash;&gt; $N$</li>
 </ul>
-<p><strong>objectif:</strong></p>
+</li>
+<li>
+<p>Sélection :</p>
 <ul>
-<li>$f$</li>
-<li>$m$ &ndash;&gt; $M$ (énumération)</li>
+<li>objectifs : $f$, $\tilde{f}$ (normalisée), $F$ (avec contrainte)</li>
+<li>égalités : $h$</li>
+<li>inégalités : $g$</li>
+<li>source /solution : $a$ $b$</li>
+<li>position : $\vec{x}$ ($x_{i}$)</li>
+<li>nouvelle position : $\vec{x}&rsquo;$ ($x_{i}&rsquo;$)</li>
 </ul>
-<p><strong>Points:</strong></p>
+</li>
+</ul>
+<p><strong>OBL:</strong></p>
 <ul>
-<li>$A$ et $B$</li>
+<li>borne dynamique $c$ et $d$</li>
+<li>position opposée : $\check{\vec{x}}$</li>
 </ul>
 <p><strong>ABC:</strong></p>
 <ul>
 <li>taille population $NP$</li>
+<li>Essai max $MaxEchec$</li>
+</ul>
+<p><strong>Contraintes:</strong></p>
+<ul>
+<li>distance : $d$ ($d_{m}(\vec{x})$)</li>
+<li>objectif : $F_{m}(\vec{x})$</li>
+<li>ratio réalisable : $r_{f}$</li>
+<li>pénalité : $z$</li>
 </ul>
 <p><strong>Marche aléatoire:</strong></p>
 <ul>
-<li>pas $p$ &ndash;&gt; $P$</li>
+<li>pas $w$ &ndash;&gt; $W$</li>
 <li>taille du pas $\omega$</li>
 <li>apprentissage $\Phi$</li>
 <li>tirage aléatoire $\sigma_{u}$ et $\sigma_{v}$</li>
+<li>$\alpha$, $\beta$, $k$, et $s$</li>
+<li>temps $t$</li>
+<li>factorielle poiur complexe $\Gamma$</li>
+<li>facteur d’échelle $\omega$</li>
+<li>Indicateur d’apprentissage $\Phi$</li>
+<li>Tirage ditribution Lévy $T_{L}$</li>
 </ul>
 <p><strong>Morris:</strong></p>
 <ul>
-<li>niveaux $p$</li>
-<li>trajectoires $r$  &ndash;&gt; $R$</li>
-<li>pas $\delta$</li>
+<li>niveaux : $p$</li>
+<li>trajectoires : $r$  &ndash;&gt; $R$</li>
+<li>pas : $\delta$</li>
+<li>moyenne : $\mu$</li>
+<li>écart type : $\sigma$</li>
+<li>moyenne absolue : $\mu^{*}$</li>
 </ul></article></body></html>

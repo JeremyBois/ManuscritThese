@@ -25,47 +25,62 @@ La référence d’un article vers un autre est donc maintenant dans le champs n
 
 ## Nomenclature :
 
-**solution, source :**
 
-  - $x$
-  - $i$ --> $N$ (énumeration)
-  - --> sélection $a$ et $b$
+**Optimisation:**
 
+  - Énumération :
 
-**variable:**
+    - objectifs : $m$ ---> $M$
+    - égalités : $c$ --> $C$
+    - inégalités : $q$ --> $Q$
+    - sources / solutions : $i$ ---> $N$
 
-  - $j$ --> $D$
+  - Sélection :
 
-
-**contrainte:**
-
-  - inégalités : $q$ --> $Q$
-  - égalités : $c$ --> $C$
-
-
-**objectif:**
-
-  - $f$
-  - $m$ --> $M$ (énumération)
+    - objectifs : $f$, $\tilde{f}$ (normalisée), $F$ (avec contrainte)
+    - égalités : $h$
+    - inégalités : $g$
+    - source /solution : $a$ $b$
+    - position : $\vec{x}$ ($x_{i}$)
+    - nouvelle position : $\vec{x}'$ ($x_{i}'$)
 
 
-**Points:**
+**OBL:**
 
-  - $A$ et $B$
+  - borne dynamique $c$ et $d$
+  - position opposée : $\check{\vec{x}}$
+
 
 **ABC:**
 
   - taille population $NP$
+  - Essai max $MaxEchec$
+
+**Contraintes:**
+
+  - distance : $d$ ($d_{m}(\vec{x})$)
+  - objectif : $F_{m}(\vec{x})$
+  - ratio réalisable : $r_{f}$
+  - pénalité : $z$
 
 **Marche aléatoire:**
 
-  - pas $p$ --> $P$
+  - pas $w$ --> $W$
   - taille du pas $\omega$
   - apprentissage $\Phi$
   - tirage aléatoire $\sigma_{u}$ et $\sigma_{v}$
+  - $\alpha$, $\beta$, $k$, et $s$
+  - temps $t$
+  - factorielle poiur complexe $\Gamma$
+  - facteur d’échelle $\omega$
+  - Indicateur d’apprentissage $\Phi$
+  - Tirage ditribution Lévy $T_{L}$
 
 **Morris:**
 
-  - niveaux $p$
-  - trajectoires $r$  --> $R$
-  - pas $\delta$
+  - niveaux : $p$
+  - trajectoires : $r$  --> $R$
+  - pas : $\delta$
+  - moyenne : $\mu$
+  - écart type : $\sigma$
+  - moyenne absolue : $\mu^{*}$
