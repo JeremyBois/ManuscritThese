@@ -2,986 +2,1144 @@
 % Chapitres\Chap2-ApprocheModelisation.tex
 
 
+
 % ..............................................................................
 % ..............................................................................
-\section{Description du modèle solaire} % (fold)
-\label{sec:description_du_modele_solaire}
+\section{Introduction} % (fold)
+\label{sec:introduction}
+\itodo{Ajouter citations, voir article BS 2017}
+De nombreuses études ont déjà cherché à évaluer la performance d’un système solaire
+combiné à l’aide de méthodes plus ou moins détaillées. L’approche la plus répandue utilise
+les besoins mensuels de la maison générés grâce à un modèle du bâtiment simplifié
+\parencite{Raffenel2009657,Martinopoulos2014130}. Cette approche néglige le comportement dynamique du système
+solaire comme du bâtiment. D’autres approches utilisent un modèle de bâtiment plus
+détaillé (TrnSys, Energy Plus) permettant d’évaluer plus précisément la couverture du
+système \parencite{Glembin2012601}. Ces approches permettent de tenir compte de l’évolution dynamique du système
+solaire combiné (SSC) mais négligent les interactions entre le bâtiment et les systèmes. Le
+bâtiment est seulement considéré comme une consommation (chauffage et production d’ECS) et
+le système solaire comme une source potentielle répondant à cette demande. Cette approche
+est aussi celle retenue pour la Task 26 \parencite{Task262003} au cours de laquelle de nombreux modèles
+de SSC ont été développés puis validés.
 
-% ------------------------------------------------------------------------------
-\subsection{Un système solaire utilisant le vecteur air} % (fold)
-\label{sub:un_systeme_solaire_utilisant_le_vecteur_air}
-\itodo{Description schématique du système}
-Le système solaire \mtodo{Ajouter Ref}{complet} comporte deux parties distinctes,
-la partie hydraulique qui sera détaillée dans un premier temps et la partie
-aéraulique qui sera expliquée ensuite.
-\begin{figure}
-    \begin{center}
-        \includegraphics{schemas/air_complet_mono.pdf}
-    \end{center}
-    \caption{Représentation schématique de l’ensemble du système solaire combiné
-             (hydraulique et aéraulique).
-             \label{fig:air_complet_mono}}
-\end{figure}
+Dans ces travaux, une approche détaillée de l’algorithme de contrôle et des systèmes est retenue. En
+effet, plusieurs études ont mis en évidence l’importance de la modélisation du contrôle
+sur la performance d’un système solaire combiné \parencite{Kicsiny20123489,Huang20123278}.
+Afin de présenter des résultats pouvant être obtenues sur des bâtiment réels pour la
+prochaine réglementation thermique (\mtodo{Ajouter citation}{RT 2020}), un algorithme existant et innovant
+a été utilisé. Celui-ci est modifié et adapté pour répondre aux contraintes du projet : obtenir
+un bâtiment réactif en utilisant l’énergie solaire.
+L’originalité de l’approche réside principalement dans l’évaluation couplée du système
+solaire combiné et du bâtiment. Dans cette optique les intéractions bâtiment / systèmes et
+systèmes / bâtiment sont pris en compte et évaluées.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Choix du fluide caloporteur} % (fold)
-\label{ssub:choix_du_fluide_caloporteur}
-Afin de permettre au fluide de supporter les températures extérieures pour toutes
-les météos nous avons opté pour un mélange d’eau (70\,\%) et d’ethylène-glycol (30\,\%).
-On obtient alors une une chaleur spécifique massique de 3608\,\si{J/(kg.K)} et une
-masse volumique de 1034\,\si{kg/m^3}.
-\itodo{Ajouter le détail du calcul}
-% subsubsection choix_du_fluide_caloporteur (end)
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description du fonctionnement de la partie hydraulique} % (fold)
-\label{ssub:description_du_fonctionnement_de_la_partie_hydraulique}
-\itodo{Décrire chaque système et les paramètres de base}
-Dans cette partie les différents composants du système (\autoref{tab:collectors_specs}) seront détaillés.
-\textbf{Il est important de noter que ces caractéristiques sont celle du cas de référence
-qui sera utilisé comme base pour l’étude paramétrique ci-après.}
-\begin{figure}
-    \begin{center}
-        \includegraphics{schemas/air_hydraulique.pdf}
-    \end{center}
-    \caption{Représentation schématique de la partie hydraulique du système solaire combiné.
-             \label{fig:air_hydraulique}}
-\end{figure}
-
-Les panneaux solaire utilisés sont des modèles \mtodo{Améliorer}{IDMK 2.5} (\autoref{tab:collectors_specs}).
-Ils sont disposés en parallèles pour augmenter leurs performances. En effet
-le rendement d’un capteur solaire est directement lié à la température d’entrée du fluide
-caloporteur. Dans le cas d’un montage en parallèle la température d’entrée est minimale
-et permet donc de mieux valoriser les collecteurs.
-
-Le \autoref{tab:tanks_specs} détaille les caractéristiques des deux ballons utilisés
-dans le système solaire. Le ballon tampon sert à stocker l’énergie solaire disponible
-durant la journée qui n’a pas été utilisé directement pour le chauffage ou assurer le maintien
-de la température du ballon ECS (\autoref{tab:tanks_specs}). Le ballon contient un échangeur
-sur toute sur toute sa hauteur afin de le charger avec l’énergie solaire. La circulation
-à l’intérieur de l’échangeur est réversible en fonction de l’état de la vanne 3 voies (V3V)
-solaire en partie basse de celui-ci comme détaillée ci-dessous. Le ballon ECS lui contient l’eau
-provenant du réseau (sans glycol)
-Il doit être maintenue à \mtodo{Ajouter référence}{55\,\si{\degreeCelsius}} pour éviter tout risque sanitaire
-en particulier lié à la légionelle. Ce ballon est maintenue à cette consigne grâce à
-l’énergie solaire par l’intermédiaire de l’échangeur en partie basse et par un appoint électrique
-en partie haute garantissant une température de puisage à 50\,\si{\degreeCelsius} minimum. L’arrivée d’eau
-du réseau se trouvant en partie basse du ballon on améliore l’efficacité de l’échangeur solaire
-maximisant les gains solaires.
-
-Le puisage en ECS représenté par un robinet, simule un profil de puisage (\itodo{Lien vers profil puisage})
-simulant la demande en ECS du foyer.
-
-La batterie à eau permet de fournir l’énergie solaire à l’air couvrant ainsi les besoins
-en chauffage. Il est donc nécessaire de faire varier le débit de la pompe S2 afin d’optimiser
-la part des besoins couverts par le solaire.
-
-Enfin la V3V solaire est un élément important pour la régulation du système solaire. Son ouverture
-et fermeture conditionne le mode de fonctionnement du système solaire comme décrit ci-après.
-
-La performance du système réside dans sa capacité à s’adapter pour valoriser
-l’énergie solaire disponible. Le système comporte plusieurs modes de fonctionnement
-et considère le maintien de la température de l’eau chaude sanitaire (ballon ECS)
-comme une priorité.
-En journée lorsque l’irradiation solaire est assez importante la demande en énergie
-pour le chauffage et la production d’ECS est couverte directement par le solaire
-(\mtodo{Ajouter réf vers mode direct}).
-Les pompes S2 et S5 étant respectivement les pompes pour diriger l’énergie solaire
-vers le ballon ECS, et la batterie air/eau.
-La V3V solaire est alors ouverte vers les capteurs et fermée vers le ballon tampon.
-Si il n’y a pas de demande en énergie au niveau du ballon ECS ou du chauffage, le ballon
-tampon est alors chargé (S6 se met en marche). Les pompes S6, S5, S2 peuvent être activées
-en même temps permettant de profiter pleinement de l’énergie solaire pour couvrir les
-besoins en chauffage, les besoins ECS, et charger le ballon tampon.
-\begin{figure}
-    \begin{center}
-        \includegraphics{schemas/air_hydraulique_direct.pdf}
-    \end{center}
-    \caption{Schéma hydraulique du système solaire combiné en mode solaire direct
-             (avec besoins de chauffage).
-             \label{fig:air_hydraulique_direct}}
-\end{figure}
-\begin{figure}
-    \begin{center}
-        \includegraphics{schemas/air_hydraulique_direct_2.pdf}
-    \end{center}
-    \caption{Schéma hydraulique du système solaire combiné en mode solaire direct
-             (sans besoins de chauffage).
-             \label{fig:air_hydraulique_direct_2}}
-\end{figure}
-\begin{figure}
-    \begin{center}
-        \includegraphics{schemas/air_hydraulique_indirect.pdf}
-    \end{center}
-    \caption{Schéma hydraulique du système solaire combiné en mode solaire indirect.
-             \label{fig:air_hydraulique_indirect}}
-\end{figure}
-
-Durant la journée, l’irradiation solaire permet directement de fournir de l’énergie
-nécessaire, cependant le soir et la nuit cette énergie est indisponible. Le système
-passe alors en mode indirect (\mtodo{Ajouter réf vers mode direct}). Il a été expliqué
-que durant la journée, l’énergie excédentaire est stockée dans le ballon tampon. C’est
-dans ce mode qu’elle va être utilisée. Dès que l’énergie dans les collecteurs n’est
-plus suffisante, la V3V est orientée vers le ballon tampon est la pompe S6 n’est
-plus autorisée à s’enclencher. Comme dans la configuration précédente la pompe S2
-peut s’enclencher pour couvrir les besoins en chauffage grâce à l’énergie solaire
-contenue dans le ballon tampon. L’énergie est donc toujours d’origine solaire mais
-elle est fournit indirectement. Il est important de noter que dans ce mode de fonctionnement,
-la pompe S5 n’est pas autorisée à s’activer. L’énergie solaire stockée dans le ballon tampon
-étant conservée pour couvrir les besoins de chauffage.
-
-Enfin le dernier mode est activé lorsque l’énergie solaire est insuffisante (direct et indirect)
-Dans cette configuration, si il y a une demande en ECS ou en chauffage de nécessaire alors
-l’appoint électrique est activé pour couvrir les besoins. Il est important de noter que
-les terminaux ou l’appoint électrique(s) peuvent être actif(s) durant le mode direct ou
-indirect si les besoins ne sont pas couverts entièrement par le solaire.
-
-
-Les \mtodo{Ajouter lien}{figures} mettent en exergue les différents modes possibles
-pour le système solaire.
-\ftodo{Ajouter des graphiques montrant la transition entre les différents modes}
-
-
-
-\begin{table}
-\centering
-\begin{tabular}{lcr}
-    \toprule
-    Paramètre                                & Valeur         & Unité                 \\
-    \midrule
-    Surface nette                            & 2,32           & \si{m^{2}}            \\
-    Poids à vide                             & 54             & \si{Kg}               \\
-    Contenance                               & 1,35           & \si{l}                \\
-    $R_{optique}$                            & 78             & \si{\%}               \\
-    Décroissance de performance              & -5,103         & -                     \\
-    Coefficient $a_{1}$ (pertes linéiques)   & 3,796          & \si{W/(m^{2}.K)}      \\
-    Coefficient $a_{2}$ (pertes surfaciques) & 0,013          & \si{W/(m^{2}.K^{2})}  \\
-    Modulation diffus (IMDiff)               & 100            & \si{\%}               \\
-    \bottomrule
-\end{tabular}
-\caption{Caractéristique du collecteur modèle IDMK 2.5 de chez Sonnenkraft.
-         \label{tab:collectors_specs}}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{l*{2}{c}r}
-    \toprule
-    Paramètre & Ballon tampon & Ballon ECS & Unité\\
-    \midrule
-    Volume                                       & 300   & 300    & \si{l}              \\
-    Hauteur                                      & 1.6   & 1.67   & \si{m}              \\
-    Épaisseur isolation                          & 100   & 55     & \si{mm}             \\
-    \textgreek{l} isolant                        & 0.04  & 0.04   & \si{W/m^{2}.K}      \\
-    Échangeur haut                               & 1.415 & 0.86   & \si{m}              \\
-    Échangeur bas                                & 0.255 & 0.175  & \si{m}              \\
-    Diamètre échangeur (extérieur)               & 34.6  & 27.9   & \si{mm}             \\
-    Chaleur spécifique de échangeur (acier noir) & 490   & 490    & \si{J/kg.K}         \\
-    Puissance nominale                           & 103   & 25     & \si{KW}             \\
-    Température nominale (ballon)                & 10    & 45     & \si{\degreeCelsius} \\
-    Température nominale (échangeur)             & 45    & 10     & \si{\degreeCelsius} \\
-    Débit nominal                                & 0.36  & 0.1747 & \si{Kg/s}           \\
-    \bottomrule
-\end{tabular}
-\caption{Caractéristiques techniques du ballon tampon et du ballon ECS.
-         \label{tab:tanks_specs}}
-\end{table}
-
-
-Le système solaire est contrôlé par un algorithme permettant d’utiliser l’énergie
-solaire efficacement. Comme décrit ci-dessus l’algorithme contrôle l’état des
-différentes pompes et de la V3V. Afin de conserver un rendement intéressant au
-niveau des capteurs, le débit des pompes est modulé pour conserver une différence
-de température entre entrée et sortie des collecteurs au minimum à 10\,\si{\degreeCelsius}.
-\ftodo{Ajouter diagramme Modelica pour l’algorithme de contrôle}
-
-Afin d’éviter les marches/arrêts intempestifs des pompes, l’algorithme temporise
-le passage d’un état à l’ordre. De plus un hystérésis au niveau des consignes, température
-de consigne de chauffage, température de l’eau chaude sanitaire, températures minimales
-en partie basse du ballon ECS, ...permet aussi de palier à ce problème. Un hystérésis
-ajoute permet de ne plus considérer une consigne à atteindre mais une plage à atteindre.
-Prenons l’exemple d’une consigne de température à 20\,\si{\degreeCelsius}.
-Sans hystérésis dès que la température atteint 20\,\si{\degreeCelsius} l’algorithme
-va considérer que la consigne est atteint et arrêter le chauffage.
-Le problème apparaît alors clairement, on ne va pas maintenir la
-consigne mais l’atteindre puis redescendre, réactiver le chauffage, ...
-Grâce à un hystérésis de 0.5\,\si{\degreeCelsius} on va chercher à atteindre 20.5\,\si{\degreeCelsius}
-avant d’arrêter le chauffage et attendre 19.5\,\si{\degreeCelsius} pour le redémarrer.
-La V3V seulement être en deux mode: (i) Ouvert vers les collecteurs, (ii) Ouvert vers
-le ballon tampon. Le débit des pompes et lui contrôlé par des contrôleurs PI (Proportionnel Intégrale).
-Enfin la température de l’eau dans les ballons et limitée pour se conformer aux
-valeurs maximales admissibles.
-\ftodo{Ajouter graphique mettant en exergue l’action de l’hystérisis}
-
-\ftodo{Ajouter le FSM pour chaque pompes et la V3V}
-Chaque composant peut être représentés graphiquement par un automate fini hiérarchise
-(Hierarchical Finite-state machine (HFSM)).
-Cette représentation considère des états dans lesquels un système peut se trouver, et un
-ensemble de transition d’un état à un autre. Un seul état peut être actif en même temps ce qui
-requiert que chaque état implémente les transitions nécessaire pour réagir à toutes modification des conditions.
-Ce modèle est très utilisé pour représenté une intelligence artificielle (robot,
-personnage non-joueur dans un jeu vidéo, ...) même si il est aujourd’hui souvent
-remplacé par des arbres comportementaux ou des planneurs.
-La hiérarchisation permet de considérer des états principaux et des sous-état. Cette
-approche est plus modulaire, la logique interne des états principaux n’a plus besoin
-de connaître les états principaux existant. Le nombre de transition est donc fortement
-réduit. Cette technique est utilisé pour le contrôle de la pompe S2 qui est plus complexe que les deux
-autres.
-
-% subsubsection description_du_fonctionnement_de_la_partie_hydraulique (end)
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description du fonctionnement de la partie aéraulique} % (fold)
-\label{ssub:description_du_fonctionnement_de_la_partie_aeraulique}
-
-\itodo{Description de l’algorithme de fonctionnement sur l’air}
-Le système se compose d’une partie hydraulique et d’une partie aéraulique, la partie
-hydraulique est détaillée dans \mtodo{Ajouter lien}{section précédente}.
-
-La partie aéraulique est responsable du chauffage mais aussi du maintien du taux minimal
-de renouvellement d’air décrit dans l’arrêté (\mtodo{Ref arrêté}). Pour plus d’information concernant
-le renouvellement d’air se référer à la \mtodo{Ajouter référence vers scénario}.
-Cette partie décrit la logique de contrôle pour le fonctionnement du chauffage par l’air.
-La centrale de traitement d’air se compose d’un caisson de mélange, d’une batterie à eau,
-d’un ventilateur insufflant l’air et d’un terminal électrique assurant le respect de la température
-de consigne.
-\ifix{Modifier le schéma pour que le chauffage électrique soit en terminal}
-
-L’algorithme fonctionne suivant trois états (\mtodo{Réf vers fig}) afin de limiter
-la consommation électrique des ventilateurs, et l’inconfort des occupants.
-\ftodo{Ajouter schéma fonctionnement FSM}
-
-Lorsque la consigne à l’intérieur de la pièce est déjà atteint on se contente de fournir
-le débit minimal réglementaire d’air neuf sans préchauffage. Lorsque il y a une demande de
-chauffage on cherche dans un premier temps à couvrir les besoins en augmentant la température
-de soufflage sans modifier le débit insufflé. Dans ce mode plusieurs cas sont possibles.
-Il est important ici de bien faire la différence entre débit des pompes et du ventilateur.
-Sans précisions, le débit se réfère au débit imposé par le ventilateur, et donc au débit d’air.
-
-Si S2 est activé alors son débit (eau) est modulé en fonction de l’écart entre la consigne de soufflage (air)
-et la température de sortie (air) de la batterie à eau. En effet l’état de la pompe S2 est déterminé
-par la partie hydraulique mais sa vitesse est régulé en fonction de la consigne de soufflage.
-Le débit d’eau (S2) varie ainsi pour maintenir l’air en sortie de batterie à la température
-de soufflage imposée. La consigne de soufflage est déterminée suivant:
-\begin{equation}\label{eq:consigne_soufflage}
-    Tconsigne_{soufflage} = T_{ext} + PI_{soufflage} \times (Tmax_{soufflage} - T_{ext})
-\end{equation}
-avec $PI_{soufflage}$ la valeur du contrôleur PI qui est fonction de la différence entre consigne
-et température de l’ambiance et $Tmax_{soufflage}$ la température maximal admissible pour l’insufflation
-(fixé à 32\,\si{\degreeCelsius}.
-Cette régulation permet de moduler la température en tenant compte de l’écart entre
-consigne et température de l’ambiance mais aussi de la température extérieure (et donc des
-déperditions).
-
-Le caisson de mélange permet de récupérer de l’énergie passivement qui est déjà à
-la température de consigne limitant la demande en énergie solaire et/ou électrique.
-La batterie à eau est uniquement alimenté par de l’énergie solaire, soit par le chauffage
-direct, soit indirect. C’est la pompe S2 qui l’alimente(\mtodo{Ref subs hydrau}).
-\iunsure{Enfin un terminal électrique est ajouté à chaque borne d’insufflation afin
-         de garantir la consigne de soufflage.}
-
-Lorsque les besoins sont importants, il devient intéressant de moduler le débit pour deux
-raisons: (i) récupérer l’énergie sur l’air extrait, (ii) augmenter la quantité d’énergie fournie.
-On passe alors dans le dernier mode de fonctionnement: Modulation du débit d’air.
-Le passage entre les deux modes est temporisé (10 min) pour éviter un effet yoyo.
-Dans ce mode, la température est fixée
-à la température maximale admissible mais le débit est lui variable. La variation du débit
-est déterminé par le contrôleur PID qui est fonction de l’écart entre l’ambiance et la consigne.
-
-Les terminaux électriques permettent d’assurer le maintien de la température de soufflage et sont par
-conséquent, régulés avec un contrôleur PID dépendant de l’écart de température entre
-la consigne de soufflage et l’air sortant de la batterie chaude.
-Il est important de noter que durant la temporisation (passage entre modulation de la température et du débit),
-l’électricité n’est pas favorisé. La demande de puissance est constante à ce moment là
-et l’activation du terminal électrique ne dépend que de l’écart entre consigne de soufflage
-et température en sortie de batterie. Si le solaire fournit déjà la température
-de consigne en sortie de batterie alors même si les besoins ne sont pas couverts,
-l’appoint électrique ne sera pas activé. Une fois dans le mode régulant le débit alors
-l’appoint peut être activé si le solaire n’est pas suffisant.
-Afin d’éviter de consommer de l’électricité inutilement, une temporisation de 3\,\si{min}
-a été mise en place sur l’activation des terminaux électriques.
-
-Finalement afin de profiter de l’inertie du bâtiment, le système autorise à charger
-la maison durant la journée. Si les besoins en chauffage sont couvert et que de l’énergie solaire
-est disponible en direct alors on augmente la consigne de la maison pour une nouvelle
-consigne que l’on nomme consigne solaire.
-Afin de ne pas vider l’énergie accumulée dans le ballon tampon le chauffage solaire
-indirect n’est pas autorisé. De plus les terminaux électriques ne peuvent pas s’activer
-et le débit de soufflage est limité au débit réglementaire de renouvellement d’air.
-En effet il est recherché de
-
-\ftodo{Ajouter description schématique de la logique de contrôle}
-% subsubsection description_du_fonctionnement_de_la_partie_aeraulique (end)
-
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Choix de modélisation pour les composants principaux} % (fold)
-\label{ssub:choix_de_modelisation_pour_les_composants_principaux}
-\itodo{Choix de modélisation pour les systèmes}
-Comme décrit ci-avant la bibliothèque \emph{Buildings} a été utilisé pour modélisé
-la plupart des composants du système solaire. Le paragraphe suivant présente les principaux
-composants du système solaire et le niveau de détail utilisé pour les modélisés.
-La production solaire est calculé en suivant les règles établies dans le volet 2 de
-la norme EN12975 (\mtodo{Ajouter Ref}{EN12975-2}). Ce volet décrit le protocole expérimental
-européen nécessaire pour déterminer les coefficients caractéristiques d’un capteur solaire.
-Les coefficients résultant de l’expérimentation permet de caractériser selon une loi
-approchée (\mtodo{Ajouter équation}) qui permet d’approcher le comportement réel de celui-ci.
-Les ballons sont discrétisés (découpe en sous-volume du volume total)
-afin de prendre en compte la stratification. La stratification est un aspect important
-particulièrement au niveau des ballons afin de mieux évaluer la performance les
-gains/pertes au niveau des échangeurs. Sa modélisation est aussi indispensable
-pour l’algorithme de contrôle qui dépend des températures à différentes
-hauteurs du ballon (\mtodo{Lien vers partie algo}).
-Les collecteurs et les canalisations sont aussi discrétisés afin de mieux évaluer
-le rendement et les déperditions.
-Les déperditions des canalisations est prise en compte pour la partie reliant
-collecteurs et ballon tampon, le reste des canalisations est considéré adiabatique
-car non exposé aux conditions extérieures.
-Les pompes utilisées dans la modélisation sont à vitesse variable pour mieux s’adapter
-à la quantité d’énergie solaire disponible au niveau des collecteurs (\mtodo{Lien vers la partie algo}).
-L’appoint et les terminaux électriques sont simplement modélisé comme une puissance
-injectée directement dans le fluide.
-
-\ftodo{Ajouter une image du modèle avec une description des éléments (Modelica)}
-% subsubsection choix_de_modelisation_pour_les_composants_principaux (end)
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Confiance dans les modèles} % (fold)
-\label{ssub:confiance_dans_les_modeles}
-\itodo{Description des modèles validés}
-L’objectif de ces modélisation étant d’évaluer la performance du système solaire
-couplé à une maison, l’un des éléments important est le modèle représentant la maison.
-Le modèle utilisé pour la modéliser respecte la suite de test, \mtodo{Ajouter Réf}{BestTestCase}.
-Ces tests permettent de vérifier la cohérence des températures au cours de l’année
-(minimales et maximales). L’énergie consommée pour maintenir la maison (chauffage, refroidissement)
-a aussi été validée sur une évolution horaire (pics de demande) et annuelle.
-Le modèle décrivant les fenêtres a aussi été validé par \mtodo{Ajouter Réf}.
-Il est aussi important de mentionner que les besoins de la maison modélisée sous Dymola
-sont fortement similaires à ceux de la même maison modélisé en multi-zone avec le logiciel
-EnergyPlus.
-
-Une attention particulière à aussi été utilisé pour le modèle représentant les capteurs
-solaires afin que leur performance soit représentatif du modèle réel. Pour ce faire
-le modèle a d’abord été comparé à l’implémentation utilisé dans un logiciel de
-simulation dynamique fortement utilisé, TrnSys. Ces premiers résultats montrent que
-les deux modèles ont un comportement similaire, l’irradiation solaire sur les capteurs
-étant très proches.
-Dans un second temps, des données expérimentales ont été utilisées pour valider les
-caractéristiques du capteur solaire et du modèle les utilisant.
-Les données expérimentales, irradiation direct, indirect et la température de l’eau
-en entrée des collecteurs ont ainsi été utilisé comme conditions limites pour le
-modèle. La température de sortie des collecteurs (modélisation) a ainsi été comparée
-à celle en condition réelle. Il a été montré que le modèle de capteur solaire
-implémenté en Modelica reflète le comportement réelle des capteurs sur les deux mois
-de données expérimentales disponibles.
-\ftodo{Ajouter résultats de comparaison avec Trnsys et expérimentation}
-
-Les caractéristiques des capteurs utilisés dans l’étude paramétrique proviennent
-de la même source \mtodo{Ajouter Réf}, qui est un organisme dont l’action est de
-vérifier la performance des capteurs dans les conditions expérimentales décrites
-dans la norme (\mtodo{Ajouter Réf}).
-% subsubsection confiance_dans_les_modeles (end)
-% subsection un_système_solaire_utilisant_le_vecteur_air (end)
-% section description_du_modèle_solaire (end)
-
+Dans un premier temps des outils retenues pour la modélisation et l’analyse des résultats.
+Dans un second temps le modèle SSC développée ainsi que le bâtiment et les scénarios, sont
+discutés. Finalement une étude paramétrique est réalisée. Elle permettra de mieux
+comprendre les intéractions existantes entre bâtiment et système et de fixer les scénarios
+qui seront retenues pour l’aide à la décision. De plus les indicateurs nécessaires à la
+caractérisation d’un SSC seront identifiés.
+% section introduction (end)
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Description du bâtiment} % (fold)
-\label{sec:description_du_batiment}
-
+\section{Modélisation détaillée d’un système solaire innovant} % (fold)
+\label{sec:modelisation_detaillee_d_un_systeme_solaire_innovant}
 % ------------------------------------------------------------------------------
-\subsection{Description du site} % (fold)
-\label{sub:description_du_site}
-\itodo{Description du site étudié: climat, données metéos, ...}
-\itodo{
-Le fichier météo utilisé est celui de Bordeaux et est de type \emph{IWEC}
-et a pour code d’identification \href{http://www.ladybug.tools/epwmap/}{{IWEC - WMO 075100}}.
-}
-L’étude porte sur les climats de Limoges, Bordeaux, Toulouse, Marseille, et Strasbourg
-afin de couvrir les différentes configuration qui peuvent être rencontrées en
-France (\ref{tab:description_site}).
-\scriptsize
-\begin{table}
-    \begin{tabular}{c c | c c c c c}
-                            &                     & \textbf{Bordeaux}         & \textbf{Marseille} & \textbf{Toulouse}       & \textbf{Limoges}            & \textbf{Strasbourg}         \\
-        \toprule
-        Température         & Min                 & \cellcolor{Amaranth}-8,2  &                    & -5,4                    & -7,2                        &  \\
-        extérieure          & Max                 & 34                        &                    & 35,6                    & 33,7                        &  \\
-        \si{\degreeCelsius} & Moy                 & 13,2                      &                    & 13,8                    & 11,4                        &  \\
-        \midrule
-        Température         & Min                 & 8,9                       &                    & 8,6                     & \cellcolor{Amaranth}7       &  \\
-        eau froide          & Max                 & 16                        &                    & 17                      & 14                          &  \\
-        \si{\degreeCelsius} & Moy                 & 12,5                      &                    & 12,8                    & \cellcolor{Amaranth}10,6    &  \\
-        \midrule
-        DJU (19)            & \si{\degreeCelsius} & 2408                      &                    & 2321                    & \cellcolor{Amaranth}2972    &  \\
-        \midrule
-        Ensoleillement      &  Direct             &                           &                    &                         &                             &  \\
-        \si{kWh/m^{2}}      &  Diffus             &                           &                    &                         &                             &  \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des différentes sites.}
-    \label{tab:description_site}
-\end{table}
-\normalsize
-
-Marseille correspond à un climat très ensoleillé avec peu de demande en chauffage
-durant l’année entière. Il est alors à priori propice à une installation solaire.
-À l’opposé le climat de Strasbourg est rude avec une forte demande en chauffage et
-un ensoleillement très faible particulièrement durant les mois hivernaux. Il est alors
-à priori non-propice à une installation solaire. Bordeaux et Toulouse propose tous deux
-un climat favorable, l’ensoleillement est bon et les besoins de chauffage sont peu
-importants. Limoges est entre le climat Bordelais et Strasbourgeois et correspond
-ainsi à un cas d’étude intéressant pour évaluer l’impact d’une modification au niveau
-composant sur les performances du système au niveau global.
-La température du sol est considérée constante durant l’ensemble de la simulation
-et identique pour chaque site site. Il est important de noter que la variation de
-la température du sol est un élément important pour l’évaluation des besoins en chauffage
-du bâtiment, mais est fortement dépendant de la composition du plancher et du niveau
-d’isolation de celui-ci.
-
-\itodo{Ajouter un tableau récap des besoins en énergie}
-\ftodo{Ajouter une carte pour positionner les villes}
-% subsection description_du_site (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Approche monozone} % (fold)
-\label{sub:approche_monozone}
-\itodo{Décrire la raison de ce choix}
-\itodo{Maison monozone vérifiée par un modèle multi-zone}
-Dans une première application, un modèle monozone a été utilisé pour réduire la
-complexité du modèle. Comme décrit plus haut (\autoref{ssub:confiance_dans_les_modeles}),
-le modèle respecte une large suite de test, et une approche trop détaillée n’est pas
-nécessaire à ce moment de l’analyse. Le but étant de faire une première évaluation du
-potentiel solaire du système combiné.
-Le modèle a cependant été comparé avec une implémentation dans Energy Plus afin de
-vérifier que les deux modèle ais des résultats similaires. Le travail fais en amont
-sur l’enveloppe de la maison étant complémentaire à celui-ci.
-
-\itodo{Décrire les limitations de cette approches grâce au premiers résultats}
-Les premiers résultats montrent un potentiel intéressant de la production solaire pour
-des climats allant de Marseille à Limoges. Dans un climat très hostile comme
-Strasbourg, la part solaire est faible et ce système ne semble pas permettre de couvrir
-les besoins. Il est important de noter que l’énergie disponible pour le solaire est
-fortement dépendant des fichiers météos.
-Il est aussi intéressant de voir les limitations de l’approche paramétrique. Aucune
-interaction entre les composants n’est prise en compte et la seule information disponible
-est donc difficilement extrapolable/utilisable pour d’autres cas. Il est en effet nécessaire
-d’évaluer/ trier les paramètres influant. Une fois un certain nombre de paramètres retenus,
-il est alors possible de suivre une méthode d’optimisation combinatoire pour évaluer
-un ensemble de solution optimales.
-Enfin l’approche monozone montre aussi ces limites sur plusieurs aspects qui sont importants
-pour l’évaluation d’une maison faiblement déperditive. La répartitions des charges internes
-et des périodes d’occupation est un facteur important à prendre en compte. Sans une approche
-multizone, il est impossible d’en tenir compte correctement (charges propres au type de pièce)
-Il est aussi intéressant de voir quel est l’impact passif des équipements du système solaire sur la
-consommation et la charge de la maison. L’approche monozone n’ayant que un seul nœud
-d’air, la prise en compte des apports par ces équipements est trop grossier.
-Enfin l’approche multizone permet de modéliser un algorithme de régulation plus réaliste.
-En effet pour prendre le cas de la CTA; l’insufflation et l’extraction ne se font pas au même endroit.
-
-\itodo{Decrire le découpage de la maison.}
-La maison a été modélisé comme un ensemble de 3 zones, les combles, le vide-sanitaire, et la zone
-à vivre. Un modèle simplifié est utilisé pour les combles et le vide sanitaire
-afin d’obtenir des conditions limites notamment pour les parois du puits de jour.
-Les coefficients de convection intérieurs utilisés sont les suivants:
-\begin{itemize}
-    \item Plafond: 8~\si{W/m^{2}.k}
-    \item Plancher: 8~\si{W/m^{2}.k}
-    \item Murs: 8~\si{W/m^{2}.k}
-\end{itemize}
-
-Le coefficient de convection extérieur utilisé est de 25~\si{W/m^{2}.k}.
-% subsection approche_monozone (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Description de l’enveloppe} % (fold)
-\label{sub:description_de_l_enveloppe}
-\itodo{Description complète de la maison: Composition de base, surfaces, orientation, ...}
-La maison (Fig.~\ref{fig:plan_maison}) a une surface habitable de 98.4~\si{m^2}. Elle comporte
-3 \mtodo{Ajouter orientation}{chambres}, une cuisine/salon, et un local technique
-où se trouve les équipements du système. La maison comporte des combles non aménagés
-et un vide sanitaire. La maison est de plain-pied et les compositions sont:
-\begin{itemize}
-    \item Murs: ~\autoref{tab:compo_mur}
-    \item Plafond: ~\autoref{tab:compo_plafond}
-    \item Plancher: ~\autoref{tab:compo_plancher}
-    \item Partition: ~\autoref{tab:compo_partition}
-    \item Murs du puits de lumière: ~\autoref{tab:compo_puits}
-    \item Murs vide sanitaire: ~\autoref{tab:compo_VS}
-    \item Toiture: ~\autoref{tab:compo_toiture}
-\end{itemize}
-Les différents vitrages sont des vitrages double avec une lame d’air ou d’argon.
-Une couche faiblement émissive est ajouté pour les vitrages des parois verticales (~\autoref{tab:compo_vitrage}).
-La fenêtre de toit~\autoref{tab:compo_velux} et les caractéristiques des gaz  ~\autoref{tab:compo_gaz}
-sont aussi décrites.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics{Maison/plan.png}
-    \end{center}
-    \caption{Plan de la maison accueillant le système solaire modélisé.
-             \label{fig:plan_maison}}
-\end{figure}
-
-\itodo{Tableau des parois}
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} & \si{kg/m^{3}} \\
-        \midrule
-        Enduit            & 0.01      & 1.15           & 850             & 2000            \\
-        Optibric (R=1.32) & 0.2       & 0.1515         & 1000            & 685             \\
-        Laine de verre    & 0.14      & 0.03218        & 840             & 20              \\
-        Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des parois verticales.}
-    \label{tab:compo_mur}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux              & e         & $\lambda$        & $C_{p}$         & $\rho$          \\
-                               & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)} & \si{kg/m^{3}} \\
-        \midrule
-        Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
-        Polyuréthane           & 0.1       &  0.0215          & 1590            & 35              \\
-        Hourdis + polystyrène  & 0.12      &  0.0276          & 1450            & 35              \\
-        Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description du plancher.}
-    \label{tab:compo_plancher}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux               & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-                                & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)}    &\si{kg/m^{3}}  \\
-        \midrule
-        Laine de roche soufflée & 0.365     & 0.045        & 1030               & 150                 \\
-        Plâtre                  & 0.01      & 0.25         & 1000               & 820                 \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description du plafond sous combles.}
-    \label{tab:compo_plafond}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-                  & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-        \midrule
-        Tuile     & 0.04      & 1              & 800             & 2000            \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description de la toiture.}
-    \label{tab:compo_toiture}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-        \midrule
-        Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
-        Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
-        Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des parois du puits de jour.}
-    \label{tab:compo_puits}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-        \midrule
-        Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
-        Air (R=0.15)      & -         & -              & -               & -               \\
-        Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des murs de partitions.}
-    \label{tab:compo_partition}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *4{c}}
-        \toprule
-        Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-                          & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-        \midrule
-        Béton             & 0.2       & 1.13           & 1000            & 2000            \\
-        Terre             & 4         & 0.52           & 50              & 2050            \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des parois du vide sanitaire.}
-    \label{tab:compo_VS}
-\end{table}
-
-
-\itodo{Tableau des vitrages}
-\begin{table}
-    \begin{tabular}{l *8{c}}
-        \toprule
-        Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$ \\
-                  & \si{m}  & \si{W/(m.k)} & -              & -         & -                & -                & -                & -                \\
-        \midrule
-        SGG Planilux       & 0.04  & 1          & 0.849      & 0           & 0.837              & 0.837              & 0.076              & 0.076                   \\
-        Argon              & 0.016 & -          & -          & -           & -                  & -                  & -                  & -                       \\
-        SGG PlaniTherm One & 0.04  & 1          & 0.591      & 0           & 0.037              & 0.837              & 0.312              & 0.264                   \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des vitrages en façades verticales ($U_{f}$ de 1.4~\si{W/m^{2}.k}).}
-    \label{tab:compo_vitrage}
-\end{table}
-
-\begin{table}
-    \begin{tabular}{l *8{c}}
-        \toprule
-        Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
-                  & \si{m}  & \si{W/(m.k)} & -              & -         & -          & -          & -            & -             \\
-        \midrule
-        Verre ext & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
-        Air       & 0.016     & -              & -                & -           & -           & -            & -              & -               \\
-        Verre int & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description de la fenêtre de toit ($U_{f}$ de 1.8~\si{W/m^{2}.k}).}
-    \label{tab:compo_velux}
-\end{table}
-
-\begin{table}
-    \raggedright
-    \begin{tabular}{l *5{c}}
-        \toprule
-        Gaz   & $a_{k}$              & $b_{k}$              & $a_{mu}$             & $b_{mu}$             & $a_{c}$           \\
-              & \si{W/(m.k)}       & \si{W/(m.k^{2})}   & Pa.s               & \si{N.s/(m^{2}.k)} & \si{J/(kg.k)}   \\
-        \midrule
-        Argon & $2.285\times10^{-3}$ & $5.149\times10^{-5}$ & $3.379\times10^{-6}$ & $6.451\times10^{-8}$ & 521.9285          \\
-        Air   & $2.873\times10^{-3}$ & $7.760\times10^{-5}$ & $3.723\times10^{-6}$ & $4.940\times10^{-8}$ & 1002.737          \\
-        \bottomrule
-    \end{tabular}
-    \bigskip
-    \begin{tabular}{l *3{c}}
-              & $b_{c}$                & $MM$                  & $P0$       \\
-              & \si{J/(kg.k^{2})}    & \si{kg/mol}         & \si{bar} \\
-        \midrule
-        Argon & 0                      & $39.948\times10^{-3}$ & 101325     \\
-        Air   & $1.2324\times10^{-2}$  & $28.97\times10^{-3}$  & 101325     \\
-        \bottomrule
-    \end{tabular}
-    \caption{Description des caractéristiques des gaz}
-    \label{tab:compo_gaz}
-\end{table}
-
-
-% subsection description_de_l_enveloppe (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Description du comportement des occupants} % (fold)
-\label{sub:description_du_comportement_des_occupants}
-
+\subsection{Choix des outils} % (fold)
+\label{sub:choix_des_outils}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Hypothèses sur les charges internes} % (fold)
-\label{ssub:hypotheses_sur_les_charges_internes}
-
-\paragraph{Construction des scénarios} % (fold)
-\label{par:construction_des_scenarios}
-\itodo{Décrire le choix des scénarios}
-Les charges internes sont le cumul des charges dû aux occupants, les équipements et à l’éclairage.
-Le scénario d’occupation est représentatif d’une famille type.
-On a donc deux adultes et deux enfants. Ils sont absents durant toute la journée;
-les enfants étant à l’école et les parents au travail. Le Mercredi, il est admis que
-la maison est occupée durant l’après midi et le week-end, le scénario
-considère que toute la famille est présente.
-Le scénario utilisé pour représenter la charge des équipements suit le même schéma que
-l’occupation. La consommation est issue de la réglementation thermique, RT2012. Durant la nuit et les
-inoccupations, un réduit représentant la veille des équipements est pris en compte.
-\itodo{Décrire les différents scénarios avec des illustrations}
-De la même manière le scénario représentant les charges liées à l’éclairage suivent
-le même schéma que l’occupation. On ne considère pas de charge durant la nuit et la
-journée en semaine. Le week-end durant la journée la consommation est abaissée comme
-définie dans la RT2012.
-% paragraph construction_des_scénarios (end)
-
-\paragraph{Description de l’occupation} % (fold)
-\label{par:description_de_l_occupation}
-\itodo{Détailler plus le choix du scénario d’occupation}
-\itodo{Ajouter répartition sensible radiatif}
-Le modèle étant monozone, il n’est pas possible d’utiliser un scénario
-en fonction du type d’activités. La maison est occupée
-par 4 personnes dont la puissance rejetée est de l’ordre de 97.5\,\si{W/m^{2}}.
-Cette valeur provient de la moyenne de puissance générée par
-les habitants en fonction de l’activité et de leur âge (enfant ou parent).
-Ce calcul tient compte des valeurs utilisées dans la simulation \emph{Energy Plus} qui est
-elle détaillée par zone dans le \autoref{tab:occupation_scenario}.
-
-\begin{table}
-\begin{tabular}{*8{c}}
-    \toprule
-    Chambre 1 & Chambre 2  & Chambre 3 & Séjour & Cuisine & Sanitaire & SdB   & Cellier \\
-    \midrule
-    78        & 78         & 117       & 97.5   & 97.5    & 114.3     & 114.3 & 114.3   \\
-    \bottomrule
-\end{tabular}
-\caption{Description de la puissance dissipée par personne en fonction de la zone.}
-\label{tab:puissance_occupants}
-\end{table}
-
-La puissance ainsi calculé suit le profil décrit en Fig~\ref{fig:occupation_scenario}
-dont 70~\% est considérée comme convectif et 30~\% comme radiatif.
-
-\begin{figure}
-    \includegraphics{Maison/Scenarios/Occupation_Watt.png}
-    \caption{Profil de la puissance dissipée par les occupants durant une semaine type.}
-    \label{fig:occupation_scenario}
-\end{figure}
-% paragraph description_de_l_occupation (end)
-
-\paragraph{Description des charges internes inertes} % (fold)
-\label{par:description_des_charges_internes_inertes}
-\itodo{Descriptif charges}
-\itodo{Détailler plus le choix des scénarios}
-Les profils de puissance dissipée (Fig~\ref{fig:charges_internes_scenario}) suit les puissances
-définies dans la \textbf{RT 2012}.
-On a donc pour l’éclairage une dissipation équivalent de 1.4~\si{W/m^{2}} et
-de 5.7~\si{W/m^{2}} pour l’électroménager.
-L’énergie dissipée pour l’éclairage est répartie en convectif (42\%) et en radiatif (58\%).
-L’énergie dissipée pour l’électroménager est répartie en convectif (80\%) et en radiatif (20\%).
-
-\begin{figure}
-    \begin{center}
-        \includegraphics{Maison/Scenarios/Charges_Watt_meter_day.png}
-        \includegraphics{Maison/Scenarios/Charges_Watt_meter.png}
-    \end{center}
-    \caption{Profil de la puissance dissipée par les charges électriques internes (\si{W/m^{2}})}
-    \label{fig:charges_internes_scenario}
-\end{figure}
-% paragraph description_des_charges_internes_inertes (end)
-
-% subsubsection hypothèses_sur_les_charges_internes (end)
+\subsubsection{Quelles contraintes ?} % (fold)
+\label{ssub:quelles_contraintes}
+Il existe plusieurs moyens permettant d’évaluer un système énergétique. Le premier
+consiste à reproduire expérimentalement le système et son environnement. Ce processus est
+coûteux, particulièrement si le système est évalué à l’échelle du bâtiment. De plus les
+conditions extérieures ne peuvent être contrôlées et une variation dans la structure du
+système est complexe à mettre en place. Pour ces raisons une approche par modélisation a
+été retenue. Elle permet de contrôler l’ensemble des composants du système comme son
+algorithme de contrôle, les conditions limites (météo) ou encore les composants du
+système. Grâce à cette approche il est alors possible d’évaluer le système modélisé de
+manière totalement libre. La modélisation est donc l’outil de choix pour réaliser une
+étude de faisabilité, un dimensionnement, ou encore optimiser un système. Il existe de
+nombreux langages ou logiciels permettant de réaliser des simulations plus ou moins
+complexes. Il est ainsi nécessaire dans un premier temps de définir le niveau de précision
+que l’on souhaite pour les différentes parties du modèle. Notre cas d’étude se place à
+l’échelle du bâtiment mais l’on souhaite aussi conserver un contrôle important sur la
+gestion des équipements. Il est aussi important de déterminer le niveau de contrôle que
+l’on souhaite avoir sur chaque composant du modèle. On distingue principalement 2 familles
+d’outils : les modèles opaques (boîtes noires) qui masquent à l’utilisateur le
+fonctionnement internes, et les modèles ouverts (boîtes blanches) dont la composition de
+chaque bloc est connue et modifiable. Notre étude portant sur l’évaluation et
+l’amélioration d’un système solaire combiné, il est nécessaire de pouvoir contrôler chaque
+partie du modèle. Cette approche permet en effet de pouvoir évaluer l’impact d’une
+modification à chaque niveau de détail du modèle permettant ainsi d’analyser et de
+comprendre la relation entre la variation d’un paramètre au niveau du composant et son
+impact global sur le système. La modélisation d’un système détaillé demande de nombreuses
+itérations, dans un premier temps pour modéliser le système, et dans un second temps pour
+évaluer l’impact d’un ensemble de variation. Le processus de développement du modèle étant
+itératif, l’outil sélectionné doit permette de modifier, ajouter, et supprimer rapidement
+et simplement des composants. Finalement le problème à modéliser est un problème multi-
+physique et l’outil doit être adapté à la modélisation d’un système hydraulique (solaire),
+d’un système aéraulique (ventilation), d’un algorithme de contrôle (régulation) et d’un
+bilan thermique (bâtiment).
+% subsubsection quelles_contraintes (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Hypothèses sur le puisage en eau chaude sanitaire} % (fold)
-\label{ssub:hypotheses_sur_le_puisage_en_eau_chaude_sanitaire}
+\subsubsection{Quelle solution ?} % (fold)
+\label{ssub:quelle_solution}
+Le langage Modelica et le logiciel Dymola (Dynamics Modeling Laboratory) permettent de
+répondre à l’ensemble des contraintes décrites dans la section précédente. Modelica est un
+langage de programmation libre et ouvert développé pour répondre aux contraintes de la
+modélisation multi-physique. Il a été pensé pour être intuitif et offre une approche
+équationnelle et orientée objet au développeur. L’approche objet est très intuitive et
+permet d’encapsuler un ensemble de données et d’offrir des interfaces pour accéder à ces
+données. Un modèle est ainsi une combinaison d’un ensemble de sous-modèles (composition)
+ou certains sous-modèles peuvent être améliorés afin de leur ajouter une spécialisation
+(héritage). Enfin le langage est acausal permettant de ne pas avoir à expliciter les
+inconnues d’un problème. Ce dernier point est particulièrement important car il permet au
+développeur de modifier une partie d’un modèle simplement et rapidement.
 
-\paragraph{Hypothèses sur la température de l’eau froide} % (fold)
-\label{par:hypothèses_sur_la_température_de_l_eau_froide}
-La température de l'eau du réseau suit une évolution mensuel afin de prendre en compte
-la variation importante durant l’année.
-La température d’arrivée de l’eau au niveau du ballon est un facteur important pour
-évaluer la consommation d’énergie pour le puisage en ECS. Le récapitulatif (\autoref{tab:temp_water})
-montre bien que la variation de la température est autant influencé par la période de l’année
-que par la position géographique.
-\mtodo{Ajouter Réf tecsol}
-\begin{table}
-\centering
-\begin{tabular}{l*{12}{c}}
-    \toprule
-               & Janv & Fevr & Mars & Avr & Mai & Juin & Juil & Août & Sept & Oct & Nov & Dec \\
-    \midrule
-    Strasbourg & 5,3  & 5,8  & 7,7  & 9,5 & 11  & 13   & 14   & 14   & 12   & 9,8 & 7,5 & 5,8 \\
-    Limoges    & 7    & 7,4  & 9    & 10  & 12  & 14   & 14   & 14   & 13   & 11  & 8,8 & 7,3 \\
-    Toulouse   & 8,6  & 9.2  & 11   & 12  & 14  & 16   & 17   & 17   & 16   & 13  & 11  & 9   \\
-    Bordeaux   & 8,9  & 9,3  & 11   & 12  & 14  & 15   & 16   & 16   & 15   & 13  & 11  & 9,2 \\
-    Marseille  & 12   & 12   & 13   & 14  & 16  & 18   & 19   & 19   & 18   & 16  & 14  & 12  \\
-    \bottomrule
-\end{tabular}
-\caption{Température de l'eau du réseau au cours de l'année en fonction de la
-         position géographique.}
-         \label{tab:temp_water}
-\end{table}
-% paragraph hypothèses_sur_la_température_de_l_eau_froide (end)
+\paragraph{Modélisation acausale :} % (fold)
+\label{par:modelisation_acausale}
+Un système acausal n’impose pas de sens dans la définition d’une équation (Figure 1).  Le
+solveur va déterminer par lui-même les paramètres dont il connait la valeur et réécrire
+les systèmes d’équations afin d’isoler les inconnues. Le développement sous Modelica
+permet ainsi de rapidement prototyper des systèmes complexes sans devoir à chaque
+modification réécrire les systèmes d’équations.
+\ftodo{Ajouter acausal vs causal}
+% paragraph modelisation_acausale (end)
 
-\paragraph{Description du scénario de référence} % (fold)
-\label{par:description_du_scénario_de_reference}
-Comme explicité en \autoref{par:description_de_l_occupation} on considère 4 personnes
-dans la maison. Un comportement \munsure{trouve mieux}{gaspilleur} a été considéré
-afin d’évaluer la performance du système pour des conditions non favorables. Il a été
-retenue 33~\si{l/jour/pers}~(\textbf{60~\si{\degree}}) contre un puisage moyen
-\mtodo{Ajouter source}{33\,\si{l/jour/pers}~(\textbf{50\,\si{\degree}})}.
-La température de puisage a été fixé à 40~\si{\degree} ce qui correspond donc
-à un volume total de 220~\si{l/jour}~(\textbf{40~\si{\degree}}).
-\itodo{Ajouter scénario de puisage}
-Le puisage est considéré comme répartie sur la journée. Il est considéré 3 pics de
-demande de puisage: le matin (1/6), le midi (1/6), et le soir (2/3) ().
+\paragraph{Dymola :} % (fold)
+\label{par:dymola}
+Dymola est une suite de logiciels développée par Dassault Systèmes permettant de
+simplifier le développement de modèles numériques grâce au langage Modelica. Il offre une
+interface graphique permettant de connecter les modèles entre eux de manière intuitive
+(Figure 2). Il offre aussi un outil puissant de refactoring permettant de rendre
+transparent la modification du nom d’une variable. Il offre aussi un outil de post-
+traitement afin d’évaluer les résultats des simulations. Finalement il intègre le logiciel
+Dymosim qui offre un large choix de solveurs pour simuler les modèles. Dymosim supporte
+aussi la parallélisation, les FMU (FunctionalMock-Up Unit) et la génération de modèles
+autonomes.
+\ftodo{Ajouter example modélisation}
+% paragraph dymola (end)
+
+\paragraph{Bibliothèque Buildings} % (fold)
+\label{par:bibliotheque_buildings}
+\itodo{Détailler buildings}
+Le couplage de Modelica et de Dymola permet le développement itératif nécessaire à notre
+problème et offre un contrôle total sur chaque partie du modèle répondant ainsi
+parfaitement à nos contraintes. Le langage Modelica étant en pleine croissance dans le
+secteur du bâtiment, de nombreuses bibliothèques open source ont été développées dont la
+liste peut être trouvée sur le site officiel de l’association Modelica. Dans notre étude
+nous avons utilisé la bibliothèque Buildings qui est développée par le Laboratoire
+National Lawrence Berkeley (LBNL). C’est une bibliothèque libre et ouverte, développée
+pour la modélisation des systèmes du bâtiment (hydraulique, aéraulique, électrique,
+thermique, ...).
+% paragraph bibliotheque_buildings (end)
+
+\ftodo{Ajouter icone logiciels}
+% subsubsection quelle_solution (end)
+% subsection choix_des_outils (end)
+% section modelisation_detaillee_d_un_systeme_solaire_innovant (end)
+
+\section{Description du cas d’étude : le bâtiment} % (fold)
+\label{sec:description_du_cas_d_etude_le_batiment}
+
+% section description_du_cas_d_etude_le_batiment (end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+% % ..............................................................................
+% % ..............................................................................
+% \section{Description du modèle solaire} % (fold)
+% \label{sec:description_du_modele_solaire}
+
+% % ------------------------------------------------------------------------------
+% \subsection{Un système solaire utilisant le vecteur air} % (fold)
+% \label{sub:un_systeme_solaire_utilisant_le_vecteur_air}
+% \itodo{Description schématique du système}
+% Le système solaire \mtodo{Ajouter Ref}{complet} comporte deux parties distinctes,
+% la partie hydraulique qui sera détaillée dans un premier temps et la partie
+% aéraulique qui sera expliquée ensuite.
 % \begin{figure}
 %     \begin{center}
-%         \includegraphics{Maison/Scenarios/Puisage_ecs.png}
+%         \includegraphics{schemas/air_complet_mono.pdf}
 %     \end{center}
-%     \caption{Profil de la puissance dissipée par les charges électriques internes (\si{W/m^{2}})}
-%     \label{fig:puisage_ecs}
+%     \caption{Représentation schématique de l’ensemble du système solaire combiné
+%              (hydraulique et aéraulique).
+%              \label{fig:air_complet_mono}}
 % \end{figure}
 
-\iunsure{
-Refaire étude paramétrique pour avoir le même modèle que étude de sensibilité
-Consommation de 41~\si{l/jour/pers} (\textbf{60\,\si{\degree}})
-}
-% paragraph description_du_scénario_de_référence (end)
-% subsubsection hypothèses_sur_le_puisage_en_eau_chaude_sanitaire (end)
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Choix du fluide caloporteur} % (fold)
+% \label{ssub:choix_du_fluide_caloporteur}
+% Afin de permettre au fluide de supporter les températures extérieures pour toutes
+% les météos nous avons opté pour un mélange d’eau (70\,\%) et d’ethylène-glycol (30\,\%).
+% On obtient alors une une chaleur spécifique massique de 3608\,\si{J/(kg.K)} et une
+% masse volumique de 1034\,\si{kg/m^3}.
+% \itodo{Ajouter le détail du calcul}
+% % subsubsection choix_du_fluide_caloporteur (end)
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Description du fonctionnement de la partie hydraulique} % (fold)
+% \label{ssub:description_du_fonctionnement_de_la_partie_hydraulique}
+% \itodo{Décrire chaque système et les paramètres de base}
+% Dans cette partie les différents composants du système (\autoref{tab:collectors_specs}) seront détaillés.
+% \textbf{Il est important de noter que ces caractéristiques sont celle du cas de référence
+% qui sera utilisé comme base pour l’étude paramétrique ci-après.}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{schemas/air_hydraulique.pdf}
+%     \end{center}
+%     \caption{Représentation schématique de la partie hydraulique du système solaire combiné.
+%              \label{fig:air_hydraulique}}
+% \end{figure}
+
+% Les panneaux solaire utilisés sont des modèles \mtodo{Améliorer}{IDMK 2.5} (\autoref{tab:collectors_specs}).
+% Ils sont disposés en parallèles pour augmenter leurs performances. En effet
+% le rendement d’un capteur solaire est directement lié à la température d’entrée du fluide
+% caloporteur. Dans le cas d’un montage en parallèle la température d’entrée est minimale
+% et permet donc de mieux valoriser les collecteurs.
+
+% Le \autoref{tab:tanks_specs} détaille les caractéristiques des deux ballons utilisés
+% dans le système solaire. Le ballon tampon sert à stocker l’énergie solaire disponible
+% durant la journée qui n’a pas été utilisé directement pour le chauffage ou assurer le maintien
+% de la température du ballon ECS (\autoref{tab:tanks_specs}). Le ballon contient un échangeur
+% sur toute sur toute sa hauteur afin de le charger avec l’énergie solaire. La circulation
+% à l’intérieur de l’échangeur est réversible en fonction de l’état de la vanne 3 voies (V3V)
+% solaire en partie basse de celui-ci comme détaillée ci-dessous. Le ballon ECS lui contient l’eau
+% provenant du réseau (sans glycol)
+% Il doit être maintenue à \mtodo{Ajouter référence}{55\,\si{\degreeCelsius}} pour éviter tout risque sanitaire
+% en particulier lié à la légionelle. Ce ballon est maintenue à cette consigne grâce à
+% l’énergie solaire par l’intermédiaire de l’échangeur en partie basse et par un appoint électrique
+% en partie haute garantissant une température de puisage à 50\,\si{\degreeCelsius} minimum. L’arrivée d’eau
+% du réseau se trouvant en partie basse du ballon on améliore l’efficacité de l’échangeur solaire
+% maximisant les gains solaires.
+
+% Le puisage en ECS représenté par un robinet, simule un profil de puisage (\itodo{Lien vers profil puisage})
+% simulant la demande en ECS du foyer.
+
+% La batterie à eau permet de fournir l’énergie solaire à l’air couvrant ainsi les besoins
+% en chauffage. Il est donc nécessaire de faire varier le débit de la pompe S2 afin d’optimiser
+% la part des besoins couverts par le solaire.
+
+% Enfin la V3V solaire est un élément important pour la régulation du système solaire. Son ouverture
+% et fermeture conditionne le mode de fonctionnement du système solaire comme décrit ci-après.
+
+% La performance du système réside dans sa capacité à s’adapter pour valoriser
+% l’énergie solaire disponible. Le système comporte plusieurs modes de fonctionnement
+% et considère le maintien de la température de l’eau chaude sanitaire (ballon ECS)
+% comme une priorité.
+% En journée lorsque l’irradiation solaire est assez importante la demande en énergie
+% pour le chauffage et la production d’ECS est couverte directement par le solaire
+% (\mtodo{Ajouter réf vers mode direct}).
+% Les pompes S2 et S5 étant respectivement les pompes pour diriger l’énergie solaire
+% vers le ballon ECS, et la batterie air/eau.
+% La V3V solaire est alors ouverte vers les capteurs et fermée vers le ballon tampon.
+% Si il n’y a pas de demande en énergie au niveau du ballon ECS ou du chauffage, le ballon
+% tampon est alors chargé (S6 se met en marche). Les pompes S6, S5, S2 peuvent être activées
+% en même temps permettant de profiter pleinement de l’énergie solaire pour couvrir les
+% besoins en chauffage, les besoins ECS, et charger le ballon tampon.
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{schemas/air_hydraulique_direct.pdf}
+%     \end{center}
+%     \caption{Schéma hydraulique du système solaire combiné en mode solaire direct
+%              (avec besoins de chauffage).
+%              \label{fig:air_hydraulique_direct}}
+% \end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{schemas/air_hydraulique_direct_2.pdf}
+%     \end{center}
+%     \caption{Schéma hydraulique du système solaire combiné en mode solaire direct
+%              (sans besoins de chauffage).
+%              \label{fig:air_hydraulique_direct_2}}
+% \end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{schemas/air_hydraulique_indirect.pdf}
+%     \end{center}
+%     \caption{Schéma hydraulique du système solaire combiné en mode solaire indirect.
+%              \label{fig:air_hydraulique_indirect}}
+% \end{figure}
+
+% Durant la journée, l’irradiation solaire permet directement de fournir de l’énergie
+% nécessaire, cependant le soir et la nuit cette énergie est indisponible. Le système
+% passe alors en mode indirect (\mtodo{Ajouter réf vers mode direct}). Il a été expliqué
+% que durant la journée, l’énergie excédentaire est stockée dans le ballon tampon. C’est
+% dans ce mode qu’elle va être utilisée. Dès que l’énergie dans les collecteurs n’est
+% plus suffisante, la V3V est orientée vers le ballon tampon est la pompe S6 n’est
+% plus autorisée à s’enclencher. Comme dans la configuration précédente la pompe S2
+% peut s’enclencher pour couvrir les besoins en chauffage grâce à l’énergie solaire
+% contenue dans le ballon tampon. L’énergie est donc toujours d’origine solaire mais
+% elle est fournit indirectement. Il est important de noter que dans ce mode de fonctionnement,
+% la pompe S5 n’est pas autorisée à s’activer. L’énergie solaire stockée dans le ballon tampon
+% étant conservée pour couvrir les besoins de chauffage.
+
+% Enfin le dernier mode est activé lorsque l’énergie solaire est insuffisante (direct et indirect)
+% Dans cette configuration, si il y a une demande en ECS ou en chauffage de nécessaire alors
+% l’appoint électrique est activé pour couvrir les besoins. Il est important de noter que
+% les terminaux ou l’appoint électrique(s) peuvent être actif(s) durant le mode direct ou
+% indirect si les besoins ne sont pas couverts entièrement par le solaire.
 
 
-\subsubsection{Hypothèses sur le renouvellement d’air} % (fold)
-\label{ssub:hypothèses_sur_le_renouvellement_d_air}
-
-\paragraph{Ventilation} % (fold)
-\label{par:ventilation}
-Le renouvellement d’air neuf suit le scénario réglementaire définie par
-l’\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{arrêté du 24 mars 1982 et du 28 octobre 1983}.
-La maison comprend 4 pièces principales. Le débit réglementaire est alors de 90~\si{m^{3}/h}
-si on considère un fonctionnement mécanique et contrôlé de la ventilation.
-% paragraph ventilation (end)
-
-\paragraph{Infiltrations} % (fold)
-\label{par:infiltrations}
-Les infiltrations ont été définies en utilisant un coefficient de perméabilité ($q_{4}$) de 0.4~\si{m^{3}/h.m^{2}}.
-Le calcul \eqref{eq:infiltrations} tient compte de la somme des surfaces dites \emph{froides}.
-
-\begin{align}
-    Infiltrations &= 0.4 \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
-    &              = 0.4 \times (26.4 \times 4 + 8.6 + 98.4)\\
-    &              = 85~\si{m^{3}/h}
-    \label{eq:infiltrations}
-\end{align}
-% paragraph infiltrations (end)
-% subsubsection hypothèses_sur_le_renouvellement_d_air (end)
-
-\subsubsection{Hypothèses sur la température de consigne} % (fold)
-\label{ssub:hypothèses_sur_la_température_de_consigne}
-
-\paragraph{Consigne de chauffage} % (fold)
-\label{par:consigne_de_chauffage}
-La température de consigne (Fig.~\ref{fig:consigne_scenario}) est de 19\,\si{\degree} durant l’occupation avec un
-réduit à 18\,\si{\degree} la nuit. Durant les absences (après-midi des jours ouvrés)
-il est considéré un réduit à 16\,\si{\degree}. Il est important de noté que comme
-les scénarios de charge interne, la consigne de température est basé sur le scénario
-d’occupation.
-\begin{figure}
-    \begin{center}
-        \includegraphics{Maison/Scenarios/Consigne_temperature.png}
-    \end{center}
-    \caption{Profil de la consigne de température (\si{\celsius})}
-    \label{fig:consigne_scenario}
-\end{figure}
-% paragraph consigne_de_chauffage (end)
-
-
-\paragraph{Consigne de surchauffe solaire} % (fold)
-\label{par:consigne_de_surchauffe_solaire}
-Afin de favoriser l’énergie solaire, la consigne de température peut être modifiée.
-Celle-ci est alors appelée consigne de surchauffe solaire. Cette consigne permet
-de charger la maison en profitant de son inertie (principalement de la dalle) afin
-de retarder la demande en chauffage le soir (Fig.~\ref{fig:surchauffe_solaire}). Il est important de noter que seul
-l’énergie solaire direct peut être utilisé pour atteindre cette consigne. En effet,
-le but est de profiter de l’énergie solaire disponible durant la journée et il utiliser
-l’énergie de l’auxiliaire ou décharger le ballon solaire pour atteindre un sur-confort
-n’aurait pas de sens.
-\ftodo{Ajouter la consigne solaire}
-\begin{figure}
-    \begin{center}
-        \includegraphics{Regulation/control_air_curve.pdf}
-    \end{center}
-    \caption{Illustration de la surchauffe solaire diurne.}
-    \label{fig:surchauffe_solaire}
-\end{figure}
-% paragraph consigne_de_surchauffe_solaire (end)
-% subsubsection hypothèses_sur_la_température_de_consigne (end)
-% section description_du_bâtiment (end)
-
-
-
-% ..............................................................................
-% ..............................................................................
-\section{Étude paramétrique} % (fold)
-\label{sec:etude_parametrique}
-
-
-% ------------------------------------------------------------------------------
-\subsection{Récapitulatif} % (fold)
-\label{sub:récapitulatif}
-\itodo{Descriptif des variations envisagées et pourquoi}
-Comme décrit ci-avant, l’approche retenue pour une première évaluation du potentiel
-d’un système solaire combiné couplé à une maison passive est une approche monozone.
-
-\itodo{Variations des scénarios et des consignes}
-\itodo{Variations des conditions limites}
-\itodo{Variations des caractéristiques des composants}
-\itodo{Variations de la régulation}
-
-\itodo{Faire un récap des résultats de l’étude}
-% subsection récapitulatif (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Analyse détaillée} % (fold)
-\label{sub:analyse_detaillee}
-\itodo{Évaluation et analyse des résultats}
-\itodo{Décrire cas par cas et expliquer les conclusions que l’on peut en tirer.}
-
-\itodo{Impact de la metéo}
-\itodo{Impact des variations au niveau des capteurs}
-\itodo{Impact de la variation du volume des ballons}
-\itodo{Impact des consignes (Température, surchauffe, puisage, ...)}
-\itodo{Impact des variations au niveau algorithmique (tempo, débit, )}
-% subsection analyse_detaillee (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Ce qu’il faut retenir} % (fold)
-\label{sub:ce_qu_il_faut_retenir}
-\itodo{Conclusion de l’étude}
-
-\itodo{Développement de modèles détaillés}
-\itodo{Mise en évidence du découplage de la performance entre chauffage et ECS}
-\itodo{Nécessité de comprendre les intéractions}
-\itodo{Nécessité d’intégrer une estimation du coût ---> Optimisation}
-% subsection ce_qu_il_faut_retenir (end)
-% section etude_parametrique (end)
+% Les \mtodo{Ajouter lien}{figures} mettent en exergue les différents modes possibles
+% pour le système solaire.
+% \ftodo{Ajouter des graphiques montrant la transition entre les différents modes}
 
 
 
+% \begin{table}
+% \centering
+% \begin{tabular}{lcr}
+%     \toprule
+%     Paramètre                                & Valeur         & Unité                 \\
+%     \midrule
+%     Surface nette                            & 2,32           & \si{m^{2}}            \\
+%     Poids à vide                             & 54             & \si{Kg}               \\
+%     Contenance                               & 1,35           & \si{l}                \\
+%     $R_{optique}$                            & 78             & \si{\%}               \\
+%     Décroissance de performance              & -5,103         & -                     \\
+%     Coefficient $a_{1}$ (pertes linéiques)   & 3,796          & \si{W/(m^{2}.K)}      \\
+%     Coefficient $a_{2}$ (pertes surfaciques) & 0,013          & \si{W/(m^{2}.K^{2})}  \\
+%     Modulation diffus (IMDiff)               & 100            & \si{\%}               \\
+%     \bottomrule
+% \end{tabular}
+% \caption{Caractéristique du collecteur modèle IDMK 2.5 de chez Sonnenkraft.
+%          \label{tab:collectors_specs}}
+% \end{table}
+
+% \begin{table}
+% \centering
+% \begin{tabular}{l*{2}{c}r}
+%     \toprule
+%     Paramètre & Ballon tampon & Ballon ECS & Unité\\
+%     \midrule
+%     Volume                                       & 300   & 300    & \si{l}              \\
+%     Hauteur                                      & 1.6   & 1.67   & \si{m}              \\
+%     Épaisseur isolation                          & 100   & 55     & \si{mm}             \\
+%     \textgreek{l} isolant                        & 0.04  & 0.04   & \si{W/m^{2}.K}      \\
+%     Échangeur haut                               & 1.415 & 0.86   & \si{m}              \\
+%     Échangeur bas                                & 0.255 & 0.175  & \si{m}              \\
+%     Diamètre échangeur (extérieur)               & 34.6  & 27.9   & \si{mm}             \\
+%     Chaleur spécifique de échangeur (acier noir) & 490   & 490    & \si{J/kg.K}         \\
+%     Puissance nominale                           & 103   & 25     & \si{KW}             \\
+%     Température nominale (ballon)                & 10    & 45     & \si{\degreeCelsius} \\
+%     Température nominale (échangeur)             & 45    & 10     & \si{\degreeCelsius} \\
+%     Débit nominal                                & 0.36  & 0.1747 & \si{Kg/s}           \\
+%     \bottomrule
+% \end{tabular}
+% \caption{Caractéristiques techniques du ballon tampon et du ballon ECS.
+%          \label{tab:tanks_specs}}
+% \end{table}
+
+
+% Le système solaire est contrôlé par un algorithme permettant d’utiliser l’énergie
+% solaire efficacement. Comme décrit ci-dessus l’algorithme contrôle l’état des
+% différentes pompes et de la V3V. Afin de conserver un rendement intéressant au
+% niveau des capteurs, le débit des pompes est modulé pour conserver une différence
+% de température entre entrée et sortie des collecteurs au minimum à 10\,\si{\degreeCelsius}.
+% \ftodo{Ajouter diagramme Modelica pour l’algorithme de contrôle}
+
+% Afin d’éviter les marches/arrêts intempestifs des pompes, l’algorithme temporise
+% le passage d’un état à l’ordre. De plus un hystérésis au niveau des consignes, température
+% de consigne de chauffage, température de l’eau chaude sanitaire, températures minimales
+% en partie basse du ballon ECS, ...permet aussi de palier à ce problème. Un hystérésis
+% ajoute permet de ne plus considérer une consigne à atteindre mais une plage à atteindre.
+% Prenons l’exemple d’une consigne de température à 20\,\si{\degreeCelsius}.
+% Sans hystérésis dès que la température atteint 20\,\si{\degreeCelsius} l’algorithme
+% va considérer que la consigne est atteint et arrêter le chauffage.
+% Le problème apparaît alors clairement, on ne va pas maintenir la
+% consigne mais l’atteindre puis redescendre, réactiver le chauffage, ...
+% Grâce à un hystérésis de 0.5\,\si{\degreeCelsius} on va chercher à atteindre 20.5\,\si{\degreeCelsius}
+% avant d’arrêter le chauffage et attendre 19.5\,\si{\degreeCelsius} pour le redémarrer.
+% La V3V seulement être en deux mode: (i) Ouvert vers les collecteurs, (ii) Ouvert vers
+% le ballon tampon. Le débit des pompes et lui contrôlé par des contrôleurs PI (Proportionnel Intégrale).
+% Enfin la température de l’eau dans les ballons et limitée pour se conformer aux
+% valeurs maximales admissibles.
+% \ftodo{Ajouter graphique mettant en exergue l’action de l’hystérisis}
+
+% \ftodo{Ajouter le FSM pour chaque pompes et la V3V}
+% Chaque composant peut être représentés graphiquement par un automate fini hiérarchise
+% (Hierarchical Finite-state machine (HFSM)).
+% Cette représentation considère des états dans lesquels un système peut se trouver, et un
+% ensemble de transition d’un état à un autre. Un seul état peut être actif en même temps ce qui
+% requiert que chaque état implémente les transitions nécessaire pour réagir à toutes modification des conditions.
+% Ce modèle est très utilisé pour représenté une intelligence artificielle (robot,
+% personnage non-joueur dans un jeu vidéo, ...) même si il est aujourd’hui souvent
+% remplacé par des arbres comportementaux ou des planneurs.
+% La hiérarchisation permet de considérer des états principaux et des sous-état. Cette
+% approche est plus modulaire, la logique interne des états principaux n’a plus besoin
+% de connaître les états principaux existant. Le nombre de transition est donc fortement
+% réduit. Cette technique est utilisé pour le contrôle de la pompe S2 qui est plus complexe que les deux
+% autres.
+
+% % subsubsection description_du_fonctionnement_de_la_partie_hydraulique (end)
+
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Description du fonctionnement de la partie aéraulique} % (fold)
+% \label{ssub:description_du_fonctionnement_de_la_partie_aeraulique}
+
+% \itodo{Description de l’algorithme de fonctionnement sur l’air}
+% Le système se compose d’une partie hydraulique et d’une partie aéraulique, la partie
+% hydraulique est détaillée dans \mtodo{Ajouter lien}{section précédente}.
+
+% La partie aéraulique est responsable du chauffage mais aussi du maintien du taux minimal
+% de renouvellement d’air décrit dans l’arrêté (\mtodo{Ref arrêté}). Pour plus d’information concernant
+% le renouvellement d’air se référer à la \mtodo{Ajouter référence vers scénario}.
+% Cette partie décrit la logique de contrôle pour le fonctionnement du chauffage par l’air.
+% La centrale de traitement d’air se compose d’un caisson de mélange, d’une batterie à eau,
+% d’un ventilateur insufflant l’air et d’un terminal électrique assurant le respect de la température
+% de consigne.
+% \ifix{Modifier le schéma pour que le chauffage électrique soit en terminal}
+
+% L’algorithme fonctionne suivant trois états (\mtodo{Réf vers fig}) afin de limiter
+% la consommation électrique des ventilateurs, et l’inconfort des occupants.
+% \ftodo{Ajouter schéma fonctionnement FSM}
+
+% Lorsque la consigne à l’intérieur de la pièce est déjà atteint on se contente de fournir
+% le débit minimal réglementaire d’air neuf sans préchauffage. Lorsque il y a une demande de
+% chauffage on cherche dans un premier temps à couvrir les besoins en augmentant la température
+% de soufflage sans modifier le débit insufflé. Dans ce mode plusieurs cas sont possibles.
+% Il est important ici de bien faire la différence entre débit des pompes et du ventilateur.
+% Sans précisions, le débit se réfère au débit imposé par le ventilateur, et donc au débit d’air.
+
+% Si S2 est activé alors son débit (eau) est modulé en fonction de l’écart entre la consigne de soufflage (air)
+% et la température de sortie (air) de la batterie à eau. En effet l’état de la pompe S2 est déterminé
+% par la partie hydraulique mais sa vitesse est régulé en fonction de la consigne de soufflage.
+% Le débit d’eau (S2) varie ainsi pour maintenir l’air en sortie de batterie à la température
+% de soufflage imposée. La consigne de soufflage est déterminée suivant:
+% \begin{equation}\label{eq:consigne_soufflage}
+%     Tconsigne_{soufflage} = T_{ext} + PI_{soufflage} \times (Tmax_{soufflage} - T_{ext})
+% \end{equation}
+% avec $PI_{soufflage}$ la valeur du contrôleur PI qui est fonction de la différence entre consigne
+% et température de l’ambiance et $Tmax_{soufflage}$ la température maximal admissible pour l’insufflation
+% (fixé à 32\,\si{\degreeCelsius}.
+% Cette régulation permet de moduler la température en tenant compte de l’écart entre
+% consigne et température de l’ambiance mais aussi de la température extérieure (et donc des
+% déperditions).
+
+% Le caisson de mélange permet de récupérer de l’énergie passivement qui est déjà à
+% la température de consigne limitant la demande en énergie solaire et/ou électrique.
+% La batterie à eau est uniquement alimenté par de l’énergie solaire, soit par le chauffage
+% direct, soit indirect. C’est la pompe S2 qui l’alimente(\mtodo{Ref subs hydrau}).
+% \iunsure{Enfin un terminal électrique est ajouté à chaque borne d’insufflation afin
+%          de garantir la consigne de soufflage.}
+
+% Lorsque les besoins sont importants, il devient intéressant de moduler le débit pour deux
+% raisons: (i) récupérer l’énergie sur l’air extrait, (ii) augmenter la quantité d’énergie fournie.
+% On passe alors dans le dernier mode de fonctionnement: Modulation du débit d’air.
+% Le passage entre les deux modes est temporisé (10 min) pour éviter un effet yoyo.
+% Dans ce mode, la température est fixée
+% à la température maximale admissible mais le débit est lui variable. La variation du débit
+% est déterminé par le contrôleur PID qui est fonction de l’écart entre l’ambiance et la consigne.
+
+% Les terminaux électriques permettent d’assurer le maintien de la température de soufflage et sont par
+% conséquent, régulés avec un contrôleur PID dépendant de l’écart de température entre
+% la consigne de soufflage et l’air sortant de la batterie chaude.
+% Il est important de noter que durant la temporisation (passage entre modulation de la température et du débit),
+% l’électricité n’est pas favorisé. La demande de puissance est constante à ce moment là
+% et l’activation du terminal électrique ne dépend que de l’écart entre consigne de soufflage
+% et température en sortie de batterie. Si le solaire fournit déjà la température
+% de consigne en sortie de batterie alors même si les besoins ne sont pas couverts,
+% l’appoint électrique ne sera pas activé. Une fois dans le mode régulant le débit alors
+% l’appoint peut être activé si le solaire n’est pas suffisant.
+% Afin d’éviter de consommer de l’électricité inutilement, une temporisation de 3\,\si{min}
+% a été mise en place sur l’activation des terminaux électriques.
+
+% Finalement afin de profiter de l’inertie du bâtiment, le système autorise à charger
+% la maison durant la journée. Si les besoins en chauffage sont couvert et que de l’énergie solaire
+% est disponible en direct alors on augmente la consigne de la maison pour une nouvelle
+% consigne que l’on nomme consigne solaire.
+% Afin de ne pas vider l’énergie accumulée dans le ballon tampon le chauffage solaire
+% indirect n’est pas autorisé. De plus les terminaux électriques ne peuvent pas s’activer
+% et le débit de soufflage est limité au débit réglementaire de renouvellement d’air.
+% En effet il est recherché de
+
+% \ftodo{Ajouter description schématique de la logique de contrôle}
+% % subsubsection description_du_fonctionnement_de_la_partie_aeraulique (end)
 
 
 
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Choix de modélisation pour les composants principaux} % (fold)
+% \label{ssub:choix_de_modelisation_pour_les_composants_principaux}
+% \itodo{Choix de modélisation pour les systèmes}
+% Comme décrit ci-avant la bibliothèque \emph{Buildings} a été utilisé pour modélisé
+% la plupart des composants du système solaire. Le paragraphe suivant présente les principaux
+% composants du système solaire et le niveau de détail utilisé pour les modélisés.
+% La production solaire est calculé en suivant les règles établies dans le volet 2 de
+% la norme EN12975 (\mtodo{Ajouter Ref}{EN12975-2}). Ce volet décrit le protocole expérimental
+% européen nécessaire pour déterminer les coefficients caractéristiques d’un capteur solaire.
+% Les coefficients résultant de l’expérimentation permet de caractériser selon une loi
+% approchée (\mtodo{Ajouter équation}) qui permet d’approcher le comportement réel de celui-ci.
+% Les ballons sont discrétisés (découpe en sous-volume du volume total)
+% afin de prendre en compte la stratification. La stratification est un aspect important
+% particulièrement au niveau des ballons afin de mieux évaluer la performance les
+% gains/pertes au niveau des échangeurs. Sa modélisation est aussi indispensable
+% pour l’algorithme de contrôle qui dépend des températures à différentes
+% hauteurs du ballon (\mtodo{Lien vers partie algo}).
+% Les collecteurs et les canalisations sont aussi discrétisés afin de mieux évaluer
+% le rendement et les déperditions.
+% Les déperditions des canalisations est prise en compte pour la partie reliant
+% collecteurs et ballon tampon, le reste des canalisations est considéré adiabatique
+% car non exposé aux conditions extérieures.
+% Les pompes utilisées dans la modélisation sont à vitesse variable pour mieux s’adapter
+% à la quantité d’énergie solaire disponible au niveau des collecteurs (\mtodo{Lien vers la partie algo}).
+% L’appoint et les terminaux électriques sont simplement modélisé comme une puissance
+% injectée directement dans le fluide.
+
+% \ftodo{Ajouter une image du modèle avec une description des éléments (Modelica)}
+% % subsubsection choix_de_modelisation_pour_les_composants_principaux (end)
+
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Confiance dans les modèles} % (fold)
+% \label{ssub:confiance_dans_les_modeles}
+% \itodo{Description des modèles validés}
+% L’objectif de ces modélisation étant d’évaluer la performance du système solaire
+% couplé à une maison, l’un des éléments important est le modèle représentant la maison.
+% Le modèle utilisé pour la modéliser respecte la suite de test, \mtodo{Ajouter Réf}{BestTestCase}.
+% Ces tests permettent de vérifier la cohérence des températures au cours de l’année
+% (minimales et maximales). L’énergie consommée pour maintenir la maison (chauffage, refroidissement)
+% a aussi été validée sur une évolution horaire (pics de demande) et annuelle.
+% Le modèle décrivant les fenêtres a aussi été validé par \mtodo{Ajouter Réf}.
+% Il est aussi important de mentionner que les besoins de la maison modélisée sous Dymola
+% sont fortement similaires à ceux de la même maison modélisé en multi-zone avec le logiciel
+% EnergyPlus.
+
+% Une attention particulière à aussi été utilisé pour le modèle représentant les capteurs
+% solaires afin que leur performance soit représentatif du modèle réel. Pour ce faire
+% le modèle a d’abord été comparé à l’implémentation utilisé dans un logiciel de
+% simulation dynamique fortement utilisé, TrnSys. Ces premiers résultats montrent que
+% les deux modèles ont un comportement similaire, l’irradiation solaire sur les capteurs
+% étant très proches.
+% Dans un second temps, des données expérimentales ont été utilisées pour valider les
+% caractéristiques du capteur solaire et du modèle les utilisant.
+% Les données expérimentales, irradiation direct, indirect et la température de l’eau
+% en entrée des collecteurs ont ainsi été utilisé comme conditions limites pour le
+% modèle. La température de sortie des collecteurs (modélisation) a ainsi été comparée
+% à celle en condition réelle. Il a été montré que le modèle de capteur solaire
+% implémenté en Modelica reflète le comportement réelle des capteurs sur les deux mois
+% de données expérimentales disponibles.
+% \ftodo{Ajouter résultats de comparaison avec Trnsys et expérimentation}
+
+% Les caractéristiques des capteurs utilisés dans l’étude paramétrique proviennent
+% de la même source \mtodo{Ajouter Réf}, qui est un organisme dont l’action est de
+% vérifier la performance des capteurs dans les conditions expérimentales décrites
+% dans la norme (\mtodo{Ajouter Réf}).
+% % subsubsection confiance_dans_les_modeles (end)
+% % subsection un_système_solaire_utilisant_le_vecteur_air (end)
+% % section description_du_modèle_solaire (end)
 
 
 
+% % ..............................................................................
+% % ..............................................................................
+% \section{Description du bâtiment} % (fold)
+% \label{sec:description_du_batiment}
 
+% % ------------------------------------------------------------------------------
+% \subsection{Description du site} % (fold)
+% \label{sub:description_du_site}
+% \itodo{Description du site étudié: climat, données metéos, ...}
+% \itodo{
+% Le fichier météo utilisé est celui de Bordeaux et est de type \emph{IWEC}
+% et a pour code d’identification \href{http://www.ladybug.tools/epwmap/}{{IWEC - WMO 075100}}.
+% }
+% L’étude porte sur les climats de Limoges, Bordeaux, Toulouse, Marseille, et Strasbourg
+% afin de couvrir les différentes configuration qui peuvent être rencontrées en
+% France (\ref{tab:description_site}).
+% \scriptsize
+% \begin{table}
+%     \begin{tabular}{c c | c c c c c}
+%                             &                     & \textbf{Bordeaux}         & \textbf{Marseille} & \textbf{Toulouse}       & \textbf{Limoges}            & \textbf{Strasbourg}         \\
+%         \toprule
+%         Température         & Min                 & \cellcolor{Amaranth}-8,2  &                    & -5,4                    & -7,2                        &  \\
+%         extérieure          & Max                 & 34                        &                    & 35,6                    & 33,7                        &  \\
+%         \si{\degreeCelsius} & Moy                 & 13,2                      &                    & 13,8                    & 11,4                        &  \\
+%         \midrule
+%         Température         & Min                 & 8,9                       &                    & 8,6                     & \cellcolor{Amaranth}7       &  \\
+%         eau froide          & Max                 & 16                        &                    & 17                      & 14                          &  \\
+%         \si{\degreeCelsius} & Moy                 & 12,5                      &                    & 12,8                    & \cellcolor{Amaranth}10,6    &  \\
+%         \midrule
+%         DJU (19)            & \si{\degreeCelsius} & 2408                      &                    & 2321                    & \cellcolor{Amaranth}2972    &  \\
+%         \midrule
+%         Ensoleillement      &  Direct             &                           &                    &                         &                             &  \\
+%         \si{kWh/m^{2}}      &  Diffus             &                           &                    &                         &                             &  \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des différentes sites.}
+%     \label{tab:description_site}
+% \end{table}
+% \normalsize
 
+% Marseille correspond à un climat très ensoleillé avec peu de demande en chauffage
+% durant l’année entière. Il est alors à priori propice à une installation solaire.
+% À l’opposé le climat de Strasbourg est rude avec une forte demande en chauffage et
+% un ensoleillement très faible particulièrement durant les mois hivernaux. Il est alors
+% à priori non-propice à une installation solaire. Bordeaux et Toulouse propose tous deux
+% un climat favorable, l’ensoleillement est bon et les besoins de chauffage sont peu
+% importants. Limoges est entre le climat Bordelais et Strasbourgeois et correspond
+% ainsi à un cas d’étude intéressant pour évaluer l’impact d’une modification au niveau
+% composant sur les performances du système au niveau global.
+% La température du sol est considérée constante durant l’ensemble de la simulation
+% et identique pour chaque site site. Il est important de noter que la variation de
+% la température du sol est un élément important pour l’évaluation des besoins en chauffage
+% du bâtiment, mais est fortement dépendant de la composition du plancher et du niveau
+% d’isolation de celui-ci.
+
+% \itodo{Ajouter un tableau récap des besoins en énergie}
+% \ftodo{Ajouter une carte pour positionner les villes}
+% % subsection description_du_site (end)
 
 
 % % ------------------------------------------------------------------------------
-% \subsection{Un système solaire couplée au vecteur eau} % (fold)
-% \label{sub:description_du_système_vecteur_eau}
-% \itodo{Déscription des systèmes}
-% % subsection description_du_système_vecteur_eau (end)
-% % section modelisation_des_systemes (end)
+% \subsection{Approche monozone} % (fold)
+% \label{sub:approche_monozone}
+% \itodo{Décrire la raison de ce choix}
+% \itodo{Maison monozone vérifiée par un modèle multi-zone}
+% Dans une première application, un modèle monozone a été utilisé pour réduire la
+% complexité du modèle. Comme décrit plus haut (\autoref{ssub:confiance_dans_les_modeles}),
+% le modèle respecte une large suite de test, et une approche trop détaillée n’est pas
+% nécessaire à ce moment de l’analyse. Le but étant de faire une première évaluation du
+% potentiel solaire du système combiné.
+% Le modèle a cependant été comparé avec une implémentation dans Energy Plus afin de
+% vérifier que les deux modèle ais des résultats similaires. Le travail fais en amont
+% sur l’enveloppe de la maison étant complémentaire à celui-ci.
+
+% \itodo{Décrire les limitations de cette approches grâce au premiers résultats}
+% Les premiers résultats montrent un potentiel intéressant de la production solaire pour
+% des climats allant de Marseille à Limoges. Dans un climat très hostile comme
+% Strasbourg, la part solaire est faible et ce système ne semble pas permettre de couvrir
+% les besoins. Il est important de noter que l’énergie disponible pour le solaire est
+% fortement dépendant des fichiers météos.
+% Il est aussi intéressant de voir les limitations de l’approche paramétrique. Aucune
+% interaction entre les composants n’est prise en compte et la seule information disponible
+% est donc difficilement extrapolable/utilisable pour d’autres cas. Il est en effet nécessaire
+% d’évaluer/ trier les paramètres influant. Une fois un certain nombre de paramètres retenus,
+% il est alors possible de suivre une méthode d’optimisation combinatoire pour évaluer
+% un ensemble de solution optimales.
+% Enfin l’approche monozone montre aussi ces limites sur plusieurs aspects qui sont importants
+% pour l’évaluation d’une maison faiblement déperditive. La répartitions des charges internes
+% et des périodes d’occupation est un facteur important à prendre en compte. Sans une approche
+% multizone, il est impossible d’en tenir compte correctement (charges propres au type de pièce)
+% Il est aussi intéressant de voir quel est l’impact passif des équipements du système solaire sur la
+% consommation et la charge de la maison. L’approche monozone n’ayant que un seul nœud
+% d’air, la prise en compte des apports par ces équipements est trop grossier.
+% Enfin l’approche multizone permet de modéliser un algorithme de régulation plus réaliste.
+% En effet pour prendre le cas de la CTA; l’insufflation et l’extraction ne se font pas au même endroit.
+
+% \itodo{Decrire le découpage de la maison.}
+% La maison a été modélisé comme un ensemble de 3 zones, les combles, le vide-sanitaire, et la zone
+% à vivre. Un modèle simplifié est utilisé pour les combles et le vide sanitaire
+% afin d’obtenir des conditions limites notamment pour les parois du puits de jour.
+% Les coefficients de convection intérieurs utilisés sont les suivants:
+% \begin{itemize}
+%     \item Plafond: 8~\si{W/m^{2}.k}
+%     \item Plancher: 8~\si{W/m^{2}.k}
+%     \item Murs: 8~\si{W/m^{2}.k}
+% \end{itemize}
+
+% Le coefficient de convection extérieur utilisé est de 25~\si{W/m^{2}.k}.
+% % subsection approche_monozone (end)
 
 
 % % ------------------------------------------------------------------------------
-% \subsection{Approche multizone} % (fold)
-% \label{sub:approche_multizone}
-% \itodo{Décrire les outils nécessaire pour l’approche multi-zone: EnergyPlus, FMU,
-%        Python, Sketchup, OpenStudio}
-% \itodo{Introduire les avantages au regard de l’approche multizone}
-% \itodo{Décrire la mise en place du modèle}
-% % subsection approche_multizone (end)
-% % section description_du_batiment (end)
+% \subsection{Description de l’enveloppe} % (fold)
+% \label{sub:description_de_l_enveloppe}
+% \itodo{Description complète de la maison: Composition de base, surfaces, orientation, ...}
+% La maison (Fig.~\ref{fig:plan_maison}) a une surface habitable de 98.4~\si{m^2}. Elle comporte
+% 3 \mtodo{Ajouter orientation}{chambres}, une cuisine/salon, et un local technique
+% où se trouve les équipements du système. La maison comporte des combles non aménagés
+% et un vide sanitaire. La maison est de plain-pied et les compositions sont:
+% \begin{itemize}
+%     \item Murs: ~\autoref{tab:compo_mur}
+%     \item Plafond: ~\autoref{tab:compo_plafond}
+%     \item Plancher: ~\autoref{tab:compo_plancher}
+%     \item Partition: ~\autoref{tab:compo_partition}
+%     \item Murs du puits de lumière: ~\autoref{tab:compo_puits}
+%     \item Murs vide sanitaire: ~\autoref{tab:compo_VS}
+%     \item Toiture: ~\autoref{tab:compo_toiture}
+% \end{itemize}
+% Les différents vitrages sont des vitrages double avec une lame d’air ou d’argon.
+% Une couche faiblement émissive est ajouté pour les vitrages des parois verticales (~\autoref{tab:compo_vitrage}).
+% La fenêtre de toit~\autoref{tab:compo_velux} et les caractéristiques des gaz  ~\autoref{tab:compo_gaz}
+% sont aussi décrites.
+
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Maison/plan.png}
+%     \end{center}
+%     \caption{Plan de la maison accueillant le système solaire modélisé.
+%              \label{fig:plan_maison}}
+% \end{figure}
+
+% \itodo{Tableau des parois}
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} & \si{kg/m^{3}} \\
+%         \midrule
+%         Enduit            & 0.01      & 1.15           & 850             & 2000            \\
+%         Optibric (R=1.32) & 0.2       & 0.1515         & 1000            & 685             \\
+%         Laine de verre    & 0.14      & 0.03218        & 840             & 20              \\
+%         Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des parois verticales.}
+%     \label{tab:compo_mur}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux              & e         & $\lambda$        & $C_{p}$         & $\rho$          \\
+%                                & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)} & \si{kg/m^{3}} \\
+%         \midrule
+%         Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
+%         Polyuréthane           & 0.1       &  0.0215          & 1590            & 35              \\
+%         Hourdis + polystyrène  & 0.12      &  0.0276          & 1450            & 35              \\
+%         Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description du plancher.}
+%     \label{tab:compo_plancher}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux               & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+%                                 & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)}    &\si{kg/m^{3}}  \\
+%         \midrule
+%         Laine de roche soufflée & 0.365     & 0.045        & 1030               & 150                 \\
+%         Plâtre                  & 0.01      & 0.25         & 1000               & 820                 \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description du plafond sous combles.}
+%     \label{tab:compo_plafond}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+%                   & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+%         \midrule
+%         Tuile     & 0.04      & 1              & 800             & 2000            \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description de la toiture.}
+%     \label{tab:compo_toiture}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+%         \midrule
+%         Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
+%         Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
+%         Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des parois du puits de jour.}
+%     \label{tab:compo_puits}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+%         \midrule
+%         Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
+%         Air (R=0.15)      & -         & -              & -               & -               \\
+%         Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des murs de partitions.}
+%     \label{tab:compo_partition}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *4{c}}
+%         \toprule
+%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
+%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
+%         \midrule
+%         Béton             & 0.2       & 1.13           & 1000            & 2000            \\
+%         Terre             & 4         & 0.52           & 50              & 2050            \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des parois du vide sanitaire.}
+%     \label{tab:compo_VS}
+% \end{table}
+
+
+% \itodo{Tableau des vitrages}
+% \begin{table}
+%     \begin{tabular}{l *8{c}}
+%         \toprule
+%         Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$ \\
+%                   & \si{m}  & \si{W/(m.k)} & -              & -         & -                & -                & -                & -                \\
+%         \midrule
+%         SGG Planilux       & 0.04  & 1          & 0.849      & 0           & 0.837              & 0.837              & 0.076              & 0.076                   \\
+%         Argon              & 0.016 & -          & -          & -           & -                  & -                  & -                  & -                       \\
+%         SGG PlaniTherm One & 0.04  & 1          & 0.591      & 0           & 0.037              & 0.837              & 0.312              & 0.264                   \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des vitrages en façades verticales ($U_{f}$ de 1.4~\si{W/m^{2}.k}).}
+%     \label{tab:compo_vitrage}
+% \end{table}
+
+% \begin{table}
+%     \begin{tabular}{l *8{c}}
+%         \toprule
+%         Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
+%                   & \si{m}  & \si{W/(m.k)} & -              & -         & -          & -          & -            & -             \\
+%         \midrule
+%         Verre ext & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
+%         Air       & 0.016     & -              & -                & -           & -           & -            & -              & -               \\
+%         Verre int & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description de la fenêtre de toit ($U_{f}$ de 1.8~\si{W/m^{2}.k}).}
+%     \label{tab:compo_velux}
+% \end{table}
+
+% \begin{table}
+%     \raggedright
+%     \begin{tabular}{l *5{c}}
+%         \toprule
+%         Gaz   & $a_{k}$              & $b_{k}$              & $a_{mu}$             & $b_{mu}$             & $a_{c}$           \\
+%               & \si{W/(m.k)}       & \si{W/(m.k^{2})}   & Pa.s               & \si{N.s/(m^{2}.k)} & \si{J/(kg.k)}   \\
+%         \midrule
+%         Argon & $2.285\times10^{-3}$ & $5.149\times10^{-5}$ & $3.379\times10^{-6}$ & $6.451\times10^{-8}$ & 521.9285          \\
+%         Air   & $2.873\times10^{-3}$ & $7.760\times10^{-5}$ & $3.723\times10^{-6}$ & $4.940\times10^{-8}$ & 1002.737          \\
+%         \bottomrule
+%     \end{tabular}
+%     \bigskip
+%     \begin{tabular}{l *3{c}}
+%               & $b_{c}$                & $MM$                  & $P0$       \\
+%               & \si{J/(kg.k^{2})}    & \si{kg/mol}         & \si{bar} \\
+%         \midrule
+%         Argon & 0                      & $39.948\times10^{-3}$ & 101325     \\
+%         Air   & $1.2324\times10^{-2}$  & $28.97\times10^{-3}$  & 101325     \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Description des caractéristiques des gaz}
+%     \label{tab:compo_gaz}
+% \end{table}
+
+
+% % subsection description_de_l_enveloppe (end)
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Description du comportement des occupants} % (fold)
+% \label{sub:description_du_comportement_des_occupants}
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Hypothèses sur les charges internes} % (fold)
+% \label{ssub:hypotheses_sur_les_charges_internes}
+
+% \paragraph{Construction des scénarios} % (fold)
+% \label{par:construction_des_scenarios}
+% \itodo{Décrire le choix des scénarios}
+% Les charges internes sont le cumul des charges dû aux occupants, les équipements et à l’éclairage.
+% Le scénario d’occupation est représentatif d’une famille type.
+% On a donc deux adultes et deux enfants. Ils sont absents durant toute la journée;
+% les enfants étant à l’école et les parents au travail. Le Mercredi, il est admis que
+% la maison est occupée durant l’après midi et le week-end, le scénario
+% considère que toute la famille est présente.
+% Le scénario utilisé pour représenter la charge des équipements suit le même schéma que
+% l’occupation. La consommation est issue de la réglementation thermique, RT2012. Durant la nuit et les
+% inoccupations, un réduit représentant la veille des équipements est pris en compte.
+% \itodo{Décrire les différents scénarios avec des illustrations}
+% De la même manière le scénario représentant les charges liées à l’éclairage suivent
+% le même schéma que l’occupation. On ne considère pas de charge durant la nuit et la
+% journée en semaine. Le week-end durant la journée la consommation est abaissée comme
+% définie dans la RT2012.
+% % paragraph construction_des_scénarios (end)
+
+% \paragraph{Description de l’occupation} % (fold)
+% \label{par:description_de_l_occupation}
+% \itodo{Détailler plus le choix du scénario d’occupation}
+% \itodo{Ajouter répartition sensible radiatif}
+% Le modèle étant monozone, il n’est pas possible d’utiliser un scénario
+% en fonction du type d’activités. La maison est occupée
+% par 4 personnes dont la puissance rejetée est de l’ordre de 97.5\,\si{W/m^{2}}.
+% Cette valeur provient de la moyenne de puissance générée par
+% les habitants en fonction de l’activité et de leur âge (enfant ou parent).
+% Ce calcul tient compte des valeurs utilisées dans la simulation \emph{Energy Plus} qui est
+% elle détaillée par zone dans le \autoref{tab:occupation_scenario}.
+
+% \begin{table}
+% \begin{tabular}{*8{c}}
+%     \toprule
+%     Chambre 1 & Chambre 2  & Chambre 3 & Séjour & Cuisine & Sanitaire & SdB   & Cellier \\
+%     \midrule
+%     78        & 78         & 117       & 97.5   & 97.5    & 114.3     & 114.3 & 114.3   \\
+%     \bottomrule
+% \end{tabular}
+% \caption{Description de la puissance dissipée par personne en fonction de la zone.}
+% \label{tab:puissance_occupants}
+% \end{table}
+
+% La puissance ainsi calculé suit le profil décrit en Fig~\ref{fig:occupation_scenario}
+% dont 70~\% est considérée comme convectif et 30~\% comme radiatif.
+
+% \begin{figure}
+%     \includegraphics{Maison/Scenarios/Occupation_Watt.png}
+%     \caption{Profil de la puissance dissipée par les occupants durant une semaine type.}
+%     \label{fig:occupation_scenario}
+% \end{figure}
+% % paragraph description_de_l_occupation (end)
+
+% \paragraph{Description des charges internes inertes} % (fold)
+% \label{par:description_des_charges_internes_inertes}
+% \itodo{Descriptif charges}
+% \itodo{Détailler plus le choix des scénarios}
+% Les profils de puissance dissipée (Fig~\ref{fig:charges_internes_scenario}) suit les puissances
+% définies dans la \textbf{RT 2012}.
+% On a donc pour l’éclairage une dissipation équivalent de 1.4~\si{W/m^{2}} et
+% de 5.7~\si{W/m^{2}} pour l’électroménager.
+% L’énergie dissipée pour l’éclairage est répartie en convectif (42\%) et en radiatif (58\%).
+% L’énergie dissipée pour l’électroménager est répartie en convectif (80\%) et en radiatif (20\%).
+
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Maison/Scenarios/Charges_Watt_meter_day.png}
+%         \includegraphics{Maison/Scenarios/Charges_Watt_meter.png}
+%     \end{center}
+%     \caption{Profil de la puissance dissipée par les charges électriques internes (\si{W/m^{2}})}
+%     \label{fig:charges_internes_scenario}
+% \end{figure}
+% % paragraph description_des_charges_internes_inertes (end)
+
+% % subsubsection hypothèses_sur_les_charges_internes (end)
+
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Hypothèses sur le puisage en eau chaude sanitaire} % (fold)
+% \label{ssub:hypotheses_sur_le_puisage_en_eau_chaude_sanitaire}
+
+% \paragraph{Hypothèses sur la température de l’eau froide} % (fold)
+% \label{par:hypothèses_sur_la_température_de_l_eau_froide}
+% La température de l'eau du réseau suit une évolution mensuel afin de prendre en compte
+% la variation importante durant l’année.
+% La température d’arrivée de l’eau au niveau du ballon est un facteur important pour
+% évaluer la consommation d’énergie pour le puisage en ECS. Le récapitulatif (\autoref{tab:temp_water})
+% montre bien que la variation de la température est autant influencé par la période de l’année
+% que par la position géographique.
+% \mtodo{Ajouter Réf tecsol}
+% \begin{table}
+% \centering
+% \begin{tabular}{l*{12}{c}}
+%     \toprule
+%                & Janv & Fevr & Mars & Avr & Mai & Juin & Juil & Août & Sept & Oct & Nov & Dec \\
+%     \midrule
+%     Strasbourg & 5,3  & 5,8  & 7,7  & 9,5 & 11  & 13   & 14   & 14   & 12   & 9,8 & 7,5 & 5,8 \\
+%     Limoges    & 7    & 7,4  & 9    & 10  & 12  & 14   & 14   & 14   & 13   & 11  & 8,8 & 7,3 \\
+%     Toulouse   & 8,6  & 9.2  & 11   & 12  & 14  & 16   & 17   & 17   & 16   & 13  & 11  & 9   \\
+%     Bordeaux   & 8,9  & 9,3  & 11   & 12  & 14  & 15   & 16   & 16   & 15   & 13  & 11  & 9,2 \\
+%     Marseille  & 12   & 12   & 13   & 14  & 16  & 18   & 19   & 19   & 18   & 16  & 14  & 12  \\
+%     \bottomrule
+% \end{tabular}
+% \caption{Température de l'eau du réseau au cours de l'année en fonction de la
+%          position géographique.}
+%          \label{tab:temp_water}
+% \end{table}
+% % paragraph hypothèses_sur_la_température_de_l_eau_froide (end)
+
+% \paragraph{Description du scénario de référence} % (fold)
+% \label{par:description_du_scénario_de_reference}
+% Comme explicité en \autoref{par:description_de_l_occupation} on considère 4 personnes
+% dans la maison. Un comportement \munsure{trouve mieux}{gaspilleur} a été considéré
+% afin d’évaluer la performance du système pour des conditions non favorables. Il a été
+% retenue 33~\si{l/jour/pers}~(\textbf{60~\si{\degree}}) contre un puisage moyen
+% \mtodo{Ajouter source}{33\,\si{l/jour/pers}~(\textbf{50\,\si{\degree}})}.
+% La température de puisage a été fixé à 40~\si{\degree} ce qui correspond donc
+% à un volume total de 220~\si{l/jour}~(\textbf{40~\si{\degree}}).
+% \itodo{Ajouter scénario de puisage}
+% Le puisage est considéré comme répartie sur la journée. Il est considéré 3 pics de
+% demande de puisage: le matin (1/6), le midi (1/6), et le soir (2/3) ().
+% % \begin{figure}
+% %     \begin{center}
+% %         \includegraphics{Maison/Scenarios/Puisage_ecs.png}
+% %     \end{center}
+% %     \caption{Profil de la puissance dissipée par les charges électriques internes (\si{W/m^{2}})}
+% %     \label{fig:puisage_ecs}
+% % \end{figure}
+
+% \iunsure{
+% Refaire étude paramétrique pour avoir le même modèle que étude de sensibilité
+% Consommation de 41~\si{l/jour/pers} (\textbf{60\,\si{\degree}})
+% }
+% % paragraph description_du_scénario_de_référence (end)
+% % subsubsection hypothèses_sur_le_puisage_en_eau_chaude_sanitaire (end)
+
+
+% \subsubsection{Hypothèses sur le renouvellement d’air} % (fold)
+% \label{ssub:hypothèses_sur_le_renouvellement_d_air}
+
+% \paragraph{Ventilation} % (fold)
+% \label{par:ventilation}
+% Le renouvellement d’air neuf suit le scénario réglementaire définie par
+% l’\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{arrêté du 24 mars 1982 et du 28 octobre 1983}.
+% La maison comprend 4 pièces principales. Le débit réglementaire est alors de 90~\si{m^{3}/h}
+% si on considère un fonctionnement mécanique et contrôlé de la ventilation.
+% % paragraph ventilation (end)
+
+% \paragraph{Infiltrations} % (fold)
+% \label{par:infiltrations}
+% Les infiltrations ont été définies en utilisant un coefficient de perméabilité ($q_{4}$) de 0.4~\si{m^{3}/h.m^{2}}.
+% Le calcul \eqref{eq:infiltrations} tient compte de la somme des surfaces dites \emph{froides}.
+
+% \begin{align}
+%     Infiltrations &= 0.4 \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
+%     &              = 0.4 \times (26.4 \times 4 + 8.6 + 98.4)\\
+%     &              = 85~\si{m^{3}/h}
+%     \label{eq:infiltrations}
+% \end{align}
+% % paragraph infiltrations (end)
+% % subsubsection hypothèses_sur_le_renouvellement_d_air (end)
+
+% \subsubsection{Hypothèses sur la température de consigne} % (fold)
+% \label{ssub:hypothèses_sur_la_température_de_consigne}
+
+% \paragraph{Consigne de chauffage} % (fold)
+% \label{par:consigne_de_chauffage}
+% La température de consigne (Fig.~\ref{fig:consigne_scenario}) est de 19\,\si{\degree} durant l’occupation avec un
+% réduit à 18\,\si{\degree} la nuit. Durant les absences (après-midi des jours ouvrés)
+% il est considéré un réduit à 16\,\si{\degree}. Il est important de noté que comme
+% les scénarios de charge interne, la consigne de température est basé sur le scénario
+% d’occupation.
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Maison/Scenarios/Consigne_temperature.png}
+%     \end{center}
+%     \caption{Profil de la consigne de température (\si{\celsius})}
+%     \label{fig:consigne_scenario}
+% \end{figure}
+% % paragraph consigne_de_chauffage (end)
+
+
+% \paragraph{Consigne de surchauffe solaire} % (fold)
+% \label{par:consigne_de_surchauffe_solaire}
+% Afin de favoriser l’énergie solaire, la consigne de température peut être modifiée.
+% Celle-ci est alors appelée consigne de surchauffe solaire. Cette consigne permet
+% de charger la maison en profitant de son inertie (principalement de la dalle) afin
+% de retarder la demande en chauffage le soir (Fig.~\ref{fig:surchauffe_solaire}). Il est important de noter que seul
+% l’énergie solaire direct peut être utilisé pour atteindre cette consigne. En effet,
+% le but est de profiter de l’énergie solaire disponible durant la journée et il utiliser
+% l’énergie de l’auxiliaire ou décharger le ballon solaire pour atteindre un sur-confort
+% n’aurait pas de sens.
+% \ftodo{Ajouter la consigne solaire}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Regulation/control_air_curve.pdf}
+%     \end{center}
+%     \caption{Illustration de la surchauffe solaire diurne.}
+%     \label{fig:surchauffe_solaire}
+% \end{figure}
+% % paragraph consigne_de_surchauffe_solaire (end)
+% % subsubsection hypothèses_sur_la_température_de_consigne (end)
+% % section description_du_bâtiment (end)
+
+
+
+% % ..............................................................................
+% % ..............................................................................
+% \section{Étude paramétrique} % (fold)
+% \label{sec:etude_parametrique}
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Récapitulatif} % (fold)
+% \label{sub:récapitulatif}
+% \itodo{Descriptif des variations envisagées et pourquoi}
+% Comme décrit ci-avant, l’approche retenue pour une première évaluation du potentiel
+% d’un système solaire combiné couplé à une maison passive est une approche monozone.
+
+% \itodo{Variations des scénarios et des consignes}
+% \itodo{Variations des conditions limites}
+% \itodo{Variations des caractéristiques des composants}
+% \itodo{Variations de la régulation}
+
+% \itodo{Faire un récap des résultats de l’étude}
+% % subsection récapitulatif (end)
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Analyse détaillée} % (fold)
+% \label{sub:analyse_detaillee}
+% \itodo{Évaluation et analyse des résultats}
+% \itodo{Décrire cas par cas et expliquer les conclusions que l’on peut en tirer.}
+
+% \itodo{Impact de la metéo}
+% \itodo{Impact des variations au niveau des capteurs}
+% \itodo{Impact de la variation du volume des ballons}
+% \itodo{Impact des consignes (Température, surchauffe, puisage, ...)}
+% \itodo{Impact des variations au niveau algorithmique (tempo, débit, )}
+% % subsection analyse_detaillee (end)
+
+
+% % ------------------------------------------------------------------------------
+% \subsection{Ce qu’il faut retenir} % (fold)
+% \label{sub:ce_qu_il_faut_retenir}
+% \itodo{Conclusion de l’étude}
+
+% \itodo{Développement de modèles détaillés}
+% \itodo{Mise en évidence du découplage de la performance entre chauffage et ECS}
+% \itodo{Nécessité de comprendre les intéractions}
+% \itodo{Nécessité d’intégrer une estimation du coût ---> Optimisation}
+% % subsection ce_qu_il_faut_retenir (end)
+% % section etude_parametrique (end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+% % % ------------------------------------------------------------------------------
+% % \subsection{Un système solaire couplée au vecteur eau} % (fold)
+% % \label{sub:description_du_système_vecteur_eau}
+% % \itodo{Déscription des systèmes}
+% % % subsection description_du_système_vecteur_eau (end)
+% % % section modelisation_des_systemes (end)
+
+
+% % % ------------------------------------------------------------------------------
+% % \subsection{Approche multizone} % (fold)
+% % \label{sub:approche_multizone}
+% % \itodo{Décrire les outils nécessaire pour l’approche multi-zone: EnergyPlus, FMU,
+% %        Python, Sketchup, OpenStudio}
+% % \itodo{Introduire les avantages au regard de l’approche multizone}
+% % \itodo{Décrire la mise en place du modèle}
+% % % subsection approche_multizone (end)
+% % % section description_du_batiment (end)

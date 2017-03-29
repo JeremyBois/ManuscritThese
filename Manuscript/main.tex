@@ -344,7 +344,6 @@
 % Bibliography support
 %   \parencite{bib_id} Add parenthesis (Name, year)
 %   \cite{bib_id}      Normal
-%   \citet{bib_id}     ??
 \usepackage[backend=biber,
             maxcitenames=2,
             maxbibnames=100,
@@ -354,14 +353,90 @@
             backref=true,
             backrefstyle=none,
             idemtracker=true,
-            ]{biblatex}                           % Bibliography support
+            ]{biblatex}                                               % Bibliography support
 
-\addbibresource{./Bibliographie/references.bib}   % Where to find bibliography
+\addbibresource{./Bibliographie/references.bib}                       % Where to find bibliography
+\newcommand\mathplus{+}                                               % Weird stuff of biblatex
 
-\DeclareLanguageMapping{english}{english-apa}    % Match babel lang to biblatex apa style
-\DeclareLanguageMapping{french}{french-apa}      % Match babel lang to biblatex apa style
+\DeclareLanguageMapping{english}{english-apa}                         % Match babel lang to biblatex apa style
+\DeclareLanguageMapping{french}{french-apa}                           % Match babel lang to biblatex apa style
 \DeclareFieldFormat[article,periodical]{volume}{\mkbibparens{#1}}     % volume of a journal
 \DeclareFieldFormat[article, incollection, inproceedings]{pages}{#1}  % no p. for articles
+\AtEveryBibitem{
+\ifentrytype{article}{
+    \clearfield{url}
+    \clearfield{urldate}
+    \clearfield{review}
+    \clearfield{series}
+    \clearfield{keywords}
+    \clearfield{owner}
+    \clearfield{source}
+    \clearfield{timestamp}
+    \clearfield{note}
+    \clearfield{abstract}
+}{}
+\ifentrytype{inproceedings}{
+    \clearfield{url}
+    \clearfield{urldate}
+    \clearfield{review}
+    \clearfield{series}
+    \clearfield{keywords}
+    \clearfield{owner}
+    \clearfield{source}
+    \clearfield{timestamp}
+    \clearfield{note}
+    \clearfield{abstract}
+}{}
+\ifentrytype{book}{
+    \clearfield{url}
+    \clearfield{urldate}
+    \clearfield{review}
+    \clearfield{series}
+    \clearfield{keywords}
+    \clearfield{owner}
+    \clearfield{source}
+    \clearfield{timestamp}
+    \clearfield{note}
+    \clearfield{abstract}
+}{}
+\ifentrytype{collection}{
+    \clearfield{url}
+    \clearfield{urldate}
+    \clearfield{review}
+    \clearfield{series}
+    \clearfield{keywords}
+    \clearfield{owner}
+    \clearfield{source}
+    \clearfield{timestamp}
+    \clearfield{note}
+    \clearfield{abstract}
+}{}
+\ifentrytype{incollection}{
+    \clearfield{url}
+    \clearfield{urldate}
+    \clearfield{review}
+    \clearfield{series}
+    \clearfield{keywords}
+    \clearfield{owner}
+    \clearfield{source}
+    \clearfield{timestamp}
+    \clearfield{note}
+    \clearfield{abstract}
+}{}
+\ifentrytype{inBook}{
+    \clearfield{url}
+    \clearfield{urldate}
+    \clearfield{review}
+    \clearfield{series}
+    \clearfield{keywords}
+    \clearfield{owner}
+    \clearfield{source}
+    \clearfield{timestamp}
+    \clearfield{note}
+    \clearfield{abstract}
+}{}
+}
+
 
 % Add table support
 \usepackage{booktabs}                             % Easy pro tables
@@ -412,19 +487,12 @@
 % ------------------------------------------------------------------------------
 \includeonly{
              % Chapitres/Chap1-ContexteTravaux,
-             % Chapitres/Chap2-ApprocheModelisation,
-             Chapitres/Chap3-UnOutilAideDecision,
+             Chapitres/Chap2-ApprocheModelisation,
+             % Chapitres/Chap3-UnOutilAideDecision,
              % Chapitres/Chap4-OptimisationSystemeSolaire,
             }
 % ------------------------------------------------------------------------------
 
-
-
-% ------------------------------------------------------------------------------
-% Weird stuff of biblatex
-% ------------------------------------------------------------------------------
-\newcommand\mathplus{+}
-% ------------------------------------------------------------------------------
 
 
 % ------------------------------------------------------------------------------
@@ -491,7 +559,9 @@ Merci merci ...
 
 % Add bibliography
 \newpage
-\printbibliography
+\printbibliography[title={Book references},type=book]
+\printbibliography[title={Article references},type=article]
+\printbibliography[title={Other references}, nottype=article, nottype=book]
 
 \end{document}
 % ------------------------------------------------------------------------------
