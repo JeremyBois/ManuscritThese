@@ -180,6 +180,8 @@ approche mono-zone a été retenue.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Comparaison avec un modèle multi-zone} % (fold)
 \label{ssub:comparaison_avec_un_modele_multi_zone}
+
+\iunsure{À mettre après présentation des scénarios}
 Afin de valider le choix d’un modèle mono-zone, une comparaison a été réalisée
 entre un modèle multi-zone développé sous \textit{Energy Plus} par le
 \textit{CEA} et un modèle mono-zone développé sous \textit{Dymola} en utilisant
@@ -275,28 +277,242 @@ Certains choix ont été fait du aux limitations de modélisation :
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Occupation} % (fold)
 \label{ssub:profil_d_occupation}
+Un profil unique pour l’ensemble de la zone et pour chaque occupant est retenu (\mtodo{ref
+fig}). Il est considéré quatre personnes, deux enfants, et deux parents. Dans ce profil,
+les occupants sont considérés à la maison durant le week-end complet. Durant les jours
+ouvrés, les habitants sont soit à l’école (enfants) soit au travail (parents) exception
+faite du mercredi après-midi où la maison est considéré comme occupée.
+La puissance par habitant est de \SI{97.5}{\watt} (\SI{70}{\percent} convective), résultat
+de la moyenne pondérée de la puissance dégagée par une personne en fonction de la surface
+de chaque pièce du modèle multi-zone (\mtodo{ref tab}).
 
+\ftodo{Profil d’occupation retenue}
+
+\ttodo{Récapitulatif des puissances dissipées en fonction des pièces}
 % subsubsection profil_d_occupation (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Charges internes} % (fold)
 \label{ssub:charges_internes}
+En plus des occupants, les charges internes dues aux équipements sont pris en compte.
+Il est entendu comme charges internes, les consommations des équipements électriques
+(électroménager, ordinateurs, ...) et la consommation de l’éclairage. Aucunes informations
+n’étant disponible afin d’estimer une consommation représentative de la maison réelle,
+les consommations réglementaires issues de la réglementation thermique (\emph{RT 2012}, \cite{CSTB2011})
+ont été retenues. Pour les deux cas il est ainsi considéré un consommation type durant
+l’occupation et une consommation réduite en inoccupation.
 
+\paragraph{Équipements électriques :} % (fold)
+\label{par:equipements_electriques}
+La consommation est fixée à \SI{5.7}{\watt\per m^{2}} (\SI{80}{\percent}
+convective) et à \SI{1.14}{\watt\per m^{2}} durant l’inoccupation, soit une
+réduction de \SI{80}{\percent} (\mtodo{Ref fig}).
+% paragraph equipements_electriques (end)
+
+\paragraph{Éclairage :} % (fold)
+\label{par:eclairage}
+La consommation est fixée à \SI{1.4}{\watt\per m^{2}} (\SI{42}{\percent}
+convective) de \SI{7}{\hour} à \SI{9}{\hour} et de \SI{19}{\hour} à \SI{22}{\hour}
+(\mtodo{Ref fig}). Durant le week-end, la consommation est réduit de \SI{50}{\percent},
+soit
+\SI{0.7}{\watt\per m^{2}} comme le prévoit la réglementation thermique (RT 2012)
+de \SI{10}{\hour} à \SI{19}{\hour}. Finalement, en inoccupation la consommation est
+considérée comme nulle.
+% paragraph eclairage (end)
+
+\ftodo{Ajouter figure des profil de charges internes (équipements et éclairage)}
 % subsubsection charges_internes (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Consigne de chauffage} % (fold)
 \label{ssub:consigne_de_chauffage}
-
+Le profil de température devant être respecté est issue de la réglementation thermique (RT
+2012) qui prévoit le maintien d’une température de \SI{19}{\celsius} en occupation, un
+réduit de \SI{16}{\celsius} en inoccupation, et un abaissement de la consigne durant la
+période nocturne à \SI{18}{\celsius}. Le profil de base est ainsi définie en fonction du
+profil d’occupation (\mtodo{ref occupation}).
 % subsubsection consigne_de_chauffage (end)
+% subsection description_des_scenarios (end)
+% section description_du_cas_d_etude_le_batiment (end)
 
 
+
+% ..............................................................................
+% ..............................................................................
+\section{Description du système solaire} % (fold)
+\label{sec:description_du_système_solaire}
+% ------------------------------------------------------------------------------
+\subsection{Introduction} % (fold)
+\label{sub:introduction}
+
+\iunsure{Parler du système solaire par vecteur eau}
+Dans un premier temps un modèle existant basé sur le vecteur eau a été modélisé.
+Le comportement du modèle a ainsi pu être validé par l’entreprise (SolisArt) à
+l’origine du système.
+
+\iunsure{Mentionner IGC ou en parler dans le cadre du projet COMEPOS (sous-entendu)}
+Le système décrit dans ce chapitre est un SSC utilisant l’air comme vecteur de chaleur
+afin d’éviter l’installation d’un système de chauffage conventionnel (vecteur eau). Le
+système permet ainsi de couvrir les besoins en ECS et en chauffage pour l’ensemble du
+bâtiment par l’intermédiaire du réseau de ventilation. De plus le choix de l’air comme
+vecteur de chaleur est motivé par la volonté de l’entreprise \emph{IGC} d’obtenir un
+système réactif à travers le projet \textit{COMEPOS}.
+Le système modélisé (\mtodo{Ref figure}) est composé de 3 parties principales : la partie
+hydraulique, la partie aéraulique, et la partie contrôle qui orchestre le fonctionnement
+couplé entre le système solaire et le bâtiment (\mtodo{ref fig}).
+
+\ftodo{Schéma du système, partie hydraulique et aéraulique}
+
+Dans un premier temps le fonctionnement de la partie hydraulique sera détaillé. Dans un
+second temps la partie aéraulique sera présentée. Finalement la partie contrôle sera
+décrite et le fonctionnement combiné du système et de la maison explicité.
+% subsection introduction (end)
+
+\subsection{Système hydraulique} % (fold)
+\label{sub:systeme_hydraulique}
+Le système hydraulique est composé de 2 ballons. Le premier, le ballon sanitaire, permet
+de lisser la demande en énergie fou. Le système est dit semi-accumulée car la réserve
+d’eau chaude est inférieure à la quantité totale puisée durant la journée. Le ballon
+sanitaire est donc connecté en continue avec le réseau d’eau froide public et certaines
+contraintes doivent être respectées. Ainsi le ballon doit soit; être maintenu à une
+température minimale de
+\SI{55}{\celsius}, soit une surchauffe journalière doit être réalisée
+(\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000423756}{Arrêté
+du 30 novembre 2005}). La première option a été retenue afin de garantir le respect de la
+réglementation dans les limites techniques imposées par la modélisation. Le second, le
+ballon de stockage, est utilisé pour stocker l’énergie accumulée durant la journée afin de
+la valoriser en période nocturne.
+
+Les deux ballons sont considérés dans la partie chauffée de la maison et leurs
+déperditions sont ainsi ajoutées aux charges internes de la maison. Afin de garantir le
+maintien du confort thermique des occupants, un appoint électrique en partie haute du
+ballon sanitaire est aussi ajouté. Ce dernier fonctionne ne s’active que lorsque l’énergie
+solaire n’est pas suffisante. L’énergie du soleil est quand à elle transmise à l’eau par
+l’intermédiaire de panneaux solaires. Enfin, une batterie à eau permet de transférer
+l’énergie solaire vers le système aéraulique (ventilation).
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description des composants} % (fold)
+\label{ssub:description_des_composants}
+~
+\itodo{Décrire les différents composants (caractéristiques)}
+% subsubsection description_des_composants (end)
+% subsection systeme_hydraulique (end)
+
+
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Système aéraulique} % (fold)
+\label{sub:systeme_aeraulique}
+~
+\itodo{Partie aéraulique ...}
+
+% subsection systeme_aeraulique (end)
+
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Algorithme de contrôle} % (fold)
+\label{sub:algorithme_de_controle}
+~
+\itodo{Ajouter description de l’état de l’art et du blabla sur ce qui a été fait et
+       ce qui manque.}
+La partie hydraulique est contrôlée par un ensemble hiérarchisé de contrôleurs.
+Le niveau le plus élevé de contrôle s’occupe d’activer ou de désactiver les différents
+éléments comme les pompes ou les vannes. Au plus bas niveau chaque pompes et chaque
+équipement électrique utilise un contrôleur PID. Cette approche permet d’adapter
+dynamiquement le comportement du système tout en conservant un stricte séparation
+entre la logique de chaque composant. L’approche peut être décrite comme un contrôleur
+en cascade.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Fonctionnement global} % (fold)
+\label{ssub:fonctionnement_global}
+% subsubsection fonctionnement_global (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Fonctionnement détaillé} % (fold)
+\label{ssub:fonctionnement_detaille}
+
+% subsubsection fonctionnement_detaille (end)
+% subsection algorithme_de_controle (end)
+% section description_du_système_solaire (end)
+
+
+
+
+
+
+
+
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Étude paramétrique :} % (fold)
+\label{sec:etude_parametrique_}
+% ------------------------------------------------------------------------------
+\subsection{Scénarios envisagés} % (fold)
+\label{sub:scenarios_envisages}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Puisage en eau chaude sanitaire} % (fold)
 \label{ssub:puisage_en_eau_chaude_sanitaire}
 
+\itodo{À mettre dans l’étude paramétrique car propre aux fichiers météos}
+Afin de pouvoir estimer la consommation nécessaire pour la production en Eau Chaude
+Sanitaire (\textit{ECS}) un profil de puisage type est nécessaire. Dans ces travaux le
+choix du profil de puisage est analysé à travers les différents climats retenues. Pour
+chaque climat, la température de l’eau du réseau est définie suivant une évolution
+mensuelle, et est extrapolée durant la simulation (\mtodo{ref tab}). On remarque une forte
+disparité entre les différents climats où les minimums varient entre \SI{5.3}{\celsius} et
+\SI{12}{\celsius}, et les maximums entre \SI{14}{\celsius} et \SI{19}{\celsius},
+représentés respectivement par Strasbourg et Marseille.
+\ttodo{Ajouter tab temp en fonction du climat}
+
+\paragraph{Profils retenus :} % (fold)
+\label{par:profils_retenus}
+Cinq scénarios ont été ont été considérés dans ces travaux (\mtodo{ref fig}). Pour
+l’ensemble des profils, un volume de puisage typique moyen de
+\SI{33}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius}), soit un
+volume total de \SI{220}{\liter/jour}~(\SI{40}{\celsius}) pour les 4 occupants est
+retenu. Le profil de référence utilisé est le scénario décrit dans la norme
+\textbf{EN~12977}. Trois variantes de celui-ci ont aussi été évaluées favorisant
+respectivement un puisage en matinée (\textbf{Matin}), en soirée (\textbf{Soir}) et un
+puisage similaire pour les 3 pics journaliers (\textbf{Réparti}). Finalement un scénario
+issue de données statistiques \parencite{ADEME2016} a aussi été implémenté
+(\textbf{Réaliste}). Ce dernier décrit de manière plus représentative le comportement
+d’une famille dans une habitation individuelle ou un appartement et les besoins
+journaliers sont pondérées en fonction du jour de la semaine (\mtodo{ref tab}).
+\ftodo{Ajouter les profils de puisage}
+% paragraph profils_retenus (end)
+
+\paragraph{Pondération de la demande :} % (fold)
+\label{par:ponderation_de_la_demande}
+Afin d’évaluer l’impact de la variation mensuelle des besoins en \textit{ECS}, un
+coefficient pondérateur est utilisé. Comme pour les coefficients utilisés pour pondérer
+les besoins hebdomadaires, les besoins totaux ne varient pas, seul la répartition est
+modifiée. Les coefficients utilisés sont issues des travaux de l’\textit{ADEME}
+\parencite{ADEME2016}, qui montre par exemple que les besoins sont plus importants durant
+la période hivernale que pendant la période estivale (\mtodo{ref tab}).
+\ttodo{Tableau des coefficients hebdomadaires}
+\ttodo{Tableau des coefficients mensuels}
+% paragraph ponderation_de_la_demande (end)
+
+\paragraph{Variations paramétriques :} % (fold)
+\label{par:variations_parametriques}
+L’étude paramétrique permettra d’évaluer l’impact de la variation des profils de puisage
+comme de la quantité des besoins sur le la performance du système solaire combiné
+(\textit{SSC}). Afin d’évaluer les variations possibles d’une habitation à une autre, une
+consommation de 27 et \SI{40}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius}) seront évaluées.
+% paragraph variations_parametriques (end)
 % subsubsection puisage_en_eau_chaude_sanitaire (end)
 
 
@@ -304,13 +520,18 @@ Certains choix ont été fait du aux limitations de modélisation :
 \subsubsection{Ventilation} % (fold)
 \label{ssub:ventilation}
 
+\itodo{À mettre dans l’étude paramétrique car propre aux fichiers météos}
+Deux scénarios de ventilation ont été retenus pour l’étude paramétrique. Dans les deux cas
+le débit minimal est défini suivant les arrêtés du
+\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{24 Mars
+1982 et du 28 Octobre 1983}. La maison comportant 4 pièces principales, le débit réglementaire
+pour une ventilation contrôlée est de \SI{90}{\meter\cubed\per\hour}. Dans le cas d’une ventilation
+Hygro B, le débit peut être abaissé à \SI{20}{\meter\cubed\per\hour} et est modulé en fonction
+de l’hygrométrie. L’étude paramétrique permettra de discuter de l’impact du scénario
+de ventilation sur la performance du système solaire.
 % subsubsection ventilation (end)
-% subsection description_des_scenarios (end)
-% section description_du_cas_d_etude_le_batiment (end)
-
-
-
-
+% subsection scenarios_envisages (end)
+% section etude_parametrique_ (end)
 
 
 

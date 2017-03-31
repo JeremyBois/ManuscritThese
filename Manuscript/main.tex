@@ -89,7 +89,7 @@
 
 
 % ------------------------------------------------------------------------------
-% Math and algorithm support
+% Math support
 % ------------------------------------------------------------------------------
 \usepackage{siunitx}                                % Unit package
 \usepackage{amsmath, amssymb, amsthm,mathtools}     % Allow adding complex equations
@@ -109,6 +109,7 @@
 \makeatother
 % Math symbols
 \newcommand{\pluseq}{\mathrel{+}\mathrel{\mkern-1mu}=}
+
 % Mise en page des théorèmes
 \usepackage{tikz}
 \newsavebox{\boiteencadrement}
@@ -140,7 +141,9 @@
 \newenvironment{Def}{\begin{encadrement}[white]\begin{preDef}}{\end{preDef}\end{encadrement}}
 
 
+% ------------------------------------------------------------------------------
 % Algorithm support
+% ------------------------------------------------------------------------------
 \usepackage[french, onelanguage,
             linesnumbered, lined,
             boxed,
@@ -177,7 +180,7 @@
 \SetKwData{ATrial}{Echec}
 \SetKwData{AMaxTrial}{MaxEchec}
 
-
+% Circle arround text
 \newcommand\encircle[1]{%
   \tikz[baseline=(X.base)]
     \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
