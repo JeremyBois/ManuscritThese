@@ -88,8 +88,8 @@ bilan thermique (bâtiment).
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Quelle solution ?} % (fold)
 \label{ssub:quelle_solution}
-Le langage Modelica et le logiciel Dymola (Dynamics Modeling Laboratory) permettent de
-répondre à l’ensemble des contraintes décrites dans la section précédente. Modelica est un
+Le langage \textit{Modelica} et le logiciel \textit{Dymola} (Dynamics Modeling Laboratory) permettent de
+répondre à l’ensemble des contraintes décrites dans la section précédente. \textit{Modelica} est un
 langage de programmation libre et ouvert développé pour répondre aux contraintes de la
 modélisation multi-physique. Il a été pensé pour être intuitif et offre une approche
 équationnelle et orientée objet au développeur. L’approche objet est très intuitive et
@@ -104,28 +104,32 @@ développeur de modifier une partie d’un modèle simplement et rapidement.
 \label{par:modelisation_acausale}
 Un système acausal n’impose pas de sens dans la définition d’une équation (Figure 1).  Le
 solveur va déterminer par lui-même les paramètres dont il connait la valeur et réécrire
-les systèmes d’équations afin d’isoler les inconnues. Le développement sous Modelica
-permet ainsi de rapidement prototyper des systèmes complexes sans devoir à chaque
+les systèmes d’équations afin d’isoler les inconnues. Le développement sous \textit{Modelica}
+permet ainsi de rapidement créer des prototypes de systèmes complexes sans devoir à chaque
 modification réécrire les systèmes d’équations.
 \ftodo{Ajouter acausal vs causal}
 % paragraph modelisation_acausale (end)
 
 \paragraph{Dymola :} % (fold)
 \label{par:dymola}
-Dymola est une suite de logiciels développée par Dassault Systèmes permettant de
-simplifier le développement de modèles numériques grâce au langage Modelica. Il offre une
+~
+\itodo{http://www.wolfram.com/system-modeler/features/}
+\textit{Dymola} est une suite de logiciels développée par \textit{Dassault Systèmes} permettant de
+simplifier le développement de modèles numériques grâce au langage \textit{Modelica}. Il offre une
 interface graphique permettant de connecter les modèles entre eux de manière intuitive
-(Figure 2). Il offre aussi un outil puissant de refactoring permettant de rendre
-transparent la modification du nom d’une variable. Il offre aussi un outil de post-
+(Figure 2). Il offre aussi un outil puissant de "refactoring" permettant de rendre
+transparent la modification du nom d’une variable et sa propagation sur l’ensemble
+des modèles de la bibliothèque. Il offre aussi un outil de post-
 traitement afin d’évaluer les résultats des simulations. Finalement il intègre le logiciel
-Dymosim qui offre un large choix de solveurs pour simuler les modèles. Dymosim supporte
-aussi la parallélisation, les FMU (FunctionalMock-Up Unit) et la génération de modèles
+\textit{Dymosim} qui offre un large choix de solveurs pour simuler les modèles. \textit{Dymosim} supporte
+aussi la parallélisation, les \emph{FMU} (FunctionalMock-Up Unit) et la génération de modèles
 autonomes.
 \ftodo{Ajouter example modélisation}
 % paragraph dymola (end)
 
 \paragraph{Bibliothèque Buildings} % (fold)
 \label{par:bibliotheque_buildings}
+~
 \itodo{Détailler buildings}
 Le couplage de Modelica et de Dymola permet le développement itératif nécessaire à notre
 problème et offre un contrôle total sur chaque partie du modèle répondant ainsi
@@ -143,9 +147,165 @@ thermique, ...).
 % subsection choix_des_outils (end)
 % section modelisation_detaillee_d_un_systeme_solaire_innovant (end)
 
+
+
+
+% ..............................................................................
+% ..............................................................................
 \section{Description du cas d’étude : le bâtiment} % (fold)
 \label{sec:description_du_cas_d_etude_le_batiment}
+% ------------------------------------------------------------------------------
+\subsection{Modélisation mono-zone} % (fold)
+\label{sub:modelisation_monozone}
+La maison (\mtodo{ref image}) a une surface habitable de \SI{98.4}{\meter\squared}
+et est de plain-pied \ftodo{Ajouter plan de la maison}.
+Elle comporte 3 chambres, une cuisine/salon, et un local technique où se
+trouvent les équipements du système solaire.
+En plus de l’espace chauffée, les combles et le vide sanitaire ont été modélisés
+comme des conditions limites (\mtodo{Réf fig}). Le modèle utilisé est une version
+simplifié du modèle de zone disponible dans la bibliothèque \textit{Buildings}.
+La température dans l’ensemble de la zone chauffée est ainsi considérée uniforme.
 
+Les caractéristiques thermiques des parois opaques sont décrites en fonction de
+leur orientation (\mtodo{Ajouter ref}) et une description détaillée et exhaustive est
+disponible en annexe (\mtodo{ref tableau annexe}).
+\ttodo{Tableau décrivant les parois}
+
+Dans le cadre de ces travaux un couplage fort entre bâtiment, systèmes, et algorithme
+de contrôle est envisagé. Dans cette optique, il est nécessaire de déterminer quel
+est le niveau de détail nécessaire pour chaque élément. Dans le cas du bâtiment, une
+approche mono-zone a été retenue.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Comparaison avec un modèle multi-zone} % (fold)
+\label{ssub:comparaison_avec_un_modele_multi_zone}
+Afin de valider le choix d’un modèle mono-zone, une comparaison a été réalisée
+entre un modèle multi-zone développé sous \textit{Energy Plus} par le
+\textit{CEA} et un modèle mono-zone développé sous \textit{Dymola} en utilisant
+la bibliothèque \textit{Buildings}. Le fichier météo utilisé est celui de
+Bordeaux et est de type IWEC (\mtodo{Ajouter lien}{IWEC - WMO 075100}). Une
+consigne de chauffage de \SI{19}{\celsius} a été utilisée et les scénarios
+harmonisés. L’étude ne portant pas sur l’évaluation du confort estival des
+occupants, seule les besoins ont été comparés. Les résultats montrent que les
+besoins de l’approche mono-zone et de l’approche multi-zone sont similaires
+(\mtodo{Ajouter ref table}).
+\itodo{Ajouter résultats entre les deux. Ajouter comparatif des puissances}.
+% subsubsection comparaison_avec_un_modele_multi_zone (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description des fenêtres} % (fold)
+\label{ssub:description_des_fenetres}
+Une attention particulière a été apportée à la description des vitrages afin
+d’être cohérent entre le modèle multi-zone et mono-zone et de satisfaire les normes
+de calculs.
+
+La bibliothèque \textit{Buildings} sépare le calcul de la part transmise en
+conductif et en radiatif : les caractéristiques des vitrages doivent ainsi être
+renseigné de manière détaillées. Afin de convertir les données techniques
+disponibles auprès des fabricants vers le détail des éléments le composant, le
+logiciel \textit{Windows 7.4} a été utilisé. Dans un premier temps la
+description détaillée des vitrages a été renseignée puis validée en comparant
+avec les données techniques des fabricants. Afin de pouvoir comparer les
+résultats, le calcul du coefficient $U_{g}$ et du facteur solaire $g$ ont été
+obtenues suivant les mêmes normes que celles décrites dans la fiche technique du
+fabricant. En effet la modification des conditions limites (normes) impactent
+fortement le résultat (\mtodo{Ajouter ref tab}). La variation moyenne est de
+\SI{20}{\percent} entre les normes européennes et états-uniennes (\mtodo{Ajouter
+ref}). Il est aussi important de noter que chaque logiciel de \emph{STD} attend
+une valeur suivant une norme précise pour ces coefficients. Dans le cas des
+vitrages utilisés dans ces travaux, les normes européennes
+\mtodo{Ref}{EN 673-2011} et \mtodo{Ref}{EN 410-2011} permettent respectivement
+de calculer le $U_{g}$ et le $g$ décrit dans les fiches techniques.
+\ttodo{Ajouter comparaison entre calcul selon diverses normes}
+
+Il est considéré pour l’ensemble des vitrages, une composition similaire
+(Planilux SGG \SI{4}{mm} - Argon - Planitherm XN \SI{4}{mm}), exception faite de
+la fenêtre de toit. Les différents vitrages sont des vitrages doubles avec une
+lame d’air ou d’argon et une couche faiblement émissive est ajoutée pour les
+vitrages des parois verticales (\mtodo{Ajouter ref tab}). Les valeurs de
+$U_{g}$, $U_{f}$, et $U_{w}$ décrivent les coefficients respectifs du vitrage
+nu, du cadre, et de l’ensemble de la fenêtre selon la norme \mtodo{Ref}{EN
+673-2011}. Les ponts thermiques sont intégrés dans la valeur du $U_{w}$ car la
+bibliothèque \textit{Buildings} ne permet pas leur définition séparément. Une
+description détaillée et exhaustive de la composition des fenêtres est
+disponible en annexe (\mtodo{ref tableau annexe}).
+% subsubsection description_des_fenetres (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description des infiltrations} % (fold)
+\label{ssub:description_des_infiltrations}
+Les infiltrations ont été définies en utilisant une perméabilité de
+\SI{0.4}{m^{3}\per\hour\per\meter\squared}. Le calcul tient compte de la
+somme des surfaces dites froides qui correspond à la somme des surfaces donnant
+vers l’extérieur à l’exception du plancher bas (\eqref{eq:infiltrations}).
+
+\begin{align}
+    Infiltrations &= 0.4 \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
+    &              \backsimeq 85~\si{m^{3}/h}
+    \label{eq:infiltrations}
+\end{align}
+% subsubsection description_des_infiltrations (end)
+
+
+\subsubsection{Limitations du modèle} % (fold)
+\label{ssub:limitations_du_modele}
+Certains choix ont été fait du aux limitations de modélisation :
+\begin{itemize}
+    \item Les coefficients de convection intérieurs utilisés sont les mêmes pour toutes
+          les parois (\SI{7.7}{\watt\per(\meter\squared{.}\kelvin)}) et le coefficient extérieur
+          est fixé à \SI{25}{\watt\per(\meter\squared{.}\kelvin)}, une valeur couramment retenu
+          dans la littérature (\mtodo{Ajouter ref}).
+    \item Les ponts thermiques ont été définies comme une surface de déperdition
+          équivalente à \SI{13.2}{\meter\squared} (\mtodo{Récup détail Aurélie}).
+    \item La fenêtre de toit est placée horizontalement et non à \SI{33}{\degree}
+          (inclinaison réelle) car la bibliothèque \textit{Buildings} ne supporte pas les
+          surfaces vitrés inclinées. Le facteur solaire utilisé est cependant celui défini
+          dans la fiche technique du fabricant (\munsure{Ajouter ref velux}).
+\end{itemize}
+% subsubsection limitations_du_modele (end)
+% subsection modelisation_monozone (end)
+
+
+% % ------------------------------------------------------------------------------
+\subsection{Description des scénarios} % (fold)
+\label{sub:description_des_scenarios}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Occupation} % (fold)
+\label{ssub:profil_d_occupation}
+
+% subsubsection profil_d_occupation (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Charges internes} % (fold)
+\label{ssub:charges_internes}
+
+% subsubsection charges_internes (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Consigne de chauffage} % (fold)
+\label{ssub:consigne_de_chauffage}
+
+% subsubsection consigne_de_chauffage (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Puisage en eau chaude sanitaire} % (fold)
+\label{ssub:puisage_en_eau_chaude_sanitaire}
+
+% subsubsection puisage_en_eau_chaude_sanitaire (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Ventilation} % (fold)
+\label{ssub:ventilation}
+
+% subsubsection ventilation (end)
+% subsection description_des_scenarios (end)
 % section description_du_cas_d_etude_le_batiment (end)
 
 
