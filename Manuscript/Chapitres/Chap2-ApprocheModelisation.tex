@@ -355,7 +355,7 @@ l’origine du système.
 \iunsure{Mentionner IGC ou en parler dans le cadre du projet COMEPOS (sous-entendu)}
 Le système décrit dans ce chapitre est un SSC utilisant l’air comme vecteur de chaleur
 afin d’éviter l’installation d’un système de chauffage conventionnel (vecteur eau). Le
-système permet ainsi de couvrir les besoins en ECS et en chauffage pour l’ensemble du
+système permet ainsi de couvrir les besoins en \emph{ECS} et en chauffage pour l’ensemble du
 bâtiment par l’intermédiaire du réseau de ventilation. De plus le choix de l’air comme
 vecteur de chaleur est motivé par la volonté de l’entreprise \emph{IGC} d’obtenir un
 système réactif à travers le projet \textit{COMEPOS}.
@@ -386,23 +386,14 @@ ballon de stockage, est utilisé pour stocker l’énergie accumulée durant la 
 la valoriser en période nocturne.
 
 Les deux ballons sont considérés dans la partie chauffée de la maison et leurs
-déperditions sont ainsi ajoutées aux charges internes de la maison. Afin de garantir le
+déperditions sont ainsi considérées comme des charges internes au bâtiment. Afin de garantir le
 maintien du confort thermique des occupants, un appoint électrique en partie haute du
-ballon sanitaire est aussi ajouté. Ce dernier fonctionne ne s’active que lorsque l’énergie
-solaire n’est pas suffisante. L’énergie du soleil est quand à elle transmise à l’eau par
-l’intermédiaire de panneaux solaires. Enfin, une batterie à eau permet de transférer
-l’énergie solaire vers le système aéraulique (ventilation).
+ballon sanitaire est aussi ajouté. Ce dernier n’est activé que lorsque l’énergie
+solaire disponible n’est pas suffisante. L’énergie du soleil est quand à elle transmise à l’eau par
+l’intermédiaire de panneaux solaires puis vers le système aéraulique à l’aide d’un
+échangeur de chaleur.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description des composants} % (fold)
-\label{ssub:description_des_composants}
-~
-\itodo{Décrire les différents composants (caractéristiques)}
-% subsubsection description_des_composants (end)
-% subsection systeme_hydraulique (end)
-
-
-
+\ftodo{Ajouter lien en schéma et modélisation Modelica. Discuter la simplicité visuelle}
 
 
 % ------------------------------------------------------------------------------
@@ -410,7 +401,15 @@ l’énergie solaire vers le système aéraulique (ventilation).
 \label{sub:systeme_aeraulique}
 ~
 \itodo{Partie aéraulique ...}
+La partie aéraulique du système est responsable du renouvellement d’air et du chauffage
+par l’intermédiaire du solaire thermique ou bien de la batterie électrique en
+position terminale. Un caisson de mélange permet de récupérer une partie de l’énergie
+sur l’air extrait (\mtodo{Ajouter ref partie aéraulique}). L’air soufflé est un mélange entre de l’air neuf et de l’air repris
+dans le respect de la réglementation en vigueur (\ref{ssub:ventilation}).
+Le système de ventilation peut ainsi être apparenté à une ventilation mécanique par insufflation
+(VMI).
 
+\ftodo{Ajouter partie aéraulique}
 % subsection systeme_aeraulique (end)
 
 
@@ -421,26 +420,127 @@ l’énergie solaire vers le système aéraulique (ventilation).
 \label{sub:algorithme_de_controle}
 ~
 \itodo{Ajouter description de l’état de l’art et du blabla sur ce qui a été fait et
-       ce qui manque.}
-La partie hydraulique est contrôlée par un ensemble hiérarchisé de contrôleurs.
-Le niveau le plus élevé de contrôle s’occupe d’activer ou de désactiver les différents
-éléments comme les pompes ou les vannes. Au plus bas niveau chaque pompes et chaque
-équipement électrique utilise un contrôleur PID. Cette approche permet d’adapter
-dynamiquement le comportement du système tout en conservant un stricte séparation
-entre la logique de chaque composant. L’approche peut être décrite comme un contrôleur
-en cascade.
+       ce qui manque. Voir Article}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Fonctionnement global} % (fold)
 \label{ssub:fonctionnement_global}
+La partie hydraulique est contrôlée par un ensemble hiérarchisé de contrôleurs. Le niveau
+le plus élevé de contrôle s’occupe d’activer ou de désactiver les différents éléments
+comme les pompes ou les vannes. Au plus bas niveau chaque pompes et chaque équipement
+électrique utilise un contrôleur PID. Cette approche permet d’adapter dynamiquement le
+comportement du système tout en conservant un stricte séparation entre la logique de
+chaque composant. Le système solaire fonctionne suivant trois principaux modes. Afin de
+valoriser l’énergie solaire les différents modes sont ordonnées (\mtodo{Ajouter ref fig}).
+La \textbf{priorité} revient au maintien du ballon sanitaire, au respect de la température
+de consigne, puis à l’élévation de la température dans le ballon de stockage. Le respect
+de ces priorité n’est pas pour autant restrictif : le système peut remplir plusieurs
+fonctions en parallèles. Lorsque l’énergie solaire disponible est suffisante, le
+chauffage, l’\emph{ECS}, et la charge du ballon tampon peuvent être réalisées de manière
+simultanées.
+\ftodo{Ajouter description FSM du chauffage}
+
+Durant la période diurne, l’énergie solaire est récupérée directement au niveau des
+capteurs solaires (mode $Direct$) et la vanne 3 voies est alors ouverte. L’activation des
+pompes $S5$, $S2$, et $S6$ permet alors respectivement de charger le ballon tampon,
+couvrir les besoins en \emph{ECS}, et couvrir les besoins en chauffage. Ces trois pompes
+sont des pompes à vitesse variable permettant d’adapter le débit en fonction des besoins
+grâce à un contrôleur PID. Le système ajuste la vitesse des pompes afin de maintenir une
+différence de température minimale de \SI{10}{\celsius} entre la sorties des échangeurs et
+la sortie des capteurs solaires. Contrairement aux approches classiques, la différence de
+température entre l’entrée et la sortie du collecteur n’est pas utilisée comme un élément
+de régulation. En effet, cette approche ne permet pas de tenir compte de manière dynamique
+des fluctuations entre besoins, pertes, et énergie disponible (\mtodo{Ajouter sources}).
+En considérant la différence de température entre la source (sortie des capteurs) et la
+cible (sortie des échangeurs) on tient compte des pertes en lignes mais aussi des
+fluctuations de la part d’énergie fournie aux ballons ou à l’air. Ainsi dans le cas où
+l’énergie solaire est importante, on récupère plus d’énergie et on peut la distribuer
+entre les différentes cibles. Dans le cas où l’énergie solaire est limitée la différence
+minimale de température assure de valoriser cette énergie et assure dynamiquement le
+nombre de pompes activés.
+
+En dehors des heures ensoleillées, le système utilise l’énergie solaire stockée dans le
+ballon tampon pour couvrir les besoins de chauffage (mode $Indirect$). Ainsi le sens de
+circulation du fluide dans l’échangeur du ballon tampon est déterminé par la position de
+la vanne 3 voies. Dans le mode $Direct$ la vanne 3 voies est ouverte vers les capteurs
+permettant à la pompe $S6$ de s’activer et l’eau circule du haut vers le bas du ballon.
+Dans le mode $Indirect$ la vanne 3 voies bascule vers le ballon tampon (fermée coté
+capteurs) et l’eau circule du bas vers le haut (inverse). Dans le mode $Indirect$ la pompe
+$S6$ ne peut donc pas être activée. L’énergie accumulée dans le ballon tampon est réservée
+à la couverture des besoins en chauffage, les besoins en \emph{ECS} sont couverts par
+l’énergie stockée dans le ballon sanitaire. Dans le cas où l’énergie du ballon sanitaire
+n’est pas suffisante (température inférieure à \SI{50}{\celsius}, l’appoint électrique est
+activé.
+
+Finalement lorsque la production solaire est insuffisante les besoins sont couverts à
+\SI{100}{\percent} par les appoints électriques. Le premier permettant de couvrir les
+besoins d’ECS se trouve dans le ballon sanitaire, et celui permettant de couvrir les
+besoins en chauffage se trouve en partie terminale du réseau aéraulique. Il est important
+de noter que les besoins en énergie peuvent être couverts de manière simultanée par
+le solaire et par l’appoint électrique si l’énergie solaire disponible n’est pas
+suffisante.
+
+Afin d’éviter les instabilités, des hystérésis sont utilisés. Sur le ballon sanitaire par
+exemple, la température à atteindre est de \SI{55}{\celsius} mais une variation de
+\SI{5}{\celsius} est autorisée. Lorsque la température descend en dessous de
+\SI{55}{\celsius} la demande en énergie est active. Lorsque le ballon atteint une
+température supérieure à \SI{60}{\celsius} la demande est de nouveau inactive.
+L’intervalle de température (55 - 60) représente alors une zone morte (\mtodo{ref fig}).
+\ftodo{Ajouter diagramme expliquant hystérésis}
+De plus l’activation d’une pompe nécessite que la température de la source, sortie des
+capteurs ou du ballon de stockage, est atteint un seuil. Ce seuil minimal permet d’éviter
+l’activation trop rapide d’une pompe. Par exemple, si la température dans le ballon tampon
+(stockage) est inférieure à \SI{45}{\celsius} alors le chauffage solaire $Indirect$ ne
+peut pas être activé. Bien que le système puissent remplir plusieurs fonctions
+simultanément, le respect de certaines conditions est nécessaire afin de garantir l’ordre
+des priorités. L’activation de la charge du ballon de stockage est ainsi autorisée si la
+vanne 3 voies est ouverte vers les capteurs solaires et si le ballon sanitaire en partie
+basse (position de l’échangeur solaire) a atteint au minimum \SI{30}{\celsius}. Cette
+règle permet ainsi d’ajouter une priorité sur la couverture des besoins en ECS.
+
+Afin d’illustrer le fonctionnement de l’algorithme prenons le cas suivant: "l’énergie
+solaire est fournie à l’échangeur pour couvrir les besoins en chauffage". Un des habitants
+prend sa douche, abaissant la température de l’eau du ballon sanitaire en dessous du seuil
+minimal (\SI{55}{\celsius}). Dans cette configuration la pompe $S5$ va s’enclencher pour
+fournir de l’énergie au ballon sanitaire. Si l’énergie disponible au niveau des capteurs
+est insuffisante pour le chauffage et le maintien du ballon sanitaire alors la pompe $S2$
+(chauffage) va s’arrêter car l’ECS est prioritaire.
+
+
+L’algorithme de contrôle de la partie hydraulique fonctionne ainsi grâce à un algorithme
+maître en cascade utilisant une approche par prospection (feed-forward) et délégant le
+contrôle des pompes à une combinaison de PID fonctionnant par rétroaction (feed-back).
 % subsubsection fonctionnement_global (end)
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Fonctionnement détaillé} % (fold)
-\label{ssub:fonctionnement_detaille}
+\subsubsection{Contrôle du chauffage solaire (partie aéraulique)} % (fold)
+\label{ssub:controle_du_chauffage_solaire}
+Afin de favoriser le chauffage par l’énergie solaire, l’échangeur de chaleur entre l’eau
+et l’air est placé en amont du terminal électrique. Grâce à une loi d’air , loi
+proportionnelle par rapport à la température extérieure (similaire à une loi d’eau), la
+température de soufflage nécessaire est fixée : $T_{air}^{cons}$.. Le débit de la pompe
+$S2$ est donc définie en fonction de $T_{air}^{cons}$, et une temporisation permet de
+n’activer l’appoint électrique que après \SI{3}{min} si et seulement si la température de
+la maison est toujours inférieure à la consigne $T_{cons}$. De plus si après \SI{10}{min}
+la consigne n’est pas atteinte, alors la température est fixée à son maximum
+(\SI{32}{\celsius}) et le débit est modulé entre le débit hygiénique
+(\SI{90}{\meter\cubed\per\hour}) et le débit maximum (\SI{900}{\meter\cubed\per\hour}).
+Ces temporisations permettent respectivement de favoriser en priorité le solaire et de
+garantir le confort thermique (\mtodo{ref fig}).
+\ftodo{Ajouter figure décrivant fonctionnement du système de chauffage}
 
-% subsubsection fonctionnement_detaille (end)
+Afin d’améliorer la couverture solaire sur le chauffage, l’algorithme autorise la
+surchauffe de la maison durant les périodes diurnes d’inoccupation (\mtodo{ref fig algo}).
+Dans ce cas, le débit minimum sanitaire est maintenue et seul $T_{air}^{cons}$ varie afin
+que la température intérieure atteigne la température limite de surchauffe :
+$T_{cons}^{solaire}$. Seule l’utilisation de l’énergie solaire $Directe$ est permis afin
+d’augmenter la température intérieure. L’augmentation de la température intérieure permet
+de profiter de l’inertie du bâtiment et de retarder, voir éviter la relance du chauffage
+et donc l’utilisation potentielle de l’appoint électrique (\mtodo{ref fig}).
+\ftodo{Ajouter figure décrivant le principe de la surchauffe diurne}
+% paragraph couplage_aeraulique (end)
+% subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
 % section description_du_système_solaire (end)
 
@@ -468,7 +568,7 @@ en cascade.
 
 \itodo{À mettre dans l’étude paramétrique car propre aux fichiers météos}
 Afin de pouvoir estimer la consommation nécessaire pour la production en Eau Chaude
-Sanitaire (\textit{ECS}) un profil de puisage type est nécessaire. Dans ces travaux le
+Sanitaire (\emph{ECS}) un profil de puisage type est nécessaire. Dans ces travaux le
 choix du profil de puisage est analysé à travers les différents climats retenues. Pour
 chaque climat, la température de l’eau du réseau est définie suivant une évolution
 mensuelle, et est extrapolée durant la simulation (\mtodo{ref tab}). On remarque une forte
@@ -496,7 +596,7 @@ journaliers sont pondérées en fonction du jour de la semaine (\mtodo{ref tab})
 
 \paragraph{Pondération de la demande :} % (fold)
 \label{par:ponderation_de_la_demande}
-Afin d’évaluer l’impact de la variation mensuelle des besoins en \textit{ECS}, un
+Afin d’évaluer l’impact de la variation mensuelle des besoins en \emph{ECS}, un
 coefficient pondérateur est utilisé. Comme pour les coefficients utilisés pour pondérer
 les besoins hebdomadaires, les besoins totaux ne varient pas, seul la répartition est
 modifiée. Les coefficients utilisés sont issues des travaux de l’\textit{ADEME}
@@ -510,7 +610,7 @@ la période hivernale que pendant la période estivale (\mtodo{ref tab}).
 \label{par:variations_parametriques}
 L’étude paramétrique permettra d’évaluer l’impact de la variation des profils de puisage
 comme de la quantité des besoins sur le la performance du système solaire combiné
-(\textit{SSC}). Afin d’évaluer les variations possibles d’une habitation à une autre, une
+(\emph{SSC}). Afin d’évaluer les variations possibles d’une habitation à une autre, une
 consommation de 27 et \SI{40}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius}) seront évaluées.
 % paragraph variations_parametriques (end)
 % subsubsection puisage_en_eau_chaude_sanitaire (end)
@@ -531,6 +631,22 @@ de l’hygrométrie. L’étude paramétrique permettra de discuter de l’impac
 de ventilation sur la performance du système solaire.
 % subsubsection ventilation (end)
 % subsection scenarios_envisages (end)
+
+\subsubsection{Fluide caloporteur} % (fold)
+\label{ssub:fluide_caloporteur}
+~
+\itodo{Ajouter description fluide}
+\ftodo{Ajouter courbe Cp en fonction de la température}
+% subsubsection fluide_caloporteur (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description des composants} % (fold)
+\label{ssub:description_des_composants}
+~
+\itodo{Décrire les différents composants (caractéristiques)}
+\itodo{Validation modèle solaire}
+% subsubsection description_des_composants (end)
+% subsection systeme_hydraulique (end)
 % section etude_parametrique_ (end)
 
 
