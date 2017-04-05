@@ -29,13 +29,13 @@ prochaine réglementation thermique (\mtodo{Ajouter citation}{RT 2020}), un algo
 a été utilisé. Celui-ci est modifié et adapté pour répondre aux contraintes du projet : obtenir
 un bâtiment réactif en utilisant l’énergie solaire.
 L’originalité de l’approche réside principalement dans l’évaluation couplée du système
-solaire combiné et du bâtiment. Dans cette optique les intéractions bâtiment / systèmes et
+solaire combiné et du bâtiment. Dans cette optique les interactions bâtiment / systèmes et
 systèmes / bâtiment sont pris en compte et évaluées.
 
 Dans un premier temps des outils retenues pour la modélisation et l’analyse des résultats.
 Dans un second temps le modèle SSC développée ainsi que le bâtiment et les scénarios, sont
 discutés. Finalement une étude paramétrique est réalisée. Elle permettra de mieux
-comprendre les intéractions existantes entre bâtiment et système et de fixer les scénarios
+comprendre les interactions existantes entre bâtiment et système et de fixer les scénarios
 qui seront retenues pour l’aide à la décision. De plus les indicateurs nécessaires à la
 caractérisation d’un SSC seront identifiés.
 % section introduction (end)
@@ -102,12 +102,18 @@ développeur de modifier une partie d’un modèle simplement et rapidement.
 
 \paragraph{Modélisation acausale :} % (fold)
 \label{par:modelisation_acausale}
-Un système acausal n’impose pas de sens dans la définition d’une équation (Figure 1).  Le
-solveur va déterminer par lui-même les paramètres dont il connait la valeur et réécrire
+Un système acausal n’impose pas de sens dans la définition d’une équation (Fig~\ref{fig:acausal_vs_causal}).  Le
+solveur va déterminer par lui-même les paramètres dont il connaît la valeur et réécrire
 les systèmes d’équations afin d’isoler les inconnues. Le développement sous \textit{Modelica}
 permet ainsi de rapidement créer des prototypes de systèmes complexes sans devoir à chaque
 modification réécrire les systèmes d’équations.
-\ftodo{Ajouter acausal vs causal}
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
+    \end{center}
+    \caption{Différences entre modélisation acausale (par composant) et causal (par bloc).
+             \label{fig:acausal_vs_causal}}
+\end{figure}
 % paragraph modelisation_acausale (end)
 
 \paragraph{Dymola :} % (fold)
@@ -117,14 +123,20 @@ modification réécrire les systèmes d’équations.
 \textit{Dymola} est une suite de logiciels développée par \textit{Dassault Systèmes} permettant de
 simplifier le développement de modèles numériques grâce au langage \textit{Modelica}. Il offre une
 interface graphique permettant de connecter les modèles entre eux de manière intuitive
-(Figure 2). Il offre aussi un outil puissant de "refactoring" permettant de rendre
+(Fig~\ref{fig:exemple_modelica}). Il offre aussi un outil puissant de "refactoring" permettant de rendre
 transparent la modification du nom d’une variable et sa propagation sur l’ensemble
 des modèles de la bibliothèque. Il offre aussi un outil de post-
 traitement afin d’évaluer les résultats des simulations. Finalement il intègre le logiciel
 \textit{Dymosim} qui offre un large choix de solveurs pour simuler les modèles. \textit{Dymosim} supporte
 aussi la parallélisation, les \emph{FMU} (FunctionalMock-Up Unit) et la génération de modèles
 autonomes.
-\ftodo{Ajouter example modélisation}
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Modelisation/exemple.PNG}
+    \end{center}
+    \caption{Modélisation d’un échange thermique entre deux masses en Modelica.
+             \label{fig:exemple_modelica}}
+\end{figure}
 % paragraph dymola (end)
 
 \paragraph{Bibliothèque Buildings} % (fold)
@@ -157,19 +169,49 @@ thermique, ...).
 % ------------------------------------------------------------------------------
 \subsection{Modélisation mono-zone} % (fold)
 \label{sub:modelisation_monozone}
-La maison (\mtodo{ref image}) a une surface habitable de \SI{98.4}{\meter\squared}
-et est de plain-pied \ftodo{Ajouter plan de la maison}.
+La maison (Fig~\ref{fig:plan_maison}) a une surface habitable de \SI{98.4}{\meter\squared}
+et est de plain-pied.
 Elle comporte 3 chambres, une cuisine/salon, et un local technique où se
 trouvent les équipements du système solaire.
 En plus de l’espace chauffée, les combles et le vide sanitaire ont été modélisés
-comme des conditions limites (\mtodo{Réf fig}). Le modèle utilisé est une version
+comme des conditions limites (Fig~\ref{fig:modelisation_maison}). Le modèle utilisé est une version
 simplifié du modèle de zone disponible dans la bibliothèque \textit{Buildings}.
 La température dans l’ensemble de la zone chauffée est ainsi considérée uniforme.
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Batiment/plan.png}
+    \end{center}
+    \caption{Plan du bâtiment utilisé à travers ces travaux.
+             \label{fig:plan_maison}}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Modelisation/maison.png}
+    \end{center}
+    \caption{Représentation du bâtiment sous Modelica.
+             \label{fig:modelisation_maison}}
+\end{figure}
 
 Les caractéristiques thermiques des parois opaques sont décrites en fonction de
-leur orientation (\mtodo{Ajouter ref}) et une description détaillée et exhaustive est
+leur orientation (\autoref{tab:paroi_opaque}) et une description détaillée et exhaustive est
 disponible en annexe (\mtodo{ref tableau annexe}).
-\ttodo{Tableau décrivant les parois}
+\begin{table}
+\centering
+\begin{tabular}{l*{3}{c}}
+    \toprule
+               & $U$                                       & $Surface$             & $U \times Surface$     \\
+               & \si{\watt\per(\meter\squared{.}\kelvin)} & \si{\meter\squared}    & \si{\watt{.}\kelvin}  \\
+    \midrule
+    Murs       & 0.174                                     & 91.17                 & 15.864                 \\
+    Plancher   & 0.110                                     & 98.40                 & 10.824                 \\
+    Plafond    & 0.123                                     & 97.06                 & 11.938                 \\
+    \bottomrule
+\end{tabular}
+\caption{Description de la performance des parois opaques.}
+         \label{tab:paroi_opaque}
+\end{table}
+
 
 Dans le cadre de ces travaux un couplage fort entre bâtiment, systèmes, et algorithme
 de contrôle est envisagé. Dans cette optique, il est nécessaire de déterminer quel
@@ -284,11 +326,21 @@ ouvrés, les habitants sont soit à l’école (enfants) soit au travail (parent
 faite du mercredi après-midi où la maison est considéré comme occupée.
 La puissance par habitant est de \SI{97.5}{\watt} (\SI{70}{\percent} convective), résultat
 de la moyenne pondérée de la puissance dégagée par une personne en fonction de la surface
-de chaque pièce du modèle multi-zone (\mtodo{ref tab}).
+de chaque pièce du modèle multi-zone (\ref{tab:puissance_occupants}).
 
 \ftodo{Profil d’occupation retenue}
 
-\ttodo{Récapitulatif des puissances dissipées en fonction des pièces}
+\begin{table}
+\begin{tabular}{*8{c}}
+    \toprule
+    Chambre 1 & Chambre 2  & Chambre 3 & Séjour & Cuisine & Sanitaire & SdB   & Cellier \\
+    \midrule
+    78        & 78         & 117       & 97.5   & 97.5    & 114.3     & 114.3 & 114.3   \\
+    \bottomrule
+\end{tabular}
+\caption{Récapitulatif des puissances dissipées en fonction des pièces.}
+\label{tab:puissance_occupants}
+\end{table}
 % subsubsection profil_d_occupation (end)
 
 
@@ -359,11 +411,17 @@ système permet ainsi de couvrir les besoins en \emph{ECS} et en chauffage pour 
 bâtiment par l’intermédiaire du réseau de ventilation. De plus le choix de l’air comme
 vecteur de chaleur est motivé par la volonté de l’entreprise \emph{IGC} d’obtenir un
 système réactif à travers le projet \textit{COMEPOS}.
-Le système modélisé (\mtodo{Ref figure}) est composé de 3 parties principales : la partie
+Le système modélisé est composé de 3 parties principales : la partie
 hydraulique, la partie aéraulique, et la partie contrôle qui orchestre le fonctionnement
-couplé entre le système solaire et le bâtiment (\mtodo{ref fig}).
+couplé entre le système solaire et le bâtiment (Fig~\ref{fig:air_complet_mono}).
 
-\ftodo{Schéma du système, partie hydraulique et aéraulique}
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Modelisation/air_complet_mono.pdf}
+    \end{center}
+    \caption{Description schématique du système solaire couplé à la ventilation.
+             \label{fig:air_complet_mono}}
+\end{figure}
 
 Dans un premier temps le fonctionnement de la partie hydraulique sera détaillé. Dans un
 second temps la partie aéraulique sera présentée. Finalement la partie contrôle sera
@@ -372,13 +430,13 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 
 \subsection{Système hydraulique} % (fold)
 \label{sub:systeme_hydraulique}
-Le système hydraulique est composé de 2 ballons. Le premier, le ballon sanitaire, permet
-de lisser la demande en énergie fou. Le système est dit semi-accumulée car la réserve
-d’eau chaude est inférieure à la quantité totale puisée durant la journée. Le ballon
-sanitaire est donc connecté en continue avec le réseau d’eau froide public et certaines
-contraintes doivent être respectées. Ainsi le ballon doit soit; être maintenu à une
-température minimale de
-\SI{55}{\celsius}, soit une surchauffe journalière doit être réalisée
+Le système hydraulique est composé de 2 ballons (Fig~\ref{fig:air_complet_mono}). Le
+premier, le ballon sanitaire, permet de lisser la demande en énergie fou. Le système est
+dit semi-accumulée car la réserve d’eau chaude est inférieure à la quantité totale puisée
+durant la journée. Le ballon sanitaire est donc connecté en continue avec le réseau d’eau
+froide public et certaines contraintes doivent être respectées. Ainsi le ballon doit soit;
+être maintenu à une température minimale de \SI{55}{\celsius}, soit une surchauffe
+journalière doit être réalisée
 (\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000423756}{Arrêté
 du 30 novembre 2005}). La première option a été retenue afin de garantir le respect de la
 réglementation dans les limites techniques imposées par la modélisation. Le second, le
@@ -386,12 +444,12 @@ ballon de stockage, est utilisé pour stocker l’énergie accumulée durant la 
 la valoriser en période nocturne.
 
 Les deux ballons sont considérés dans la partie chauffée de la maison et leurs
-déperditions sont ainsi considérées comme des charges internes au bâtiment. Afin de garantir le
-maintien du confort thermique des occupants, un appoint électrique en partie haute du
-ballon sanitaire est aussi ajouté. Ce dernier n’est activé que lorsque l’énergie
-solaire disponible n’est pas suffisante. L’énergie du soleil est quand à elle transmise à l’eau par
-l’intermédiaire de panneaux solaires puis vers le système aéraulique à l’aide d’un
-échangeur de chaleur.
+déperditions sont ainsi considérées comme des charges internes au bâtiment. Afin de
+garantir le maintien du confort thermique des occupants, un appoint électrique en partie
+haute du ballon sanitaire est aussi ajouté. Ce dernier n’est activé que lorsque l’énergie
+solaire disponible n’est pas suffisante. L’énergie du soleil est quand à elle transmise à
+l’eau par l’intermédiaire de panneaux solaires puis vers le système aéraulique à l’aide
+d’un échangeur de chaleur.
 
 \ftodo{Ajouter lien en schéma et modélisation Modelica. Discuter la simplicité visuelle}
 
@@ -404,12 +462,18 @@ l’intermédiaire de panneaux solaires puis vers le système aéraulique à l�
 La partie aéraulique du système est responsable du renouvellement d’air et du chauffage
 par l’intermédiaire du solaire thermique ou bien de la batterie électrique en
 position terminale. Un caisson de mélange permet de récupérer une partie de l’énergie
-sur l’air extrait (\mtodo{Ajouter ref partie aéraulique}). L’air soufflé est un mélange entre de l’air neuf et de l’air repris
+sur l’air extrait (Fig~\ref{fig:air_complet_mono}). L’air soufflé est un mélange entre de l’air neuf et de l’air repris
 dans le respect de la réglementation en vigueur (\ref{ssub:ventilation}).
 Le système de ventilation peut ainsi être apparenté à une ventilation mécanique par insufflation
 (VMI).
 
-\ftodo{Ajouter partie aéraulique}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Ressources/Images/Modelisation/air_aeraulique_mono.pdf}
+%     \end{center}
+%     \caption{Description schématique de la partie aéraulique du système solaire.
+%              \label{fig:schema_aeraulique}}
+% \end{figure}
 % subsection systeme_aeraulique (end)
 
 
@@ -421,7 +485,7 @@ Le système de ventilation peut ainsi être apparenté à une ventilation mécan
 ~
 \itodo{Ajouter description de l’état de l’art et du blabla sur ce qui a été fait et
        ce qui manque. Voir Article}
-
+\itodo{Remplacer les acronymes FR par des US}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Fonctionnement global} % (fold)
@@ -431,15 +495,24 @@ le plus élevé de contrôle s’occupe d’activer ou de désactiver les diffé
 comme les pompes ou les vannes. Au plus bas niveau chaque pompes et chaque équipement
 électrique utilise un contrôleur PID. Cette approche permet d’adapter dynamiquement le
 comportement du système tout en conservant un stricte séparation entre la logique de
-chaque composant. Le système solaire fonctionne suivant trois principaux modes. Afin de
-valoriser l’énergie solaire les différents modes sont ordonnées (\mtodo{Ajouter ref fig}).
-La \textbf{priorité} revient au maintien du ballon sanitaire, au respect de la température
-de consigne, puis à l’élévation de la température dans le ballon de stockage. Le respect
-de ces priorité n’est pas pour autant restrictif : le système peut remplir plusieurs
-fonctions en parallèles. Lorsque l’énergie solaire disponible est suffisante, le
-chauffage, l’\emph{ECS}, et la charge du ballon tampon peuvent être réalisées de manière
-simultanées.
-\ftodo{Ajouter description FSM du chauffage}
+chaque composant. Le système solaire fonctionne suivant trois principaux modes
+(Fig~\ref{fig:schema_modes}).
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Modelisation/air_modes.pdf}
+    \end{center}
+    \caption{Description schématique des différents modes de fonctionnements. Système
+    global (a), fonctionnement $Indirect$ (b), fonctionnement $Direct$ avec besoin de
+    chauffage (c), et, fonctionnement $Direct$ sans besoin de chauffage (d).
+             \label{fig:schema_modes}}
+\end{figure}
+
+Afin de valoriser l’énergie solaire les différents modes sont ordonnées. La \textbf{priorité} revient au maintien du ballon
+sanitaire, au respect de la température de consigne, puis à l’élévation de la température
+dans le ballon de stockage. Le respect de ces priorité n’est pas pour autant restrictif :
+le système peut remplir plusieurs fonctions en parallèles. Lorsque l’énergie solaire
+disponible est suffisante, le chauffage, l’\emph{ECS}, et la charge du ballon tampon
+peuvent être réalisées de manière simultanées.
 
 Durant la période diurne, l’énergie solaire est récupérée directement au niveau des
 capteurs solaires (mode $Direct$) et la vanne 3 voies est alors ouverte. L’activation des
@@ -477,7 +550,7 @@ Finalement lorsque la production solaire est insuffisante les besoins sont couve
 \SI{100}{\percent} par les appoints électriques. Le premier permettant de couvrir les
 besoins d’ECS se trouve dans le ballon sanitaire, et celui permettant de couvrir les
 besoins en chauffage se trouve en partie terminale du réseau aéraulique. Il est important
-de noter que les besoins en énergie peuvent être couverts de manière simultanée par
+de noter que les besoins en énergie peuvent être couverts simultanément par
 le solaire et par l’appoint électrique si l’énergie solaire disponible n’est pas
 suffisante.
 
@@ -499,6 +572,61 @@ vanne 3 voies est ouverte vers les capteurs solaires et si le ballon sanitaire e
 basse (position de l’échangeur solaire) a atteint au minimum \SI{30}{\celsius}. Cette
 règle permet ainsi d’ajouter une priorité sur la couverture des besoins en ECS.
 
+L’algorithme a été formulé grâce à des Automates Finis (\textbf{AF}). Un \textbf{AF}
+admet un état \emph{unique} et un ensemble de condition de transition permettant
+de changer d’état. Chaque équipement ou entité est alors représenté comme un \emph{AF} : la
+position de la V3V, l’état des pompes, et le mode de chauffage.
+\ftodo{Ajouter illustration AF}
+
+L’unicité garantie par cette formulation permet d’éviter une incohérence structurelle
+résultant en un comportement erratique ou instable. Il impose cependant que chaque état
+soit capable de réaliser la transition vers le bon état et ce pour toutes les conditions
+existantes. Afin de simplifier sa création les Automates Fines Hiérarchisés (\textbf{HFSM}
+pour Hierarchical Finite State Machine) ont été développés. Cette formulation admet que
+chaque état peut être lui-même un \textbf{FSM} dont les sous-états ne sont connus que de
+l’état maître. Cette nouvelle formulation permet ainsi de réduire le nombre de conditions
+de transition et l’encapsulation des sous-états simplifie la compréhension et construction
+de l’algorithme.
+
+
+Le \textbf{AF} gouvernant le chauffage admet trois états primaires : $Chauffage_{OFF}$,
+$Chauffage_{ON}$, et $Surchauffe_{ON}$ (\ref{fig:automate_chauffage}). L’état
+$Chauffage_{ON}$ admet deux \textbf{AF} fonctionnant en parallèle : celui du chauffage
+solaire, et celui du chauffage électrique. Le chauffage solaire admet ainsi trois états :
+$Solaire_{OFF}$, $Solaire_{Direct}$, ou $Solaire_{Indirect}$. Le premier est actif
+lorsque il n’y a pas d’énergie solaire disponible ou pas assez pour couvrir les besoins
+en ECS et en chauffage. Le second ($Solaire_{Direct}$) est actif lorsque il y a une demande
+en chauffage et que le système est en mode $Direct$. Finalement le dernier état est
+atteint lorsque il existe toujours une demande en chauffage et que le système est en
+mode $Indirect$.
+Il peut être noté l’hystérésis de \SI{5}{\celsius} mis en place sur la transition entre $Solaire_{OFF}$
+et les deux autres états. Dans les deux cas et une temporisation permet d’assurer que
+l’énergie est vraiment disponible et que ce n’est pas le résultat d’une variation
+brusque dû à un changement (activation d’une pompe, fermeture d’une vanne, ...).
+Le chauffage électrique lui admet deux états : $Appoint_{OFF}$ et $Appoint_{ON}$.
+Seul une temporisation est utilisé pour favoriser le solaire thermique. L’appoint
+électrique reste ainsi actif tant que le besoin de chauffage existe. Finalement
+lorsque le besoin de chauffage est couvert, le chauffage passe dans l’état $Surchauffe_{ON}$.
+Cet état autorise comme décrit ci-avant une élévation de la température dans le bâtiment.
+Dans le cas où la surchauffe n’est pas autorisée ou que de nouveaux besoins en
+chauffage apparaissent l’état du chauffage est réinitialisé à $Chauffage_{OFF}$ et
+la boucle recommence.
+
+\itodo{Maître pas connaissance des enfants}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Regulation/chauffage_fsm.pdf}
+    \end{center}
+    \caption{Description détaillée de l’Automate Fini (\textbf{FSM} pour Finite State Machine)
+             contrôlant la transition entre les différents modes de chauffage.
+             \label{fig:automate_chauffage}}
+\end{figure}
+
+Les états primaires n’ont
+cependant pas connaissance de ces sous
+
+
 Afin d’illustrer le fonctionnement de l’algorithme prenons le cas suivant: "l’énergie
 solaire est fournie à l’échangeur pour couvrir les besoins en chauffage". Un des habitants
 prend sa douche, abaissant la température de l’eau du ballon sanitaire en dessous du seuil
@@ -519,9 +647,9 @@ contrôle des pompes à une combinaison de PID fonctionnant par rétroaction (fe
 Afin de favoriser le chauffage par l’énergie solaire, l’échangeur de chaleur entre l’eau
 et l’air est placé en amont du terminal électrique. Grâce à une loi d’air , loi
 proportionnelle par rapport à la température extérieure (similaire à une loi d’eau), la
-température de soufflage nécessaire est fixée : $T_{air}^{cons}$.. Le débit de la pompe
+température de soufflage nécessaire est fixée : $T_{air}^{cons}$. Le débit de la pompe
 $S2$ est donc définie en fonction de $T_{air}^{cons}$, et une temporisation permet de
-n’activer l’appoint électrique que après \SI{3}{min} si et seulement si la température de
+n’activer l’appoint électrique que après \SI{3}{min}, si et seulement si la température de
 la maison est toujours inférieure à la consigne $T_{cons}$. De plus si après \SI{10}{min}
 la consigne n’est pas atteinte, alors la température est fixée à son maximum
 (\SI{32}{\celsius}) et le débit est modulé entre le débit hygiénique
@@ -531,11 +659,11 @@ garantir le confort thermique (\mtodo{ref fig}).
 \ftodo{Ajouter figure décrivant fonctionnement du système de chauffage}
 
 Afin d’améliorer la couverture solaire sur le chauffage, l’algorithme autorise la
-surchauffe de la maison durant les périodes diurnes d’inoccupation (\mtodo{ref fig algo}).
+surchauffe de la maison durant les périodes diurnes d’inoccupation (\mtodo{ref fig algo})
+mais seul le chauffage solaire $Direct$ est autorisé.
 Dans ce cas, le débit minimum sanitaire est maintenue et seul $T_{air}^{cons}$ varie afin
 que la température intérieure atteigne la température limite de surchauffe :
-$T_{cons}^{solaire}$. Seule l’utilisation de l’énergie solaire $Directe$ est permis afin
-d’augmenter la température intérieure. L’augmentation de la température intérieure permet
+$T_{cons}^{solaire}$. L’augmentation de la température intérieure permet
 de profiter de l’inertie du bâtiment et de retarder, voir éviter la relance du chauffage
 et donc l’utilisation potentielle de l’appoint électrique (\mtodo{ref fig}).
 \ftodo{Ajouter figure décrivant le principe de la surchauffe diurne}
@@ -543,10 +671,6 @@ et donc l’utilisation potentielle de l’appoint électrique (\mtodo{ref fig})
 % subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
 % section description_du_système_solaire (end)
-
-
-
-
 
 
 
@@ -571,15 +695,33 @@ Afin de pouvoir estimer la consommation nécessaire pour la production en Eau Ch
 Sanitaire (\emph{ECS}) un profil de puisage type est nécessaire. Dans ces travaux le
 choix du profil de puisage est analysé à travers les différents climats retenues. Pour
 chaque climat, la température de l’eau du réseau est définie suivant une évolution
-mensuelle, et est extrapolée durant la simulation (\mtodo{ref tab}). On remarque une forte
+mensuelle, et est extrapolée durant la simulation (\ref{tab:temp_eau}). On remarque une forte
 disparité entre les différents climats où les minimums varient entre \SI{5.3}{\celsius} et
 \SI{12}{\celsius}, et les maximums entre \SI{14}{\celsius} et \SI{19}{\celsius},
 représentés respectivement par Strasbourg et Marseille.
-\ttodo{Ajouter tab temp en fonction du climat}
+\begin{table}
+\centering
+\begin{tabular}{l*{12}{c}}
+    \toprule
+               & Janv. & Fevr. & Mars & Avr. & Mai & Juin & Juil. & Août & Sept. & Oct. & Nov. & Dec. \\
+    \midrule
+    Strasbourg & 5,3   & 5,8   & 7,7  & 9,5  & 11  & 13   & 14    & 14   & 12    & 9,8  & 7,5  & 5,8  \\
+    Limoges    & 7     & 7,4   & 9    & 10   & 12  & 14   & 14    & 14   & 13    & 11   & 8,8  & 7,3  \\
+    Toulouse   & 8,6   & 9.2   & 11   & 12   & 14  & 16   & 17    & 17   & 16    & 13   & 11   & 9    \\
+    Bordeaux   & 8,9   & 9,3   & 11   & 12   & 14  & 15   & 16    & 16   & 15    & 13   & 11   & 9,2  \\
+    Nantes     & 8.3   & 8.5   & 9.9  & 11   & 13  & 14   & 15    & 15   & 14    & 12   & 9.8  & 8.6  \\
+    Marseille  & 12    & 12    & 13   & 14   & 16  & 18   & 19    & 19   & 18    & 16   & 14   & 12   \\
+    \bottomrule
+\end{tabular}
+\caption{Température de l'eau du réseau au cours de l'année en fonction de la
+         position géographique.}
+         \label{tab:temp_eau}
+\end{table}
+
 
 \paragraph{Profils retenus :} % (fold)
 \label{par:profils_retenus}
-Cinq scénarios ont été ont été considérés dans ces travaux (\mtodo{ref fig}). Pour
+Cinq scénarios ont été ont été considérés dans ces travaux (\ref{fig:profil_puisage}). Pour
 l’ensemble des profils, un volume de puisage typique moyen de
 \SI{33}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius}), soit un
 volume total de \SI{220}{\liter/jour}~(\SI{40}{\celsius}) pour les 4 occupants est
@@ -590,8 +732,14 @@ puisage similaire pour les 3 pics journaliers (\textbf{Réparti}). Finalement un
 issue de données statistiques \parencite{ADEME2016} a aussi été implémenté
 (\textbf{Réaliste}). Ce dernier décrit de manière plus représentative le comportement
 d’une famille dans une habitation individuelle ou un appartement et les besoins
-journaliers sont pondérées en fonction du jour de la semaine (\mtodo{ref tab}).
-\ftodo{Ajouter les profils de puisage}
+journaliers sont pondérées en fonction du jour de la semaine (\ref{tab:coef_semaine}).
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+    \end{center}
+    \caption{Description des profils de puisage envisagés.
+             \label{fig:profil_puisage}}
+\end{figure}
 % paragraph profils_retenus (end)
 
 \paragraph{Pondération de la demande :} % (fold)
@@ -601,9 +749,35 @@ coefficient pondérateur est utilisé. Comme pour les coefficients utilisés pou
 les besoins hebdomadaires, les besoins totaux ne varient pas, seul la répartition est
 modifiée. Les coefficients utilisés sont issues des travaux de l’\textit{ADEME}
 \parencite{ADEME2016}, qui montre par exemple que les besoins sont plus importants durant
-la période hivernale que pendant la période estivale (\mtodo{ref tab}).
-\ttodo{Tableau des coefficients hebdomadaires}
-\ttodo{Tableau des coefficients mensuels}
+la période hivernale que pendant la période estivale (\ref{tab:coef_mois}).
+
+\begin{table}
+\centering
+\begin{tabular}{l*{7}{c}}
+    \toprule
+                & Lundi & Mardi & Mercredi & Jeudi & Vendredi & Samedi & Dimanche \\
+    \midrule
+    Coefficient & 0.97  & 0.95  & 1.00     & 0.97  & 0.96     & 1.02   & 1.13     \\
+    \bottomrule
+\end{tabular}
+\caption{Détail des coefficients de pondération journaliers pour le profil de
+         puisage Réaliste.}
+         \label{tab:coef_semaine}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{l*{12}{c}}
+    \toprule
+                & Janv. & Fevr. & Mars & Avr. & Mai & Juin & Juil. & Août & Sept. & Oct. & Nov. & Dec. \\
+    \midrule
+    Coefficient & 1.11   & 1.2   & 1.11  & 1.06  & 1.03  & 0.93   & 0.84    & 0.72   & 0.92    & 1.03  & 1.04  & 1.01  \\
+    \bottomrule
+\end{tabular}
+\caption{Détail des coefficients de pondération mensuels pour le profil de
+         puisage Réaliste.}
+         \label{tab:coef_mois}
+\end{table}
 % paragraph ponderation_de_la_demande (end)
 
 \paragraph{Variations paramétriques :} % (fold)
@@ -928,6 +1102,30 @@ de ventilation sur la performance du système solaire.
 % Cette régulation permet de moduler la température en tenant compte de l’écart entre
 % consigne et température de l’ambiance mais aussi de la température extérieure (et donc des
 % déperditions).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % Le caisson de mélange permet de récupérer de l’énergie passivement qui est déjà à
 % la température de consigne limitant la demande en énergie solaire et/ou électrique.
@@ -1387,18 +1585,6 @@ de ventilation sur la performance du système solaire.
 % les habitants en fonction de l’activité et de leur âge (enfant ou parent).
 % Ce calcul tient compte des valeurs utilisées dans la simulation \emph{Energy Plus} qui est
 % elle détaillée par zone dans le \autoref{tab:occupation_scenario}.
-
-% \begin{table}
-% \begin{tabular}{*8{c}}
-%     \toprule
-%     Chambre 1 & Chambre 2  & Chambre 3 & Séjour & Cuisine & Sanitaire & SdB   & Cellier \\
-%     \midrule
-%     78        & 78         & 117       & 97.5   & 97.5    & 114.3     & 114.3 & 114.3   \\
-%     \bottomrule
-% \end{tabular}
-% \caption{Description de la puissance dissipée par personne en fonction de la zone.}
-% \label{tab:puissance_occupants}
-% \end{table}
 
 % La puissance ainsi calculé suit le profil décrit en Fig~\ref{fig:occupation_scenario}
 % dont 70~\% est considérée comme convectif et 30~\% comme radiatif.
