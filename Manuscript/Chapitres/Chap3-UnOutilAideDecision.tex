@@ -14,7 +14,7 @@ raisons motivant sa formulation. Elle peut être définie comme le processus per
 d’obtenir des éléments de réponse ou des prescriptions à partir de l’ensemble des
 informations disponibles. D’après \mtodo{Citation roy 1996}{Roy} un problème peut être
 classé suivant trois problématiques, à savoir, de choix, de trie, ou de rangement. Dans les
-trois cas les différentes méthodes de \textit{MCDA} nécessitent le respect de quatre étapes :
+trois cas les différentes méthodes de \textit{MCDA} nécessitent le respect de quatre étapes~:
 \begin{itemize}
   \item Lister les actions potentielles
   \item Lister les critères à considérer
@@ -50,14 +50,14 @@ couramment sélectionnés .
 \itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
 
 Il est aussi nécessaire de définir les variables de décisions intéressantes a priori.
-Les variables peuvent être classées en deux grandes familles : les quantitatives et
+Les variables peuvent être classées en deux grandes familles~: les quantitatives et
 les qualitatives (Fig~\ref{fig:type_variable}).
 Les variables quantitatives exprime une quantité à travers un nombre et
 peuvent être discrètes ou continues. On considère ainsi respectivement un nombre de
-valeurs discrètes (ex : épaisseur d’un isolant) ou une plage de variation définissant
-ces limites/bornes (ex : épaisseur d’une dalle en béton).
+valeurs discrètes (ex~: épaisseur d’un isolant) ou une plage de variation définissant
+ces limites/bornes (ex~: épaisseur d’une dalle en béton).
 Enfin, les variables qualitatives permettent de décrire une variation non ordonnable,
-dite catégorielle (ex : couleur) ou bien floue (ex : beau / laid).
+dite catégorielle (ex~: couleur) ou bien floue (ex~: beau / laid).
 
 \begin{figure}
     \begin{center}
@@ -71,7 +71,7 @@ Des contraintes peuvent aussi être ajoutées afin de répondre aux exigences
 techniques en se basant sur les connaissances à priori du problème ou bien dans
 l’optique de limiter l’espace de recherche. On distingue deux types de contraintes.
 La première définie est définie a priori et l’impact n’est pas considéré durant le processus
-d’aide à la décision (ex : surface disponible en toiture pour installer des
+d’aide à la décision (ex~: surface disponible en toiture pour installer des
 panneaux photovoltaïques).
 Le second type est plus complexe et ne peut pas être pris en compte en amont de
 l’analyse car des informations sont manquantes. On peut vouloir par exemple limiter
@@ -146,7 +146,7 @@ suppose qu’un ensemble de solution optimales a été généré grâce à un pr
 d’optimisation. Lors de l’optimisation aucun caractère préférentiel
 n’est introduit permettant ainsi d’explorer l’espace de décision sans restrictions.
 De plus ce processus permet d’améliorer la compréhension du problème et ainsi
-offrir une expertise plus importante : la formulation des préférences a posteriori
+offrir une expertise plus importante~: la formulation des préférences a posteriori
 est simplifié.
 L’aide à la décision permet ainsi de trier, organiser ou encore sélectionner un
 ensemble de solution dans l’espace de compromis formé par les solutions optimales.
@@ -156,13 +156,13 @@ Plusieurs approches existent et peuvent principalement être classées en deux g
 les approches par critère de synthèse ou les approches par surclassement.
 
 
-\paragraph{Approche par critère de synthèse :} % (fold)
+\paragraph{Approche par critère de synthèse~:} % (fold)
 \label{par:approche_par_critère_de_synthèse}
 Dans cette approche l’ensemble des objectifs est réduit à une note unique permettant
 de trier l’ensemble des solutions de l’espace de compromis.
 L’approche est similaire aux méthodes d’aide à la décision a priori mais est dans
 ce cas uniquement appliquée à l’ensemble formé par les solutions optimales. Dans cette
-configuration l’ordre est dit total : toute les solutions sont comparables entre elles.
+configuration l’ordre est dit total~: toute les solutions sont comparables entre elles.
 
 Une fonction unique dite d’utilité est formulée à partir de l’ensemble des critères
 de décision. Pour chaque critère, une fonction de valeur associée est construite en
@@ -183,20 +183,20 @@ ainsi être retenue si les autres critères ont en moyenne une valeur élevée.
 % paragraph approche_par_critère_de_synthèse (end)
 
 
-\paragraph{Approche par surclassement :} % (fold)
+\paragraph{Approche par surclassement~:} % (fold)
 \label{par:approche_par_surclassement}
 Contrairement à l’approche par critère de synthèse, la méthode de surclassement
-permet de construire un ordre partiel entre les solutions : il peut exister
+permet de construire un ordre partiel entre les solutions~: il peut exister
 des solutions non comparables après ce processus.
 Afin de classer les solutions, une relation de surclassement est définie entre les
 solutions optimales grâce à des éléments préférentiels.
 Une solution $a$ surclasse une solution $b$ notée $aSb$ si $a$ est au moins aussi
 bon que $b$ au regard des préférences du décideur.
 
-Un ensemble de règle est alors défini pour chaque critère : préférence, indifférence,
+Un ensemble de règle est alors défini pour chaque critère~: préférence, indifférence,
 et seuils. Le surclassement est ensuite définie par un critère unique résultant de
 l’agrégation des critères pondérés par des coefficients. Selon les méthodes on distingue
-trois grands principes permettant d’éviter les effets compensatoires :
+trois grands principes permettant d’éviter les effets compensatoires~:
 \begin{itemize}
   \item Le principe de concordance stipule que la majorité des critères doivent
         vérifier la relation de surclassement.
@@ -272,7 +272,7 @@ Un problème d’optimisation multi-objectif (Définition\ref{def:optimisation_m
 est défini par un espace de recherche et de solution multi-dimensionnel contrairement à
 une approche mono-objectif où seul l’espace de recherche est multi-dimensionnel.
 Afin de pouvoir classer et sélectionner les solutions entre elles, il est alors nécessaire
-de définir un nouveau opérateur de classement : la relation de dominance.
+de définir un nouveau opérateur de classement~: la relation de dominance.
 L’approche la plus répandue ne considère pas de caractère préférentiel et repose sur
 le principe de dominance au sens de Pareto (Définition\ref{def:dominance_de_pareto}.
 Cette approche est généralisée à travers la définition du cône de probabilité où
@@ -288,12 +288,12 @@ pour une explication plus exhaustive et détaillée.
 \begin{Def}[Optimisation multi-objectif]\label{def:optimisation_multi_objectif}
 L’optimisation multi-objectif est le processus visant à minimiser ou maximiser un ensemble
 d’objectifs tout en respectant un nombre fini de contraintes.
-Il peut être formulé de la manière suivante dans le cas d’une minimisation :
+Il peut être formulé de la manière suivante dans le cas d’une minimisation~:
 \begin{equation}\label{eq:def_optimisation}
   \begin{aligned}
                            & \underset{\vec{x} \in \mathbb{R}^{D}}{\min(\vec{f}(\vec{x}))}&
                            & \quad (f_{m})_{m \in [1 ... M]} & \longmapsto \mathbb{R} \\
-    \text{Sujet à : }\quad & \vec{g}(\vec{x}) \leqslant 0                                 &
+    \text{Sujet à~: }\quad & \vec{g}(\vec{x}) \leqslant 0                                 &
                            & \quad (g_{q})_{q \in [1 ... Q]} & \longmapsto \mathbb{R} \\
                            & \vec{h}(\vec{x}) = 0                                         &
                            & \quad (g_{c})_{c \in [1 ... C]} & \longmapsto \mathbb{R} \\
@@ -309,12 +309,12 @@ Lorsque $C > 0$ ou $Q > 0$ on parle de problème d’optimisation sous contraint
 \end{Def}
 
 \begin{Def}[Dominance au sens de Pareto]\label{def:dominance_de_pareto}
-On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{x}_{b}$ si :
+On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{x}_{b}$ si~:
 \begin{itemize}
   \item $\vec{x}_{a}$ est aussi bon que $\vec{x}_{b}$ sur tous les objectifs
   \item $\vec{x}_{a}$ est meilleur que $\vec{x}_{b}$ sur au moins un objectif
 \end{itemize}
-Cette relation sera notée sera notée : $\vec{x}_{a} \prec \vec{x}_{b}$.
+Cette relation sera notée sera notée~: $\vec{x}_{a} \prec \vec{x}_{b}$.
 Un point est ainsi dit optimal au sens de Pareto lorsque aucun autre point dans
 l’ensemble le comprenant ne le domine (Fig~\ref{fig:dominance_pareto}).
 \end{Def}
@@ -341,7 +341,7 @@ Il représente l’ensemble formé par les solutions non-dominées (espace des o
 dont les vecteurs de décisions sont non-dominés (Fig~\ref{fig:dominance_pareto}).
 Le front de Pareto est donc la représentation dans l’espace des objectifs
 de l’ensemble optimal de Pareto qui lui est définie dans l’espace de décision.
-Cette relation sera notée :
+Cette relation sera notée~:
 \begin{equation}
   \begin{aligned}
     PF   =& \left\{ \vec{f}(\vec{x}_{*}), \  \vec{x}_{*} \in POS \right\} \\
@@ -359,7 +359,7 @@ Pareto (Pareto Front).
 \label{ssub:points_de_reference}
 Afin de guider la convergence, certaines méthodes utilise la position singulière
 de certains points dans l’espace des objectifs.
-\paragraph{Le point idéal :} % (fold)
+\paragraph{Le point idéal~:} % (fold)
 \label{par:le_point_idéal}
 Point dans l’espace des objectifs dont les coordonnées correspondent à l’optimal
 de chaque objectif pris séparément (Fig~\ref{fig:convex_nadir}). Ce point peut
@@ -368,7 +368,7 @@ point n’est pas une solution du problème multi-objectif dont les objectifs le
 composant sont le plus souvent antinomiques.
 % paragraph le_point_idéal (end)
 
-\paragraph{Le point Nadir :} % (fold)
+\paragraph{Le point Nadir~:} % (fold)
 \label{par:le_point_nadir}
 Point ayant pour coordonnées la valeur de la borne supérieure (cas d’une
 minimisation) de chaque objectif du front de Pareto (Fig~\ref{fig:convex_nadir}).
@@ -465,14 +465,14 @@ garantissant la convergence vers la ou les solutions exactes. Une heuristique
 qui permet d’accélérer la recherche tout en garantissant l’obtention d’une
 solution optimale est dite admissible.
 
-Considérons le problème suivant : trouver la distance minimale pour aller d’un point
+Considérons le problème suivant~: trouver la distance minimale pour aller d’un point
 $A$ à un point $B$ en considérant plusieurs obstacles (Fig~\ref{fig:a_star}).
 Les positions de départ et d’arrivée étant connues, ce problème peut être résolue
 de manière exacte avec l’algorithme \textit{A*} (\ref{ssub:algorithmes_de_chemin_optimal})
 si on définit une heuristique admissible.
 
 Afin de résoudre ce problème, la connaissance de la solution pour un cas plus
-simple, le distance entre $A$ et $B$ sera utilisée : c’est l’heuristique
+simple, le distance entre $A$ et $B$ sera utilisée~: c’est l’heuristique
 (Fig~\ref{fig:a_star}). Si seul les mouvements verticaux et horizontaux sont
 admissibles alors la distance minimale est la distance de Manhattan. Dans le cas
 où les mouvements en diagonal sont aussi admissibles la distance entre ces deux
@@ -485,7 +485,7 @@ recherche vers les chemins prometteurs.
         \includegraphics{Ressources/Images/optimisation/a_star.pdf}
     \end{center}
     \caption{Illustration de l’utilisation d’une heuristique pour limiter l’espace
-             de recherche : mouvements dans les 8 directions (a), mouvements
+             de recherche~: mouvements dans les 8 directions (a), mouvements
              horizontaux ou verticaux (4 directions). La zone de couleur verte
              représente l’espace du domaine de recherche exploré.
              \label{fig:a_star}}
@@ -581,7 +581,7 @@ globaux (Définition\ref{def:optimum}.
 \end{Def}
 
 \begin{Def}[Optimum locaux et globaux]\label{def:optimum}
-Il existe deux types d’optimum : les locaux (fort ou faible) et les globaux. Un
+Il existe deux types d’optimum~: les locaux (fort ou faible) et les globaux. Un
 optimum est considéré comme local fort quand il domine l’ensemble des solutions du
 \emph{voisinage} et faible si il est seulement non-dominé dans ce voisinage (plusieurs
 optimum locaux identiques existent). Un optimum est considéré comme global
@@ -612,7 +612,7 @@ local et qu’une faible partie de l’espace permet d’atteindre le front de P
 \subsection{Les méthodes existantes} % (fold)
 \label{sub:les_methodes_existantes}
 La plupart des méta-heuristiques s’inspirent du vivant et des différents
-principes le décrivant. On distingue deux grande familles : les méta-
+principes le décrivant. On distingue deux grande familles~: les méta-
 heuristiques à population et les méta-heuristiques de voisinage
 (Fig~\ref{fig:multi_meta_detail}). Parmi les approches par voisinage les plus
 connus sont le recuit simulé et la recherche tabou. Ces approches cherchent à
@@ -681,10 +681,10 @@ leur applications.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Comment choisir ?} % (fold)
+\subsection{Comment choisir~?} % (fold)
 \label{sub:comment_choisir}
 De nombreuses approches ont été développées mais il n’existe cependant pas de
-méthode permettant de sélectionner la plus adaptée : \cite{Wolpert199767}
+méthode permettant de sélectionner la plus adaptée~: \cite{Wolpert199767}
 formalise ce concept. La complexité de l’approche, et d’autres caractères
 subjectifs dictent alors le choix de l’algorithme mis en œuvre. Cependant, tous
 les méta-heuristiques ont en commun l’introduction de mécanismes stochastiques
@@ -710,25 +710,25 @@ problèmes d’interfaçage.
 {
 \noindent
 Le choix d’une approche peut ainsi être guidée par les réponses aux propositions
-suivantes :
+suivantes~:
 \begin{itemize}
-  \item Quelle est la nature des variables de décision (discrètes, continues, ...) ?
-  \item Quelle sont les contraintes imposées par l’outil de modélisation ?
-  \item L’algorithme nécessite-t-il la définition de nombreux paramètres ?
-  \item La définition de ces paramètres est-elle ardue ?
+  \item Quelle est la nature des variables de décision (discrètes, continues, ...)~?
+  \item Quelle sont les contraintes imposées par l’outil de modélisation~?
+  \item L’algorithme nécessite-t-il la définition de nombreux paramètres~?
+  \item La définition de ces paramètres est-elle ardue~?
     \begin{itemize}
-      \item La sensibilité aux variations est forte ? Dur à paramétrer
-      \item Chaque paramètre a un impact identifiable en amont ? Simple à paramétrer
+      \item La sensibilité aux variations est forte~? Dur à paramétrer
+      \item Chaque paramètre a un impact identifiable en amont~? Simple à paramétrer
     \end{itemize}
-  \item Une implémentation de la méthode existe ?
+  \item Une implémentation de la méthode existe~?
     \begin{itemize}
-      \item Elle répond aux contraintes de l’outil de modélisation ?
-      \item Elle est adapté à la nature des variables de décision ?
-      \item La formulation du problème est-il adapté à la méthode ?
+      \item Elle répond aux contraintes de l’outil de modélisation~?
+      \item Elle est adapté à la nature des variables de décision~?
+      \item La formulation du problème est-il adapté à la méthode~?
     \end{itemize}
-  \item Quelle est la quantité de travail nécessaire pour l’implémenter ?
+  \item Quelle est la quantité de travail nécessaire pour l’implémenter~?
     \begin{itemize}
-      \item Plus de travail que le couplage nécessaire entre les outils ?
+      \item Plus de travail que le couplage nécessaire entre les outils~?
     \end{itemize}
 \end{itemize}
 }
@@ -861,21 +861,21 @@ La formulation de l’\textit{ABC} reste la plus répandue et sera retenue dans 
 L’algorithme s’appuie sur les mécanismes d’organisation sociale des insectes
 \parencite{Bonabeau1999} définit à travers quatre propriétés.
 
-\paragraph{Le retour positif (Positive feedback) :} % (fold)
+\paragraph{Le retour positif (Positive feedback)~:} % (fold)
 \label{par:positive_feedback}
 Chaque individu partage ses connaissances avec le reste du groupe afin de guider
 la recherche vers des sources de bonne qualité. Ce mécanisme fournit un indicateur
 d’apprentissage pouvant être utilisé pour construire de nouvelles sources.
 % paragraph positive_feedback (end)
 
-\paragraph{Le retour négatif (Negative feedback) :} % (fold)
+\paragraph{Le retour négatif (Negative feedback)~:} % (fold)
 \label{par:negative_feedback}
 Afin de prévenir les dangers ou d’éviter les sources de mauvaises qualités, un
 mécanisme est aussi nécessaire. Celui-ci permet de contrebalancer le retour
 positif pour équilibrer et améliorer le travail de groupe.
 % paragraph negative_feedback (end)
 
-\paragraph{Fluctuation :} % (fold)
+\paragraph{Fluctuation~:} % (fold)
 \label{par:fluctuation}
 Afin de pouvoir faire émerger de nouvelles solutions et remplacer celles qui se tarissent,
 il est nécessaire d’ajouter un comportement stochastique à l’exploration. Ce comportement
@@ -886,12 +886,12 @@ mécanisme est ainsi responsable de la diversité et du renouvellement en préve
 raréfaction des ressources.
 % paragraph fluctuation (end)
 
-\paragraph{Interactions :} % (fold)
+\paragraph{Interactions~:} % (fold)
 \label{par:intractions}
 Finalement afin de partager les retours négatifs et positifs un mécanisme de
 communication est nécessaire.
 Les abeilles transmettent les informations positives et négatives de la même
-manière : grâce à la danse (danse en rond et en huit).
+manière~: grâce à la danse (danse en rond et en huit).
 Ce mécanisme permet de transmettre de manière détaillé la qualité d’une source, sa
 distance par rapport à l’essaim, et des dangers potentiels rencontrés (Fig~\ref{fig:bee_dance}).
 
@@ -920,25 +920,25 @@ avec $D$ le nombre de variable de décision $x_{ij} (j = 1, 2, \dotsc, D)$.
   x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min}) \\
 \end{equation}
 
-\noindent Chaque phase est réalisée par un type spécifique d’abeille :
+\noindent Chaque phase est réalisée par un type spécifique d’abeille~:
 \begin{itemize}
-  \item Les \emph{butineuses} (Employed foragers) : Elles sont responsables de l’exploration.
+  \item Les \emph{butineuses} (Employed foragers)~: Elles sont responsables de l’exploration.
         Elles ramènent les informations recueillies à la ruche et réalisent une danse
         permettant au autres individus d’identifier la qualité et la direction des
         sources prometteuses.
-  \item Les \emph{ouvrières} (Onlookers) : Elles assistent à la danse des butineuses
+  \item Les \emph{ouvrières} (Onlookers)~: Elles assistent à la danse des butineuses
         et sélectionnent ensuite les sources prometteuses. La sélection est définie
         aléatoirement à partir d’une table de probabilité biaisée par la qualité des sources.
         Plus la source est prometteuse, plus la probabilité de la sélectionner est importante.
         Ces abeilles sont donc responsables de l’exploitation.
-  \item Les \emph{Éclaireuses} (Scouts) : Elles explorent aléatoirement l’espace
+  \item Les \emph{Éclaireuses} (Scouts)~: Elles explorent aléatoirement l’espace
         de décision et ramènent les informations à la ruche. Ce mécanisme
         permet de diversifier la recherche et d’éviter la stagnation.
 \end{itemize}
 
 L’Algorithme~\ref{alg:ABC_phases} décrit le principe de l’algorithme \textit{ABC} original.
 À chaque itération les sources sont mises à jour par les butineuses. Ensuite une
-table de probabilité biaisée est créé : une probabilité est attribué à chaque source
+table de probabilité biaisée est créé~: une probabilité est attribué à chaque source
 en fonction de leur qualité. Ensuite, les ouvrières exploitent les sources sélectionnées
 et la position des sources est mise à jour. Finalement les sources non fructueuses sont
 remplacées par une nouvelle position aléatoire définit par les éclaireuses.
@@ -978,7 +978,7 @@ variable $j$ ($j \in \{1, 2, \dotsc, D\}$) et $x_{j}^{max}$ et $x_{j}^{min}$
 étant respectivement ces bornes maximales et minimales.
 
 Le lecteur souhaitant avoir plus d’information sur l’algorithme, son origine
-et/ou son fonctionnement pourra lire : \cite{Karaboga201221,Aboul-EllaHassanien2015}.
+et/ou son fonctionnement pourra lire~: \cite{Karaboga201221,Aboul-EllaHassanien2015}.
 % subsubsection formulation (end)
 
 
@@ -1027,7 +1027,7 @@ vers le front de Pareto. Durant les phases des butineuses et des ouvrières seul
 variable est mis à jour en utilisant une version modifiée de l’équation
 \eqref{eq:update_source} où $a$ représente une solution de l’archive sélectionnée
 aléatoirement.
-\cite{Omkar2011489} considèrent un essaim par objectif et nomme son approche : \textit{VEABC}
+\cite{Omkar2011489} considèrent un essaim par objectif et nomme son approche~: \textit{VEABC}
 pour Vector Evaluated Artificial Bee Colony. Une collaboration est mise en place
 permettant aux sources d’un essaim d’être mis à jour à partir des sources d’un autre
 essaim. L’approche est appliquée à problème sous contraintes où l’auteur cherche à
@@ -1098,12 +1098,12 @@ couramment décrite par la transformée de Fourier suivante:
 \begin{equation}\label{eq:fourier_levy}
     \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
 \end{equation}
-La forme analytique étant définie par :
+La forme analytique étant définie par~:
 \begin{equation}\label{eq:dist_levy}
     L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2,
            \quad \alpha > 0
 \end{equation}
-On peut alors définir un Vol de Lévy pour une position initiale $x$ comme :
+On peut alors définir un Vol de Lévy pour une position initiale $x$ comme~:
 \begin{equation}
   x(t + 1) = x(t) + \omega \times T_{L} \times \Phi
 \end{equation}
@@ -1196,7 +1196,7 @@ de retenir la meilleure des deux comme nouvelle position pour la source.
 \label{sub:l_epsilon_dominance}
 Contrairement à une approche mono-objectif, il existe plusieurs solutions optimales
 dans une approche multi-objectif. Il apparaît alors nécessaire de conserver l’évolution
-du front de \textit{Pareto} : c’est le rôle de l’archive \parencite{Laumanns2002263}.
+du front de \textit{Pareto}~: c’est le rôle de l’archive \parencite{Laumanns2002263}.
 
 Afin de garantir la convergence il est nécessaire d’utiliser une approche élitiste
 en limitant la population de l’archive aux solutions les plus performantes \parencite{Zitzler2000173}.
@@ -1235,7 +1235,7 @@ Dans le cas d’une maximisation il est dit que $\vec{x}_{a}$ $\epsilon$-domine 
   \left\lceil\frac{f_{m}(\vec{x}_{a})}{\epsilon}\right\rceil &<
   \left\lceil\frac{f_{m}(\vec{x}_{b})}{\epsilon}\right\rceil  \\
 \end{align*}
-Cette relation sera notée sera notée : $\vec{x}_{a} \prec_{\epsilon} \vec{x}_{b}$.
+Cette relation sera notée sera notée~: $\vec{x}_{a} \prec_{\epsilon} \vec{x}_{b}$.
 \end{Def}
 
 Une solution peut ainsi être ou dominée, dominante, identique, ou non-dominée au sens de
@@ -1249,13 +1249,13 @@ proche de l’optimum de l’hypercube (coin supérieur droit dans le cas d’un
 Contrairement à une sélection par dominance stricte le calcul de la distance euclidienne
 permet de tenir compte de l’ensemble des amélioration et est moins élitiste. Afin d’éviter
 l’ajout de biais, les objectifs sont normalisés dans l’espace de l’hypercube.
-L’$\epsilon$-archive permet ainsi d’assurer :
+L’$\epsilon$-archive permet ainsi d’assurer~:
 \begin{itemize}
-  \item L’élitisme : seule les solutions non-dominées sont retenues
-  \item La diversification : une unique solution par hypercube
-  \item Une taille limite : La taille maximale est fonction de $\vec{\epsilon}$ et est finie
-  \item Une intensification : En réduisant $\vec{\epsilon}$ on augmente la taille maximale de l’archive
-  \item Une réduction : En augmentant $\vec{\epsilon}$ on réduit la taille maximale de l’archive
+  \item L’élitisme~: seule les solutions non-dominées sont retenues
+  \item La diversification~: une unique solution par hypercube
+  \item Une taille limite~: La taille maximale est fonction de $\vec{\epsilon}$ et est finie
+  \item Une intensification~: En réduisant $\vec{\epsilon}$ on augmente la taille maximale de l’archive
+  \item Une réduction~: En augmentant $\vec{\epsilon}$ on réduit la taille maximale de l’archive
 \end{itemize}
 
 \begin{figure}
@@ -1310,7 +1310,7 @@ pas nécessité le paramétrage de facteurs car ils impactent
 fortement la performance de la méthode. Finalement, la méthode sélectionnée ne
 doit pas nécessiter un nombre plus important d’évaluation car elles peuvent être coûteuses.
 \cite{Deb2000311} propose une méthode de sélection par tournoi respectant ces conditions
-dont les règles sont les suivantes :
+dont les règles sont les suivantes~:
 \begin{itemize}
   \item Une solution avec contraintes est inférieure à une solution sans contraintes
   \item Si les deux solutions sont sans contraintes la solution dominante est préférée
@@ -1323,7 +1323,7 @@ recherche.
 
 Dans ces travaux, une méthode adaptative moins élitiste est retenue. Adaptée
 aux problèmes multi-objectif par \cite{Woldesenbet20073077}, la méthode ne demande
-aucun paramétrage, et l’objectif modifié est calculé de la manière suivante :
+aucun paramétrage, et l’objectif modifié est calculé de la manière suivante~:
 \begin{itemize}
   \item Normaliser les objectifs selon \eqref{eq:norm_obj}
   \item Normaliser les contraintes et les agréger pour former une unique contrainte selon \eqref{eq:norm_contrainte}
@@ -1428,7 +1428,7 @@ Dans l’optique de l’optimisation d’un modèle solaire développé sous \te
 a été implémenté en \textit{Python} afin de faciliter le couplage avec la bibliothèque
 \textit{BuildingsPy} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
 la simulation de modèle \textit{Modelica} sous \textit{Dymola}. La bibliothèque est
-disponible sous le nom de \textit{pyMOABC} et implémente :
+disponible sous le nom de \textit{pyMOABC} et implémente~:
 \begin{itemize}
   \item Une $\epsilon$-archive et la hyperbox-dominance
   \item La dominance au sens de Pareto
@@ -1668,18 +1668,18 @@ l’intégrité du code lors de son développement.
 L’algorithme et les briques nécessaires implémentés, des problèmes étalons ont été
 utilisés afin de valider la performance de l’approche. Bien que la réussite d’un
 problème étalon ne soit pas une condition suffisante pour garantir la convergence
-sur un problème réel, il apporte une information importante : la capacité de
+sur un problème réel, il apporte une information importante~: la capacité de
 l’algorithme à s’adapter aux différent types de contraintes pouvant survenir.
 
 Dans cette optique les résultats présentés dans cette section sont sélectionnés
-afin de couvrir les principales difficultés existantes :
+afin de couvrir les principales difficultés existantes~:
 \begin{itemize}
-  \item front convexe : ZDT1 (2 objectifs)
-  \item front linéaire : Hanne 1 (2 objectifs)
-  \item front concave : ZDT2 (2 objectifs)
-  \item multi-modal : ZDT4 (2 objectifs)
-  \item Non-uniformité avec faible densité près de l’optimal : DTLZ5 (3 objectifs), ZDT6, ConvexGlobalNonConvexLocalHive
-  \item Discontinue : DTLZ6 (3 objectifs), Kursawe
+  \item front convexe~: ZDT1 (2 objectifs)
+  \item front linéaire~: Hanne 1 (2 objectifs)
+  \item front concave~: ZDT2 (2 objectifs)
+  \item multi-modal~: ZDT4 (2 objectifs)
+  \item Non-uniformité avec faible densité près de l’optimal~: DTLZ5 (3 objectifs), ZDT6, ConvexGlobalNonConvexLocalHive
+  \item Discontinue~: DTLZ6 (3 objectifs), Kursawe
 \end{itemize}
 La validation portera ainsi sur la capacité de l’algorithme à converger vers le
 front de Pareto ainsi que la qualité des solutions obtenues à travers l’évaluation
@@ -1717,7 +1717,7 @@ du problème est alors réduite et le processus d’optimisation plus performant
 (évaluant les effets autour d’une position) et les méthodes globales qui
 s’intéressent à l’ensemble du domaine de définition.
 
-Il regroupe aussi les méthodes existantes en deux grande familles : les
+Il regroupe aussi les méthodes existantes en deux grande familles~: les
 méthodes de criblage et les méthodes de décomposition de la variance. Il propose
 aussi un diagramme de décision (Fig~\ref{fig:classement_methode}) permettant de
 sélectionner la méthode en fonction du temps nécessaire pour une évaluation et
@@ -1768,7 +1768,7 @@ successivement. La méthode de Morris demande alors $R \times (j + 1)$ évaluati
 le nombre de facteur dont on cherche à évaluer l’influence. Pour chaque trajectoire on
 calcule alors les effets élémentaires sur le ou les objectifs et ce pour chaque facteurs
 $j$. Ainsi la précision de l’analyse est fonction du nombre de trajectoire définie à
-travers les paramètres $R$ et $z$ : la littérature suggère $R \geq 10$ et de $z = 4$.
+travers les paramètres $R$ et $z$~: la littérature suggère $R \geq 10$ et de $z = 4$.
 
 \begin{figure}
     \begin{center}
@@ -1810,7 +1810,7 @@ la moyenne ne donnerais pas l’information (à cause des compensations dues au 
     \mu^{*} = \sum_{r = 1}^{R} \frac{\lvert d_{r} \rvert}{R}
 \end{equation}
 
-La méthode permet ainsi de classer les facteurs en trois catégories :
+La méthode permet ainsi de classer les facteurs en trois catégories~:
 \begin{itemize}
   \item Non-influent ou effets négligeables
   \item Influent avec des effets sans interactions et linéaires
