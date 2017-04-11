@@ -1,6 +1,6 @@
 # Notes sur le manuscrit
 
-**Mise à jour: 07042016**
+**Mise à jour: 11042017**
 
 
 ## Latex:
@@ -21,6 +21,7 @@ Les champs `@InProceedings` lèvent l’erreur `Undefined control sequence. []`.
 L’ajout de référence croisé (crossref) empêche la compilation du fichier latex.
 La référence d’un article vers un autre est donc maintenant dans le champs note.
 
+Le mode math dans un fichier `.bib` doit être compris entre des crochets : `{$\epsilon_{rr}$}`
 
 
 ## Nomenclature :

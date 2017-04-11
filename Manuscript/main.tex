@@ -35,16 +35,17 @@
 % Packages import
 % ------------------------------------------------------------------------------
 % Text font pack
-\usepackage[OT1, T1]{fontenc}              % .pdf Encoding spec
-\usepackage[utf8]{inputenc}                % .tex Encoding spec
-\usepackage[greek, french, english]{babel}          % language used
-\usepackage{csquotes}                      % Ensure correct quote text
+\usepackage[OT1, T1]{fontenc}                     % .pdf Encoding spec
+\usepackage[utf8]{inputenc}                       % .tex Encoding spec
+\usepackage[greek, french, english]{babel}        % language used
+\usepackage[babel=true]{csquotes}                 % Ensure correct quote text
 \usepackage[dvipsnames, svgnames, table]{xcolor}  % Color support
-\usepackage{./Template/graphics_support}   % Image support
-\frenchspacing                             % French typo
-\frenchbsetup{StandardLists=true}          % Turn off french bulleted lists
-\usepackage[scaled]{beramono}              % Font used
-\usepackage[section]{placeins}             % Float always in section where defined
+\usepackage{./Template/graphics_support}          % Image support
+\frenchspacing                                    % French typo
+\frenchbsetup{og = «, fg = »}
+\frenchbsetup{StandardLists=true}                  % Turn off french bulleted lists
+\usepackage[scaled]{beramono}                     % Font used
+\usepackage[section]{placeins}                    % Float always in section where defined
 
 % Template packages
 \usepackage[top=2cm,
@@ -490,8 +491,8 @@
 % ------------------------------------------------------------------------------
 \includeonly{
              % Chapitres/Chap1-ContexteTravaux,
-             Chapitres/Chap2-ApprocheModelisation,
-             % Chapitres/Chap3-UnOutilAideDecision,
+             % Chapitres/Chap2-ApprocheModelisation,
+             Chapitres/Chap3-UnOutilAideDecision,
              % Chapitres/Chap4-OptimisationSystemeSolaire,
             }
 % ------------------------------------------------------------------------------
@@ -565,6 +566,7 @@ Merci merci ...
 \printbibliography[title={Book references},type=book]
 \printbibliography[title={Article references},type=article]
 \printbibliography[title={Other references}, nottype=article, nottype=book]
+
 
 \end{document}
 % ------------------------------------------------------------------------------
