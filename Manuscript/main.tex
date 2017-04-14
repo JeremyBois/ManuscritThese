@@ -37,15 +37,22 @@
 % Text font pack
 \usepackage[OT1, T1]{fontenc}                     % .pdf Encoding spec
 \usepackage[utf8]{inputenc}                       % .tex Encoding spec
-\usepackage[greek, french, english]{babel}        % language used
+\usepackage{xspace}
+\usepackage[greek, french]{babel}        % http://daniel.flipo.free.fr/frenchb/
+\usepackage{appendix}
 \usepackage[babel=true]{csquotes}                 % Ensure correct quote text
 \usepackage[dvipsnames, svgnames, table]{xcolor}  % Color support
 \usepackage{./Template/graphics_support}          % Image support
 \frenchspacing                                    % French typo
-\frenchbsetup{og = «, fg = »}
 \frenchbsetup{StandardLists=true}                  % Turn off french bulleted lists
-\usepackage[scaled]{beramono}                     % Font used
-\usepackage[section]{placeins}                    % Float always in section where defined
+\usepackage[scaled]{beramono}                      % Font used
+
+
+\usepackage{placeins}                                    % Float always where defined
+\let\Oldsection\section
+\renewcommand{\section}{\FloatBarrier\Oldsection}        % For section
+\let\Oldsubsection\subsection
+\renewcommand{\subsection}{\FloatBarrier\Oldsubsection}  % For subsection
 
 % Template packages
 \usepackage[top=2cm,
@@ -54,7 +61,6 @@
             right=2cm,
             a4paper]{geometry}             % Page layout support
 \usepackage{bookmark}                      % load hyperref internaly
-\usepackage{appendix}                      % Appendix package to add sub-annex | annex to main table
 \hypersetup{
     pdfkeywords={Passive,
                  Optimisation,
@@ -460,6 +466,19 @@
 
 
 % ------------------------------------------------------------------------------
+% Modification when babel select french
+% ------------------------------------------------------------------------------
+\addto\captionsfrench{
+  \renewcommand{\contentsname}{Sommaire}
+  \renewcommand{\listfigurename}{Liste des Figures}
+  \renewcommand{\listtablename}{Liste des Tableaux}
+  \renewcommand{\appendixtocname}{Annexes}
+  \renewcommand{\appendixpagename}{Annexes}
+  \renewcommand{\appendixname}{Annexe}
+}
+
+
+% ------------------------------------------------------------------------------
 % Color definition
 % ------------------------------------------------------------------------------
 \definecolor{Amaranth}{rgb}{0.9, 0.17, 0.31}
@@ -491,7 +510,7 @@
 % ------------------------------------------------------------------------------
 \includeonly{
              % Chapitres/Chap1-ContexteTravaux,
-             % Chapitres/Chap2-ApprocheModelisation,
+             Chapitres/Chap2-ApprocheModelisation,
              Chapitres/Chap3-UnOutilAideDecision,
              % Chapitres/Chap4-OptimisationSystemeSolaire,
             }
@@ -522,7 +541,7 @@ Résumé ici
 
 \chapter*{Remerciements}
 Merci merci ...
-
+miaou : fsss
 
 \tableofcontents
 \listoffigures
@@ -556,16 +575,17 @@ Merci merci ...
 
 % Start importing appendix
 \newpage
+\addappheadtotoc
 \appendix
-\chapter{Appendix Title}
-\include{Annexes/TestAnnexe}
+\appendixpage
+\chapter{}
+% \include{Annexes/TestAnnexe}
 
 
 % Add bibliography
 \newpage
-\printbibliography[title={Book references},type=book]
-\printbibliography[title={Article references},type=article]
-\printbibliography[title={Other references}, nottype=article, nottype=book]
+\printbibliography[title={Bibliographie}]
+
 
 
 \end{document}
