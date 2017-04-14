@@ -1,13 +1,15 @@
 %!TEX root = ../main.tex
 % Chapitres/Chap3-UnOutilAideDecision
 
+\itodo{Plus décrire les figures}
+
 % ..............................................................................
 % ..............................................................................
 \section{Les méthodes d’aide à la décision} % (fold)
 \label{sec:les_methodes_d_aide_à_la_decision}
 % ------------------------------------------------------------------------------
 \subsection{Introduction} % (fold)
-\label{sub:introduction}
+\label{sub:mcda_introduction}
 L’utilisation d’une méthode multi-critère d’aide à la décision (\textit{MCDA} pour Multi-Criteria
 Decision Analysis) fait toujours suite à une pré-analyse permettant d’évaluer la ou les
 raisons motivant sa formulation. Elle peut être définie comme le processus permettant
@@ -327,25 +329,31 @@ est la plus flexible. Elle reste en effet valide lorsque le problème admet des 
 qui se compensent ou lorsque le signe d’influence d’un facteur n’est pas connu a priori
 ou bien variable \parencite{Saltelli2004}.
 
-\paragraph{Principe :} % (fold)
+\paragraph{Principe~:} % (fold)
 \label{par:principe}
-La méthode de Morris utilise un plan \textit{OAT} (One (Factor) At the Time) et est basée sur
-l’\textit{EEM} (Elementary Effect Method) \parencite{Saltelli2004}.
-Chaque facteur (entrée) est défini par une plage de variation discrétisée en fonction
-du nombre de \emph{niveaux} ($z$) et d’un intervalle défini par un \emph{pas} ($\delta$).
-Chaque facteur assume ainsi $z$ valeurs discrètes et $\delta$ doit être un multiple de
-$\frac{1}{(z - 1)}$. La littérature utilise couramment $\delta = \frac{z}{2 \times (z - 1)}$
+La méthode de Morris utilise un plan \textit{OAT} (One (Factor) At the Time) et est basée
+sur l’\textit{EEM} (Elementary Effect Method) \parencite{Saltelli2004}. Chaque facteur
+(entrée) assume $z$ valeurs discrètes appelées \emph{niveaux} couvrant l’ensemble de la
+plage de validité. L’intervalle entre les différents niveaux est appelée \emph{pas}
+($\delta$) et doit être un multiple de $\frac{1}{(z - 1)}$. La littérature utilise
+couramment $\delta = \frac{z}{2 \times (z - 1)}$
 \parencite{Morris1991161, Campolongo20071509}.
 
-La méthode consiste alors en l’évaluation de l’effet élémentaire pour $R$ répétitions
-(trajectoires) à l’intérieur du plan \textit{OAT} (Fig~\ref{fig:fonctionnement_morris}). Pour
-chaque trajectoire, une position de départ est tirée aléatoirement puis des variations
-élémentaires stochastiques suivant une distribution uniforme sont réalisées
-successivement. La méthode de Morris demande alors $R \times (j + 1)$ évaluations avec $j$
-le nombre de facteur dont on cherche à évaluer l’influence. Pour chaque trajectoire on
-calcule alors les effets élémentaires sur le ou les objectifs et ce pour chaque facteurs
-$j$. Ainsi la précision de l’analyse est fonction du nombre de trajectoires définies à
-travers les paramètres $R$ et $z$~: la littérature suggère $R \geq 10$ et de $z = 4$.
+% Chaque facteur (entrée) est défini par une plage de variation discrétisée en fonction
+% du nombre de \emph{niveaux} ($z$) et d’un intervalle défini par un \emph{pas} ($\delta$).
+% Chaque facteur assume ainsi $z$ valeurs discrètes et $\delta$ doit être un multiple de
+% $\frac{1}{(z - 1)}$.
+
+
+La méthode consiste en l’évaluation des effets élémentaires ($EE$) pour $R$ trajectoires
+(répétitions) à l’intérieur du plan \textit{OAT} (Fig~\ref{fig:fonctionnement_morris}).
+Pour chaque trajectoire, une position de départ, puis la direction des variations
+élémentaires successives sont tirées aléatoirement. La méthode de Morris demande alors $R
+\times (j + 1)$ évaluations avec $j$ le nombre de facteur dont on cherche à évaluer
+l’influence. Pour chaque facteur, l’effet élémentaire associé est calculé permettant ensuite
+le calcul des indices de sensibilité. Le choix du nombre de trajectoires et du nombre de
+niveaux (dans une moindre mesure) impacte ainsi directement la qualité des indices de
+sensibilité~; la littérature suggère $R \geq 10$ et de $z = 4$.
 
 \begin{figure}
     \begin{center}
@@ -357,21 +365,19 @@ travers les paramètres $R$ et $z$~: la littérature suggère $R \geq 10$ et de 
 \end{figure}
 % paragraph principe (end)
 
-\paragraph{Interprétation :} % (fold)
+\paragraph{Interprétation~:} % (fold)
 \label{par:interprétation}
-~
-\itodo{$d_{i}$ est un effet élémentaire. Clarifier dans le texte}
-La première implémentation de la méthode permet d’évaluer qualitativement l’influence de chaque
-paramètre grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$ \eqref{eq:ecart_type}.
-La moyenne permet d’évaluer les effets linéaires. L’écart type permet d’identifier
-les influences non linéaires ou les couplages entre différents facteurs.
+La première implémentation de la méthode permet d’évaluer qualitativement l’influence de
+chaque facteur grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$
+\eqref{eq:ecart_type}. La moyenne permet d’évaluer les effets linéaires, et l’écart type
+d’identifier les influences non linéaires ou les interactions entre facteurs.
 
 \begin{equation}\label{eq:moyenne}
-    \mu = \sum_{r = 1}^{R} \frac{d_{r}}{R}
+    \mu = \sum_{r = 1}^{R} \frac{EE_{r}}{R}
 \end{equation}
 
 \begin{equation}\label{eq:ecart_type}
-    \sigma = \sqrt{\sum_{r=1}^{R}\frac{(d_{r} - \mu)^{2}}{R}}
+    \sigma = \sqrt{\sum_{r=1}^{R}\frac{(EE_{r} - \mu)^{2}}{R}}
 \end{equation}
 
 \textcite{Campolongo20071509} améliorent la méthode en proposant deux modifications. La première
@@ -380,7 +386,7 @@ de voir l’importance des facteurs dont le signe de l’influence est variable 
 la moyenne ne donnerais pas l’information (à cause des compensations dues au signes).
 
 \begin{equation}\label{eq:moyenne_absolue}
-    \mu^{*} = \sum_{r = 1}^{R} \frac{\lvert d_{r} \rvert}{R}
+    \mu^{*} = \sum_{r = 1}^{R} \frac{\lvert EE_{r} \rvert}{R}
 \end{equation}
 
 La méthode permet ainsi de classer les facteurs en trois catégories~:
@@ -391,24 +397,24 @@ La méthode permet ainsi de classer les facteurs en trois catégories~:
 \end{itemize}
 
 La seconde modification proposée est la génération d’un grand nombre de trajectoires,
-dans lesquelles, $R$ trajectoires non-similaires sont sélectionnées. La méthode de sélection
-proposée est cependant faite par \emph{Brute force} et demande une importante puissance de
-calcul afin de trouver un ensemble de trajectoire hétérogènes.
+dans lesquelles, $R$ trajectoires dissimilaires sont sélectionnées. La méthode de sélection
+proposée est cependant faite par \emph{Brute force} et demande donc une importante puissance de
+calcul.
 Afin de palier à ce problème, \textcite{Ruano2012103} proposent une approximation de
 la méthode par \emph{Brute force} pour un temps de calcul très court permettant d’obtenir
 une sélection représentative et hétérogène des trajectoires.
 % paragraph interprétation (end)
 
-\paragraph{Analyse :} % (fold)
+\paragraph{Analyse~:} % (fold)
 \label{par:analyse}
 La méthode recommandée dans la littérature pour évaluer les résultats de l’analyse
-est graphique et consiste à tracer le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il est
+consiste à tracer graphiquement le plan ($\sigma$, $\mu$ ou $\mu^{*}$). Il est
 ainsi possible de juger de l’importance globale d’un facteur visuellement.
 Enfin la distance normalisée notée $\hat{distance}$ \eqref{eq:distance_norm}, permet
 de classer l’ensemble des indicateurs sur un même graphe à l’aide d’une représentation
 en diagramme à barre renseignant l’ordre relatif au sein des facteurs évalués.
 Il est cependant important de ne pas oublier que $\hat{distance}$ est une distance
-normalisée, il existera toujours un facteur ayant une $\hat{distance} = 1$ et un autre
+normalisée, il existera ainsi toujours un facteur ayant une $\hat{distance} = 1$ et un autre
 $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 
 \begin{align}\label{eq:distance_norm}
@@ -419,6 +425,32 @@ $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 \end{align}
 
 \iunsure{Ajouter un graphe explicitant ces deux approches ou attendre l’étude de cas}
+D’après \textcite{Iooss2011}, les résultats de la Fig~\ref{fig:meth_graph_morris}(gauche)
+les facteurs $Z_{v}$, $Q$, $C_{b}$ et $H_{d}$ sont influents
+avec des effets linéaires car pour tout ces facteurs $j$~: $\sigma_{j} \ll \mu^{*}_{j}$.
+$Z_{v}$, $Q$, et $H_{d}$ sont impactant car leur moyenne absolue ($\mu^{*}$) est élevé.
+$K_{s}$ a une influence non linéaire ou avec interactions car son écart type ($\sigma$)
+est important et  $\sigma_{K_{s}} \sim \mu^{*}_{K_{s}}$. Les résultats de la
+Fig~\ref{fig:meth_graph_morris}(droite) montrent eux que les facteurs $K_{s}$, $Z_{v}$, $Q$, $C_{b}$,
+et $H_{d}$ ont des effets non linéaire ou avec interactions~: $\sigma_{j} \sim
+\mu^{*}_{j}$. Finalement au regard de ces deux sorties, la méthode de criblage de Morris
+permet d’écarter les variables $L$, $B$, et $Z_{m}$ qui apparaissent comme non influentes
+sur les deux sorties considérées.
+
+\begin{figure}
+  \begin{center}
+    \begin{minipage}{.45\textwidth}
+          \includegraphics{Ressources/Images/sensibilite/morris_S.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{.45\textwidth}
+          \includegraphics{Ressources/Images/sensibilite/morris_Cp.png}
+    \end{minipage}
+  \end{center}
+  \caption{Résultat de la méthode de Morris ($R = 5,~~ z = 4,~~ j=8$) pour deux
+           sorties distinctes mais les mêmes facteurs \parencite{Iooss2011}.
+             \label{fig:meth_graph_morris}}
+\end{figure}
 % paragraph analyse (end)
 % subsubsection la_methode_de_morris (end)
 % subsection reduction_de_la_cardinalite_du_probleme (end)
@@ -426,24 +458,85 @@ $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Réduction du modèle} % (fold)
-\label{sub:reduction_du_modele}
+\subsection{Modèles de substitution} % (fold)
+\label{sub:modeles_de_substitution}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Définition et principe des méta-modèles} % (fold)
-\label{ssub:definition_et_principe_des_meta_modeles}
+\subsubsection{Principe des méta-modèles} % (fold)
+\label{ssub:principe_des_meta_modeles}
+Les modèles de simulation dynamique dans le bâtiment nécessitent un temps de simulation
+important non compatible avec des méthodes nécessitant de nombreuses évaluations comme
+l’optimisation. Afin de palier à ce problème, il existe plusieurs solutions comme les
+méthodes de réduction de modèle ou l’utilisation de modèles de substitution. Cette partie
+s’intéresse particulièrement au modèle de substitution qui permettent de conserver la
+précision d’un modèle complexe tout en réduisant significativement le temps de simulation.
+Le principe est d’approximer les sorties d’intérêts grâce à une fonction analytique appelé
+méta-modèle. La complexité des interactions entre les variables d’entrées de la variable
+de sortie d’intérêt est définie par le degré du méta-modèle.
+
+\itodo{Littérature montrant l’attrait pour ces techniques}
+L’utilisation de méta-modèle s’est fortement développé, et ceux pour des applications
+diverses. Certain les utilises pour faire de l’optimisation, d’autre dans l’optique
+de réaliser une analyse de sensibilité.
+\itodo{Ajouter exemple dans le solaire et bâtiment, Armand-Decker2015, Chen2016422}
+Récemment \mtodo{Anto}{Anto} a utilisé les méta-modèles pour dans le cadre d’une
+garantie de performance pour un bâtiment de bureaux. L’approche a de plus été comparée
+avec ...
+\textcite{Armand-Decker2015} qui l’utilise pour
+l’optimisation multi-objectif d’un bâtiment reprend de manière descriptive les étapes
+nécessaire pour sa création.
+
+Dans notre cas où le temps nécessaire pour une simulation est autour de \SI{1}{h},
+l’utilisation de méta-modèle apporte un gain de temps significatif. Dans le cas d’une
+optimisation, il est simple d’ajouter de nouveaux objectifs / contraintes et d’encapsuler
+les fonctions d’un un logiciel sans dépendances avec les outils utilisés pour la création
+des modèles. Il est alors possible de créer des outils métiers répondant à un problème
+spécifique sans la contrainte de la complexité ou de l’apprentissage d’un nouvel outil.
+C’est donc une approche polyvalente et adaptable. Malgré de nombreux avantages il est
+important de garder à l’esprit que ces modèles de substitution ne sont valable que pour
+l’espace des variables d’entrées utilisées pour leur création. Si un nouveau paramètre est
+ajouté, ou si les bornes d’un paramètre existant est modifié, le méta-modèle doit être
+recréé. Finalement la création d’un méta-modèle n’est pas toujours possible ou peut demander
+un très grand nombre de simulation. Il est donc nécessaire de prendre en considération~:
+\begin{itemize}
+  \item Le nombre de simulations nécessaires pour créer le méta-modèle
+  \item Le nombre de simulation nécessaires pour l’optimisation sans méta-modèle
+  \item La diversité voulue dans l’ensemble de solutions dominées
+  \item Le type des variables d’entrées (continue, discrètes, ...)
+  \item L’utilité à terme de l’outil d’optimisation / d’aide à la décision
+\end{itemize}
+% subsubsection principe_des_meta_modeles (end)
+
+
+\subsubsection{Approche retenue} % (fold)
+\label{ssub:approche_retenue}
 ~
-\itodo{Voir thèse Rhania Mereb et Stéphanie}
-% subsubsection definition_et_principe_des_meta_modeles (end)
+\iunsure{Sert à rien de re décrire les équations et le détail des polynômes du chaos}
+\iunsure{Juste citer Merheb et Decker qui blablate déjà beaucoup}
+Il existe plusieurs moyens permettant de construire un méta-modèle. Dans ces travaux
+l’implémentation réalisée par \textcite{Rania2013} avec la bibliothèque
+\href{http://openturns.org/}{OpenTURNS} et à l’algorithme décrit par \textcite{Malen2009}
+est retenue.
 
+\itodo{Ajouter description de la méthode employée par Rania~: voir p.145 Decker}
 
+\itodo{Ajouter ordre~: sensibilité --> méta modèle --> optimisation --> décision}
+Comme il a été vu le méta-modèle est valable uniquement pour le jeu de variables
+utilisé pour le construire. Dans cette optique la méthode de criblage de Morris
+sera utilisée dans un premier temps afin d’éliminer les variables non influentes.
+Dans un second temps un échantillon représentatif de l’espace des variables d’entrée
+sera utilisé afin de construire le méta-modèle. Celui-ci sera ensuite vérifié avec
+d’autres combinaisons de paramètre pour évaluer sa fidélité. De plus différentes tailles
+d’échantillon seront utilisés afin de déterminer le nombre minimale de simulation nécessaires
+Finalement les méta-modèles seront utilisé afin de réaliser l’optimisation multi-objectif.
+En parallèle l’optimisation sera réalisée avec le modèle original afin d’évaluer le nombre de simulation
+nécessaire pour converger vers les solutions optimales. Il sera ainsi possible à travers
+la comparaison d’évaluer si la construction du méta-modèle apporte un gain de temps réel. Il
+sera aussi possible de comparer les solutions trouvées avec les deux approches.
+Les méta-modèles associés aux objectifs et contraintes étant propres au cas d’étude,
+le détail de construction est décrit à travers le cas d’étude (\mtodo{Ref chap 4}).
+% subsubsection approche_retenue (end)
+% subsection modeles_de_substitution (end)
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Limites et avantages} % (fold)
-\label{ssub:limites_et_avantages}
-~
-\itodo{Voir thèse Rhania Mereb et Stéphanie}
-% subsubsection limites_et_avantages (end)
-% subsection reduction_du_modele (end)
 
 
 
@@ -452,8 +545,8 @@ $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 
 % ..............................................................................
 % ..............................................................................
-\section{L’optimisation multi-objectif} % (fold)
-\label{sec:l_optimisation_multi_objectif}
+\section{Sélection d’une approche d’optimisation multi-objectif} % (fold)
+\label{sec:selection_d_une_approche_d_optimisation_multi_objectif}
 % ------------------------------------------------------------------------------
 \subsection{Vocabulaire et Définition} % (fold)
 \label{sub:vocabulaire_et_definition}
@@ -474,7 +567,7 @@ définir un nouvel opérateur de classement~: la relation de dominance. L’appr
 répandue ne considère pas de caractère préférentiel et repose sur le principe de dominance
 au sens de Pareto (Définition\ref{def:dominance_de_pareto}). Parmi les méthodes
 existantes, certaines comme l’approche lexicographique introduisent une préférence tout en
-conservant la nature multi- objectif du problème (\munsure{Ajouter citation}). Dans cette
+conservant la nature multi- objectif du problème. Dans cette
 approche les objectifs sont classés selon un ordre d’importance et la comparaison est
 faite dans le respect de cet ordre. Le lecteur intéressé est invité à consulter
 \textcite{Collette2002} afin d’obtenir plus d’informations.
@@ -931,15 +1024,15 @@ suivantes~:
 }
 % subsubsection comment_choisir_ (end)
 % subsection les_méta_heuristiques (end)
-% section l_optimisation_multi_objectif (end)
+% section selection_d_une_approche_d_optimisation_multi_objectif (end)
 
 
 
 
 % % ..............................................................................
 % % ..............................................................................
-\section{Colonie d’abeilles virtuelles} % (fold)
-\label{sec:artificial_bee_colony}
+\section{Algorithme de Colonie d’abeilles virtuelles} % (fold)
+\label{sec:algorithme_de_colonie_d_abeilles_virtuelles}
 Notre problème étant de nature mixte (paramètres discrets, continues, et
 qualitatifs) la formulation de l’algorithme doit être flexible. Les approches
 aux formulations trop strictes comme les \textit{algorithmes de colonie de
@@ -1897,4 +1990,4 @@ Concernant la méthode de prise en compte des contraintes, des travaux ont déj�
 \itodo{Ajout de graphe de convergence, et les résultats du calcul des indicateurs
        évaluant la diversité, la rapidité, et la convergence.}
 % subsection validation_de_la_methode (end)
-% section artificial_bee_colony (end)
+% section algorithme_de_colonie_d_abeilles_virtuelles (end)

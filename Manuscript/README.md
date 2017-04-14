@@ -85,3 +85,4 @@ Le mode math dans un fichier `.bib` doit être compris entre des crochets : `{$\
   - moyenne : $\mu$
   - écart type : $\sigma$
   - moyenne absolue : $\mu^{*}$
+  - effet élémentaire : $EE$
