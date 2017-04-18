@@ -296,7 +296,7 @@ l’optimisation. Les facteurs non influents sont alors fixés (constantes) réd
 cardinalité du problème. Le processus d’optimisation est alors plus performant et moins
 coûteux.
 
-\textcite{Iooss2011} propose un diagramme de décision (Fig~\ref{fig:classement_methode})
+\textcite{Iooss2011} propose un diagramme de décision (Fig~\ref{fig:classement_methode_sensibilite})
 permettant de sélectionner la méthode la plus adaptée en fonction du temps nécessaire pour
 une évaluation, et du nombre de variables d’entrées. Il regroupe l’ensemble
 les méthodes existantes en deux grande familles~: les méthodes de criblage et les méthodes
@@ -310,7 +310,7 @@ dites globales, s’intéressant à l’ensemble du domaine de définition.
         \includegraphics{Ressources/Images/sensibilite/classement_mauvais.png}
     \end{center}
     \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.
-             \label{fig:classement_methode}}
+             \label{fig:classement_methode_sensibilite}}
 \end{figure}
 
 
@@ -461,83 +461,124 @@ sur les deux sorties considérées.
 \subsection{Modèles de substitution} % (fold)
 \label{sub:modeles_de_substitution}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Principe des méta-modèles} % (fold)
-\label{ssub:principe_des_meta_modeles}
-Les modèles de simulation dynamique dans le bâtiment nécessitent un temps de simulation
+\subsubsection{Principe} % (fold)
+\label{ssub:principe}
+Les modèles de simulation dynamique dans le bâtiment nécessitent un temps de calcul
 important non compatible avec des méthodes nécessitant de nombreuses évaluations comme
-l’optimisation. Afin de palier à ce problème, il existe plusieurs solutions comme les
-méthodes de réduction de modèle ou l’utilisation de modèles de substitution. Cette partie
-s’intéresse particulièrement au modèle de substitution qui permettent de conserver la
-précision d’un modèle complexe tout en réduisant significativement le temps de simulation.
-Le principe est d’approximer les sorties d’intérêts grâce à une fonction analytique appelé
-méta-modèle. La complexité des interactions entre les variables d’entrées de la variable
-de sortie d’intérêt est définie par le degré du méta-modèle.
+certaines méthodes d’optimisation. Afin de palier à ce problème, il existe plusieurs solutions.
+La partie précédente présente une méthode permettant en amont de réduire la cardinalité
+du problème, et donc le nombre de combinaisons existantes. Cette section présente une
+autre approche ne se substituant pas à la première mais venant la compléter : les modèles de substitution.
+Ces modèles permettent de conserver la précision d’un modèle complexe tout en réduisant
+significativement le temps de calcul nécessaire par évaluation.
+Le principe est d’approximer les sorties d’intérêts (objectifs) avec une fonction analytique appelé
+méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer les
+différentes combinaisons existantes à la place du modèle complexe et coûteux.
+
+% La complexité des interactions entre les variables d’entrées de la variable
+% de sortie d’intérêt est définie par le degré du méta-modèle.
 
 \itodo{Littérature montrant l’attrait pour ces techniques}
-L’utilisation de méta-modèle s’est fortement développé, et ceux pour des applications
-diverses. Certain les utilises pour faire de l’optimisation, d’autre dans l’optique
-de réaliser une analyse de sensibilité.
+L’utilisation de méta-modèle s’est fortement développé, et ceux pour des
+applications diverses. Certain les utilises pour faire de l’optimisation,
+d’autre dans l’optique de réaliser une analyse de sensibilité détaillée avec des
+méthode de décomposition de la variance (Fig~\ref{fig:classement_methode_sensibilite}).
+
 \itodo{Ajouter exemple dans le solaire et bâtiment, Armand-Decker2015, Chen2016422}
 Récemment \mtodo{Anto}{Anto} a utilisé les méta-modèles pour dans le cadre d’une
-garantie de performance pour un bâtiment de bureaux. L’approche a de plus été comparée
-avec ...
-\textcite{Armand-Decker2015} qui l’utilise pour
-l’optimisation multi-objectif d’un bâtiment reprend de manière descriptive les étapes
-nécessaire pour sa création.
+garantie de performance pour un bâtiment de bureaux. L’approche a de plus été
+comparée avec ... \textcite{Armand-Decker2015} les utilisent afin de réaliser
+une optimisation multi-objectif d’un bâtiment. Le méta-modèle est alors utilisé
+comme substitut à un modèle de bâtiment réalisé sous Energy Plus.
 
-Dans notre cas où le temps nécessaire pour une simulation est autour de \SI{1}{h},
-l’utilisation de méta-modèle apporte un gain de temps significatif. Dans le cas d’une
-optimisation, il est simple d’ajouter de nouveaux objectifs / contraintes et d’encapsuler
-les fonctions d’un un logiciel sans dépendances avec les outils utilisés pour la création
-des modèles. Il est alors possible de créer des outils métiers répondant à un problème
-spécifique sans la contrainte de la complexité ou de l’apprentissage d’un nouvel outil.
-C’est donc une approche polyvalente et adaptable. Malgré de nombreux avantages il est
-important de garder à l’esprit que ces modèles de substitution ne sont valable que pour
-l’espace des variables d’entrées utilisées pour leur création. Si un nouveau paramètre est
-ajouté, ou si les bornes d’un paramètre existant est modifié, le méta-modèle doit être
-recréé. Finalement la création d’un méta-modèle n’est pas toujours possible ou peut demander
-un très grand nombre de simulation. Il est donc nécessaire de prendre en considération~:
+Dans notre cas où le temps nécessaire pour une simulation est autour de
+\SI{1}{h}, l’utilisation de méta-modèle a un potentiel très intéressant. De plus
+cette approche est adaptable car elle permet d’encapsuler un modèle complexe
+dans des outils métiers. Il est alors possible de répondre dans un temps très
+cours à un problème spécifique sans la complexité d’un logiciel de modélisation.
+
+L’approche comporte cependant des désavantages. Pour leur création, il est nécessaire
+d’évaluer le modèle complexe sur un échantillon représentatif de l’espace des entrées.
+Le méta-modèle est donc limité par les conditions retenue lors de sa création~; comme
+les variables d’entrées, ou leurs bornes. La modification d’un de ces paramètres nécessite
+donc la création d’une nouvelle fonction de substitution.
+Enfin, il est important d’évaluer la taille de l’échantillon nécessaire pour construire
+un méta-modèle adapté. Il n’est en effet pas forcement possible de construire un modèle
+répondant de manière satisfaisante aux différentes sollicitations pour une taille raisonnable
+de l’échantillon.
+Dans l’optique d’une optimisation il est ainsi important de prendre les points
+suivants en considération~:
 \begin{itemize}
   \item Le nombre de simulations nécessaires pour créer le méta-modèle
-  \item Le nombre de simulation nécessaires pour l’optimisation sans méta-modèle
-  \item La diversité voulue dans l’ensemble de solutions dominées
+  \item Le nombre de simulations nécessaires pour l’optimisation sans méta-modèle
   \item Le type des variables d’entrées (continue, discrètes, ...)
   \item L’utilité à terme de l’outil d’optimisation / d’aide à la décision
 \end{itemize}
-% subsubsection principe_des_meta_modeles (end)
+% subsubsection principe (end)
 
 
-\subsubsection{Approche retenue} % (fold)
-\label{ssub:approche_retenue}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Construction} % (fold)
+\label{ssub:construction}
 ~
-\iunsure{Sert à rien de re décrire les équations et le détail des polynômes du chaos}
-\iunsure{Juste citer Merheb et Decker qui blablate déjà beaucoup}
 Il existe plusieurs moyens permettant de construire un méta-modèle. Dans ces travaux
-l’implémentation réalisée par \textcite{Rania2013} avec la bibliothèque
-\href{http://openturns.org/}{OpenTURNS} et à l’algorithme décrit par \textcite{Malen2009}
+l’implémentation réalisée par \textcite{Rania2013} à l’aide de l’algorithme décrit par \textcite{Malen2009}
 est retenue.
 
-\itodo{Ajouter description de la méthode employée par Rania~: voir p.145 Decker}
+\iunsure{Ajouter description de la méthode employée par Rania~: voir p.145 Decker}
+Dans cette approche un échantillon représentatif de l’ensemble des données d’entrées est
+nécessaire afin de pouvoir construire un méta-modèle représentatif du problème. Une
+methode de Monte-Carlo couplée à une suite à discrépance faible est alors utilisée~: la
+méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à une loi uniforme,
+une suite ayant une discrépance faible permet de maintenir un ensemble de point
+uniformément répartie, même lorsque le nombre de point générés est faible, tout en
+conservant un caractère pseudo-aléatoire. Dans ces travaux, la suite de Halton
+(Fig~\mtodo{Ajouter ref fig}) est utilisée afin de générer un échantillon représentatif du
+domaine.
+\ftodo{Ajouter comparaison entre uniform et Halton}
 
-\itodo{Ajouter ordre~: sensibilité --> méta modèle --> optimisation --> décision}
-Comme il a été vu le méta-modèle est valable uniquement pour le jeu de variables
-utilisé pour le construire. Dans cette optique la méthode de criblage de Morris
-sera utilisée dans un premier temps afin d’éliminer les variables non influentes.
-Dans un second temps un échantillon représentatif de l’espace des variables d’entrée
-sera utilisé afin de construire le méta-modèle. Celui-ci sera ensuite vérifié avec
-d’autres combinaisons de paramètre pour évaluer sa fidélité. De plus différentes tailles
-d’échantillon seront utilisés afin de déterminer le nombre minimale de simulation nécessaires
-Finalement les méta-modèles seront utilisé afin de réaliser l’optimisation multi-objectif.
-En parallèle l’optimisation sera réalisée avec le modèle original afin d’évaluer le nombre de simulation
-nécessaire pour converger vers les solutions optimales. Il sera ainsi possible à travers
-la comparaison d’évaluer si la construction du méta-modèle apporte un gain de temps réel. Il
-sera aussi possible de comparer les solutions trouvées avec les deux approches.
-Les méta-modèles associés aux objectifs et contraintes étant propres au cas d’étude,
-le détail de construction est décrit à travers le cas d’étude (\mtodo{Ref chap 4}).
-% subsubsection approche_retenue (end)
+Finalement, afin de pouvoir vérifier que le modèle se comporte correctement sur
+l’ensemble du domaine de définition, \SI{90}{\%} de l’échantillon sera utilisé
+pour construire le méta-modèle et les \SI{10}{\%} restants seront utilisés afin de
+le valider. Les méta-modèles associés aux objectifs et contraintes étant propres au cas d’étude,
+le détail de leur construction est décrit à travers le cas d’étude (\mtodo{Ref chap 4}).
+% subsubsection construction (end)
 % subsection modeles_de_substitution (end)
 
 
+% ------------------------------------------------------------------------------
+\subsection{Approche retenue} % (fold)
+\label{sub:approche_retenue_reduction}
+La méthodologie retenue (Fig~\ref{fig:methode_aide_decision}) est dans la continuité de
+l’approche décrite dans le chapitre précédent.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/optimisation/methode.pdf}
+    \end{center}
+    \caption{Description de la méthode d’aide à la décision retenue.
+             \label{fig:methode_aide_decision}}
+\end{figure}
+
+Dans un premier temps la modélisation est réalisée de manière itérative et une étude
+paramétrique permet de définir les différents paramètres clés (objectifs, contraintes,
+variables, bornes, ...). Ensuite la cardinalité du problème est réduite grâce à la methode
+de Morris appliquée sur chaque objectifs et contraintes. Le problème résultant est alors
+substitué par un ensemble de méta-modèles afin de fortement réduire le temps de calcul
+nécessaire pour une évaluation. Un jeu de combinaisons non utilisées lors de la
+construction du méta-modèle est ensuite utilisé afin de vérifier la qualité des fonctions.
+De plus le nombre minimal d’évaluations nécessaire pour construction les méta-modèles sera
+aussi investigué. Les modèles de substitutions obtenues seront finalement utilisés pour
+réaliser l’optimisation multi-objectif dans l’optique d’une aide à la décision a
+posteriori. Une fois les solutions optimales obtenues, le décideur pourra grâce à une
+méthode de réduction par coordonnées parallèles sélectionner la solution correspondant à
+ces préférences. En parallèle, l’optimisation sera réalisée avec le modèle d’origine afin
+d’évaluer le gain apporté par les modèles de substitutions.
+
+Afin d’appliquer cette méthodologie, il est maintenant nécessaire de définir une approche
+d’optimisation adaptée. La section suivante introduit ainsi l’optimisation multi-objectif,
+ainsi que les différentes méthodes existantes parmis lesquelles le choix sera argumenté.
+% subsection approche_retenue_reduction (end)
 
 
 
@@ -550,14 +591,15 @@ le détail de construction est décrit à travers le cas d’étude (\mtodo{Ref 
 % ------------------------------------------------------------------------------
 \subsection{Vocabulaire et Définition} % (fold)
 \label{sub:vocabulaire_et_definition}
-Dans le domaine de la thermique du bâtiment la caractérisation de la performance
-est souvent effectuée de manière itérative à partir d’une solution de référence
-ou bien de manière empirique dans l’espace de décision. La direction et les
-variations évaluées résultant dans la plupart des cas de l’expérience du ou des
-décideur[s]. La recherche est alors fortement biaisée en amont, limitant
-l’exploration d’alternatives. L’obtention d’une solution optimale est alors
-peu probable. Dans un premier temps le vocabulaire nécessaire est introduit et
-une description succincte des méthodes existantes est discutée.
+Dans le domaine de la thermique du bâtiment la caractérisation de la performance est
+souvent effectuée de manière itérative à partir d’une solution de référence ou bien de
+manière empirique dans l’espace de décision. La direction et les variations évaluées
+résultant dans la plupart des cas de l’expérience du ou des décideur[s]. La recherche est
+alors fortement biaisée en amont, limitant l’exploration d’alternatives et l’obtention
+d’une solution optimale est alors peu probable. Afin de palier à ces problèmes, des
+méthodes dites d’optimisation ont été développées. Dans un premier temps le vocabulaire
+propre à l’optimisation est introduit et une description succincte des méthodes existantes
+appliquées aux bâtiment est discutée.
 
 Un problème d’optimisation multi-objectif (Définition\ref{def:optimisation_multi_objectif})
 est défini par un espace de recherche et de solution multi-dimensionnel contrairement à
