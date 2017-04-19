@@ -252,9 +252,8 @@ pour chaque critère et chaque variable de décision grâce à un jeu de curseur
 % suivante introduit le concept d’optimisation multi-objectif ainsi que les différentes
 % approches existantes.
 
-Dans l’optique d’une aide à la décision a posteriori pour les modèles décrits dans le
-chapitre précédent, il est nécessaire de réduire la complexité du modèle et deux
-méthodes sont présentées dans la section suivante.
+Dans l’optique d’une aide à la décision a posteriori, il est nécessaire de réduire la
+complexité du modèle et deux méthodes sont présentées dans la section suivante.
 % subsection approche_retenue (end)
 % section les_methodes_d_aide_à_la_decision (end)
 
@@ -266,29 +265,29 @@ méthodes sont présentées dans la section suivante.
 \section{Simplification de modèles en thermique du bâtiment} % (fold)
 \label{sec:simplification_de_modeles_en_thermique_du_batiment}
 L’aide à la décision a posteriori nécessite de réaliser préalablement une optimisation
-multi-objectif afin d’identifier un ensemble de solutions optimales à partir du quel le
-décideur introduit ses préférences et contraintes. Comme il a aussi été vu au cours du
-chapitre précédent, le modèle nécessite un temps de calcul important, autour de \SI{1}{h}
-par simulation. L’optimisation nécessitant un nombre important de simulations il est
-nécessaire d’identifier des méthodes permettant de réduire le complexité du modèle. Ainsi
-dans cette section deux méthodes sont introduites.
+multi-objectif afin d’identifier un ensemble de solutions optimales à partir desquelles le
+décideur sélectionne une solution à partir de ses préférences et contraintes.
+Cependant les modèles de simulation dynamique dans le bâtiment nécessitent un temps de calcul
+important non compatible avec des méthodes nécessitant de nombreuses évaluations comme
+certaines méthodes d’optimisation. Cette observation est particulièrement vraie dans notre
+cas : le modèle nécessite autour de \SI{1}{h} pour une évaluation.
 
+Afin de réduire la complexité du problème cette section présente deux méthodes.
 La première méthode permet de réduire la cardinalité du problème en amont de
-l’optimisation multi-objectif. Le principe étant de conserver uniquement les variables
+l’optimisation multi-objectif. Le principe est de conserver uniquement les variables
 dont la modification a un impact sur les objectifs de l’optimisation grâce à l’analyse de
 sensibilité. La seconde approche permet d’approximer un modèle complexe afin de réduire la
-durée de simulation en utilisant des méta-modèles.
+durée de simulation en utilisant des modèles de substitution.
 % section simplification_de_modeles_en_thermique_du_batiment (end)
 
 
 % ------------------------------------------------------------------------------
 \subsection{Réduction de la cardinalité du problème} % (fold)
 \label{sub:reduction_de_la_cardinalite_du_probleme}
-En amont de l’optimisation, les variables de décisions (facteurs) dont la variation sera étudiées
-sont sélectionnées sur la connaissance seule du système et des premiers résultats
-obtenues. Retenir l’ensemble de ces facteurs introduit ainsi le risque d’évaluer des
-variations n’influençant pas ou très sensiblement le modèle. Il apparaît donc opportun de
-réduire le nombre de facteurs afin de limiter les combinaisons n’ayant pas d’influences.
+En amont de l’optimisation, les variables de décisions (facteurs) dont la variation sera
+étudiées sont sélectionnées sur la connaissance seule du système et des premiers résultats
+obtenues. Il apparaît donc opportun de réduire le nombre de facteurs afin d’éviter
+l’évaluation couteuse de variations n’influençant pas ou très sensiblement le modèle.
 
 Les méthodes dites d’analyse de sensibilité permettent de répondre à cette problématique
 en identifiant les facteurs les plus influents au regard des objectifs retenus pour
@@ -299,9 +298,9 @@ coûteux.
 \textcite{Iooss2011} propose un diagramme de décision (Fig~\ref{fig:classement_methode_sensibilite})
 permettant de sélectionner la méthode la plus adaptée en fonction du temps nécessaire pour
 une évaluation, et du nombre de variables d’entrées. Il regroupe l’ensemble
-les méthodes existantes en deux grande familles~: les méthodes de criblage et les méthodes
+des méthodes existantes en deux grande familles~: les méthodes de criblage et les méthodes
 de décomposition de la variance. Il fait aussi la distinction entre les
-méthodes dites locales, évaluant les effets autour d’une position, et, les méthodes
+méthodes dites locales, évaluant les effets autour d’une position, et les méthodes
 dites globales, s’intéressant à l’ensemble du domaine de définition.
 
 \begin{figure}
@@ -336,14 +335,7 @@ sur l’\textit{EEM} (Elementary Effect Method) \parencite{Saltelli2004}. Chaque
 (entrée) assume $z$ valeurs discrètes appelées \emph{niveaux} couvrant l’ensemble de la
 plage de validité. L’intervalle entre les différents niveaux est appelée \emph{pas}
 ($\delta$) et doit être un multiple de $\frac{1}{(z - 1)}$. La littérature utilise
-couramment $\delta = \frac{z}{2 \times (z - 1)}$
-\parencite{Morris1991161, Campolongo20071509}.
-
-% Chaque facteur (entrée) est défini par une plage de variation discrétisée en fonction
-% du nombre de \emph{niveaux} ($z$) et d’un intervalle défini par un \emph{pas} ($\delta$).
-% Chaque facteur assume ainsi $z$ valeurs discrètes et $\delta$ doit être un multiple de
-% $\frac{1}{(z - 1)}$.
-
+couramment $\delta = \frac{z}{2 \times (z - 1)}$ \parencite{Morris1991161, Campolongo20071509}.
 
 La méthode consiste en l’évaluation des effets élémentaires ($EE$) pour $R$ trajectoires
 (répétitions) à l’intérieur du plan \textit{OAT} (Fig~\ref{fig:fonctionnement_morris}).
@@ -353,7 +345,7 @@ Pour chaque trajectoire, une position de départ, puis la direction des variatio
 l’influence. Pour chaque facteur, l’effet élémentaire associé est calculé permettant ensuite
 le calcul des indices de sensibilité. Le choix du nombre de trajectoires et du nombre de
 niveaux (dans une moindre mesure) impacte ainsi directement la qualité des indices de
-sensibilité~; la littérature suggère $R \geq 10$ et de $z = 4$.
+sensibilité~: la littérature suggère $R \geq 10$ et de $z = 4$.
 
 \begin{figure}
     \begin{center}
@@ -382,8 +374,8 @@ d’identifier les influences non linéaires ou les interactions entre facteurs.
 
 \textcite{Campolongo20071509} améliorent la méthode en proposant deux modifications. La première
 est l’ajout de la moyenne absolue, $\mu^{*}$ \eqref{eq:moyenne_absolue}. Cet indicateur permet
-de voir l’importance des facteurs dont le signe de l’influence est variable là où
-la moyenne ne donnerais pas l’information (à cause des compensations dues au signes).
+de voir l’importance des facteurs dont le signe de l’influence est variable contrairement à
+la moyenne (à cause des compensations dues au signes).
 
 \begin{equation}\label{eq:moyenne_absolue}
     \mu^{*} = \sum_{r = 1}^{R} \frac{\lvert EE_{r} \rvert}{R}
@@ -398,8 +390,8 @@ La méthode permet ainsi de classer les facteurs en trois catégories~:
 
 La seconde modification proposée est la génération d’un grand nombre de trajectoires,
 dans lesquelles, $R$ trajectoires dissimilaires sont sélectionnées. La méthode de sélection
-proposée est cependant faite par \emph{Brute force} et demande donc une importante puissance de
-calcul.
+proposée est cependant faite par \emph{Brute force} et demande donc une puissance de
+calcul importante.
 Afin de palier à ce problème, \textcite{Ruano2012103} proposent une approximation de
 la méthode par \emph{Brute force} pour un temps de calcul très court permettant d’obtenir
 une sélection représentative et hétérogène des trajectoires.
@@ -413,9 +405,9 @@ ainsi possible de juger de l’importance globale d’un facteur visuellement.
 Enfin la distance normalisée notée $\hat{distance}$ \eqref{eq:distance_norm}, permet
 de classer l’ensemble des indicateurs sur un même graphe à l’aide d’une représentation
 en diagramme à barre renseignant l’ordre relatif au sein des facteurs évalués.
-Il est cependant important de ne pas oublier que $\hat{distance}$ est une distance
-normalisée, il existera ainsi toujours un facteur ayant une $\hat{distance} = 1$ et un autre
-$\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
+Il est cependant important de noter que $\hat{distance}$ est une distance
+normalisée. Il existe ainsi toujours un facteur pour lequel $\hat{distance} = 1$ et un autre
+pour lequel $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
 
 \begin{align}\label{eq:distance_norm}
     \begin{split}
@@ -424,14 +416,16 @@ $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires.
     \end{split}
 \end{align}
 
-\iunsure{Ajouter un graphe explicitant ces deux approches ou attendre l’étude de cas}
-D’après \textcite{Iooss2011}, les résultats de la Fig~\ref{fig:meth_graph_morris}(gauche)
+Le principe est illustré par \textcite{Iooss2011} à travers deux résultats obtenues
+pour deux objectifs différents mais pour les mêmes critères (Fig~\ref{fig:meth_graph_morris}).
+
+Les résultats pour l’objectif en partie gauche permettent alors de dire que
 les facteurs $Z_{v}$, $Q$, $C_{b}$ et $H_{d}$ sont influents
 avec des effets linéaires car pour tout ces facteurs $j$~: $\sigma_{j} \ll \mu^{*}_{j}$.
 $Z_{v}$, $Q$, et $H_{d}$ sont impactant car leur moyenne absolue ($\mu^{*}$) est élevé.
 $K_{s}$ a une influence non linéaire ou avec interactions car son écart type ($\sigma$)
 est important et  $\sigma_{K_{s}} \sim \mu^{*}_{K_{s}}$. Les résultats de la
-Fig~\ref{fig:meth_graph_morris}(droite) montrent eux que les facteurs $K_{s}$, $Z_{v}$, $Q$, $C_{b}$,
+pour l’objectif de droite montrent eux que les facteurs $K_{s}$, $Z_{v}$, $Q$, $C_{b}$,
 et $H_{d}$ ont des effets non linéaire ou avec interactions~: $\sigma_{j} \sim
 \mu^{*}_{j}$. Finalement au regard de ces deux sorties, la méthode de criblage de Morris
 permet d’écarter les variables $L$, $B$, et $Z_{m}$ qui apparaissent comme non influentes
@@ -463,39 +457,33 @@ sur les deux sorties considérées.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Principe} % (fold)
 \label{ssub:principe}
-Les modèles de simulation dynamique dans le bâtiment nécessitent un temps de calcul
-important non compatible avec des méthodes nécessitant de nombreuses évaluations comme
-certaines méthodes d’optimisation. Afin de palier à ce problème, il existe plusieurs solutions.
-La partie précédente présente une méthode permettant en amont de réduire la cardinalité
-du problème, et donc le nombre de combinaisons existantes. Cette section présente une
-autre approche ne se substituant pas à la première mais venant la compléter : les modèles de substitution.
-Ces modèles permettent de conserver la précision d’un modèle complexe tout en réduisant
-significativement le temps de calcul nécessaire par évaluation.
-Le principe est d’approximer les sorties d’intérêts (objectifs) avec une fonction analytique appelé
-méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer les
-différentes combinaisons existantes à la place du modèle complexe et coûteux.
-
-% La complexité des interactions entre les variables d’entrées de la variable
-% de sortie d’intérêt est définie par le degré du méta-modèle.
+Dans la partie précédente, une méthode réduisant la cardinalité du problème, et donc le
+nombre de combinaisons existantes en amont a été décrite. Cette section présente une autre
+approche ne se substituant pas à la première mais venant la compléter : les modèles de
+substitution. Ces modèles permettent de conserver la précision d’un modèle complexe tout
+en réduisant significativement le temps de calcul nécessaire par évaluation. Le principe
+est d’approximer les sorties d’intérêts (objectifs) par une fonction analytique appelé
+méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer les différentes
+combinaisons existantes à la place du modèle complexe et coûteux.
 
 \itodo{Littérature montrant l’attrait pour ces techniques}
 L’utilisation de méta-modèle s’est fortement développé, et ceux pour des
 applications diverses. Certain les utilises pour faire de l’optimisation,
 d’autre dans l’optique de réaliser une analyse de sensibilité détaillée avec des
-méthode de décomposition de la variance (Fig~\ref{fig:classement_methode_sensibilite}).
+méthode de décomposition de la variance (voir Fig~\ref{fig:classement_methode_sensibilite}).
 
 \itodo{Ajouter exemple dans le solaire et bâtiment, Armand-Decker2015, Chen2016422}
-Récemment \mtodo{Anto}{Anto} a utilisé les méta-modèles pour dans le cadre d’une
-garantie de performance pour un bâtiment de bureaux. L’approche a de plus été
-comparée avec ... \textcite{Armand-Decker2015} les utilisent afin de réaliser
-une optimisation multi-objectif d’un bâtiment. Le méta-modèle est alors utilisé
-comme substitut à un modèle de bâtiment réalisé sous Energy Plus.
+Récemment \mtodo{Anto}{Anto} a utilisé les méta-modèles dans le cadre de garantie de
+performance pour un bâtiment de bureaux. L’approche a de plus été comparée avec ...
+\textcite{Armand-Decker2015} les utilisent afin de réaliser une optimisation multi-
+objectif d’un bâtiment. Le méta-modèle est alors utilisé comme substitut à un modèle de
+bâtiment réalisé sous Energy Plus.
 
-Dans notre cas où le temps nécessaire pour une simulation est autour de
-\SI{1}{h}, l’utilisation de méta-modèle a un potentiel très intéressant. De plus
-cette approche est adaptable car elle permet d’encapsuler un modèle complexe
-dans des outils métiers. Il est alors possible de répondre dans un temps très
-cours à un problème spécifique sans la complexité d’un logiciel de modélisation.
+Dans notre cas où le temps nécessaire pour une simulation est important, l’utilisation de
+méta-modèle a un potentiel très intéressant. De plus, cette approche est adaptable car elle
+permet d’encapsuler un modèle complexe dans des outils métiers. Il est alors possible de
+répondre dans un temps très cours à un problème spécifique sans la complexité d’un
+logiciel de modélisation.
 
 L’approche comporte cependant des désavantages. Pour leur création, il est nécessaire
 d’évaluer le modèle complexe sur un échantillon représentatif de l’espace des entrées.
@@ -520,28 +508,28 @@ suivants en considération~:
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Construction} % (fold)
 \label{ssub:construction}
-~
 Il existe plusieurs moyens permettant de construire un méta-modèle. Dans ces travaux
 l’implémentation réalisée par \textcite{Rania2013} à l’aide de l’algorithme décrit par \textcite{Malen2009}
 est retenue.
 
-\iunsure{Ajouter description de la méthode employée par Rania~: voir p.145 Decker}
+\iunsure{Description de la méthode Rania (p.145 Decker) mais chapitre déjà long}
 Dans cette approche un échantillon représentatif de l’ensemble des données d’entrées est
 nécessaire afin de pouvoir construire un méta-modèle représentatif du problème. Une
-methode de Monte-Carlo couplée à une suite à discrépance faible est alors utilisée~: la
+méthode de Monte-Carlo couplée à une suite à discrépance faible est alors utilisée~: la
 méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à une loi uniforme,
 une suite ayant une discrépance faible permet de maintenir un ensemble de point
 uniformément répartie, même lorsque le nombre de point générés est faible, tout en
 conservant un caractère pseudo-aléatoire. Dans ces travaux, la suite de Halton
-(Fig~\mtodo{Ajouter ref fig}) est utilisée afin de générer un échantillon représentatif du
-domaine.
+(Fig~\mtodo{Ajouter ref fig}) est utilisée comme générateur pseudo aléatoire.
 \ftodo{Ajouter comparaison entre uniform et Halton}
 
-Finalement, afin de pouvoir vérifier que le modèle se comporte correctement sur
-l’ensemble du domaine de définition, \SI{90}{\%} de l’échantillon sera utilisé
-pour construire le méta-modèle et les \SI{10}{\%} restants seront utilisés afin de
-le valider. Les méta-modèles associés aux objectifs et contraintes étant propres au cas d’étude,
-le détail de leur construction est décrit à travers le cas d’étude (\mtodo{Ref chap 4}).
+Finalement, afin de pouvoir vérifier que le modèle se comporte correctement sur l’ensemble
+du domaine de définition, \SI{90}{\%} de l’échantillon sera utilisé pour construire le
+méta-modèle et les \SI{10}{\%} restants seront utilisés afin de le valider. De plus le
+nombre minimal d’évaluations nécessaire pour la construction des méta-modèles sera aussi
+investigué. Les méta-modèles associés aux objectifs et contraintes étant propres au cas
+d’étude, le détail de leur construction est décrit à travers le cas d’étude (\mtodo{Ref
+chap 4}).
 % subsubsection construction (end)
 % subsection modeles_de_substitution (end)
 
@@ -551,33 +539,29 @@ le détail de leur construction est décrit à travers le cas d’étude (\mtodo
 \label{sub:approche_retenue_reduction}
 La méthodologie retenue (Fig~\ref{fig:methode_aide_decision}) est dans la continuité de
 l’approche décrite dans le chapitre précédent.
+Dans un premier temps la modélisation est réalisée de manière itérative et une étude
+paramétrique permet de définir les différents paramètres clés (objectifs, contraintes,
+variables, bornes, ...). Ensuite, la cardinalité du problème est réduite grâce à la \textit{méthode
+de Morris} appliquée sur chaque objectifs et contraintes. Le problème résultant est alors
+substitué par un ensemble de méta-modèles afin de fortement réduire le temps de calcul
+nécessaire pour une évaluation. Les modèles de substitutions obtenues seront finalement
+utilisés pour réaliser l’optimisation multi-objectif dans l’optique d’une aide à la
+décision a posteriori. Une fois les solutions optimales obtenues, le décideur pourra grâce
+à une méthode de réduction par coordonnées parallèles sélectionner la solution
+correspondant à ces préférences. En parallèle, l’optimisation sera réalisée avec le modèle
+d’origine afin d’évaluer le gain apporté par les modèles de substitutions.
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/methode.pdf}
+        \includegraphics{Ressources/Images/methode.pdf}
     \end{center}
     \caption{Description de la méthode d’aide à la décision retenue.
              \label{fig:methode_aide_decision}}
 \end{figure}
 
-Dans un premier temps la modélisation est réalisée de manière itérative et une étude
-paramétrique permet de définir les différents paramètres clés (objectifs, contraintes,
-variables, bornes, ...). Ensuite la cardinalité du problème est réduite grâce à la methode
-de Morris appliquée sur chaque objectifs et contraintes. Le problème résultant est alors
-substitué par un ensemble de méta-modèles afin de fortement réduire le temps de calcul
-nécessaire pour une évaluation. Un jeu de combinaisons non utilisées lors de la
-construction du méta-modèle est ensuite utilisé afin de vérifier la qualité des fonctions.
-De plus le nombre minimal d’évaluations nécessaire pour construction les méta-modèles sera
-aussi investigué. Les modèles de substitutions obtenues seront finalement utilisés pour
-réaliser l’optimisation multi-objectif dans l’optique d’une aide à la décision a
-posteriori. Une fois les solutions optimales obtenues, le décideur pourra grâce à une
-méthode de réduction par coordonnées parallèles sélectionner la solution correspondant à
-ces préférences. En parallèle, l’optimisation sera réalisée avec le modèle d’origine afin
-d’évaluer le gain apporté par les modèles de substitutions.
-
 Afin d’appliquer cette méthodologie, il est maintenant nécessaire de définir une approche
 d’optimisation adaptée. La section suivante introduit ainsi l’optimisation multi-objectif,
-ainsi que les différentes méthodes existantes parmis lesquelles le choix sera argumenté.
+ainsi que les différentes méthodes existantes parmi lesquelles le choix sera argumenté.
 % subsection approche_retenue_reduction (end)
 
 
@@ -588,9 +572,6 @@ ainsi que les différentes méthodes existantes parmis lesquelles le choix sera 
 % ..............................................................................
 \section{Sélection d’une approche d’optimisation multi-objectif} % (fold)
 \label{sec:selection_d_une_approche_d_optimisation_multi_objectif}
-% ------------------------------------------------------------------------------
-\subsection{Vocabulaire et Définition} % (fold)
-\label{sub:vocabulaire_et_definition}
 Dans le domaine de la thermique du bâtiment la caractérisation de la performance est
 souvent effectuée de manière itérative à partir d’une solution de référence ou bien de
 manière empirique dans l’espace de décision. La direction et les variations évaluées
@@ -601,6 +582,11 @@ méthodes dites d’optimisation ont été développées. Dans un premier temps 
 propre à l’optimisation est introduit et une description succincte des méthodes existantes
 appliquées aux bâtiment est discutée.
 
+
+
+% ------------------------------------------------------------------------------
+\subsection{Vocabulaire et Définition} % (fold)
+\label{sub:vocabulaire_et_definition}
 Un problème d’optimisation multi-objectif (Définition\ref{def:optimisation_multi_objectif})
 est défini par un espace de recherche et de solution multi-dimensionnel contrairement à
 une approche mono-objectif où seul l’espace de recherche est multi-dimensionnel. Afin de
@@ -710,11 +696,13 @@ recherche ou évaluer la qualité des solutions trouvées.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{La convexité} % (fold)
 \label{ssub:la_convexite}
-Ce terme permet de caractériser la forme d’un ensemble. Il est dit
-\emph{convexe} lorsque pour deux points distincts, la droite les reliant est
-contenue dans cet ensemble \parencite{Collette2002}. Ce terme est utilisé pour décrire la
-forme du front de Pareto dans le cas de problèmes multi-objectif. Dans le cas de fronts
-continues, on parle alors de fronts convexes ou non-convexes (Fig~\ref{fig:convex_nadir}).
+Ce terme permet de caractériser la forme d’un ensemble. Dans le cas de fronts continues,
+on parle alors de fronts convexes ou non-convexes \parencite{Collette2002}. Un ensemble
+est dit \emph{convexe} lorsque pour deux points distincts, la droite les reliant est
+contenue dans cet ensemble (Fig~\ref{fig:convex_nadir}(a)). À l’inverse si l’ensemble ne
+contient pas la droite, il est non-convex (Fig~\ref{fig:convex_nadir}(b)). Ce terme est
+aussi utilisé pour décrire la forme du front de Pareto dans le cas de problèmes multi-
+objectif.
 % subsubsection la_convexite (end)
 
 \begin{figure}
@@ -733,8 +721,8 @@ continues, on parle alors de fronts convexes ou non-convexes (Fig~\ref{fig:conve
 % ------------------------------------------------------------------------------
 \subsection{Les méthodes exactes} % (fold)
 \label{sub:les_methodes_exactes}
-Ces méthodes regroupent l’ensemble des sous-méthodes permettant de caractériser
-l’ensemble des solutions (Fig~\ref{fig:multi_exactes}). Elles sont cependant
+Ces méthodes regroupent l’ensemble des sous-méthodes permettant de caractériser l’ensemble
+des solutions (Fig~\ref{fig:multi_exactes}) détaillées ci-après. Elles sont cependant
 coûteuses car un nombre très important de simulations est requis.
 
 
@@ -780,7 +768,7 @@ une méthode dite approchée. Ces approches sont discutées dans la section suiv
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/exactes.pdf}
+        \includegraphics{Ressources/Images/optimisation/methodes_exactes.pdf}
     \end{center}
     \caption{Transformation d’un problème multi-objectif en optimisation par méthodes
              exactes.
@@ -948,20 +936,20 @@ local et qu’une faible partie de l’espace permet d’atteindre le front de P
 \label{ssub:les_methodes_existantes}
 La plupart des méta-heuristiques s’inspirent du vivant et des différents principes le
 décrivant. On distingue deux grandes familles~: les méta- heuristiques à population et les
-méta-heuristiques de voisinage (Fig~\ref{fig:multi_meta_detail}). Parmi les approches par
+méta-heuristiques de voisinage. Parmi les approches par
 voisinage il peut être cité le recuit simulé et la recherche tabou
 \parencite{Paul2010577}. Ces approches cherchent à optimiser une solution grâce à une
 recherche locale en combinaison avec une stratégie améliorant l’exploration afin d’éviter
 de converger vers des optimums locaux. Parmi les approches par population, deux grandes
-familles se distinguent: les algorithmes évolutionnaires et les algorithmes d’essaim.
+familles se distinguent: les algorithmes évolutionnaires et les algorithmes d’essaims.
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{Ressources/Images/optimisation/meta_heuristique_detail.pdf}
-    \end{center}
-    \caption{L’optimisation multi-objectif par méta-heuristique.
-             \label{fig:multi_meta_detail}}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Ressources/Images/optimisation/meta_heuristique_detail.pdf}
+%     \end{center}
+%     \caption{L’optimisation multi-objectif par méta-heuristique.
+%              \label{fig:multi_meta_detail}}
+% \end{figure}
 
 \paragraph{Les algorithmes évolutionnaires} % (fold)
 \label{par:les_algorithmes_evolutionnaires}
@@ -1192,7 +1180,8 @@ La formulation de l’\textit{ABC} reste la plus répandue et sera retenue dans 
 \subsection{Principe de fonctionnement} % (fold)
 \label{sub:principe_de_fonctionnement}
 L’algorithme s’appuie sur les mécanismes d’organisation sociale des insectes
-\parencite{Bonabeau1999} défini à travers quatre propriétés.
+\parencite{Bonabeau1999} défini à travers quatre propriétés illustrés à travers le
+comportement des abeilles (Fig~\ref{fig:bee_dance}).
 
 \paragraph{Le retour positif (Positive feedback)~:} % (fold)
 \label{par:positive_feedback}
@@ -1226,14 +1215,13 @@ communication est nécessaire.
 Les abeilles transmettent les informations positives et négatives de la même
 manière~: grâce à la danse (danse en rond et en huit).
 Ce mécanisme permet de transmettre de manière détaillée la qualité d’une source, sa
-distance par rapport à l’essaim, et des dangers potentiels rencontrés (Fig~\ref{fig:bee_dance}).
+distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 
 \begin{figure}
     \begin{center}
-        \itodo{Refaire au propre sous Inkscape.}
-        \includegraphics{Ressources/Images/abc/BeeDance.png}
+        \includegraphics{Ressources/Images/abc/comportement_abeilles.pdf}
     \end{center}
-    \caption{Description du comportement social des abeilles.
+    \caption{Organisation sociale des abeilles lors de la recherche de nourriture.
              \label{fig:bee_dance}}
 \end{figure}
 \FloatBarrier
@@ -1372,19 +1360,17 @@ de Crowding, les auteurs ajoutent une coopération entre les essaims pour la sé
 sources de référence. L’auteur intègre de plus une méthode de pénalité adaptative
 \parencite{Woldesenbet20073077} afin de pouvoir traiter des problème sous contraintes.
 
-L’algorithme attire donc l’attention de nombreux chercheurs montrant son attrait grandissant. Dans un premier temps en
-cherchant à perfectionner sa formulation pour les problèmes mono-objectif, puis dans un
-second temps, afin améliorer la résolution de problèmes d’optimisations multi-objectif. Ces
-nombreux travaux montrent que la diversité du comportement des individus (butineuses,
-exploratrices, et ouvrières) offre à l’approche une grande modularité. En effet, cette
-modularité permet d’équilibrer l’exploration et l’exploitation~; condition essentielle pour
-répondre de manière adaptée et flexible à des problématiques diverses.
-Les différent travaux décrits dans la littérature permettent ainsi de construire un
-algorithme efficient.
+Développé dans un premier temps pour résoudre des problèmes mono-objectif il a été adapté
+aux problèmes multi-objectif. Les nombreux travaux témoignent d’un attrait grandissant
+pour l’approche et mettent en avant sa modularité. En effet, à travers la diversité des
+comportements (butineuses, exploratrices, et ouvrières) il est possible d’équilibrer
+l’exploration et l’exploitation~; condition essentielle pour répondre de manière adaptée
+et flexible à des problématiques complexes. Les différent travaux décrits dans la
+littérature permettent ainsi de construire un algorithme efficient.
 
 La sous-section suivante présente les améliorations retenues dans ces travaux.
-Le but étant d’améliorer l’exploration et l’exploitation tout en limitant la
-quantité des paramètres à définir de manière empirique afin de conserver une
+Le but étant d’améliorer l’exploration et l’exploitation tout en limitant le
+nombre de paramètres à définir de manière empirique afin de conserver une
 méta-heuristique simple d’utilisation.
 \FloatBarrier
 % subsubsection extensions (end)
