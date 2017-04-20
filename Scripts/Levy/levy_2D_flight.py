@@ -178,10 +178,16 @@ def draw_pdf():
                   normed=True, histtype='stepfilled', alpha=0.8, label='Lévy stable et symétrique', color="#cb4b16")
     ax[1][1].set_xlim([-15, 15])
     # Add legend
-    ax[1][1].legend(loc='best', frameon=False)
-    ax[0][1].legend(loc='best', frameon=False)
-    ax[1][0].legend(loc='best', frameon=False)
-    ax[0][0].legend(loc='best', frameon=False)
+    ax[1][1].legend(loc='best', frameon=False, fontsize=30)
+    ax[0][1].legend(loc='best', frameon=False, fontsize=30)
+    ax[1][0].legend(loc='best', frameon=False, fontsize=30)
+    ax[0][0].legend(loc='best', frameon=False, fontsize=30)
+    # Size ticks
+    for axis in ax.flat:
+        for tick in axis.yaxis.get_major_ticks():
+            tick.label.set_fontsize(18)
+        for tick in axis.xaxis.get_major_ticks():
+            tick.label.set_fontsize(18)
     fig.subplots_adjust(hspace=0.15, wspace=0.15,
                         top=0.92, bottom=0.08,
                         left=0.07, right=0.96)
