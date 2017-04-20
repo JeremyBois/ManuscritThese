@@ -512,12 +512,24 @@ est retenue.
 Dans cette approche un échantillon représentatif de l’ensemble des données d’entrées est
 nécessaire afin de pouvoir construire un méta-modèle représentatif du problème. Une
 méthode de Monte-Carlo couplée à une suite à discrépance faible est alors utilisée~: la
-méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à une loi uniforme,
-une suite ayant une discrépance faible permet de maintenir un ensemble de point
-uniformément répartie, même lorsque le nombre de point générés est faible, tout en
-conservant un caractère pseudo-aléatoire. Dans ces travaux, la suite de Halton
-(Fig~\mtodo{Ajouter ref fig}) est utilisée comme générateur pseudo aléatoire.
-\ftodo{Ajouter comparaison entre uniform et Halton}
+méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à la méthode de
+Monte-Carlo, une suite ayant une discrépance faible permet de maintenir un ensemble de
+point uniformément répartie, même lorsque le nombre de point générés est faible, tout en
+conservant un caractère pseudo-aléatoire (Fig~\ref{fig:halton_vs_uniform}). L’ensemble des
+points des deux échantillons ont été générés à partir de la même graine permettant
+d’obtenir exactement les mêmes tirages à partir d’une distribution uniforme. Il peut être
+noté que l’échantillon par Pseudo-Monte-Carlo couvre mieux le domaine de définition. Dans
+ces travaux, la suite de Halton est utilisée comme générateur pseudo aléatoire.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Meta_modele/halton_vs_uniform.pdf}
+    \end{center}
+    \caption{Échantillon pseudo aléatoire suivant la méthode de Monte-Carlo et de
+             Quasi-Monte-Carlo (suite de Halton) pour deux paramètres suivant une
+             distribution uniforme.
+             \label{fig:halton_vs_uniform}}
+\end{figure}
 
 Finalement, afin de pouvoir vérifier que le modèle se comporte correctement sur l’ensemble
 du domaine de définition, \SI{90}{\%} de l’échantillon sera utilisé pour construire le
@@ -583,13 +595,13 @@ appliquées aux bâtiment est discutée.
 % ------------------------------------------------------------------------------
 \subsection{Vocabulaire et Définition} % (fold)
 \label{sub:vocabulaire_et_definition}
-Un problème d’optimisation multi-objectif (Définition\ref{def:optimisation_multi_objectif})
+Un problème d’optimisation multi-objectif (Définition~\ref{def:optimisation_multi_objectif})
 est défini par un espace de recherche et de solution multi-dimensionnel contrairement à
 une approche mono-objectif où seul l’espace de recherche est multi-dimensionnel. Afin de
 pouvoir classer et sélectionner les solutions entre elles, il est alors nécessaire de
 définir un nouvel opérateur de classement~: la relation de dominance. L’approche la plus
 répandue ne considère pas de caractère préférentiel et repose sur le principe de dominance
-au sens de Pareto (Définition\ref{def:dominance_de_pareto}). Parmi les méthodes
+au sens de Pareto (Définition~\ref{def:dominance_de_pareto}). Parmi les méthodes
 existantes, certaines comme l’approche lexicographique introduisent une préférence tout en
 conservant la nature multi- objectif du problème. Dans cette
 approche les objectifs sont classés selon un ordre d’importance et la comparaison est
@@ -638,13 +650,13 @@ l’ensemble le comprenant ne le domine (Fig~\ref{fig:dominance_pareto}).
              Les solutions de la zone grisée et de la zone couleur crème sont respectivement
              dites dominées et dominantes. La zone blanche représente les solutions
              non-dominées et les solutions de couleur verte forment le front de
-             Pareto (Définition\ref{def:front_de_pareto}).
+             Pareto (Définition~\ref{def:front_de_pareto}).
              \label{fig:dominance_pareto}}
 \end{figure}
 
 Dans ces travaux la relation de dominance au sens de Pareto a été retenue car
 elle n’introduit pas de préférence a priori. La surface de compromis sera ainsi
-décrite comme équivalente au front de Pareto (Définition\ref{def:front_de_pareto}).
+décrite comme équivalente au front de Pareto (Définition~\ref{def:front_de_pareto}).
 
 
 \begin{Def}[Front de Pareto~:~PF]\label{def:front_de_pareto}
@@ -860,11 +872,11 @@ l’approximer de manière suffisante.
 \label{ssub:description}
 Les méta-heuristiques sont des approches générales utilisant des éléments d’apprentissage
 couplées à une recherche stochastique permettant d’explorer un domaine de recherche en
-combinant exploration (Définition\ref{def:exploration}) et exploitation
-(Définition\ref{def:exploitation}). C’est un processus itératif qui tient compte de la
+combinant exploration (Définition~\ref{def:exploration}) et exploitation
+(Définition~\ref{def:exploitation}). C’est un processus itératif qui tient compte de la
 mémoire et de l’expérience acquise à travers son évolution pour converger
-(Définition\ref{def:convergence}) vers l’ensemble formé par les solutions optimales
-(Définition\ref{def:optimum}). Il existe de nombreux algorithmes dans la littérature et
+(Définition~\ref{def:convergence}) vers l’ensemble formé par les solutions optimales
+(Définition~\ref{def:optimum}). Il existe de nombreux algorithmes dans la littérature et
 ils peuvent tous être classés dans la branche de l’Intelligence Artificielle (IA). La
 notion a été définie par
 \href{http://www-formal.stanford.edu/jmc/whatisai/whatisai.html}{John McCarthy
@@ -895,7 +907,7 @@ de l’amélioration des solutions existantes. Les méta-heuristiques étant des
 méthodes approchées, cette stagnation ne signifie pas que le front de Pareto réel
 a été atteint, seulement que les solutions ne progressent plus. Il est ainsi
 nécessaire de faire la distinction entre les optimums dits locaux et ceux dits
-globaux (Définition\ref{def:optimum}).
+globaux (Définition~\ref{def:optimum}).
 \end{Def}
 
 \begin{Def}[Optimums locaux et globaux]\label{def:optimum}
@@ -1375,15 +1387,15 @@ méta-heuristique simple d’utilisation.
 \label{sub:vol_de_levy}
 Il a été observé chez diverses espèces comme les atèles (singes), les albatros,
 ou encore la famille des Tephritidae (petites mouches) un comportement respectant
-une marche aléatoire (Définition\ref{def:marche_aleatoire}) connu sous le nom de
-\textit{Vol de Lévy} (Définition\ref{def:vol_levy}).
-Les marches aléatoires sont souvent utilisées dans les méta-heuristiques afin de
-modifier le vecteur décision des solutions déjà existante à l’aide
-d’un indicateur d’apprentissage. Par exemple, une loi normale permet
-de renforcer une solution localement alors qu’une loi uniforme permet d’explorer
-de manière analogue le domaine. Le lecteur pourra noter la forme caractéristique
-de la distribution de \textit{Lévy} retenue qui contrairement aux autres distributions n’a
-d’expression analytique que pour certaines valeurs de paramètres (Fig.~\ref{fig:distribution_pdf}).
+une marche aléatoire (Définition~\ref{def:marche_aleatoire}) connu sous le nom de
+\textit{Vol de Lévy} (Définition~\ref{def:vol_levy}).
+Les marches aléatoires sont souvent utilisées dans les méta-heuristiques afin de modifier
+le vecteur décision des solutions déjà existante à l’aide d’un indicateur d’apprentissage.
+Par exemple, une loi normale permet de renforcer une solution localement alors qu’une loi
+uniforme permet d’explorer de manière analogue le domaine. Le lecteur pourra noter la
+forme caractéristique de la distribution de \textit{Lévy} retenue dont l’expression
+analytique est définie que pour certaines valeurs de paramètres contrairement aux autres
+distributions (Fig.~\ref{fig:distribution_pdf}).
 
 \textcite{Sharma2012213}, utilisent le vol de Lévy afin de réaliser une recherche locale et
 \textcite{Hakli2013254}, l’utilisent pour améliorer l’exploitation durant la phase des
@@ -1406,7 +1418,7 @@ la somme des pas aléatoires consécutifs $X_{w}$ alors $S_{W}$ est une marche a
 
 \begin{figure}
     \begin{center}
-        \includegraphics{LevyFlight/distribution_pdf.png}
+        \includegraphics{LevyFlight/distribution_pdf.pdf}
     \end{center}
     \caption{Densité de probabilité des lois de Cauchy, uniforme, normale, Lévy stable et symétrique.
              L’expression analytique est représentée par la courbe noire.
@@ -1483,7 +1495,7 @@ L’approche la plus répandue consiste à construire une population initiale st
 à l’aide d’une distribution uniforme suivant \eqref{alg:init_phase}.
 Afin d’améliorer la diversité / qualité de la population initiale sans connaissance
 a priori, \textcite{Tizhoosh2005695} a développé l’apprentissage par vecteur opposé
-(\textit{OBL} pour Opposite Based Learning) (Définition\ref{def:oblm}).
+(\textit{OBL} pour Opposite Based Learning) (Définition~\ref{def:oblm}).
 
 \begin{Def}[OBL~:~Apprentissage par vecteur opposé]\label{def:oblm}
 Admettons un position de dimension $D$, $\vec{x}(x_{1}, x_{2}, ..., x_{D})$ avec
@@ -1536,7 +1548,7 @@ est retenue.
 \textcite{Laumanns2002263} proposent une autre approche, séparer l’espace des solutions en une
 grille dont les dimensions sont définies par le vecteur $\vec{\epsilon}$. Dans cette
 approche l’espace des objectifs est divisé en hypercubes, et chaque hypercube est comparé
-selon l’$\epsilon$-dominance (Définition\ref{def:eps_dominance}). Bien que d’autres
+selon l’$\epsilon$-dominance (Définition~\ref{def:eps_dominance}). Bien que d’autres
 approches utilisent une grille similaire (PAES) \parencite{Knowles2000149},
 l’$\epsilon$-dominance n’accepte qu’une unique solution par hypercube assurant une plus
 grande diversité de la population. La taille de l’archive est donc fonction des $\epsilon$
@@ -1720,7 +1732,7 @@ multi-objectif retenue est décrit.
 L’algorithme peut être définie par Fig.~\ref{fig:abc_complet} et le détail de chaque
 phase est décrit à travers ci-après.
 Les sources sont initialisées (Algorithm~\ref{alg:init_phase}) suivant la méthode
-\textit{OBL} (Définition\ref{def:oblm}) afin d’obtenir une meilleure représentation du
+\textit{OBL} (Définition~\ref{def:oblm}) afin d’obtenir une meilleure représentation du
 domaine de décision en amont de l’optimisation.
 Durant la phase des butineuses (Algorithm~\ref{alg:employed_phase}), chaque source
 subit une variation en tenant compte de deux sources, une de l’essaim et une de l’archive.
@@ -1769,7 +1781,7 @@ car le stockage est réalisé dans une structure indépendante. Il est aussi imp
 de noter que les deux uniques paramètres on un comportement prévisible facilitant
 leur paramétrage. La taille de la population en augmentant améliore l’exploration
 réduisant les risques de stagner vers des optimums locaux mais réduit la vitesse
-de convergence (Définition\ref{def:convergence}).
+de convergence (Définition~\ref{def:convergence}).
 Le nombre d’essai maximum lui est directement lié au nombre de variable de décision
 et à la taille de la population. Une valeur faible se traduit par un abandon rapide
 des solutions alors qu’une valeur plus grande augmente le nombre de variations évaluées
@@ -1791,7 +1803,7 @@ performance de l’algorithme simplifiant sa paramétrisation.
       $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
       \Indm
       \BlankLine
-      \encircle{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est générée suivant Définition\ref{def:oblm}}\;
+      \encircle{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est générée suivant Définition~\ref{def:oblm}}\;
       \Indp
       $ \check{x_{ij}} = x_{j}^{min} + x_{j}^{max} - x_{ij}$\;
       \Indm
@@ -1811,7 +1823,7 @@ performance de l’algorithme simplifiant sa paramétrisation.
     }
   }
   Mise à jour des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Initialisation des sources par OBLM (Définition\ref{def:oblm}).}
+  \caption{Initialisation des sources par OBLM (Définition~\ref{def:oblm}).}
 \end{algorithm}
 
 % Phase des éclaireuses
@@ -1932,7 +1944,7 @@ performance de l’algorithme simplifiant sa paramétrisation.
           \end{cases}
       \end{algomathdisplay}
       \ALevy est nombre aléatoire dans une distribution de Lévy
-      permettant de réaliser un vol de Lévy (Définition\ref{def:vol_levy})\;
+      permettant de réaliser un vol de Lévy (Définition~\ref{def:vol_levy})\;
       }
       }
     \Else
