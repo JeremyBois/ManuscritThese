@@ -1,7 +1,6 @@
 %!TEX root = ../main.tex
 % Chapitres/Chap3-UnOutilAideDecision
 
-\itodo{Plus décrire les figures}
 
 % ..............................................................................
 % ..............................................................................
@@ -198,8 +197,6 @@ choix, la méthode \textit{ELECTRE} I ou IS pourra être sélectionnée. Dans un
 problématique de rangement, les méthodes \textit{ELECTRE} II, III, ou IV pourront être
 utilisées.
 
-\iunsure{Ajouter exemple d’application}
-
 L’approche par surclassement ne souffre ainsi pas des problèmes de compensation
 mais ne garantie pas l’obtention d’une solution unique. L’ensemble de solution
 finales est cependant fortement réduit.
@@ -381,7 +378,7 @@ la moyenne (à cause des compensations dues au signes).
     \mu^{*} = \sum_{r = 1}^{R} \frac{\lvert EE_{r} \rvert}{R}
 \end{equation}
 
-La méthode permet ainsi de classer les facteurs en trois catégories~:
+\noindent La méthode permet ainsi de classer les facteurs en trois catégories~:
 \begin{itemize}
   \item Non-influent ou effets négligeables
   \item Influent avec des effets sans interactions et linéaires
@@ -418,7 +415,6 @@ pour lequel $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires
 
 Le principe est illustré par \textcite{Iooss2011} à travers deux résultats obtenues
 pour deux objectifs différents mais pour les mêmes critères (Fig~\ref{fig:meth_graph_morris}).
-
 Les résultats pour l’objectif en partie gauche permettent alors de dire que
 les facteurs $Z_{v}$, $Q$, $C_{b}$ et $H_{d}$ sont influents
 avec des effets linéaires car pour tout ces facteurs $j$~: $\sigma_{j} \ll \mu^{*}_{j}$.
@@ -462,7 +458,7 @@ nombre de combinaisons existantes en amont a été décrite. Cette section prés
 approche ne se substituant pas à la première mais venant la compléter : les modèles de
 substitution. Ces modèles permettent de conserver la précision d’un modèle complexe tout
 en réduisant significativement le temps de calcul nécessaire par évaluation. Le principe
-est d’approximer les sorties d’intérêts (objectifs) par une fonction analytique appelé
+est d’approximer les sorties d’intérêts (objectifs) par une fonction analytique appelée
 méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer les différentes
 combinaisons existantes à la place du modèle complexe et coûteux.
 
@@ -837,7 +833,6 @@ complète des solutions (voir \ref{sub:les_methodes_exactes}).
 % ------------------------------------------------------------------------------
 \subsection{Les méta-heuristiques} % (fold)
 \label{sub:les_méta_heuristiques}
-\itodo{Faire lien avec chapitre 2 pour temps long et cardinalité}
 Différentes approches ont été décrites, les méthodes exactes et les méthodes approchées.
 La non connaissance de la solution optimale écarte les approches utilisant une recherche
 par chemin optimal. La forte cardinalité du problème combinatoire écarte les approches par
@@ -1080,10 +1075,11 @@ la formulation est intuitive (\autoref{tab:meta_compare}). Le premier paramètre
 $IT$, est commun à l’ensemble des approches et représente la condition d’arrêt.
 Les deux autres impactent de manière prévisible les proportions d’exploration et
 d’exploitation. La taille de la population, ($NP$), permet d’augmenter
-l’exploration et introduit le risque de ralentir la convergence. Le nombre
+l’exploration mais peut affecter négativement la convergence. Le nombre
 d’essai maximum $Max_{Echec}$, permet de contrôler l’exploitation. Un nombre
-trop faible entraîne l’abandon prématuré d’une solution réduisant les chances de
-l’améliorer.
+trop faible risque d’entraîner l’abandon prématuré d’une solution réduisant les chances de
+l’améliorer. À l’inverse, un nombre trop important risque de ralentir la convergence
+ou limiter la diversité.
 
 \begin{table}
 \centering
@@ -1157,17 +1153,14 @@ que le choix de chaque abeille est guidé par l’ensemble des informations acqu
 par l’essaim afin de constamment ajuster les sources utilisées pour la récolte.
 Puis, \textcite{Camazine1991547} élaborent un modèle mathématique permettant de simuler
 le comportement social caractéristique des abeilles.
-L’idée de s’inspirer des abeilles mellifères pour l’optimisation n’est cependant
-introduit qu’en 2005. Cette approche fait donc partie des plus récentes
-\parencite{Karaboga2005} même si de nombreuses approches existent
-(Bee Algorithm (\textit{BA}), Bee Colony Optimization (\textit{BCO}), ...).
-La formulation de l’\textit{ABC} reste la plus répandue et sera retenue dans ces travaux
-(Fig~\ref{fig:abc_repartition}.
+L’idée de s’inspirer des abeilles mellifères pour l’optimisation n’est cependant introduit
+qu’en 2005 \parencite{Karaboga2005}. Même si de nombreuses formulations existent (Bee
+Algorithm (\textit{BA}), Bee Colony Optimization (\textit{BCO}), ...), la formulation de
+l’\textit{ABC} reste la plus répandue et sera retenue dans ces travaux (Fig~\ref{fig:abc_repartition}.
 
 \begin{figure}
     \begin{center}
-        \itodo{Refaire au propre et mettre à jour.}
-        \includegraphics{Ressources/Images/abc/abc_repartition.png}
+        \includegraphics{abc/abc_repartition.pdf}
     \end{center}
     \caption{Pourcentage de publication en fonction de l’approche retenue pour différent
              algorithme de colonie d’abeilles d’après \cite{Karaboga201221}.
@@ -1181,7 +1174,7 @@ La formulation de l’\textit{ABC} reste la plus répandue et sera retenue dans 
 \label{sub:principe_de_fonctionnement}
 L’algorithme s’appuie sur les mécanismes d’organisation sociale des insectes
 \parencite{Bonabeau1999} défini à travers quatre propriétés illustrés à travers le
-comportement des abeilles (Fig~\ref{fig:bee_dance}).
+comportement des abeilles (Fig~\ref{fig:bee_dance}) et détaillées ci-dessous.
 
 \paragraph{Le retour positif (Positive feedback)~:} % (fold)
 \label{par:positive_feedback}
@@ -1319,8 +1312,7 @@ aux différents problèmes d’optimisation (Fig~\ref{fig:abc_publication}).
 
 \begin{figure}
     \begin{center}
-        \itodo{Refaire jusqu’à aujourd’hui et en français ...}
-        \includegraphics{Ressources/Images/abc/abc_publication.png}
+        \includegraphics{Ressources/Images/abc/abc_publication.pdf}
     \end{center}
     \caption{Évolution du nombre de publication en fonction des années passées d’après
              \cite{Karaboga201221}.
@@ -1390,8 +1382,8 @@ modifier le vecteur décision des solutions déjà existante à l’aide
 d’un indicateur d’apprentissage. Par exemple, une loi normale permet
 de renforcer une solution localement alors qu’une loi uniforme permet d’explorer
 de manière analogue le domaine. Le lecteur pourra noter la forme caractéristique
-de la distribution de \textit{Lévy} retenue par rapport aux approches courantes à travers
-la Fig.~\ref{fig:distribution_pdf}.
+de la distribution de \textit{Lévy} retenue qui contrairement aux autres distributions n’a
+d’expression analytique que pour certaines valeurs de paramètres (Fig.~\ref{fig:distribution_pdf}).
 
 \textcite{Sharma2012213}, utilisent le vol de Lévy afin de réaliser une recherche locale et
 \textcite{Hakli2013254}, l’utilisent pour améliorer l’exploitation durant la phase des
@@ -1571,7 +1563,7 @@ Cette relation sera notée sera notée~: $\vec{x}_{a} \prec_{\epsilon} \vec{x}_{
 Une solution peut ainsi être ou dominée, dominante, identique, ou non-dominée au sens de
 l’$\epsilon$-dominance, les solutions $\epsilon$-non-dominées formant alors le front
 d’$\epsilon$-Pareto (Fig.~\ref{fig:epsilon_dominance}). Lors de l’ajout d’une solution à
-l’archive l’$\epsilon$-dominance est alors utilisée dans un premier temps afin de les
+l’archive l’$\epsilon$-dominance est dans un premier temps utilisée afin de les
 départager. Dans le cas où la nouvelle solution serait $\epsilon$-identique elle est
 uniquement comparée avec celle déjà archivée dans le même hypercube. La distance
 euclidienne est alors utilisée pour les départager. La solution retenue est celle la plus
@@ -1725,7 +1717,8 @@ les avantages et inconvénients des approches retenues ont aussi été explicit�
 Dans cette section le fonctionnement global de la méthode approchée d’optimisation
 multi-objectif retenue est décrit.
 
-L’algorithme peut être définie par Fig.~\ref{fig:abc_complet}.
+L’algorithme peut être définie par Fig.~\ref{fig:abc_complet} et le détail de chaque
+phase est décrit à travers ci-après.
 Les sources sont initialisées (Algorithm~\ref{alg:init_phase}) suivant la méthode
 \textit{OBL} (Définition\ref{def:oblm}) afin d’obtenir une meilleure représentation du
 domaine de décision en amont de l’optimisation.
