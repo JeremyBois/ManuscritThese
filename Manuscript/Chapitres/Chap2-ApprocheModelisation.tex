@@ -1,6 +1,7 @@
 %!TEX root = ../main.tex
 % Chapitres\Chap2-ApprocheModelisation.tex
 
+\itodo{Corriger les nombre décimaux . --> ,}
 
 \itodo{Ajouter citations, voir article BS 2017}
 De nombreuses études ont déjà cherché à évaluer la performance d’un système solaire
@@ -50,29 +51,29 @@ système est complexe à mettre en place. Pour ces raisons une approche par mod�
 été retenue. Elle permet de contrôler l’ensemble des composants du système comme son
 algorithme de contrôle, les conditions limites (météo) ou encore les composants du
 système. Grâce à cette approche il est alors possible d’évaluer le système modélisé de
-manière totalement libre. La modélisation est donc l’outil de choix pour réaliser une
+manière totalement libre. La modélisation est donc un outil adapté pour une
 étude de faisabilité, un dimensionnement, ou encore optimiser un système. Il existe de
 nombreux langages ou logiciels permettant de réaliser des simulations plus ou moins
 complexes. Il est ainsi nécessaire dans un premier temps de définir le niveau de précision
-que l’on souhaite pour les différentes parties du modèle. Notre cas d’étude se place à
+souhaité pour les différentes parties du modèle. Notre cas d’étude se place à
 l’échelle du bâtiment mais l’on souhaite aussi conserver un contrôle important sur la
-gestion des équipements. Il est aussi important de déterminer le niveau de contrôle que
-l’on souhaite avoir sur chaque composant du modèle. On distingue principalement 2 familles
-d’outils~: les modèles opaques (boîtes noires) qui masquent à l’utilisateur le
-fonctionnement internes, et les modèles ouverts (boîtes blanches) dont la composition de
-chaque bloc est connue et modifiable. Notre étude portant sur l’évaluation et
-l’amélioration d’un système solaire combiné, il est nécessaire de pouvoir contrôler chaque
-partie du modèle. Cette approche permet en effet de pouvoir évaluer l’impact d’une
-modification à chaque niveau de détail du modèle permettant ainsi d’analyser et de
-comprendre la relation entre la variation d’un paramètre au niveau du composant et son
-impact global sur le système. La modélisation d’un système détaillé demande de nombreuses
-itérations, dans un premier temps pour modéliser le système, et dans un second temps pour
-évaluer l’impact d’un ensemble de variation. Le processus de développement du modèle étant
-itératif, l’outil sélectionné doit permette de modifier, ajouter, et supprimer rapidement
-et simplement des composants. Finalement le problème à modéliser est un problème multi-
-physique et l’outil doit être adapté à la modélisation d’un système hydraulique (solaire),
-d’un système aéraulique (ventilation), d’un algorithme de contrôle (régulation) et d’un
-bilan thermique (bâtiment).
+gestion des équipements.
+
+Il est aussi important de déterminer le niveau de contrôle que l’on souhaite avoir sur
+chaque composant du modèle. On distingue principalement 2 familles d’outils~: les modèles
+opaques (boîtes noires) qui masquent à l’utilisateur le fonctionnement internes, et les
+modèles ouverts (boîtes blanches) dont la composition de chaque bloc est connue et est
+modifiable. Notre étude portant sur l’évaluation et l’amélioration d’un système solaire
+combiné, il est nécessaire de pouvoir contrôler chaque partie du modèle afin de pouvoir
+analyser et comprendre la relation entre la variation d’un paramètre au niveau du
+composant et son impact global sur le système. La modélisation d’un système détaillé
+demande de nombreuses itérations, dans un premier temps pour modéliser le système, et dans
+un second temps pour évaluer l’impact d’un ensemble de variation. Le processus de
+développement du modèle étant itératif, l’outil sélectionné doit permette de modifier,
+ajouter, et supprimer rapidement et simplement des composants. Finalement le problème à
+modéliser est un problème multi- physique et l’outil doit être adapté à la modélisation
+d’un système hydraulique (solaire), d’un système aéraulique (ventilation), d’un algorithme
+de contrôle (régulation) et d’un bilan thermique (bâtiment).
 % subsection quelles_contraintes (end)
 
 
@@ -89,12 +90,12 @@ très intuitive et permet d’encapsuler un ensemble de données et d’offrir d
 pour accéder à ces données. Un modèle est ainsi une combinaison d’un ensemble de sous-
 modèles (composition) ou certains sous-modèles peuvent être améliorés afin de leur ajouter
 une spécialisation (héritage). Enfin le langage est acausal
-(Définition~\ref{def:acausalite}), permettant au développeur de de rapidement créer des
+(Définition~\ref{def:acausal}), permettant au développeur de de rapidement créer des
 prototypes de systèmes complexes sans devoir à chaque modification réécrire les systèmes
 d’équations.
 
 
-\begin{Def}[Acausalité]\label{def:acausalite}
+\begin{Def}[Acausale]\label{def:acausal}
 Un modèle est dit acausal lorsque le sens de la définition d’une équation n’est pas
 imposée (Fig~\ref{fig:acausal_vs_causal}). Le solveur va déterminer par lui-même les
 paramètres dont il connaît la valeur et réécrire les systèmes d’équations afin d’exprimer
@@ -167,9 +168,15 @@ La maison (Fig~\ref{fig:plan_maison}) a une surface habitable de \SI{98.4}{\mete
 et est de plain-pied.
 Elle comporte 3 chambres, une cuisine/salon, et un local technique où se
 trouvent les équipements du système solaire.
+
+\itodo{Vérifier ce que je dis}
+Le modèle utilisé pour sa modélisation a été validé à travers une suite de test (\mtodo{BestTestCase}).
+Ces tests permettent de vérifier que l’évolution des températures au cours de l’année est cohérent.
 En plus de l’espace chauffée, les combles et le vide sanitaire ont été modélisés
 comme des conditions limites (Fig~\ref{fig:modelisation_maison}). Le modèle utilisé est une version
 simplifié du modèle de zone disponible dans la bibliothèque \textit{Buildings}.
+
+
 La température dans l’ensemble de la zone chauffée est ainsi considérée uniforme.
 \begin{figure}
     \begin{center}
@@ -211,31 +218,13 @@ Dans le cadre de ces travaux un couplage fort entre bâtiment, systèmes, et alg
 de contrôle est envisagé. Dans cette optique, il est nécessaire de déterminer quel
 est le niveau de détail nécessaire pour chaque élément. Dans le cas du bâtiment, une
 approche mono-zone a été retenue après comparaison avec les besoins calculés
-avec un modèle zonal.
+avec un modèle zonal dont le détail des résultats sont présentés à la fin de cette section.
 
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Comparaison avec un modèle multi-zone} % (fold)
-\label{ssub:comparaison_avec_un_modele_multi_zone}
-~
-\iunsure{À mettre après présentation des scénarios}
-Une comparaison a été réalisée
-entre un modèle multi-zone développé sous \textit{Energy Plus} par le
-\textit{CEA} et un modèle mono-zone développé sous \textit{Dymola} en utilisant
-la bibliothèque \textit{Buildings}. Le fichier météo utilisé est celui de
-Bordeaux et est de type IWEC (\mtodo{Ajouter lien}{IWEC - WMO 075100}). Une
-consigne commune de chauffage de \SI{19}{\celsius} a été utilisée et les scénarios
-harmonisés. L’étude ne portant pas sur l’évaluation du confort estival des
-occupants, seule les besoins ont été comparés. Les résultats montrent que les
-besoins de l’approche mono-zone et de l’approche multi-zone sont similaires
-(\mtodo{Ajouter ref table}).
-\itodo{Ajouter résultats entre les deux. Ajouter comparatif des puissances}.
-% subsubsection comparaison_avec_un_modele_multi_zone (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Description des fenêtres} % (fold)
-\label{ssub:description_des_fenetres}
+\subsubsection{Déperditions à travers les fenêtres} % (fold)
+\label{ssub:déperditions_à_travers_les_fenêtres}
 Une attention particulière a été apportée à la description des vitrages afin
 d’être cohérent entre le modèle multi-zone et mono-zone et de satisfaire les normes
 de calculs implicites de la bibliothèque \textit{Buildings}.
@@ -265,7 +254,7 @@ Finalement, la bibliothèque \textit{Buildings} ne permettant pas l’ajout de p
 thermiques, le choix a été fait de les intégrer dans le coefficient thermique
 caractéristique du cadre, $U_{f}$. Une description détaillée et exhaustive de la
 composition des fenêtres est disponible en annexe (\mtodo{ref tableau annexe}).
-% subsubsection description_des_fenetres (end)
+% subsubsection déperditions_à_travers_les_fenêtres (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -300,12 +289,31 @@ Certains choix ont été fait du aux limitations de modélisation~:
           dans la fiche technique du fabricant (\munsure{Ajouter ref velux}).
 \end{itemize}
 % subsubsection limitations_du_modele (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Comparaison avec un modèle multi-zone} % (fold)
+\label{ssub:comparaison_avec_un_modele_multi_zone}
+~
+\iunsure{À mettre après présentation des scénarios}
+Une comparaison a été réalisée
+entre un modèle multi-zone développé sous \textit{Energy Plus} par le
+\textit{CEA} et un modèle mono-zone développé sous \textit{Dymola} en utilisant
+la bibliothèque \textit{Buildings}. Le fichier météo utilisé est celui de
+Bordeaux et est de type IWEC (\mtodo{Ajouter lien}{IWEC - WMO 075100}). Une
+consigne commune de chauffage de \SI{19}{\celsius} a été utilisée et les scénarios
+harmonisés. L’étude ne portant pas sur l’évaluation du confort estival des
+occupants, seule les besoins ont été comparés. Les résultats montrent que les
+besoins de l’approche mono-zone et de l’approche multi-zone sont similaires
+(\mtodo{Ajouter ref table}).
+\itodo{Ajouter résultats entre les deux. Ajouter comparatif des puissances}.
+% subsubsection comparaison_avec_un_modele_multi_zone (end)
 % subsection modelisation_monozone (end)
 
 
 % % ------------------------------------------------------------------------------
-\subsection{Description des scénarios} % (fold)
-\label{sub:description_des_scenarios}
+\subsection{Scénarios de référence} % (fold)
+\label{sub:scénarios_de_référence}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Occupation} % (fold)
 \label{ssub:profil_d_occupation}
@@ -370,31 +378,31 @@ considérée comme nulle.
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Consigne de chauffage de référence} % (fold)
-\label{ssub:consigne_de_chauffage_de_reference}
+\subsubsection{Consigne de chauffage} % (fold)
+\label{ssub:consigne_de_chauffage}
 Le profil de température de référence (\mtodo{ref profil chauffage}) est issue de la réglementation thermique (RT
 2012) qui prévoit le maintien d’une température de \SI{19}{\celsius} en occupation, un
 réduit de \SI{16}{\celsius} en inoccupation, et autorise un abaissement de la consigne durant la
 période nocturne~: \SI{18}{\celsius} est retenue. Le profil de la consigne de chauffage
 est donc fonction du scénario d’occupation retenu (\mtodo{ref occupation}).
-% subsubsection consigne_de_chauffage_de_reference (end)
+% subsubsection consigne_de_chauffage (end)
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Ventilation de référence} % (fold)
-\label{ssub:ventilation_de_référence}
+\subsubsection{Ventilation} % (fold)
+\label{ssub:ventilation_ref}
 Le profil de ventilation de référence est considéré à \SI{90}{\meter\cubed\per\hour}
 comme le prévoit l’arrêté du \href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{24 Mars
 1982 et du 28 Octobre 1983} pour une maison comportant 4 pièces principales.
-% subsubsection ventilation_de_référence (end)
-% subsection description_des_scenarios (end)
+% subsubsection ventilation (end)
+% subsection scénarios_de_référence (end)
 % section description_du_cas_d_etude_le_batiment (end)
 
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Description du système solaire} % (fold)
-\label{sec:description_du_système_solaire}
+\section{Description du cas d’étude : le système solaire} % (fold)
+\label{sec:description_du_cas_d_etude_le_systeme_solaire}
 % ------------------------------------------------------------------------------
 \iunsure{Parler du système solaire par vecteur eau}
 Dans un premier temps un modèle existant basé sur le vecteur eau a été modélisé.
@@ -426,9 +434,13 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Système hydraulique} % (fold)
-\label{sub:systeme_hydraulique}
-Le système hydraulique est composé de 2 ballons (Fig~\ref{fig:air_complet_mono}). Le
+\subsection{Partie hydraulique} % (fold)
+\label{sub:partie_hydraulique}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Description} % (fold)
+\label{ssub:description}
+Le système hydraulique (Fig~\ref{fig:air_complet_mono}) est composé de 2 ballons dont les
+caractéristiques sont disponibles dans le \autoref{tab:tanks_specs}. Le
 premier, le ballon sanitaire, permet de lisser la demande en énergie fou. Le système est
 dit semi-accumulée car la réserve d’eau chaude est inférieure à la quantité totale puisée
 durant la journée. Le ballon sanitaire est donc connecté en continue avec le réseau d’eau
@@ -446,15 +458,95 @@ déperditions sont ainsi considérées comme des charges internes au bâtiment. 
 garantir le maintien du confort thermique des occupants, un appoint électrique en partie
 haute du ballon sanitaire est aussi ajouté. Ce dernier n’est activé que lorsque l’énergie
 solaire disponible n’est pas suffisante. L’énergie du soleil est quand à elle transmise à
-l’eau par l’intermédiaire de panneaux solaires puis vers le système aéraulique à l’aide
-d’un échangeur de chaleur.
+l’eau par l’intermédiaire de panneaux solaires (\autoref{tab:idmk_specs}) puis vers le
+système aéraulique à l’aide d’un échangeur de chaleur.
+
+\begin{table}
+\centering
+\begin{tabular}{l*{2}{c}r}
+    \toprule
+    Paramètre & Ballon tampon & Ballon ECS & Unité\\
+    \midrule
+    Volume                                       & 300   & 300    & \si{l}              \\
+    Hauteur                                      & 1.05  & 1.25   & \si{m}              \\
+    Épaisseur isolation                          & 100   & 55     & \si{mm}             \\
+    \textgreek{l} isolant                        & 0.04  & 0.04   & \si{W/m^{2}.K}      \\
+    Échangeur haut                               & 0.85  & 0.64   & \si{m}              \\
+    Échangeur bas                                & 0.15  & 0.13   & \si{m}              \\
+    Diamètre échangeur (extérieur)               & 34.6  & 33.7   & \si{mm}             \\
+    Chaleur spécifique de échangeur (acier noir) & 490   & 490    & \si{J/kg.K}         \\
+    Puissance nominale                           & 103   & 53     & \si{KW}             \\
+    Température nominale (ballon)                & 10    & 45     & \si{\degreeCelsius} \\
+    Température nominale (échangeur)             & 45    & 10     & \si{\degreeCelsius} \\
+    Débit nominal                                & 0.36  & 0.366  & \si{Kg/s}           \\
+    \bottomrule
+\end{tabular}
+\caption{Caractéristiques techniques des ballons de référence (tampon et sanitaire).
+         \label{tab:tanks_specs}}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{lcr}
+    \toprule
+    Paramètre                                & Valeur         & Unité                 \\
+    \midrule
+    Surface nette                            & 2,32           & \si{m^{2}}            \\
+    Poids à vide                             & 54             & \si{Kg}               \\
+    Contenance                               & 1,35           & \si{l}                \\
+    $R_{optique}$                            & 78             & \si{\%}               \\
+    Décroissance de performance              & -5,103         & -                     \\
+    Coefficient $a_{1}$ (pertes linéiques)   & 3,796          & \si{W/(m^{2}.K)}      \\
+    Coefficient $a_{2}$ (pertes surfaciques) & 0,013          & \si{W/(m^{2}.K^{2})}  \\
+    Modulation diffus ($IMDiff$)             & 100            & \si{\%}               \\
+    \bottomrule
+\end{tabular}
+\caption{Caractéristique du collecteur de référence (modèle IDMK 25 de chez Sonnenkraft).
+         \label{tab:idmk_specs}}
+\end{table}
 
 \ftodo{Ajouter lien en schéma et modélisation Modelica. Discuter la simplicité visuelle}
+% subsubsection description (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Vérification du modèle de capteur solaire} % (fold)
+\label{ssub:verification_du_modele_de_capteur_solaire}
+Dans l’optique de l’évaluation de la performance  du système solaire couplé à un bâtiment, une
+attention particulière doit être apporté au modèle de capteur thermiques. Il est
+nécessaire d’utiliser un modèle étant à la fois représentatif du comportement réel
+et il doit permettre l’implémentation de différents capteurs en utilisant les informations
+disponibles sur les fiches techniques. Ce dernier point exclue une modélisation détaillée
+des transferts thermiques. L’approche retenue utilise le modèle disponible dans la
+bibliothèque \textit{Buildings} basant son système d’équations sur les relations
+empiriques décrites dans le volet 2 de la norme EN12975 (\mtodo{Ajouter Ref}{EN12975-2}).
+Dans cette approche, deux coefficient
+permettent de caractériser les pertes thermiques du capteurs : les coefficients de pertes linéiques
+et quadratiques notés respectivement $a_{1}$ et $a_{2}$. Deux autre coefficients permettent de
+caractériser la part solaire absorbée :  le rendement solaire et le coefficient de modulation
+de la part solaire issue du diffus notés respectivement $R_{optique}$ et $IMDiff$.
+
+Afin de vérifier la pertinence du modèle des données expérimentales ont été utilisées
+permettant de vérifier les caractéristiques techniques du capteur et la performance du
+modèle. Pour ce faire la température de l’eau en entrée des collecteurs et les
+irradiations directe et indirecte ont été utilisées comme conditions limites pour le
+modèle. La température de sortie entre les conditions réelles et le modèle a ainsi
+pu être comparée et les résultats montrent que sur les deux mois couverts par les données
+expérimentales le modèle reflète correctement le comportement réel (\mtodo{Ajouter ref fig}).
+
+Enfin le modèle utilisé pour convertir l’irradiation disponible à l’horizontal (diffus)
+et à la normale (direct) sur une surface inclinée (capteur) a aussi été comparé
+avec les résultats d’une modèle (\mtodo{Ajouter type} implémenté dans TrnSys. Les deux
+modèles estime de manière similaire l’irradiation sur une surface inclinée.
+
+\ftodo{Ajouter résultats de comparaison expérimentation}
+\ftodo{Ajouter résultats de comparaison avec Trnsys}
+% subsubsection verification_du_modele_de_capteur_solaire (end)
+% subsection partie_hydraulique (end)
 
 
 % ------------------------------------------------------------------------------
-\subsection{Système aéraulique} % (fold)
-\label{sub:systeme_aeraulique}
+\subsection{Partie aéraulique} % (fold)
+\label{sub:partie_aeraulique}
 ~
 \itodo{Partie aéraulique ...}
 La partie aéraulique du système est responsable du renouvellement d’air et du chauffage
@@ -465,16 +557,14 @@ dans le respect de la réglementation en vigueur (\ref{ssub:ventilation}).
 Le système de ventilation peut ainsi être apparenté à une ventilation mécanique par insufflation
 (VMI).
 
-% \begin{figure}
-%     \begin{center}
-%         \includegraphics{Ressources/Images/Modelisation/air_aeraulique_mono.pdf}
-%     \end{center}
-%     \caption{Description schématique de la partie aéraulique du système solaire.
-%              \label{fig:schema_aeraulique}}
-% \end{figure}
-% subsection systeme_aeraulique (end)
-
-
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Modelisation/air_aeraulique_mono.pdf}
+    \end{center}
+    \caption{Description schématique de la partie aéraulique du système solaire.
+             \label{fig:schema_aeraulique}}
+\end{figure}
+% subsection partie_aeraulique (end)
 
 
 % ------------------------------------------------------------------------------
@@ -716,7 +806,7 @@ l’utilisation potentielle de l’appoint électrique.
 % paragraph couplage_aeraulique (end)
 % subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
-% section description_du_système_solaire (end)
+% section description_du_cas_d_etude_le_systeme_solaire (end)
 
 
 
@@ -743,8 +833,8 @@ seront présentées. Ensuite les résultats seront ensuite détaillés et les li
 de cette approche discutées.
 
 
-\subsection{Prise en compte des climats} % (fold)
-\label{sub:prise_en_compte_des_climats}
+\subsection{Climats étudiés} % (fold)
+\label{sub:climats_etudies}
 ~
 \mtodo{Choix plus orienté par IGC que pour couverture ... virer Toulouse ?}
 Afin de couvrir les différentes zones climatiques de la France, l’étude a été réalisée
@@ -776,14 +866,12 @@ Dans un premier temps, l’impact du climat est investigué puis deux villes son
 sélectionnées d’une large palette de variations plus détaillée. Dans cette
 étude le comportement des occupants, des variations techniques et algorithmiques sont
 discutés.
-% subsection prise_en_compte_des_climats (end)
-
-
+% subsection climats_etudies (end)
 
 
 % ------------------------------------------------------------------------------
-\subsection{Variations des scénarios envisagés} % (fold)
-\label{sub:variations_des_scénarios_envisagés}
+\subsection{Scénarios étudiés} % (fold)
+\label{sub:scenarios_etudies}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Puisage en eau chaude sanitaire} % (fold)
 \label{ssub:puisage_en_eau_chaude_sanitaire}
@@ -894,20 +982,19 @@ consommations de 27, 33, et \SI{40}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius
 
 Deux scénarios de ventilation ont été retenus pour l’étude paramétrique~:
 \begin{itemize}
-    \item Cas de référence~: \SI{90}{\meter\cubed\per\hour} (\ref{ssub:ventilation_de_référence}).
+    \item Cas de référence~: \SI{90}{\meter\cubed\per\hour} (\ref{ssub:ventilation_ref}).
     \item Réduit~: Débit minimal de \SI{20}{\meter\cubed\per\hour} en inoccupation et de
           \SI{90}{\meter\cubed\per\hour} en occupation.
 \end{itemize}. Dans le cas d’une ventilation
 L’analyse de ces deux scénarios permettra de quantifier l’impact apportée par une
 ventilation Hygro B sur la performance du système solaire.
 % subsubsection ventilation (end)
-% subsection variations_des_scénarios_envisagés (end)
-
+% subsection scenarios_etudies (end)
 
 
 % ------------------------------------------------------------------------------
-\subsection{Description des composants} % (fold)
-\label{sub:description_des_composants}
+\subsection{Composition du système solaire} % (fold)
+\label{sub:composition_du_système_solaire}
 ~
 \itodo{Décrire les différents composants (caractéristiques)}
 \itodo{Validation modèle solaire}
@@ -947,13 +1034,38 @@ considérées (0 à \SI{120}{\celsius}), le modèle assume une capacité massiqu
 permettant de simplifier les systèmes d’équations.
 % subsubsection fluide_caloporteur (end)
 
-\subsubsection{Évaluation du modèle de capteur solaire thermique} % (fold)
-\label{ssub:evaluation_du_modele_de_capteur_solaire_thermique}
-Le modèle de capteur étant un des éléments clé de notre étude de cas, il apparaît
-important d’argumenter le choix du modèle implémenté dans la bibliothèque \textit{Buildings}.
-Le modèle retenue
-% subsubsection evaluation_du_modele_de_capteur_solaire_thermique (end)
-% subsection description_des_composants (end)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Capteurs solaires thermiques} % (fold)
+\label{ssub:capteurs_solaires_thermiques}
+~
+\itodo{Ajouter origine des caractéristiques des capteurs et raisons}
+\itodo{Ajouter capteurs envisagés}
+
+\begin{table}
+\centering
+\begin{tabular}{l | c | ccc}
+    \toprule
+                                             & Unité                 & IDMK 25 (référence) & 308C HP & 12 CPC58    \\
+    \midrule
+    Fabricant                                & -                     & Sonnenkraft    & Radco          & Sky Pro   \\
+    Type                                     & -                     & Plan vitrée    & Plan vitrée    & Tubulaire \\
+    Surface nette                            & \si{m^{2}}            & 2,32           & 2.193          & 2.28      \\
+    Poids à vide                             & \si{Kg}               & 54             & 36             & 53        \\
+    Contenance                               & \si{l}                & 1,35           & 3.5            & 1.83      \\
+    $R_{optique}$                            & \si{\%}               & 78             & 83.4           & 63        \\
+    Décroissance de performance              & -                     & -5,103         & -4.777         & -0.975    \\
+    Coefficient $a_{1}$ (pertes linéiques)   & \si{W/(m^{2}.K)}      & 3,796          & 1.4539         & 0.9249    \\
+    Coefficient $a_{2}$ (pertes surfaciques) & \si{W/(m^{2}.K^{2})}  & 0,013          & 0.0589         & 0.00069   \\
+    Modulation diffus ($IMDiff$)             & \si{\%}               & 100            & 96             & 102       \\
+    \bottomrule
+\end{tabular}
+\caption{Caractéristique du collecteur de référence (modèle IDMK 2.5 de chez Sonnenkraft).
+         \label{tab:capteurs_specs}}
+\end{table}
+
+
+% subsubsection capteurs_solaires_thermiques (end)
+% subsection composition_du_système_solaire (end)
 % section etude_parametrique_ (end)
 
 
@@ -1105,49 +1217,7 @@ Le modèle retenue
 
 
 
-% \begin{table}
-% \centering
-% \begin{tabular}{lcr}
-%     \toprule
-%     Paramètre                                & Valeur         & Unité                 \\
-%     \midrule
-%     Surface nette                            & 2,32           & \si{m^{2}}            \\
-%     Poids à vide                             & 54             & \si{Kg}               \\
-%     Contenance                               & 1,35           & \si{l}                \\
-%     $R_{optique}$                            & 78             & \si{\%}               \\
-%     Décroissance de performance              & -5,103         & -                     \\
-%     Coefficient $a_{1}$ (pertes linéiques)   & 3,796          & \si{W/(m^{2}.K)}      \\
-%     Coefficient $a_{2}$ (pertes surfaciques) & 0,013          & \si{W/(m^{2}.K^{2})}  \\
-%     Modulation diffus (IMDiff)               & 100            & \si{\%}               \\
-%     \bottomrule
-% \end{tabular}
-% \caption{Caractéristique du collecteur modèle IDMK 2.5 de chez Sonnenkraft.
-%          \label{tab:collectors_specs}}
-% \end{table}
 
-% \begin{table}
-% \centering
-% \begin{tabular}{l*{2}{c}r}
-%     \toprule
-%     Paramètre & Ballon tampon & Ballon ECS & Unité\\
-%     \midrule
-%     Volume                                       & 300   & 300    & \si{l}              \\
-%     Hauteur                                      & 1.6   & 1.67   & \si{m}              \\
-%     Épaisseur isolation                          & 100   & 55     & \si{mm}             \\
-%     \textgreek{l} isolant                        & 0.04  & 0.04   & \si{W/m^{2}.K}      \\
-%     Échangeur haut                               & 1.415 & 0.86   & \si{m}              \\
-%     Échangeur bas                                & 0.255 & 0.175  & \si{m}              \\
-%     Diamètre échangeur (extérieur)               & 34.6  & 27.9   & \si{mm}             \\
-%     Chaleur spécifique de échangeur (acier noir) & 490   & 490    & \si{J/kg.K}         \\
-%     Puissance nominale                           & 103   & 25     & \si{KW}             \\
-%     Température nominale (ballon)                & 10    & 45     & \si{\degreeCelsius} \\
-%     Température nominale (échangeur)             & 45    & 10     & \si{\degreeCelsius} \\
-%     Débit nominal                                & 0.36  & 0.1747 & \si{Kg/s}           \\
-%     \bottomrule
-% \end{tabular}
-% \caption{Caractéristiques techniques du ballon tampon et du ballon ECS.
-%          \label{tab:tanks_specs}}
-% \end{table}
 
 
 % Le système solaire est contrôlé par un algorithme permettant d’utiliser l’énergie
@@ -1338,37 +1408,8 @@ Le modèle retenue
 % \subsubsection{Confiance dans les modèles} % (fold)
 % \label{ssub:confiance_dans_les_modeles}
 % \itodo{Description des modèles validés}
-% L’objectif de ces modélisation étant d’évaluer la performance du système solaire
-% couplé à une maison, l’un des éléments important est le modèle représentant la maison.
-% Le modèle utilisé pour la modéliser respecte la suite de test, \mtodo{Ajouter Réf}{BestTestCase}.
-% Ces tests permettent de vérifier la cohérence des températures au cours de l’année
-% (minimales et maximales). L’énergie consommée pour maintenir la maison (chauffage, refroidissement)
-% a aussi été validée sur une évolution horaire (pics de demande) et annuelle.
-% Le modèle décrivant les fenêtres a aussi été validé par \mtodo{Ajouter Réf}.
-% Il est aussi important de mentionner que les besoins de la maison modélisée sous Dymola
-% sont fortement similaires à ceux de la même maison modélisé en multi-zone avec le logiciel
-% EnergyPlus.
 
-% Une attention particulière à aussi été utilisé pour le modèle représentant les capteurs
-% solaires afin que leur performance soit représentatif du modèle réel. Pour ce faire
-% le modèle a d’abord été comparé à l’implémentation utilisé dans un logiciel de
-% simulation dynamique fortement utilisé, TrnSys. Ces premiers résultats montrent que
-% les deux modèles ont un comportement similaire, l’irradiation solaire sur les capteurs
-% étant très proches.
-% Dans un second temps, des données expérimentales ont été utilisées pour valider les
-% caractéristiques du capteur solaire et du modèle les utilisant.
-% Les données expérimentales, irradiation direct, indirect et la température de l’eau
-% en entrée des collecteurs ont ainsi été utilisé comme conditions limites pour le
-% modèle. La température de sortie des collecteurs (modélisation) a ainsi été comparée
-% à celle en condition réelle. Il a été montré que le modèle de capteur solaire
-% implémenté en Modelica reflète le comportement réelle des capteurs sur les deux mois
-% de données expérimentales disponibles.
-% \ftodo{Ajouter résultats de comparaison avec Trnsys et expérimentation}
 
-% Les caractéristiques des capteurs utilisés dans l’étude paramétrique proviennent
-% de la même source \mtodo{Ajouter Réf}, qui est un organisme dont l’action est de
-% vérifier la performance des capteurs dans les conditions expérimentales décrites
-% dans la norme (\mtodo{Ajouter Réf}).
 % % subsubsection confiance_dans_les_modeles (end)
 % % subsection un_système_solaire_utilisant_le_vecteur_air (end)
 % % section description_du_modèle_solaire (end)
