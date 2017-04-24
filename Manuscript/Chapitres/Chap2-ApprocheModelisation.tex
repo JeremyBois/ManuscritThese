@@ -439,6 +439,9 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Description} % (fold)
 \label{ssub:description}
+~
+\itodo{Ajouter description du choix des pompes et de l’équilibrage}
+\itodo{Description du fonctionnement des pompes et des débits}
 Le système hydraulique (Fig~\ref{fig:air_complet_mono}) est composé de 2 ballons dont les
 caractéristiques sont disponibles dans le \autoref{tab:tanks_specs}. Le
 premier, le ballon sanitaire, permet de lisser la demande en énergie fou. Le système est
@@ -505,7 +508,14 @@ système aéraulique à l’aide d’un échangeur de chaleur.
          \label{tab:idmk_specs}}
 \end{table}
 
+
+Enfin, le système comporte 3 pompes~: S6, S5, et S2. Il est considéré un débit nominale de \SI{40}{\liter\per(\meter\squared{.}\hour}
+pour les pompes S6 et S5 et de \SI{70}{\liter\per(\meter\squared{.}\hour} pour la pompe S2 comme
+première approximation \parencite{Peuser2005}. Les pompes utilisées sont des pompes à vitesse variable
+afin de réduire les arrêts intempestifs des pompes \parencite{Kicsiny20123489}.
+
 \ftodo{Ajouter lien en schéma et modélisation Modelica. Discuter la simplicité visuelle}
+
 % subsubsection description (end)
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -806,6 +816,46 @@ l’utilisation potentielle de l’appoint électrique.
 % paragraph couplage_aeraulique (end)
 % subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Équilibrage du réseau} % (fold)
+\label{sub:equilibrage_du_reseau}
+~
+\itodo{Dans étude paramétrique}
+Le système décrit est complexe pour plusieurs raisons~:
+\begin{itemize}
+  \item il comporte de nombreux mode et état de fonctionnements
+  \item le sens de circulation du fluide est variable
+  \item plusieurs pompes en série peuvent être active en même temps
+\end{itemize}
+
+Le dernier élément est particulièrement important car il a un impact direct sur le
+calcul du débit total lorsque deux pompes en série sont actives. Par défaut, les
+modèles hydrauliques de la bibliothèque \textit{Buildings} considère un cas idéal
+sans pertes de charges.
+Ainsi si on considère deux pompes en série ayant toutes les deux pour consigne un débit de \SI{2}{\meter\cubed\per\hour}
+le débit résultant sera de \SI{4}{\meter\cubed\per\hour}. Afin de corriger ce
+comportement, il est nécessaire d’équilibrer l’ensemble du réseau et de sélectionner
+une pompe en fonction des pertes de charges à couvrir.
+
+\itodo{Liste les variations retenues}
+Cependant dans cette étude paramétrique, l’influence du débit nominale sur la performance
+du système solaire est aussi évaluée~:
+
+Afin de pouvoir réaliser les variations paramétriques tout en conservant un équilibre
+entre les différentes branches du réseau, l’équilibrage est réalisé automatiquement
+durant l’initialisation du modèle. Dans un premier temps la surface totale de capteur est
+calculée permettant de calculer le débit nominal de chaque pompe. Ensuite les pertes
+de charges sont réparties en suivant les règles décrites à travers le schéma \mtodo{Ref fig pdc}.
+
+\ftodo{Ajouter figure décrivant équilibrage du réseau}
+
+
+Une pompe à vitesse variable (adaptée aux températures élevées d’un réseau solaire) couvrant
+l’ensemble des variations des pertes de charges du réseau a été sélectionnée (\mtodo{Ajouter ref carac pompe}).
+% subsection equilibrage_du_réseau (end)
+
 % section description_du_cas_d_etude_le_systeme_solaire (end)
 
 
@@ -969,9 +1019,10 @@ la période hivernale que pendant la période estivale (\ref{tab:coef_mois}).
 \paragraph{Variations paramétriques~:} % (fold)
 \label{par:variations_parametriques}
 L’étude paramétrique permettra d’évaluer l’impact de la variation des profils de puisage
-comme de la quantité des besoins sur le la performance du système solaire combiné
-(\emph{SSC}). Afin d’évaluer les variations possibles d’une habitation à une autre, des
-consommations de 27, 33, et \SI{40}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius}) seront évaluées.
+comme de la quantité des besoins sur la performance du système solaire combiné
+(\emph{SSC}). Les consommations variant fortement d’une habitation à une autre, des
+consommations de 27, 33, et \SI{40}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius}) seront
+aussi évaluées.
 % paragraph variations_parametriques (end)
 % subsubsection puisage_en_eau_chaude_sanitaire (end)
 
@@ -979,7 +1030,6 @@ consommations de 27, 33, et \SI{40}{\liter\per(jour {.} pers)}~(\SI{60}{\celsius
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Ventilation} % (fold)
 \label{ssub:ventilation}
-
 Deux scénarios de ventilation ont été retenus pour l’étude paramétrique~:
 \begin{itemize}
     \item Cas de référence~: \SI{90}{\meter\cubed\per\hour} (\ref{ssub:ventilation_ref}).
@@ -989,12 +1039,61 @@ Deux scénarios de ventilation ont été retenus pour l’étude paramétrique~:
 L’analyse de ces deux scénarios permettra de quantifier l’impact apportée par une
 ventilation Hygro B sur la performance du système solaire.
 % subsubsection ventilation (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Température de consigne} % (fold)
+\label{ssub:temperature_de_consigne}
+\paragraph{Consigne de chauffage:} % (fold)
+\label{par:consigne_de_chauffage}
+L’analyse des variations de la consigne de chauffage permet d’évaluer les performance du
+système solaire et évaluer l’évolution de l’économie sur les consommations de la maison.
+Afin de couvrir une large palette de scénarios, la consigne en inoccupation, en occupation
+diurne, et en inoccupation nocturne sont modifiées indépendamment. La consigne de
+référence étant, pour rappel, définie comme étant 19-18-16~: \SI{19}{\celsius} durant les
+occupations diurnes, \SI{18}{\celsius} durant les occupations nocturnes et
+\SI{16}{\celsius} en inoccupation. À partir des règles et contraintes définies dans
+\autoref{tab:consigne_chauffage} il est alors possible de construire un lot de scénarios
+représentatifs. L’étude cherchera en particulier à évaluer l’impact d’une augmentation de
+la consigne de chauffage mais aussi l’impact du réduit en inoccupation et durant la
+période nocturne. Les scénarios construits sont les suivants~: 19-18-16, 19-19-16,
+19-19-19, 20-18-16, 20-20-16.
+
+\begin{table}
+\centering
+\begin{tabular}{| l | c | c | c | c |}
+    \hline
+                    & \bf{16}             & \bf{18}             & \bf{19}             & \bf{20}              \\
+    \hline
+Occupation (diurne)    &                     &                     & \cellcolor{black!30} & \cellcolor{black!30} \\
+    \hline
+Occupation (nocturne)  &                     & \cellcolor{black!30} & \cellcolor{black!30} & \cellcolor{black!30} \\
+    \hline
+Inoccupation         & \cellcolor{black!30} &                     & \cellcolor{black!30} &                     \\
+    \hline
+\end{tabular}
+\caption{Variations envisagées pour la consigne de chauffage en fonction de la période.}
+         \label{tab:consigne_chauffage}
+\end{table}
+% paragraph consigne_de_chauffage (end)
+
+
+\paragraph{Consigne de chauffage solaire :} % (fold)
+L’impact de la température de consigne solaire est aussi discuté. Deux configurations sont
+simulées. La première admet une température de consigne de \SI{22}{\celsius}. La
+seconde ne considère pas d’élévation de la température par le solaire. Pour rappel
+l’élévation de la température n’est réalisé que par l’énergie solaire provenant des
+capteurs, soit l’état $Solaire_{Direct}$. Finalement les interactions entre consigne et
+consigne solaire de chauffage sont aussi discutées
+\label{par:consigne_de_chauffage_solaire}
+% paragraph consigne_de_chauffage_solaire (end)
+% subsubsection temperature_de_consigne (end)
 % subsection scenarios_etudies (end)
 
 
 % ------------------------------------------------------------------------------
-\subsection{Composition du système solaire} % (fold)
-\label{sub:composition_du_système_solaire}
+\subsection{Variations techniques étudiées} % (fold)
+\label{sub:variations_techniques_etudiees}
 ~
 \itodo{Décrire les différents composants (caractéristiques)}
 \itodo{Validation modèle solaire}
@@ -1038,8 +1137,19 @@ permettant de simplifier les systèmes d’équations.
 \subsubsection{Capteurs solaires thermiques} % (fold)
 \label{ssub:capteurs_solaires_thermiques}
 ~
-\itodo{Ajouter origine des caractéristiques des capteurs et raisons}
-\itodo{Ajouter capteurs envisagés}
+Afin d’évaluer l’impact du choix du capteur, 3 capteurs ont été retenus
+(\autoref{tab:capteurs_specs}). Le capteur de référence (IDMK 25), un capteur sous-vide
+(12 CPC58) et un autre capteur plan très performant (308C HP). Les caractéristiques du
+premier (IDMK) sont issues de sa fiche technique
+(\ref{ssub:capteurs_solaires_thermiques}). Les deux autres types sont issue d’une source
+commune~: \href{www.solar-rating.org}{ICC SRCC}. Cette source a été sélectionnée car elle
+regroupe les résultats de tests sur différents capteurs en fournissant des informations
+supplémentaires qui ne sont pas forcement disponibles sur les fiches techniques. En effet,
+le modèle de capteur retenu nécessite les conditions dans lesquels les essais ont été réalisés.
+Enfin les modèles retenues ont une surface d’absorption similaire facilitant la comparaison
+entre eux.
+
+Les fiches techniques des capteurs sont disponible en annexe (\mtodo{Ajout annexe et ref})
 
 \begin{table}
 \centering
@@ -1063,9 +1173,60 @@ permettant de simplifier les systèmes d’équations.
          \label{tab:capteurs_specs}}
 \end{table}
 
-
+Au cours de l’étude paramétrique, l’orientation, la surface d’absorption, et l’inclinaison
+des capteurs sera aussi évaluée afin de comparer les résultats avec les observations déjà
+relevées au cours des études existantes \parencite{Task262003,Shariah2002587}.
+Il est donc retenue les variations suivantes~:
+\begin{itemize}
+  \item Inclinaison~: \SI{18.9}{\degree} (\SI{33}{\percent}), \SI{33}{\degree}, \SI{45}{\degree}, \SI{60}{\degree}
+  \item Orientation~: Est, Ouest, Sud
+  \item Nombre de capteurs~: 2, 4, 6, 8
+\end{itemize}
+Il est important de noter que la maison de référence est orientée Sud, comporte 4 capteurs
+IDMK25, et une toiture ayant une pente de \SI{33}{\percent}.
 % subsubsection capteurs_solaires_thermiques (end)
-% subsection composition_du_système_solaire (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Ballons} % (fold)
+\label{ssub:ballons}
+L’analyse paramétrique tient aussi compte de variations au niveau des ballons.
+Pour les deux ballons, l’impact du volume sera pris en compte. Afin d’être
+représentatif les caractéristiques du ballon seront proportionnelles à la taille
+du ballon. Lorsque le volume du ballon augmente la hauteur de augmentera aussi.
+De même la taille de l’échangeur sera adaptée à la nouvelle hauteur du ballon
+afin que sa position relative reste identique. De cette manière, le ballon de
+stockage conserve un échangeur couvrant la quasi totalité du volume, et
+l’échangeur solaire sur le ballon sanitaire reste adapté à la nouvelle taille du
+ballon. Les variations retenues pour chaque ballon sont identiques :
+\SI{150}{l}, \SI{300}{l}, et \SI{450}{l}.
+
+Ensuite l’impact de la position de l’échangeur solaire est aussi étudiée.
+L’échangeur du ballon de stockage couvrant presque l’intégralité de sa hauteur
+seule la position de l’échangeur solaire sur le ballon sanitaire est analysée.
+Afin d’être compatible avec les variations réalisées sur le volume des ballons,
+la variation de la position de l’échangeur sera réalisée relativement à sa
+position d’origine sans modifier sa longueur. Il est alors possible d’évaluer
+l’impact du volume du ballon et de la position relative de l’échangeur de
+manière combinés ou bien séparément. Les coefficients ont été sélectionnés en
+fonction des limitations techniques des ballons qui imposent ne hauteur minimale
+et maximale car la hauteur de l’échangeur est fixe. Les coefficients retenues
+sont alors les suivants : 0.8, 1, et 1.3. Avec un coefficient de 0.8 l’échangeur
+sera ainsi positionné plus bas et avec un coefficient de 1.3, il sera à l’inverse plus haut.
+% subsubsection ballons (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Autres variations étudiées} % (fold)
+\label{ssub:autres_variations_etudiees}
+\paragraph{Sélection des pompes} % (fold)
+\label{par:selection_des_pompes}
+\itodo{Debit pompe, tempo, ...}
+
+
+% paragraph selection_des_pompes (end)
+% subsubsection autres_variations_etudiees (end)
+% subsection variations_techniques_etudiees (end)
 % section etude_parametrique_ (end)
 
 

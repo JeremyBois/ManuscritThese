@@ -1,10 +1,10 @@
-# Modélisation d’un système solaire innovant : Plan chapitre 2
+# Étude d’un système solaire innovant : Chapitre 2
 
-## Introduction du chapitre
+Intoduire l’étude de cas et les raisons derrière ce choix
 
 ## Modélisation détaillée d’un système solaire innovant
-### 1) Quelles contraintes
-### 1) Quelles solutions
+### 2) Quelles contraintes
+### 3) Quelles solutions
 
   - Dymola
   - Buildings
@@ -33,6 +33,10 @@
 <br/>
 
 ## Description du cas d’étude : le système solaire
+
+Intoduire le pilotage de systèmes solaire existant et les raisons de ce choix
+autant sur le système que sur le pilotage : avantages / inconvénients
+
 ### 1) Partie hydraulique
 
   - Description
@@ -83,6 +87,3 @@
 
   - Bilan / Récapitulatif
   - Direction à prendre
-
-
-<br/>
