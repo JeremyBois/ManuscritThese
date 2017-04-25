@@ -509,8 +509,8 @@ système aéraulique à l’aide d’un échangeur de chaleur.
 \end{table}
 
 
-Enfin, le système comporte 3 pompes~: S6, S5, et S2. Il est considéré un débit nominale de \SI{40}{\liter\per(\meter\squared{.}\hour}
-pour les pompes S6 et S5 et de \SI{70}{\liter\per(\meter\squared{.}\hour} pour la pompe S2 comme
+Enfin, le système comporte 3 pompes~: S6, S5, et S2. Il est considéré un débit nominale de \SI{40}{\liter\per(\meter\squared{.}\hour)}
+pour les pompes S6 et S5 et de \SI{70}{\liter\per(\meter\squared{.}\hour)} pour la pompe S2 comme
 première approximation \parencite{Peuser2005}. Les pompes utilisées sont des pompes à vitesse variable
 afin de réduire les arrêts intempestifs des pompes \parencite{Kicsiny20123489}.
 
@@ -816,46 +816,6 @@ l’utilisation potentielle de l’appoint électrique.
 % paragraph couplage_aeraulique (end)
 % subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
-
-
-% ------------------------------------------------------------------------------
-\subsection{Équilibrage du réseau} % (fold)
-\label{sub:equilibrage_du_reseau}
-~
-\itodo{Dans étude paramétrique}
-Le système décrit est complexe pour plusieurs raisons~:
-\begin{itemize}
-  \item il comporte de nombreux mode et état de fonctionnements
-  \item le sens de circulation du fluide est variable
-  \item plusieurs pompes en série peuvent être active en même temps
-\end{itemize}
-
-Le dernier élément est particulièrement important car il a un impact direct sur le
-calcul du débit total lorsque deux pompes en série sont actives. Par défaut, les
-modèles hydrauliques de la bibliothèque \textit{Buildings} considère un cas idéal
-sans pertes de charges.
-Ainsi si on considère deux pompes en série ayant toutes les deux pour consigne un débit de \SI{2}{\meter\cubed\per\hour}
-le débit résultant sera de \SI{4}{\meter\cubed\per\hour}. Afin de corriger ce
-comportement, il est nécessaire d’équilibrer l’ensemble du réseau et de sélectionner
-une pompe en fonction des pertes de charges à couvrir.
-
-\itodo{Liste les variations retenues}
-Cependant dans cette étude paramétrique, l’influence du débit nominale sur la performance
-du système solaire est aussi évaluée~:
-
-Afin de pouvoir réaliser les variations paramétriques tout en conservant un équilibre
-entre les différentes branches du réseau, l’équilibrage est réalisé automatiquement
-durant l’initialisation du modèle. Dans un premier temps la surface totale de capteur est
-calculée permettant de calculer le débit nominal de chaque pompe. Ensuite les pertes
-de charges sont réparties en suivant les règles décrites à travers le schéma \mtodo{Ref fig pdc}.
-
-\ftodo{Ajouter figure décrivant équilibrage du réseau}
-
-
-Une pompe à vitesse variable (adaptée aux températures élevées d’un réseau solaire) couvrant
-l’ensemble des variations des pertes de charges du réseau a été sélectionnée (\mtodo{Ajouter ref carac pompe}).
-% subsection equilibrage_du_réseau (end)
-
 % section description_du_cas_d_etude_le_systeme_solaire (end)
 
 
@@ -1094,11 +1054,6 @@ consigne solaire de chauffage sont aussi discutées
 % ------------------------------------------------------------------------------
 \subsection{Variations techniques étudiées} % (fold)
 \label{sub:variations_techniques_etudiees}
-~
-\itodo{Décrire les différents composants (caractéristiques)}
-\itodo{Validation modèle solaire}
-
-
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Fluide caloporteur} % (fold)
 \label{ssub:fluide_caloporteur}
@@ -1134,14 +1089,14 @@ permettant de simplifier les systèmes d’équations.
 % subsubsection fluide_caloporteur (end)
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Capteurs solaires thermiques} % (fold)
-\label{ssub:capteurs_solaires_thermiques}
+\subsubsection{Capteurs solaires} % (fold)
+\label{ssub:capteurs_solaires}
 ~
 Afin d’évaluer l’impact du choix du capteur, 3 capteurs ont été retenus
 (\autoref{tab:capteurs_specs}). Le capteur de référence (IDMK 25), un capteur sous-vide
 (12 CPC58) et un autre capteur plan très performant (308C HP). Les caractéristiques du
 premier (IDMK) sont issues de sa fiche technique
-(\ref{ssub:capteurs_solaires_thermiques}). Les deux autres types sont issue d’une source
+(\ref{ssub:capteurs_solaires}). Les deux autres types sont issue d’une source
 commune~: \href{www.solar-rating.org}{ICC SRCC}. Cette source a été sélectionnée car elle
 regroupe les résultats de tests sur différents capteurs en fournissant des informations
 supplémentaires qui ne sont pas forcement disponibles sur les fiches techniques. En effet,
@@ -1184,7 +1139,7 @@ Il est donc retenue les variations suivantes~:
 \end{itemize}
 Il est important de noter que la maison de référence est orientée Sud, comporte 4 capteurs
 IDMK25, et une toiture ayant une pente de \SI{33}{\percent}.
-% subsubsection capteurs_solaires_thermiques (end)
+% subsubsection capteurs_solaires (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1216,20 +1171,146 @@ sera ainsi positionné plus bas et avec un coefficient de 1.3, il sera à l’in
 % subsubsection ballons (end)
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Autres variations étudiées} % (fold)
-\label{ssub:autres_variations_etudiees}
-\paragraph{Sélection des pompes} % (fold)
-\label{par:selection_des_pompes}
-\itodo{Debit pompe, tempo, ...}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Circulateurs} % (fold)
+\label{ssub:circulateurs}
+L’étude cherchera aussi à évaluer l’impact du débit nominal sur la performance du
+système. Comme il a été décrit le débit nominal est dépendant de la surface de capteur
+et la surface de capteur est elle aussi un élément variant au cours de l’étude. Il a donc
+été retenue de moduler le débit nominale par capteur (\SI{}{\liter\per(\meter\squared{.}\hour)}).
+
+Le système décrit est complexe et plusieurs circulateurs en série peuvent être active en même temps. Par défaut, les
+modèles hydrauliques de la bibliothèque \textit{Buildings} considère un cas idéal
+sans pertes de charges.
+Ainsi si on considère deux circulateurs en série ayant toutes les deux pour consigne un débit de \SI{2}{\meter\cubed\per\hour}
+le débit résultant sera de \SI{4}{\meter\cubed\per\hour}. Afin de corriger ce
+comportement, il est nécessaire d’équilibrer l’ensemble du réseau et de sélectionner
+une pompe adapté. Le choix a été fait d’imposer la vitesse de rotation au niveau
+des circulateurs mais il est aussi envisageable d’imposer une différence de pression en
+sortie de pompe.
+
+\itodo{Liste les variations retenues}
+Afin de pouvoir réaliser les variations paramétriques tout en conservant un équilibre
+entre les différentes branches du réseau, l’équilibrage est réalisé automatiquement
+durant l’initialisation du modèle. Dans un premier temps la surface totale de capteur et
+les débit nominaux surfaciques permettent de calculer le débit nominal de chaque pompe. Ensuite les pertes
+de charges sont réparties en suivant les règles décrites à travers le schéma \mtodo{Ref fig pdc}.
+Les pertes de charge sont alors calculé pour un certain nombre de débit permettant de construire
+la courbe de fonctionnement des circulateurs.
+
+Une pompe à vitesse variable (adaptée aux températures élevées d’un réseau solaire) a été sélectionnée (\mtodo{Ajouter ref carac pompe})
+car elle est adapté pour toutes les configurations envisagées (\mtodo{Ajouter ref tab variations}).
+\ttodo{Variations du débit surfacique nominal}
+% subsubsection circulateurs (end)
 
 
-% paragraph selection_des_pompes (end)
-% subsubsection autres_variations_etudiees (end)
+
+\subsubsection{Algorithme} % (fold)
+\label{ssub:variations_algorithmiques}
+Finalement il est aussi étudié à travers cette étude des variations au niveau
+de l’algorithme de contrôle.
+
+La différence de température entre la source (sortie des capteurs)
+et la cible (sortie des échangeurs) est modulé autour du cas de référence (\SI{10}{\celsius}) avec
+deux nouvelles variations~: \SI{5}{\celsius} et \SI{15}{\celsius}. Augmenter ce paramètre
+revient à attendre plus longtemps avant d’autoriser l’utilisation de l’énergie solaire et impose
+une température en sortie des capteurs plus élevée pour valoriser les apports solaires. À l’inverse diminuer ce paramètre amène le
+système a être plus réactif.
+
+Il est aussi évalué l’impact des temporisations au niveau de la régulation du chauffage par vecteur air~:
+\begin{itemize}
+  \item Activation de la batterie électrique terminale
+  \item Modulation du débit de soufflage
+  \item Modulation du de la température de soufflage
+\end{itemize}
+
+La première temporisation est sur le cas de référence de \SI{3}{min} et sera notée $Tempo_{batterie}$. Elle permet d’éviter
+d’activer la batterie terminale d’appoint à chaque demande de chauffage en retardant son
+activation lorsque il y a de l’énergie solaire de disponible. La seconde temporisation
+correspond à la temporisation entre la modulation de la température, et la modulation du
+débit. Le cas de référence admet une temporisation de \SI{10}{min} et elle sera notée $Tempo_{soufflage}$.
+
+\begin{table}
+\centering
+\begin{tabular}{l | c | c | c}
+    \toprule
+               & $DeltaT_{solaire}$     & $Tempo_{soufflage}$    & $Tempo_{batterie}$    \\
+               & \si{\celsius}          & \si{min}               & \si{min}              \\
+    \midrule
+    Variations & 5, 10, 15            & 5, 10, 15            & 2, 3, 4            \\
+    \bottomrule
+\end{tabular}
+\caption{Variations algorithmiques étudiées lors de l’étude paramétrique.
+         \label{tab:variations_algo}}
+\end{table}
+% subsubsection algorithme (end)
 % subsection variations_techniques_etudiees (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Analyse des résultats} % (fold)
+\label{sub:analyse_des_resultats}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Méthodologie} % (fold)
+\label{ssub:methodologie}
+\paragraph{Simulation de référence} % (fold)
+\label{par:simulation_de_reference}
+% paragraph simulation_de_reference (end)
+
+\paragraph{Récapitulatif des variations} % (fold)
+\label{par:recapitulatif_des_variations}
+% paragraph recapitulatif_des_variations (end)
+% subsubsection methodologie (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Impact du climat} % (fold)
+\label{ssub:impact_du_climat}
+
+% subsubsection impact_du_climat (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Impact des scénarios internes} % (fold)
+\label{ssub:impact_des_scenarios_internes}
+
+% subsubsection impact_des_scenarios_internes (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Impact des caractéristiques des ballons} % (fold)
+\label{ssub:impact_des_caracteristiques_des_ballons}
+
+% subsubsection impact_des_caracteristiques_des_ballons (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Impact du volume de puisage en ECS} % (fold)
+\label{ssub:impact_du_volume_de_puisage_en_ecs}
+
+% subsubsection impact_du_volume_de_puisage_en_ecs (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Autres variations} % (fold)
+\label{ssub:autres_variations}
+
+% subsubsection autres_variations (end)
+% subsection analyse_des_resultats (end)
 % section etude_parametrique_ (end)
 
 
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Vers une méthodologie d’aide à la décision} % (fold)
+\label{sec:vers_une_methodologie_d_aide_a_la_decision}
+
+% section vers_une_methodologie_d_aide_a_la_decision (end)
 
 
 
