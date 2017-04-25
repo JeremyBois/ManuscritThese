@@ -77,7 +77,7 @@ Le second type est plus complexe et ne peut pas être pris en compte en amont de
 l’analyse car des informations sont manquantes. On peut vouloir par exemple limiter
 un objectif ou éviter des combinaisons non réalisables. Ces contraintes sont donc
 partie intégrante de la méthode d’aide à la décision.
-Elle peuvent s’exprimer sous la forme de bornes, d’équations ou inéquations.
+Elles peuvent s’exprimer sous la forme de bornes, d’équations ou inéquations.
 
 La suite de cette section vise à présenter de manière succincte les différentes
 approches existantes. Pour le lecteur intéressé, une introduction plus complète
@@ -97,7 +97,7 @@ Ce processus de réduction est réalisé à l’aide de méthodes d’agrégatio
 il est possible de citer les méthodes de pondération, de compromis,
 ou encore de distance (Fig.~\ref{fig:multi_to_mono}). Dans tous les cas la réduction
 nécessite de normaliser les objectifs et le décideur introduit un caractère préférentiel.
-Dans le cas de la pondération, un coefficient est attribuer à chaque objectifs. Bien que
+Dans le cas de la pondération, un coefficient est attribuer à chaque objectif. Bien que
 algorithmiquement relativement simple à mettre en place, le choix des coefficients peut
 lui être complexe lorsque les divers objectifs ont des échelles ou unités différentes.
 La méthode du compromis, considère un objectif unique et les autres sont formulés
@@ -163,7 +163,7 @@ l’approche par critère de synthèse.
 Ces approches assurent l’obtention d’une solution unique mais comportent
 cependant un fort effet compensatoire due à l’agrégation par pondération pour
 obtenir la note unique. Un critère ayant une valeur hautement pénalisante peut
-ainsi être retenue si les autres critères ont en moyenne une valeur élevée.
+ainsi être retenu si les autres critères ont en moyenne une valeur élevée.
 % paragraph approche_par_critère_de_synthèse (end)
 
 \paragraph{Approche par surclassement~:} % (fold)
@@ -176,8 +176,8 @@ solutions optimales grâce à des éléments préférentiels.
 Une solution $a$ surclasse une solution $b$ notée $aSb$ si $a$ est au moins aussi
 bon que $b$ au regard des préférences du décideur.
 
-Un ensemble de règle est alors défini pour chaque critère~: préférence, indifférence,
-et seuils. Le surclassement est ensuite définie par un critère unique résultant de
+Un ensemble de règles est alors défini pour chaque critère~: préférence, indifférence,
+et seuils. Le surclassement est ensuite défini par un critère unique résultant de
 l’agrégation des critères pondérés par des coefficients. Selon les méthodes on distingue
 trois grands principes permettant d’éviter les effets compensatoires~:
 \begin{itemize}
@@ -187,18 +187,18 @@ trois grands principes permettant d’éviter les effets compensatoires~:
         la relation de surclassement ne doivent pas exprimer un désaccord trop
         important.
   \item Le principe de crédibilité qui vise à pondérer une hypothèse de surclassement
-        en fonction de la pertinence du caractère préférentiel
+        en fonction de la pertinence du caractère préférentiel.
 \end{itemize}
 Les solutions sont ainsi comparées deux à deux permettant de réduire le nombre de
 solutions optimales dans le respect des préférences du décideur. Les méthodes
-\textit{ELECTRE} ou encore \textit{PROMETHEE} font partis des principales méthodes développées
-et la sélection d’une approche est lié au type de problématique. Dans une problématique de
+\textit{ELECTRE} ou encore \textit{PROMETHEE} font parties des principales méthodes développées
+et la sélection d’une approche est liée au type de problématique. Dans une problématique de
 choix, la méthode \textit{ELECTRE} I ou IS pourra être sélectionnée. Dans une
 problématique de rangement, les méthodes \textit{ELECTRE} II, III, ou IV pourront être
 utilisées.
 
 L’approche par surclassement ne souffre ainsi pas des problèmes de compensation
-mais ne garantie pas l’obtention d’une solution unique. L’ensemble de solution
+mais ne garantie pas l’obtention d’une solution unique. L’ensemble des solutions
 finales est cependant fortement réduit.
 % paragraph approche_par_surclassement (end)
 % subsubsection decision_a_posteriori (end)
@@ -227,8 +227,8 @@ cohérence de son scénario permettant au décideur d’ajuster ses préférence
 \label{sub:approche_retenue}
 L’aide à la décision dans le secteur du bâtiment fait intervenir de nombreux acteurs et le
 choix final est alors le résultat d’un compromis. Afin de ne pas écarter prématurément des
-solutions, une approche d’aide à la décision a posteriori a été retenue. L’ensemble de
-solution optimales offre en effet une nouvelle connaissance sur le problème facilitant
+solutions, une approche d’aide à la décision a posteriori a été retenu. L’ensemble des
+solutions optimales offre en effet une nouvelle connaissance sur le problème facilitant
 l’introduction de préférences pour l’aide à la décision. De plus, il a été montré que la
 reformulation d’un problème multi-objectif sous la forme d’un objectif unique introduit un
 biais impactant directement la qualité de la solution finale \parencite{Blondeau2002165}.
@@ -242,7 +242,7 @@ par coordonnées parallèles \parencite{Inselberg198725} a été retenue. Le log
 solution finale à ses contraintes et ses préférences propres de manière interactive.
 L’outil permet en effet de réduire le nombre de solution en réduisant les intervalles de variation
 pour chaque critère et chaque variable de décision grâce à un jeu de curseurs. L’approche
-étant intuitive, elle permet rapidement d’identifier un sous-espace de solution.
+étant intuitive, elle permet rapidement d’identifier un sous-espace de solutions.
 
 % Dans l’optique d’une aide à la décision a posteriori, il est ainsi nécessaire dans un
 % premier temps de sélectionner et de réaliser une optimisation multi-objectif. La section
@@ -282,7 +282,7 @@ durée de simulation en utilisant des modèles de substitution.
 \subsection{Réduction de la cardinalité du problème} % (fold)
 \label{sub:reduction_de_la_cardinalite_du_probleme}
 En amont de l’optimisation, les variables de décisions (facteurs) dont la variation sera
-étudiées sont sélectionnées sur la connaissance seule du système et des premiers résultats
+étudiée sont sélectionnées sur la connaissance seule du système et des premiers résultats
 obtenues. Il apparaît donc opportun de réduire le nombre de facteurs afin d’éviter
 l’évaluation couteuse de variations n’influençant pas ou très sensiblement le modèle.
 
@@ -295,7 +295,7 @@ coûteux.
 \textcite{Iooss2011} propose un diagramme de décision (Fig~\ref{fig:classement_methode_sensibilite})
 permettant de sélectionner la méthode la plus adaptée en fonction du temps nécessaire pour
 une évaluation, et du nombre de variables d’entrées. Il regroupe l’ensemble
-des méthodes existantes en deux grande familles~: les méthodes de criblage et les méthodes
+des méthodes existantes en deux grandes familles~: les méthodes de criblage et les méthodes
 de décomposition de la variance. Il fait aussi la distinction entre les
 méthodes dites locales, évaluant les effets autour d’une position, et les méthodes
 dites globales, s’intéressant à l’ensemble du domaine de définition.
@@ -338,11 +338,11 @@ La méthode consiste en l’évaluation des effets élémentaires ($EE$) pour $R
 (répétitions) à l’intérieur du plan \textit{OAT} (Fig~\ref{fig:fonctionnement_morris}).
 Pour chaque trajectoire, une position de départ, puis la direction des variations
 élémentaires successives sont tirées aléatoirement. La méthode de Morris demande alors $R
-\times (j + 1)$ évaluations avec $j$ le nombre de facteur dont on cherche à évaluer
+\times (j + 1)$ évaluations avec $j$ le nombre de facteurs dont on cherche à évaluer
 l’influence. Pour chaque facteur, l’effet élémentaire associé est calculé permettant ensuite
 le calcul des indices de sensibilité. Le choix du nombre de trajectoires et du nombre de
 niveaux (dans une moindre mesure) impacte ainsi directement la qualité des indices de
-sensibilité~: la littérature suggère $R \geq 10$ et de $z = 4$.
+sensibilité~: la littérature suggère $R \geq 10$ et de $z = 4$ \parencite{Campolongo20071509}.
 
 \begin{figure}
     \begin{center}
@@ -372,7 +372,7 @@ d’identifier les influences non linéaires ou les interactions entre facteurs.
 \textcite{Campolongo20071509} améliorent la méthode en proposant deux modifications. La première
 est l’ajout de la moyenne absolue, $\mu^{*}$ \eqref{eq:moyenne_absolue}. Cet indicateur permet
 de voir l’importance des facteurs dont le signe de l’influence est variable contrairement à
-la moyenne (à cause des compensations dues au signes).
+la moyenne (à cause des compensations dues aux signes).
 
 \begin{equation}\label{eq:moyenne_absolue}
     \mu^{*} = \sum_{r = 1}^{R} \frac{\lvert EE_{r} \rvert}{R}
@@ -382,7 +382,7 @@ la moyenne (à cause des compensations dues au signes).
 \begin{itemize}
   \item Non-influent ou effets négligeables
   \item Influent avec des effets sans interactions et linéaires
-  \item Influent avec des effets non-linéaire ou des interactions
+  \item Influent avec des effets non-linéaires ou des interactions
 \end{itemize}
 
 La seconde modification proposée est la génération d’un grand nombre de trajectoires,
@@ -413,16 +413,16 @@ pour lequel $\hat{distance} = 0$. Ces deux méthodes sont ainsi complémentaires
     \end{split}
 \end{align}
 
-Le principe est illustré par \textcite{Iooss2011} à travers deux résultats obtenues
+Le principe est illustré par \textcite{Iooss2011} à travers deux résultats obtenus
 pour deux objectifs différents mais pour les mêmes critères (Fig~\ref{fig:meth_graph_morris}).
 Les résultats pour l’objectif en partie gauche permettent alors de dire que
 les facteurs $Z_{v}$, $Q$, $C_{b}$ et $H_{d}$ sont influents
 avec des effets linéaires car pour tout ces facteurs $j$~: $\sigma_{j} \ll \mu^{*}_{j}$.
-$Z_{v}$, $Q$, et $H_{d}$ sont impactant car leur moyenne absolue ($\mu^{*}$) est élevé.
-$K_{s}$ a une influence non linéaire ou avec interactions car son écart type ($\sigma$)
-est important et  $\sigma_{K_{s}} \sim \mu^{*}_{K_{s}}$. Les résultats de la
-pour l’objectif de droite montrent eux que les facteurs $K_{s}$, $Z_{v}$, $Q$, $C_{b}$,
-et $H_{d}$ ont des effets non linéaire ou avec interactions~: $\sigma_{j} \sim
+De plus, $Z_{v}$, $Q$, et $H_{d}$ sont impactant car leur moyenne absolue ($\mu^{*}$) est élevé.
+Enfin, $K_{s}$ a une influence non linéaire ou avec interactions car son écart type ($\sigma$)
+est important et  $\sigma_{K_{s}} \sim \mu^{*}_{K_{s}}$.
+Les résultats pour l’objectif en partie droite montrent eux que les facteurs $K_{s}$, $Z_{v}$, $Q$, $C_{b}$,
+et $H_{d}$ ont des effets non-linéaires ou avec interactions~: $\sigma_{j} \sim
 \mu^{*}_{j}$. Finalement au regard de ces deux sorties, la méthode de criblage de Morris
 permet d’écarter les variables $L$, $B$, et $Z_{m}$ qui apparaissent comme non influentes
 sur les deux sorties considérées.
@@ -463,18 +463,20 @@ méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer le
 combinaisons existantes à la place du modèle complexe et coûteux.
 
 \itodo{Littérature montrant l’attrait pour ces techniques}
-L’utilisation de méta-modèle s’est fortement développé, et ceux pour des
-applications diverses. Certain les utilises pour faire de l’optimisation,
-d’autre dans l’optique de réaliser une analyse de sensibilité détaillée avec des
+L’utilisation de méta-modèle s’est fortement développée, et ceux pour des
+applications diverses. Certains les utilises pour faire de l’optimisation,
+d’autres dans l’optique de réaliser une analyse de sensibilité détaillée avec des
 méthode de décomposition de la variance (voir Fig~\ref{fig:classement_methode_sensibilite}).
 
+~\\
 \itodo{Ajouter exemple dans le solaire et bâtiment, Armand-Decker2015, Chen2016422}
-Récemment \mtodo{Anto}{Anto} a utilisé les méta-modèles dans le cadre de garantie de
+Récemment \mtodo{Cite Anto}{Anto} a utilisé les méta-modèles dans le cadre de garantie de
 performance pour un bâtiment de bureaux. L’approche a de plus été comparée avec ...
 \textcite{Armand-Decker2015} les utilisent afin de réaliser une optimisation multi-
 objectif d’un bâtiment. Le méta-modèle est alors utilisé comme substitut à un modèle de
 bâtiment réalisé sous Energy Plus.
 
+~\\
 Dans notre cas où le temps nécessaire pour une simulation est important, l’utilisation de
 méta-modèle a un potentiel très intéressant. De plus, cette approche est adaptable car elle
 permet d’encapsuler un modèle complexe dans des outils métiers. Il est alors possible de
@@ -483,7 +485,7 @@ logiciel de modélisation.
 
 L’approche comporte cependant des désavantages. Pour leur création, il est nécessaire
 d’évaluer le modèle complexe sur un échantillon représentatif de l’espace des entrées.
-Le méta-modèle est donc limité par les conditions retenue lors de sa création~; comme
+Le méta-modèle est donc limité par les conditions retenues lors de sa création~; comme
 les variables d’entrées, ou leurs bornes. La modification d’un de ces paramètres nécessite
 donc la création d’une nouvelle fonction de substitution.
 Enfin, il est important d’évaluer la taille de l’échantillon nécessaire pour construire
@@ -514,7 +516,7 @@ nécessaire afin de pouvoir construire un méta-modèle représentatif du probl�
 méthode de Monte-Carlo couplée à une suite à discrépance faible est alors utilisée~: la
 méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à la méthode de
 Monte-Carlo, une suite ayant une discrépance faible permet de maintenir un ensemble de
-point uniformément répartie, même lorsque le nombre de point générés est faible, tout en
+point uniformément répartis, même lorsque le nombre de points générés est faible, tout en
 conservant un caractère pseudo-aléatoire (Fig~\ref{fig:halton_vs_uniform}). L’ensemble des
 points des deux échantillons ont été générés à partir de la même graine permettant
 d’obtenir exactement les mêmes tirages à partir d’une distribution uniforme. Il peut être
@@ -550,13 +552,13 @@ l’approche décrite dans le chapitre précédent.
 Dans un premier temps la modélisation est réalisée de manière itérative et une étude
 paramétrique permet de définir les différents paramètres clés (objectifs, contraintes,
 variables, bornes, ...). Ensuite, la cardinalité du problème est réduite grâce à la \textit{méthode
-de Morris} appliquée sur chaque objectifs et contraintes. Le problème résultant est alors
+de Morris} appliquée sur chaque objectif et contrainte. Le problème résultant est alors
 substitué par un ensemble de méta-modèles afin de fortement réduire le temps de calcul
 nécessaire pour une évaluation. Les modèles de substitutions obtenues seront finalement
 utilisés pour réaliser l’optimisation multi-objectif dans l’optique d’une aide à la
 décision a posteriori. Une fois les solutions optimales obtenues, le décideur pourra grâce
 à une méthode de réduction par coordonnées parallèles sélectionner la solution
-correspondant à ces préférences. En parallèle, l’optimisation sera réalisée avec le modèle
+correspondant à ses préférences. En parallèle, l’optimisation sera réalisée avec le modèle
 d’origine afin d’évaluer le gain apporté par les modèles de substitutions.
 
 \begin{figure}
@@ -637,7 +639,7 @@ On considère qu’un vecteur de décision, $\vec{x}_{a}$ domine un autre $\vec{
   \item $\vec{x}_{a}$ est aussi bon que $\vec{x}_{b}$ sur tous les objectifs
   \item $\vec{x}_{a}$ est meilleur que $\vec{x}_{b}$ sur au moins un objectif
 \end{itemize}
-Cette relation sera notée sera notée~: $\vec{x}_{a} \prec \vec{x}_{b}$.
+Cette relation sera notée~: $\vec{x}_{a} \prec \vec{x}_{b}$.
 Un point est ainsi dit optimal au sens de Pareto lorsque aucun autre point dans
 l’ensemble le comprenant ne le domine (Fig~\ref{fig:dominance_pareto}).
 \end{Def}
@@ -704,7 +706,7 @@ recherche ou évaluer la qualité des solutions trouvées.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{La convexité} % (fold)
 \label{ssub:la_convexite}
-Ce terme permet de caractériser la forme d’un ensemble. Dans le cas de fronts continues,
+Ce terme permet de caractériser la forme d’un ensemble. Dans le cas de fronts continus,
 on parle alors de fronts convexes ou non-convexes \parencite{Collette2002}. Un ensemble
 est dit \emph{convexe} lorsque pour deux points distincts, la droite les reliant est
 contenue dans cet ensemble (Fig~\ref{fig:convex_nadir}(a)). À l’inverse si l’ensemble ne
@@ -718,7 +720,7 @@ objectif.
         \includegraphics{Ressources/Images/optimisation/convex.pdf}
     \end{center}
     \caption{Illustration du Point Idéal et du point Nadir sur une minimisation
-             à deux objectif d’un ensemble $S$ pour un front convexe (a) et non
+             à deux objectifs d’un ensemble $S$ pour un front convexe (a) et non
              convexe (b).
              \label{fig:convex_nadir}}
 \end{figure}
@@ -762,7 +764,7 @@ ses dérivées \parencite{Hart1968100}.
 Cette approche se base sur la résolution de sous-problèmes pour résoudre le
 problème global et se représente aussi sous forme d’un graphe. La recherche à
 l’intérieur du graphe est basée sur le théorème de Bellmann qui stipule qu’un
-chemin optimal ne peux être composé que de sous-chemin optimaux. Cette approche
+chemin optimal ne peux être composé que de sous-chemins optimaux. Cette approche
 permet ainsi de garantir l’obtention de toutes les solutions optimales tout en
 réduisant le nombre d’évaluations nécessaires. Cette approche est
 particulièrement adaptée à l’optimisation de processus séquentiels.
@@ -770,7 +772,7 @@ particulièrement adaptée à l’optimisation de processus séquentiels.
 barre de Grimaud <<~un bâtiment collectif résidentiel de 4 étages, situé en banlieue Sud
 de Paris (Sainte Geneviève des Bois)~>>. Le bâtiment comprend 10 appartements pour
 une surface totale habitable de \SI{792}{\meter\squared}. Les solutions obtenues
-grâce à la programmation dynamique sont ensuite comparées au résultat obtenue avec
+grâce à la programmation dynamique sont ensuite comparées au résultat obtenu avec
 une méthode dite approchée. Ces approches sont discutées dans la section suivante.
 % subsubsection programmation_dynamique (end)
 
@@ -1803,7 +1805,7 @@ performance de l’algorithme simplifiant sa paramétrisation.
       $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
       \Indm
       \BlankLine
-      \encircle{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est générée suivant Définition~\ref{def:oblm}}\;
+      \encircle{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est calculée suivant Définition~\ref{def:oblm}}\;
       \Indp
       $ \check{x_{ij}} = x_{j}^{min} + x_{j}^{max} - x_{ij}$\;
       \Indm
@@ -1937,8 +1939,8 @@ performance de l’algorithme simplifiant sa paramétrisation.
         x_{ij}' =%
           \begin{cases}
             \begin{aligned}
-              x_{ij}  &+ 0.01 \times  \ALevy  &\times \ (x_{ij} - x_{bj})  \\
-                      &+ 0.01 \times |\ALevy| &\times \ (x_{aj} - x_{ij})  \\
+              x_{ij}  &+ 0.01 \times ~\ALevy  &\times (x_{ij} - x_{bj})  \\
+                      &+ 0.01 \times |\ALevy|   &\times (x_{aj} - x_{ij})  \\
             \end{aligned} &\ \ATirageB < \AMR \\
             x_{ij}        &\ sinon
           \end{cases}
