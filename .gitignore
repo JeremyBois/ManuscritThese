@@ -86,6 +86,7 @@ docs/_build/
 *.upb
 *.tdo
 *.loa
+*.xdv
 *.synctex.gz(busy)
 Manuscript/*.pdf
 Manuscript/Plan/*.pdf
@@ -105,3 +106,7 @@ Ressources/
 # Sublime Text
 *.sublime-project
 *.sublime-workspace
+
+# Xelatex test
+Fonts/
+test.tex

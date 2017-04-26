@@ -45,8 +45,7 @@
 \usepackage{./Template/graphics_support}          % Image support
 \frenchspacing                                    % French typo
 \frenchbsetup{StandardLists=true}                  % Turn off french bulleted lists
-\usepackage[scaled]{beramono}                      % Font used
-
+\usepackage[scaled]{beramono}                      % Font for text
 
 \usepackage{placeins}                                    % Float always where defined
 \let\Oldsection\section
@@ -88,10 +87,10 @@
     pdfproducer={Jérémy Bois},             % producer of the document
     pdfnewwindow=true,                     % links in new PDF window
     colorlinks=true,                       % false: boxed links; true: colored links
-    linkcolor=black!30!orange!70,          % color of internal links (change box color with linkbordercolor)
-    citecolor=magenta,                     % color of links to bibliography
-    filecolor=magenta,                     % color of file links
-    urlcolor=cyan                          % color of external links
+    linkcolor=SolarizedOrange,          % color of internal links (change box color with linkbordercolor)
+    citecolor=SolarizedMagenta,         % color of links to bibliography
+    filecolor=SolarizedMagenta,         % color of file links
+    urlcolor=SolarizedBlue              % color of external links
 }
 
 
@@ -103,6 +102,11 @@
 \usepackage{nicefrac}                               % for \nicefrac macro
 % \usepackage{listings}                             % Code block support
 \usepackage{letltxmacro}                            % Support for optional argument in redefinition
+% Used in siunitx to print dot : J/(m².K) ---> \si{\joule\per(\metre\squared\period\Kelvin)}
+\mathchardef\period=\mathcode`.
+% Replace decimal separator in math mode and un siunitx: dot with comma
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+\sisetup{output-decimal-marker={,}}
 % Change the ways square root appears
 \makeatletter
     \let\oldr@@t\r@@t
@@ -155,6 +159,13 @@
             linesnumbered, lined,
             boxed,
             commentsnumbered]{algorithm2e}
+
+% Circle arround text
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)]
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+
 % Comments
 \definecolor{commcolor}{HTML}{93a1a1}
 \newcommand\commfont[1]{\footnotesize\ttfamily\textcolor{commcolor}{#1}}
@@ -187,11 +198,6 @@
 \SetKwData{ATrial}{Echec}
 \SetKwData{AMaxTrial}{MaxEchec}
 
-% Circle arround text
-\newcommand\encircle[1]{%
-  \tikz[baseline=(X.base)]
-    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
-
 
 % ------------------------------------------------------------------------------
 % Notes support
@@ -215,12 +221,12 @@
     \par
     \noindent
     \begin{tikzpicture}
-        \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+        \draw[fill=\@todonotes@currentfigcolor, draw = SolarizedBrGreen, line width=2pt]
              (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
         \draw (2, -1.5) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
-        \draw[BrickRed, fill=white, rounded corners = 5pt, line width=5pt]
+        \draw[SolarizedRed, fill=white, rounded corners = 5pt, line width=5pt]
              (-1.25,0) -- (1.25,0) -- (0,-2) -- cycle;
-        \draw (0, -0.5) node {Figure};
+        \draw (0, -0.5) node[color=SolarizedBlack]{Figure};
     \end{tikzpicture}\hfill
     }% Ending \missingfigure command
 
@@ -236,12 +242,12 @@
     \par
     \noindent
     \begin{tikzpicture}
-        \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+        \draw[fill=\@todonotes@currentfigcolor, draw = SolarizedBrGreen, line width=2pt]
              (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
         \draw (2, -1.5) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
-        \draw[BrickRed, fill=white, line width=5pt]
+        \draw[SolarizedRed, fill=white, line width=5pt]
              (0,-0.3) circle (1.1cm);
-        \draw (0, -0.4) node {Equation};
+        \draw (0, -0.4) node[color=SolarizedBlack]{Equation};
     \end{tikzpicture}\hfill
     }% Ending \missingequation command
 
@@ -257,12 +263,12 @@
     \par
     \noindent
     \begin{tikzpicture}
-        \draw[fill=\@todonotes@currentfigcolor, draw = black!40, line width=2pt]
+        \draw[fill=\@todonotes@currentfigcolor, draw = SolarizedBrGreen, line width=2pt]
              (-2, -2.5) rectangle +(\@todonotes@currentfigwidth, \@todonotes@currentfigheight);
-        \draw (2, -1.5) node[right, text width=\@todonotes@currentfigwidth-4.5cm] {#2};
-        \draw[BrickRed, fill=white, rounded corners = 5pt, line width=5pt]
+        \draw (2, -1.5) node[right, text width=\@todonotes@currentfigwidth-4.5cm, color=SolarizedBlack] {#2};
+        \draw[SolarizedRed, fill=white, rounded corners = 5pt, line width=5pt]
              (-1, -1.5) rectangle (1, 0);
-        \draw (0, -0.5) node {Table};
+        \draw (0, -0.5) node[color=SolarizedBlack]{Table};
     \end{tikzpicture}\hfill
     }% Ending \missingtable command
 
@@ -270,14 +276,14 @@
 
 % Note if not sure about that
 \newcommandx{\munsure}[2][1=]{
-    \todo[linecolor=red,
-          backgroundcolor=red!25,
-          bordercolor=red,
+    \todo[linecolor=SolarizedRed,
+          backgroundcolor=SolarizedRed!25,
+          bordercolor=SolarizedRed,
           #1]{?? \hfill #2 \hfill ??}}
 \newcommandx{\iunsure}[2][1=]{
-    \todo[linecolor=red,
-          backgroundcolor=red!25,
-          bordercolor=red,
+    \todo[linecolor=SolarizedRed,
+          backgroundcolor=SolarizedRed!25,
+          bordercolor=SolarizedRed,
           inline,
           size=\small,
           #1]{?? \hfill #2 \hfill ??}}
@@ -285,75 +291,75 @@
 % Note with highlighted text
 \newcommandx{\mfix}[3][1=]{
     \texthl{#3}%
-    \todo[linecolor=orange,
-          backgroundcolor=orange!25,
-          bordercolor=orange,
+    \todo[linecolor=SolarizedOrange,
+          backgroundcolor=SolarizedOrange!25,
+          bordercolor=SolarizedOrange,
           #1]{{!! \hfill #2 \hfill !!}}}
 \newcommandx{\ifix}[3][1=]{
     \texthl{#3}%
-    \todo[linecolor=orange,
-          backgroundcolor=orange!25,
-          bordercolor=orange,
+    \todo[linecolor=SolarizedOrange,
+          backgroundcolor=SolarizedOrange!25,
+          bordercolor=SolarizedOrange,
           inline,
           size=\small,
           #1]{{!! \hfill #2 \hfill !!}}}
 
 % Note for part that need change
 \newcommandx{\mtodo}[2][1=]{
-    \todo[linecolor=JungleGreen,
-          backgroundcolor=JungleGreen!25,
-          bordercolor=JungleGreen,
+    \todo[linecolor=SolarizedGreen,
+          backgroundcolor=SolarizedGreen!25,
+          bordercolor=SolarizedGreen,
           #1]{#2}}
 \newcommandx{\itodo}[2][1=]{
-    \todo[linecolor=JungleGreen,
-          backgroundcolor=JungleGreen!25,
-          bordercolor=JungleGreen,
+    \todo[linecolor=SolarizedGreen,
+          backgroundcolor=SolarizedGreen!25,
+          bordercolor=SolarizedGreen,
           inline,
           size=\small,
           #1]{#2}}
 
 % Note for missing figure
 \newcommandx{\ftodo}[2][1=]{
-    \missingfigure[figcolor=MidnightBlue!25,
-                   backgroundcolor=MidnightBlue!25,
-                   bordercolor=MidnightBlue,
-                   color=MidnightBlue!25,
+    \missingfigure[figcolor=SolarizedViolet!25,
+                   backgroundcolor=SolarizedViolet!25,
+                   bordercolor=SolarizedViolet,
+                   color=SolarizedViolet!25,
                    figheight=2cm,
                    size=\normalsize,
                    #1]{#2}}
 
 % Note for missing equation
 \newcommandx{\etodo}[2][1=]{
-    \missingequation[figcolor=CornflowerBlue!25,
-                     backgroundcolor=CornflowerBlue!25,
-                     bordercolor=CornflowerBlue,
-                     color=CornflowerBlue!25,
+    \missingequation[figcolor=SolarizedCyan!25,
+                     backgroundcolor=SolarizedCyan!25,
+                     bordercolor=SolarizedCyan,
+                     color=SolarizedCyan!25,
                      figheight=2cm,
                      size=\normalsize,
                      #1]{#2}}
 \newcommandx{\emtodo}[2][1=]{
-    \todo[linecolor=CornflowerBlue,
-          backgroundcolor=CornflowerBlue!25,
-          bordercolor=CornflowerBlue,
+    \todo[linecolor=SolarizedCyan,
+          backgroundcolor=SolarizedCyan!25,
+          bordercolor=SolarizedCyan,
           #1]{Equation: #2}}
 
 % Note for missing table
 \newcommandx{\ttodo}[2][1=]{
-    \missingtable[figcolor=carolinablue!25,
-                  backgroundcolor=carolinablue!25,
-                  bordercolor=carolinablue,
-                  color=carolinablue!25,
+    \missingtable[figcolor=SolarizedBlue!25,
+                  backgroundcolor=SolarizedBlue!25,
+                  bordercolor=SolarizedBlue,
+                  color=SolarizedBlue!25,
                   figheight=2cm,
                   size=\normalsize,
                   #1]{#2}}
 
 
 % ------------------------------------------------------------------------------
-% Others
-% ------------------------------------------------------------------------------
 % Bibliography support
-%   \parencite{bib_id} Add parenthesis (Name, year)
-%   \cite{bib_id}      Normal
+% ------------------------------------------------------------------------------
+%   \parencite{bib_id}     Add parenthesis (Name, year)
+%   \cite{bib_id}          Normal
+%   \textcite{bib_id}      Dans une phrase
 \usepackage[backend=biber,
             maxcitenames=2,
             maxbibnames=100,
@@ -460,6 +466,9 @@
 }
 
 
+% ------------------------------------------------------------------------------
+% Other support
+% ------------------------------------------------------------------------------
 % Add table support
 \usepackage{booktabs}                             % Easy pro tables
 % \usepackage{longtable}                            % Allow to create tab on multiple pages
@@ -491,16 +500,25 @@
 
 
 % ------------------------------------------------------------------------------
-% Color definition
+% Solarized color definition
 % ------------------------------------------------------------------------------
-\definecolor{Amaranth}{rgb}{0.9, 0.17, 0.31}
-\definecolor{Asparagus}{rgb}{0.53, 0.66, 0.42}
-\definecolor{Amber}{rgb}{1.0, 0.49, 0.0}
-\definecolor{Title}{HTML}{268BD2}
-\definecolor{Subtitle}{HTML}{859900}
-\definecolor{emphase}{rgb}{0.9, 0.17, 0.31}
-\definecolor{BrownGreen}{HTML}{586E75}
-\definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
+\definecolor{SolarizedBlue}{HTML}{268BD2}
+\definecolor{SolarizedViolet}{HTML}{6c71c4}
+\definecolor{SolarizedCyan}{HTML}{2aa198}
+\definecolor{SolarizedMagenta}{HTML}{d33682}
+\definecolor{SolarizedGreen}{HTML}{859900}
+\definecolor{SolarizedRed}{HTML}{dc322f}
+\definecolor{SolarizedYellow}{HTML}{b58900}
+\definecolor{SolarizedOrange}{HTML}{cb4b16}
+
+\definecolor{SolarizedBrWhite}{HTML}{fdf6e3}
+\definecolor{SolarizedWhite}{HTML}{eee8d5}
+\definecolor{SolarizedBrCyan}{HTML}{93a1a1}
+\definecolor{SolarizedBrBlue}{HTML}{839496}
+\definecolor{SolarizedBrYellow}{HTML}{657b83}
+\definecolor{SolarizedBrGreen}{HTML}{586e75}
+\definecolor{SolarizedBlack}{HTML}{073642}
+\definecolor{SolarizedBrBlack}{HTML}{002b36}
 % ------------------------------------------------------------------------------
 
 
