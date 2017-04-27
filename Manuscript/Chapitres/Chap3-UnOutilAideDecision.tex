@@ -1231,7 +1231,6 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
     \caption{Organisation sociale des abeilles lors de la recherche de nourriture.
              \label{fig:bee_dance}}
 \end{figure}
-\FloatBarrier
 % paragraph intractions (end)
 
 
@@ -1378,7 +1377,6 @@ La sous-section suivante présente les améliorations retenues dans ces travaux.
 Le but étant d’améliorer l’exploration et l’exploitation tout en limitant le
 nombre de paramètres à définir de manière empirique afin de conserver une
 méta-heuristique simple d’utilisation.
-\FloatBarrier
 % subsubsection extensions (end)
 % subsection principe_de_fonctionnement (end)
 
@@ -1457,16 +1455,16 @@ d’approximer cette distribution pour $0.3 < \beta < 1.99$ \eqref{eq:mantegna_a
     s &= \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}),
         \quad v \sim \mathcal{N}(0, \sigma_{v}^{2}) \\[1em]
     \shortintertext{avec}
-    \sigma_{u} &= \left[ \frac{\mathbf{\Gamma}(1+\beta)\sin(\pi\frac{\beta}{2})}%
-                             {\mathbf{\Gamma} \left[\frac{(1+\beta)}{2}\beta
+    \sigma_{u} &= \left[ \frac{\bm{{\Gamma}}(1+\beta)\sin(\pi\frac{\beta}{2})}%
+                             {\bm{{\Gamma}} \left[\frac{(1+\beta)}{2}\beta
                               2^{\frac{(\beta-1)}{2}}\right]}\right]^{\nicefrac{1}{\beta}},%
     \qquad \sigma_{v} = 1 \notag
 \end{align}
-Où $\mathbf{\Gamma}$ représentant la fonction Gamma qui est l’extension analytique de la
-fonction factoriel pour les complexes et les réels ($\mathbf{\Gamma}(\beta) = (\beta -1)!,\quad \beta\in \mathbb{N}$)
+Où $\bm{{\Gamma}}$ représentant la fonction Gamma qui est l’extension analytique de la
+fonction factoriel pour les complexes et les réels ($\bm{{\Gamma}}(\beta) = (\beta -1)!,\quad \beta\in \mathbb{N}$)
 et est définie par:
 \begin{equation*}
-  \mathbf{\Gamma}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
+  \bm{{\Gamma}}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
 \end{equation*}
 
 Le vol de Lévy peut ainsi être assimilé à une intensification (forte probabilité de générer un petit pas)
@@ -1483,7 +1481,6 @@ ces travaux implémentent un vol de Lévy comme marche aléatoire durant la phas
     \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
              \label{fig:levy_vs_gaussian}}
 \end{figure}
-\FloatBarrier
 % subsection vol_de_levy (end)
 
 
@@ -1564,12 +1561,12 @@ $\vec{\epsilon}_{m}, m \in \{1, ..., M\}$ avec $M$ le nombre de fonctions object
 Dans le cas d’une maximisation il est dit que $\vec{x}_{a}$ $\epsilon$-domine $\vec{x}_{b}$ si~:
 \begin{align*}
   \forall m \in \{1, M\}, \qquad
-  \left\lceil\frac{f_{m}(\vec{x}_{a})}{\epsilon}\right\rceil &\leq
-  \left\lceil\frac{f_{m}(\vec{x}_{b})}{\epsilon}\right\rceil  \\
+  \left\lceil\frac{f_{m}(\vec{x_{a}})}{\epsilon}\right\rceil &\leq
+  \left\lceil\frac{f_{m}(\vec{x_{b}})}{\epsilon}\right\rceil  \\
   \intertext{et}
   \exists m \in \{1, M\}, \qquad
-  \left\lceil\frac{f_{m}(\vec{x}_{a})}{\epsilon}\right\rceil &<
-  \left\lceil\frac{f_{m}(\vec{x}_{b})}{\epsilon}\right\rceil  \\
+  \left\lceil\frac{f_{m}(\vec{x_{a}})}{\epsilon}\right\rceil &<
+  \left\lceil\frac{f_{m}(\vec{x_{b}})}{\epsilon}\right\rceil  \\
 \end{align*}
 Cette relation sera notée sera notée~: $\vec{x}_{a} \prec_{\epsilon} \vec{x}_{b}$.
 \end{Def}
@@ -1980,7 +1977,6 @@ performance de l’algorithme simplifiant sa paramétrisation.
   Mise à jour de la position des \ASources d’après Algorithme~\ref{alg:maj_phase}\;
   \caption{Phase des butineuses.}
 \end{algorithm}
-\FloatBarrier
 % subsection description_de_l_approche_globale (end)
 
 
