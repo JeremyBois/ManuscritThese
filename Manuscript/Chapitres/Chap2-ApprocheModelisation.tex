@@ -1,8 +1,6 @@
 %!TEX root = ../main.tex
 % Chapitres\Chap2-ApprocheModelisation.tex
 
-\itodo{Corriger les nombre décimaux . --> ,}
-
 \itodo{Ajouter citations, voir article BS 2017}
 De nombreuses études ont déjà cherché à évaluer la performance d’un système solaire
 combiné à l’aide de méthodes plus ou moins détaillées. L’approche la plus répandue utilise
@@ -473,7 +471,7 @@ système aéraulique à l’aide d’un échangeur de chaleur.
     Volume                                       & \num{300}   & \num{300}    & \si{\litre}              \\
     Hauteur                                      & \num{1.05}  & \num{1.25}   & \si{\metre}              \\
     Épaisseur isolation                          & \num{100}   & \num{55}     & \si{\milli\metre}             \\
-    \textgreek{l} isolant                        & \num{0.04}  & \num{0.04}   & \si{W/m^{2}{.}K}      \\
+    $\lambda$ isolant                            & \num{0.04}  & \num{0.04}   & \si{W/m^{2}{.}K}      \\
     Échangeur haut                               & \num{0.85}  & \num{0.64}   & \si{\metre}              \\
     Échangeur bas                                & \num{0.15}  & \num{0.13}   & \si{\metre}              \\
     Diamètre échangeur (extérieur)               & \num{34.6}  & \num{33.7}   & \si{\milli\metre}             \\
@@ -1039,14 +1037,16 @@ Inoccupation         & \cellcolor{SolarizedBrBlue} &                     & \cell
 
 
 \paragraph{Consigne de chauffage solaire :} % (fold)
+\label{par:consigne_de_chauffage_solaire}
 L’impact de la température de consigne solaire est aussi discuté. Deux configurations sont
 simulées. La première admet une température de consigne de \SI{22}{\celsius}. La
 seconde ne considère pas d’élévation de la température par le solaire. Pour rappel
 l’élévation de la température n’est réalisé que par l’énergie solaire provenant des
 capteurs, soit l’état $Solaire_{Direct}$. Finalement les interactions entre consigne et
 consigne solaire de chauffage sont aussi discutées
-\label{par:consigne_de_chauffage_solaire}
 % paragraph consigne_de_chauffage_solaire (end)
+
+\iunsure{Ajouter variation charges internes. N’apporte pas grand chose.}
 % subsubsection temperature_de_consigne (end)
 % subsection scenarios_etudies (end)
 
@@ -1211,25 +1211,27 @@ car elle est adapté pour toutes les configurations envisagées (\mtodo{Ajouter 
 Finalement il est aussi étudié à travers cette étude des variations au niveau
 de l’algorithme de contrôle.
 
-La différence de température entre la source (sortie des capteurs)
-et la cible (sortie des échangeurs) est modulé autour du cas de référence (\SI{10}{\celsius}) avec
-deux nouvelles variations~: \SI{5}{\celsius} et \SI{15}{\celsius}. Augmenter ce paramètre
-revient à attendre plus longtemps avant d’autoriser l’utilisation de l’énergie solaire et impose
-une température en sortie des capteurs plus élevée pour valoriser les apports solaires. À l’inverse diminuer ce paramètre amène le
-système a être plus réactif.
+$DeltaT_{solaire}$, la différence de température entre la source (sortie des capteurs) et la cible (sortie des
+échangeurs) est modulée autour du cas de référence (\SI{10}{\celsius}) avec deux nouvelles
+variations~: \SI{5}{\celsius} et \SI{15}{\celsius}. Augmenter le $DeltaT_{solaire}$ revient à
+attendre plus longtemps avant d’autoriser l’utilisation de l’énergie solaire et impose une
+température en sortie des capteurs plus élevée pour valoriser les apports solaires. À
+l’inverse diminuer ce paramètre amène le système a être plus réactif.
 
-Il est aussi évalué l’impact des temporisations au niveau de la régulation du chauffage par vecteur air~:
+Il est aussi évalué l’impact des temporisations au niveau de la régulation du chauffage
+par vecteur air~:
 \begin{itemize}
   \item Activation de la batterie électrique terminale
   \item Modulation du débit de soufflage
   \item Modulation du de la température de soufflage
 \end{itemize}
 
-La première temporisation est sur le cas de référence de \SI{3}{min} et sera notée $Tempo_{batterie}$. Elle permet d’éviter
-d’activer la batterie terminale d’appoint à chaque demande de chauffage en retardant son
-activation lorsque il y a de l’énergie solaire de disponible. La seconde temporisation
-correspond à la temporisation entre la modulation de la température, et la modulation du
-débit. Le cas de référence admet une temporisation de \SI{10}{min} et elle sera notée $Tempo_{soufflage}$.
+La première temporisation est sur le cas de référence de \SI{3}{min} et sera notée
+$Tempo_{batterie}$. Elle permet d’éviter d’activer la batterie terminale d’appoint à
+chaque demande de chauffage en retardant son activation lorsque il y a de l’énergie
+solaire de disponible. La seconde temporisation correspond à la temporisation entre la
+modulation de la température, et la modulation du débit. Le cas de référence admet une
+temporisation de \SI{10}{min} et elle sera notée $Tempo_{soufflage}$.
 
 \begin{table}
 \centering
@@ -1254,13 +1256,43 @@ débit. Le cas de référence admet une temporisation de \SI{10}{min} et elle se
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Méthodologie} % (fold)
 \label{ssub:methodologie}
-\paragraph{Simulation de référence} % (fold)
-\label{par:simulation_de_reference}
-% paragraph simulation_de_reference (end)
+L’analyse a été réalisée sur la base d’un cas de référence dont les scénarios et les
+caractéristiques ont été présentés dans les parties précédentes. Sans mentions explicites les
+simulations utilisent ces paramètres. L’ensemble des variations possibles ainsi que
+le cas de référence sont décrits à travers un tableau récapitulatif (\autoref{tab:ref_description}).
 
-\paragraph{Récapitulatif des variations} % (fold)
-\label{par:recapitulatif_des_variations}
-% paragraph recapitulatif_des_variations (end)
+\begin{table}
+\centering
+\caption{Description de la solution de référence et de variations étudiées.}
+  \label{tab:ref_description}
+  \begin{tabular}{l r c C{4cm} r}
+    \toprule
+    \rule{0pt}{15pt}                                 & Unité & Référence & Variations & Détails  \\[5pt]
+    \midrule
+    \multicolumn{5}{l}{\bf{Scénarios}}                                                                                       \\
+    \midrule
+    Puisage                          & \si{l/h}      & EN12977   & Soir, Matin, Réparti, Réaliste & \ref{ssub:puisage_en_eau_chaude_sanitaire}            \\
+    Ventilation                      & \si{m^{3}/h}  & 90-20     & 90-90 & \ref{ssub:ventilation}                                \\
+    Chauffage                        & \si{\celsius} & 19-18-16  & 19-19-16, 19-19-19, 20-18-16, 20-20-16 & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
+    Chauffage solaire                & \si{\celsius} & Avec (22) & Sans &                                                       \\
+    \\ \midrule
+    \multicolumn{5}{l}{\bf{Équipements}}                                                                                          \\
+    \midrule
+    Modèle des capteurs              & -             & IDMK 25   & 308C HP, 12 CPC58  & \multirow{3}{*}{\ref{ssub:capteurs_solaires}}         \\
+    Inclinaison des capteurs         & \si{\degree}  & 33        & \num{18.9}, 45, 60 &                                                       \\
+    Orientation des capteurs         & -             & Sud       & Est, Ouest         &                                                       \\
+    Volume ballon de stockage        & \si{\litre}   & 300       & 150, 450 & \multirow{3}{*}{\ref{ssub:ballons}}                   \\
+    Volume ballon $ECS$              & \si{\litre}   & 300       & 150, 450 &                                                       \\
+    Position Échangeur solaire       & \si{m}        & 1         & \num{0.8}, \num{1.3} &                                                       \\
+    \\ \midrule
+    \multicolumn{5}{l}{\bf{Algorithme}}                                                                                      \\
+    \midrule
+    $Tempo_{batterie}$               & \si{\min}     & 3         & 2, 4 & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
+    $Tempo_{soufflage}$              & \si{\min}     & 10        & 5, 15 &                                                       \\
+    $DeltaT_{solaire}$               & \si{\celsius} & 10        & 5, 15 &                                                       \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 % subsubsection methodologie (end)
 
 
@@ -1394,86 +1426,11 @@ débit. Le cas de référence admet une temporisation de \SI{10}{min} et elle se
 % % subsection description_du_site (end)
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Approche monozone} % (fold)
-% \label{sub:approche_monozone}
-% \itodo{Décrire la raison de ce choix}
-% \itodo{Maison monozone vérifiée par un modèle multi-zone}
-% Dans une première application, un modèle monozone a été utilisé pour réduire la
-% complexité du modèle. Comme décrit plus haut (\autoref{ssub:confiance_dans_les_modeles}),
-% le modèle respecte une large suite de test, et une approche trop détaillée n’est pas
-% nécessaire à ce moment de l’analyse. Le but étant de faire une première évaluation du
-% potentiel solaire du système combiné.
-% Le modèle a cependant été comparé avec une implémentation dans Energy Plus afin de
-% vérifier que les deux modèle ais des résultats similaires. Le travail fais en amont
-% sur l’enveloppe de la maison étant complémentaire à celui-ci.
 
-% \itodo{Décrire les limitations de cette approches grâce au premiers résultats}
-% Les premiers résultats montrent un potentiel intéressant de la production solaire pour
-% des climats allant de Marseille à Limoges. Dans un climat très hostile comme
-% Strasbourg, la part solaire est faible et ce système ne semble pas permettre de couvrir
-% les besoins. Il est important de noter que l’énergie disponible pour le solaire est
-% fortement dépendant des fichiers météos.
-% Il est aussi intéressant de voir les limitations de l’approche paramétrique. Aucune
-% interaction entre les composants n’est prise en compte et la seule information disponible
-% est donc difficilement extrapolable/utilisable pour d’autres cas. Il est en effet nécessaire
-% d’évaluer/ trier les paramètres influant. Une fois un certain nombre de paramètres retenus,
-% il est alors possible de suivre une méthode d’optimisation combinatoire pour évaluer
-% un ensemble de solution optimales.
-% Enfin l’approche monozone montre aussi ces limites sur plusieurs aspects qui sont importants
-% pour l’évaluation d’une maison faiblement déperditive. La répartitions des charges internes
-% et des périodes d’occupation est un facteur important à prendre en compte. Sans une approche
-% multizone, il est impossible d’en tenir compte correctement (charges propres au type de pièce)
-% Il est aussi intéressant de voir quel est l’impact passif des équipements du système solaire sur la
-% consommation et la charge de la maison. L’approche monozone n’ayant que un seul nœud
-% d’air, la prise en compte des apports par ces équipements est trop grossier.
-% Enfin l’approche multizone permet de modéliser un algorithme de régulation plus réaliste.
-% En effet pour prendre le cas de la CTA; l’insufflation et l’extraction ne se font pas au même endroit.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAROIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \itodo{Decrire le découpage de la maison.}
-% La maison a été modélisé comme un ensemble de 3 zones, les combles, le vide-sanitaire, et la zone
-% à vivre. Un modèle simplifié est utilisé pour les combles et le vide sanitaire
-% afin d’obtenir des conditions limites notamment pour les parois du puits de jour.
-% Les coefficients de convection intérieurs utilisés sont les suivants:
-% \begin{itemize}
-%     \item Plafond: 8~\si{W/m^{2}.k}
-%     \item Plancher: 8~\si{W/m^{2}.k}
-%     \item Murs: 8~\si{W/m^{2}.k}
-% \end{itemize}
-
-% Le coefficient de convection extérieur utilisé est de 25~\si{W/m^{2}.k}.
-% % subsection approche_monozone (end)
-
-
-% % ------------------------------------------------------------------------------
-% \subsection{Description de l’enveloppe} % (fold)
-% \label{sub:description_de_l_enveloppe}
-% \itodo{Description complète de la maison: Composition de base, surfaces, orientation, ...}
-% La maison (Fig.~\ref{fig:plan_maison}) a une surface habitable de 98.4~\si{m^2}. Elle comporte
-% 3 \mtodo{Ajouter orientation}{chambres}, une cuisine/salon, et un local technique
-% où se trouve les équipements du système. La maison comporte des combles non aménagés
-% et un vide sanitaire. La maison est de plain-pied et les compositions sont:
-% \begin{itemize}
-%     \item Murs: ~\autoref{tab:compo_mur}
-%     \item Plafond: ~\autoref{tab:compo_plafond}
-%     \item Plancher: ~\autoref{tab:compo_plancher}
-%     \item Partition: ~\autoref{tab:compo_partition}
-%     \item Murs du puits de lumière: ~\autoref{tab:compo_puits}
-%     \item Murs vide sanitaire: ~\autoref{tab:compo_VS}
-%     \item Toiture: ~\autoref{tab:compo_toiture}
-% \end{itemize}
-% Les différents vitrages sont des vitrages double avec une lame d’air ou d’argon.
-% Une couche faiblement émissive est ajouté pour les vitrages des parois verticales (~\autoref{tab:compo_vitrage}).
-% La fenêtre de toit~\autoref{tab:compo_velux} et les caractéristiques des gaz  ~\autoref{tab:compo_gaz}
-% sont aussi décrites.
-
-% \begin{figure}
-%     \begin{center}
-%         \includegraphics{Maison/plan.png}
-%     \end{center}
-%     \caption{Plan de la maison accueillant le système solaire modélisé.
-%              \label{fig:plan_maison}}
-% \end{figure}
 
 % \itodo{Tableau des parois}
 % \begin{table}
