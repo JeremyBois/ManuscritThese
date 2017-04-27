@@ -1,10 +1,42 @@
-%!TEX TS-program = xelatex
-%!TEX encoding = UTF-8 Unicode
+% \documentclass[11pt, draft, twoside]{report}
+\documentclass[12pt, oneside]{report}
 
-\documentclass[11pt, draft, oneside]{report}
-% \documentclass[11pt, twoside]{report}
-\setcounter{secnumdepth}{3}
 
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Notes:
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%
+% Les images sont ajustées automatiquement et donc `scale' ne peut pas être utilisé
+% Permet d’écrire et d’insérer les images sans devoir se soucier de la taille.
+% Lors de la mise en page, ce paramètre devra être supprimé
+% (\usepackage{./Template/graphics_support})
+%
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Choix des séparateurs entre les parties pour la lisibilité
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%
+% SECTION
+% ..............................................................................
+% ..............................................................................
+%
+% SUBSECTION
+% ------------------------------------------------------------------------------
+%
+% SUBSUBSECTION
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+% ------------------------------------------------------------------------------
+% Packages import
+% ------------------------------------------------------------------------------
+% Text font pack
+\usepackage[OT1, T1]{fontenc}                     % .pdf Encoding spec
+\usepackage[utf8]{inputenc}                       % .tex Encoding spec
 \usepackage{xspace}
 \usepackage[greek, french]{babel}        % http://daniel.flipo.free.fr/frenchb/
 \usepackage{appendix}
@@ -12,9 +44,8 @@
 \usepackage[dvipsnames, svgnames, table]{xcolor}  % Color support
 \usepackage{./Template/graphics_support}          % Image support
 \frenchspacing                                    % French typo
-\frenchbsetup{StandardLists=true}                 % Turn off french bulleted lists
-% \usepackage[sf]{titlesec}                         % Sans serif font for titles
-\usepackage[Conny]{fncychap}                      % Fancy title
+\frenchbsetup{StandardLists=true}                  % Turn off french bulleted lists
+\usepackage[scaled]{beramono}                      % Font for text
 
 \usepackage{placeins}                                    % Float always where defined
 \let\Oldsection\section
@@ -26,15 +57,15 @@
 \usepackage[top=2cm,
             bottom=2cm,
             left=2cm,
-            right=3cm,
+            right=2cm,
             a4paper]{geometry}             % Page layout support
 \usepackage{bookmark}                      % load hyperref internaly
 \hypersetup{
-    pdfkeywords={Maison Passive,
+    pdfkeywords={Passive,
                  Optimisation,
                  multi-critère,
                  multi-objectif,
-                 analyse de sensibilité,
+                 analyse sensibilité,
                  Dymola,
                  Modelica,
                  Solaire,
@@ -66,15 +97,16 @@
 % ------------------------------------------------------------------------------
 % Math support
 % ------------------------------------------------------------------------------
-% \mathbf not working with xelatex better to use /bm with bm package (sometimes required {{\Gamma}})
 \usepackage{siunitx}                                % Unit package
-\usepackage{amsmath, amssymb, amsthm, mathtools,bm} % Allow adding complex equations
+\usepackage{amsmath, amssymb, amsthm,mathtools}     % Allow adding complex equations
 \usepackage{nicefrac}                               % for \nicefrac macro
 % \usepackage{listings}                             % Code block support
 \usepackage{letltxmacro}                            % Support for optional argument in redefinition
-\mathchardef\period=\mathcode`.                % Used in siunitx to print dot : {.} ---> \period
-\DeclareMathSymbol{.}{\mathord}{letters}{"3B}  % Decimal separator in math mode ...
-\sisetup{output-decimal-marker={,}}            % ... and un siunitx: dot with comma
+% Used in siunitx to print dot : J/(m².K) ---> \si{\joule\per(\metre\squared\period\Kelvin)}
+\mathchardef\period=\mathcode`.
+% Replace decimal separator in math mode and un siunitx: dot with comma
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+\sisetup{output-decimal-marker={,}}
 % Change the ways square root appears
 \makeatletter
     \let\oldr@@t\r@@t
@@ -82,11 +114,12 @@
     \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
     \advance\dimen0-0.2\ht0
     \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
-    {\box0\lower0.7pt\box2}}
+    {\box0\lower0.4pt\box2}}
     \LetLtxMacro{\oldsqrt}{\sqrt}
     \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
 \makeatother
-\newcommand{\pluseq}{\mathrel{+}\mathrel{\mkern-1mu}=}  % Math symbols +=
+% Math symbols
+\newcommand{\pluseq}{\mathrel{+}\mathrel{\mkern-1mu}=}
 
 % Mise en page des théorèmes
 \usepackage{tikz}
@@ -119,11 +152,6 @@
 \newenvironment{Def}{\begin{encadrement}[white]\begin{preDef}}{\end{preDef}\end{encadrement}}
 
 
-% Circle arround text
-\newcommand\encircle[1]{%
-  \tikz[baseline=(X.base)]
-    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
-
 % ------------------------------------------------------------------------------
 % Algorithm support
 % ------------------------------------------------------------------------------
@@ -131,6 +159,11 @@
             linesnumbered, lined,
             boxed,
             commentsnumbered]{algorithm2e}
+
+% Circle arround text
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)]
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
 
 
 % Comments
@@ -176,6 +209,7 @@
             textsize=tiny]{todonotes}      % Note support
 
 \makeatletter
+
 % Redefine \missingfigure command from todonotes packages
     \renewcommand{\missingfigure}[2][]{%
     \setkeys{todonotes}{#1}%
@@ -237,6 +271,7 @@
         \draw (0, -0.5) node[color=SolarizedBlack]{Table};
     \end{tikzpicture}\hfill
     }% Ending \missingtable command
+
 \makeatother
 
 % Note if not sure about that
@@ -441,11 +476,14 @@
 \usepackage{multirow}                             % Multiple row
 % \setlength{\LTcapwidth}{8in}                      % Change caption size
 
-% New column type
-\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
-
 % New table command to inser table inside a table cell
 % \newcommand{\minitab}[2][Insert text here]{\begin{tabular}{#1}#2\end{tabular}}
+
+
+% % Add support for annotations
+% \usepackage{pdfcomment}
+% \definecolor{transparent}{cmyk}{1, 1, 1, 1}
+% % Voilà un \pdfmarkupcomment[color=transparent]{text annoté}{I’m marking you}
 
 
 % ------------------------------------------------------------------------------
@@ -496,33 +534,19 @@
 \date{}
 % ------------------------------------------------------------------------------
 
-\usepackage{unicode-math}
-\setmainfont{GandhiSerif-}[
-Extension=.otf,
-Path=./Fonts/,
-UprightFont=*Regular,
-BoldFont=*Bold,
-ItalicFont=*Italic,
-BoldItalicFont=*BoldItalic,
-]  % Look nice
 
-% \setsansfont{PT Sans}
-\setsansfont{QuattrocentoSans-}[
-Extension=.otf,
-Path=./Fonts/,
-UprightFont=*Regular,
-BoldFont=*Bold,
-ItalicFont=*Italic,
-BoldItalicFont=*BoldItalic,
-% Color=SolarizedBrBlack,
-]
+% ------------------------------------------------------------------------------
+% Included files selection defined here
+% ------------------------------------------------------------------------------
+\includeonly{
+             % Chapitres/Chap1-ContexteTravaux,
+             Chapitres/Chap2-ApprocheModelisation,
+             % Chapitres/Chap3-UnOutilAideDecision,
+             % Chapitres/Chap4-OptimisationSystemeSolaire,
+            }
+% ------------------------------------------------------------------------------
 
-\setmathfont{Asana-Math}[
-Path=./Fonts/,
-Extension=.otf,
-% Color=SolarizedBrBlack,
-]
-\defaultfontfeatures{Ligatures=TeX}
+
 
 % ------------------------------------------------------------------------------
 % Document start here
@@ -561,22 +585,22 @@ miaou : fsss
 
 % Start importing chapters
 \chapter*{Introduction}
-% \input{Chapitres/Introduction}
+\include{Chapitres/Introduction}
 
 \chapter{Le solaire thermique appliquée au bâtiment, un problème multicritère}
-% \input{Chapitres/Chap1-ContexteTravaux}
+\include{Chapitres/Chap1-ContexteTravaux}
 
 \chapter{Modélisation d’un système solaire innovant}
-\input{Chapitres/Chap2-ApprocheModelisation}
+\include{Chapitres/Chap2-ApprocheModelisation}
 
 \chapter{Développement d’une méthode d’aide à la décision}
-% \input{Chapitres/Chap3-UnOutilAideDecision}
+\include{Chapitres/Chap3-UnOutilAideDecision}
 
 \chapter{Application: Optimisation multi-objectif d’un système solaire combiné couplé à une maison passive}
-% \input{Chapitres/Chap4-OptimisationSystemeSolaire}
+\include{Chapitres/Chap4-OptimisationSystemeSolaire}
 
 \chapter*{Conclusion}
-% \input{Chapitres/Conclusion}
+\include{Chapitres/Conclusion}
 
 
 % Start importing appendix

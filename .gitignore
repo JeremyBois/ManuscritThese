@@ -108,5 +108,4 @@ Ressources/
 *.sublime-workspace
 
 # Xelatex test
-Fonts/
 test.tex

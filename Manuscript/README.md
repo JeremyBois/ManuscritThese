@@ -1,7 +1,16 @@
 # Notes sur le manuscrit
 
-**Mise à jour: 11042017**
+**Mise à jour: 27042017**
 
+
+## À faire:
+
+  - Vérifier que les noms exotiques soit correctement écrits
+  - Abréviation en mode math ($$)
+  - Nom Logiciel en italique (\textit)
+  - Légende tableau en haut
+  - Légende figure en bas
+  - Redéfinir les niveaux de titre avec titlesec
 
 ## Latex:
 
@@ -17,7 +26,6 @@ d’affichage et une meilleur compatibilité auprès des divers lecteurs pdf.
 [pdfcomment](http://www.ctan.org/pkg/pdfcomment)
 
 **Erreurs de Biblatex:**
-Les champs `@InProceedings` lèvent l’erreur `Undefined control sequence. []`.
 L’ajout de référence croisé (crossref) empêche la compilation du fichier latex.
 La référence d’un article vers un autre est donc maintenant dans le champs note.
 
