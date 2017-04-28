@@ -6,28 +6,14 @@
 \setcounter{secnumdepth}{3}
 
 \usepackage{xspace}
-\usepackage[greek, french]{babel}        % http://daniel.flipo.free.fr/frenchb/
+\usepackage[greek, french]{babel}                 % http://daniel.flipo.free.fr/frenchb/
 \usepackage{appendix}
 \usepackage[babel=true]{csquotes}                 % Ensure correct quote text
-\usepackage[dvipsnames, svgnames, table]{xcolor}  % Color support
-\usepackage{./Template/graphics_support}          % Image support
 \frenchspacing                                    % French typo
 \frenchbsetup{StandardLists=true}                 % Turn off french bulleted lists
-% \usepackage[sf]{titlesec}                         % Sans serif font for titles
-\usepackage[Conny]{fncychap}                      % Fancy title
+\usepackage[dvipsnames, svgnames, table]{xcolor}  % Color support
+\usepackage{./Template/graphics_support}          % Image support
 
-\usepackage{placeins}                                    % Float always where defined
-\let\Oldsection\section
-\renewcommand{\section}{\FloatBarrier\Oldsection}        % For section
-\let\Oldsubsection\subsection
-\renewcommand{\subsection}{\FloatBarrier\Oldsubsection}  % For subsection
-
-% Template packages
-\usepackage[top=2cm,
-            bottom=2cm,
-            left=2cm,
-            right=3cm,
-            a4paper]{geometry}             % Page layout support
 \usepackage{bookmark}                      % load hyperref internaly
 \hypersetup{
     pdfkeywords={Maison Passive,
@@ -61,6 +47,24 @@
     filecolor=SolarizedMagenta,         % color of file links
     urlcolor=SolarizedBlue              % color of external links
 }
+
+
+% ------------------------------------------------------------------------------
+% Template support
+% ------------------------------------------------------------------------------
+% \usepackage[sf]{titlesec}                         % Sans serif font for titles
+\usepackage[Conny]{fncychap}                      % Fancy title
+\usepackage{placeins}                                    % Float always where defined
+\let\Oldsection\section
+\renewcommand{\section}{\FloatBarrier\Oldsection}        % For section
+\let\Oldsubsection\subsection
+\renewcommand{\subsection}{\FloatBarrier\Oldsubsection}  % For subsection
+% Template packages
+\usepackage[top=2cm,
+            bottom=2cm,
+            left=2cm,
+            right=3cm,
+            a4paper]{geometry}             % Page layout support
 
 
 % ------------------------------------------------------------------------------
@@ -118,11 +122,12 @@
 \newtheorem{preDef}[Def]{Définition}
 \newenvironment{Def}{\begin{encadrement}[white]\begin{preDef}}{\end{preDef}\end{encadrement}}
 
-
 % Circle arround text
 \newcommand\encircle[1]{%
   \tikz[baseline=(X.base)]
     \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+
 
 % ------------------------------------------------------------------------------
 % Algorithm support
@@ -437,8 +442,7 @@
 \usepackage{nomencl}
 \makenomenclature
 
-%% This code creates the groups
-% -----------------------------------------
+% Add groups
 \usepackage{etoolbox}
 \renewcommand\nomgroup[1]{%
   \item[\bfseries
@@ -448,25 +452,21 @@
   \ifstrequal{#1}{I}{Indices}{}}}}%
 ]}
 
-% This will add the units
-%----------------------------------------------
+% Add units
 \newcommand{\nomunit}[1]{%
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 
-
-% This will add symbol on the left (default)
-%----------------------------------------------
+% Add symbol on the left (default)
 \renewcommand{\nomlabel}[1]{#1\hfil}
 
 
 % ------------------------------------------------------------------------------
-% Other support
+% Table support
 % ------------------------------------------------------------------------------
 % Add table support
 \usepackage{booktabs}                             % Easy pro tables
-% \usepackage{longtable}                            % Allow to create tab on multiple pages
-\usepackage{tabulary}                             % Best tab formatter
 \usepackage{multirow}                             % Multiple row
+% \usepackage{longtable}                            % Allow to create tab on multiple pages
 % \setlength{\LTcapwidth}{8in}                      % Change caption size
 
 % New column type
@@ -509,22 +509,12 @@
 \definecolor{SolarizedBrGreen}{HTML}{586e75}
 \definecolor{SolarizedBlack}{HTML}{073642}
 \definecolor{SolarizedBrBlack}{HTML}{002b36}
-% ------------------------------------------------------------------------------
 
 
 % ------------------------------------------------------------------------------
-% First page defined here
+% Font support
 % ------------------------------------------------------------------------------
-\title{
-    {Outil d’aide à la décision pour la construction de maisons passives 100\% solaires}\\
-    {\large Université de Bordeaux}\\
-    {\includegraphics{Logos/aquitaine_logo.png}}
-}
-\author{Jérémy Bois}
-\date{}
-% ------------------------------------------------------------------------------
-
-\usepackage{unicode-math}
+\usepackage[math-style=french]{unicode-math}
 \setmainfont{GandhiSerif-}[
 Extension=.otf,
 Path=./Fonts/,
