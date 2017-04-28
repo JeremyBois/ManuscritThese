@@ -1,6 +1,7 @@
 %!TEX root = ../main.tex
 % Chapitres\Chap2-ApprocheModelisation.tex
 
+\iunsure{À mettre dans le premier chapitre}
 \itodo{Ajouter citations, voir article BS 2017}
 De nombreuses études ont déjà cherché à évaluer la performance d’un système solaire
 combiné à l’aide de méthodes plus ou moins détaillées. L’approche la plus répandue utilise
@@ -79,7 +80,7 @@ de contrôle (régulation) et d’un bilan thermique (bâtiment).
 % ------------------------------------------------------------------------------
 \subsection{Quelles solutions} % (fold)
 \label{sub:quelles_solutions}
-Le langage \textit{Modelica} et le logiciel \textit{Dymola} (Dynamics Modeling Laboratory)
+Le langage \textit{Modelica} et le logiciel \textit{Dymola} (Dynamics MOdeling LAboratory)
 permettent de répondre à l’ensemble des contraintes décrites dans la section précédente.
 \textit{Modelica} est un langage de programmation libre et ouvert développé pour répondre
 aux contraintes de la modélisation multi-physique. Il a été pensé pour être intuitif et
@@ -121,7 +122,7 @@ variable et sa propagation sur l’ensemble des modèles de la bibliothèque. Il
 un outil de post- traitement afin d’évaluer les résultats des simulations. Finalement il
 intègre le logiciel \textit{Dymosim} qui offre un large choix de solveurs pour simuler les
 modèles. \textit{Dymosim} supporte aussi la parallélisation, les \emph{FMU}
-(FunctionalMock-Up Unit) et la génération de modèles autonomes.
+(Functional Mock-up Unit) et la génération de modèles autonomes.
 \begin{figure}
     \begin{center}
         \includegraphics{Ressources/Images/Modelisation/exemple.PNG}
@@ -845,8 +846,9 @@ de cette approche discutées.
 \label{sub:climats_etudies}
 ~
 \mtodo{Choix plus orienté par IGC que pour couverture ... virer Toulouse ?}
-Afin de couvrir les différentes zones climatiques de la France, l’étude a été réalisée
-pour 6 villes~: Nantes, Limoges, Bordeaux, Toulouse, Marseille, et Strasbourg (Fig~\ref{fig:carte_france}).
+Afin d’être représentatif des zones climatiques de la France, l’étude a été réalisée
+pour 5 villes~: Bordeaux, Nantes, Strasbourg, Limoges, et Marseille (Fig~\ref{fig:carte_france},
+\autoref{tab:description_climat}).
 \begin{figure}
     \begin{center}
         \includegraphics{Ressources/Images/Batiment/France_map.pdf}
@@ -866,7 +868,27 @@ d’un bâtiment, sa détermination de manière précise est un processus comple
 spécialement lorsque de nombreuses variations de l’enveloppe comme des charges internes
 est étudié.
 
-\ttodo{Ajouter description des climats}
+\begin{table}
+\centering
+\caption{Description des différents climats retenues}
+\label{tab:description_climat}
+\begin{tabular}{ L{4cm} c | c  c  c  c  c  c }
+  \toprule
+                                      &    &    & \textbf{Bordeaux} & \textbf{Nantes} & \textbf{Strasbourg} & \textbf{Limoges} & \textbf{Marseille} \\
+  \midrule
+  \multirow{2}{4cm}{Température de l’eau du réseau} &
+  \multirow{2}{*}{\si{\celsius}}  & Min    & \num{8.9}               & \num{8.3}               & \num{5.3}                 & 7                 & 12                \\
+                                 & & Max    & 16                & 15               & 14                  & 14                & 19                \\
+  \midrule
+  DJU (\SI{19}{\celsius}) & \si{\celsius} & Totaux  & 2408              & 2660               & 3360                & 2972              & 2049              \\
+  \midrule
+  \multirow{3}{4cm}{Irradiation solaire} &
+  \multirow{3}{*}{\si{kWh/m^{2}}} & Global & 1264              & 1184               & 1091                & 1257              & 1545              \\
+                                  &    & Direct & 929               & 885               & 721                 & 1209              & 1503              \\
+                                  &    & Diffus & 712               & 665               & 650                 & 602              & 615               \\
+  \bottomrule
+\end{tabular}
+\end{table}
 
 
 
@@ -895,6 +917,9 @@ disparité entre les différents climats où les minimums varient entre \SI{5.3}
 représentés respectivement par Strasbourg et Marseille.
 \begin{table}
 \centering
+\caption{Température de l'eau du réseau au cours de l'année en fonction de la
+         position géographique.}
+\label{tab:temp_eau}
 \begin{tabular}{l*{12}{c}}
     \toprule
                & Janv. & Fevr. & Mars & Avr. & Mai & Juin & Juil. & Août & Sept. & Oct. & Nov. & Dec. \\
@@ -907,9 +932,6 @@ représentés respectivement par Strasbourg et Marseille.
     Marseille  & \num{12}    & \num{12}    & \num{13}   & \num{14}   & \num{16}  & \num{18}   & \num{19}    & \num{19}   & \num{18}    & \num{16}   & \num{14}   & \num{12}   \\
     \bottomrule
 \end{tabular}
-\caption{Température de l'eau du réseau au cours de l'année en fonction de la
-         position géographique.}
-         \label{tab:temp_eau}
 \end{table}
 
 
@@ -1261,6 +1283,12 @@ caractéristiques ont été présentés dans les parties précédentes. Sans men
 simulations utilisent ces paramètres. L’ensemble des variations possibles ainsi que
 le cas de référence sont décrits à travers un tableau récapitulatif (\autoref{tab:ref_description}).
 
+Le vocabulaire utilisé lors de l’analyse des résultats est décrit, en particulier la
+définition des principaux indicateurs.
+
+
+
+
 \begin{table}
 \centering
 \caption{Description de la solution de référence et de variations étudiées.}
@@ -1293,12 +1321,40 @@ le cas de référence sont décrits à travers un tableau récapitulatif (\autor
     \bottomrule
   \end{tabular}
 \end{table}
+
 % subsubsection methodologie (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Impact du climat} % (fold)
 \label{ssub:impact_du_climat}
+Les résultats obtenues pour les différents climats sont disponibles à travers le
+\autoref{tab:performance_annuelles}. Les consommations électriques tiennent compte
+de la consommation des appoints (chauffage et ECS) mais aussi de la consommation des
+pompes du système solaire combiné. Il peut ainsi être observé que le système solaire
+permet d’obtenir une bonne performance pour tous les climats autant sur $F_{ECS}$
+
+\begin{table}
+\centering
+\caption{Performances annuelles du système solaire pour différents climats. Le chauffage est décrit
+         par l’abréviation $Chauff$.}
+\label{tab:performance_annuelles}
+\begin{tabular}{| l | c | c | c | c | c | c | c | c | c | c | c |}
+    \toprule
+             &   \multicolumn{9}{ c |}{\bf{Consommation (kWh)}} & \multicolumn{2}{ c |}{\bf{\%}} \\
+    \midrule
+     & \multicolumn{2}{ c |}{\bf{Total}}   &  \multicolumn{3}{ c |}{\bf{Électrique}}  & \multicolumn{6}{ c |}{\bf{Solaire}}                                               \\
+    \midrule
+               & $ECS$    & $Chauff$    &  $ECS$        & $Chauff$ & \bf{Pompes}      & $Solaire_{récupérée}$ & $Pertes_{canalisations}$ & $ECS$  & $Chauff$ & $F_{ECS}$  & $F_{Chauff}$ \\
+    \midrule
+    Bordeaux   & 2983     & 1024           &  101          & 91          &  7               & 3387                  & 219                      & 2444   &  949        & 95         & 91  \\
+    Strasbourg & 3180     & 1986           &  479          & 1203        &  8               & 3164                  & 199                      & 2332   &  845        & 83         & 42  \\
+    Marseille  & 2784     & 975            &  2            & 1           &  7               & 3280                  & 218                      & 2300   &  974        & 100        & 100 \\
+    Nantes     & 3044     & 1114           &  233          & 248         &  7               & 3295                  & 209                      & 2399   &  902        & 91         & 78  \\
+    Limoges    & 3120     & 1311           &  217          & 359         &  9               & 3474                  & 209                      & 2502   &  983        & 92         & 73  \\
+    \bottomrule
+\end{tabular}
+\end{table}
 
 % subsubsection impact_du_climat (end)
 

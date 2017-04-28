@@ -1,0 +1,24 @@
+%!TEX root = ../main.tex
+% Nomenclature/nomenclature.tex
+
+% Keep track of original nomenclature command
+\let\Oldnomenclature\nomenclature
+
+% Change nomenclature behavior to auto group as abreviation
+\renewcommand{\nomenclature}{\Oldnomenclature[A]}
+\input{Nomenclature/abreviations}
+
+% Change nomenclature behavior to auto group as abreviation
+\renewcommand{\nomenclature}{\Oldnomenclature[L]}
+\input{Nomenclature/lettres_latines}
+
+% Change nomenclature behavior to auto group as abreviation
+\renewcommand{\nomenclature}{\Oldnomenclature[G]}
+\input{Nomenclature/lettres_grecques}
+
+% Change nomenclature behavior to auto group as abreviation
+\renewcommand{\nomenclature}{\Oldnomenclature[I]}
+\input{Nomenclature/indices}
+
+% Reset default behavior in order to avoid side effect
+\renewcommand{\nomenclature}{\Oldnomenclature}
