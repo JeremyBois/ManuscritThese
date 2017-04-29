@@ -2,7 +2,7 @@
 % these_classe.tex
 
 \documentclass[11pt, draft, oneside]{report}
-% \documentclass[11pt, twoside]{report}
+% \documentclass[11pt, oneside]{report}
 \setcounter{secnumdepth}{3}
 
 \usepackage{xspace}
@@ -331,108 +331,33 @@
 %   \cite{bib_id}          Normal
 %   \textcite{bib_id}      Dans une phrase
 \usepackage[backend=biber,
-            maxcitenames=2,
-            maxbibnames=100,
-            style=apa,
-            sorting=nyt,
-            hyperref=true,
-            backref=true,
-            backrefstyle=none,
+            maxnames=2,             % Maximal number of name in citation
+            minnames=1,             % Minimal number of name in citation
+            style=authoryear-comp,  % Author only once if multiple + year
+            sorting=nyt,            % Sort by name then year then title
+            hyperref=true,          % Make citations as clickable links
+            backref=true,           % Back reference to citation page in bibliography
+            backrefstyle=none,      % Do not compress page list
             idemtracker=true,
             ]{biblatex}                                               % Bibliography support
 
 \addbibresource{./Bibliographie/references.bib}                       % Where to find bibliography
 \newcommand\mathplus{+}                                               % Weird stuff of biblatex
 
-\DeclareLanguageMapping{english}{english-apa}                         % Match babel lang to biblatex apa style
-\DeclareLanguageMapping{french}{french-apa}                           % Match babel lang to biblatex apa style
+% Remove url for all first
+\DeclareFieldFormat*{url}{}
+\DeclareFieldFormat*{urldate}{}
+% Cannot add url for techreport or electronic but I try and will works someday ...
+\DeclareFieldFormat[techreport, electronic]{url}{\mkbibacro{URL}\addcolon\space\url{#1}}
 \DeclareFieldFormat[article,periodical]{volume}{\mkbibparens{#1}}     % volume of a journal
-\DeclareFieldFormat[article, incollection, inproceedings]{pages}{#1}  % no p. for articles
-\AtEveryBibitem{
-\ifentrytype{article}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
-\ifentrytype{inproceedings}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
-\ifentrytype{book}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
-\ifentrytype{collection}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
-\ifentrytype{incollection}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
-\ifentrytype{inBook}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
-\ifentrytype{phdThesis}{
-    \clearfield{url}
-    \clearfield{urldate}
-    \clearfield{review}
-    \clearfield{series}
-    \clearfield{keywords}
-    \clearfield{owner}
-    \clearfield{source}
-    \clearfield{timestamp}
-    \clearfield{note}
-    \clearfield{abstract}
-}{}
+\DeclareFieldFormat[article,incollection,inproceedings]{pages}{#1}    % no p. for articles
+
+\AtEveryBibitem{%
+  \clearfield{note}%
+  \clearfield{owner}%
+  \ifentrytype{article}{%
+    \clearfield{issn}%
+  }{}
 }
 
 
@@ -540,4 +465,5 @@ Path=./Fonts/,
 Extension=.otf,
 % Color=SolarizedBrBlack,
 ]
+
 \defaultfontfeatures{Ligatures=TeX}
