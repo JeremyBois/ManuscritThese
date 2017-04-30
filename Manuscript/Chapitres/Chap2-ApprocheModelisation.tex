@@ -121,7 +121,7 @@ puissant de "refactoring" permettant de rendre transparent la modification du no
 variable et sa propagation sur l’ensemble des modèles de la bibliothèque. Il offre aussi
 un outil de post- traitement afin d’évaluer les résultats des simulations. Finalement il
 intègre le logiciel \textit{Dymosim} qui offre un large choix de solveurs pour simuler les
-modèles. \textit{Dymosim} supporte aussi la parallélisation, les \emph{FMU}
+modèles. \textit{Dymosim} supporte aussi la parallélisation, les $FMU$
 (Functional Mock-up Unit) et la génération de modèles autonomes.
 \begin{figure}
     \begin{center}
@@ -198,14 +198,23 @@ leur orientation (\autoref{tab:paroi_opaque}) et une description détaillée et 
 disponible en annexe (\mtodo{ref tableau annexe}).
 \begin{table}
 \centering
-\begin{tabular}{l*{3}{c}}
+% \begin{tabular}{l*{3}{c}}
+%     \toprule
+%                & $U$                                       & $Surface$             & $U \times Surface$     \\
+%                & \si{\watt\per(\meter\squared\period\kelvin)} & \si{\meter\squared}    & \si{\watt\period\kelvin}  \\
+%     \midrule
+%     Murs       & \num{0.174}                                     & \num{91.17}                 & \num{15.864}                 \\
+%     Plancher   & \num{0.110}                                     & \num{98.40}                 & \num{10.824}                 \\
+%     Plafond    & \num{0.123}                                     & \num{97.06}                 & \num{11.938}                 \\
+%     \bottomrule
+% \end{tabular}
+\begin{tabular}{l *{3}{c} r}
     \toprule
-               & $U$                                       & $Surface$             & $U \times Surface$     \\
-               & \si{\watt\per(\meter\squared\period\kelvin)} & \si{\meter\squared}    & \si{\watt\period\kelvin}  \\
+                       & Murs           & Plancher     & Plafond & Unité     \\
     \midrule
-    Murs       & \num{0.174}                                     & \num{91.17}                 & \num{15.864}                 \\
-    Plancher   & \num{0.110}                                     & \num{98.40}                 & \num{10.824}                 \\
-    Plafond    & \num{0.123}                                     & \num{97.06}                 & \num{11.938}                 \\
+    $U$                & \num{0.174}    & \num{0.110}  & \num{0.123}  & \si{\watt\per(\meter\squared\period\kelvin)}\\
+    $Surface$          & \num{91.17}    & \num{98.40}  & \num{97.06}  & \si{\meter\squared}\\
+    $U \times Surface$ &  \num{15.864}  & \num{10.824} & \num{11.938} & \si{\watt\period\kelvin}\\
     \bottomrule
 \end{tabular}
 \caption{Description de la performance des parois opaques.}
@@ -499,7 +508,7 @@ système aéraulique à l’aide d’un échangeur de chaleur.
     Poids à vide                             & \num{54}             & \si{kg}               \\
     Contenance                               & \num{1.35}           & \si{l}                \\
     $\eta_{0}$                               & \num{78}             & \si{\%}               \\
-    Décroissance de performance              & \num{-5.103}         & -                     \\
+    Pente                                    & \num{-5.103}         & -                     \\
     Coefficient $a_{1}$ (pertes linéiques)   & \num{3.796}          & \si{W/(m^{2}.K)}      \\
     Coefficient $a_{2}$ (pertes surfaciques) & \num{0.013}          & \si{W/(m^{2}.K^{2})}  \\
     Modulation diffus ($IMDiff$)             & \num{100}            & \si{\%}               \\
@@ -696,9 +705,9 @@ position de la V3V, l’état des pompes, et le mode de chauffage actif.
 L’unicité garantie par cette formulation permet d’éviter une incohérence structurelle
 résultant en un comportement erratique ou instable. Il impose cependant que chaque état
 soit capable de réaliser la transition vers le bon état et ce pour toutes les conditions
-existantes. Afin de simplifier sa création les Automates Fines Hiérarchisés (\textbf{HFSM}
+existantes. Afin de simplifier sa création les Automates Fines Hiérarchisés ($HFSM$
 pour Hierarchical Finite State Machine) ont été développés. Cette formulation admet que
-chaque état peut être lui-même un \textbf{FSM} dont les sous-états ne sont connus que de
+chaque état peut être lui-même un $FSM$ dont les sous-états ne sont connus que de
 l’état maître. Cette nouvelle formulation permet ainsi de réduire le nombre de conditions
 de transition et l’encapsulation des sous-états simplifie la compréhension et construction
 de l’algorithme.
@@ -753,8 +762,8 @@ permettre de couvrir le chauffage (temporisation de \SI{3}{\minute}).
 
 L’algorithme de contrôle de la partie hydraulique fonctionne ainsi grâce à un algorithme
 maître en cascade utilisant une approche par prospection (feed-forward) et délégant le
-contrôle des équipements à une combinaison de $PID$ fonctionnant par rétroaction (feed-
-back). C’est approche permet au système de prévenir au niveau global les changements et de
+contrôle des équipements à une combinaison de $PID$ fonctionnant par rétroaction (feed-back).
+C’est approche permet au système de prévenir au niveau global les changements et de
 s’adapter aux besoins au niveau local.
 % subsubsection fonctionnement_global (end)
 
@@ -774,11 +783,11 @@ avec $PI_{souff}$, $T_{air}^{max}$, et $T_{air}^{ext}$ respectivement l’impact
 contrôleur PI associé, la température maximale de l’air soufflé, et la température
 extérieure de l’air. Cette formulation permet d’éviter de souffler un air à une
 température élevée en continue. Cependant dans le cas où les besoins sont importants, le
-débit hygiénique ($Q_{v}^{min} = $\SI[per-mode=symbol]{90}{\meter\cubed\per\hour}) peut être insuffisant. Une
+débit hygiénique ($Q_{v}^{min} = \SI[per-mode=symbol]{90}{\meter\cubed\per\hour}$) peut être insuffisant. Une
 temporisation de \SI{10}{min}) est alors mis en place lorsque $T_{air}^{cons} =
 T_{air}^{max}$. Si à la fin de cette temporisation si la température de la maison est
 toujours inférieure à $T_{ins}$ le débit soufflé est modulé afin de répondre à la demande
-de besoin avec un débit maximal de $Q_{v}^{max} = $\SI[per-mode=symbol]{900}{\meter\cubed\per\hour}. Ces
+de besoin avec un débit maximal de $Q_{v}^{max} = \SI[per-mode=symbol]{900}{\meter\cubed\per\hour}$. Ces
 temporisations permettent respectivement de favoriser en priorité le solaire et de
 garantir le maintien du confort thermique (Fig~\ref{fig:chauffage_aeraulique}).
 
@@ -872,22 +881,19 @@ est étudié.
 \centering
 \caption{Description des différents climats retenues}
 \label{tab:description_climat}
-\begin{tabular}{ l c c  c  c  c  c  c }
+\begin{tabular}{ l c c  c  c  c  c }
   \toprule
-                                        &    &    & \textbf{Bordeaux} & \textbf{Nantes} & \textbf{Strasbourg} & \textbf{Limoges} & \textbf{Marseille} \\
-  \cmidrule[\lightrulewidth](){4-8}
+                                          &    & \textbf{Bordeaux} & \textbf{Nantes} & \textbf{Strasbourg} & \textbf{Limoges} & \textbf{Marseille} \\
+  \midrule
   \addlinespace[\defaultaddspace]
-  \multirow{2}{*}{Température eau froide} &
-  \multirow{2}{*}{\si{\celsius}}             & Min     & \num{8.9}               & \num{8.3}               & \num{5.3}                 & 7                 & 12                \\
-                                  &          & Max     & 16                & 15               & 14                  & 14                & 19                \\
+  \multirow{3}{*}{Irradiation solaire} & $IGH$   & 1264              & 1184               & 1091                & 1257              & 1545              \\
+                                       & $IDN$   & 929               & 885               & 721                 & 1209              & 1503              \\
+                                       & $IDH$   & 712               & 665               & 650                 & 602              & 615               \\
   \addlinespace[\defaultaddspace]
-  DJU (\SI{19}{\celsius}) &
-  \si{\celsius}                              & -  & 2408              & 2660               & 3360                & 2972              & 2049              \\
+  \multirow{2}{*}{Température eau froide} & Min     & \num{8.9}               & \num{8.3}               & \num{5.3}                 & 7                 & 12                \\
+                                          & Max     & 16                & 15               & 14                  & 14                & 19                \\
   \addlinespace[\defaultaddspace]
-  \multirow{3}{*}{Irradiation solaire} &
-  \multirow{3}{*}{\si{kWh/m^{2}}}            & $IGH$   & 1264              & 1184               & 1091                & 1257              & 1545              \\
-                                  &          & $IDN$   & 929               & 885               & 721                 & 1209              & 1503              \\
-                                  &          & $IDH$   & 712               & 665               & 650                 & 602              & 615               \\
+  DJU (\SI{19}{\celsius})                 & -  & 2408              & 2660               & 3360                & 2972              & 2049              \\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -919,13 +925,13 @@ minimums varient entre \SI{5.3}{\celsius} et
 représentés respectivement par Strasbourg et Marseille.
 \begin{table}
 \centering
-\caption{Température de l'eau du réseau au cours de l'année en fonction de la
+\caption{Température de l'eau du réseau (\si{\kelvin}) au cours de l'année en fonction de la
          position géographique.}
 \label{tab:temp_eau}
 \begin{tabular}{l*{12}{c}}
     \toprule
                & Janv. & Fevr. & Mars & Avr. & Mai & Juin & Juil. & Août & Sept. & Oct. & Nov. & Dec. \\
-    \cmidrule[\lightrulewidth](){2-13}
+    \midrule
     Strasbourg & \num{5.3}   & \num{5.8}   & \num{7.7}  & \num{9.5}  & \num{11}  & \num{13}   & \num{14}    & \num{14}   & \num{12}    & \num{9.8}  & \num{7.5}  & \num{5.8}  \\
     Limoges    & \num{7}     & \num{7.4}   & \num{9}    & \num{10}   & \num{12}  & \num{14}   & \num{14}    & \num{14}   & \num{13}    & \num{11}   & \num{8.8}  & \num{7.3}  \\
     Toulouse   & \num{8.6}   & \num{9.2}   & \num{11}   & \num{12}   & \num{14}  & \num{16}   & \num{17}    & \num{17}   & \num{16}    & \num{13}   & \num{11}   & \num{9}    \\
@@ -974,7 +980,7 @@ la période hivernale que pendant la période estivale (\ref{tab:coef_mois}).
 \begin{tabular}{l*{7}{c}}
     \toprule
                 & Lundi & Mardi & Mercredi & Jeudi & Vendredi & Samedi & Dimanche \\
-    \cmidrule[\lightrulewidth](){2-8}
+    \midrule
     Coefficient & \num{0.97}  & \num{0.95}  & \num{1.00}     & \num{0.97}  & \num{0.96}     & \num{1.02}   & \num{1.13}     \\
     \bottomrule
 \end{tabular}
@@ -988,7 +994,7 @@ la période hivernale que pendant la période estivale (\ref{tab:coef_mois}).
 \begin{tabular}{l*{12}{c}}
     \toprule
                 & Janv. & Fevr. & Mars & Avr. & Mai & Juin & Juil. & Août & Sept. & Oct. & Nov. & Dec. \\
-    \cmidrule[\lightrulewidth](){2-13}
+    \midrule
     Coefficient & \num{1.11}   & \num{1.2}   & \num{1.11}  & \num{1.06}  & \num{1.03}  & \num{0.93}   & \num{0.84}    & \num{0.72}   & \num{0.92}    & \num{1.03}  & \num{1.04}  & \num{1.01}  \\
     \bottomrule
 \end{tabular}
@@ -1042,16 +1048,14 @@ période nocturne. Les scénarios construits sont les suivants~: 19-18-16, 19-19
 
 \begin{table}
 \centering
-\begin{tabular}{| l | c | c | c | c |}
-    \hline
+\begin{tabular}{l c c c c}
+    \toprule
                     & \bf{16}             & \bf{18}             & \bf{19}             & \bf{20}              \\
-    \hline
-Occupation (diurne)    &                     &                     & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
-    \hline
-Occupation (nocturne)  &                     & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
-    \hline
-Inoccupation         & \cellcolor{SolarizedBrBlue} &                     & \cellcolor{SolarizedBrBlue} &                     \\
-    \hline
+    \midrule
+    Occupation (diurne)    &                     &                     & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
+    Occupation (nocturne)  &                     & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
+    Inoccupation         & \cellcolor{SolarizedBrBlue} &                     & \cellcolor{SolarizedBrBlue} &                     \\
+    \bottomrule
 \end{tabular}
 \caption{Variations envisagées pour la consigne de chauffage en fonction de la période.}
          \label{tab:consigne_chauffage}
@@ -1093,13 +1097,13 @@ La modélisation admet ainsi deux fluides différents (\autoref{tab:fluide_carac
 
 \begin{table}
 \centering
-\begin{tabular}{l*{3}{c}}
+\begin{tabular}{l *{2}{c} r}
     \toprule
-                 & Chaleur massique              & Masse volumique         & Plage de variation \\
-                 & \si{\joule\per(kg\period\kelvin)} & \si{kg\per\meter\cubed} & \si{\celsius}      \\
+                       & Eau                 & Eau + glycol          & Unité                             \\
     \midrule
-    Eau          & 4180                          & 1000                    & 0 à 100            \\
-    Eau + glycol & 3608                          & 1034                    & -20 à 110          \\
+    Chaleur massique   & \num{4180}          & \num{3608}            & \si{\joule\per(kg\period\kelvin)} \\
+    Masse volumique    & \num{1000}          & \num{1034}            & \si{kg\per\meter\cubed}           \\
+    Plage de variation & \num{0} à \num{100} & \num{-20} à \num{110} & \si{\celsius}                     \\
     \bottomrule
 \end{tabular}
 \caption{Caractéristiques des deux fluides caloporteurs utilisés pour la modélisation.}
@@ -1131,20 +1135,20 @@ Les fiches techniques des capteurs sont disponible en annexe (\mtodo{Ajout annex
 
 \begin{table}
 \centering
-\begin{tabular}{l | c | ccc}
+\begin{tabular}{l c c c r}
     \toprule
-                                             & Unité                   & IDMK 25 (référence)  & 308C HP              & 12 CPC58    \\
+                                 & IDMK 25 (référence)  & 308C HP              & 12 CPC58        & Unité                       \\
     \midrule
-    Fabricant                                & -                       & Sonnenkraft          & Radco                & Sky Pro   \\
-    Type                                     & -                       & Plan vitrée          & Plan vitrée          & Tubulaire \\
-    Surface nette                            & \si{m^{2}}              & \num{2.32}           & \num{2.193}          & \num{2.28}      \\
-    Poids à vide                             & \si{kg}                 & \num{54}             & \num{36}             & \num{53}        \\
-    Contenance                               & \si{\litre}             & \num{1.35}           & \num{3.5}            & \num{1.83}      \\
-    $\eta_{0}$                               & \si{\%}                 & \num{78}             & \num{83.4}           & \num{63}        \\
-    Décroissance de performance              & -                       & \num{-5.103}         & \num{-4.777}         & \num{-0.975}    \\
-    $a_{1}$                                  & \si{W/(m^{2}\period K)}      & \num{3.796}          & \num{1.4539}         & \num{0.9249}    \\
-    $a_{2}$                                  & \si{W/(m^{2}\period K^{2})}  & \num{0,013}          & \num{0.0589}         & \num{0.00069}   \\
-    Modulation diffus ($IMDiff$)             & \si{\%}                 & \num{100}            & \num{96}             & \num{102}       \\
+    Fabricant                    & Sonnenkraft          & Radco                & Sky Pro         & -                           \\
+    Type                         & Plan vitrée          & Plan vitrée          & Tubulaire       & -                           \\
+    Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}      & \si{m^{2}}                  \\
+    Poids à vide                 & \num{54}             & \num{36}             & \num{53}        & \si{kg}                     \\
+    Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}      & \si{\litre}                 \\
+    $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}        & \si{\%}                     \\
+    Pente                        & \num{-5.103}         & \num{-4.777}         & \num{-0.975}    & -                           \\
+    $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}    & \si{W/(m^{2}\period K)}     \\
+    $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}   & \si{W/(m^{2}\period K^{2})} \\
+    $IMDiff$                     & \num{100}            & \num{96}             & \num{102}       & \si{\%}                     \\
     \bottomrule
 \end{tabular}
 \caption{Caractéristique du collecteur de référence (modèle IDMK 2.5 de chez Sonnenkraft).
@@ -1158,7 +1162,7 @@ Il est donc retenue les variations suivantes~:
 \begin{itemize}
   \item Inclinaison~: \SI{18.9}{\degree} (\SI{33}{\percent}), \SI{33}{\degree}, \SI{45}{\degree}, \SI{60}{\degree}
   \item Orientation~: Est, Ouest, Sud
-  \item Nombre de capteurs~: 2, 4, 6, 8
+  \item Nombre de capteurs~: \num{2}, \num{4}, \num{6}, \num{8}
 \end{itemize}
 Il est important de noter que la maison de référence est orientée Sud, comporte 4 capteurs
 IDMK25, et une toiture ayant une pente de \SI{33}{\percent}.
@@ -1260,11 +1264,11 @@ temporisation de \SI{10}{min} et elle sera notée $Tempo_{souff}$.
 \centering
 \begin{tabular}{l c r}
     \toprule
-    Paramètre            & Unité         & Variations \\
+    Paramètre          & Variations                    & Unité         \\
     \midrule
-    $DeltaT_{sol}$   & \si{\celsius} & 5, 10, 15 \\
-    $Tempo_{batterie}$   & \si{min}      & 2, 3, 4 \\
-    $Tempo_{souff}$  & \si{min}      & 5, 10, 15   \\
+    $DeltaT_{sol}$     & \num{5}, \num{10}, \num{15}   & \si{\celsius} \\
+    $Tempo_{batterie}$ & \num{2}, \num{3}, \num{4}     & \si{min}      \\
+    $Tempo_{souff}$    & \num{5}, \num{10}, \num{15}   & \si{min}      \\
     \bottomrule
 \end{tabular}
 \caption{Variations algorithmiques étudiées lors de l’étude paramétrique.
@@ -1286,58 +1290,80 @@ caractéristiques ont été présentés dans les parties précédentes. Sans men
 simulations utilisent ces paramètres. L’ensemble des variations possibles ainsi que
 le cas de référence sont décrits à travers un tableau récapitulatif (\autoref{tab:ref_description}).
 
-Le vocabulaire utilisé lors de l’analyse des résultats est décrit, en particulier la
-définition des principaux indicateurs.
-
-
+% Le vocabulaire utilisé lors de l’analyse des résultats est décrit, en particulier la
+% définition des principaux indicateurs.
 
 
 \begin{table}
 \centering
 \caption{Description de la solution de référence et de variations étudiées.}
   \label{tab:ref_description}
-  \begin{tabular}{l r c C{4cm} r}
+  \begin{tabular}{l c C{4cm} r r}
     \toprule
     \addlinespace
-                                     & Unité & Référence & Variations & Détails  \\
-    \multicolumn{5}{l}{\bf{Scénarios}}                                                                                       \\
+                                         & Référence & Variations                             & Unité         & Détails                                               \\
+    \multicolumn{5}{l}{\bf{Scénarios}}                                                                                                                                \\
     \midrule
-    Puisage                          & \si{l/h}      & EN12977   & Soir, Matin, Réparti, Réaliste & \ref{ssub:puisage_en_eau_chaude_sanitaire}            \\
-    Ventilation                      & \si{m^{3}/h}  & 90-20     & 90-90 & \ref{ssub:ventilation}                                \\
-    Chauffage                        & \si{\celsius} & 19-18-16  & 19-19-16, 19-19-19, 20-18-16, 20-20-16 & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
-    Chauffage solaire                & \si{\celsius} & Avec (22) & Sans &                                                       \\
+    Puisage                              & EN12977   & Soir, Matin, Réparti, Réaliste         & \si{l/h}      & \ref{ssub:puisage_en_eau_chaude_sanitaire}            \\
+    Ventilation                          & 90-20     & 90-90                                  & \si{m^{3}/h}  & \ref{ssub:ventilation}                                \\
+    Chauffage                            & 19-18-16  & 19-19-16, 19-19-19, 20-18-16, 20-20-16 & \si{\celsius} & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
+    Chauffage solaire                    & Avec (22) & Sans                                   & \si{\celsius} &                                                       \\
     \\
     \addlinespace[\defaultaddspace]
-    \multicolumn{5}{l}{\bf{Équipements}}                                                                                          \\
+    \multicolumn{5}{l}{\bf{Équipements}}                                                                                                                              \\
     \midrule
-    Modèle des capteurs              & -             & IDMK 25   & 308C HP, 12 CPC58  & \multirow{3}{*}{\ref{ssub:capteurs_solaires}}         \\
-    Inclinaison des capteurs         & \si{\degree}  & 33        & \num{18.9}, 45, 60 &                                                       \\
-    Orientation des capteurs         & -             & Sud       & Est, Ouest         &                                                       \\
-    Volume ballon de stockage        & \si{\litre}   & 300       & 150, 450 & \multirow{3}{*}{\ref{ssub:ballons}}                   \\
-    Volume ballon $ECS$              & \si{\litre}   & 300       & 150, 450 &                                                       \\
-    Position Échangeur solaire       & \si{m}        & 1         & \num{0.8}, \num{1.3} &                                                       \\
+    Modèle des capteurs                  & IDMK 25   & 308C HP, 12 CPC58                      & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
+    Nombre de capteurs                   & \num{4}  & \num{2}, \num{6}, \num{8}               & -             &                                                       \\
+    Inclinaison des capteurs             & \num{33}  & \num{18.9}, \num{45}, \num{60}         & \si{\degree}  &                                                       \\
+    Orientation des capteurs             & Sud       & Est, Ouest                             & -             &                                                       \\
+    Volume ballon de stockage            & \num{300} & \num{150}, \num{450}                   & \si{\litre}   & \multirow{3}{*}{\ref{ssub:ballons}}                   \\
+    Volume ballon $ECS$                  & \num{300} & \num{150}, \num{450}                   & \si{\litre}   &                                                       \\
+    Position Échangeur solaire           & \num{1}   & \num{0.8}, \num{1.3}                   & \si{m}        &                                                       \\
     \\
     \addlinespace
-    \multicolumn{5}{l}{\bf{Algorithme}}                                                                                      \\
+    \multicolumn{5}{l}{\bf{Algorithme}}                                                                                                                               \\
     \midrule
-    $Tempo_{batterie}$               & \si{\min}     & 3         & 2, 4 & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
-    $Tempo_{souff}$              & \si{\min}     & 10        & 5, 15 &                                                       \\
-    $DeltaT_{sol}$               & \si{\celsius} & 10        & 5, 15 &                                                       \\
+    $Tempo_{batterie}$                   & \num{3}   & \num{2}, \num{4}                       & \si{\min}     & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
+    $Tempo_{souff}$                      & \num{10}  & \num{5}, \num{15}                      & \si{\min}     &                                                       \\
+    $DeltaT_{sol}$                       & \num{10}  & \num{5}, \num{15}                      & \si{\celsius} &                                                       \\
     \bottomrule
   \end{tabular}
 \end{table}
 
+\ftodo{Ajouter conso par rapport aux apports internes et autres}
+
+\paragraph{Récapitulatif :} % (fold)
+\label{par:récapitulatif}
+~
+\itodo{Faire le bilan des remarques faites ci-après sur les variations}
+% paragraph récapitulatif (end)
 % subsubsection methodologie (end)
+
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Impact du climat} % (fold)
 \label{ssub:impact_du_climat}
-Les résultats obtenues pour les différents climats sont disponibles à travers le
-\autoref{tab:performance_annuelles}. Les consommations électriques tiennent compte
-de la consommation des appoints (chauffage et ECS) mais aussi de la consommation des
-pompes du système solaire combiné. Il peut ainsi être observé que le système solaire
-permet d’obtenir une bonne performance pour tous les climats autant sur $F_{ECS}$
+Les résultats obtenues pour les différents climats en considérant une enveloppe identique
+sont disponibles à travers le \autoref{tab:performance_annuelles}. Les consommations
+électriques tiennent compte de la consommation des appoints (chauffage et $ECS$) mais aussi
+de la consommation des pompes du système solaire combiné.
+
+Le système solaire permet d’obtenir une bonne performance pour tous les climats autant sur
+$F_{ECS}$ que sur $F_{CH}$. L’énergie solaire transmise à l’eau ($Solaire_{abs}$) comme
+les pertes en lignes à travers les canalisations ($Pertes_{reseau}$) sont similaires pour
+les différents climats. Cependant, il est observé un impact important de la température
+de l’eau froide du réseau. En effet les simulations admettent le même scénario de puisage
+mais la consommation varient de \SI{400}{\kilo\watt\hour} entre Marseille et Strasbourg.
+De plus malgré des conditions plus favorable à Nantes, la consommation électrique à
+Limoges est inférieure grâce à un ensoleillement plus favorable (\autoref{tab:temp_eau},
+\autoref{tab:description_climat}). La même chose peut être observé au niveau du chauffage.
+La consommation totale à Limoges est supérieure de \SI{200}{kWh} par rapport à Nantes mais
+la consommation électrique est elle seulement supérieure de \SI{100}{kWh}.
+La consommation des pompes ne semble pas être un facteur important du bilan énergétique sauf pour
+Marseille où la consommation cumulée du chauffage et de la
+production d’eau chaude sanitaire est presque nulle. À l’opposé sur Strasbourg le nombre
+de capteurs solaires semble insuffisant pour couvrir les besoins importants.
 
 \begin{table}
 \small
@@ -1348,27 +1374,163 @@ permet d’obtenir une bonne performance pour tous les climats autant sur $F_{EC
     \toprule
                &   \multicolumn{9}{c}{Consommation [\si{\kilo\watt\hour}]} & & \multicolumn{2}{c}{\multirow{2}{*}{\%}} \\
     \cmidrule(r){2-10}
-               & \multicolumn{2}{c}{Total} &  \multicolumn{3}{c}{Électrique}  & \multicolumn{4}{c}{Solaire} & \\
+               & \multicolumn{2}{c}{\textbf{Totale}} &  \multicolumn{3}{c}{\textbf{Électrique}}  & \multicolumn{4}{c}{\textbf{Solaire}} & \\
     \cmidrule(r){2-3}
     \cmidrule(r){4-6}
     \cmidrule(r){7-10}
     \cmidrule(r){12-13}
                & $ECS$    & $CH$      &  $ECS$        & $CH$ & Pompes    & $Solaire_{abs}$ & $Pertes_{reseau}$ & $ECS$  & $CH$ & & $F_{ECS}$  & $F_{CH}$ \\
     \midrule
-    Bordeaux   & 2983     & 1024      &  101          & 91          &  7             & 3387                  & 219       & 2444   &  949    &   & 95         & 91  \\
-    Strasbourg & 3180     & 1986      &  479          & 1203        &  8             & 3164                  & 199       & 2332   &  845    &   & 83         & 42  \\
-    Marseille  & 2784     & 975       &  2            & 1           &  7             & 3280                  & 218       & 2300   &  974    &   & 100        & 100 \\
-    Nantes     & 3044     & 1114      &  233          & 248         &  7             & 3295                  & 209       & 2399   &  902    &   & 91         & 78  \\
-    Limoges    & 3120     & 1311      &  217          & 359         &  9             & 3474                  & 209       & 2502   &  983    &   & 92         & 73  \\
+    Bordeaux   & \num{2983}     & \num{1024}      &  \num{101}          & \num{91}          &  \num{7}             & \num{3387}                  & \num{219}       & \num{2444}   &  \num{949}    &   & \num{95}         & \num{91}  \\
+    Strasbourg & \num{3180}     & \num{1986}      &  \num{479}          & \num{1203}        &  \num{8}             & \num{3164}                  & \num{199}       & \num{2332}   &  \num{845}    &   & \num{83}         & \num{42}  \\
+    Marseille  & \num{2784}     & \num{975}       &  \num{2}            & \num{1}           &  \num{7}             & \num{3280}                  & \num{218}       & \num{2300}   &  \num{974}    &   & \num{100}        & \num{100} \\
+    Nantes     & \num{3044}     & \num{1114}      &  \num{233}          & \num{248}         &  \num{7}             & \num{3295}                  & \num{209}       & \num{2399}   &  \num{902}    &   & \num{91}         & \num{78}  \\
+    Limoges    & \num{3120}     & \num{1311}      &  \num{217}          & \num{359}         &  \num{9}             & \num{3474}                  & \num{209}       & \num{2502}   &  \num{983}    &   & \num{92}         & \num{73}  \\
     \bottomrule
 \end{tabular}
 \end{table}
 
+L’évolution des températures des différents ballons durant la période de chauffage pour
+les différents climats donnent plus d’informations (Fig~\ref{fig:temp_ballon_mensuel}). Du fait des priorités de régulation
+le ballon de stockage ne peut être chargé si la partie basse du ballon sanitaire (T3)
+n’est pas à une température suffisante. Ainsi l’évolution des température des ballons
+permet de renseigner sur l’activité du système et plus particulièrement sur l’énergie solaire
+récupérée. Ainsi sur Limoges, le système utilise principalement l’énergie solaire durant tous
+les mois à l’exception de Décembre où T5 stagne. Durant Janvier, il apparaît que
+l’énergie solaire est suffisante pour charger le ballon de stockage et réduire la
+consommation électrique sur l’$ECS$. Cependant T4 stagne autour de \SI{55}{\celsius}
+car l’énergie solaire fournie ne permet pas de charger le ballon sanitaire suffisamment.
+Sur Strasbourg le système ne collecte pas assez d’énergie de Novembre à Février afin
+d’être autonome mais permet cependant de préchauffer l’eau du réseau et donc de réduire
+la consommation électrique. Finalement sur Bordeaux le système permet de couvrir les
+besoins durant toute l’année même si durant Décembre et Janvier l’appoint électrique
+est nécessaire.
+
+\begin{figure}
+    \begin{center}
+        \ftodo{Ajouter évolution des températures par mois}
+        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+    \end{center}
+    \caption{Évolution des température internes aux ballons en fonction du mois
+             de l’année \label{fig:temp_ballon_mensuel}}
+\end{figure}
+
+\iunsure{Ajouter couverture par mois en fonction des climats}
+
+\paragraph{Période de simulation :} % (fold)
+\label{par:période_de_simulation}
+~
+\ifix{Mauvaise valeur dans la publication pour la consommation de l’appoint}
+\itodo{Ajouter valeur pour la consommation Strasbourg et Bordeaux}
+L’optique de cette première approche paramétrique étant d’évaluer l’impact de différents
+éléments du $SSC$ (technique et algorithmique) il est n’est pas nécessaire de simuler les
+périodes ou le système est autonome. Chaque simulation nécessite en effet entre
+\SI{90}{\min} et \SI{120}{\min} et réduire la période de simulation est un moyen
+permettant de réduire la durée d’intégration. Des simulations comprenant un jeu de
+paramètres défavorables ont aussi été réalisées afin d’évaluer la période de simulation
+minimale nécessaire.
+
+Pour ces simulations, un scénario de chauffage 19-19-19, un volume de \SI{450}{\litre}
+pour les deux ballons, ainsi que \num{2} capteurs avec une orientation Ouest et une
+inclinaison de \SI{18.9}{\degree}, ont été retenue. Les résultats des simulations montrent
+que durant la période estivale, le système solaire est autonome avec une consommation de
+seulement \SI{0}{\watt\hour} et \SI{0}{\watt\hour} pour respectivement Bordeaux et
+Strasbourg (Fig~\ref{fig:puissance_annuelle_defavorable}). Dans le reste de l’étude
+paramétrique les résultats seront donc discutés pour une période de simulation s’étendant du
+$1^{er}$ Octobre au $30$ Avril. Les résultats seront fournis pour la période
+concernée et doivent donc être vu comme la performance minimale du $SSC$. En effet, le
+système est autonome durant le reste de l’année car les besoins en chauffage et en $ECS$
+sont complètement couverts par la production solaire~: le $F_{ECS}$ et le $F_{CH}$ annuels
+sont donc supérieurs.
+
+\begin{figure}
+    \begin{center}
+        \ftodo{Ajouter évolution de la puissance et de l’énergie pour Strasbourg et Bordeaux}
+        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+    \end{center}
+    \caption{Évolution des appels de puissance des appoints électriques et du cumul d’énergie pour
+             une année complète \label{fig:puissance_annuelle_defavorable}}
+\end{figure}
+% paragraph période_de_simulation (end)
 % subsubsection impact_du_climat (end)
+
+
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Impact des scénarios internes} % (fold)
 \label{ssub:impact_des_scenarios_internes}
+Dans cette section l’impact des charges internes et de la consigne de température est
+investigué. Les différentes variations ont été seulement réalisées pour le climat
+de Bordeaux et de Strasbourg. L’analyse des résultats montrent que le comportement
+du système est similaire pour Bordeaux et Strasbourg. Ainsi l’analyse sera illustré
+uniquement pour le climat de Strasbourg où modifications ont un impact plus net.
+
+Afin de pouvoir comparer de manière efficace les variations paramétriques une
+représentation graphique est introduite (Fig~\ref{fig:impact_temp_consigne}). Elle permet
+de visualiser les paramètres caractéristiques du système combiné. La longueur des barres
+horizontales permet de lire pour chaque variation le $F_{ECS}$. La largeur des barres est
+normalisée afin de permettre de comparer le $F_{CH}$ entre chaque variation et la plage de
+variation quantitative est décrite en bas à droite. Il est aussi possible d’évaluer la
+production solaire valorisée ($Production_{Solaire}^{Valorisee}$), définit comme la part
+solaire transmise à l’eau après soustraction des pertes au niveau des canalisations ainsi
+que la part d’énergie consommée par l’appoint ($Consommation_{Appoint}$) comprenant le
+chauffage, la production d’$ECS$ et la consommation des pompes. Ces deux indications sont
+fournies à l’extrémité de chaque barre horizontales et une légende en partie basse décrit
+... Enfin la couleur et l’ordre des barres sont définis à partir des valeurs normalisées
+du rendement solaire des capteurs dont l’échelle est disponible en partie droite. Le
+rendement solaire traduit le rapport entre la $Production_{Solaire}^{Valorisee}$ et
+l’énergie incidente sur les capteurs~: il indique donc la part utile de l’énergie solaire
+incidente.
+
+L’analyse de la Fig~\ref{fig:impact_temp_consigne} permet d’obtenir de nombreuses
+informations pertinentes. Augmenter la température de consigne durant le période
+d’occupation (20-20-16) montre une augmentation de \SI{8}{\percent} de la consommation de
+chauffage électrique mais n’impacte pas le $F_{ECS}$. Il est aussi important de noter que
+le réduit de nuit permet de réduire sensiblement la consommation de l’appoint mais le
+$F_{ECS}$ et le  $F_{CH}$ restent inchangé. Le $SSC$ fonctionne ainsi aussi bien avec que
+sans réduit de nuit et la consommation de l’appoint est seulement une augmentation
+proportionnelle à l’augmentation de la demande en énergie pour le chauffage. Cependant la
+performance du $SSC$ est impactée si on considère une consigne de chauffage constante
+(19-19-19). L’impact de la ventilation est plus subtil. Le scénario de ventilation 90-90
+augmente le $F_{CH}$ (\SI{\approx+3}{\percent}) mais réduit le $F_{ECS}$
+((\SI{\approx-1}{\percent})) en comparaison avec le scénario de référence qui considère un
+réduit en inoccupation (90-20). Un débit minimale réduit en inoccupation (90-20) augmente
+la consommation électrique pour le chauffage (\SI{\approx+15}{kWh}). Cependant la
+consommation électrique totale diminue (\SI{\approx-8}{\kilo\watt\hour}) car la part
+électrique couvrant la production d’$ECS$ diminue. Ainsi, lorsque le débit de ventilation
+est plus élevé le $SSC$ est capable de fournir plus d’énergie pour le chauffage au
+détriment de l’$ECS$ résultant en cet équilibre. Il est aussi intéressant de noter le
+rendement des capteurs augmentent si on considère un debit de ventilation constant
+(90-90). Une plus grande proportion d’énergie solaire est ainsi utilisé pour le chauffage
+et/ou la production d’$ECS$. Au regard des différentes remarques il semble donc que
+favoriser en priorité la production d’$ECS$ valorise mieux l’énergie solaire. Enfin il
+apparaît sans surprise que la diminution des apports internes, réduction par deux des
+charges internes électriques (équipements et éclairage) impacte fortement l’ensemble des
+indicateurs. En effet les charges internes représente la majorité des consommations pour
+les bâtiments ayant ce niveau de performance énergétique (Fig~\ref{fig:comp_charge_besoins}).
+Il est donc important de tenir compte des scénarios d’éclairage, de l’utilisation des équipements
+et des occupants pour analyser la performance d’un $SSC$ pour des maisons dites à énergie positive
+($NZEB$, \munsure{Nearly or Net}{Nearly Zero Energy House}).
+
+\begin{figure}
+    \begin{center}
+        \ftodo{Ajouter graphe paramétrique sur température de consigne}
+        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+    \end{center}
+    \caption{Impact de la température de consigne sur la performance
+             du $SSC$ durant la période de chauffage (01/10 - 30/04)
+             \label{fig:impact_temp_consigne}}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \itodo{Faire pour Strasbourg}
+        \ftodo{Ajouter comparaison entre charges internes et consommations}
+        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+    \end{center}
+    \caption{Comparaison annuelle des charges internes et des besoins du bâtiment.
+             \label{fig:comp_charge_besoins}}
+\end{figure}
 
 % subsubsection impact_des_scenarios_internes (end)
 
