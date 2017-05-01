@@ -3,7 +3,7 @@
 
 \documentclass[11pt, draft, oneside]{report}
 % \documentclass[11pt, oneside]{report}
-\setcounter{secnumdepth}{3}
+% \setcounter{secnumdepth}{3}
 
 \usepackage{xspace}
 \usepackage[greek, french]{babel}                 % http://daniel.flipo.free.fr/frenchb/
@@ -76,7 +76,46 @@
 \usepackage{nicefrac}                               % for \nicefrac macro
 % \usepackage{listings}                             % Code block support
 \usepackage{letltxmacro}                            % Support for optional argument in redefinition
-\mathchardef\period=\mathcode`.                % Used in siunitx to print dot : {.} ---> \period
+
+
+
+% ------------------------------------------------------------------------------
+% Font support
+% ------------------------------------------------------------------------------
+\usepackage[math-style=french]{unicode-math}
+\setmainfont{GandhiSerif-}[
+Extension=.otf,
+Path=./Fonts/,
+UprightFont=*Regular,
+BoldFont=*Bold,
+ItalicFont=*Italic,
+BoldItalicFont=*BoldItalic,
+]  % Look nice
+
+% \setsansfont{PT Sans}
+\setsansfont{QuattrocentoSans-}[
+Extension=.otf,
+Path=./Fonts/,
+UprightFont=*Regular,
+BoldFont=*Bold,
+ItalicFont=*Italic,
+BoldItalicFont=*BoldItalic,
+% Color=SolarizedBrBlack,
+]
+
+\setmathfont{Asana-Math}[
+Path=./Fonts/,
+Extension=.otf,
+% Color=SolarizedBrBlack,
+]
+
+\defaultfontfeatures{Ligatures=TeX}
+
+
+% ------------------------------------------------------------------------------
+% Math config because math package must be load before unicode-math
+% ------------------------------------------------------------------------------
+\mathchardef\period=\mathcode`.                % Print a dot print as a dot no comma
 \DeclareMathSymbol{.}{\mathord}{letters}{"3B}  % Decimal separator in math mode ...
 \sisetup{output-decimal-marker={,}}            % ... and un siunitx: dot with comma
 % Change the ways square root appears
@@ -412,7 +451,6 @@
   \renewcommand{\appendixname}{Annexe}
 }
 
-
 % ------------------------------------------------------------------------------
 % Solarized color definition
 % ------------------------------------------------------------------------------
@@ -433,36 +471,3 @@
 \definecolor{SolarizedBrGreen}{HTML}{586e75}
 \definecolor{SolarizedBlack}{HTML}{073642}
 \definecolor{SolarizedBrBlack}{HTML}{002b36}
-
-
-% ------------------------------------------------------------------------------
-% Font support
-% ------------------------------------------------------------------------------
-\usepackage[math-style=french]{unicode-math}
-\setmainfont{GandhiSerif-}[
-Extension=.otf,
-Path=./Fonts/,
-UprightFont=*Regular,
-BoldFont=*Bold,
-ItalicFont=*Italic,
-BoldItalicFont=*BoldItalic,
-]  % Look nice
-
-% \setsansfont{PT Sans}
-\setsansfont{QuattrocentoSans-}[
-Extension=.otf,
-Path=./Fonts/,
-UprightFont=*Regular,
-BoldFont=*Bold,
-ItalicFont=*Italic,
-BoldItalicFont=*BoldItalic,
-% Color=SolarizedBrBlack,
-]
-
-\setmathfont{Asana-Math}[
-Path=./Fonts/,
-Extension=.otf,
-% Color=SolarizedBrBlack,
-]
-
-\defaultfontfeatures{Ligatures=TeX}
