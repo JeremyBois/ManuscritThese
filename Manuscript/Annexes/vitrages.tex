@@ -1,0 +1,53 @@
+\begin{table}
+    \caption{Caractéristiques des vitrages en façades verticales ayant un $U_{f}$ de \SI{1.4}{W/(m^{2}\period\kelvin}).}
+    \label{tab:compo_vitrage}
+    \begin{tabular}{l *8{c}}
+        \toprule
+        Matériaux & $e$       & $\lambda$      & $\tau_{sol}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$ \\
+                  & \si{m}  & \si{W/(m\period\kelvin)} & -              & -         & -                & -                & -                & -                \\
+        \midrule
+        SGG Planilux       & \num{0.04}  & 1          & \num{0.849}      & 0           & \num{0.837}              & \num{0.837}              & \num{0.076}              & \num{0.076}                   \\
+        Argon              & \num{0.016} & -          & -          & -           & -                  & -                  & -                  & -                       \\
+        SGG PlaniTherm One & \num{0.04}  & 1          & \num{0.591}      & 0           & \num{0.037}              & \num{0.837}              & \num{0.312}              & \num{0.264}                   \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Caractéristiques de la fenêtre de toit ayant un $U_{f}$ de \SI{1.8}{W/(m^{2}\period\kelvin)}).}
+    \label{tab:compo_velux}
+    \begin{tabular}{l *8{c}}
+        \toprule
+        Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
+                  & \si{m}  & \si{W/(m\period\kelvin)} & -              & -         & -          & -          & -            & -             \\
+        \midrule
+        Verre ext & \num{0.01}      & \num{1}              & \num{0.44}             & \num{0}           & \num{0.88}        & \num{0.88}         & \num{0.075}          & \num{0.075}           \\
+        Air       & \num{0.016}     & -              & -                & -           & -           & -            & -              & -               \\
+        Verre int & \num{0.01}      & \num{1}              & \num{0.44}             & \num{0}           & \num{0.88}        & \num{0.88}         & \num{0.075}          & \num{0.075}           \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \raggedright
+    \caption{Caractéristiques des gaz}
+    \label{tab:compo_gaz}
+    \begin{tabular}{l *5{c}}
+        \toprule
+        Gaz   & $a_{k}$              & $b_{k}$                 & $a_{mu}$       & $b_{mu}$                  & $a_{c}$                \\
+              & \si{W/(m\period\kelvin)}  & \si{W/(m\period\kelvin^{2})} & \si{\pascal\period s}           & \si{\newton\period s/(m^{2}\period\kelvin)} & \si{\joule/(kg\period\kelvin)}   \\
+        \midrule
+        Argon & \num{2.285e-3}       & \num{5.149e-5}          & \num{3.379e-6} & \num{6.451e-8}            & \num{521.9285}         \\
+        Air   & \num{2.873e-3}       & \num{7.760e-5}          & \num{3.723e-6} & \num{4.940e-8}            & \num{1002.737}         \\
+        \bottomrule
+    \end{tabular}
+    \bigskip
+    \begin{tabular}{l *3{c}}
+              & $b_{c}$                     & $MM$                  & $P0$       \\
+              & \si{\joule/(kg\period\kelvin^{2})}    & \si{kg/mol}           & \si{\bar} \\
+        \midrule
+        Argon & \num{0}                     & \num{39.948e-3}       & 101325     \\
+        Air   & \num{1.2324e-2}             & \num{28.97e-3}        & 101325     \\
+        \bottomrule
+    \end{tabular}
+\end{table}

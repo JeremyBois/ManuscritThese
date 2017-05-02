@@ -34,7 +34,10 @@ discutés. Finalement une étude paramétrique est réalisée. Elle permettra de
 comprendre les interactions existantes entre bâtiment et système et de fixer les scénarios
 qui seront retenues pour l’aide à la décision. De plus les indicateurs nécessaires à la
 caractérisation d’un SSC seront identifiés.
+~\\
 
+\iunsure{Ajouter variation charges internes. N’apporte pas grand chose.}
+\iunsure{Ajouter variation débit pompes. N’apporte pas grand chose.}
 
 % ..............................................................................
 % ..............................................................................
@@ -113,8 +116,6 @@ que l’inconnu soit isolé par le programmeur.
 
 \subsubsection{Dymola} % (fold)
 \label{ssub:dymola}
-~
-\itodo{http://www.wolfram.com/system-modeler/features/}
 \emph{Dymola} est une suite de logiciels développée par \emph{Dassault Systèmes}
 permettant de simplifier le développement de modèles numériques grâce au langage
 \emph{Modelica}. Il offre une interface graphique permettant de connecter les modèles
@@ -123,7 +124,8 @@ traitement afin d’évaluer rapidement les résultats. Il propose aussi de nomb
 simplifiant le développement permettant de se focaliser sur le modèle physique~:
 \begin{itemize}
     \item Un large choix de solveurs permettant d’intégrer les modèles avec \emph{Dymosim}
-    \item Le "refactoring" permettant de renommer de manière dynamique une variable
+    \item Le <<\,refactoring\,>> permettant de renommer de manière dynamique une variable
+    \item Le <<\,drag and drop\,>> permettant de composer et connecter rapidement
     \item Le support de la parallélisation
     \item La création de $FMU$ (Functional Mock-up Unit)
     \item La génération de modèles autonomes
@@ -203,12 +205,12 @@ zone chauffée est considérée uniforme.
 \end{figure}
 
 Les caractéristiques thermiques des parois opaques sont décrites en fonction de
-leur orientation (\autoref{tab:paroi_opaque}) et une description détaillée et exhaustive est
-disponible en annexe (\mtodo{ref tableau annexe}).
+leur orientation (\autoref{tab:perf_parois_opaques}) et une description détaillée et exhaustive est
+disponible en annexe (\autoref{tab:compo_parois}).
 \begin{table}
 \centering
 \caption{Description de la performance des parois opaques.}
-\label{tab:paroi_opaque}
+\label{tab:perf_parois_opaques}
 \begin{tabular}{l *{3}{c} r}
     \toprule
                        & Murs           & Plancher     & Plafond & Unité     \\
@@ -226,8 +228,8 @@ disponible en annexe (\mtodo{ref tableau annexe}).
 \subsubsection{Déperditions à travers les fenêtres} % (fold)
 \label{ssub:déperditions_à_travers_les_fenêtres}
 Les vitrages utilisés sont des vitrages doubles avec une lame d’air ou d’argon et une
-couche faiblement émissive est ajoutée pour les vitrages des parois verticales
-(\mtodo{Ajouter ref tab}). Il est considéré pour l’ensemble des vitrages, une composition
+couche faiblement émissive est ajoutée pour les vitrages des parois verticales.
+Il est considéré pour l’ensemble des vitrages, une composition
 similaire (Planilux SGG \SI{4}{mm} - Argon - Planitherm XN \SI{4}{mm}), exception
 faite de la fenêtre de toit.
 
@@ -242,18 +244,15 @@ d’obtenir la composition détaillée des vitrages retenus.
 
 Dans un premier temps, le vitrage est construit à partir de la composition décrite dans sa
 fiche technique puis les coefficients caractéristiques sont calculés. Afin de pouvoir
-comparer avec les données fabricants, les conditions limites des directives européennes
-\href{http://tinyurl.com/l8vkdnb}{EN\,673-2011} et \href{http://tinyurl.com/n2s3zun}{EN\,410-2011}
+comparer avec les données fabricants, les conditions limites
 sont implémentées dans le logiciel (\autoref{tab:detail_calcul_fenetre}).
 En effet, le choix des conditions limites impactent fortement le résultat
 et il est observé une variation moyenne de \SI{20}{\percent} entre les normes européennes
 et états-uniennes \parencite{RDH2014}.
-\iunsure{Ajouter comparaison entre calcul selon diverses normes}
 
 \begin{table}
 \centering
-\caption{Détail du calcul du $U_{g}$ et du $g$ selon \href{http://tinyurl.com/l8vkdnb}{EN\,673-2011}
-         et \href{http://tinyurl.com/n2s3zun}{EN\,410-2011}.}
+\caption{Détail du calcul du $U_{g}$ et du $g$ selon \textcite{NFEN673} et \textcite{NFEN410}.}
 \label{tab:detail_calcul_fenetre}
 \begin{tabular}{l *5{c}}
     \toprule
@@ -271,7 +270,8 @@ et états-uniennes \parencite{RDH2014}.
 Finalement, la bibliothèque \emph{Buildings} ne permettant pas l’ajout de ponts
 thermiques, le choix a été fait de les intégrer dans le coefficient thermique
 caractéristique du cadre, $U_{f}$. Une description détaillée et exhaustive de la
-composition des fenêtres est disponible en annexe (\mtodo{ref tableau annexe}).
+composition des fenêtres est disponible en annexe (\autoref{tab:compo_vitrage},
+\autoref{tab:compo_velux}, et \autoref{tab:compo_gaz}).
 % subsubsection déperditions_à_travers_les_fenêtres (end)
 
 
@@ -284,7 +284,7 @@ somme des surfaces dites froides correspondant à la somme des surfaces donnant
 vers l’extérieur à l’exception du plancher bas \eqref{eq:infiltrations}.
 \begin{equation}
     \begin{aligned}
-    Infiltrations &= 0.4 \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
+    Infiltrations &= \num{0.4} \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
     &              \backsimeq \SI{85}{m^{3}/h}
     \label{eq:infiltrations}
     \end{aligned}
@@ -299,14 +299,13 @@ Certains choix ont été fait du aux limitations de modélisation~:
 \begin{itemize}
     \item Les coefficients de convection intérieurs utilisés sont les mêmes pour toutes
           les parois (\SI{7.7}{\watt\per(\meter\squared\period\kelvin)}) et le coefficient extérieur
-          est fixé à \SI{25}{\watt\per(\meter\squared\period\kelvin)}, une valeur couramment retenu
-          dans la littérature (\mtodo{Ajouter ref}).
+          est fixé à \SI{25}{\watt\per(\meter\squared\period\kelvin)} (\textcite{NFENISO6946}).
     \item Les ponts thermiques ont été définies comme une surface de déperdition
           équivalente à \SI{13.2}{\meter\squared} (\mtodo{Récup détail Aurélie}).
     \item La fenêtre de toit est placée horizontalement et non à \SI{33}{\degree}
           (inclinaison réelle) car la bibliothèque \emph{Buildings} ne supporte pas les
           surfaces vitrés inclinées. Le facteur solaire utilisé est cependant celui défini
-          dans la fiche technique du fabricant (\munsure{Ajouter ref velux}).
+          dans la fiche technique du fabricant.
 \end{itemize}
 % subsubsection limitations_du_modele (end)
 
@@ -314,8 +313,6 @@ Certains choix ont été fait du aux limitations de modélisation~:
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Comparaison avec un modèle multi-zone} % (fold)
 \label{ssub:comparaison_avec_un_modele_multi_zone}
-~
-\iunsure{À mettre après présentation des scénarios}
 Une comparaison a été réalisée
 entre un modèle multi-zone développé sous \emph{Energy Plus} par le
 \emph{CEA} et le modèle mono-zone retenue dans ces travaux. Le fichier météo utilisé est celui de
@@ -376,7 +373,7 @@ et réduite en inoccupation.
 \paragraph{Équipements électriques~:} % (fold)
 \label{par:equipements_electriques}
 La consommation est fixée à \SI{5.7}{\watt\per m^{2}} (\SI{80}{\percent}
-convective) et à \SI{1.14}{\watt\per m^{2}} durant l’inoccupation, soit une
+convective) et durant l’occupation à \SI{1.14}{\watt\per m^{2}}, soit une
 réduction de \SI{80}{\percent} (Fig~\ref{fig:scenario_reference}).
 % paragraph equipements_electriques (end)
 
@@ -406,15 +403,15 @@ retenue.
 \label{ssub:ventilation_ref}
 Finalement le profil de ventilation de référence est considéré à \SI[per-mode=symbol]{90}{\meter\cubed\per\hour}
 comme le prévoit l’arrêté du \href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{24 Mars
-1982 et du 28 Octobre 1983} pour une maison comportant 4 pièces principales.
-\itodo{Ajouter réduit diurne}
+1982 et du 28 Octobre 1983} pour une maison comportant 4 pièces principales. Il est aussi
+considéré une réduction du débit d’air neuf minimal à \SI[per-mode=symbol]{20}{\meter\cubed\per\hour}
+en inoccupation.
 % subsubsection ventilation (end)
 % subsection scénarios_de_référence (end)
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter figure des profil de charges internes et occupation}
-        % \includegraphi\ftodo{Profil d’occupation retenue}cs{Ressources/Images/Modelisation/maison.png}
+        \includegraphics{Ressources/Images/Scenario/charges_internes.pdf}
     \end{center}
     \caption{Profil de référence pour les charges internes (occupants, équipements et éclairage)
              et la consigne de chauffage.
@@ -465,11 +462,8 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 \subsection{Description du système solaire} % (fold)
 \label{sub:description_du_systeme_solaire}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Partie hyraulique} % (fold)
+\subsubsection{Partie hydraulique} % (fold)
 \label{ssub:partie_hyraulique}
-~
-\itodo{Ajouter description du choix des pompes et de l’équilibrage}
-\itodo{Description du fonctionnement des pompes et des débits}
 Le système hydraulique (Fig~\ref{fig:air_complet_mono}) est composé de 2 ballons dont les
 caractéristiques sont disponibles dans le \autoref{tab:tanks_specs}. Le premier, le ballon
 sanitaire, permet de lisser la demande en énergie nécessaire pour couvrir les besoins en
@@ -494,11 +488,11 @@ solaire disponible n’est pas suffisante. L’énergie solaire est elle transmi
 l’eau par l’intermédiaire de panneaux solaires (\autoref{tab:idmk_specs}) puis vers le
 système aéraulique à l’aide d’un échangeur de chaleur.
 
-Enfin, le système comporte 3 pompes~: S6, S5, et S2. Il est considéré un débit nominale de
+Enfin, le système comporte 3 pompes~: S6, S5, et S2. Il est considéré un débit nominal de
 \SI{40}{\litre\per(\meter\squared\period\hour)} pour les pompes S6 et S5 et de
 \SI{70}{\litre\per(\meter\squared\period\hour)} pour la pompe S2 comme première
 approximation \parencite{Peuser2005}. Les pompes utilisées sont des pompes à vitesse
-variable afin de limiter les arrêts intempestifs des pompes \parencite{Kicsiny20123489}.
+variable afin de limiter les arrêts intempestifs \parencite{Kicsiny20123489}.
 
 \begin{table}
 \centering
@@ -535,7 +529,7 @@ variable afin de limiter les arrêts intempestifs des pompes \parencite{Kicsiny2
     Surface nette                               & \num{2.32}           & \si{m^{2}}            \\
     Poids à vide                                & \num{54}             & \si{kg}               \\
     Contenance                                  & \num{1.35}           & \si{l}                \\
-    $\eta_{0}$                                  & \num{78}             & \si{\%}               \\
+    Rendement optique ($\eta_{0}$)              & \num{78}             & \si{\%}               \\
     Pente                                       & \num{-5.103}         & -                     \\
     Coefficient de pertes linéiques ($a_{1}$)   & \num{3.796}          & \si{W/(m^{2}.K)}      \\
     Coefficient de pertes surfaciques ($a_{2}$) & \num{0.013}          & \si{W/(m^{2}.K^{2})}  \\
@@ -543,14 +537,29 @@ variable afin de limiter les arrêts intempestifs des pompes \parencite{Kicsiny2
     \bottomrule
 \end{tabular}
 \end{table}
+
+\paragraph{Équilibrage du réseau~:} % (fold)
+\label{par:equilibrage_du_reseau}
+Le système décrit est complexe et plusieurs circulateurs en série peuvent être actifs
+simultanément. Ainsi si on considère deux circulateurs en série ayant toutes les deux pour
+consigne un débit de \SI[per- mode=symbol]{2}{\meter\cubed\per\hour} le débit résultant
+sera de \SI[per-mode=symbol]{4}{\meter\cubed\per\hour} car le débit à chaque pompe est
+\textbf{imposé}. Afin de corriger ce comportement il est nécessaire d’imposer soit la
+vitesse de rotation, soit le différentiel de pression Le choix a été fait d’imposer la
+vitesse de rotation au niveau des circulateurs. Un circulateur à vitesse variable (\textit
+{Wilo-Yonos ECO 25/1-5 BMS} adapté aux températures élevées d’un réseau solaire est
+retenu (voir Fig Annexe~\ref{fig:caracs_pompes}).
+Ces caractéristiques sont implémentées afin de permettre à partir d’une vitesse de
+rotation imposée, de trouver le débit correspond. De cette manière les pertes de charges
+du réseau (équilibré pour le débit nominal) sont prises en compte le débit est
+correctement modulé si plusieurs pompes en série fonctionnent.
+% paragraph equilibrage_du_reseau (end)
 % subsubsection partie_hyraulique (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Partie aéraulique} % (fold)
 \label{ssub:partie_aéraulique}
-~
-\itodo{Partie aéraulique ...}
 La partie aéraulique du système est responsable du renouvellement d’air et du chauffage
 par l’intermédiaire du solaire thermique ou bien de la batterie électrique en
 position terminale. Un caisson de mélange permet de récupérer une partie de l’énergie
@@ -577,7 +586,7 @@ et compatible avec les informations techniques disponibles sur les fiches techni
 des différents fabricants. Ce dernier point exclue une modélisation détaillée
 des transferts thermiques. L’approche retenue utilise le modèle disponible dans la
 bibliothèque \emph{Buildings} basant son système d’équations sur les relations
-empiriques décrites dans le volet 2 de la norme \mtodo{Ajouter lien}{EN\,12975}.
+empiriques décrites dans le volet 2 de la norme \textcite{EN129752}.
 Dans cette approche, deux coefficients
 permettent de caractériser les pertes thermiques des capteurs : les coefficients de pertes linéiques
 et surfaciques notés respectivement $a_{1}$ et $a_{2}$. Deux autre coefficients, le rendement solaire ($\eta_{0}$)
@@ -593,7 +602,7 @@ expérimentales le modèle reflète correctement le comportement réel (Fig~\ref
 
 Enfin le modèle utilisé pour convertir l’irradiation disponible à l’horizontal (diffus)
 et à la normale (direct) sur une surface inclinée (capteur) a aussi été comparé
-avec les résultats du modèle (\mtodo{Ajouter type} implémenté dans \emph{TrnSys}. Les deux
+avec les résultats du modèle implémenté dans \emph{TrnSys}. Les deux
 modèles estiment de manière similaire l’irradiation sur une surface inclinée.
 
 \begin{figure}
@@ -650,7 +659,7 @@ différence de température minimale de \SI{10}{\celsius} entre la sorties des �
 la sortie des capteurs solaires ($DeltaT_{sol}$). Contrairement aux approches classiques, la différence de
 température entre l’entrée et la sortie du collecteur n’est pas utilisée comme un élément
 de régulation. En effet, cette approche ne permet pas de tenir compte de manière dynamique
-des fluctuations entre besoins, pertes, et énergie disponible (\mtodo{Ajouter sources}).
+des fluctuations entre besoins, pertes, et énergie disponible \parencite{Mosallat2013686}.
 En considérant la différence de température entre la source (sortie des capteurs) et la
 cible (sortie des échangeurs) on tient compte des pertes en lignes mais aussi des
 fluctuations de la part d’énergie fournie aux ballons ou à l’air. Ainsi dans le cas où
@@ -829,7 +838,6 @@ l’appoint électrique.
     \caption{Principe de la surchauffe diurne durant une journée hivernale.
              \label{fig:control_air}}
 \end{figure}
-% paragraph couplage_aeraulique (end)
 % subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
 % section description_du_cas_d_etude_le_systeme_solaire (end)
@@ -1033,7 +1041,7 @@ l’impact apportée par une ventilation Hygro B sur la performance du système 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Température de consigne} % (fold)
 \label{ssub:temperature_de_consigne}
-\paragraph{Consigne de chauffage:} % (fold)
+\paragraph{Consigne de chauffage~:} % (fold)
 \label{par:consigne_de_chauffage}
 L’analyse des variations de la consigne de chauffage permet d’évaluer les performance du
 système solaire et évaluer l’évolution de l’économie sur les consommations de la maison.
@@ -1065,7 +1073,7 @@ période nocturne. Les scénarios construits sont les suivants~: 19-18-16, 19-19
 % paragraph consigne_de_chauffage (end)
 
 
-\paragraph{Consigne de chauffage solaire :} % (fold)
+\paragraph{Consigne de chauffage solaire~:} % (fold)
 \label{par:consigne_de_chauffage_solaire}
 L’impact de la température de consigne solaire est aussi discuté. Deux configurations sont
 simulées. La première admet une température de consigne de \SI{22}{\celsius}. La
@@ -1074,8 +1082,6 @@ l’élévation de la température n’est réalisé que par l’énergie solair
 capteurs, soit l’état $Solaire_{Direct}$. Finalement les interactions entre consigne et
 consigne solaire de chauffage sont aussi discutées
 % paragraph consigne_de_chauffage_solaire (end)
-
-\iunsure{Ajouter variation charges internes. N’apporte pas grand chose.}
 % subsubsection temperature_de_consigne (end)
 % subsection scenarios_etudies (end)
 
@@ -1120,20 +1126,19 @@ permettant de simplifier les systèmes d’équations.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Capteurs solaires} % (fold)
 \label{ssub:capteurs_solaires}
-~
 Afin d’évaluer l’impact du choix du capteur, 3 capteurs ont été retenus
 (\autoref{tab:capteurs_specs}). Le capteur de référence (IDMK 25), un capteur sous-vide
 (12 CPC58) et un autre capteur plan très performant (308C HP). Les caractéristiques du
 premier (IDMK) sont issues de sa fiche technique
 (\ref{ssub:capteurs_solaires}). Les deux autres types sont issue d’une source
 commune~: \href{www.solar-rating.org}{ICC SRCC}. Cette source a été sélectionnée car elle
-regroupe les résultats de tests sur différents capteurs en fournissant des informations
-supplémentaires qui ne sont pas forcement disponibles sur les fiches techniques. En effet,
-le modèle de capteur retenu nécessite les conditions dans lesquels les essais ont été réalisés.
+regroupe les résultats d’essai réalisés dans des conditions similaires par un organisme indépendant.
+Ces tests permettent de fournir des informations
+supplémentaires qui ne sont pas forcement disponibles sur les fiches techniques mais nécessaires
+pour le modèle numérique de capteur retenu. Les résultats de ces essais sont disponibles en
+Fig Annexe~\ref{fig:caracs_radco} et Fig Annexe~\ref{fig:caracs_skypro}.
 Enfin les modèles retenues ont une surface d’absorption similaire facilitant la comparaison
 entre eux.
-
-Les fiches techniques des capteurs sont disponible en annexe (\mtodo{Ajout annexe et ref})
 
 \begin{table}
 \centering
@@ -1201,42 +1206,7 @@ référence pour l’échangeur(\num{1}) correspond au $12^{\grave eme}$ segment
 % subsubsection ballons (end)
 
 
-
 % ------------------------------------------------------------------------------
-\subsubsection{Circulateurs} % (fold)
-\label{ssub:circulateurs}
-L’étude cherchera aussi à évaluer l’impact du débit nominal sur la performance du
-système. Comme il a été décrit le débit nominal est dépendant de la surface de capteur
-et la surface de capteur est elle aussi un élément variant au cours de l’étude. Il a donc
-été retenue de moduler le débit nominale par capteur.
-\mtodo{Pour mémo}{\SI[per-mode=symbol]{}{\litre\per(\meter\squared\period\hour)}}
-
-Le système décrit est complexe et plusieurs circulateurs en série peuvent être active en même temps. Par défaut, les
-modèles hydrauliques de la bibliothèque \emph{Buildings} considère un cas idéal
-sans pertes de charges.
-Ainsi si on considère deux circulateurs en série ayant toutes les deux pour consigne un débit de \SI[per-mode=symbol]{2}{\meter\cubed\per\hour}
-le débit résultant sera de \SI[per-mode=symbol]{4}{\meter\cubed\per\hour}. Afin de corriger ce
-comportement, il est nécessaire d’équilibrer l’ensemble du réseau et de sélectionner
-une pompe adapté. Le choix a été fait d’imposer la vitesse de rotation au niveau
-des circulateurs mais il est aussi envisageable d’imposer une différence de pression en
-sortie de pompe.
-
-\itodo{Liste les variations retenues}
-Afin de pouvoir réaliser les variations paramétriques tout en conservant un équilibre
-entre les différentes branches du réseau, l’équilibrage est réalisé automatiquement
-durant l’initialisation du modèle. Dans un premier temps la surface totale de capteur et
-les débit nominaux surfaciques permettent de calculer le débit nominal de chaque pompe. Ensuite les pertes
-de charges sont réparties en suivant les règles décrites à travers le schéma \mtodo{Ref fig pdc}.
-Les pertes de charge sont alors calculé pour un certain nombre de débit permettant de construire
-la courbe de fonctionnement des circulateurs.
-
-Une pompe à vitesse variable (adaptée aux températures élevées d’un réseau solaire) a été sélectionnée (\mtodo{Ajouter ref carac pompe})
-car elle est adapté pour toutes les configurations envisagées (\mtodo{Ajouter ref tab variations}).
-\ttodo{Variations du débit surfacique nominal}
-% subsubsection circulateurs (end)
-
-
-
 \subsubsection{Algorithme} % (fold)
 \label{ssub:variations_algorithmiques}
 Finalement il est aussi étudié à travers cette étude des variations au niveau
@@ -1334,13 +1304,14 @@ le cas de référence sont décrits à travers un tableau récapitulatif (\autor
     $Tempo_{batterie}$                   & \num{3}   & \num{2}, \num{4}                       & \si{\min}     & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
     $Tempo_{souff}$                      & \num{10}  & \num{5}, \num{15}                      & \si{\min}     &                                                       \\
     $DeltaT_{sol}$                       & \num{10}  & \num{5}, \num{15}                      & \si{\celsius} &                                                       \\
+    \addlinespace[\defaultaddspace]
     \bottomrule
   \end{tabular}
 \end{table}
 
 \ftodo{Ajouter conso par rapport aux apports internes et autres}
 
-\paragraph{Récapitulatif :} % (fold)
+\paragraph{Récapitulatif~:} % (fold)
 \label{par:récapitulatif}
 ~
 \iunsure{Décrire les variations au fur et à mesure de l’analyse ou laisser comme ça}
@@ -1426,7 +1397,7 @@ est nécessaire.
 
 \iunsure{Ajouter couverture par mois en fonction des climats}
 
-\paragraph{Période de simulation :} % (fold)
+\paragraph{Période de simulation~:} % (fold)
 \label{par:période_de_simulation}
 ~
 \ifix{Mauvaise valeur dans la publication pour la consommation de l’appoint}
@@ -1519,7 +1490,7 @@ indicateurs. En effet les charges internes représente la majorité des consomma
 les bâtiments ayant ce niveau de performance énergétique (Fig~\ref{fig:comp_charge_besoins}).
 Il est donc important de tenir compte des scénarios d’éclairage, de l’utilisation des équipements
 et des occupants pour analyser la performance d’un $SSC$ pour des maisons dites à énergie positive
-($NZEB$, \munsure{Nearly or Net}{Nearly Zero Energy House}).
+($NZEB$, Near Zero Energy House).
 
 \begin{figure}
     \begin{center}
@@ -1719,6 +1690,10 @@ sans surcoût de consommation.
 \section{Vers une méthodologie d’aide à la décision} % (fold)
 \label{sec:vers_une_methodologie_d_aide_a_la_decision}
 
+\itodo{Faire bilan et récapitulatif}
+\itodo{Ouvrir vers l’optimisation}
+
+% subsection bilan (end)
 % section vers_une_methodologie_d_aide_a_la_decision (end)
 
 
@@ -1802,175 +1777,5 @@ sans surcoût de consommation.
 % \itodo{Ajouter un tableau récap des besoins en énergie}
 % \ftodo{Ajouter une carte pour positionner les villes}
 % % subsection description_du_site (end)
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PAROIS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% \itodo{Tableau des parois}
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} & \si{kg/m^{3}} \\
-%         \midrule
-%         Enduit            & 0.01      & 1.15           & 850             & 2000            \\
-%         Optibric (R=1.32) & 0.2       & 0.1515         & 1000            & 685             \\
-%         Laine de verre    & 0.14      & 0.03218        & 840             & 20              \\
-%         Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description des parois verticales.}
-%     \label{tab:compo_mur}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux              & e         & $\lambda$        & $C_{p}$         & $\rho$          \\
-%                                & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)} & \si{kg/m^{3}} \\
-%         \midrule
-%         Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
-%         Polyuréthane           & 0.1       &  0.0215          & 1590            & 35              \\
-%         Hourdis + polystyrène  & 0.12      &  0.0276          & 1450            & 35              \\
-%         Chape béton            & 0.05      &  0.92            & 880             & 2300            \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description du plancher.}
-%     \label{tab:compo_plancher}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux               & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-%                                 & \si{m}  & \si{W/(m.k)}   & \si{J/(kg.k)}    &\si{kg/m^{3}}  \\
-%         \midrule
-%         Laine de roche soufflée & 0.365     & 0.045        & 1030               & 150                 \\
-%         Plâtre                  & 0.01      & 0.25         & 1000               & 820                 \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description du plafond sous combles.}
-%     \label{tab:compo_plafond}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-%                   & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-%         \midrule
-%         Tuile     & 0.04      & 1              & 800             & 2000            \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description de la toiture.}
-%     \label{tab:compo_toiture}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-%         \midrule
-%         Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
-%         Laine de verre    & 0.1       & 0.03218        & 840             & 20              \\
-%         Plâtre            & 0.01      & 0.25           & 1000            & 820             \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description des parois du puits de jour.}
-%     \label{tab:compo_puits}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-%         \midrule
-%         Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
-%         Air (R=0.15)      & -         & -              & -               & -               \\
-%         Plâtre            & 0.025     & 0.25           & 1000            & 900             \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description des murs de partitions.}
-%     \label{tab:compo_partition}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *4{c}}
-%         \toprule
-%         Matériaux         & e         & $\lambda$      & $C_{p}$         & $\rho$          \\
-%                           & \si{m}  & \si{W/(m.k)} & \si{J/(kg.k)} &\si{kg/m^{3}}  \\
-%         \midrule
-%         Béton             & 0.2       & 1.13           & 1000            & 2000            \\
-%         Terre             & 4         & 0.52           & 50              & 2050            \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description des parois du vide sanitaire.}
-%     \label{tab:compo_VS}
-% \end{table}
-
-
-% \itodo{Tableau des vitrages}
-% \begin{table}
-%     \begin{tabular}{l *8{c}}
-%         \toprule
-%         Matériaux & $e$       & $\lambda$      & $\tau_{sol}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$ \\
-%                   & \si{m}  & \si{W/(m.k)} & -              & -         & -                & -                & -                & -                \\
-%         \midrule
-%         SGG Planilux       & 0.04  & 1          & 0.849      & 0           & 0.837              & 0.837              & 0.076              & 0.076                   \\
-%         Argon              & 0.016 & -          & -          & -           & -                  & -                  & -                  & -                       \\
-%         SGG PlaniTherm One & 0.04  & 1          & 0.591      & 0           & 0.037              & 0.837              & 0.312              & 0.264                   \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description des vitrages en façades verticales ($U_{f}$ de 1.4~\si{W/m^{2}.k}).}
-%     \label{tab:compo_vitrage}
-% \end{table}
-
-% \begin{table}
-%     \begin{tabular}{l *8{c}}
-%         \toprule
-%         Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
-%                   & \si{m}  & \si{W/(m.k)} & -              & -         & -          & -          & -            & -             \\
-%         \midrule
-%         Verre ext & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
-%         Air       & 0.016     & -              & -                & -           & -           & -            & -              & -               \\
-%         Verre int & 0.01      & 1              & 0.44             & 0           & 0.88        & 0.88         & 0.075          & 0.075           \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description de la fenêtre de toit ($U_{f}$ de 1.8~\si{W/m^{2}.k}).}
-%     \label{tab:compo_velux}
-% \end{table}
-
-% \begin{table}
-%     \raggedright
-%     \begin{tabular}{l *5{c}}
-%         \toprule
-%         Gaz   & $a_{k}$              & $b_{k}$              & $a_{mu}$             & $b_{mu}$             & $a_{c}$           \\
-%               & \si{W/(m.k)}       & \si{W/(m.k^{2})}   & Pa.s               & \si{N.s/(m^{2}.k)} & \si{J/(kg.k)}   \\
-%         \midrule
-%         Argon & $2.285\times10^{-3}$ & $5.149\times10^{-5}$ & $3.379\times10^{-6}$ & $6.451\times10^{-8}$ & 521.9285          \\
-%         Air   & $2.873\times10^{-3}$ & $7.760\times10^{-5}$ & $3.723\times10^{-6}$ & $4.940\times10^{-8}$ & 1002.737          \\
-%         \bottomrule
-%     \end{tabular}
-%     \bigskip
-%     \begin{tabular}{l *3{c}}
-%               & $b_{c}$                & $MM$                  & $P0$       \\
-%               & \si{J/(kg.k^{2})}    & \si{kg/mol}         & \si{bar} \\
-%         \midrule
-%         Argon & 0                      & $39.948\times10^{-3}$ & 101325     \\
-%         Air   & $1.2324\times10^{-2}$  & $28.97\times10^{-3}$  & 101325     \\
-%         \bottomrule
-%     \end{tabular}
-%     \caption{Description des caractéristiques des gaz}
-%     \label{tab:compo_gaz}
-% \end{table}
-
-
-% % subsection description_de_l_enveloppe (end)
 
 
