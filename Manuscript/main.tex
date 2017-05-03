@@ -2,18 +2,6 @@
 %!TEX encoding = UTF-8 Unicode
 
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-% Notes:
-% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-%
-% Les images sont ajustées automatiquement et donc `scale' ne peut pas être utilisé
-% Permet d’écrire et d’insérer les images sans devoir se soucier de la taille.
-% Lors de la mise en page, ce paramètre devra être supprimé
-% (\usepackage{./Template/graphics_support})
-%
-% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Choix des séparateurs entre les parties pour la lisibilité
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %
@@ -29,32 +17,184 @@
 %
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-% Load thesis config
-\input{these_classe}
+
+% ------------------------------------------------------------------------------
+% Package support
+% ------------------------------------------------------------------------------
+% Load thesis config with auto scale graphics
+\documentclass[11pt, draft, oneside, fixOverflow]{JeremyThesis}
+
+% Load thesis config with auto scale graphics and figures
+% \documentclass[11pt, oneside, fixOverflow]{JeremyThesis}
+
+% Load thesis config without auto scale graphics and figures (final)
+% \documentclass[11pt, twoside]{JeremyThesis}
 
 
 % ------------------------------------------------------------------------------
-% First page defined here
+% Meta data support
+% ------------------------------------------------------------------------------
+% Hyper links and meta data
+\hypersetup{
+    pdfkeywords={Maison Passive,
+                 Optimisation,
+                 multi-critère,
+                 multi-objectif,
+                 analyse de sensibilité,
+                 Dymola,
+                 Modelica,
+                 Solaire,
+                 Système combiné},         % list of keywords
+    unicode=true,                          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,                       % show Acrobat’s toolbar?
+    pdfmenubar=true,                       % show Acrobat’s menu?
+    pdffitwindow=false,                    % window fit to page when opened
+    pdfstartview={FitH},                   % fits the width of the page to the window
+    pdftitle={Outil d’aide à la décision %
+              pour la construction de %
+              maison passives %
+              100\% solaires},             % title
+    pdfauthor={Jérémy Bois},               % author
+    pdfsubject={Optimisation,
+                Solar combi-system,
+                Maison passive},           % subject of the document
+    pdfcreator={Jérémy Bois},              % creator of the document
+    pdfproducer={Jérémy Bois},             % producer of the document
+    pdfnewwindow=true,                     % links in new PDF window
+    colorlinks=true,                       % false: boxed links; true: colored links
+    linkcolor=SolarizedOrange,             % color of internal links (change box color with linkbordercolor)
+    citecolor=SolarizedMagenta,            % color of links to bibliography
+    filecolor=SolarizedMagenta,            % color of file links
+    urlcolor=SolarizedBlue                 % color of external links
+}
+
+
+% ------------------------------------------------------------------------------
+% Template support (must be moved to cls, this is temporary)
+% ------------------------------------------------------------------------------
+\usepackage[Conny]{fncychap}                      % Fancy title
+
+
+% ------------------------------------------------------------------------------
+% Font support
+% ------------------------------------------------------------------------------
+\usepackage[math-style=french]{unicode-math}
+\setmainfont{GandhiSerif-}[
+Extension=.otf,
+Path=./Fonts/,
+UprightFont=*Regular,
+BoldFont=*Bold,
+ItalicFont=*Italic,
+BoldItalicFont=*BoldItalic,
+% Color=SolarizedBrBlack,
+]  % Look nice
+
+% \setsansfont{PT Sans}           % Same as in figure
+\setsansfont{QuattrocentoSans-}[
+Extension=.otf,
+Path=./Fonts/,
+UprightFont=*Regular,
+BoldFont=*Bold,
+ItalicFont=*Italic,
+BoldItalicFont=*BoldItalic,
+% Color=SolarizedBrBlack,
+]
+
+\setmathfont{Asana-Math}[
+Path=./Fonts/,
+Extension=.otf,
+% Color=SolarizedBrBlack,
+]
+
+\defaultfontfeatures{Ligatures=TeX}
+
+
+% ------------------------------------------------------------------------------
+% Algorithm support
+% ------------------------------------------------------------------------------
+\usepackage[french, onelanguage,
+            linesnumbered, lined,
+            boxed,
+            commentsnumbered]{algorithm2e}
+
+
+% Comments
+\newcommand\commfont[1]{\footnotesize\ttfamily\textcolor{SolarizedBrCyan}{#1}}
+\SetCommentSty{commfont}
+\SetKwComment{AComment}{\#~}{}
+
+% Functions
+\SetKwFunction{ALevyFlight}{LevyFlight}
+\SetKwFunction{ALevy}{Levy}
+
+% Keywords
+\SetKwData{ASources}{Sources}
+\SetKwData{ASource}{Source}
+\SetKwData{AButineuse}{Butineuse}
+\SetKwData{AOuvriere}{Ouvrière}
+\SetKwData{ANbrSources}{N}
+\SetKwData{AOnlookers}{Ouvrières}
+\SetKwData{AScouts}{Éclaireuses}
+\SetKwData{AEmployed}{Butineuses}
+\SetKwData{ABee}{Abeille}
+\SetKwData{ABees}{Abeilles}
+\SetKwData{AHive}{Essaim}
+\SetKwData{AVariables}{Variables}
+\SetKwData{AVariable}{Variable}
+\SetKwData{ANbrVariables}{J}
+\SetKwData{AArchive}{Archive}
+\SetKwData{APopulation}{Population}
+\SetKwData{ATirageA}{TirageA}
+\SetKwData{ATirageB}{TirageB}
+\SetKwData{ARatio}{Ratio}
+\SetKwData{AMR}{MR}
+\SetKwData{ATrial}{Echec}
+\SetKwData{AMaxTrial}{MaxEchec}
+
+
+% ------------------------------------------------------------------------------
+% Nomenclature
+% ------------------------------------------------------------------------------
+%   \nomenclature{symbol}{definition}                 % Add new item
+%   \nomenclature{symbol}{definition \nomunit{unité}} % Add new item with unit
+\makenomenclature
+
+
+% ------------------------------------------------------------------------------
+% Bibliography support
+% ------------------------------------------------------------------------------
+%   \parencite{bib_id}     Add parenthesis (Name, year)
+%   \cite{bib_id}          Normal
+%   \textcite{bib_id}      Dans une phrase
+\addbibresource{./Bibliographie/references.bib}       % Where to find bibliography
+
+
+% ------------------------------------------------------------------------------
+% First page definition
 % ------------------------------------------------------------------------------
 \title{
     {Outil d’aide à la décision pour la construction de maisons passives 100\% solaires}\\
     {\large Université de Bordeaux}\\
-    {\includegraphics{Logos/aquitaine_logo.png}}
+    {\includegraphics{Ressources/Images/Logos/aquitaine_logo.png}}
 }
 \author{Jérémy Bois}
 \date{}
+
+
+
+
+
 % ------------------------------------------------------------------------------
-
-
 % ------------------------------------------------------------------------------
 % Document start here
 % ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 \begin{document}
 
-% Wrap column without lossing alignment
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
 
-% First page
+% ------------------------------------------------------------------------------
+% Preface
+% ------------------------------------------------------------------------------
 \pagenumbering{Alph}
 \begin{titlepage}
     \maketitle
@@ -63,14 +203,19 @@
 \pagenumbering{arabic}
 
 
-% Other stuff
+% ------------------------------------------------------------------------------
+% Resume
+% ------------------------------------------------------------------------------
 \chapter*{Résumé}
 Résumé ici
-
 \chapter*{Remerciements}
 Merci merci ...
 miaou : fsss
 
+
+% ------------------------------------------------------------------------------
+% Tables of contents
+% ------------------------------------------------------------------------------
 \tableofcontents
 \listoffigures
 \listoftables
@@ -79,11 +224,13 @@ miaou : fsss
 \printnomenclature[3cm]
 \thispagestyle{empty}
 \newpage
-
 \listoftodos[Notes]
 \newpage
 
-% Start importing chapters
+
+% ------------------------------------------------------------------------------
+% Chapters
+% ------------------------------------------------------------------------------
 \chapter*{Introduction}
 % \input{Chapitres/Introduction}
 
@@ -91,7 +238,7 @@ miaou : fsss
 % \input{Chapitres/Chap1-ContexteTravaux}
 
 \chapter{Modélisation détaillée d’un système solaire innovant}
-\input{Chapitres/Chap2-ApprocheModelisation}
+% \input{Chapitres/Chap2-ApprocheModelisation}
 
 \chapter{Développement d’une méthode d’aide à la décision}
 % \input{Chapitres/Chap3-UnOutilAideDecision}
@@ -103,7 +250,9 @@ miaou : fsss
 % \input{Chapitres/Conclusion}
 
 
-% Start importing appendix
+% ------------------------------------------------------------------------------
+% Appendix
+% ------------------------------------------------------------------------------
 \newpage
 \addappheadtotoc
 \appendix
@@ -112,18 +261,19 @@ miaou : fsss
 \include{Annexes/parois}
 \include{Annexes/vitrages}
 \chapter{Système solaire}
-\include{Annexes/circulateur}
+\include{Annexes/ssc}
 
-% Add bibliography
+
+% ------------------------------------------------------------------------------
+% Bibliography
+% ------------------------------------------------------------------------------
 \newpage
 \printbibliography[title={Bibliographie}]
 
 
-
 \end{document}
+% ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
 % Document end here
 % ------------------------------------------------------------------------------
-
-
-
+% ------------------------------------------------------------------------------
