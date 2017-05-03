@@ -546,7 +546,7 @@ consigne un débit de \SI[per- mode=symbol]{2}{\meter\cubed\per\hour} le débit 
 sera de \SI[per-mode=symbol]{4}{\meter\cubed\per\hour} car le débit à chaque pompe est
 \textbf{imposé}. Afin de corriger ce comportement il est nécessaire d’imposer soit la
 vitesse de rotation, soit le différentiel de pression Le choix a été fait d’imposer la
-vitesse de rotation au niveau des circulateurs. Un circulateur à vitesse variable (\textit
+vitesse de rotation au niveau des circulateurs. Un circulateur à vitesse variable (\emph
 {Wilo-Yonos ECO 25/1-5 BMS} adapté aux températures élevées d’un réseau solaire est
 retenu (voir Fig Annexe~\ref{fig:caracs_pompes}).
 Ces caractéristiques sont implémentées afin de permettre à partir d’une vitesse de
@@ -596,9 +596,9 @@ permettent de caractériser la part solaire absorbée.
 Afin de vérifier la pertinence du modèle des données expérimentales ont été utilisées.
 Pour ce faire la température, le débit de l’eau en entrée des collecteurs et les
 irradiations directe et indirecte ont été utilisées comme conditions limites pour le
-modèle. La température de sortie entre les conditions réelles et le modèle a ainsi
-pu être comparée et les résultats montrent que sur les deux mois couverts par les données
-expérimentales le modèle reflète correctement le comportement réel (Fig~\ref{fig:compare_exp_modele}).
+modèle. La production des capteurs a ainsi pu être comparée et les résultats montrent que
+sur les trois mois couverts par les données expérimentales elle est similaire
+(Fig~\ref{fig:compare_capteurs}).
 
 Enfin le modèle utilisé pour convertir l’irradiation disponible à l’horizontal (diffus)
 et à la normale (direct) sur une surface inclinée (capteur) a aussi été comparé
@@ -607,12 +607,12 @@ modèles estiment de manière similaire l’irradiation sur une surface incliné
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter résultats de comparaison expérimentation}
-        % \includegraphics{Ressources/Images/Modelisation/air_complet_mono.pdf}
+        \includegraphics{Ressources/Images/Modelisation/compare_capteurs.pdf}
     \end{center}
-    \caption{Comparatif mensuelle de la température de sortie de l’eau entre
-             les données expérimentales et le modèle
-             \label{fig:compare_exp_modele}}
+    \caption{Comparaisons par mois~: (gauche) l’irradiation sur les capteurs entre un modèle
+             \emph{TrnSys} et \emph{Modelica}, (droite) la production des capteurs entre des résultats
+             expérimentaux et le modèle \emph{Modelica}.
+             \label{fig:compare_capteurs}}
 \end{figure}
 % subsubsection verifications (end)
 % subsection description_du_systeme_solaire (end)
