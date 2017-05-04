@@ -960,7 +960,7 @@ Pour l’ensemble des profils, un volume de puisage typique moyen de
 \SI{33}{\litre\per(jour\period pers)}\,(\SI{60}{\celsius}), soit un
 volume total de \SI{220}{\litre/jour}\,(\SI{40}{\celsius}) pour les 4 occupants est
 retenu. Le profil de référence utilisé est le scénario décrit dans la norme
-\textbf{EN\,12977}. Trois variantes de celui-ci ont aussi été évaluées favorisant
+\textcite{EN129771}, \textbf{EN\,12977}. Trois variantes de celui-ci ont aussi été évaluées favorisant
 respectivement un puisage en matinée (\textbf{Matin}), en soirée (\textbf{Soir}) et un
 puisage similaire pour les 3 pics journaliers (\textbf{Réparti}). Finalement un scénario
 issue de données statistiques \parencite{ADEME2016} a aussi été implémenté
@@ -1190,10 +1190,10 @@ l’échangeur solaire sur le ballon sanitaire reste adapté à la nouvelle tail
 ballon. Les variations retenues pour chaque ballon sont identiques :
 \SI{150}{l}, \SI{300}{l}, et \SI{450}{l}.
 
-Ensuite l’impact de la position de l’échangeur solaire est aussi étudiée. L’échangeur du
+Ensuite l’impact de la position de l’échangeur solaire ($Ech_{sol}^{pos}$) est aussi étudiée. L’échangeur du
 ballon de stockage couvrant presque l’intégralité de sa hauteur seule la position de
 l’échangeur solaire sur le ballon sanitaire est analysée. Afin d’être compatible avec les
-variations réalisées sur le volume des ballons, la variation de la position de l’échangeur
+variations réalisées sur le volume des ballons, la variation de $Ech_{sol}^{pos}$
 sera réalisée relativement à sa position d’origine sans modifier sa longueur. Il est alors
 possible d’évaluer l’impact du volume du ballon et de la position relative de l’échangeur
 de manière combinés ou bien séparément. Les coefficients ont été sélectionnés en fonction
@@ -1277,33 +1277,33 @@ le cas de référence sont décrits à travers un tableau récapitulatif (\autor
   \begin{tabular}{l c C{4cm} r r}
     \toprule
     \addlinespace
-                                         & Référence & Variations                             & Unité         & Détails                                               \\
-    \multicolumn{5}{l}{\bf{Scénarios}}                                                                                                                                \\
+                                           & Référence & Variations                             & Unité         & Détails                                               \\
+    \multicolumn{5}{l}{\bf{Scénarios}}                                                                                                                                 \\
     \midrule
-    Ventilation                          & 90-20     & 90-90                                  & \si{m^{3}/h}  & \ref{ssub:ventilation}                                \\
-    Chauffage                            & 19-18-16  & 19-19-16, 19-19-19, 20-18-16, 20-20-16 & \si{\celsius} & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
-    Chauffage solaire                    & Avec (22) & Sans                                   & \si{\celsius} &                                                       \\
-    Puisage                              & EN12977   & Soir, Matin, Réparti, Réaliste         & \si{l/h}      & \multirow{3}{*}{\ref{ssub:puisage_en_eau_chaude_sanitaire}}            \\
-    Volume $ECS$ puisé (\SI{60}{\celsius})& 33       & 27, 40                                 & \si{\litre/(jour\period pers)}      &                                 \\
-    Modulation du puisage                & Non       & Mensuelle                              & -             &                                                       \\
+    Ventilation                            & 90-20     & 90-90                                  & \si{m^{3}/h}  & \ref{ssub:ventilation}                                \\
+    Chauffage                              & 19-18-16  & 19-19-16, 19-19-19, 20-18-16, 20-20-16 & \si{\celsius} & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
+    Chauffage solaire                      & Avec (22) & Sans                                   & \si{\celsius} &                                                       \\
+    $Puisage_{scenario}$                              & EN\,12977   & Soir, Matin, Réparti, Réaliste         & \si{l/h}      & \multirow{3}{*}{\ref{ssub:puisage_en_eau_chaude_sanitaire}}            \\
+    $Puisage_{vol}$ (\SI{60}{\celsius}) & 33       & 27, 40                                 & \si{\litre/(jour\period pers)}      &                                 \\
+    $Puisage_{mod}$                 & Non       & Mensuelle                              & -             &                                                       \\
     \\
     \addlinespace[\defaultaddspace]
     \multicolumn{5}{l}{\bf{Équipements}}                                                                                                                              \\
     \midrule
-    Modèle des capteurs                  & IDMK 25   & 308C HP, 12 CPC58                      & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
-    Nombre de capteurs                   & \num{4}  & \num{2}, \num{6}, \num{8}               & -             &                                                       \\
-    Inclinaison des capteurs             & \num{33}  & \num{18.9}, \num{45}, \num{60}         & \si{\degree}  &                                                       \\
-    Orientation des capteurs             & Sud       & Est, Ouest                             & -             &                                                       \\
-    Volume ballon de stockage            & \num{300} & \num{150}, \num{450}                   & \si{\litre}   & \multirow{3}{*}{\ref{ssub:ballons}}                   \\
-    Volume ballon $ECS$                  & \num{300} & \num{150}, \num{450}                   & \si{\litre}   &                                                       \\
-    Position Échangeur solaire           & \num{1}   & \num{0.8}, \num{1.3}                   & \si{m}        &                                                       \\
+    Modèle des capteurs                    & IDMK 25   & 308C HP, 12 CPC58                      & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
+    Nombre de capteurs                     & \num{4}  & \num{2}, \num{6}, \num{8}               & -             &                                                       \\
+    Inclinaison des capteurs               & \num{33}  & \num{18.9}, \num{45}, \num{60}         & \si{\degree}  &                                                       \\
+    Orientation des capteurs               & Sud       & Est, Ouest                             & -             &                                                       \\
+    Volume ballon de stockage              & \num{300} & \num{150}, \num{450}                   & \si{\litre}   & \multirow{3}{*}{\ref{ssub:ballons}}                   \\
+    Volume ballon $ECS$                    & \num{300} & \num{150}, \num{450}                   & \si{\litre}   &                                                       \\
+    $Ech_{sol}^{pos}$                      & \num{1}   & \num{0.8}, \num{1.3}                   & \si{m}        &                                                       \\
     \\
     \addlinespace
-    \multicolumn{5}{l}{\bf{Algorithme}}                                                                                                                               \\
+    \multicolumn{5}{l}{\bf{Algorithme}}                                                                                                                                 \\
     \midrule
-    $Tempo_{batterie}$                   & \num{3}   & \num{2}, \num{4}                       & \si{\min}     & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
-    $Tempo_{souff}$                      & \num{10}  & \num{5}, \num{15}                      & \si{\min}     &                                                       \\
-    $DeltaT_{sol}$                       & \num{10}  & \num{5}, \num{15}                      & \si{\celsius} &                                                       \\
+    $Tempo_{batterie}$                     & \num{3}   & \num{2}, \num{4}                       & \si{\min}     & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
+    $Tempo_{souff}$                        & \num{10}  & \num{5}, \num{15}                      & \si{\min}     &                                                       \\
+    $DeltaT_{sol}$                         & \num{10}  & \num{5}, \num{15}                      & \si{\celsius} &                                                       \\
     \addlinespace[\defaultaddspace]
     \bottomrule
   \end{tabular}
@@ -1443,7 +1443,7 @@ Dans cette section l’impact des charges internes et de la consigne de tempéra
 investigué. Les différentes variations ont été seulement réalisées pour le climat
 de Bordeaux et de Strasbourg. L’analyse des résultats montrent que le comportement
 du système est similaire pour Bordeaux et Strasbourg. Ainsi l’analyse sera illustré
-uniquement pour le climat de Strasbourg où modifications ont un impact plus net.
+uniquement pour le climat de Strasbourg où les modifications ont un impact plus net.
 
 Afin de pouvoir comparer de manière efficace les variations paramétriques une
 représentation graphique est introduite (Fig~\ref{fig:impact_temp_consigne}). Elle permet
@@ -1451,14 +1451,14 @@ de visualiser les paramètres caractéristiques du système combiné. La longueu
 horizontales permet de lire pour chaque variation le $F_{ECS}$. La largeur des barres est
 normalisée afin de permettre de comparer le $F_{CH}$ entre chaque variation et la plage de
 variation quantitative est décrite en bas à droite. Il est aussi possible d’évaluer la
-production solaire valorisée ($Production_{Solaire}^{valoris\acute ee}$), définit comme la part
+production solaire valorisée ($Prod_{sol}^{valoris\acute ee}$), définit comme la part
 solaire transmise à l’eau après soustraction des pertes au niveau des canalisations ainsi
 que la part d’énergie consommée par l’appoint ($Consommation_{Appoint}$) comprenant le
 chauffage, la production d’$ECS$ et la consommation des pompes. Ces deux indications sont
 fournies à l’extrémité de chaque barre horizontales et une légende en partie basse décrit
 ... Enfin la couleur et l’ordre des barres sont définis à partir des valeurs normalisées
 du rendement solaire des capteurs dont l’échelle est disponible en partie droite. Le
-rendement solaire traduit le rapport entre la $Production_{Solaire}^{valoris\acute ee}$ et
+rendement solaire traduit le rapport entre la $Prod_{sol}^{valoris\acute ee}$ et
 l’énergie incidente sur les capteurs~: il indique donc la part utile de l’énergie solaire
 incidente.
 
@@ -1466,9 +1466,9 @@ L’analyse de la Fig~\ref{fig:impact_temp_consigne} permet d’obtenir de nombr
 informations pertinentes. Augmenter la température de consigne durant le période
 d’occupation (20-20-16) montre une augmentation de \SI{8}{\percent} de la consommation de
 chauffage électrique mais n’impacte pas le $F_{ECS}$. Il est aussi important de noter que
-le réduit de nuit permet de réduire sensiblement la consommation de l’appoint mais le
+le réduit de nuit permet de réduire sensiblement la consommation de l’appoint ($Conso_{app}$) mais le
 $F_{ECS}$ et le  $F_{CH}$ restent inchangé. Le $SSC$ fonctionne ainsi aussi bien avec que
-sans réduit de nuit et la consommation de l’appoint est seulement une augmentation
+sans réduit de nuit et la $Conso_{app}$ est seulement une augmentation
 proportionnelle à l’augmentation de la demande en énergie pour le chauffage. Cependant la
 performance du $SSC$ est impactée si on considère une consigne de chauffage constante
 (19-19-19). L’impact de la ventilation est plus subtil. Le scénario de ventilation 90-90
@@ -1494,11 +1494,10 @@ et des occupants pour analyser la performance d’un $SSC$ pour des maisons dite
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter graphe paramétrique sur température de consigne}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+        \includegraphics{Ressources/Images/Parametrique/parametric_consigne.pdf}
     \end{center}
     \caption{Impact de la température de consigne sur la performance
-             du $SSC$ durant la période de chauffage (01/10 - 30/04)
+             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)
              \label{fig:impact_temp_consigne}}
 \end{figure}
 
@@ -1529,7 +1528,7 @@ Au regard des résultat, augmenter le volume du ballon
 sanitaire (\num{30} à \SI{450}{\litre}) améliore les indicateurs principaux ($F_{ECS}$, $F_{CH}$, et la consommation
 de l’appoint), cependant la part électrique pour le chauffage elle augmente.
 De autre coté, un volume plus important pour le ballon de stockage améliore le $F_{CH}$
-et réduit la consommation de l’appoint ainsi que le $F_{ECS}$. Dans les deux cas, le
+et réduit la $Conso_{app}$ ainsi que le $F_{ECS}$. Dans les deux cas, le
 rendement des capteurs augmente traduisant une meilleure valorisation de l’énergie incidente
 disponible. De plus les températures des ballons (T3, T4, T5) fluctues plus doucement
 lorsque le volume augmente.
@@ -1568,11 +1567,11 @@ Il est observé que la position de l’échangeur impacte fortement les performa
 ($F_{CH}$, comme $F_{ECS}$) en particulier lorsque le volume du ballon est faible. Pour les deux climats, une position
 basse (\num{0.8}) est à favoriser afin d’améliorer le rendement des capteurs et réduire la part
 couverte par l’appoint. Il est cependant noté qu’une position plus élevée (\num{1.3}) permet
-de réduire sensiblement la consommation de l’appoint pour couvrir les besoins en
+de réduire sensiblement la $Conso_{app}$ pour couvrir les besoins en
 chauffage. Enfin contrairement au volume du ballon dont l’impact est plus important
 pour Bordeaux, le climat de Strasbourg est plus sensible à la position de l’échangeur
 solaire du ballon sanitaire. Il a été vu que la position de l’échangeur est un facteur
-influençant directement la $Production_{Solaire}^{valoris\acute ee}$. Il est donc
+influençant directement la $Prod_{sol}^{valoris\acute ee}$. Il est donc
 clair que le gain potentiel est plus important lorsque l’ensoleillement est moins
 important comme celui de Strasbourg. Finalement l’impact du matériau utilisé pour l’échangeur
 a aussi été évalué et sa composition n’impacte pas les performances du $SSC$.
@@ -1584,11 +1583,10 @@ de mieux valoriser l’énergie solaire.
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter graphe paramétrique sur position échangeur}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+        \includegraphics{Ressources/Images/Parametrique/parametric_echangeur.pdf}
     \end{center}
     \caption{Impact de la position de l’échangeur solaire sur la performance
-             du $SSC$ durant la période de chauffage (01/10 - 30/04)
+             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)
              \label{fig:impact_pos_ech}}
 \end{figure}
 % subsubsection impact_des_ballons (end)
@@ -1604,15 +1602,15 @@ des puisages. Enfin la prise en compte de coefficients modulateurs, mensuels et 
 est aussi détaillé.
 Les résultats obtenues pour Strasbourg sont illustrés à travers la Fig~\ref{fig:impact_profil_puisage}.
 Faire varier le scénario de puisage n’impacte pas les différents indicateurs
-même si le scénario \textbf{Réaliste} améliore sensiblement la  $Production_{Solaire}^{valoris\acute ee}$.
+même si le scénario \textbf{Réaliste} améliore sensiblement la  $Prod_{sol}^{valoris\acute ee}$.
 Faire varier le volume puisé montre que le $SSC$ est robuste. Il est en effet capable de
 fournir plus d’énergie solaire afin de couvrir l’augmentation des besoins en $ECS$. Si
 on compare les deux consommations extrêmes (\num{27} et \SI{40}{\litre/(jour\period pers)}\,(\SI{60}{\celsius})),
-la $Production_{Solaire}^{valoris\acute ee}$ augmente de \SI{248}{\kilo\watt\hour} et la consommation
+la $Prod_{sol}^{valoris\acute ee}$ augmente de \SI{248}{\kilo\watt\hour} et la consommation
 de l’appoint de \SI{390}{\kilo\watt\hour}. Ainsi, le $F_{ECS}$ et le $F_{CH}$
 restent élevés même lors que les besoins en $ECS$ augmentent.
 
-L’utilisation des coefficients mensuels n’affectent ni le $F_{CH}$, ni la consommation de l’appoint électrique sur le chauffage.
+L’utilisation des coefficients mensuels n’affectent ni le $F_{CH}$, ni la $Conso_{app}$ électrique sur le chauffage.
 Cependant le $F_{ECS}$ est fortement impacté et montre une nouvelle fois l’importance
 d’évaluer de manière séparée le chauffage et la production $ECS$. Il est aussi observé
 une variation moindre pour Bordeaux.
@@ -1624,11 +1622,10 @@ lors de l’évaluation de $SSC$.
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter graphe paramétrique sur scénarios de puisage}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+        \includegraphics{Ressources/Images/Parametrique/parametric_puisage.pdf}
     \end{center}
     \caption{Impact du profil de puisage sur la performance
-             du $SSC$ durant la période de chauffage (01/10 - 30/04)
+             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)
              \label{fig:impact_profil_puisage}}
 \end{figure}
 % subsubsection impact_du_profil_de_puisage (end)
@@ -1642,14 +1639,14 @@ le domaine comme le nombre de capteurs, leur orientation, leur inclinaison, ou e
 leur performance au regard des caractéristiques techniques.
 L’inclinaison des capteurs jouent un rôle important
 dans la caractérisation de la performance d’un système $SSC$ et affectent l’ensemble
-des indicateurs. La consommation de l’appoint est ainsi réduite lorsque l’inclinaison
+des indicateurs. La $Conso_{app}$ est ainsi réduite lorsque l’inclinaison
 des capteurs est plus importante. Le choix d’une inclinaison importante est en effet
 un choix doublement bénéfique. Durant la période hivernale, une inclinaison importante
 (\num{45} ou \SI{60}{\degree}) permet d’augmenter l’énergie récupérée par les capteurs
 et réduit les risques de surchauffes en périodes estivales.
 Sans surprise, le nombre de capteurs impactent fortement la consommation
 de l’appoint. À Strasbourg, une variation de surface de capteurs de \SI{14}{\meter\squared} (\num{2} à \num{8} capteurs)
-fait varier le $F_{CH}$ de \num{11} à \SI{52}{\percent} et la consommation de l’appoint
+fait varier le $F_{CH}$ de \num{11} à \SI{52}{\percent} et la $Conso_{app}$
 varie de \num{2232} à \SI{1133}{\kilo\watt\hour}.
 L’orientation joue aussi un rôle important sur la performance du $SSC$. À surface équivalente,
 des capteurs orienté au Sud produisent le double que des capteurs à l’Est.
@@ -1667,7 +1664,7 @@ Le $DeltaT_{sol}$ impacte le système solaire de manière modéré~: l’augment
 permet de valoriser une plus grande quantité d’énergie solaire. Enfin, autoriser une
 sur-chauffage par le solaire durant la journée (consigne solaire à \SI{22}{\celsius})
 améliore le $F_{CH}$ mais dégrade de manière plus importante le $F_{ECS}$. Ainsi,
-la consommation de l’appoint augmente montrant que l’énergie solaire encore une
+la $Conso_{app}$ augmente montrant que l’énergie solaire encore une
 fois est mieux valorisée si elle est attribuée en priorité pour la production d’$ECS$.
 
 En résumé, les capteurs solaires thermiques doivent être placés en priorité sur un

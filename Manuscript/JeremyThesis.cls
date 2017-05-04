@@ -44,7 +44,7 @@
 % Solarized color definition
 % ------------------------------------------------------------------------------
 \RequirePackage[table]{xcolor}                      % Color support
-\definecolor{SolarizedBlue}{HTML}{268BD2}
+\definecolor{SolarizedBlue}{HTML}{268bd2}
 \definecolor{SolarizedViolet}{HTML}{6c71c4}
 \definecolor{SolarizedCyan}{HTML}{2aa198}
 \definecolor{SolarizedMagenta}{HTML}{d33682}
