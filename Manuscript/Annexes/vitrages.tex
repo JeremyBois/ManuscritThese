@@ -1,10 +1,35 @@
 \begin{table}
+    \caption{Description détaillée des vitrages du bâtiment.}
+    \label{tab:caracteristiques_vitrages}
+    \begin{tabular}{l *7{c}}
+    \toprule
+    \addlinespace
+    Orientation     & Hauteur    & Largeur    & $U_{w}$   & $U_{f}$    & $U_{g}$                   & Fraction chassis & Composition \\
+    ~[\si{\degree}] & [\si{m}]   & [\si{m}]   & \multicolumn{3}{c}{[\si{W/(m^{2}\period\kelvin)}]} & -                & -           \\
+    \addlinespace
+    \midrule
+    Nord            & \num{0.95} & \num{0.6}  & \num{1.3} & \num{2.09} & \num{1.1}                 & \num{0.2}        & PVC         \\
+    Ouest           & \num{1.35} & \num{1.2}  & \num{1.2} & \num{2.09} & \num{1.1}                 & \num{0.1}        & PVC         \\
+    Ouest           & \num{1.35} & \num{1.2}  & \num{1.2} & \num{2.09} & \num{1.1}                 & \num{0.1}        & PVC         \\
+    Est             & \num{2.15} & \num{0.9}  & \num{1.2} & \num{2.09} & \num{1.1}                 & \num{0.1}        & PVC         \\
+    Est             & \num{2.15} & \num{1.6}  & \num{1.6} & \num{3.6}  & \num{1.1}                 & \num{0.2}        & ALU         \\
+    Sud             & \num{2.15} & \num{2.4}  & \num{1.6} & \num{3.6}  & \num{1.1}                 & \num{0.2}        & ALU         \\
+    Sud             & \num{1.2}  & \num{1.35} & \num{1.2} & \num{2.09} & \num{1.1}                 & \num{0.1}        & PVC         \\
+    Horizontal      & \num{1.18} & \num{1.14} & \num{1.5} & \num{2.17} & \num{1.21}                & \num{0.3}        & BOIS        \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\begin{table}
     \caption{Caractéristiques des vitrages en façades verticales ayant un $U_{f}$ de \SI{1.4}{W/(m^{2}\period\kelvin}).}
     \label{tab:compo_vitrage}
     \begin{tabular}{l *8{c}}
         \toprule
-        Matériaux & $e$       & $\lambda$      & $\tau_{sol}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$ \\
-                  & \si{m}  & \si{W/(m\period\kelvin)} & -              & -         & -                & -                & -                & -                \\
+        \addlinespace
+        Matériaux & $e$       & $\lambda$      & $\tau_{sol}$ & $\tau_{IR}$ & $\acute Emis_{ext}$ & $\acute Emis_{int}$ & $R\acute eflec_{ext}$ & $R\acute eflec_{ext}$ \\
+                  & [\si{m}]  & [\si{W/(m\period\kelvin)}] & -              & -         & -                & -                & -                & -                \\
+        \addlinespace
         \midrule
         SGG Planilux       & \num{0.04}  & 1          & \num{0.849}      & 0           & \num{0.837}              & \num{0.837}              & \num{0.076}              & \num{0.076}                   \\
         Argon              & \num{0.016} & -          & -          & -           & -                  & -                  & -                  & -                       \\
@@ -18,8 +43,8 @@
     \label{tab:compo_velux}
     \begin{tabular}{l *8{c}}
         \toprule
-        Matériaux & $e$       & $\lambda$      & $\tau_{solaire}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
-                  & \si{m}  & \si{W/(m\period\kelvin)} & -              & -         & -          & -          & -            & -             \\
+        Matériaux & $e$       & $\lambda$      & $\tau_{sol}$ & $\tau_{IR}$ & Émis$_{ext}$ & Émis$_{int}$ & Réflec$_{ext}$ & Réflec$_{int}$  \\
+                  & [\si{m}]  & [\si{W/(m\period\kelvin)}] & -              & -         & -          & -          & -            & -             \\
         \midrule
         Verre ext & \num{0.01}      & \num{1}              & \num{0.44}             & \num{0}           & \num{0.88}        & \num{0.88}         & \num{0.075}          & \num{0.075}           \\
         Air       & \num{0.016}     & -              & -                & -           & -           & -            & -              & -               \\
@@ -34,17 +59,21 @@
     \label{tab:compo_gaz}
     \begin{tabular}{l *5{c}}
         \toprule
-        Gaz   & $a_{k}$              & $b_{k}$                 & $a_{mu}$       & $b_{mu}$                  & $a_{c}$                \\
-              & \si{W/(m\period\kelvin)}  & \si{W/(m\period\kelvin^{2})} & \si{\pascal\period s}           & \si{\newton\period s/(m^{2}\period\kelvin)} & \si{\joule/(kg\period\kelvin)}   \\
+        \addlinespace
+        Gaz   & $a_{k}$                     & $b_{k}$                        & $a_{mu}$                & $b_{mu}$                                      & $a_{c}$                \\
+              & [\si{W/(m\period\kelvin)}]  & [\si{W/(m\period\kelvin^{2})}] & [\si{\pascal\period s}] & [\si{\newton\period s/(m^{2}\period\kelvin)}] & [\si{\joule/(kg\period\kelvin)}]   \\
+        \addlinespace
         \midrule
-        Argon & \num{2.285e-3}       & \num{5.149e-5}          & \num{3.379e-6} & \num{6.451e-8}            & \num{521.9285}         \\
-        Air   & \num{2.873e-3}       & \num{7.760e-5}          & \num{3.723e-6} & \num{4.940e-8}            & \num{1002.737}         \\
+        Argon & \num{2.285e-3}              & \num{5.149e-5}                 & \num{3.379e-6}          & \num{6.451e-8}                                & \num{521.9285}         \\
+        Air   & \num{2.873e-3}              & \num{7.760e-5}                 & \num{3.723e-6}          & \num{4.940e-8}                                & \num{1002.737}         \\
         \bottomrule
     \end{tabular}
     \bigskip
     \begin{tabular}{l *3{c}}
+        \addlinespace[1em]
               & $b_{c}$                     & $MM$                  & $P0$       \\
-              & \si{\joule/(kg\period\kelvin^{2})}    & \si{kg/mol}           & \si{\bar} \\
+              & [\si{\joule/(kg\period\kelvin^{2})}]    & [\si{kg/mol}]           & [\si{\bar}] \\
+        \addlinespace
         \midrule
         Argon & \num{0}                     & \num{39.948e-3}       & 101325     \\
         Air   & \num{1.2324e-2}             & \num{28.97e-3}        & 101325     \\

@@ -321,7 +321,7 @@ La consigne de chauffage est de \SI{19}{\celsius} est utilisée. L’étude ne p
 seule les besoins ont été comparés. Les résultats montrent que les
 besoins de l’approche mono-zone et de l’approche multi-zone sont similaires~:
 respectivement \SI[per-mode=symbol]{1114}{\kilo\watt\hour\per\meter\squared} et
-\mtodo{Energy plus}{un nombre}.
+\mtodo{Récup Aurélie}{un nombre Energy plus}.
 
 \itodo{Ajouter résultats entre les deux. Ajouter comparatif des puissances}.
 % subsubsection comparaison_avec_un_modele_multi_zone (end)
@@ -568,13 +568,13 @@ l’air neuf et l’air repris dans le respect de la réglementation en vigueur 
 Le système de ventilation peut ainsi être apparenté à une ventilation mécanique par insufflation
 ($VMI$).
 
-\begin{figure}
-    \begin{center}
-        \includegraphics{Ressources/Images/Modelisation/air_aeraulique_mono.pdf}
-    \end{center}
-    \caption{Description schématique de la partie aéraulique du système solaire.
-             \label{fig:schema_aeraulique}}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics{Ressources/Images/Modelisation/air_aeraulique_mono.pdf}
+%     \end{center}
+%     \caption{Description schématique de la partie aéraulique du système solaire.
+%              \label{fig:schema_aeraulique}}
+% \end{figure}
 % subsubsection partie_aéraulique (end)
 
 \subsubsection{Vérifications} % (fold)
@@ -716,7 +716,7 @@ d’un état à l’autre~: les transitions. L’unicité garantie par cette for
 garantir que un seul mode est actif et renforce la stabilité de l’algorithme. Elle impose
 cependant que chaque état soit capable de réaliser la transition vers le bon état et ce
 pour toutes les conditions existantes. Afin de simplifier sa création les Automates Fines
-Hiérarchisés ($HFSM$ pour Hierarchical Finite State Machine) ont été développés. Cette
+Hiérarchisés ($HFSM$, Hierarchical Finite State Machine) ont été développés. Cette
 formulation admet que chaque état peut être lui-même un $FSM$ dont les sous-états ne sont
 connus que de l’état maître. Cette nouvelle formulation permet ainsi de réduire le nombre
 de conditions de transition et l’encapsulation des sous-états simplifie la compréhension
@@ -1309,7 +1309,6 @@ le cas de référence sont décrits à travers un tableau récapitulatif (\autor
   \end{tabular}
 \end{table}
 
-\ftodo{Ajouter conso par rapport aux apports internes et autres}
 
 \paragraph{Récapitulatif~:} % (fold)
 \label{par:récapitulatif}
@@ -1388,11 +1387,12 @@ est nécessaire.
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter évolution des températures par mois}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+        \includegraphics{Ressources/Images/Parametrique/temp_ballons.pdf}
     \end{center}
     \caption{Évolution des température internes aux ballons en fonction du mois
-             de l’année \label{fig:temp_ballon_mensuel}}
+             de l’année avec indication de la moyenne (triangle vert) et
+             de la médiane (rectangle bleu).
+             \label{fig:temp_ballon_mensuel}}
 \end{figure}
 
 \iunsure{Ajouter couverture par mois en fonction des climats}
@@ -1415,22 +1415,22 @@ pour les deux ballons, ainsi que \num{2} capteurs avec une orientation Ouest et 
 inclinaison de \SI{18.9}{\degree}, ont été retenue. Les résultats des simulations montrent
 que durant la période estivale, le système solaire est autonome avec une consommation de
 seulement \mtodo{À ajouter}{\SI{0}{\watt\hour} et \SI{0}{\watt\hour}} pour respectivement Bordeaux et
-Strasbourg (Fig~\ref{fig:puissance_annuelle_defavorable}). Dans le reste de l’étude
-paramétrique les résultats seront donc discutés pour une période de simulation s’étendant du
-$1^{er}$ Octobre au $30$ Avril. Les résultats seront fournis pour la période
-concernée et doivent donc être vu comme la performance minimale du $SSC$. En effet, le
-système est autonome durant le reste de l’année car les besoins en chauffage et en $ECS$
-sont complètement couverts par la production solaire~: le $F_{ECS}$ et le $F_{CH}$ annuels
-sont donc supérieurs.
+Strasbourg %(Fig~\ref{fig:puissance_annuelle_defavorable})
+.Dans le reste de l’étude paramétrique les résultats seront donc discutés pour une période
+de simulation s’étendant du $1^{er}$ Octobre au $30$ Avril. Les résultats seront fournis
+pour la période concernée et doivent donc être vu comme la performance minimale du $SSC$.
+En effet, le système est autonome durant le reste de l’année car les besoins en chauffage
+et en $ECS$ sont complètement couverts par la production solaire~: le $F_{ECS}$ et le
+$F_{CH}$ annuels sont donc supérieurs.
 
-\begin{figure}
-    \begin{center}
-        \ftodo{Ajouter évolution de la puissance et de l’énergie pour Strasbourg et Bordeaux}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
-    \end{center}
-    \caption{Évolution des appels de puissance des appoints électriques et du cumul d’énergie pour
-             une année complète \label{fig:puissance_annuelle_defavorable}}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \ftodo{Ajouter évolution de la puissance et de l’énergie pour Strasbourg et Bordeaux}
+%         % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+%     \end{center}
+%     \caption{Évolution des appels de puissance des appoints électriques et du cumul d’énergie pour
+%              une année complète \label{fig:puissance_annuelle_defavorable}}
+% \end{figure}
 % paragraph période_de_simulation (end)
 % subsubsection impact_du_climat (end)
 
@@ -1487,7 +1487,7 @@ favoriser en priorité la production d’$ECS$ valorise mieux l’énergie solai
 apparaît sans surprise que la diminution des apports internes, réduction par deux des
 charges internes électriques (équipements et éclairage) impacte fortement l’ensemble des
 indicateurs. En effet les charges internes représente la majorité des consommations pour
-les bâtiments ayant ce niveau de performance énergétique (Fig~\ref{fig:comp_charge_besoins}).
+les bâtiments ayant ce niveau de performance énergétique (Fig~\ref{fig:besoins_charges_internes}).
 Il est donc important de tenir compte des scénarios d’éclairage, de l’utilisation des équipements
 et des occupants pour analyser la performance d’un $SSC$ pour des maisons dites à énergie positive
 ($NZEB$, Near Zero Energy House).
@@ -1503,12 +1503,11 @@ et des occupants pour analyser la performance d’un $SSC$ pour des maisons dite
 
 \begin{figure}
     \begin{center}
-        \itodo{Faire pour Strasbourg}
-        \ftodo{Ajouter comparaison entre charges internes et consommations}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+        \includegraphics{Ressources/Images/Parametrique/besoins_charges_internes.pdf}
     \end{center}
-    \caption{Comparaison annuelle des charges internes et des besoins du bâtiment.
-             \label{fig:comp_charge_besoins}}
+    \caption{Comparaison annuelle des charges internes et des besoins du bâtiment
+             pour la simulation de référence~: (haut) Bordeaux, (bas) Strasbourg.
+             \label{fig:besoins_charges_internes}}
 \end{figure}
 
 % subsubsection impact_des_scenarios_internes (end)
@@ -1554,10 +1553,10 @@ conditions de fonctionnement.
 
 \begin{figure}
     \begin{center}
-        \ftodo{Ajouter graphe barre montrant importance de séparer chauffage et ECS}
-        % \includegraphics{Ressources/Images/Scenario/puisage.pdf}
+        \includegraphics{Ressources/Images/Parametrique/importance_chauffage_ecs.pdf}
     \end{center}
-    \caption{Évolution mensuelle de la répartition des consommations (01/10 - 30/04)
+    \caption{Évolution mensuelle de la répartition des consommations et du taux
+             de couverture solaire ($F_{sol}$) à Bordeaux (01/10 - 30/04)
              \label{fig:importance_chauffage_ecs}}
 \end{figure}
 

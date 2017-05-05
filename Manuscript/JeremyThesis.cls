@@ -53,8 +53,8 @@
 \definecolor{SolarizedYellow}{HTML}{b58900}
 \definecolor{SolarizedOrange}{HTML}{cb4b16}
 
-\definecolor{SolarizedBrWhite}{HTML}{fdf6e3}
 \definecolor{SolarizedWhite}{HTML}{eee8d5}
+\definecolor{SolarizedBrWhite}{HTML}{fdf6e3}
 \definecolor{SolarizedBrCyan}{HTML}{93a1a1}
 \definecolor{SolarizedBrBlue}{HTML}{839496}
 \definecolor{SolarizedBrYellow}{HTML}{657b83}
