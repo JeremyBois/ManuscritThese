@@ -1,10 +1,6 @@
 \ProvidesClass{JeremyThesis}[2017/05/03 Class used to build Jeremy Bois PhD thesis]
 \NeedsTeXFormat{LaTeX2e}
 
-% Allows to pass :
-%   - report class argument
-%   - look for a file with argument name and load it if exists
-
 % Class structure: declaration of options part
 \LoadClass{report}
 
@@ -362,6 +358,7 @@
 
 % Add groups
 \renewcommand\nomgroup[1]{%
+  \bigskip
   \item[\bfseries
   \ifstrequal{#1}{A}{Abréviations}{%
   \ifstrequal{#1}{L}{Lettres latines}{%
