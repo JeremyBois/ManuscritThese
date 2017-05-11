@@ -27,12 +27,24 @@
 
 
 % ------------------------------------------------------------------------------
+% PDFLaTeX and XeTeX support
+% ------------------------------------------------------------------------------
+\RequirePackage{iftex}
+% If using PDFLaTeX
+\ifPDFTeX
+\RequirePackage[OT1, T1]{fontenc}  % UTF-8 support for PDFLaTeX
+\RequirePackage[utf8]{inputenc}    % must be load before babel and csquotes
+\fi
+% Else assume XeTeX used
+
+
+% ------------------------------------------------------------------------------
 % French language support
 % ------------------------------------------------------------------------------
 % Must respect this order
 \RequirePackage[autostyle=true, threshold=2]{csquotes}              % Ensure correct quote text even nested one
 \renewcommand{\mkblockquote}[4]{%
-              \openautoquote\it#1\closeautoquote\normalfont#2#3#4}  % Add << and italic to blockquotes
+              \openautoquote\itshape#1\closeautoquote\normalfont#2#3#4}  % Add << and italic to blockquotes
 \RequirePackage[greek, french]{babel}                               % http://daniel.flipo.free.fr/frenchb/
 \frenchspacing                                                      % Simple space after paragraph
 \frenchbsetup{StandardLists=true}                                   % Turn off french list style
@@ -70,6 +82,11 @@
 
 % Hyper links and meta data
 \RequirePackage{bookmark}                                % load hyperref internaly
+% Add quick command to make correct references
+\newcommand{\figref}{Fig.~\ref}  % Figures
+\newcommand{\defref}{Déf.~\ref}  % Définitions
+\newcommand{\tabref}{Tab.~\ref}  % Tableaux
+\newcommand{\algref}{Alg.~\ref}  % Algorithmes
 
 % Layout
 \RequirePackage[top=2cm,
@@ -77,6 +94,7 @@
                 left=2cm,
                 right=3cm,
                 a4paper]{geometry}                       % Define default geometry
+
 % Float options
 \RequirePackage{placeins}                                % Float always where defined
 \let\Oldsection\section
