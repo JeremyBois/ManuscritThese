@@ -30,10 +30,12 @@
 % French language support
 % ------------------------------------------------------------------------------
 % Must respect this order
-\RequirePackage[autostyle=true]{csquotes}           % Ensure correct quote text even nested one
-\RequirePackage[greek, french]{babel}               % http://daniel.flipo.free.fr/frenchb/
-\frenchspacing                                      % Simple space after paragraph
-\frenchbsetup{StandardLists=true}                   % Turn off french list style
+\RequirePackage[autostyle=true, threshold=2]{csquotes}              % Ensure correct quote text even nested one
+\renewcommand{\mkblockquote}[4]{%
+              \openautoquote\it#1\closeautoquote\normalfont#2#3#4}  % Add << and italic to blockquotes
+\RequirePackage[greek, french]{babel}                               % http://daniel.flipo.free.fr/frenchb/
+\frenchspacing                                                      % Simple space after paragraph
+\frenchbsetup{StandardLists=true}                                   % Turn off french list style
 
 
 % ------------------------------------------------------------------------------

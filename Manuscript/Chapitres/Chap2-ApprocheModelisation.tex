@@ -29,13 +29,13 @@ ouverts (boîtes blanches) dont la composition est connue et souvent modifiable.
 d’étude se place à l’échelle du bâtiment mais il est souhaitable de conserver un contrôle
 important sur la gestion des équipements. Ce contrôle est nécessaire pour permettre
 l’analyse des interactions entre des variations au niveau du composant et le
-fonctionnement global du système. Le processus de construction du modèle est donc dans un
+fonctionnement global du système. De plus, le processus de construction du modèle est dans un
 premier temps fortement itératif afin de permettre la définition d’un système solaire
 performant dont l’algorithme de contrôle est détaillé ci-après. L’outil sélectionné doit par conséquent
 permettre de modifier, ajouter, et supprimer rapidement et simplement des composants. Finalement le
 problème à modéliser est un problème multi-physique et l’outil doit être adapté à la
 modélisation d’un système hydraulique (solaire), d’un système aéraulique (ventilation),
-d’un algorithme de contrôle (régulation) le tout couplé à un modèle thermique (bâtiment).
+d’un algorithme de contrôle (régulation), le tout couplé à un modèle thermique (bâtiment).
 % subsection quelles_contraintes (end)
 
 
@@ -43,22 +43,22 @@ d’un algorithme de contrôle (régulation) le tout couplé à un modèle therm
 % ------------------------------------------------------------------------------
 \subsection{Quelles solutions} % (fold)
 \label{sub:quelles_solutions}
-Le langage \emph{Modelica} (3.2.2) et le logiciel \emph{Dymola} (Dynamics MOdeling
+Le langage \textit{Modelica} (3.2.2) et le logiciel \textit{Dymola} (Dynamics MOdeling
 LAboratory) (2017) permettent de répondre à l’ensemble des contraintes décrites dans la
-section précédente. \emph{Modelica} est un langage de programmation libre et ouvert
+section précédente. \textit{Modelica} est un langage de programmation libre et ouvert
 développé pour répondre aux contraintes de la modélisation multi-physique. Il a été pensé
 pour être intuitif en offrant une approche équationnelle et orientée objet au développeur
 \parencite{Wetter2016290}.
 L’approche objet permet d’encapsuler un ensemble de données dont l’accès est restreint par
 une interface publique nommer $API$ (Application Programming Interface). Un modèle est
-ainsi une combinaison d’un ensemble de sous- modèles (composition) ou certains sous-
-modèles peuvent être améliorés afin de leur ajouter une spécialisation (héritage). Cette
+ainsi une combinaison d’un ensemble de sous- modèles (composition) ou certains sous-modèles
+peuvent être améliorés afin de leur ajouter une spécialisation (héritage). Cette
 approche permet alors une forte réutilisation des modèles déjà existant tout en
 simplifiant l’ajout de nouvelles fonctionnalités ou le couplage des deux. Finalement, le
 langage est acausal (Définition~\ref{def:acausal}), permettant au modeleur de rapidement
 créer des prototypes de systèmes complexes sans devoir à chaque modification réécrire
 l’ensemble des systèmes d’équations. Il est cependant toujours possible de définir
-explicitement quelles sont les inconnus d’un modèle en héritant de la classe \emph{Bloc}.
+explicitement quelles sont les inconnus d’un modèle en héritant de la classe \textit{Bloc}.
 En effet en plus de proposer une bibliothèque avec un nombre conséquent de briques
 permettant de construire des modèles complexes, le langage propose aussi des classes de
 référence permettant à l’utilisateur de spécialiser chaque élément de son modèle. Cet
@@ -85,14 +85,14 @@ que l’inconnu soit isolé a priori par le programmeur.
 
 \subsubsection{Dymola} % (fold)
 \label{ssub:dymola}
-\emph{Dymola} est une suite de logiciels développée par \emph{Dassault Systèmes}
+\textit{Dymola} est une suite de logiciels développée par \textit{Dassault Systèmes}
 permettant de simplifier le développement de modèles numériques grâce au langage
-\emph{Modelica}. Il offre une interface graphique permettant de connecter les modèles
-entre eux de manière intuitive (Fig~\ref{fig:exemple_modelica}) et un outil de post-
-traitement afin d’évaluer rapidement les résultats. Il propose aussi de nombreuses fonctions
+\textit{Modelica}. Il offre une interface graphique permettant de connecter les modèles
+entre eux de manière intuitive (Fig~\ref{fig:exemple_modelica}) et un outil de
+post-traitement afin d’évaluer rapidement les résultats. Il propose aussi de nombreuses fonctions
 simplifiant le développement afin de se focaliser sur le problème physique à modéliser~:
 \begin{itemize}
-    \item Un large choix de solveurs pour intégrer les modèles~: \emph{Dymosim}.
+    \item \textit{Dymosim}~: un large choix de solveurs pour intégrer les modèles
     \item Un format texte permettant la coopération, le \enquote{versionnage}, et la construction dynamique.
     \item Un langage de script interne permettant l’automatisation.
     \item Le \enquote{refactoring} permettant de renommer de manière dynamique une variable.
@@ -115,21 +115,21 @@ simplifiant le développement afin de se focaliser sur le problème physique à 
 
 \subsubsection{Buildings} % (fold)
 \label{ssub:buildings}
-Le couplage de \emph{Modelica} et de \emph{Dymola} permet le développement itératif
+Le couplage de \textit{Modelica} et de \textit{Dymola} permet le développement itératif
 nécessaire à notre problème tout en offrant un contrôle total sur chaque partie du modèle.
-Le langage \emph{Modelica}, en pleine croissance dans le secteur du bâtiment est cependant
+Le langage \textit{Modelica}, en pleine croissance dans le secteur du bâtiment est cependant
 encore peu utilisé en particulier lorsque ces travaux ont commencé. Depuis, de nombreuses
 bibliothèques open source ont été développées dont la liste peut être trouvée sur le site
-officiel de l’association \href{https://www.modelica.org/libraries}{\emph{Modelica}}. Ces
+officiel de l’association \href{https://www.modelica.org/libraries}{\textit{Modelica}}. Ces
 travaux s’appuient sur la bibliothèque Buildings \parencite{Wetter2014253} développée par le laboratoire
 national Lawrence Berkeley ($LBNL$, Lawrence Berkeley National Laboratory) dont le
 développement était le plus avancé et le plus actif. C’est une bibliothèque libre et
 ouverte, développée pour la modélisation des systèmes du bâtiment (hydraulique,
-aéraulique, électrique, thermique, ...) et son développement est toujours actif. Enfin
+aéraulique, électrique, thermique, ...) et son développement est toujours en croissance. Enfin
 afin d’automatiser la simulation de nombreux modèles la bibliothèque
-\href{http://simulationresearch.lbl.gov/modelica/buildingspy/}{\emph{Buildingspy}}
-est utilisée. Développée par le $LBNL$, elle permet d’interfacer le langage \emph{Python}
-avec le langage de script du logiciel \emph{Dymola}.
+\href{http://simulationresearch.lbl.gov/modelica/buildingspy/}{\textit{Buildingspy}}
+est utilisée. Développée par le $LBNL$, elle permet d’interfacer le langage \textit{Python}
+avec le langage de script de \textit{Dymola}.
 % subsubsection buildings (end)
 % subsection quelles_solutions (end)
 % section modelisation_detaillee_d_un_systeme_solaire_innovant (end)
@@ -145,7 +145,7 @@ avec le langage de script du logiciel \emph{Dymola}.
 \subsection{Modélisation mono-zone} % (fold)
 \label{sub:modelisation_monozone}
 Le bâtiment, une maison de plain-pied (Fig~\ref{fig:plan_maison}) avec une surface habitable
-de \SI{98.4}{\meter\squared}. Elle comporte 3 chambres, une cuisine/salon, et un local
+de \SI{98.4}{\meter\squared}. Elle comporte trois chambres, une cuisine/salon, et un local
 technique où se trouvent les équipements du système solaire combiné ($SSC$). En plus de
 l’espace chauffée, les combles et le vide sanitaire ont été modélisés comme des conditions
 limites (Fig~\ref{fig:modelisation_maison}). Enfin une fenêtre de toit est ajoutée dans
@@ -153,10 +153,10 @@ le salon afin d’améliorer le confort lumineux (\autoref{tab:compo_velux}).
 
 Dans le cadre de ces travaux un couplage fort entre bâtiment, systèmes, et algorithme de
 contrôle est envisagé. Dans cette optique, un modèle mono-zone validé à travers une suite
-de test issue de l’\emph{ASHRAE} est retenu pour modéliser le bâtiment
+de test issue de l’\textit{ASHRAE} est retenu pour modéliser le bâtiment
 \parencite{Wetter2011,Nouidui2012}. Ce choix est discuté ci-après en particulier en
 comparant les besoins obtenus entre cette approche et une approche multi-zonale réalisée
-à l’aide d’\emph{Energy Plus}. Ainsi la température dans l’ensemble de la zone chauffée
+à l’aide d’\textit{Energy Plus}. Ainsi la température dans l’ensemble de la zone chauffée
 est considérée comme uniforme.
 
 \begin{figure}
@@ -208,12 +208,12 @@ faite de la fenêtre de toit.
 
 Une attention particulière a été apportée à la description des vitrages afin d’être
 cohérente avec les fiches techniques et satisfaire les normes de calculs implicites de la
-bibliothèque \emph{Buildings}. En effet, le modèle de vitrage de la bibliothèque
-\emph{Buildings} sépare le calcul de la part transmise en conductif et en radiatif~: les
+bibliothèque \textit{Buildings}. En effet, le modèle de vitrage de la bibliothèque
+\textit{Buildings} sépare le calcul de la part transmise en conductif et en radiatif~: les
 caractéristiques des vitrages doivent alors être renseignées de manière détaillées.
 Cependant, les fabricants fournissent seulement les caractéristiques globales~: le
 coefficient de transmission thermique $U_{g}$ et le facteur solaire $g$. Le logiciel
-\emph{Windows 7.4} a donc été utilisé afin d’obtenir la composition détaillée des vitrages
+\textit{Windows 7.4} a donc été utilisé afin d’obtenir la composition détaillée des vitrages
 retenus.
 
 Dans un premier temps, le vitrage est construit à partir de la composition décrite dans sa
@@ -240,8 +240,8 @@ et états-uniennes \parencite{RDH2014}.
 \end{tabular}
 \end{table}
 
-\itodo{Demander à Aurélie les informations relatives aux ponts thermiques}
-Finalement, la bibliothèque \emph{Buildings} ne permettant pas l’ajout de ponts
+\itodo{Aurélie~: informations relatives aux ponts thermiques}
+Finalement, la bibliothèque \textit{Buildings} ne permettant pas l’ajout de ponts
 thermiques, le choix a été fait de les intégrer dans le coefficient thermique
 caractéristique du cadre, $U_{f}$. Une description détaillée et exhaustive de la
 composition des fenêtres est disponible en annexe (\autoref{tab:compo_vitrage},
@@ -276,10 +276,10 @@ Certains choix ont été fait du aux limitations de modélisation~:
           est fixé à \SI{25}{\watt\per(\meter\squared\period\kelvin)} (\textcite{NFENISO6946}).
     \item Les ponts thermiques ont été définies comme une surface de déperdition
           équivalente à \SI{13.2}{\meter\squared} (\mtodo{Aurélie~: Récup détail}).
-    \item La fenêtre de toit est placée horizontalement et non à \SI{33}{\degree}
-          (inclinaison réelle) car la bibliothèque \emph{Buildings} ne supporte pas les
+    \item La fenêtre de toit est placée horizontalement et non à \SI{33}{\percent}
+          (inclinaison réelle) car la bibliothèque \textit{Buildings} ne supporte pas les
           surfaces vitrés inclinées. Le $g$ utilisé est cependant celui défini
-          pour \SI{33}{\degree} dans sa fiche technique.
+          pour \SI{33}{\percent} dans sa fiche technique.
 \end{itemize}
 % subsubsection limitations_du_modele (end)
 
@@ -287,8 +287,8 @@ Certains choix ont été fait du aux limitations de modélisation~:
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Comparaison avec un modèle multi-zone} % (fold)
 \label{ssub:comparaison_avec_un_modele_multi_zone}
-Une comparaison a été réalisée entre un modèle multi-zone développé sous \emph{Energy
-Plus} par le \emph{CEA} et le modèle mono-zone retenue dans ces travaux. Le fichier météo
+Une comparaison a été réalisée entre un modèle multi-zone développé sous \textit{Energy Plus}
+par le \textit{CEA} et le modèle mono-zone retenue dans ces travaux. Le fichier météo
 utilisé est celui de Bordeaux
 (\href{https://www.energyplus.net/weather-download/europe_wmo_region_6/FRA//FRA_Bordeaux.075100_IWEC/all}{IWEC - WMO 075100}).
 La consigne de chauffage est de \SI{19}{\celsius} en occupation et de \SI{16}{\celsius} en
@@ -311,7 +311,7 @@ zone sont similaires~: respectivement \SI{1114}{\kilo\watt\hour} et
 Un profil unique pour l’ensemble de la zone et pour chaque occupant est retenu
 (Fig~\ref{fig:scenario_reference}). Il est considéré quatre personnes, deux enfants, et deux parents. Dans ce profil,
 les occupants sont considérés à la maison durant le week-end et absent durant les jours
-ouvrés exception faite du mercredi après-midi.
+ouvrés (travail) exception faite du mercredi après-midi.
 La puissance par habitant est de \SI{97.5}{\watt} (\SI{70}{\percent} convective), résultat
 de la moyenne pondérée de la puissance dégagée par une personne en fonction de la surface
 de chaque pièce dans le modèle multi-zone (\ref{tab:puissance_occupants}).
@@ -339,7 +339,7 @@ En plus des occupants, les charges internes dues aux équipements sont prises en
 est entendu comme charges internes, les consommations des équipements électriques
 (électroménager, ordinateurs, ...) et la consommation de l’éclairage. Aucunes informations
 n’étant disponible afin d’estimer les consommations réelles de la maison, les
-consommations réglementaires, \emph{RT\,2012} \parencite{CSTB2011} ont été retenues.
+consommations réglementaires, \textit{RT\,2012} \parencite{CSTB2011} ont été retenues.
 Dans les deux cas il est considéré une consommation type durant l’occupation
 et réduite en inoccupation.
 
@@ -376,7 +376,7 @@ retenue.
 \label{ssub:ventilation_ref}
 Finalement le profil de ventilation de référence est considéré à \SI[per-mode=symbol]{90}{\meter\cubed\per\hour}
 comme le prévoit l’arrêté du \href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000862344}{24 Mars
-1982 et du 28 Octobre 1983} pour une maison comportant 4 pièces principales. Il est aussi
+1982 et du 28 Octobre 1983} pour une maison comportant quatre pièces principales. Il est aussi
 considéré une réduction du débit d’air neuf minimal à \SI[per-mode=symbol]{20}{\meter\cubed\per\hour}
 en inoccupation.
 % subsubsection ventilation (end)
@@ -412,7 +412,7 @@ afin d’éviter l’installation d’un système de chauffage conventionnel (ra
 chauffant, ...). Le système permet donc, par l’intermédiaire du réseau de ventilation, de
 couvrir les besoins en $ECS$ et en chauffage ($CH$) pour l’ensemble du bâtiment. De plus
 le choix de l’air comme vecteur de chaleur est motivé par la volonté d’obtenir un système
-réactif par l’entreprise partenaire (\emph{IGC}). Le système modélisé est composé de 3
+réactif par l’entreprise partenaire (\textit{IGC}). Le système modélisé est composé de trois
 parties principales~: la partie hydraulique, la partie aéraulique, et l’algorithme de
 contrôle qui orchestre le fonctionnement couplé entre le système solaire et le bâtiment
 (Fig~\ref{fig:air_complet_mono}).
@@ -438,7 +438,7 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Partie hydraulique} % (fold)
 \label{ssub:partie_hyraulique}
-Le système hydraulique (Fig~\ref{fig:air_complet_mono}) est composé de 2 ballons dont les
+Le système hydraulique (Fig~\ref{fig:air_complet_mono}) est composé de deux ballons dont les
 caractéristiques sont disponibles dans le \autoref{tab:tanks_specs}. Le premier, le ballon
 sanitaire, permet de lisser la demande en énergie nécessaire pour couvrir les besoins en
 $ECS$. Le système est alors dit semi-accumulée car la réserve d’eau chaude est inférieure
@@ -460,8 +460,8 @@ Afin de garantir le maintien du confort thermique des occupants, un appoint éle
 partie haute du ballon sanitaire est aussi ajouté. Ce dernier n’est activé que lorsque
 l’énergie solaire disponible n’est pas suffisante. L’énergie solaire est elle transmise à
 l’eau par l’intermédiaire de panneaux solaires (\autoref{tab:idmk_specs}) puis vers le
-système aéraulique à l’aide d’un échangeur de chaleur. Finalement, le système comporte 3
-pompes~: S6, S5, et S2. Un débit nominal de \SI{40}{\litre\per(\hour\period\meter\squared)}
+système aéraulique à l’aide d’un échangeur de chaleur. Finalement, le système comporte trois
+pompes~: $S6$, $S5$, et $S2$. Un débit nominal de \SI{40}{\litre\per(\hour\period\meter\squared)}
 (capteur) pour les pompes est considéré comme première approximation
 \parencite{Peuser2005}. Les pompes utilisées sont des pompes à vitesse variable afin de
 limiter les arrêts intempestifs \parencite{Kicsiny20123489}.
@@ -472,7 +472,7 @@ limiter les arrêts intempestifs \parencite{Kicsiny20123489}.
 \label{tab:tanks_specs}
 \begin{tabular}{l*{2}{c}r}
     \toprule
-    Paramètre & Ballon tampon & Ballon ECS & Unité\\
+    Paramètre & Ballon tampon & Ballon sanitaire & Unité\\
     \midrule
     Volume                                       & \num{300}   & \num{300}    & \si{\litre}              \\
     Hauteur                                      & \num{1.05}  & \num{1.25}   & \si{\metre}              \\
@@ -492,7 +492,7 @@ limiter les arrêts intempestifs \parencite{Kicsiny20123489}.
 
 \begin{table}
 \centering
-\caption{Caractéristique du collecteur de référence (modèle IDMK 25 de chez Sonnenkraft).}
+\caption{Caractéristiques du collecteur de référence (modèle IDMK\,25 de chez Sonnenkraft).}
 \label{tab:idmk_specs}
 \begin{tabular}{lcr}
     \toprule
@@ -519,7 +519,7 @@ sera de \SI[per-mode=symbol]{4}{\meter\cubed\per\hour} car le débit à chaque p
 \textbf{imposé}. Afin de corriger ce comportement il est nécessaire d’imposer soit une
 vitesse de rotation, soit un différentiel de pression.
 
-Un circulateur à vitesse variable (\emph{Wilo-Yonos ECO 25/1-5 BMS} adapté aux
+Un circulateur à vitesse variable (\textit{Wilo-Yonos ECO 25/1-5 BMS} adapté aux
 températures élevées d’un réseau solaire est retenu (voir Fig Annexe~\ref{fig:caracs_pompes}).
 Ces caractéristiques sont implémentées afin de permettre à partir d’une vitesse de
 rotation imposée, de trouver le débit correspondant. De cette manière, les pertes de
@@ -556,12 +556,12 @@ une attention particulière doit être apporté au modèle de panneaux solaires.
 nécessaire d’utiliser un modèle étant à la fois représentatif du comportement réel et
 compatible avec les informations techniques disponibles sur les fiches techniques des
 différents fabricants~: ce dernier point exclue une modélisation détaillée. L’approche
-retenue utilise le modèle disponible dans la bibliothèque \emph{Buildings} basant son
+retenue utilise le modèle disponible dans la bibliothèque \textit{Buildings} basant son
 système d’équations sur les relations empiriques décrites dans le volet 2 de la norme
 \textcite{EN129752}. Dans cette approche, deux principaux coefficients permettent de
 caractériser les pertes thermiques des capteurs : les coefficients de pertes linéiques et
-surfaciques notés respectivement $a_{1}$ et $a_{2}$. Deux autre coefficients, le rendement
-solaire ($\eta_{0}$) et le coefficient de modulation de la part solaire issue du diffus
+surfaciques notés respectivement $a_{1}$ et $a_{2}$. Deux autres coefficients, le rendement
+solaire sans pertes ($\eta_{0}$) et le coefficient de modulation de la part solaire issue du diffus
 ($IMDiff$) permettent de caractériser la part solaire absorbée.
 
 Afin de vérifier la pertinence du modèle des données expérimentales ont été utilisées.
@@ -572,7 +572,7 @@ production similaire sur les trois mois couverts par les données expérimentale
 (Fig~\ref{fig:compare_capteurs}, gauche). Enfin le modèle utilisé pour convertir
 l’irradiation disponible à l’horizontal (diffus) et à la normale (direct) sur une surface
 inclinée (capteur) a aussi été comparé avec les résultats du modèle implémenté dans
-\emph{TrnSys}. Les deux modèles estiment de manière similaire l’irradiation sur une
+\textit{TrnSys}. Les deux modèles estiment de manière similaire l’irradiation sur une
 surface inclinée (Fig~\ref{fig:compare_capteurs}, droite).
 
 \begin{figure}
@@ -580,8 +580,8 @@ surface inclinée (Fig~\ref{fig:compare_capteurs}, droite).
         \includegraphics{Ressources/Images/Modelisation/compare_capteurs.pdf}
     \end{center}
     \caption{Comparaisons par mois~: (gauche) l’irradiation sur les capteurs entre un modèle
-             \emph{TrnSys} et \emph{Modelica}, (droite) la production des capteurs entre des résultats
-             expérimentaux et le modèle \emph{Modelica}.
+             \textit{TrnSys} et \textit{Modelica}, (droite) la production des capteurs entre des résultats
+             expérimentaux et le modèle \textit{Modelica}.
              \label{fig:compare_capteurs}}
 \end{figure}
 % subsubsection verifications (end)
@@ -617,25 +617,23 @@ consigne, puis à l’élévation de la température dans le ballon de stockage.
 ces priorité n’est cependant pas exclusif. En effet, lorsque l’énergie solaire disponible est
 suffisante, le chauffage, l’$ECS$, et la charge du ballon tampon peuvent être actifs de
 manière simultanée.
-
 Durant la période diurne, l’énergie solaire est récupérée directement au niveau des
-capteurs solaires (mode $Direct$) et la vanne 3 voies ($V3V$) est ouverte. L’activation
-des pompes $S5$, $S2$, et $S6$ permet alors respectivement de charger le ballon tampon,
-couvrir les besoins en $ECS$, et les besoins en chauffage. Ces trois pompes sont des
-pompes à vitesse variable permettant d’adapter le débit en fonction des besoins grâce à un
-contrôleur $PID$. Le système ajuste la vitesse des pompes afin de maintenir une différence
-de température minimale de \SI{10}{\celsius} entre la sorties des échangeurs et la sortie
-des capteurs solaires ($DeltaT_{sol}$). Contrairement aux approches plus classiques, la
-différence de température entre l’entrée et la sortie du collecteur n’est pas utilisée
-comme un élément de régulation. En effet, cette approche ne permet pas de tenir compte de
-manière dynamique des fluctuations entre besoins, pertes, et énergie disponible
-\parencite{Mosallat2013686}. En considérant la différence de température entre la source
-(sortie des capteurs) et la cible (sortie des échangeurs) on tient compte des pertes en
-lignes mais aussi des fluctuations de la part d’énergie fournie aux ballons ou à l’air.
-Ainsi dans le cas où l’énergie solaire est importante, il est possible de la distribuer
-entre les différentes cibles. Dans le cas où l’énergie solaire est limitée la différence
-minimale de température assure de valoriser cette énergie en contrôlant dynamiquement le
-nombre de pompes activés grâce à un $PID$ associé à chaque pompe.
+capteurs solaires (mode $Direct$) et la vanne trois voies ($V3V$) est ouverte.
+L’activation des pompes $S5$, $S2$, et $S6$ permet alors respectivement de charger le
+ballon tampon, couvrir les besoins en $ECS$, et les besoins en chauffage. Le système
+ajuste la vitesse des pompes afin de maintenir une différence de température minimale de
+\SI{10}{\celsius} entre la sortie des échangeurs et la sortie des capteurs solaires
+($DeltaT_{sol}$). Contrairement aux approches plus classiques, la différence de
+température entre l’entrée et la sortie du collecteur n’est pas utilisée comme un élément
+de régulation. En effet, cette approche ne permet pas de tenir compte de manière dynamique
+des fluctuations entre besoins, pertes, et énergie disponible \parencite{Mosallat2013686}.
+En considérant la différence de température entre la source (sortie des capteurs) et la
+cible (sortie des échangeurs) on tient compte des pertes en lignes mais aussi des
+fluctuations de la part d’énergie fournie aux ballons ou à l’air. Ainsi dans le cas où
+l’énergie solaire est importante, il est possible de la distribuer entre les différentes
+cibles. Dans le cas où l’énergie solaire est limitée la différence minimale de température
+assure de valoriser cette énergie en contrôlant dynamiquement le nombre de pompes activés
+grâce à un $PID$ associé à chaque pompe.
 
 En dehors des heures d’ensoleillement, le système utilise l’énergie solaire stockée dans
 le ballon tampon pour couvrir les besoins de chauffage (mode $Indirect$). Ainsi le sens de
@@ -717,6 +715,19 @@ $Surchauffe_{ON}$. Comme décrit ci-avant, cet état autorise une élévation de
 dans le bâtiment. Finalement, dans le cas où la surchauffe n’est pas autorisée ou que de nouveaux
 besoins en chauffage apparaissent l’état du chauffage est réinitialisé à $Chauffage_{OFF}$
 et la boucle de contrôle recommence.
+L’exemple suivant illustre le fonctionnement de l’algorithme.
+\blockquote{L’énergie disponible au niveau des capteurs est suffisante pour couvrir les besoins en chauffage de
+la maison. Le système solaire est alors en mode $Direct$ et le chauffage dans l’état
+$Chauffage_{ON}$ avec le chauffage solaire dans le sous-état $Solaire_{Direct}$ et
+l’appoint électrique dans le sous-état $Appoint_{OFF}$.}
+Un des habitants décide de prendre sa douche, abaissant la température de l’eau du ballon
+sanitaire en dessous du seuil minimal (\SI{55}{\celsius}). Dans cette configuration la
+pompe $S5$ va s’enclencher pour fournir de l’énergie au ballon sanitaire. Si l’énergie
+disponible au niveau des capteurs est insuffisante pour le chauffage et le maintien du
+ballon sanitaire alors la pompe $S2$ (chauffage) va s’arrêter car l’ECS est prioritaire.
+Le chauffage solaire passe alors dans l’état $Solaire_{OFF}$ et l’appoint électrique est
+en attente d’activation pour permettre de couvrir le chauffage (temporisation de
+\SI{3}{\minute}).
 
 \begin{figure}
     \begin{center}
@@ -728,22 +739,6 @@ et la boucle de contrôle recommence.
 \end{figure}
 % paragraph architecture_de_l_algorithme_ (end)
 
-
-\paragraph{Illustration du fonctionnement~:} % (fold)
-\label{par:illustration_du_fonctionnement_}
-\enquote{L’énergie disponible au niveau des capteurs est suffisante pour couvrir les besoins en chauffage de
-la maison. Le système solaire est alors en mode $Direct$ et le chauffage dans l’état
-$Chauffage_{ON}$ avec le chauffage solaire dans le sous-état $Solaire_{Direct}$ et
-l’appoint électrique dans le sous-état $Appoint_{OFF}$.} \\
-Un des habitants décide de prendre sa douche, abaissant la température de l’eau du ballon
-sanitaire en dessous du seuil minimal (\SI{55}{\celsius}). Dans cette configuration la
-pompe $S5$ va s’enclencher pour fournir de l’énergie au ballon sanitaire. Si l’énergie
-disponible au niveau des capteurs est insuffisante pour le chauffage et le maintien du
-ballon sanitaire alors la pompe $S2$ (chauffage) va s’arrêter car l’ECS est prioritaire.
-Le chauffage solaire passe alors dans l’état $Solaire_{OFF}$ et l’appoint électrique est
-en attente d’activation pour permettre de couvrir le chauffage (temporisation de
-\SI{3}{\minute}).
-% paragraph illustration_du_fonctionnement_ (end)
 
 \paragraph{} % (fold)
 \label{par:conclusion_algo}
@@ -798,9 +793,9 @@ surchauffe de la maison durant les périodes d’inoccupation diurnes
 (Fig~\ref{fig:control_air}) mais seul l’état $Solaire_{Direct}$ est autorisé. Dans ce
 cas, le débit minimum sanitaire est maintenue et seul $T_{air}^{cons}$ varie afin que la
 température intérieure atteigne la température limite de surchauffe~: $T^{cons}_{sol}$.
-L’augmentation de la température intérieure permet de profiter de l’inertie du bâtiment et
-de retarder, voir éviter la relance du chauffage et donc, l’utilisation potentielle de
-l’appoint électrique.
+L’augmentation de la température intérieure permet de profiter de l’inertie du bâtiment, et
+ainsi retarder ou éviter la relance du chauffage~: l’utilisation potentielle de
+l’appoint électrique sur le chauffage est réduit.
 \begin{figure}
     \begin{center}
         \includegraphics{Ressources/Images/Regulation/control_air_curve.pdf}
@@ -831,8 +826,8 @@ il est le fruit d’un travail itératif. Le bâtiment comme le $SSC$ ont évolu
 de l’avancement du projet.
 
 Dans un premier temps, les différents scénarios puis les variations techniques
-sont présentées. Ensuite les résultats sont ensuite détaillés et les limites
-de cette approche discutées.
+sont présentées. Les résultats sont ensuite détaillés et les limites
+de l’approche discutées.
 
 
 % ------------------------------------------------------------------------------
@@ -871,14 +866,14 @@ villes~: Bordeaux et Strasbourg.
                                           &    & \textbf{Bordeaux} & \textbf{Nantes} & \textbf{Strasbourg} & \textbf{Limoges} & \textbf{Marseille} \\
   \midrule
   \addlinespace[\defaultaddspace]
-  \multirow{3}{*}{Irradiation solaire} & $IGH$   & 1264              & 1184               & 1091                & 1257              & 1545              \\
-                                       & $IDN$   & 929               & 885               & 721                 & 1209              & 1503              \\
-                                       & $IDH$   & 712               & 665               & 650                 & 602              & 615               \\
+  \multirow{3}{*}{Irradiation solaire} & $IGH$   & \num{1264}              & \num{1184}               & \num{1091}                & \num{1257}              & \num{1545}              \\
+                                       & $IDN$   & \num{929}               & \num{885}               & \num{721}                 & \num{1209}              & \num{1503}              \\
+                                       & $IDH$   & \num{712}               & \num{665}               & \num{650}                 & \num{602}              & \num{615}               \\
   \addlinespace[\defaultaddspace]
-  \multirow{2}{*}{Température eau froide} & Min     & \num{8.9}               & \num{8.3}               & \num{5.3}                 & 7                 & 12                \\
-                                          & Max     & 16                & 15               & 14                  & 14                & 19                \\
+  \multirow{2}{*}{Température eau froide} & Min     & \num{8.9}               & \num{8.3}               & \num{5.3}                 & \num{7}                 & \num{12}                \\
+                                          & Max     & \num{16}                & \num{15}               & \num{14}                  & \num{14}                & \num{19}                \\
   \addlinespace[\defaultaddspace]
-  DJU (\SI{19}{\celsius})                 & -  & 2408              & 2660               & 3360                & 2972              & 2049              \\
+  DJU (\SI{19}{\celsius})                 & -  & \num{2408}              & \num{2660}               & \num{3360}                & \num{2972}              & \num{2049}              \\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -926,14 +921,14 @@ avec des extremums représentés respectivement par Strasbourg et Marseille.
 Cinq scénarios ont été ont été considérés dans ces travaux (\ref{fig:profil_puisage}).
 Pour l’ensemble des profils, un volume de puisage typique moyen de
 \SI{33}{\litre\per(jour\period pers)}\,(\SI{60}{\celsius}), soit un
-volume total de \SI{220}{\litre/jour}\,(\SI{40}{\celsius}) pour les 4 occupants est
+volume total de \SI{220}{\litre/jour}\,(\SI{40}{\celsius}) pour les quatre occupants est
 retenu. Le profil de référence utilisé est le scénario décrit dans la norme
 \textcite{EN129771}, \textbf{EN\,12977}. Trois variantes de celui-ci ont aussi été évaluées favorisant
 respectivement un puisage en matinée (\textbf{Matin}), en soirée (\textbf{Soir}) et un
-puisage similaire pour les 3 pics journaliers (\textbf{Réparti}). Finalement un scénario
+puisage similaire pour les trois pics journaliers (\textbf{Réparti}). Finalement un scénario
 issue de données statistiques \parencite{ADEME2016} a aussi été implémenté
 (\textbf{Réaliste}). Ce dernier décrit de manière plus représentative le comportement
-d’une famille dans une habitation individuelle ou un appartement et les besoins
+d’une famille dans une habitation individuelle ou un appartement, et les besoins
 journaliers sont pondérées en fonction du jour de la semaine (\ref{tab:coef_semaine}).
 \begin{figure}
     \begin{center}
@@ -948,12 +943,15 @@ journaliers sont pondérées en fonction du jour de la semaine (\ref{tab:coef_se
 \label{par:ponderation_de_la_demande}
 Afin d’évaluer l’impact de la variation mensuelle des besoins en $ECS$, l’ajout d’un
 coefficient mensuel est investigué. Les coefficients utilisés sont issues des travaux de
-l’\emph{ADEME} \parencite{ADEME2016}. Le demande totale reste inchangée~; seule sa
-répartition est altérée. Les résultats de l’$ADEME$ montrent ainsi que le puisage est plus
+l’\textit{ADEME} \parencite{ADEME2016}. Le demande totale reste inchangée~; seule sa
+répartition est altérée. Les résultats de l’\textit{ADEME} montrent ainsi que le puisage est plus
 important durant la période hivernale (\ref{tab:coef_mois}).
 
 \begin{table}
 \centering
+\caption{Détail des coefficients de pondération journaliers pour le profil de
+         puisage Réaliste.}
+\label{tab:coef_semaine}
 \begin{tabular}{l*{7}{c}}
     \toprule
                 & Lundi & Mardi & Mercredi & Jeudi & Vendredi & Samedi & Dimanche \\
@@ -961,13 +959,13 @@ important durant la période hivernale (\ref{tab:coef_mois}).
     Coefficient & \num{0.97}  & \num{0.95}  & \num{1.00}     & \num{0.97}  & \num{0.96}     & \num{1.02}   & \num{1.13}     \\
     \bottomrule
 \end{tabular}
-\caption{Détail des coefficients de pondération journaliers pour le profil de
-         puisage Réaliste.}
-         \label{tab:coef_semaine}
 \end{table}
 
 \begin{table}
 \centering
+\caption{Détail des coefficients de pondération mensuels pour le profil de
+         puisage Réaliste.}
+\label{tab:coef_mois}
 \begin{tabular}{l*{12}{c}}
     \toprule
                 & Janv. & Fevr. & Mars & Avr. & Mai & Juin & Juil. & Août & Sept. & Oct. & Nov. & Dec. \\
@@ -975,18 +973,15 @@ important durant la période hivernale (\ref{tab:coef_mois}).
     Coefficient & \num{1.11}   & \num{1.2}   & \num{1.11}  & \num{1.06}  & \num{1.03}  & \num{0.93}   & \num{0.84}    & \num{0.72}   & \num{0.92}    & \num{1.03}  & \num{1.04}  & \num{1.01}  \\
     \bottomrule
 \end{tabular}
-\caption{Détail des coefficients de pondération mensuels pour le profil de
-         puisage Réaliste.}
-         \label{tab:coef_mois}
 \end{table}
 % paragraph ponderation_de_la_demande (end)
 
 \paragraph{Variations paramétriques~:} % (fold)
 \label{par:variations_parametriques}
-L’étude paramétrique permettra d’évaluer l’impact de la variation des profils de puisage
-comme de la quantité des besoins sur la performance du $SSC$. Les consommations variant
-fortement d’une habitation à une autre, des consommations de 27, 33, et
-\SI{40}{\litre\per(jour \period  pers)}\,(\SI{60}{\celsius}) seront aussi évaluées.
+L’évaluation de l’impact de la variation des profils de puisage comme de la quantité des
+besoins sur la performance du $SSC$ est donc retenue. Les consommations variant fortement
+d’une habitation à une autre, des consommations de \num{27}, \num{33}, et
+\SI{40}{\litre\per(jour \period  pers)}\,(\SI{60}{\celsius}) sont aussi évaluées.
 % paragraph variations_parametriques (end)
 % subsubsection puisage_en_eau_chaude_sanitaire (end)
 
@@ -1012,28 +1007,28 @@ maison.
 \label{par:consigne_de_chauffage}
 Afin de couvrir une large palette de scénarios, la consigne en inoccupation, en occupation
 diurne, et en inoccupation nocturne sont modifiées indépendamment. La consigne de
-référence étant, pour rappel, définie comme étant 19-18-16~: \SI{19}{\celsius} durant les
+référence étant, pour rappel, définie comme étant $19$-$18$-$16$~: \SI{19}{\celsius} durant les
 occupations diurnes, \SI{18}{\celsius} durant les occupations nocturnes et
 \SI{16}{\celsius} en inoccupation. À partir des règles et contraintes définies dans
 \autoref{tab:consigne_chauffage} il est alors possible de construire un lot de scénarios
 représentatifs. L’étude cherchera en particulier à évaluer l’impact d’une augmentation de
-la consigne de chauffage, ainsi que du réduit en inoccupation et durant la période
-nocturne. Les scénarios construits sont les suivants~: 19-18-16, 19-19-16, 19-19-19,
-20-18-16, 20-20-16.
+la consigne de chauffage, ainsi que du réduit en inoccupation et en période
+nocturne. Les scénarios construits sont les suivants~: $19$-$18$-$16$, $19$-$19$-$16$, $19$-$19$-$19$,
+$20$-$18$-$16$, $20$-$20$-$16$.
 
 \begin{table}
 \centering
+\caption{Variations envisagées pour la consigne de chauffage en fonction de la période.}
+\label{tab:consigne_chauffage}
 \begin{tabular}{l c c c c}
     \toprule
-                           & \bf{16}                     & \bf{18}                     & \bf{19}                     & \bf{20}              \\
+                           & \bf{\num{16}}                     & \bf{\num{18}}                     & \bf{\num{19}}                     & \bf{\num{20}}              \\
     \midrule
     Occupation (diurne)    &                             &                             & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
     Occupation (nocturne)  &                             & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
     Inoccupation           & \cellcolor{SolarizedBrBlue} &                             & \cellcolor{SolarizedBrBlue} &                     \\
     \bottomrule
 \end{tabular}
-\caption{Variations envisagées pour la consigne de chauffage en fonction de la période.}
-         \label{tab:consigne_chauffage}
 \end{table}
 % paragraph consigne_de_chauffage (end)
 
@@ -1054,23 +1049,26 @@ entre consigne et consigne solaire de chauffage sont aussi discutées
 % ------------------------------------------------------------------------------
 \subsection{Variations techniques étudiées} % (fold)
 \label{sub:variations_techniques_etudiees}
-
-~\iunsure{Ajouter variation débit pompes. N’apporte pas grand chose.}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Fluide caloporteur} % (fold)
 \label{ssub:fluide_caloporteur}
 Afin de pouvoir implémenter le modèle pour tous les climats, il est nécessaire de
 tenir compte des risques de gel. Le fluide caloporteur utilisé à travers les capteurs
-solaires et donc un mélange~: eau (\SI{70}{\percent}) et éthylène-glycol (\SI{30}{\percent}).
+solaires est donc un mélange~: eau (\SI{70}{\percent}) et éthylène-glycol (\SI{30}{\percent}).
 
-Seul les capteurs solaires sont à l’extérieur, il n’est alors pas nécessaire
-de protéger l’ensemble du système contre le gel. L’eau des ballons sanitaire et de stockage
-sont donc  modélisés avec de l’eau sans glycol car ils sont en zone chauffée et l’eau du ballon
-sanitaire provient du réseau d’eau froide. Ainsi seules les canalisations reliant les échangeurs
-contiennent du glycol. La modélisation admet ainsi deux fluides différents (\autoref{tab:fluide_carac}).
+Seul les capteurs solaires sont à l’extérieur, il n’est alors pas nécessaire de protéger
+l’ensemble du système contre le gel. En effet, l’eau du ballon sanitaire provient du
+réseau d’eau de ville, et le ballon de stockage est dans une zone chauffée. Ainsi dans les
+deux cas une eau sans glycol est considérée. Ainsi seules les canalisations reliant les
+échangeurs contiennent du glycol et la modélisation admet deux fluides différents
+(\autoref{tab:fluide_carac}). Enfin, la variation de la capacité massique étant négligeable sur
+les plages de variation considérées (\num{0} à \SI{120}{\celsius}), le modèle assume une
+capacité massique constante permettant de simplifier les systèmes d’équations.
 
 \begin{table}
 \centering
+\caption{Caractéristiques des deux fluides caloporteurs utilisés pour la modélisation.}
+\label{tab:fluide_carac}
 \begin{tabular}{l *{2}{c} r}
     \toprule
                        & Eau                 & Eau + glycol          & Unité                             \\
@@ -1080,36 +1078,32 @@ contiennent du glycol. La modélisation admet ainsi deux fluides différents (\a
     Plage de variation & \num{0} à \num{100} & \num{-20} à \num{110} & \si{\celsius}                     \\
     \bottomrule
 \end{tabular}
-\caption{Caractéristiques des deux fluides caloporteurs utilisés pour la modélisation.}
-         \label{tab:fluide_carac}
 \end{table}
-
-Enfin, la variation de la capacité massique étant négligeable sur les plages de variation
-considérées (0 à \SI{120}{\celsius}), le modèle assume une capacité massique constante
-permettant de simplifier les systèmes d’équations.
 % subsubsection fluide_caloporteur (end)
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Capteurs solaires} % (fold)
 \label{ssub:capteurs_solaires}
-Afin d’évaluer l’impact du choix du capteur, 3 capteurs différents ont été retenus
-(\autoref{tab:capteurs_specs}). Le capteur de référence (IDMK 25), un capteur sous-vide
-(12 CPC58) et un autre capteur plan très performant (308C HP). Les caractéristiques du
-premier (IDMK) sont issues de sa fiche technique
+Afin d’évaluer l’impact du choix du capteur, \num{3} capteurs différents ont été retenus
+(\autoref{tab:capteurs_specs}). Le capteur de référence (IDMK\,25), un capteur sous-vide
+(12\,CPC58) et un autre capteur plan très performant (308C\,HP). Les caractéristiques du
+premier (IDMK\,25) sont issues de sa fiche technique
 (\ref{ssub:capteurs_solaires}). Les deux autres types sont issue d’une source
 commune~: \href{www.solar-rating.org}{ICC SRCC}. Cette source a été sélectionnée car elle
-regroupe les résultats d’essai réalisés dans des conditions similaires par un organisme indépendant.
+regroupe les résultats d’essais réalisés dans des conditions similaires par un organisme indépendant.
 De plus des informations supplémentaires non accessibles sur les fiches techniques mais nécessaires
 pour le modèle numérique sont explicitement définis. Les résultats de ces essais sont disponibles en
-Fig Annexe~\ref{fig:caracs_radco} et Fig Annexe~\ref{fig:caracs_skypro}.
-Enfin les modèles retenues ont une surface d’absorption similaire facilitant la comparaison
-lorsque leurs nombres varient.
+Fig~\ref{fig:caracs_radco} et Fig~\ref{fig:caracs_skypro}.
+Enfin les modèles retenues ont une surface nette similaire facilitant la comparaison entre
+eux.
 
 \begin{table}
 \centering
+\caption{Caractéristiques des panneaux solaires.
+\label{tab:capteurs_specs}}
 \begin{tabular}{l c c c r}
     \toprule
-                                 & IDMK 25 (référence)  & 308C HP              & 12 CPC58        & Unité                       \\
+                                 & IDMK\,25 (référence)  & 308C\,HP              & 12\,CPC58        & Unité                       \\
     \midrule
     Fabricant                    & Sonnenkraft          & Radco                & Sky Pro         & -                           \\
     Type                         & Plan vitrée          & Plan vitrée          & Tubulaire       & -                           \\
@@ -1123,11 +1117,9 @@ lorsque leurs nombres varient.
     $IMDiff$                     & \num{100}            & \num{96}             & \num{102}       & \si{\%}                     \\
     \bottomrule
 \end{tabular}
-\caption{Caractéristique du collecteur de référence (modèle IDMK 2.5 de chez Sonnenkraft).
-         \label{tab:capteurs_specs}}
 \end{table}
 
-Au cours de l’étude paramétrique, l’orientation, la surface d’absorption, et l’inclinaison
+Au cours de l’étude paramétrique, l’orientation, la surface, et l’inclinaison
 des capteurs est évaluée afin de comparer les résultats avec les observations déjà
 relevées au cours des études existantes \parencite{Task262003,Shariah2002587}.
 Les variations suivantes sont retenues~:
@@ -1137,7 +1129,7 @@ Les variations suivantes sont retenues~:
   \item Nombre de capteurs~: \num{2}, \num{4}, \num{6}, \num{8}
 \end{itemize}
 Finalement, la maison de référence est orientée Sud, comporte 4 capteurs
-IDMK25, et une toiture ayant une pente de \SI{33}{\percent}.
+de type IDMK\,25, et une toiture ayant une pente de \SI{33}{\percent}.
 % subsubsection capteurs_solaires (end)
 
 
@@ -1145,24 +1137,24 @@ IDMK25, et une toiture ayant une pente de \SI{33}{\percent}.
 \subsubsection{Ballons} % (fold)
 \label{ssub:ballons}
 L’analyse paramétrique tient aussi compte de variations au niveau des ballons comme
-de son volume. Celui-ci est discrétisé en \num{20} segments numéroté de haut en bas
+son volume. Celui-ci est discrétisé en \num{20} segments numérotés de haut en bas
 permettant de prendre en compte le phénomène de stratification.
-Afin d’être cohérent, les caractéristiques des ballons sont proportionnelles à sa taille.
-Lorsque le volume du ballon augmente la hauteur de augmentera aussi.
-De même la taille de l’échangeur sera adaptée à la nouvelle hauteur du ballon
+Afin d’être cohérent, les caractéristiques des ballons sont proportionnelles à sa taille~:
+si le volume du ballon augmente, sa hauteur augmente aussi.
+De même, la taille de l’échangeur est adaptée à la nouvelle hauteur du ballon
 afin que sa position relative reste identique. De cette manière, le ballon de
 stockage conserve un échangeur couvrant la quasi totalité du volume, et
 l’échangeur solaire sur le ballon sanitaire reste adapté à la nouvelle taille du
 ballon. Les variations retenues pour chaque ballon sont identiques~:
 \SI{150}{l}, \SI{300}{l}, et \SI{450}{l}.
 
-Aussi, la position de l’échangeur solaire est aussi étudiée. Ces travaux ne considère que
+La position de l’échangeur solaire est aussi étudiée. Ces travaux ne considère que
 la position de l’échangeur du ballon sanitaire ($Ech_{sol}^{pos}$) car l’échangeur du
 ballon de stockage couvre presque l’intégralité de sa hauteur. De plus, afin d’être
 cohérent avec les variations réalisées sur le volume des ballons, la variation de
-$Ech_{sol}^{pos}$ sera réalisée relativement à sa position d’origine sans modifier sa
-longueur. Il est alors possible d’évaluer l’impact du volume du ballon et de la position
-relative de l’échangeur de manière combinés ou bien indépendamment. Les coefficients
+$Ech_{sol}^{pos}$ est réalisée relativement à sa position d’origine, laissant intact sa
+longueur. Il est alors possible d’évaluer l’impact du volume du ballon et de la $Ech_{sol}^{pos}$
+de manière combinés ou bien indépendamment. Les coefficients
 retenues sont issus des contraintes imposées par les spécificités techniques des ballons~:
 \num{0.8}, \num{1}, et \num{1.3}. Avec un coefficient de \num{0.8} l’échangeur sera ainsi
 positionné plus bas et avec un coefficient de \num{1.3}, il sera à l’inverse plus haut. La
@@ -1173,45 +1165,40 @@ position de référence pour l’échangeur(\num{1}) correspond au $12^{\grave e
 % ------------------------------------------------------------------------------
 \subsubsection{Algorithme} % (fold)
 \label{ssub:variations_algorithmiques}
-Finalement il est aussi étudié à travers cette étude des variations au niveau
-de l’algorithme de contrôle.
-
-$DeltaT_{sol}$, la différence de température entre la source (sortie des capteurs) et la cible (sortie des
-échangeurs) est modulée autour du cas de référence (\SI{10}{\celsius})~: \SI{5}{\celsius} et \SI{15}{\celsius}.
-Augmenter le $DeltaT_{sol}$ revient à
-attendre plus longtemps avant d’autoriser l’utilisation de l’énergie solaire et impose une
-température en sortie des capteurs plus élevée afin valoriser les apports solaires. À
-l’inverse diminuer ce paramètre amène le système a être plus réactif mais le risque
-d’instabilité est plus important.
-
-Il est aussi évalué l’impact des temporisations au niveau de la régulation du chauffage
-par vecteur air~:
+Finalement il est aussi étudié à travers cette étude des variations au niveau de
+l’algorithme de contrôle (\autoref{tab:variations_algo}). $DeltaT_{sol}$, la différence de
+température entre la source (sortie des capteurs) et la cible (sortie des échangeurs) est
+modulée autour du cas de référence (\SI{10}{\celsius}). Augmenter le $DeltaT_{sol}$
+revient à attendre plus longtemps avant d’autoriser l’utilisation de l’énergie solaire et
+impose une température en sortie des capteurs plus élevée afin de valoriser les apports
+solaires. À l’inverse diminuer ce paramètre amène le système a être plus réactif mais le
+risque d’instabilité est cependant plus important. Il est aussi évalué l’impact des
+temporisations au niveau de la régulation du chauffage par vecteur air~:
 \begin{itemize}
   \item Activation de la batterie électrique terminale
   \item Modulation du débit de soufflage
   \item Modulation de la température de soufflage
 \end{itemize}
-
 La première temporisation, \SI{3}{min} pour le cas de référence, sera notée
 $Tempo_{batterie}$. Elle permet d’éviter d’activer la batterie terminale électrique
-directement à chaque demande de chauffage en retardant son activation lorsque il y a de
-l’énergie solaire de disponible. La seconde temporisation correspond à la temporisation
+directement à chaque demande de chauffage. Elle permet donc de retarder son activation
+quand de l’énergie solaire est disponible. La seconde temporisation correspond à la temporisation
 entre la modulation de la température, et la modulation du débit pour le chauffage par
 l’air. Le cas de référence admet une temporisation de \SI{10}{min} notée $Tempo_{souff}$.
 
 \begin{table}
 \centering
-\begin{tabular}{l c r}
+\caption{Variations algorithmiques étudiées lors de l’étude paramétrique.
+\label{tab:variations_algo}}
+\begin{tabular}{l c c r}
     \toprule
-    Paramètre          & Variations                    & Unité         \\
+    Paramètre          & Référence & Variations          & Unité         \\
     \midrule
-    $DeltaT_{sol}$     & \num{5}, \num{10}, \num{15}   & \si{\celsius} \\
-    $Tempo_{batterie}$ & \num{2}, \num{3}, \num{4}     & \si{min}      \\
-    $Tempo_{souff}$    & \num{5}, \num{10}, \num{15}   & \si{min}      \\
+    $DeltaT_{sol}$     & \num{10}  & \num{5}, \num{15}   & \si{\celsius} \\
+    $Tempo_{batterie}$ & \num{3}   & \num{2}, \num{4}    & \si{min}      \\
+    $Tempo_{souff}$    & \num{10}  & \num{5}, \num{15}   & \si{min}      \\
     \bottomrule
 \end{tabular}
-\caption{Variations algorithmiques étudiées lors de l’étude paramétrique.
-         \label{tab:variations_algo}}
 \end{table}
 % subsubsection algorithme (end)
 % subsection variations_techniques_etudiees (end)
@@ -1229,6 +1216,12 @@ caractéristiques ont été présentés dans les parties précédentes. Sans men
 simulations utilisent ces paramètres. L’ensemble des variations possibles ainsi que
 le cas de référence sont décrits à travers un tableau récapitulatif (\autoref{tab:ref_description})
 afin d’offrir une vue globale des variations étudiées.
+Enfin afin d’évaluer le système solaire différent indicateurs sont introduit
+\eqref{eq:indicators}. La consommation électrique tient compte de la consommation des deux
+appoints (chauffage et $ECS$) mais aussi de la consommation des pompes du $SSC$. Elle est
+notée $Conso_{app}$ dans le reste de l’étude. Enfin $F_{sol}^{ECS}$ et $F_{sol}^{CH}$
+sont respectivement le taux de couverture sur la production de l’eau chaude sanitaire
+et sur le chauffage.
 
 \begin{table}
 \centering
@@ -1240,18 +1233,18 @@ afin d’offrir une vue globale des variations étudiées.
                                            & Référence & Variations                             & Unité         & Détails                                               \\
     \multicolumn{5}{l}{\bf{Scénarios}}                                                                                                                                 \\
     \midrule
-    Ventilation                            & 90-20     & 90-90                                  & \si{m^{3}/h}  & \ref{ssub:ventilation}                                \\
-    Chauffage                              & 19-18-16  & 19-19-16, 19-19-19, 20-18-16, 20-20-16 & \si{\celsius} & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
+    Ventilation                            & $90-20$   & $$90-90$$                                  & \si{m^{3}/h}  & \ref{ssub:ventilation}                                \\
+    Chauffage                              & $19$-$18$-$16$  & $19$-$19$-16, $19$-$19$-$19$, $20$-$18$-$16$, $20$-$20$-$16$ & \si{\celsius} & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
     Chauffage solaire                      & Avec (22) & Sans                                   & \si{\celsius} &                                                       \\
-    $Puisage_{scenario}$                              & EN\,12977   & Soir, Matin, Réparti, Réaliste         & \si{l/h}      & \multirow{3}{*}{\ref{ssub:puisage_en_eau_chaude_sanitaire}}            \\
-    $Puisage_{vol}$ (\SI{60}{\celsius}) & 33       & 27, 40                                 & \si{\litre/(jour\period pers)}      &                                 \\
-    $Puisage_{mod}$                 & Non       & Mensuelle                              & -             &                                                       \\
+    $Puisage_{scenario}$                   & EN\,12977 & Soir, Matin, Réparti, Réaliste         & \si{l/h}      & \multirow{3}{*}{\ref{ssub:puisage_en_eau_chaude_sanitaire}}            \\
+    $Puisage_{vol}$ (\SI{60}{\celsius})    & \num{33}  & \num{27}, \num{40}                     & \si{\litre/(jour\period pers)}      &                                 \\
+    $Puisage_{mod}$                        & Non       & Mensuelle                              & -             &                                                       \\
     \\
     \addlinespace[\defaultaddspace]
     \multicolumn{5}{l}{\bf{Équipements}}                                                                                                                              \\
     \midrule
-    Modèle des capteurs                    & IDMK 25   & 308C HP, 12 CPC58                      & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
-    Nombre de capteurs                     & \num{4}  & \num{2}, \num{6}, \num{8}               & -             &                                                       \\
+    Modèle des capteurs                    & IDMK\,25  & 308C\,HP, 12\,CPC58                    & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
+    Nombre de capteurs                     & \num{4}   & \num{2}, \num{6}, \num{8}              & -             &                                                       \\
     Inclinaison des capteurs               & \num{33}  & \num{18.9}, \num{45}, \num{60}         & \si{\degree}  &                                                       \\
     Orientation des capteurs               & Sud       & Est, Ouest                             & -             &                                                       \\
     Volume ballon de stockage              & \num{300} & \num{150}, \num{450}                   & \si{\litre}   & \multirow{3}{*}{\ref{ssub:ballons}}                   \\
@@ -1269,8 +1262,16 @@ afin d’offrir une vue globale des variations étudiées.
   \end{tabular}
 \end{table}
 
-\iunsure{Ajouter indicateurs utilisés $F_{sol}^{ECS}$ et $F_{sol}^{CH}$ car le reste est introduit au fur et à mesure}
-
+\begin{equation}
+\label{eq:indicators}
+\setlength{\jot}{10pt}  % Change equation vertical space only for this environment
+\begin{aligned}
+    Conso_{app}   &= Conso_{app}^{ECS} + Conso_{app}^{CH} + Conso_{pompes} \\
+    F_{sol}       &= \frac{Prod_{sol}}{Conso_{app}}     \\
+    F_{sol}^{ECS} &= \frac{Prod_{sol}^{ECS}}{Conso_{app}^{CH}} \\
+    F_{sol}^{CH}  &= \frac{Prod_{sol}^{CH}}{Conso_{app}^{ECS}}
+\end{aligned}
+\end{equation}
 % subsubsection methodologie (end)
 
 
@@ -1278,27 +1279,22 @@ afin d’offrir une vue globale des variations étudiées.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Impact des conditions météorologiques} % (fold)
 \label{ssub:impact_des_conditions_meteorologiques}
-Les résultats obtenues pour les différents climats en considérant une enveloppe identique
-sont disponibles à travers le \autoref{tab:performance_annuelles}. La consommation
-électrique tient compte de la consommation des deux appoints (chauffage et $ECS$) mais aussi
-de la consommation des pompes du $SSC$. Elle est notée $Conso_{app}$ dans le
-reste de l’étude.
-
-Le système solaire permet d’obtenir une bonne performance pour tous les climats autant sur
-$F_{sol}^{ECS}$ que sur $F_{sol}^{CH}$. L’énergie solaire transmise à l’eau ($Solaire_{abs}$) comme
-les pertes en lignes à travers les canalisations ($Pertes_{r\acute eseau}$) sont similaires pour
-les différents climats. Cependant, il est observé un impact important de la température
-de l’eau froide du réseau. En effet les simulations admettent le même scénario de puisage
-mais la $Conso_{app}$ varient de \SI{400}{\kilo\watt\hour} entre Marseille et Strasbourg.
-De plus malgré des conditions plus favorable à Nantes, la $Conso_{app}$ à
-Limoges est inférieure grâce à un ensoleillement plus favorable (\autoref{tab:temp_eau},
-\autoref{tab:description_climat}). La même chose peut être observé au niveau du chauffage.
-La consommation totale à Limoges est supérieure de \SI{200}{kWh} par rapport à Nantes mais
-la $Conso_{app}$ est elle seulement supérieure de \SI{100}{kWh}.
-La consommation des pompes ne semble pas être un facteur important du bilan énergétique sauf pour
-Marseille où la $Conso_{app}$ cumulée du chauffage et de la
-production d’$ECS$ est presque nulle. À l’opposé sur Strasbourg le nombre
-de capteurs solaires (4) semble insuffisant pour couvrir les besoins importants.
+Les résultats obtenues à enveloppe identique pour les différents climats sont disponibles
+à travers le \autoref{tab:performance_annuelles}. Le système solaire permet d’obtenir une
+bonne performance pour tous les climats autant sur $F_{sol}^{ECS}$ que sur $F_{sol}^{CH}$.
+L’énergie solaire transmise à l’eau ($Solaire_{abs}$) comme les pertes en lignes à travers
+les canalisations ($Pertes_{r\acute eseau}$) sont similaires pour les différents climats.
+Cependant, il est observé un impact important de la température de l’eau froide du réseau.
+En effet les simulations admettent le même scénario de puisage mais la $Conso_{app}$
+varient de \SI{400}{\kilo\watt\hour} entre Marseille et Strasbourg. De plus, malgré des
+conditions plus favorable à Nantes, la $Conso_{app}$ à Limoges est inférieure grâce à un
+ensoleillement plus favorable (\autoref{tab:temp_eau}, \autoref{tab:description_climat}).
+La même chose peut être observé au niveau du chauffage. La consommation totale à Limoges
+est supérieure de \SI{200}{kWh} par rapport à Nantes mais la $Conso_{app}$ est elle
+seulement supérieure de \SI{100}{kWh}. Enfin, la consommation des pompes ne semble pas
+être un facteur impactant sauf pour Marseille où la $Conso_{app}$ cumulée du chauffage et
+de la production d’$ECS$ est presque nulle. À l’opposé sur Strasbourg, quatre panneaux
+solaires semblent insuffisants pour couvrir les besoins importants.
 
 \begin{table}
 \small
@@ -1329,18 +1325,17 @@ L’évolution des températures des différents ballons durant la période de c
 les différents climats donnent plus d’informations (Fig~\ref{fig:temp_ballon_mensuel}). Du
 fait des priorités de régulation le ballon de stockage ne peut être chargé si la partie
 basse du ballon sanitaire ($T3$) n’est pas à une température suffisante. Ainsi l’évolution
-des température des ballons permet de renseigner sur l’activité du système et plus
+des température des ballons permet de renseigner sur l’activité du système, et plus
 particulièrement sur l’importance de l’énergie solaire récupérée par rapport à la demande.
 Ainsi sur Limoges, le système utilise principalement l’énergie solaire durant tous les
 mois à l’exception de décembre où $T5$ stagne. Durant janvier, l’énergie solaire est
 suffisante pour charger le ballon de stockage et réduire la $Conso_{app}$ sur
 l’$ECS$. Cependant, $T4$ stagne autour de \SI{55}{\celsius} car l’énergie solaire fournie
-ne permet pas de charger le ballon sanitaire suffisamment. Sur Strasbourg le système ne
-collecte pas assez d’énergie de Novembre à Février afin d’être autonome mais l’énergie
-accumulée permet cependant de préchauffer l’eau du réseau et donc de réduire la
-$Conso_{app}$. Finalement sur Bordeaux le système permet de couvrir les besoins
-durant toute l’année même si durant décembre et janvier l’appoint électrique est
-nécessaire.
+ne permet pas de charger le ballon sanitaire suffisamment. Sur Strasbourg, le système ne
+collecte pas assez d’énergie de novembre à février afin d’être autonome mais l’énergie
+accumulée permet cependant de préchauffer l’eau du réseau et donc réduire la
+$Conso_{app}$. Finalement sur Bordeaux le système permet de couvrir la majorité des besoins
+même si durant décembre et janvier l’appoint électrique est nécessaire ponctuellement.
 
 \begin{figure}
     \begin{center}
@@ -1356,29 +1351,25 @@ nécessaire.
 
 \paragraph{Période de simulation~:} % (fold)
 \label{par:période_de_simulation}
-~
-\itodo{Ajouter valeur pour la consommation Strasbourg}
-L’optique de cette étude paramétrique étant d’évaluer l’impact de différents
-éléments du $SSC$ (technique et algorithmique) il est n’est pas nécessaire de simuler les
-périodes ou le système est autonome. Chaque simulation nécessite en effet entre
-\SI{90}{\min} et \SI{120}{\min} et réduire la période de simulation est un moyen
-permettant de réduire la durée d’intégration. Des simulations comprenant un jeu de
-paramètres défavorables ont aussi été réalisées afin d’évaluer la période de simulation
-minimale nécessaire.
-
-Pour ces simulations, un scénario de chauffage 19-19-19, un volume de \SI{450}{\litre}
-pour les deux ballons, ainsi que \num{2} capteurs avec une orientation Ouest et une
-inclinaison de \SI{18.9}{\degree} sont retenue. Les résultats des simulations montrent
-que durant la période estivale, le système solaire est autonome avec une $Conso_{app}$ de
-seulement \SI[per-mode=symbol]{0.01}{\kilo\watt\hour\per\metre\squared} et \SI{0}{\watt\hour}
-pour respectivement Bordeaux et Strasbourg.
-Dans le reste de l’étude paramétrique les résultats seront donc discutés pour une période
-de simulation s’étendant du $1^{er}$ Octobre au $30$ Avril. Les résultats seront fournis
-pour la période concernée et doivent donc être vu comme la performance minimale du $SSC$.
-En effet, le système est autonome durant le reste de l’année car les besoins en chauffage
-et en $ECS$ sont complètement couverts par la production solaire~: le $F_{sol}^{ECS}$ et le
-$F_{sol}^{CH}$ annuels sont donc supérieurs car ils tiennent compte de la période d’autonomie
-complète du $SSC$.
+L’optique de cette étude paramétrique étant d’évaluer l’impact de différents éléments du
+$SSC$ (technique et algorithmique) il est n’est pas nécessaire de simuler les périodes ou
+le système est autonome. Chaque simulation annuelle nécessite en effet entre
+\SI{2}{\hour} et \SI{3}{\hour} et réduire la période de simulation permet de réduire la durée
+d’intégration. Des simulations comprenant un jeu de paramètres défavorables ont aussi été
+réalisées afin d’évaluer la période de simulation minimale nécessaire. Pour ces
+simulations, un scénario de chauffage $19$-$19$-$19$, un volume de \SI{450}{\litre} pour les
+deux ballons, ainsi que \num{2} capteurs avec une orientation Ouest et une inclinaison de
+\SI{18.9}{\degree} sont retenus. Les résultats montrent que durant la
+période estivale, le système solaire est autonome avec une $Conso_{app}$ de seulement
+\SI[per-mode=symbol]{0.01}{\kilo\watt\hour\per\metre\squared} et \mtodo{Ajouter consommation Strasbourg}{\SI{0}{\watt\hour}}
+pour respectivement Bordeaux et Strasbourg. Dans le reste de l’étude paramétrique les
+résultats sont donc discutés pour une période de simulation s’étendant du $1^{er}$ octobre
+au $30$ avril permettant de réduire à \SI{\approx 1}{\hour} par simulation. Les résultats
+sont fournis pour la période concernée et doivent donc être vu comme la
+\textbf{performance minimale} du $SSC$. En effet, le système est autonome durant le reste
+de l’année car les besoins en chauffage et en $ECS$ sont complètement couverts par la
+production solaire~: le $F_{sol}^{ECS}$ et le $F_{sol}^{CH}$ annuelles sont donc
+supérieures car ils tiennent compte de la période d’autonomie complète du $SSC$.
 
 % \begin{figure}
 %     \begin{center}
@@ -1397,10 +1388,11 @@ complète du $SSC$.
 \subsubsection{Impact des scénarios internes} % (fold)
 \label{ssub:impact_des_scenarios_internes}
 Dans cette section l’impact des charges internes et de la consigne de température est
-investigué et les différentes variations sont seulement réalisées pour le climat
-de Bordeaux et de Strasbourg. L’analyse des résultats montrent que le comportement
-du système est similaire pour les deux climats. Ainsi l’analyse sera illustré
-uniquement pour le climat de Strasbourg où les modifications ont un impact plus net.
+investigué. Afin d’éviter la redondance, les différentes variations sont seulement
+réalisées pour le climat de Bordeaux et de Strasbourg. L’analyse des résultats montrent
+que le comportement du système est similaire pour les deux climats~: l’analyse est donc
+illustrée uniquement pour le climat de Strasbourg où les modifications ont un impact plus
+net.
 
 Afin de pouvoir comparer de manière efficace les variations paramétriques une
 représentation graphique est introduite (Fig~\ref{fig:impact_temp_consigne}). Elle permet
@@ -1412,47 +1404,45 @@ de visualiser les paramètres caractéristiques du système combiné~:
 \end{itemize}.
 Il est aussi possible d’évaluer la production solaire valorisée
 ($Prod_{sol}^{valoris\acute ee}$), définit comme la part solaire transmise à l’eau après
-soustraction des pertes au niveau des canalisations ainsi que la part d’énergie consommée
-par l’appoint ($Conso_{app}$) comprenant le chauffage, la production d’$ECS$ et
-la consommation des pompes. Ces deux indications sont fournies à l’extrémité de chaque
-barre horizontale et une légende est disponible en partie basse.
+soustraction des pertes au niveau des canalisations~; et la part d’énergie consommée
+par l’appoint ($Conso_{app}$). Ces deux indications sont fournies à l’extrémité de chaque
+barre horizontale et une légende est disponible en dessous.
 Enfin la couleur et l’ordre des barres sont définis à partir des valeurs normalisées
-du rendement solaire des capteurs dont l’échelle est disponible en partie droite. Le
-rendement solaire traduit le rapport entre la $Prod_{sol}^{valoris\acute ee}$ et l’énergie
-incidente sur les capteurs~: il indique donc la part utile de l’énergie récupérée sur
+du rendement solaire des capteurs ($\eta_{sol}$) dont l’échelle est disponible en partie droite. Le
+$\eta_{sol}$ traduit le rapport entre la $Prod_{sol}^{valoris\acute ee}$ et l’énergie
+incidente sur les capteurs~: il indique donc la part utile de l’énergie récupérée par rapport à
 l’énergie solaire incidente.
 
 L’analyse de la Fig~\ref{fig:impact_temp_consigne} permet d’obtenir de nombreuses
-informations pertinentes. Augmenter la température de consigne durant le période
-d’occupation (20-20-16) montre une augmentation de \SI{8}{\percent} de la $Conso_{app}$
+informations. Augmenter la température de consigne durant le période
+d’occupation ($20$-$20$-$16$) augmente de \SI{8}{\percent} de la $Conso_{app}$
 sur le chauffage, mais n’impacte pas le $F_{sol}^{ECS}$. Il est aussi important de noter que le
 réduit de nuit permet de réduire sensiblement la $Conso_{app}$ mais le $F_{sol}^{ECS}$ et le
-$F_{sol}^{CH}$ restent inchangé. Le $SSC$ fonctionne ainsi aussi bien avec que sans réduit de
+$F_{sol}^{CH}$ restent inchangés. Le $SSC$ fonctionne ainsi aussi bien avec que sans réduit de
 nuit et la $Conso_{app}$ est seulement proportionnelle à l’augmentation de la demande en
 énergie pour le chauffage. Cependant la performance du $SSC$ est impactée si on considère
-une consigne de chauffage constante (19-19-19).
+une consigne de chauffage constante ($19$-$19$-$19$).
 
-L’impact de la ventilation est plus subtil. Le scénario de ventilation 90-90
+L’impact de la ventilation est plus subtil. Le scénario de ventilation $90-90$
 augmente le $F_{sol}^{CH}$ (\SI{\approx +3}{\percent}) mais réduit le $F_{sol}^{ECS}$
-((\SI{\approx -1}{\percent})) en comparaison avec le scénario de référence qui considère un
-réduit en inoccupation (90-20). Un débit minimal réduit en inoccupation (90-20) augmente
+(\SI{\approx -1}{\percent}) en comparaison avec le scénario de référence qui considère un
+réduit en inoccupation ($90-20$). Un débit minimal réduit en inoccupation ($90-20$) augmente
 alors la $Conso_{app}$ pour le chauffage (\SI{\approx +15}{kWh}). Cependant la
 $Conso_{app}$ diminue (\SI{\approx -8}{\kilo\watt\hour}) car la part
 électrique couvrant la production d’$ECS$ diminue. En effet, lorsque le débit de ventilation
 est plus élevé le $SSC$ est capable de fournir plus d’énergie pour le chauffage au
-détriment de l’$ECS$ permettant d’expliquer cet équilibre. Il est aussi intéressant de noter le
+détriment de l’$ECS$ expliquant cet équilibre. Il est aussi intéressant de noter le
 rendement des capteurs augmentent si on considère un débit de ventilation constant
-(90-90). Au regard des différentes remarques il semble donc que
-favoriser en priorité la production d’$ECS$ valorise mieux l’énergie solaire.
+($90-90$). Au regard des différentes remarques il semble donc que
+favoriser en priorité la production d’$ECS$ permet de mieux valoriser l’énergie solaire.
 
 Enfin il apparaît sans surprise que la diminution des apports internes, réduction par deux
-des charges internes électriques (équipements et éclairage) impacte fortement l’ensemble
+des charges internes électriques (équipements et éclairage), impacte fortement l’ensemble
 des indicateurs. En effet les charges internes représente la majorité des consommations
-pour des bâtiments dont l’enveloppe est très performante
-(Fig~\ref{fig:besoins_charges_internes}). Il est donc important de tenir compte des
-scénarios d’éclairage, de l’utilisation des équipements et des occupants pour analyser la
-performance d’un $SSC$ pour des maisons dites à énergie positive ($NZEB$, Near Zero Energy
-House).
+pour des bâtiments dont l’enveloppe est très performante (Fig~\ref{fig:besoins_charges_internes}).
+Il est donc important de tenir compte des scénarios d’éclairage, de l’utilisation des
+équipements et des occupants pour analyser la performance d’un $SSC$ pour des maisons
+dites à énergie positive ($NZEB$, Near Zero Energy House).
 
 \begin{figure}
     \begin{center}
@@ -1477,35 +1467,36 @@ House).
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Impact des ballons} % (fold)
 \label{ssub:impact_des_ballons}
-Outre la surface de capteur, le choix du volume des ballons, stockage comme sanitaire
+Outre la surface de capteur, le choix du volume des ballons, stockage comme sanitaire,
 reste un élément déterminant lors du dimensionnement d’un $SSC$. Cette section discute
-l’impact du volume mais aussi de la position de l’échangeur solaire.Pour rappel, la
+l’impact du volume mais aussi de la position de l’échangeur solaire. Pour rappel, la
 position de l’échangeur est définie de manière relative afin d’être indépendante des
 variations réalisées sur le volume du ballon.
 
 Le climat de Strasbourg est retenue afin d’illustrer les résultats et ceux sur Bordeaux
-seront discutés ensuite. Au regard des résultat, augmenter le volume du ballon sanitaire
+sont ensuite discutés. Au regard des résultat, augmenter le volume du ballon sanitaire
 (\num{300} à \SI{450}{\litre}) améliore les indicateurs principaux (le $F_{sol}^{ECS}$, le
 $F_{sol}^{CH}$, et la $Conso_{app}$). Cependant la part électrique pour le chauffage
 augmente. Au niveau du ballon de stockage, un volume plus important améliore le $F_{sol}^{CH}$
-et réduit la $Conso_{app}$ ainsi que le $F_{sol}^{ECS}$. Dans les deux cas, le rendement des
-capteurs augmente traduisant une meilleure valorisation de l’énergie incidente disponible.
-De plus les températures des ballons ($T3$, $T4$, $T5$) fluctues plus doucement lorsque le
+et réduit la $Conso_{app}$ ainsi que le $F_{sol}^{ECS}$. Dans les deux cas, le $\eta_{sol}$
+augmente traduisant une meilleure valorisation de l’énergie incidente disponible.
+De plus les températures des ballons ($T3$, $T4$, $T5$) fluctuent plus doucement lorsque le
 volume est important. Réduire le volume des deux ballons (\num{300} à \SI{150}{\litre})
 impacte négativement les performances du $SSC$ mais l’inverse améliore l’ensemble des
 indicateurs. Aussi, le volume du ballon sanitaire importe plus que celui du ballon de
 stockage et un volume de \SI{450}{\litre} semble préférable. Pour le ballon de stockage,
 un volume compris entre \num{300} de \SI{450}{\litre} est suffisant. La même analyse sur
 le climat de Bordeaux traduit un comportement similaire. Cependant, la $Conso_{app}$
-varie de manière plus importante. De plus il est aussi mis en
-évidence un élément important lors de l’évaluation d’$SSC$. La couverture solaire
-($F_{sol}$), ne permet pas de clairement évaluer la performance d’un système solaire. En
-effet au regard des résultats (Fig~\ref{fig:importance_chauffage_ecs}), le volume du
-ballon pour le ballon de stockage comme sanitaire n’aurais pas d’effet. Il est nécessaire,
-comme cette analyse le fait, de considérer séparément le $F_{sol}^{ECS}$ et $F_{sol}^{CH}$ afin de
-comprendre que le système favorise dans un cas le chauffage et dans l’autre la production
-en $ECS$. Le système est donc capable de s’adapter à différentes conditions de
-fonctionnement.
+varie de manière plus importante.
+
+Il est aussi mis en évidence un élément important lors de l’évaluation d’$SSC$. La
+couverture solaire ($F_{sol}$), ne permet pas de clairement évaluer la performance d’un
+système solaire. En effet au regard des résultats, faire varier le volume du ballon de
+stockage ou sanitaire n’a pas d’effet (Fig~\ref{fig:importance_chauffage_ecs}). Il est
+nécessaire, comme cette analyse le fait, de considérer séparément le $F_{sol}^{ECS}$ et
+$F_{sol}^{CH}$ afin de comprendre que le système favorise dans un cas le chauffage et dans
+l’autre la production en $ECS$. Le système est donc capable de s’adapter à
+différentes conditions de fonctionnement.
 
 \begin{figure}
     \begin{center}
@@ -1518,13 +1509,13 @@ fonctionnement.
 
 L’analyse de l’impact de la position de l’échangeur est illustré à travers la
 Fig~\ref{fig:impact_pos_ech}. Il est observé que la position de l’échangeur impacte
-fortement les performances du $SSC$ (le $F_{sol}^{CH}$, comme le $F_{sol}^{ECS}$), en particulier
+fortement les performances du $SSC$ ($F_{sol}^{CH}$ et $F_{sol}^{ECS}$), en particulier
 lorsque le volume du ballon est faible. Pour les deux climats, une position basse
 (\num{0.8}) est à favoriser afin d’améliorer le rendement des capteurs et réduire la part
 couverte par l’appoint. Il est cependant noté qu’une position plus élevée (\num{1.3})
 permet de réduire sensiblement la $Conso_{app}$ sur le chauffage.
 Enfin contrairement au volume du ballon dont l’impact est plus significatif sur Bordeaux, le
-climat de Strasbourg est plus sensible à $Ech_{sol}^{pos}$. Il a été vu que la position de l’échangeur
+climat de Strasbourg est plus sensible à la $Ech_{sol}^{pos}$. En effet, la position de l’échangeur
 est un facteur influençant directement la $Prod_{sol}^{valoris\acute ee}$. Il est donc clair que le gain potentiel
 est plus notable lorsque l’ensoleillement est moins important comme à Strasbourg.
 Finalement l’impact du matériau utilisé pour l’échangeur a aussi été évalué et sa
@@ -1562,7 +1553,7 @@ effet capable de fournir plus d’énergie solaire afin de couvrir l’augmentat
 en $ECS$. Si on compare les deux consommations extrêmes (\num{27} et
 \SI{40}{\litre/(jour\period pers)}\,(\SI{60}{\celsius})), la $Prod_{sol}^{valoris\acute ee}$
 augmente de \SI{248}{\kilo\watt\hour} et la consommation de l’appoint de \SI{390}{\kilo\watt\hour}.
-Ainsi le système s’adapte ainsi sans problème à différent profils de puisage et le
+Ainsi, le système s’adapte sans problème à différent profils de puisage et le
 $F_{sol}^{ECS}$ et le $F_{sol}^{CH}$ restent élevés même lors que les besoins en $ECS$ augmentent.
 
 L’utilisation des coefficients mensuels n’affectent ni le $F_{sol}^{CH}$, ni la $Conso_{app}$
@@ -1570,9 +1561,9 @@ L’utilisation des coefficients mensuels n’affectent ni le $F_{sol}^{CH}$, ni
 nouvelle fois l’importance d’évaluer de manière séparée le chauffage et la production
 d’$ECS$. Sur Bordeaux où l’ensoleillement est plus propice, la variation est moindre. Ces
 résultats montrent ainsi que les habitudes des occupants (prendre une douche plus longue
-et plus chaude en hiver, ...), doivent être pris en compte afin d’évaluer correctement la
-performance du $SSC$. Ils montrent aussi que le profil journalier n’est pas impactant lors
-de l’évaluation de $SSC$.
+ou plus chaude en hiver, ...), doivent être pris en compte afin d’évaluer correctement la
+performance du $SSC$. Ils montrent aussi que le choix du profil journalier n’est pas impactant lors
+de l’évaluation du $SSC$.
 
 \begin{figure}
     \begin{center}
@@ -1588,10 +1579,10 @@ de l’évaluation de $SSC$.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Autres variations} % (fold)
 \label{ssub:autres_variations}
-Cette dernière partie discute des variations restantes qui sont plus communes dans
-les travaux du domaine de recherche comme~: le nombre ou la surface des capteurs, leur
-orientation et inclinaison, leur performance au regard des caractéristiques techniques.
-Enfin les variations algorithmiques sont aussi discutées.
+Cette dernière partie discute des variations restantes qui sont plus communes lors
+de l’évaluation d’un $SSC$~: le nombre ou la surface des panneaux, leur
+orientation et inclinaison, et leur performance au regard des caractéristiques techniques.
+Enfin, les variations algorithmiques sont aussi discutées.
 
 L’inclinaison des capteurs jouent un rôle important dans la caractérisation de la
 performance d’un système $SSC$ et affectent l’ensemble des indicateurs. La $Conso_{app}$
@@ -1603,10 +1594,10 @@ nombre de capteurs impactent fortement la consommation de l’appoint. À Strasb
 variation de surface de capteurs de \SI{14}{\meter\squared} (\num{2} à \num{8} capteurs)
 fait varier le $F_{sol}^{CH}$ de \num{11} à \SI{52}{\percent} et la $Conso_{app}$ varie de
 \num{2232} à \SI{1133}{\kilo\watt\hour}. L’orientation joue aussi un rôle important sur la
-performance du $SSC$. À surface équivalente, des capteurs orientés au Sud produisent deux
-fois plus que des capteurs à l’Est. Les résultats montrent que le capteur plan vitrée du
-fabricant Radco permet d’obtenir les meilleures performances mais l’écart est sensible. Le
-capteur sous-vide apparaît comme le moins performant même pour le climat Strasbourgeois.
+performance du $SSC$. À surface équivalente, des capteurs orientés au sud produisent deux
+fois plus que des capteurs à l’est. Les résultats montrent aussi que le capteur plan vitrée du
+fabricant Radco (308C\,HP) permet d’obtenir les meilleures performances mais l’écart est sensible. Le
+capteur sous-vide (12\,CPC58) apparaît comme le moins performant même pour le climat Strasbourgeois.
 
 Au niveau des variations algorithmiques, les temporisations n’impactent que sensiblement
 le $SSC$. Augmenter la $Tempo_{souff}$ (\SI{15}{min}) améliore le $F_{sol}^{ECS}$ mais dégrade
@@ -1620,13 +1611,12 @@ cohérent avec les observations faites lors de l’évaluation des variations su
 ventilation (\ref{ssub:impact_des_scenarios_internes}) et montrent que l’énergie solaire
 est mieux valorisée si elle est attribuée en priorité pour la production d’$ECS$.
 
-En résumé, les capteurs solaires thermiques doivent être placés en priorité sur un pan Sud
+En résumé, les capteurs solaires thermiques doivent être placés en priorité sur un pan sud
 avec une inclinaison supérieure de \SI{15}{\degree} par rapport à la latitude du lieu afin
 d’améliorer les performances du $SSC$ sur l’ensemble des indicateurs. Il apparaît aussi
-que le $DeltaT_{sol}$ impact le système est doit être considéré. À l’opposé la surchauffe
-diurne impacte négativement le bilan global du système mais permet de favoriser le
-chauffage ou apporter un confort thermique hivernale plus important sans surcoût de
-consommation.
+que le $DeltaT_{sol}$ impacte le système est doit donc être considéré. À l’opposé la surchauffe
+diurne impacte négativement le bilan global du système. Cependant, il permet de favoriser le
+chauffage ou apporter un confort thermique hivernale plus important sans surcoût.
 % subsubsection autres_variations (end)
 % subsection analyse_des_resultats (end)
 % section etude_parametrique_ (end)
@@ -1641,22 +1631,22 @@ consommation.
 \label{sec:vers_une_methodologie_d_aide_a_la_decision}
 Au cours de ce chapitre, la démarche entreprise a été explicitée. Dans l’optique de mieux
 comprendre les interactions entre le bâtiment et le $SSC$, un modèle mixte a été réalisé à
-l’aide du langage \emph{Modelica}. Pour le bâtiment, un modèle mono-zone a été retenu
+l’aide du langage \textit{Modelica}. Pour le bâtiment, un modèle mono-zone a été retenu
 suite à une comparaison avec une approche plus détaillée. Pour le $SSC$, une approche
 détaillée a été retenue afin de tenir compte de la complexité de l’algorithme de contrôle.
 En effet un algorithme innovant et détaillé a été utilisé afin d’orchestrer le
 fonctionnement couplé du bâtiment et du $SSC$. Finalement, une étude paramétrique a permis
 de mieux comprendre le comportement du $SSC$.
 
-De nombreux paramètres dont la littérature avait identifié l’impact ont été identifié dans
+De nombreux paramètres dont la littérature avait identifié l’impact ont été identifiés dans
 ces travaux et les conclusions sont similaires. Cependant d’autres paramètres et d’autres
 conclusions ont aussi été obtenues. Ce $SSC$ est robuste, faire varier la température de
 consigne, supprimer le réduit de nuit, ou encore modifier la répartition des puisages
-journaliers impacte de manière très sensible sa performance. Il a été mis en évidence que
-le $F_{sol}^{ECS}$ et le $F_{sol}^{CH}$ ne sont pas influencé de manière similaire en
-fonction des choix techniques. Le système est en effet capable de s’adapter~: dans
-certains cas le $F_{sol}^{ECS}$ est favorisé, dans d’autre le $F_{sol}^{CH}$. Ce
-comportement est facilement observable lorsque le volume des ballons est modifié où le
+journaliers impacte de manière très sensible sa performance. Aussi, il a été mis en exergue que
+le $F_{sol}^{ECS}$ et le $F_{sol}^{CH}$ ne sont pas influencés de manière similaire en
+fonction des variations techniques. Le système est en effet capable de s’adapter~: dans
+certains cas le $F_{sol}^{ECS}$ est favorisé, dans d’autre c’est le $F_{sol}^{CH}$. Ce
+comportement est aisément observable lorsque le volume des ballons est modifié et que
 $F_{sol}$ demeure intact mais où $F_{sol}^{ECS}$ et $F_{sol}^{CH}$ subissent de fortes
 variations. Il est donc indispensable de considérer de manière indépendante la performance
 du système solaire sur le chauffage ($F_{sol}^{CH}$) et sur la production d’$ECS$
@@ -1666,7 +1656,7 @@ sanitaire. Ceci a en effet été noté à plusieurs reprises~: lors de la charge
 bâtiment afin de réduire la $Conso_{app}$, ou bien lors de la variation du débit de
 ventilation. Cette étude a donc permise de confronter le modèle aux variations techniques
 communes dans l’étude des $SSC$ mais aussi d’apprendre plus à travers d’autres variations
-autant au niveau du bâtiment, du $SSC$ ou de son algorithme. Les résultats tendent à
+au niveau du bâtiment, du $SSC$ ou de son algorithme. Les résultats tendent à
 montrer que le $SSC$ permet d’obtenir une couverture importante sur le chauffage comme la
 production $ECS$ lorsque un algorithme détaillé est utilisé. Il est donc propice à
 l’utilisation pour des bâtiments à faible consommation et pas uniquement pour couvrir les
@@ -1680,7 +1670,7 @@ entre le $SSC$ et le bâtiment illustrées à travers l’étude paramétrique. 
 d’une aide à la décision, il apparaît donc important de considérer à la fois la
 $Conso_{app}$, le $F_{ECS}$, et le $F_{CH}$. L’approche est donc multi-objectif en plus
 d’être multi-critère et une méthode spécialisée est nécessaire. Dans le chapitre suivant,
-le choix de la méthode retenue est discutée et sa mise en place, illustrée à travers les
-résultats, dans le dernier chapitre.
+le choix de la méthode retenue est discutée, et sa mise en place illustrée à travers les
+résultats dans le dernier chapitre.
 % subsection bilan (end)
 % section vers_une_methodologie_d_aide_a_la_decision (end)
