@@ -504,8 +504,8 @@ limiter les arrêts intempestifs \parencite{Kicsiny20123489}.
     Contenance                                  & \num{1.35}           & \si{l}                \\
     Rendement optique ($\eta_{0}$)              & \num{78}             & \si{\%}               \\
     Pente                                       & \num{-5.103}         & -                     \\
-    Coefficient de pertes linéiques ($a_{1}$)   & \num{3.796}          & \si{W/(m^{2}.K)}      \\
-    Coefficient de pertes surfaciques ($a_{2}$) & \num{0.013}          & \si{W/(m^{2}.K^{2})}  \\
+    Coefficient de pertes linéiques ($a_{1}$)   & \num{3.796}          & \si{W/(m^{2}\period K)}      \\
+    Coefficient de pertes surfaciques ($a_{2}$) & \num{0.013}          & \si{W/(m^{2}\period K^{2})}  \\
     Modulation du diffus ($IMDiff$)             & \num{100}            & \si{\%}               \\
     \bottomrule
 \end{tabular}
@@ -1023,7 +1023,7 @@ $20$-$18$-$16$, $20$-$20$-$16$.
 \label{tab:consigne_chauffage}
 \begin{tabular}{l c c c c}
     \toprule
-                           & \bf{\num{16}}                     & \bf{\num{18}}                     & \bf{\num{19}}                     & \bf{\num{20}}              \\
+                           & \textbf{\num{16}}                     & \textbf{\num{18}}                     & \textbf{\num{19}}                     & \textbf{\num{20}}              \\
     \midrule
     Occupation (diurne)    &                             &                             & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
     Occupation (nocturne)  &                             & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} & \cellcolor{SolarizedBrBlue} \\
@@ -1232,7 +1232,7 @@ et sur le chauffage.
     \toprule
     \addlinespace
                                            & Référence & Variations                             & Unité         & Détails                                               \\
-    \multicolumn{5}{l}{\bf{Scénarios}}                                                                                                                                 \\
+    \multicolumn{5}{l}{\textbf{Scénarios}}                                                                                                                                 \\
     \midrule
     Ventilation                            & $90-20$   & $$90-90$$                                  & \si{m^{3}/h}  & \ref{ssub:ventilation}                                \\
     Chauffage                              & $19$-$18$-$16$  & $19$-$19$-16, $19$-$19$-$19$, $20$-$18$-$16$, $20$-$20$-$16$ & \si{\celsius} & \multirow{2}{*}{\ref{ssub:temperature_de_consigne}}   \\
@@ -1242,7 +1242,7 @@ et sur le chauffage.
     $Puisage_{mod}$                        & Non       & Mensuelle                              & -             &                                                       \\
     \\
     \addlinespace[\defaultaddspace]
-    \multicolumn{5}{l}{\bf{Équipements}}                                                                                                                              \\
+    \multicolumn{5}{l}{\textbf{Équipements}}                                                                                                                              \\
     \midrule
     Modèle des capteurs                    & IDMK\,25  & 308C\,HP, 12\,CPC58                    & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
     Nombre de capteurs                     & \num{4}   & \num{2}, \num{6}, \num{8}              & -             &                                                       \\
@@ -1253,7 +1253,7 @@ et sur le chauffage.
     $Ech_{sol}^{pos}$                      & \num{1}   & \num{0.8}, \num{1.3}                   & \si{m}        &                                                       \\
     \\
     \addlinespace
-    \multicolumn{5}{l}{\bf{Algorithme}}                                                                                                                                 \\
+    \multicolumn{5}{l}{\textbf{Algorithme}}                                                                                                                                 \\
     \midrule
     $Tempo_{batterie}$                     & \num{3}   & \num{2}, \num{4}                       & \si{\min}     & \multirow{3}{*}{\ref{ssub:variations_algorithmiques}} \\
     $Tempo_{souff}$                        & \num{10}  & \num{5}, \num{15}                      & \si{\min}     &                                                       \\
