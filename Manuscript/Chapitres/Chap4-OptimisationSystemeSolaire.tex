@@ -1,126 +1,358 @@
 %!TEX root = ../main.tex
 % Chapitres\Chap4-OptimisationSystemeSolaire.tex
 
-% Plan temporaire
-\itodo{Plan}
-\itodo{Présentation \\ sensibilité \\ chaos \\ optimisation \\ résultats \\ discussions}
-
+\iunsure{Description commune de Bordeaux et Strasbourg pour éviter répétition (section 2, 3)}
+\iunsure{Relancer les simulations Pareto optimales avec Dymola pour comparaison}
 
 % ..............................................................................
 % ..............................................................................
-\section{Formulation du problème d’optimisation} % (fold)
-\label{sec:formulation_du_probleme_d_optimisation}
-\itodo{Décrire objectifs, contraintes, variables ...}
+\section{Description de l’étude de cas} % (fold)
+\label{sec:description_de_l_etude_de_cas}
 % ------------------------------------------------------------------------------
-\subsection{Définition des objectifs et des contraintes} % (fold)
-\label{sub:definition_des_objectifs_et_des_contraintes}
+\subsection{Paramètres a priori} % (fold)
+\label{sub:parametres_a_priori}
+~
+\itodo{Mettre en exergue que l’étude est sur Bordeaux et Strasbourg}
+\itodo{Faire la liste des paramètres retenues a priori}
+\itodo{Expliquer variation du vitrage}
+\itodo{Expliquer la surface PV et TH}
+\itodo{Expliquer la répartition des capteurs sur la toiture}
+\itodo{Expliquer pourquoi les scénarios sont fixes}
+\itodo{Décrire scénario retenues et éléments fixes}
+\ifix{Vérifier valeurs bornes sensibilité}
+\ifix{Vérifier capteurs utilisés dans l’otpimisation}
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Les objectifs de l’étude} % (fold)
-\label{ssub:les_objectifs_de_l_etude}
-\itodo{Les objectifs: \\
-       - Maximiser couverture solaire sur l’ECS \\
-       - Maximiser couverture solaire sur le chauffage \\
-       - Minimiser le coût de l’installation \\
-       - Minimiser le retour sur investissement}
-Dans cette étude on considère trois fonctions objectifs. On cherche dans un premier
-temps à évaluer la performance du système solaire. Pour ce faire on évalue sa
-performance sur le chauffage et sur la production d’ECS séparément. Il en a enfin
-été noté dans ~\autoref{sub:approche_monozone} que certaines variations impactent
-de manière différentes la part de chauffage et d’ECS. Enfin on a vu dans
-~\autoref{sec:modelisation_des_systemes} que la production d’ECS reste prioritaire
-sur le chauffage, la modification du profil de puisage aura donc un impact différent
-sur le chauffage et l’ECS.
-\itodo{Il est aussi nécessaire de mettre en valeur l’impact de l’algorithme sur
-      les rendements}
+L’étude de cas est réalisé pour deux climat différents~: Bordeaux et Strasbourg.
+Suite à l’étude paramétrique, il est aussi retenue un ensemble de paramètres a
+priori ().
 
-Le dernier objectif qui sera pris en compte est l’\textbf{impact économique}. Il
-est important de ne pas seulement se focaliser sur la performance du système afin
-de filtrer les solutions certes très performantes mais non-réalisable dans les années
-proches. Il est ainsi important de rappeler que ces travaux se focalise sur une
-technologie innovante mais pouvant être implémentées aujourd’hui.
-Ainsi ce facteur bien que discutable du fait de son caractère changeant est indispensable
-dans notre étude pour guider la recherche et donner un ordre de prix pour une solution
-type.
-L’optimisation se portera ainsi sur la maximisation de la couverture solaire pour
-(i) le chauffage, (ii) la production d’eau chaude sanitaire, et la minimisation
-du coût d’installation et du temps de retour sur investissement.
-\itodo{Décrire les différents objectifs retenues avec plus de bla bla}
-% subsubsection les_objectifs_de_l_etude (end)
+Par exemple un pas de \num{0.1} avec des bornes min de \num{0} et max de \num{0.5} donnera
+les variations possibles suivantes~: (\num{0} - \num{0.1} - \num{0.2} - \num{0.3} - \num{0.4} - \num{0.5}).
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Le choix des variables de décision} % (fold)
-\label{ssub:le_choix_des_variables_de_decision}
-\itodo{Choix des variables de décisions: \\
-       - Propre au bâtiment \\
-       - Propre au système \\
-       - Propre à l’algorithme}
+% \begin{landscape}
+\begin{table}
+\centering
+\caption{Liste des paramètres a priori utilisés pour l’analyse de sensibilité.}
+\label{tab:facteur_sensibilite}
+\begin{tabular}{l c c l}
+  \toprule
+  \addlinespace
+                                               & Borne min     & Borne max   & Remarques                                                            \\
+  \addlinespace
+  \multicolumn{4}{l}{\bm{$SSC$}}                                                                           \\
+  \midrule
+  Nombre Capteurs                              & \num{2}       & \num{5}     & \num{4.64} -- \SI{11.6}{\metre\squared}                              \\
+  $\eta_{0}$                                   & \num{0.63}    & \num{0.84}  & \multirow{3}{*}{Variation provenant de \href{www.solar-rating.org}{ICC-SRCC}}   \\
+  $a_{1}$                                      & \num{0.65}    & \num{6.7}   &                                                                      \\
+  $a_{2}$                                      & \num{0.00069} & \num{0.29}  &                                                                      \\
+  $Ech_{sol}^{pos}$                            & \num{0.8}     & \num{1.3}   & Position relative à la taille du ballon                              \\
+  Volume ballon tampon                         & \num{100}     & \num{500}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}             \\
+  Volume ballon $ECS$                          & \num{100}     & \num{500}   &                                                                      \\
+  $R$ Ballon sanitaire                         & \num{7}       & \num{10}    & \multirow{2}{*}{Variation uniquement de l’épaisseur de l’isolant}    \\
+  $R$ Ballon tampon                            & \num{7}       & \num{10}    &                                                                      \\
+  $Isolant_{r\acute eseau}^{\acute epaisseur}$ & \num{0.013}   & \num{0.04}  & Résistance dépendant du nombre de capteurs                           \\
+  Chauffage solaire                            & \num{18}      & \num{24}    &  -                                                                   \\
+  $DeltaT_{sol}$                               & \num{5}       & \num{15}    &  -                                                                   \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}                                                                              \\
+  \midrule
+  $R$ Plancher                                 & \num{6}       & \num{10}    &  -                                                                   \\
+  $R$ Murs                                     & \num{4}       & \num{7}     &  -                                                                   \\
+  $R$ Plafond                                  & \num{6}       & \num{10}    &  -                                                                   \\
+  $\tau_{sol}$                                 & \num{0.643}   & \num{0.849} & \multirow{2}{*}{Variation des vitrages Nord et Ouest uniquement}     \\
+  $\acute Emis_{ext}$                          & \num{0.037}   & \num{0.837} &                                                                      \\
+  Surface vitrées Est                          & \num{4.3}     & \num{6.46}  & \multirow{4}{*}{Surface totale \SI{26.4}{\metre\squared}}            \\
+  Surface vitrées Nord                         & \num{0.46}    & \num{0.684} &                                                                      \\
+  Surface vitrées Sud                          & \num{5.42}    & \num{8.13}  &                                                                      \\
+  Surface vitrées Ouest                        & \num{2.3}     & \num{3.89}  &                                                                      \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{4}{l}{\textbf{Production d’électricité}}                                                                     \\
+  \midrule
+  Surf $PV$   & \num{0} &  \num{15} &  Capteurs thermiques prioritaires sur le pan Sud                                                             \\
+  \bottomrule
+  \end{tabular}
+\end{table}
 
-Dans cette partie sera décrit les différentes variables qui ont été sélectionnées
-en amont du **screening**.
-\itodo{Décrire l’ensemble des variables considérées en amont de l’étude de sensibilité
-      classée par groupe, système, contrôle, enveloppe, scénarios}
-\itodo{Définir chaque variables avec type, plage de variation, unité, description}
-\itodo{Dresser une liste des caractéristiques de chaque critère}
-\itodo{Faire apparaître clairement (graphiquement) l’impact de chaque variables
-      sur les différents objectifs peut être pas à mettre ici mais plus dans
-      ~\autoref{sub:reduction_de_la_cardinalite_par_screening}}
-% subsubsection le_choix_des_variables_de_decision (end)
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Les contraintes de l’étude} % (fold)
-\label{ssub:les_contraintes_de_l_etude}
-\itodo{Définition des contraintes: \\
-       - Équilibre prod/conso \\
-       - Toiture limité entre photo et thermique}
-Les objectifs sont maintenant clairement définies mais l’étude comporte plusieurs
-contraintes qui doivent être prises en compte durant le processus d’optimisation.
-La première contrainte est la surface de toiture qui est limitée et doit donc être
-partagée entre les panneaux photovoltaïques et thermiques. Comme nous l’avons définie
-(~\autoref{sec:modelisation_des_systemes}) le cas d’étude étudié comporte des pans
-de toiture avec diverses orientations ce qui complète la première contrainte.
-On a donc une double contrainte, à savoir
-partager la surface de toiture pour chaque orientation entre les différents capteurs.
-Des études ont déjà été réalisées pour évaluer le meilleur ratio entre photovoltaïque
-et thermique\mtodo{Ajouter citation} mais traite le problème sans tenir compte des combinaisons
-entre les équipements, la structure, la régulation, ... Ces travaux permettront donc
-d’obtenir plus d’informations sur cet aspect encore aujourd’hui faiblement exploré.
-\itodo{Retrouver la publication qui parle de ratio thermique/photovoltaïque}
+\begin{table}
+\centering
+\caption{Liste des paramètres retenus pour l’optimisation.}
+\label{tab:facteur_retenues}
+\begin{tabular}{l c c c c l}
+  \toprule
+  \addlinespace
+                       & Min        & Max         & Catégorie  & Pas        & Remarques                                \\
+  \addlinespace
+  \multicolumn{5}{l}{\bm{$SSC$}}         \\
+  \midrule
+  Nombre Capteurs      & \num{2}    & \num{5}     & Discrete    & \num{1}    & \num{4.64} -- \SI{11.6}{\metre\squared}   \\
+  Type de capteur      & -          &  -          & Qualitative & -          & Variation de la performance \href{www.solar-rating.org}{ICC-SRCC}   \\
+  $Ech_{sol}^{pos}$    & \num{0.8}  &  \num{1.3}  & Continue    & -          & Position relative à la taille du ballon     \\
+  Volume ballon tampon & \num{100}  &  \num{500}  & Discrete    & \num{50}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}   \\
+  Volume ballon $ECS$  & \num{100}  &  \num{500}  & Discrete    & \num{50}   &    \\
+  $DeltaT_{sol}$       & \num{5}    &  \num{15}   & Continue    & -          &        \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}             \\
+  \midrule
+  $R$ Murs             & \num{4}    &  \num{7}    & Discrete    & \num{0.5}  & -                                  \\
+  $R$ Plafond          & \num{6}    &  \num{10}   & Discrete    & \num{0.5}  & -                                                                      \\
+  Surface vitrées Sud  & \num{5.42} &  \num{8.13} & Continue    &  -         & \multirow{2}{*}{Surface totale \SI{26.4}{\metre\squared}}       \\
+  Surface vitrées Est  & \num{4.3}  &  \num{6.46} & Continue    &  -         &   \\
+  Type de vitrage      & -          &  -          & Qualitative &  -         & Variation couplée du $\tau_{sol}$ et du $\acute Emis_{ext}$\\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{5}{l}{\textbf{Production d’électricité}}      \\
+  \midrule
+  Surface PV           & \num{14}   &  \num{30}   & Discret    &  \num{1}   & Capteurs thermiques prioritaires sur le pan Sud   \\
+  \bottomrule
+\end{tabular}
+\end{table}
 
-La seconde contrainte est la place disponible dans la maison pour accueillir les
-équipements.
-\itodo{Bla bla bla}
 
-Enfin la contrainte principale est sur l’équilibre entre production et consommation
-d’énergie primaire. En effet l’approche MEPOS ou encore NZEB définit comme requit
-pour une maison passive d’avoir un équilibre entre production et consommation.
-On a donc ici une contrainte forte au niveau énergétique.
-\itodo{Bla bla bla}
-\itodo{Décrire les contraintes et la méthode utilisée pour les traiter}
-% subsubsection les_contraintes_de_l_etude (end)
-% subsection definition_des_objectifs_et_des_contraintes (end)
-% section formulation_du_probleme_d_optimisation (end)
+\begin{table}
+\itodo{Ajouter variations des capteurs DIMA voir optimisation}
+\centering
+\caption{Caractéristiques des panneaux solaires.
+\label{tab:capteurs_specs}}
+\begin{tabular}{l c c c c r}
+    \toprule
+                                 & IDMK\,25             & 308C\,HP             & 12\,CPC58      & DIMA           & Unité                       \\
+    \midrule
+    Fabricant                    & Sonnenkraft          & Radco                & Sky Pro        & DIMA           & -                           \\
+    Type                         & Plan vitrée          & Plan vitrée          & Tubulaire      & Plan vitréec   & -                           \\
+    Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}     &  & \si{m^{2}}                  \\
+    Poids à vide                 & \num{54}             & \num{36}             & \num{53}       &  & \si{kg}                     \\
+    Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}     &  & \si{\litre}                 \\
+    $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}       &  & \si{\%}                     \\
+    Pente                        & \num{-5.103}         & \num{-4.777}         & \num{-0.975}   &  & -                           \\
+    $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}   &  & \si{W/(m^{2}\period K)}     \\
+    $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}  &  & \si{W/(m^{2}\period K^{2})} \\
+    $IMDiff$                     & \num{100}            & \num{96}             & \num{102}      &  & \si{\%}                     \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{l c c c r}
+  \toprule
+                     & Planitherm XN       & Planitherm ONE       & OptiwhiteKGlass       & Unité                        \\
+  \midrule
+  Fabricant    & \href{http://fr.saint-gobain-glass.com/product/2422/sgg-planitherm-xn}{%
+                       St Gobain}
+               & \href{http://eg.saint-gobain-glass.com/product/1659/}{%
+                       St Gobain}
+               & \href{https://www.pilkington.com/en-gb/uk/products/product-categories/thermal-insulation/pilkington-k-glass-range/pilkington-k-glass}{%
+                       Pilkington}                                                              & -                             \\
+  Construction & \num{4}-16-4              & \num{4}-16-4            & \num{4}-16-4             & -                             \\
+  Gaz          & Argon                     & Argon                   & Argon                    & -                             \\
+  $U_{g}$      & \num{1}.1                 & \num{1}.0               & \num{1}.5                & \si{W/(m^{2}\period \kelvin)} \\
+  $g$          & \num{82}                  & \num{49}                & \num{78}                 & \si{\percent}                 \\
+  \bottomrule
+    \end{tabular}
+\caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673}) des différents vitrages envisagés.
+         \label{tab:carac_vitrages}}
+\end{table}
+% \end{landscape}
+
+% subsection parametres_a_priori (end)
+
+% ------------------------------------------------------------------------------
+\subsection{Objectifs et contraintes} % (fold)
+\label{sub:objectifs_et_contraintes}
+~
+\itodo{Décrire l’approche naïve}
+\itodo{Décrire l’approche retenue}
+% subsection objectifs_et_contraintes (end)
+% section description_de_l_etude_de_cas (end)
+
 
 
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Étude de sensibilité} % (fold)
-\label{sec:etude_de_sensibilite}
-\itodo{Présenter l’état avant avec les critères choisis}
-\itodo{Décrire le processus}
-\itodo{Sélection des critères en aval de l’étude}
-% section etude_de_sensibilite (end)
+\section{Simplification du modèle} % (fold)
+\label{sec:simplification_du_modele}
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la cardinalité} % (fold)
+\label{sub:reduction_de_la_cardinalite}
+~
+\itodo{Décrire les résultats obtenues}
+\ftodo{$\sigma$ et $\mu^{*}$}
+\ftodo{Distances normalisées sur les facteurs retenues}
+\ftodo{Ajouter le graphe d’influence}
+% subsection reduction_de_la_cardinalite (end)
+
+% ------------------------------------------------------------------------------
+\subsection{Construction d’un modèle de substitution} % (fold)
+\label{sub:construction_d_un_modele_de_substitution}
+~
+\itodo{Décrire la création de l’échantillon et résultats (erreur relative)}
+\ftodo{Régression entre modèle et meta-modèle}
+% subsection construction_d_un_modele_de_substitution (end)
+% section simplification_du_modele (end)
+
 
 
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Optimisation} % (fold)
-\label{sec:optimisation}
-\itodo{Description résumé de la methode}
-\itodo{Discussion sur le front de Pareto obtenu: Analyse répartition, convergence, ...}
-% section optimisation (end)
+\section{Vers une solution adaptée} % (fold)
+\label{sec:vers_une_solution_adaptee}
+% ------------------------------------------------------------------------------
+\subsection{Optimisation multi-objectif} % (fold)
+\label{sub:optimisation_multi_objectif}
+~
+\itodo{Décrire l’évolution du front et le panel de solution obtenue}
+\itodo{Décrire l’exploration de l’espace}
+\ftodo{Représentation 3D}
+\ftodo{Représentation 2D}
+\ftodo{Évolution du front en fonction des itérations}
+% ------------------------------------------------------------------------------
+\subsection{Aide à la décision a posteriori} % (fold)
+\label{sub:aide_a_la_decision_a_posteriori}
+~
+\itodo{Description des critères qui rentre en jeu~: coût, Suface disponible,
+       fournisseurs locaux, type de clientèle, réglementation, ...}
+\itodo{Ajouter un exemple avec XDAT}
+\itodo{Tableau ou figure}
+\ftodo{Ajouter screenshot de XDAT avec la/les solutions retenues}
+\ttodo{Ajouter tableau avec caractéristiques des solutions retenues}
+
+% subsection aide_a_la_decision_a_posteriori (end)
+% subsection optimisation_multi_objectif (end)
+% section vers_une_solution_adaptee (end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \section{Formulation du problème d’optimisation} % (fold)
+% \label{sec:formulation_du_probleme_d_optimisation}
+% \itodo{\num{Décrire.objectifs},\num{.contraintes,} variables ...}
+% % ------------------------------------------------------------------------------
+% \subsection{Définition des objectifs et des contraintes} % (fold)
+% \label{sub:definition_des_objectifs_et_des_contraintes}
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Les objectifs de l’étude} % (fold)
+% \label{ssub:les_objectifs_de_l_etude}
+% \itodo{Les objectifs: \\
+%        - Maximiser couverture solaire sur l’ECS \\
+%        - Maximiser couverture solaire sur le chauffage \\
+%        - Minimiser le coût de l’installation \\
+%        - Minimiser le retour sur investissement}
+% Dans cette étude on considère trois fonctions objectifs. On cherche dans un premier
+% temps à évaluer la performance du système solaire. Pour ce faire on évalue sa
+% performance sur le chauffage et sur la production d’ECS séparément. Il en a enfin
+% été noté dans ~\autoref{sub:approche_monozone} que certaines variations impactent
+% de manière différentes la part de chauffage et d’ECS. Enfin on a vu dans
+% ~\autoref{sec:modelisation_des_systemes} que la production d’ECS reste prioritaire
+% sur \num{le.chauffage}, la modification du profil de puisage aura donc un impact différent
+% sur le chauffage et l’ECS.
+% \itodo{Il est aussi nécessaire de mettre en valeur l’impact de l’algorithme sur
+%       les rendements}
+
+% Le dernier objectif qui sera pris en compte est l’\textbf{impact économique}. Il
+% est important de ne pas seulement se focaliser sur la performance du système afin
+% de filtrer les solutions certes très performantes mais non-réalisable dans les années
+% proches. Il est ainsi important de rappeler que ces travaux se focalise sur une
+% technologie innovante mais pouvant être implémentées aujourd’hui.
+% Ainsi ce facteur bien que discutable du fait de son caractère changeant est indispensable
+% dans notre étude pour guider la recherche et donner un ordre de prix pour une solution
+% type.
+% L’optimisation se portera ainsi sur la maximisation de la couverture solaire pour
+% (i) \num{le.chauffage}, (ii) la production d’eau \num{chaude.sanitaire}, et la minimisation
+% du coût d’installation et du temps de retour sur investissement.
+% \itodo{Décrire les différents objectifs retenues avec plus de bla bla}
+% % subsubsection les_objectifs_de_l_etude (end)
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Le choix des variables de décision} % (fold)
+% \label{ssub:le_choix_des_variables_de_decision}
+% \itodo{Choix des variables de décisions: \\
+%        - Propre au bâtiment \\
+%        - Propre au système \\
+%        - Propre à l’algorithme}
+
+% Dans cette partie sera décrit les différentes variables qui ont été sélectionnées
+% en amont du **screening**.
+% \itodo{Décrire l’ensemble des variables considérées en amont de l’étude de sensibilité
+%       classée \num{par.groupe},\num{.système,\num}{.contrôle,\num}{.enveloppe,} scénarios}
+% \itodo{Définir chaque variables \num{avec.type}, plage \num{de.variation},\num{.unité,} description}
+% \itodo{Dresser une liste des caractéristiques de chaque critère}
+% \itodo{Faire apparaître clairement (graphiquement) l’impact de chaque variables
+%       sur les différents objectifs peut être pas à mettre ici mais plus dans
+%       ~\autoref{sub:reduction_de_la_cardinalite_par_screening}}
+% % subsubsection le_choix_des_variables_de_decision (end)
+
+% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \subsubsection{Les contraintes de l’étude} % (fold)
+% \label{ssub:les_contraintes_de_l_etude}
+% \itodo{Définition des contraintes: \\
+%        - Équilibre prod/conso \\
+%        - Toiture limité entre photo et thermique}
+% Les objectifs sont maintenant clairement définies mais l’étude comporte plusieurs
+% contraintes qui doivent être prises en compte durant le processus d’optimisation.
+% La première contrainte est la surface de toiture qui est limitée et doit donc être
+% partagée entre les panneaux photovoltaïques et thermiques. Comme nous l’avons définie
+% (~\autoref{sec:modelisation_des_systemes}) le cas d’étude étudié comporte des pans
+% de toiture avec diverses orientations ce qui complète la première contrainte.
+% On a donc une \num{double.contrainte}, à savoir
+% partager la surface de toiture pour chaque orientation entre les différents capteurs.
+% Des études ont déjà été réalisées pour évaluer le meilleur ratio entre photovoltaïque
+% et thermique\mtodo{Ajouter citation} mais traite le problème sans tenir compte des combinaisons
+% entre \num{les.équipements}, \num{la.structure}, \num{la.régulation}, ... Ces travaux permettront donc
+% d’obtenir plus d’informations sur cet aspect encore aujourd’hui faiblement exploré.
+% \itodo{Retrouver la publication qui parle de ratio thermique/photovoltaïque}
+
+% La seconde contrainte est la place disponible dans la maison pour accueillir les
+% équipements.
+% \itodo{Bla bla bla}
+
+% Enfin la contrainte principale est sur l’équilibre entre production et consommation
+% d’énergie primaire. En effet l’approche MEPOS ou encore NZEB définit comme requit
+% pour une maison passive d’avoir un équilibre entre production et consommation.
+% On a donc ici une contrainte forte au niveau énergétique.
+% \itodo{Bla bla bla}
+% \itodo{Décrire les contraintes et la méthode utilisée pour les traiter}
+% % subsubsection les_contraintes_de_l_etude (end)
+% % subsection definition_des_objectifs_et_des_contraintes (end)
+% % section formulation_du_probleme_d_optimisation (end)
+
+
+
+
+% % ..............................................................................
+% % ..............................................................................
+% \section{Étude de sensibilité} % (fold)
+% \label{sec:etude_de_sensibilite}
+% \itodo{Présenter l’état avant avec les critères choisis}
+% \itodo{Décrire le processus}
+% \itodo{Sélection des critères en aval de l’étude}
+% % section etude_de_sensibilite (end)
+
+
+
+
+% % ..............................................................................
+% % ..............................................................................
+% \section{Optimisation} % (fold)
+% \label{sec:optimisation}
+% \itodo{Description résumé de la methode}
+% \itodo{Discussion sur le front de Pareto obtenu: \num{Analyse.répartition},\num{.convergence,} ...}
+% % section optimisation (end)
 
