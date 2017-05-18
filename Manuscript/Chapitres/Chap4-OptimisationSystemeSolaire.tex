@@ -1,33 +1,105 @@
 %!TEX root = ../main.tex
-% Chapitres\Chap4-OptimisationSystemeSolaire.tex
+% Chapitres/Chap4-OptimisationSystemeSolaire.tex
 
 \iunsure{Description commune de Bordeaux et Strasbourg pour éviter répétition (section 2, 3)}
 \iunsure{Relancer les simulations Pareto optimales avec Dymola pour comparaison}
+
+% Pour optimisation
+% Par exemple un pas de \num{0.1} avec des bornes min de \num{0} et max de \num{0.5} donnera
+% les variations possibles suivantes~: (\num{0} - \num{0.1} - \num{0.2} - \num{0.3} - \num{0.4} - \num{0.5}).
+
+
 
 % ..............................................................................
 % ..............................................................................
 \section{Description de l’étude de cas} % (fold)
 \label{sec:description_de_l_etude_de_cas}
 % ------------------------------------------------------------------------------
+\subsection{Scénarios retenues} % (fold)
+\label{sub:scenarios_retenues}
+~
+\itodo{Expliquer pourquoi les scénarios sont fixes}
+\itodo{Décrire scénario retenues et éléments fixes}
+% subsection scenarios_retenues (end)
+
+
+
+% ------------------------------------------------------------------------------
 \subsection{Paramètres a priori} % (fold)
 \label{sub:parametres_a_priori}
 ~
-\itodo{Mettre en exergue que l’étude est sur Bordeaux et Strasbourg}
-\itodo{Faire la liste des paramètres retenues a priori}
-\itodo{Expliquer variation du vitrage}
-\itodo{Expliquer la surface PV et TH}
-\itodo{Expliquer la répartition des capteurs sur la toiture}
-\itodo{Expliquer pourquoi les scénarios sont fixes}
-\itodo{Décrire scénario retenues et éléments fixes}
+\iunsure{Ajouter explication variables discrètes}
 \ifix{Vérifier valeurs bornes sensibilité}
 \ifix{Vérifier capteurs utilisés dans l’otpimisation}
 
-L’étude de cas est réalisé pour deux climat différents~: Bordeaux et Strasbourg.
-Suite à l’étude paramétrique, il est aussi retenue un ensemble de paramètres a
-priori ().
 
-Par exemple un pas de \num{0.1} avec des bornes min de \num{0} et max de \num{0.5} donnera
-les variations possibles suivantes~: (\num{0} - \num{0.1} - \num{0.2} - \num{0.3} - \num{0.4} - \num{0.5}).
+\itodo{Décrire plus le tableau}
+Comme décrit dans le chapitre précédent, une analyse de sensibilité est nécessaire
+afin de réduire la cardinalité du problème, évitant ainsi de simuler des variations
+dont n’influence est relativement aux autres paramètres non influente.
+L’étude de cas est réalisée pour deux climat différents, Bordeaux et Strasbourg,
+et un ensemble de paramètres a priori est retenue autant sur le bâtiment, que les
+systèmes (\tabref{tab:facteur_sensibilite}).
+
+\subsubsection{Production d’électricité} % (fold)
+\label{ssub:production_d_électricite}
+L’étude de cas cherchant à obtenir un bâtiment ayant une consommation très faible, il est
+nécessaire d’introduire une production locale d’électricité. Cette production permettra de
+couvrir l’énergie consommée par les équipements internes (électroménager et éclairage)
+ainsi que la $Conso_{app}$.
+
+La même variation de surface est considérée pour les capteurs $PV$ et thermiques~:
+\SI{\approx 7}{\metre\squared}. De plus la surface minimale de $PV$ a été définie afin de couvrir \mtodo{Ajouter
+production}{\SI{0}{\kWh} sur les \SI{0}{\kWh}} nécessaires pour couvrir les consommations
+des équipements internes. En effet, seul la production de $PV$ peut compensé les
+consommations de charges internes et il est plus intéressant d’évaluer son influence par
+rapport à une surface équivalent en solaire thermique.
+
+Afin de d’évaluer correctement la production solaire, la surface disponible en toiture
+doit être cependant être correctement partagée. Comme il a été vu au chapitre 2, la
+$Prod_{sol}$ dépend fortement de l’orientation des capteurs solaires thermiques. Ils sont
+donc prioritaire sur le pan Sud. De plus, il est aussi nécessaire de tenir compte de la
+géométrie à la fois de la toiture et des capteurs. La maison comporte une toiture quatre
+pans, chaque pan est donc triangulaire, et les capteurs eux sont de forme rectangulaire.
+Il apparaît donc clairement que l’approche naïve qui consiste à considérer la surface
+totale de la toiture comme disponible n’est pas valable~: seule une partie est réellement
+utilisable. Un algorithme de \enquote{packaging} a donc été développé afin d’évaluer le
+nombre de capteurs pouvant loger sur chaque pan de toiture et le détail du calcul est
+disponible en annexe (\ref{cha:repartition_des_capteurs}).
+
+Finalement, contrairement au $SSC$ qui est évalué uniquement \emph{sur une période
+s’étendant du $1^{er}$ octobre au $30$ avril}, la production $PV$ doit être évalué sur
+l’année complète. Pour rappel, la période de simulation est limitée à la période de
+l’année où le $SSC$ n’est pas complètement indépendant pour les combinaisons de paramètres
+les plus défavorables (\ref{par:periode_de_simulation}). Ainsi sur le reste de l’année la
+$Conso_{app}$ est équivalente à la $Conso_{pompes}$ qui est négligeable au regard des
+résultats de l’analyse paramétrique. L’ensemble des combinaisons existantes entre $PV$ et
+capteurs thermiques est donc simulée sur l’année en amont.
+% subsubsection production_d_électricite (end)
+
+\subsubsection{Variables qualitatives} % (fold)
+\label{ssub:variables_qualitatives}
+La méthode de Morris nécessite que l’ensemble des variables soient quantitatives et chaque
+paramètre varie indépendamment. Il n’est donc pas possible d’évaluer directement
+l’influence des capteurs solaires ou des vitrages qui sont des variables qualitatives.
+
+Afin de tenir compte de ces paramètres, leurs caractéristiques principales sont considérés
+comme des paramètres indépendants. Dans le cas des capteurs solaires, le rendement optique
+$\eta_{0}$ et les coefficients $a_{1}$ et $a_{2}$ sont retenues. Dans le cas des vitrages
+les caractéristiques principales souvent utilisées sont le $U_{g}$ et le $g$ permettant
+respectivement d’évaluer la résistance au transfert thermique et au passage de l’énergie
+solaire. Les vitrages étant définies de manière détaillé, les paramètres $\acute Emis_{ext}$
+et $\tau_{sol}$ sont retenues. Bien que la méthode de Morris permettent de
+regrouper un jeu de paramètre en un paramètre unique (groupe), les paramètres restent
+indépendants et la méthode n’est donc pas retenue. Ainsi les combinaisons réalisées
+représentent des capteurs / vitrages hypothétiques dont la faisabilité technique n’est pas
+garantie. L’approche permet cependant de mettre en exergue l’importance relative de chaque
+caractéristique sur la performance globale du capteur ou du vitrage. De plus, la
+caractérisation de l’influence des autres paramètres définies a priori tient compte de la
+forte variabilité des capteurs et des vitrages. En effet, il est possible qu’il existe des
+interactions entre les vitrages ou capteurs solaires et les autres facteurs quantitatifs.
+% subsubsection variables_qualitatives (end)
+
 
 % \begin{landscape}
 \begin{table}
