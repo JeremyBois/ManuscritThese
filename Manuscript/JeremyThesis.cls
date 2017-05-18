@@ -42,7 +42,7 @@
 % French language support
 % ------------------------------------------------------------------------------
 % Must respect this order
-\RequirePackage[autostyle=true, threshold=2]{csquotes}              % Ensure correct quote text even nested one
+\RequirePackage[autostyle=true, threshold=0]{csquotes}              % Ensure correct quote text even nested one
 \renewcommand{\mkblockquote}[4]{%
               \openautoquote\itshape#1\closeautoquote\normalfont#2#3#4}  % Add << and italic to blockquotes
 \RequirePackage[greek, french]{babel}                               % http://daniel.flipo.free.fr/frenchb/
@@ -163,6 +163,9 @@
 \newtheorem{preDef}[Def]{Définition}
 \newenvironment{Def}{\begin{encadrement}[white]\begin{preDef}}{\end{preDef}\end{encadrement}}
 
+% Quick and easy way to typeset floor and ceil
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 % ------------------------------------------------------------------------------
 % Table support

@@ -1,0 +1,41 @@
+%!TEX root = ../main.tex
+% Annexes/packaging.tex
+
+\iunsure{Ajouter code source}
+
+\blockquote{Combien de rectangles sans chevauchements ni rotations peut contenir le triangle $ABC$ ?}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics{Ressources/Images/Demonstration/repartition_capteur.pdf}
+    \end{center}
+    \caption{Représentation schématique du problème de enquote{packaging} pour
+             un triangle aïgue (gauche) et un triangle obtue (droite).
+             \label{fig:rects_in_triangle}}
+\end{figure}
+
+Considérons un rectangle de dimensions $l \times h$ et un triangle $ABC$ (\figref{fig:rects_in_triangle}).
+D’après la \textit{loi des cosinus (Théorême de Al Kashi)} il est possible d’écrire:
+\begin{equation}
+        \alpha = \arccos \left[\frac{AC^{2} + BC^{2} - AB^{2}}{2 \times AC \times BC}\right]
+    \label{eq:loi_cosinus}
+\end{equation}
+\noindent On peut alors définir la hauteur du triangle $ABC$ en utilisant la trigonométrie et
+\eqref{eq:loi_cosinus}:
+\begin{equation}
+        H = \sin (\arccos[\alpha]) \times BC%
+          =\sin \left(\arccos \left[\frac{AC^{2} + BC^{2} - AB^{2}}{2 \times AC \times BC}\right]\,\right) \times BC
+    \label{fig:height_triangle}
+\end{equation}
+
+\noindent En utilisant le \textit{théorême de Thalès} dans $ABC$ et A’BC on peut ainsi définir la longueur DE
+en fonction de $H$.
+\begin{equation}
+    DE = \frac{BE \times AC}{BC} = \frac{(H - h) \times AC}{H}
+\end{equation}
+
+\noindent Le nombre total de rectangle sans chevauchement peut alors être définie \eqref{eq:nb_rects_in_triangle}:
+\begin{equation}
+    N_{rect} = \sum_{n = 1}^{\floor*{\frac{H}{h}}} \, \floor*{\frac{(H - n \times h) \times AC}{l \times H}}
+    \label{eq:nb_rects_in_triangle}
+\end{equation}
