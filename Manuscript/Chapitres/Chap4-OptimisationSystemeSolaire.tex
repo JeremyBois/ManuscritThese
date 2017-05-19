@@ -17,9 +17,16 @@
 % ------------------------------------------------------------------------------
 \subsection{Scénarios retenues} % (fold)
 \label{sub:scenarios_retenues}
-~
-\itodo{Expliquer pourquoi les scénarios sont fixes}
-\itodo{Décrire scénario retenues et éléments fixes}
+L’étude de cas est réalisée sur le bâtiment utilisée pour l’étude paramétrique.
+Les scénarios pour les charges internes (équipements, éclairage, et occupants) sont
+issues de la simulation de référence (\ref{sub:scénarios_de_référence}). De même
+le scénario de référence est retenue pour la consigne de chauffage ($19$-$18$-$16$)
+et le scénario de ventilation ($90-20$).
+Pour le puisage en $ECS$, le profil $Réaliste$ est retenue avec la prise en compte des
+variations hebdomadaires et mensuelles (\ref{ssub:puisage_en_eau_chaude_sanitaire}).
+En effet, comme il a été montré, il est important de tenir compte de la variation
+du profil de puisage au cours de l’année afin de ne pas sur-estimer la performance
+du $SSC$.
 % subsection scenarios_retenues (end)
 
 
@@ -31,16 +38,25 @@
 \iunsure{Ajouter explication variables discrètes}
 \ifix{Vérifier valeurs bornes sensibilité}
 \ifix{Vérifier capteurs utilisés dans l’otpimisation}
+\itodo{Ajouter différence Strasbourg et Bordeaux}
 
 
-\itodo{Décrire plus le tableau}
 Comme décrit dans le chapitre précédent, une analyse de sensibilité est nécessaire
 afin de réduire la cardinalité du problème, évitant ainsi de simuler des variations
-dont n’influence est relativement aux autres paramètres non influente.
+non influentes relativement aux autres paramètres.
 L’étude de cas est réalisée pour deux climat différents, Bordeaux et Strasbourg,
-et un ensemble de paramètres a priori est retenue autant sur le bâtiment, que les
-systèmes (\tabref{tab:facteur_sensibilite}).
+et un ensemble de \num{22} paramètres a priori est retenue (\tabref{tab:facteur_sensibilite})
+en faisant varier à la fois la performance de l’enveloppe et les caractéristiques du $SSC$.
+\itodo{Vérifier sources}
+Au niveau des isolants, les bornes inférieures et supérieures représentent respectivement
+le niveau recommandé pour la \textit{RT\,2005} et le niveau \textit{MEPOS}.
+La plage de variation pour les surfaces vitrées a été fixée arbitrairement à plus ou moins \SI{20}{\percent}
+de leur valeur d’origine. L’étude ne cherche pas à évaluer l’impact de l’inclinaison
+des capteurs qui est imposée par la géométrie du bâtiment, elle est donc fixée à
+\SI{33}{\percent} soit \SI{18.9}{\degree}.
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Production d’électricité} % (fold)
 \label{ssub:production_d_électricite}
 L’étude de cas cherchant à obtenir un bâtiment ayant une consommation très faible, il est
@@ -49,11 +65,11 @@ couvrir l’énergie consommée par les équipements internes (électroménager 
 ainsi que la $Conso_{app}$.
 
 La même variation de surface est considérée pour les capteurs $PV$ et thermiques~:
-\SI{\approx 7}{\metre\squared}. De plus la surface minimale de $PV$ a été définie afin de couvrir \mtodo{Ajouter
-production}{\SI{0}{\kWh} sur les \SI{0}{\kWh}} nécessaires pour couvrir les consommations
-des équipements internes. En effet, seul la production de $PV$ peut compensé les
-consommations de charges internes et il est plus intéressant d’évaluer son influence par
-rapport à une surface équivalent en solaire thermique.
+\SI{\approx 7}{\metre\squared}. En effet, seul la production de $PV$ peut
+compenser les consommations de charges internes et il est plus intéressant d’évaluer son
+influence par rapport à une surface équivalent en solaire thermique. De plus la surface
+minimale de $PV$ a été définie afin de couvrir \SI{75}{\percent} (\SI{\approx 2330}{\kWh})
+de la consommation des équipements internes (\SI{\approx 3082}{\kWh}).
 
 Afin de d’évaluer correctement la production solaire, la surface disponible en toiture
 doit être cependant être correctement partagée. Comme il a été vu au chapitre 2, la
@@ -77,6 +93,8 @@ résultats de l’analyse paramétrique. L’ensemble des combinaisons existante
 capteurs thermiques est donc simulée sur l’année en amont.
 % subsubsection production_d_électricite (end)
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Variables qualitatives} % (fold)
 \label{ssub:variables_qualitatives}
 La méthode de Morris nécessite que l’ensemble des variables soient quantitatives et chaque
@@ -88,20 +106,18 @@ comme des paramètres indépendants. Dans le cas des capteurs solaires, le rende
 $\eta_{0}$ et les coefficients $a_{1}$ et $a_{2}$ sont retenues. Dans le cas des vitrages
 les caractéristiques principales souvent utilisées sont le $U_{g}$ et le $g$ permettant
 respectivement d’évaluer la résistance au transfert thermique et au passage de l’énergie
-solaire. Les vitrages étant définies de manière détaillé, les paramètres $\acute Emis_{ext}$
-et $\tau_{sol}$ sont retenues. Bien que la méthode de Morris permettent de
+solaire. Les vitrages étant définies de manière détaillé, les paramètres $\acute
+Emis_{ext}$ et $\tau_{sol}$ sont retenues. Bien que la méthode de Morris permettent de
 regrouper un jeu de paramètre en un paramètre unique (groupe), les paramètres restent
-indépendants et la méthode n’est donc pas retenue. Ainsi les combinaisons réalisées
+indépendants et l’approche n’est donc pas retenue. Ainsi les combinaisons réalisées
 représentent des capteurs / vitrages hypothétiques dont la faisabilité technique n’est pas
 garantie. L’approche permet cependant de mettre en exergue l’importance relative de chaque
-caractéristique sur la performance globale du capteur ou du vitrage. De plus, la
-caractérisation de l’influence des autres paramètres définies a priori tient compte de la
+caractéristique sur la performance du capteur ou du vitrage et son impact global au niveau
+du $SSC$. De plus, les autres paramètres définies a priori peuvent tenir compte de la
 forte variabilité des capteurs et des vitrages. En effet, il est possible qu’il existe des
 interactions entre les vitrages ou capteurs solaires et les autres facteurs quantitatifs.
 % subsubsection variables_qualitatives (end)
 
-
-% \begin{landscape}
 \begin{table}
 \centering
 \caption{Liste des paramètres a priori utilisés pour l’analyse de sensibilité.}
@@ -114,7 +130,7 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
   \multicolumn{4}{l}{\bm{$SSC$}}                                                                           \\
   \midrule
   Nombre capteurs                              & \num{2}       & \num{5}     & \num{4.64} -- \SI{11.6}{\metre\squared}                              \\
-  $\eta_{0}$                                   & \num{0.63}    & \num{0.84}  & \multirow{3}{*}{Variation provenant de \href{www.solar-rating.org}{ICC-SRCC}}   \\
+  $\eta_{0}$                                   & \num{0.63}    & \num{0.84}  & \multirow{3}{*}{Diversité issue de \href{www.solar-rating.org}{ICC-SRCC}}   \\
   $a_{1}$                                      & \num{0.65}    & \num{6.7}   &                                                                      \\
   $a_{2}$                                      & \num{0.00069} & \num{0.29}  &                                                                      \\
   $Ech_{sol}^{pos}$                            & \num{0.8}     & \num{1.3}   & Position relative à la taille du ballon                              \\
@@ -123,7 +139,7 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
   $R$ ballon sanitaire                         & \num{7}       & \num{10}    & \multirow{2}{*}{Variation uniquement de l’épaisseur de l’isolant}    \\
   $R$ ballon tampon                            & \num{7}       & \num{10}    &                                                                      \\
   $Isolant_{r\acute eseau}^{\acute epaisseur}$ & \num{0.013}   & \num{0.04}  & Résistance dépendant du nombre de capteurs                           \\
-  Consigne solaire                            & \num{18}      & \num{24}    &  -                                                                   \\
+  Consigne solaire                             & \num{18}      & \num{24}    &  -                                                                   \\
   $DeltaT_{sol}$                               & \num{5}       & \num{15}    &  -                                                                   \\
   \\
   \addlinespace[\defaultaddspace]
@@ -142,11 +158,192 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
   \addlinespace[\defaultaddspace]
   \multicolumn{4}{l}{\textbf{Production d’électricité}}                                                                     \\
   \midrule
-  Surface $PV$   & \num{0} &  \num{15} &  Capteurs thermiques prioritaires sur le pan Sud                                                             \\
+  Surface $PV$                                 & \num{12}       &  \num{19}   &  Capteurs thermiques prioritaires sur le pan Sud                                                             \\
   \bottomrule
   \end{tabular}
 \end{table}
+% subsection parametres_a_priori (end)
 
+% ------------------------------------------------------------------------------
+\subsection{Objectifs et contraintes} % (fold)
+\label{sub:objectifs_et_contraintes}
+~
+
+\subsubsection{Approche naïve} % (fold)
+\label{ssub:approche_naive}
+Fort de l’expérience acquise à travers l’étude paramétrique, les objectifs sont formalisés
+de la manière suivante~:
+\begin{itemize}
+  \item Augmenter le $F_{sol}^{ECS}$
+  \item Augmenter le $F_{sol}^{CH}$
+  \item Réduire la $Conso_{app}$
+\end{itemize}
+De plus une contrainte est introduite afin de vérifier que le bâtiment final
+est un bâtiment passif~: $|Conso_{totale}| \leq \SI{300}{kWh}$ \eqref{eq:conso_totale}.
+De cette manière, les bâtiments produisant localement respectivement trop ou pas assez d’énergie sont
+écartés. De plus cette restriction permet de guider la recherche vers un le front de
+Pareto.
+
+\begin{equation} \label{eq:conso_totale}
+  Conso_{totale} = Conso_{app} + Conso_{\acute equipements} + Conso_{\acute eclairage} - Prod_{PV}
+\end{equation}
+
+Cependant formulé de cette manière, l’approche comporte plusieurs failles. Premièrement,
+il est clair que même si les \num{3} objectifs ne sont pas impactés par les mêmes
+paramètres, une tendance commune est identifiable. Ainsi, sans objectifs évoluant de
+manière \enquote{contradictoires} l’optimisation risque de converger vers un ensemble
+de solution très réduites voir une solution unique.
+
+Deuxièmement, l’approche introduit un biais important sur la surface de $PV$. Afin de
+respecter la contrainte, deux configurations extrêmes sont possibles~:
+\begin{itemize}
+  \item Avoir beaucoup de $PV$ et peu de capteurs thermiques
+  \item Avoir beaucoup de capteurs thermiques et suffisamment de $PV$ pour couvrir
+        les consommations des équipements internes.
+\end{itemize}
+Cependant, une fois que la surface de $PV$ permettant d’obtenir une $Conso_{totale}$
+a atteinte la limite basse imposée par la contrainte (\SI{300}{kWh}), elle ne peut plus
+augmenter car la contrainte serait violée (production trop importante d’électricité). De plus,
+augmenter la surface de $PV$ impacte aucun des objectifs, les solutions avec une surface
+de $PV$ plus importante seront toujours rejetées.
+
+Afin que la surface de $PV$ soit influente sur au moins un objectif il est possible
+de minimiser la $Conso_{totale}$ au lieu de minimiser la $Conso_{app}$.
+Cependant, il a été vu au chapitre précédent que la dominance de Pareto implique que une solution
+est meilleure qu’une autre si et seulement si elle est meilleure sur un objectif et au moins
+aussi bonne sur les autres (\defref{def:dominance_de_pareto}). Il est donc clair que
+cette modification ne permet pas de corriger ce biais qui réduit fortement l’espace
+de décision comme celui des solutions.
+% subsubsection approche_naive (end)
+
+
+\subsubsection{Approche retenue} % (fold)
+\label{ssub:approche_retenue}
+Afin de palier aux difficultées rencontrées, une autre formulation est proposée où les objectifs
+sont~:
+\begin{itemize}
+  \item Augmenter le $F_{sol}^{ECS}$
+  \item Augmenter le $F_{sol}^{CH}$
+  \item Réduire la $Prod_{PV}$
+\end{itemize}
+De plus la contrainte est exprimée comme~: $|Conso_{totale}| \leq 300$
+
+Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
+objectifs. Il est aussi clair que les deux premiers objectifs sont en contradiction nette
+avec le dernier et le biais n’existe donc plus. En effet, il est maintenant possible en
+théorie d’obtenir des solutions avec une surface de $PV$ importante et une surface de
+capteur thermique faible et inversement.
+Le problème est maintenant correctement formulé pour explorer l’espace de décision et
+répondre au problème initial~: réaliser une maison passive dont les besoins sont couverts
+par l’énergie solaire.
+% subsubsection approche_retenue (end)
+% subsection objectifs_et_contraintes (end)
+% section description_de_l_etude_de_cas (end)
+
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Simplification du modèle} % (fold)
+\label{sec:simplification_du_modele}
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la cardinalité} % (fold)
+\label{sub:reduction_de_la_cardinalite}
+~
+\itodo{Décrire les résultats obtenues Bordeaux et Strasbourg}
+\iunsure{Faire en même temps ou faire des sections}
+
+L’analyse de Morris a été réalisée en considérant \num{15} trajectoires uniques à travers
+\num{4} niveaux. Les résultats sont analysés sur les indicateurs caractéristiques d’un $SSC$
+(le $F_{sol}^{CH}$, le $F_{sol}^{ECS}$, et la $Conso_{app}$) mais aussi sur les parts
+actives et passives du chauffage solaire, respectivement notées $Prod_{sol}^{active}$ et
+$Prod_{sol}^{passive}$. En effet, les ballons étant dans le bâtiment, une partie de
+l’énergie solaire est fournie par leurs déperditions.
+
+\itodo{Faire en détail la description avec des chiffres pour moyenne et écart type}
+\itodo{$Conso_{app}$}
+Les résultats (\figref{fig:morris_analysis_indicateurs}) sur la $Conso_{app}$ montrent
+que les paramètres $a_{1}$, $a_{2}$, $\eta_{0}$, $\acute Emis_{ext}$, le volume du ballon $ECS$,
+la surface vitrée à l’Est et au Sud, la résistance thermique des murs et du plafond, ainsi que le nombre de capteurs thermiques,
+sont tous influents. L’ensemble des paramètres influents on un impact linéaire à l’exception
+du volume du ballon $ECS$ dont l’influence est ou non-linéaire ou avec des interactions.
+Il apparaît aussi que le niveau d’isolation des ballons comme des canalisations ne soit pas
+très impactant.
+
+Ainsi au regard de ces premiers résultats le performance thermique des vitrage doit être
+considéré tout comme le type de capteur solaire utilisé car ces trois indicateurs caractéristiques
+sont influents.
+
+\itodo{$F_{sol}^{ECS}$}
+Sur l’indicateur $F_{sol}^{ECS}$ les facteurs ayant une influence linéaire sont
+peu nombreux~: la surface de capteur et ces caractéristiques ($a_{1}$, $a_{2}$, $\eta_{0}$)
+ainsi que le volume du ballon sanitaire. La $Ech_{sol}^{pos}$ quand à elle a une influence
+non-linéaire ou avec des interactions.
+
+
+\itodo{$F_{sol}^{CH}$}
+Sur l’indicateur $F_{sol}^{CH}$ les facteurs ayant une influence linéaire sont~: la
+surface des capteurs thermiques, le volume des deux ballons, les \num{3} coefficients
+caractéristiques des capteurs solaires ($a_{1}$, $a_{2}$, et $\eta_{0}$), la performance
+des vitrages ($\acute Emis_{ext}$), la résistance thermique des murs et du plafond, ainsi que le
+$DeltaT_{sol}$. Le coefficient $a_{1}$ est important car il a un $\sigma$ et un $\mu^{*}$
+moyens alors que les autres sont caractérisés par un $\mu^{*}$ important mais un $\sigma$
+faible. Le volume du ballon sanitaire et le $DeltaT_{sol}$ ont quand à eux une influence
+non linéaire ou avec des interactions.
+Il est aussi observé que les paramètres n’influence pas de la même manière le $F_{sol}^{CH}$.
+Certains paramètres comme la performance thermique des mur, du plancher et de la consigne solaire
+influencent uniquement la $Prod_{sol}^{active}$ alors que
+d’autres comme la résistance thermique des ballons influence uniquement la $Prod_{sol}^{passive}$.
+Il peut aussi être noté que le volume du ballon tampon influence plus fortement la
+$Prod_{sol}^{passive}$ alors que l’on observe l’inverse pour la performance thermique
+des vitrages.
+
+
+\itodo{$Conso_{totale}$}
+Si on s’intéresse à l’indicateur de $Bilan_{pos}$ ($\nicefrac{Prod_{PV}}{Conso_{totale}}$)
+il est observé une très forte influence linéaire de la surface de $PV$. Les autres paramètres
+ayant une influence modéré~: surface des capteurs, isolation des vitrages, $a_{1}$, $\eta_{0}$
+et le ballon sanitaire qui encore une fois a un impact non-linéaire ou avec des interactions.
+En effet, la surface de $PV$ est le seul facteur permettant de couvrir les consommations
+électriques des équipements internes qui représente la majorité des consommations. Il est donc
+évident que ce paramètre est fortement influent.
+
+
+Au regard de cette analyse il apparaît important de considérer les caractéristiques des capteurs et
+des vitrages. Ainsi, pour l’optimisation un jeu de capteurs solaires et de vitrages représentatifs
+des variations étudiées est retenu (\tabref{tab:capteurs_specs}, \tabref{tab:carac_vitrages}).
+L’ensemble des paramètres conservés est récapitulé dans la \figref{fig:graphe_influence} où il
+apparaît que les variations retenus sont à la fois sur l’enveloppe et le système.
+\itodo{Expliquer que c’est intéressant donc de les étudier ensembles}
+Il existe ainsi des compromis intéressants entre la qualité de l’enveloppe, la surface de $PV$, et
+les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de passer de
+\num{19} paramètres à \num{12} réduisant ainsi fortement la cardinalité du problème.
+
+
+
+
+\begin{figure}
+    \begin{center}
+        \ftodo{$\sigma$ et $\mu^{*}$ colonne Bordeaux et Strasbourg}
+        % \includegraphics{Ressources/Images/Modelisation/air_modes.pdf}
+    \end{center}
+    \caption{Résultat de l’analyse de Morris pour différent indicateurs.
+             \label{fig:morris_analysis_indicateurs}}
+\end{figure}
+
+
+\begin{landscape}
+    \begin{figure}
+      \begin{center}
+          \ftodo{Ajouter le graphe d’influence complet}
+          \includegraphics{Ressources/Images/sensibilite/graphInfluence.pdf}
+      \end{center}
+      \caption{Résultat de l’analyse de Morris pour différent indicateurs.
+               \label{fig:graphe_influence}}
+  \end{figure}
+\end{landscape}
 
 \begin{table}
 \centering
@@ -160,7 +357,7 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
   \multicolumn{5}{l}{\bm{$SSC$}}         \\
   \midrule
   Nombre capteurs      & \num{2}    & \num{5}     & Discrete    & \num{1}    & \num{4.64} -- \SI{11.6}{\metre\squared}   \\
-  Type de capteur      & -          &  -          & Qualitative & -          & Variation de la performance \href{www.solar-rating.org}{ICC-SRCC}   \\
+  Type de capteur      & -          &  -          & Qualitative & -          & Voir \tabref{tab:capteurs_specs}   \\
   $Ech_{sol}^{pos}$    & \num{0.8}  &  \num{1.3}  & Continue    & -          & Position relative à la taille du ballon     \\
   Volume ballon tampon & \num{100}  &  \num{500}  & Discrete    & \num{50}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}   \\
   Volume ballon $ECS$  & \num{100}  &  \num{500}  & Discrete    & \num{50}   &    \\
@@ -173,7 +370,7 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
   $R$ plafond          & \num{6}    &  \num{10}   & Discrete    & \num{0.5}  & -                                                                      \\
   Surface vitrée Sud  & \num{5.42} &  \num{8.13} & Continue    &  -         & \multirow{2}{*}{Surface totale \SI{26.4}{\metre\squared}}       \\
   Surface vitrée Est  & \num{4.3}  &  \num{6.46} & Continue    &  -         &   \\
-  Type de vitrage      & -          &  -          & Qualitative &  -         & Variation couplée du $\tau_{sol}$ et du $\acute Emis_{ext}$\\
+  Type de vitrage      & -          &  -          & Qualitative &  -         & Voir \tabref{tab:carac_vitrages} \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{5}{l}{\textbf{Production d’électricité}}      \\
@@ -183,7 +380,6 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
 \end{tabular}
 \end{table}
 
-
 \begin{table}
 \itodo{Ajouter variations des capteurs DIMA voir optimisation}
 \centering
@@ -191,18 +387,17 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
 \label{tab:capteurs_specs}}
 \begin{tabular}{l c c c c r}
     \toprule
-                                 & IDMK\,25             & 308C\,HP             & 12\,CPC58      & DIMA           & Unité                       \\
+                                 & IDMK\,25             & 308C\,HP             & 12\,CPC58      & ECO 25        & Unité                       \\
     \midrule
-    Fabricant                    & Sonnenkraft          & Radco                & Sky Pro        & DIMA           & -                           \\
-    Type                         & Plan vitrée          & Plan vitrée          & Tubulaire      & Plan vitréec   & -                           \\
-    Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}     &  & \si{m^{2}}                  \\
-    Poids à vide                 & \num{54}             & \num{36}             & \num{53}       &  & \si{kg}                     \\
-    Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}     &  & \si{\litre}                 \\
-    $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}       &  & \si{\%}                     \\
-    Pente                        & \num{-5.103}         & \num{-4.777}         & \num{-0.975}   &  & -                           \\
-    $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}   &  & \si{W/(m^{2}\period K)}     \\
-    $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}  &  & \si{W/(m^{2}\period K^{2})} \\
-    $IMDiff$                     & \num{100}            & \num{96}             & \num{102}      &  & \si{\%}                     \\
+    Fabricant                    & Sonnenkraft          & Radco                & Sky Pro        & Dima          & -                           \\
+    Type                         & Plan vitrée          & Plan vitrée          & Tubulaire      & Plan vitrée   & -                           \\
+    Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}     & \num{2.312}   & \si{m^{2}}                  \\
+    Poids à vide                 & \num{54}             & \num{36}             & \num{53}       & \num{41}      & \si{kg}                     \\
+    Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}     & \num{1.9}     & \si{\litre}                 \\
+    $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}       & \num{66.4}    & \si{\percent}                     \\
+    $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}   & \num{4.9510}  & \si{W/(m^{2}\period K)}     \\
+    $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}  & \num{0.01527} & \si{W/(m^{2}\period K^{2})} \\
+    $IMDiff$                     & \num{100}            & \num{96}             & \num{102}      & \num{93}      & \si{\percent}                     \\
     \bottomrule
 \end{tabular}
 \end{table}
@@ -228,43 +423,25 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
 \caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673}) des différents vitrages envisagés.
          \label{tab:carac_vitrages}}
 \end{table}
-% \end{landscape}
 
-% subsection parametres_a_priori (end)
-
-% ------------------------------------------------------------------------------
-\subsection{Objectifs et contraintes} % (fold)
-\label{sub:objectifs_et_contraintes}
-~
-\itodo{Décrire l’approche naïve}
-\itodo{Décrire l’approche retenue}
-% subsection objectifs_et_contraintes (end)
-% section description_de_l_etude_de_cas (end)
-
-
-
-
-
-% ..............................................................................
-% ..............................................................................
-\section{Simplification du modèle} % (fold)
-\label{sec:simplification_du_modele}
-% ------------------------------------------------------------------------------
-\subsection{Réduction de la cardinalité} % (fold)
-\label{sub:reduction_de_la_cardinalite}
-~
-\itodo{Décrire les résultats obtenues}
-\ftodo{$\sigma$ et $\mu^{*}$}
-\ftodo{Distances normalisées sur les facteurs retenues}
-\ftodo{Ajouter le graphe d’influence}
 % subsection reduction_de_la_cardinalite (end)
 
 % ------------------------------------------------------------------------------
 \subsection{Construction d’un modèle de substitution} % (fold)
 \label{sub:construction_d_un_modele_de_substitution}
-~
+Afin de réduire la durée de simulation le modèle détaillée peut être substitué à un méta-modèle. Comme décrit dans le
+chapitre précédent un ensemble représentatif des combinaisons
+possibles est nécessaire afin de construire un modèle valide. Il est donc important
+spécialement dans notre cas de réduire le nombre de variables en amont grâce à une
+méthode de criblage afin de réduire
+la taille de l’échantillon nécessaire pour construire le modèle.
+L’échantillon a été construit par une méthode de pseudo-Monte-Carlo avec la suite
+de Halton comme générateur. Les solutions construites sont donc équitablement réparties
+, assurant une bonne représentativité de l’espace de décision.
+
 \itodo{Décrire la création de l’échantillon et résultats (erreur relative)}
 \ftodo{Régression entre modèle et meta-modèle}
+
 % subsection construction_d_un_modele_de_substitution (end)
 % section simplification_du_modele (end)
 
