@@ -79,46 +79,47 @@
 % Font support
 % ------------------------------------------------------------------------------
 \usepackage[math-style=french]{unicode-math}
+
+% Serif font (text)
 \setmainfont{GandhiSerif-}[
 Extension=.otf,
-Path=./Fonts/,
+Path=./Fonts/Gandhi/,
 UprightFont=*Regular,
 BoldFont=*Bold,
 ItalicFont=*Italic,
 BoldItalicFont=*BoldItalic,
-% Color=SolarizedBrBlack,
-]  % Look nice
+]
 
-\setsansfont{PT Sans}[
-% Color=SolarizedBrBlack,
-] % Same as in figure
-
-% \setsansfont{QuattrocentoSans-}[
-% Extension=.otf,
-% Path=./Fonts/,
-% UprightFont=*Regular,
-% BoldFont=*Bold,
-% ItalicFont=*Italic,
-% BoldItalicFont=*BoldItalic,
+% \setsansfont{PT Sans}[
 % % Color=SolarizedBrBlack,
-% ]
+% ] % Same as in figure
 
+% Sans Serif font (figures (titles ??))
+\setsansfont{PTS}[
+Extension=.ttf,
+Path=./Fonts/PT-Sans/,
+UprightFont=*55F,
+BoldFont=*75F,
+ItalicFont=*56F,
+BoldItalicFont=*76F,
+]
+
+% Math font
 \setmathfont{Asana-Math}[
 Path=./Fonts/,
 Extension=.otf,
-% Color=SolarizedBrBlack,
 ]
 
 \defaultfontfeatures{Ligatures=TeX}
 
 
+
+
 % ------------------------------------------------------------------------------
 % Landscape support
 % ------------------------------------------------------------------------------
-% Printed version
-\usepackage{lscape}
-% Numeric version
-\usepackage{pdflscape}
+\usepackage{pdflscape}  % Numeric version (rotate content and page)
+% \usepackage{lscape}   % Printed version (rotate only content)
 
 
 % ------------------------------------------------------------------------------
@@ -133,8 +134,8 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % Nomenclature
 % ------------------------------------------------------------------------------
-%   \nomenclature{symbol}{definition}                 % Add new item
-%   \nomenclature{symbol}{definition \nomunit{unité}} % Add new item with unit
+%   \nomenclature{symbol}{definition}                  % Add new item
+%   \nomenclature{symbol}{definition \nomunit{unité}}  % Add new item with unit
 \makenomenclature
 
 
@@ -143,7 +144,7 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 %   \parencite{bib_id}     Add parenthesis (Name, year)
 %   \cite{bib_id}          Normal
-%   \textcite{bib_id}      Dans une phrase
+%   \textcite{bib_id}      Inside a sentence
 \addbibresource{./Bibliographie/references.bib}       % Where to find bibliography
 
 

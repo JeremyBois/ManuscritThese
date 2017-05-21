@@ -32,10 +32,10 @@
 \RequirePackage{iftex}
 % If using PDFLaTeX
 \ifPDFTeX
-\RequirePackage[OT1, T1]{fontenc}  % UTF-8 support for PDFLaTeX
-\RequirePackage[utf8]{inputenc}    % must be load before babel and csquotes
+  \RequirePackage[OT1, T1]{fontenc}  % UTF-8 support for PDFLaTeX
+  \RequirePackage[utf8]{inputenc}    % must be load before babel and csquotes
 \fi
-% Else assume XeTeX used
+% Else assume XeLaTeX
 
 
 % ------------------------------------------------------------------------------
@@ -44,39 +44,45 @@
 % Must respect this order
 \RequirePackage[autostyle=true, threshold=0]{csquotes}              % Ensure correct quote text even nested one
 \renewcommand{\mkblockquote}[4]{%
-              \openautoquote\itshape#1\closeautoquote\normalfont#2#3#4}  % Add << and italic to blockquotes
+              \color{SolarizedBrBlack}\openautoquote\itshape#1%
+              \closeautoquote\color{ClassicBlack}\normalfont#2#3#4}                     % Add << and italic to blockquotes
 \RequirePackage[greek, french]{babel}                               % http://daniel.flipo.free.fr/frenchb/
 \frenchspacing                                                      % Simple space after paragraph
 \frenchbsetup{StandardLists=true}                                   % Turn off french list style
+
 
 
 % ------------------------------------------------------------------------------
 % Solarized color definition
 % ------------------------------------------------------------------------------
 \RequirePackage[table]{xcolor}                      % Color support
-\definecolor{SolarizedBlue}{HTML}{268bd2}
 \definecolor{SolarizedViolet}{HTML}{6c71c4}
-\definecolor{SolarizedCyan}{HTML}{2aa198}
 \definecolor{SolarizedMagenta}{HTML}{d33682}
+\definecolor{SolarizedBlue}{HTML}{268bd2}
+\definecolor{SolarizedCyan}{HTML}{2aa198}
 \definecolor{SolarizedGreen}{HTML}{859900}
 \definecolor{SolarizedRed}{HTML}{dc322f}
-\definecolor{SolarizedYellow}{HTML}{b58900}
+\definecolor{BeeYellow}{HTML}{ffcb00}
 \definecolor{SolarizedOrange}{HTML}{cb4b16}
+\definecolor{SolarizedYellow}{HTML}{b58900}
 
-\definecolor{SolarizedWhite}{HTML}{eee8d5}
-\definecolor{SolarizedBrWhite}{HTML}{fdf6e3}
+\definecolor{SolarizedWhite}{HTML}{fdf6e3}
+\definecolor{SolarizedBrWhite}{HTML}{eee8d5}
 \definecolor{SolarizedBrCyan}{HTML}{93a1a1}
 \definecolor{SolarizedBrBlue}{HTML}{839496}
 \definecolor{SolarizedBrYellow}{HTML}{657b83}
 \definecolor{SolarizedBrGreen}{HTML}{586e75}
 \definecolor{SolarizedBlack}{HTML}{073642}
 \definecolor{SolarizedBrBlack}{HTML}{002b36}
+\definecolor{ClassicBlack}{HTML}{000000}
 
 
 
 % ------------------------------------------------------------------------------
 % Page layout
 % ------------------------------------------------------------------------------
+%    \hypersetup{}                                          % Add meta-data to pdf
+
 % Add appendix
 \RequirePackage{appendix}
 
@@ -105,7 +111,7 @@
 
 % Redefinition of chapter and other sections
 \RequirePackage{tikz}
-% \RequirePackage[sf]{titlesec}                           % Sans serif font for titles
+%\RequirePackage[sf]{titlesec}                           % Sans serif font for titles
 
 
 % ------------------------------------------------------------------------------
@@ -167,6 +173,28 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
+% If using XeLaTeX
+\ifXeTeX
+  % Add support for common accent in math mode
+  \ExplSyntaxOn
+  \NewDocumentCommand{\DeclareMathUnicode}{mm}
+   {
+    \cs_new_protected:cpn { mathutf_#1: } { #2 }
+    \char_set_active_eq:Nc #1 { mathutf_#1: }
+    \char_set_mathcode:nn { `#1 } { "8000 }
+   }
+  \cs_generate_variant:Nn \char_set_active_eq:NN { Nc }
+  \ExplSyntaxOff
+
+  % More used
+  \DeclareMathUnicode{é}{\acute{e}}
+  \DeclareMathUnicode{è}{\grave{e}}
+  \DeclareMathUnicode{É}{\acute{E}}
+  \DeclareMathUnicode{È}{\grave{E}}
+\fi
+
+
+
 % ------------------------------------------------------------------------------
 % Table support
 % ------------------------------------------------------------------------------
@@ -174,10 +202,10 @@
 \RequirePackage{booktabs}                                  % Easy pro tables
 \RequirePackage{multirow}                                  % Multiple row
 
-% New column type
-% Wrap column without lossing alignment
+% New column type to wrap column without lossing alignment
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}    % Centered
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}  % Left aligned
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}   % Right aligned
 
 
 % ------------------------------------------------------------------------------
@@ -336,7 +364,8 @@
 % ------------------------------------------------------------------------------
 %   \parencite{bib_id}     Add parenthesis (Name, year)
 %   \cite{bib_id}          Normal
-%   \textcite{bib_id}      in text
+%   \textcite{bib_id}      Inside a sentence
+
 \RequirePackage[backend=biber,
                 maxnames=2,             % Maximal number of name in citation
                 minnames=1,             % Minimal number of name in citation
@@ -376,6 +405,9 @@
 % ------------------------------------------------------------------------------
 % Nomenclature
 % ------------------------------------------------------------------------------
+%   \nomenclature{symbol}{definition}                  % Add new item
+%   \nomenclature{symbol}{definition \nomunit{unité}}  % Add new item with unit
+
 \RequirePackage{nomencl}
 \RequirePackage{etoolbox}
 

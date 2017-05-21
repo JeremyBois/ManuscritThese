@@ -5,7 +5,7 @@
 % ..............................................................................
 % ..............................................................................
 \section{Les méthodes d’aide à la décision} % (fold)
-\label{sec:les_methodes_d_aide_à_la_decision}
+\label{sec:les_methodes_d_aide_a_la_decision}
 % ------------------------------------------------------------------------------
 \subsection{Introduction} % (fold)
 \label{sub:mcda_introduction}
@@ -61,7 +61,7 @@ dite catégorielle (ex~: couleur) ou bien floue (ex~: beau / laid).
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/type_variable.pdf}
+        \includegraphics{Ressources/Images/Optimisation/type_variable.pdf}
     \end{center}
     \caption{Description des catégories existantes pour une variable.
              \label{fig:type_variable}}
@@ -118,7 +118,7 @@ optimale au cours du processus d’optimisation.
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/multi_to_mono.pdf}
+        \includegraphics{Ressources/Images/Optimisation/multi_to_mono.pdf}
     \end{center}
     \caption{Transformation d’un problème multi-objectif en optimisation mono-objectif.
              \label{fig:multi_to_mono}}
@@ -246,7 +246,7 @@ pour chaque critère et chaque variable de décision grâce à un jeu de curseur
 Dans l’optique d’une aide à la décision a posteriori, il est nécessaire de réduire la
 complexité du modèle et deux méthodes sont présentées dans la section suivante.
 % subsection approche_retenue (end)
-% section les_methodes_d_aide_à_la_decision (end)
+% section les_methodes_d_aide_a_la_decision (end)
 
 
 
@@ -298,7 +298,7 @@ dites globales, s’intéressant à l’ensemble du domaine de définition.
 \begin{figure}
     \begin{center}
         \itodo{Refaire une version plus propre ...}
-        \includegraphics{Ressources/Images/sensibilite/classement_mauvais.png}
+        \includegraphics{Ressources/Images/Sensibilite/classement_mauvais.png}
     \end{center}
     \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.
              \label{fig:classement_methode_sensibilite}}
@@ -340,7 +340,7 @@ sensibilité~: la littérature suggère $R \geq 10$ et de $z = 4$ \parencite{Cam
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/sensibilite/cube_morris.pdf}
+        \includegraphics{Ressources/Images/Sensibilite/cube_morris.pdf}
     \end{center}
     \caption{Illustration du fonctionnement de la méthode de Morris pour la création
              de 3 trajectoires ($R = 3,~~ z = 3,~~ j = 3$) d’après \textcite{Munaretto2014}.
@@ -349,7 +349,7 @@ sensibilité~: la littérature suggère $R \geq 10$ et de $z = 4$ \parencite{Cam
 % paragraph principe (end)
 
 \paragraph{Interprétation~:} % (fold)
-\label{par:interprétation}
+\label{par:interpretation}
 La première implémentation de la méthode permet d’évaluer qualitativement l’influence de
 chaque facteur grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$
 \eqref{eq:ecart_type}. La moyenne permet d’évaluer les effets linéaires, et l’écart type
@@ -386,7 +386,7 @@ calcul importante.
 Afin de palier à ce problème, \textcite{Ruano2012103} proposent une approximation de
 la méthode par \textit{Brute force} pour un temps de calcul très court permettant d’obtenir
 une sélection représentative et hétérogène des trajectoires.
-% paragraph interprétation (end)
+% paragraph interpretation (end)
 
 \paragraph{Analyse~:} % (fold)
 \label{par:analyse}
@@ -424,11 +424,11 @@ sur les deux sorties considérées.
 \begin{figure}
   \begin{center}
     \begin{minipage}{.45\textwidth}
-          \includegraphics{Ressources/Images/sensibilite/morris_S.png}
+          \includegraphics{Ressources/Images/Sensibilite/morris_S.png}
     \end{minipage}
     \hfill
     \begin{minipage}{.45\textwidth}
-          \includegraphics{Ressources/Images/sensibilite/morris_Cp.png}
+          \includegraphics{Ressources/Images/Sensibilite/morris_Cp.png}
     \end{minipage}
   \end{center}
   \caption{Résultat de la méthode de Morris ($R = 5,~~ z = 4,~~ j=8$) pour deux
@@ -516,7 +516,7 @@ ces travaux, la suite de Halton est utilisée comme générateur pseudo aléatoi
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/Meta_modele/halton_vs_uniform.pdf}
+        \includegraphics{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
     \end{center}
     \caption{Échantillon pseudo aléatoire suivant la méthode de Monte-Carlo et de
              Quasi-Monte-Carlo (suite de Halton) pour deux paramètres suivant une
@@ -637,7 +637,7 @@ l’ensemble le comprenant ne le domine (\figref{fig:dominance_pareto}).
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/dominance.pdf}
+        \includegraphics{Ressources/Images/Optimisation/dominance.pdf}
     \end{center}
     \caption{Dominance au sens de Pareto pour le point de référence de couleur rose.
              Les solutions de la zone grisée et de la zone couleur crème sont respectivement
@@ -708,7 +708,7 @@ objectif.
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/convex.pdf}
+        \includegraphics{Ressources/Images/Optimisation/convex.pdf}
     \end{center}
     \caption{Illustration du Point Idéal et du point Nadir sur une minimisation
              à deux objectifs d’un ensemble $S$ pour un front convexe (a) et non
@@ -769,7 +769,7 @@ une méthode dite approchée. Ces approches sont discutées dans la section suiv
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/methodes_exactes.pdf}
+        \includegraphics{Ressources/Images/Optimisation/methodes_exactes.pdf}
     \end{center}
     \caption{Transformation d’un problème multi-objectif en optimisation par méthodes
              exactes.
@@ -812,7 +812,7 @@ recherche vers les chemins prometteurs.
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/a_star.pdf}
+        \includegraphics{Ressources/Images/Optimisation/a_star.pdf}
     \end{center}
     \caption{Illustration de l’utilisation d’une heuristique pour limiter l’espace
              de recherche~: mouvements dans les 8 directions (a), mouvements
@@ -837,7 +837,7 @@ complète des solutions (voir \ref{sub:les_methodes_exactes}).
 
 % ------------------------------------------------------------------------------
 \subsection{Les méta-heuristiques} % (fold)
-\label{sub:les_méta_heuristiques}
+\label{sub:les_meta_heuristiques}
 Différentes approches ont été décrites, les méthodes exactes et les méthodes approchées.
 La non connaissance de la solution optimale écarte les approches utilisant une recherche
 par chemin optimal. La forte cardinalité du problème combinatoire écarte les approches par
@@ -853,7 +853,7 @@ l’approximer de manière suffisante.
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/optimisation/meta_heuristique.pdf}
+        \includegraphics{Ressources/Images/Optimisation/meta_heuristique.pdf}
     \end{center}
     \caption{Transformation d’un problème multi-objectif en optimisation
              multi-objectif en utilisant une méta-heuristique.
@@ -945,7 +945,7 @@ familles se distinguent: les algorithmes évolutionnaires et les algorithmes d�
 
 % \begin{figure}
 %     \begin{center}
-%         \includegraphics{Ressources/Images/optimisation/meta_heuristique_detail.pdf}
+%         \includegraphics{Ressources/Images/Optimisation/meta_heuristique_detail.pdf}
 %     \end{center}
 %     \caption{L’optimisation multi-objectif par méta-heuristique.
 %              \label{fig:multi_meta_detail}}
@@ -1056,7 +1056,7 @@ suivantes~:
 \end{itemize}
 }
 % subsubsection comment_choisir_ (end)
-% subsection les_méta_heuristiques (end)
+% subsection les_meta_heuristiques (end)
 % section selection_d_une_approche_d_optimisation_multi_objectif (end)
 
 
@@ -1167,7 +1167,7 @@ l’$ABC$ reste la plus répandue et sera retenue dans ces travaux (\figref{fig:
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/abc/abc_repartition.pdf}
+        \includegraphics{Ressources/Images/Optimisation/ABC/abc_repartition.pdf}
     \end{center}
     \caption{Pourcentage de publications en fonction de l’approche retenue pour différents
              algorithmes de colonies d’abeilles d’après \cite{Karaboga201221}.
@@ -1219,7 +1219,7 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/abc/comportement_abeilles.pdf}
+        \includegraphics{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
     \end{center}
     \caption{Organisation sociale des abeilles lors de la recherche de nourriture.
              \label{fig:bee_dance}}
@@ -1318,7 +1318,7 @@ aux différents problèmes d’optimisation (\figref{fig:abc_publication}).
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/abc/abc_publication.pdf}
+        \includegraphics{Ressources/Images/Optimisation/ABC/abc_publication.pdf}
     \end{center}
     \caption{Évolution du nombre de publications depuis la publication de l’algorithme
              jusqu’à aujourd’hui.
@@ -1411,7 +1411,7 @@ la somme des pas aléatoires consécutifs $X_{w}$ alors $S_{W}$ est une marche a
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/LevyFlight/distribution_pdf.pdf}
+        \includegraphics{Ressources/Images/Optimisation/LevyFlight/distribution_pdf.pdf}
     \end{center}
     \caption{Densité de probabilité des lois de Cauchy, uniforme, normale, Lévy stable et symétrique.
              L’expression analytique est représentée par la courbe noire.
@@ -1469,7 +1469,7 @@ ces travaux implémentent un vol de Lévy comme marche aléatoire durant la phas
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/LevyFlight/levy_vs_gaussian.pdf}
+        \includegraphics{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
     \end{center}
     \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
              \label{fig:levy_vs_gaussian}}
@@ -1586,7 +1586,7 @@ L’$\epsilon$-archive permet ainsi d’assurer~:
 
 \begin{figure}
     \begin{center}
-        \includegraphics{Ressources/Images/abc/selection_boxes.pdf}
+        \includegraphics{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}
     \end{center}
     \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
              Adapté de \cite{Deb2005501}.
@@ -1742,7 +1742,7 @@ de l’archive forme le front de Pareto.
 
 \begin{figure}
     \begin{center}
-        \includegraphics[width=10cm]{Ressources/Images/abc/algorithme_complet.pdf}
+        \includegraphics[width=10cm]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
     \end{center}
     \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.
              \label{fig:abc_complet}}
