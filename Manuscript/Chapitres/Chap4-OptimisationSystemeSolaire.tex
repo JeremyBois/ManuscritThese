@@ -4,6 +4,8 @@
 \iunsure{Description commune de Bordeaux et Strasbourg pour éviter répétition (section 2, 3)}
 \iunsure{Relancer les simulations Pareto optimales avec Dymola pour comparaison}
 
+\itodo{Demander ce que c’est que \textbf{nominal value} pour le méta-modèle}
+
 % Pour optimisation
 % Par exemple un pas de \num{0.1} avec des bornes min de \num{0} et max de \num{0.5} donnera
 % les variations possibles suivantes~: (\num{0} - \num{0.1} - \num{0.2} - \num{0.3} - \num{0.4} - \num{0.5}).
@@ -325,21 +327,17 @@ les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de 
 
 
 
-
-\begin{figure}
-    \begin{center}
-        \ftodo{$\sigma$ et $\mu^{*}$ colonne Bordeaux et Strasbourg}
-        % \includegraphics{Ressources/Images/Modelisation/air_modes.pdf}
-    \end{center}
-    \caption{Résultat de l’analyse de Morris pour différent indicateurs.
-             \label{fig:morris_analysis_indicateurs}}
-\end{figure}
-
-
 \begin{landscape}
     \begin{figure}
+        \begin{center}
+            \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star.pdf}
+        \end{center}
+        \caption{Résultat de l’analyse de Morris pour les indicateurs principaux.
+                 \label{fig:sigma_mu_star}}
+    \end{figure}
+
+    \begin{figure}
       \begin{center}
-          \ftodo{Ajouter le graphe d’influence complet}
           \includegraphics{Ressources/Images/Sensibilite/graphInfluence.pdf}
       \end{center}
       \caption{Résultat de l’analyse de Morris pour différent indicateurs.
