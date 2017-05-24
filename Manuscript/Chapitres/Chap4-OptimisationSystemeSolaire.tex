@@ -3,6 +3,9 @@
 
 \iunsure{Description commune de Bordeaux et Strasbourg pour éviter répétition (section 2, 3)}
 \iunsure{Relancer les simulations Pareto optimales avec Dymola pour comparaison}
+\iunsure{Nécessaire de garder des facteurs avec $sigma = \mu^{*}$ même si distance faible}
+
+\ifix{Surface vitrée Est pas influente pour Bordeaux}
 
 \itodo{Demander ce que c’est que \textbf{nominal value} pour le méta-modèle}
 
@@ -16,30 +19,166 @@
 % ..............................................................................
 \section{Description de l’étude de cas} % (fold)
 \label{sec:description_de_l_etude_de_cas}
-% ------------------------------------------------------------------------------
-\subsection{Scénarios} % (fold)
-\label{sub:scenarios}
 L’étude de cas est réalisée sur le bâtiment utilisée pour l’étude paramétrique.
 Les scénarios pour les charges internes (équipements, éclairage, et occupants) sont
-issues de la simulation de référence (\ref{sub:scenarios_de_reference}). De même
+issues de la simulation de référence (\ref{sub:scenarios_de_reference}). De même,
 le scénario de référence est retenue pour la consigne de chauffage ($19$-$18$-$16$)
-et le scénario de ventilation ($90-20$).
-Pour le puisage en $ECS$, le profil $Réaliste$ est retenue avec la prise en compte des
+comme pour la ventilation ($90-20$).
+Pour le puisage en $ECS$, le profil $Réaliste$ est retenue tout en tenant compte des
 variations hebdomadaires et mensuelles (\ref{ssub:puisage_en_eau_chaude_sanitaire}).
 En effet, comme il a été montré, il est important de tenir compte de la variation
 du profil de puisage au cours de l’année afin de ne pas sur-estimer la performance
-du $SSC$.
-% subsection scenarios (end)
+du $SSC$. Enfin, l’inclinaison des capteurs est imposée par la géométrie du bâtiment et
+elle est donc fixée à \SI{33}{\percent} soit \SI{18.9}{\degree}.
+
+Deux climats sont ici considérés afin d’évaluer la performance du $SSC$. Dans un premier temps
+dans la région Bordelaise, avec un climat doux et un ensoleillement important. Puis,
+au niveau de Strasbourg qui est caractérisé par un climat rude et un ensoleillement
+limité durant la période de chauffage.
+\iunsure{Ajouter comparatif de l’évolution mensuelle de l’énergie disponible pour les deux.}
+
+Un ensemble de paramètres a priori sont définis et une analyse de sensibilité est conduite
+pour les deux conditions climatiques considérés. Les résultats sont ensuite utilisés afin
+de construire les modèles de substitutions employés pour réaliser l’optimisation multi-
+critère. Une fois le front de Pareto obtenu, le processus d’aide à la décision est
+illustré à travers une approche paramétrique. Afin de rendre la comparaison plus efficace,
+le processus sera mené de manière parallèle pour Bordeaux et Strasbourg. Finalement, la
+fidélité des méta-modèles pour l’ensemble des solutions optimales est aussi discuté.
 
 
 
+% ------------------------------------------------------------------------------
+\subsection{Approche naïve} % (fold)
+\label{sub:approche_naive}
+\noindent Dans un premier temps, fort de l’expérience acquise à travers l’étude paramétrique,
+les objectifs sont formalisés de la manière suivante~:
+\begin{itemize}
+  \item Maximiser le $F_{sol}^{ECS}$
+  \item Maximiser le $F_{sol}^{CH}$
+  \item Minimiser la $Conso_{app}$
+\end{itemize}
+L’étude de cas cherchant à obtenir un bâtiment ayant une consommation très faible, il est
+nécessaire d’introduire une production locale d’électricité. Cette production permettra de
+couvrir l’énergie consommée par les équipements internes (électroménager et éclairage)
+ainsi que la $Conso_{app}$. Ainsi une contrainte est introduite afin de ne retenir que
+les solutions proposant une maison faiblement consommatrice \eqref{eq:conso_totale} fixé arbitrairement à~:
+\begin{itemize}
+   \item $|Conso_{totale}| \leq \SI{300}{kWh}$ pour Bordeaux
+   \item $|Conso_{totale}| \leq \SI{600}{kWh}$ pour Strasbourg
+ \end{itemize}
+De cette manière, les bâtiments produisant localement respectivement trop ou pas assez d’énergie sont
+écartés.
+
+\begin{equation} \label{eq:conso_totale}
+  Conso_{totale} = Conso_{app} + Conso_{équipements} + Conso_{éclairage} - Prod_{PV}
+\end{equation}
+
+Cependant formulé de cette manière, l’approche comporte plusieurs failles. Premièrement,
+il est clair que même si les \num{3} objectifs ne sont pas impactés par les mêmes
+paramètres, une tendance commune est identifiable. Ainsi, sans objectifs évoluant de
+manière \enquote{contradictoires} l’optimisation risque de converger vers un ensemble
+de solution très réduit voir une solution unique.
+Deuxièmement, l’approche introduit un biais important sur la surface de $PV$. Afin de
+respecter la contrainte, deux configurations extrêmes sont possibles~:
+\begin{itemize}
+  \item Avoir beaucoup de $PV$ et peu de capteurs thermiques
+  \item Avoir beaucoup de capteurs thermiques et suffisamment de $PV$ pour couvrir
+        les consommations des équipements internes.
+\end{itemize}
+Cependant, une fois que la $Conso_{totale}$
+a atteinte la limite basse imposée par la contrainte (par exemple \SI{-298}{kWH} pour Bordeaux),
+la surface de $PV$ ne peut plus augmenter sans que la contrainte soit violée (production trop importante d’électricité).
+La surface de $PV$ n’a en effet aucun impact sur les objectifs résultant et les solutions avec
+une surface plus importante seront donc rejetées.
+Afin que la surface de $PV$ soit influente sur au moins un objectif il est possible
+de minimiser la $Conso_{totale}$ au lieu de minimiser la $Conso_{app}$.
+Cependant, il a été vu au chapitre précédent que la dominance de Pareto implique que une solution
+est meilleure qu’une autre si et seulement si elle est meilleure sur un objectif et au moins
+aussi bonne sur tous les autres (\defref{def:dominance_de_pareto}). Il est donc clair que
+cette modification ne permet pas de corriger le biais sur la surface de $PV$.
+% subsection approche_naive (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Approche retenue} % (fold)
+\label{sub:approche_retenue}
+\noindent Afin de palier aux difficultés rencontrées, une autre formulation est proposée où les objectifs
+sont~:
+\begin{itemize}
+  \item Maximiser le $F_{sol}^{ECS}$
+  \item Maximiser le $F_{sol}^{CH}$
+  \item Minimiser la $Prod_{PV}$
+\end{itemize}
+La contrainte elle n’est pas modifiée~:
+\begin{itemize}
+   \item $|Conso_{totale}| \leq \SI{300}{kWh}$ pour Bordeaux
+   \item $|Conso_{totale}| \leq \SI{600}{kWh}$ pour Strasbourg
+\end{itemize}
+
+Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
+objectifs. Il est aussi clair que les deux premiers objectifs sont \enquote{contradictoires} avec
+le dernier. En effet, réduire la surface de capteur thermique permet d’améliorer la
+production des $PV$ (Plus de capteurs au Sud) mais impacte négativement les autres
+objectifs. Inversement, une surface de capteur thermique importante implique une
+production des $PV$ plus faible. Il est donc maintenant possible d’obtenir des
+solutions avec une surface de $PV$ importante et une surface de capteur thermique
+faible et inversement.
+Le problème est maintenant correctement formulé afin de permettre d’explorer l’espace de décision et
+répondre au problème initial~: réaliser une maison passive dont les besoins sont couverts
+par l’énergie solaire.
+% subsubsection approche_retenue (end)
+
+% ------------------------------------------------------------------------------
+\subsection{Détail des objectifs} % (fold)
+\label{sub:detail_des_objectifs}
+~
+\iunsure{Parler de la variabilité de $F_{sol}$ si on considère l’été}
+De la même manière que lors de l’étude paramétrique, les simulations sont réalisées
+uniquement durant la période où le système solaire n’est pas autonome afin de réduire la
+durée de simulation~: \emph{période s’étendant du $1^{er}$ octobre au $30$ avril}. Ainsi
+les deux premiers objectifs, $F_{sol}^{ECS}$ et $F_{sol}^{CH}$ ne sont évalués que durant
+la période la plus défavorable. En effet durant le reste de l’année, les besoins en $ECS$
+et en chauffage sont couverts intégralement par le $SSC$~: $F_{sol}^{ECS} = F_{sol}^{CH} = 1$.
+
+À l’inverse, la $Conso_{app}$ durant la période de simulation est quasiment équivalente à
+la $Conso_{app}$ durant l’année complète. En effet, durant le reste de l’année la
+$Conso_{app}$ est égale à la $Conso_{pompes}$ qui comme l’a montrée l’analyse paramétrique
+est négligeable. C’est pour cette raison qu’il est possible de calculer la
+$Conso_{totale}$ sur l’année complète sans avoir à simuler l’année complète.
+
+La $Prod_{PV}$ est donc calculée en amont pour l’ensemble des combinaisons existantes entre
+capteurs thermiques et capteur $PV$ pour l’année complète. Afin de l’évaluer correctement,
+la surface disponible en toiture doit cependant être partagée. Comme il
+a été vu au chapitre 2, la $Prod_{sol}$ dépend fortement de l’orientation des capteurs
+solaires thermiques. Ils sont donc prioritaire sur le pan Sud. De plus, il est aussi
+nécessaire de tenir compte de la géométrie à la fois de la toiture et des capteurs. La
+maison comporte une toiture quatre pans, chaque pan est donc triangulaire. Les capteurs
+eux sont rectangulaires. Il apparaît donc clairement que l’approche naïve qui consiste à
+considérer la surface totale de la toiture comme disponible n’est pas valable~: seule une
+partie est réellement utilisable. Un algorithme de \enquote{packaging} a donc été
+développé afin d’évaluer le nombre de capteurs pouvant loger sur chaque pan de toiture et
+le détail du calcul est disponible en annexe (\ref{cha:repartition_des_capteurs}).
+
+Il est donc important de garder à l’esprit que la $F_{sol}^{ECS}$ et $F_{sol}^{CH}$
+sont plus importantes si on considère une année complète. À l’inverse la $Conso_{app}$
+sur l’année est équivalente à celle de la période simulée.
+% subsection detail_des_objectifs (end)
+% section description_de_l_etude_de_cas (end)
+
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\subsection{Réduction de la cardinalité} % (fold)
+\label{sec:reduction_de_la_cardinalite}
 % ------------------------------------------------------------------------------
 \subsection{Paramètres a priori} % (fold)
 \label{sub:parametres_a_priori}
 ~
 \iunsure{Ajouter explication variables discrètes}
-\ifix{Vérifier valeurs bornes sensibilité}
-\ifix{Vérifier capteurs utilisés dans l’otpimisation}
+\iunsure{Relancer sensibilité avec les vraies bornes des capteurs retenus}
 \itodo{Ajouter différence Strasbourg et Bordeaux}
 
 
@@ -53,52 +192,15 @@ en faisant varier à la fois la performance de l’enveloppe et les caractérist
 Au niveau des isolants, les bornes inférieures et supérieures représentent respectivement
 le niveau recommandé pour la \textit{RT\,2005} et le niveau \textit{MEPOS}.
 La plage de variation pour les surfaces vitrées a été fixée arbitrairement à plus ou moins \SI{20}{\percent}
-de leur valeur d’origine. L’étude ne cherche pas à évaluer l’impact de l’inclinaison
-des capteurs qui est imposée par la géométrie du bâtiment, elle est donc fixée à
-\SI{33}{\percent} soit \SI{18.9}{\degree}.
+de leur valeur d’origine.
+La surface minimale de $PV$ a elle été définie afin de couvrir \SI{75}{\percent} (\SI{\approx
+2330}{\kWh}) de la consommation des équipements internes sur Bordeaux (\SI{\approx 3082}{\kWh}).
+De plus la même variation surfacique est considérée pour les capteurs $PV$ et
+thermiques~: \SI{\approx 7}{\metre\squared} afin de pouvoir comparer leurs influences respectives.
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Production d’électricité} % (fold)
-\label{ssub:production_d_electricite}
-L’étude de cas cherchant à obtenir un bâtiment ayant une consommation très faible, il est
-nécessaire d’introduire une production locale d’électricité. Cette production permettra de
-couvrir l’énergie consommée par les équipements internes (électroménager et éclairage)
-ainsi que la $Conso_{app}$.
-
-La même variation de surface est considérée pour les capteurs $PV$ et thermiques~:
-\SI{\approx 7}{\metre\squared}. En effet, seul la production de $PV$ peut
-compenser les consommations de charges internes et il est plus intéressant d’évaluer son
-influence par rapport à une surface équivalent en solaire thermique. De plus la surface
-minimale de $PV$ a été définie afin de couvrir \SI{75}{\percent} (\SI{\approx 2330}{\kWh})
-de la consommation des équipements internes (\SI{\approx 3082}{\kWh}).
-
-Afin de d’évaluer correctement la production solaire, la surface disponible en toiture
-doit être cependant être correctement partagée. Comme il a été vu au chapitre 2, la
-$Prod_{sol}$ dépend fortement de l’orientation des capteurs solaires thermiques. Ils sont
-donc prioritaire sur le pan Sud. De plus, il est aussi nécessaire de tenir compte de la
-géométrie à la fois de la toiture et des capteurs. La maison comporte une toiture quatre
-pans, chaque pan est donc triangulaire, et les capteurs eux sont de forme rectangulaire.
-Il apparaît donc clairement que l’approche naïve qui consiste à considérer la surface
-totale de la toiture comme disponible n’est pas valable~: seule une partie est réellement
-utilisable. Un algorithme de \enquote{packaging} a donc été développé afin d’évaluer le
-nombre de capteurs pouvant loger sur chaque pan de toiture et le détail du calcul est
-disponible en annexe (\ref{cha:repartition_des_capteurs}).
-
-Finalement, contrairement au $SSC$ qui est évalué uniquement \emph{sur une période
-s’étendant du $1^{er}$ octobre au $30$ avril}, la production $PV$ doit être évalué sur
-l’année complète. Pour rappel, la période de simulation est limitée à la période de
-l’année où le $SSC$ n’est pas complètement indépendant pour les combinaisons de paramètres
-les plus défavorables (\ref{par:periode_de_simulation}). Ainsi sur le reste de l’année la
-$Conso_{app}$ est équivalente à la $Conso_{pompes}$ qui est négligeable au regard des
-résultats de l’analyse paramétrique. L’ensemble des combinaisons existantes entre $PV$ et
-capteurs thermiques est donc simulée sur l’année en amont.
-% subsubsection production_d_electricite (end)
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Variables qualitatives} % (fold)
-\label{ssub:variables_qualitatives}
+\paragraph{Variables qualitatives} % (fold)
+\label{par:variables_qualitatives}
 La méthode de Morris nécessite que l’ensemble des variables soient quantitatives et chaque
 paramètre varie indépendamment. Il n’est donc pas possible d’évaluer directement
 l’influence des capteurs solaires ou des vitrages qui sont des variables qualitatives.
@@ -109,16 +211,17 @@ $\eta_{0}$ et les coefficients $a_{1}$ et $a_{2}$ sont retenues. Dans le cas des
 les caractéristiques principales souvent utilisées sont le $U_{g}$ et le $g$ permettant
 respectivement d’évaluer la résistance au transfert thermique et au passage de l’énergie
 solaire. Les vitrages étant définies de manière détaillé, les paramètres $Émis_{ext}$
-et $\tau_{sol}$ sont retenues. Bien que la méthode de Morris permettent de
-regrouper un jeu de paramètre en un paramètre unique (groupe), les paramètres restent
-indépendants et l’approche n’est donc pas retenue. Ainsi les combinaisons réalisées
+et $\tau_{sol}$ sont retenues. Bien que la méthode de Morris a été adapté afin de permettre de
+regrouper un jeu de paramètre en un paramètre unique (création d’un groupe), ils restent
+indépendants et l’approche n’est donc pas mise en place. Ainsi, les combinaisons réalisées
 représentent des capteurs / vitrages hypothétiques dont la faisabilité technique n’est pas
-garantie. L’approche permet cependant de mettre en exergue l’importance relative de chaque
+garantie mais dont la diversité est représentative des capteurs existants. L’approche permet
+aussi de mettre en exergue l’importance relative de chaque
 caractéristique sur la performance du capteur ou du vitrage et son impact global au niveau
 du $SSC$. De plus, les autres paramètres définies a priori peuvent tenir compte de la
 forte variabilité des capteurs et des vitrages. En effet, il est possible qu’il existe des
 interactions entre les vitrages ou capteurs solaires et les autres facteurs quantitatifs.
-% subsubsection variables_qualitatives (end)
+% paragraph variables_qualitatives (end)
 
 \begin{table}
 \centering
@@ -168,93 +271,9 @@ interactions entre les vitrages ou capteurs solaires et les autres facteurs quan
 
 
 
-% ------------------------------------------------------------------------------
-\subsection{Objectifs et contraintes} % (fold)
-\label{sub:objectifs_et_contraintes}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Approche naïve} % (fold)
-\label{ssub:approche_naive}
-Fort de l’expérience acquise à travers l’étude paramétrique, les objectifs sont formalisés
-de la manière suivante~:
-\begin{itemize}
-  \item Augmenter le $F_{sol}^{ECS}$
-  \item Augmenter le $F_{sol}^{CH}$
-  \item Réduire la $Conso_{app}$
-\end{itemize}
-De plus une contrainte est introduite afin de vérifier que le bâtiment final
-est un bâtiment passif~: $|Conso_{totale}| \leq \SI{300}{kWh}$ \eqref{eq:conso_totale}.
-De cette manière, les bâtiments produisant localement respectivement trop ou pas assez d’énergie sont
-écartés. De plus cette restriction permet de guider la recherche vers un le front de
-Pareto.
-
-\begin{equation} \label{eq:conso_totale}
-  Conso_{totale} = Conso_{app} + Conso_{équipements} + Conso_{éclairage} - Prod_{PV}
-\end{equation}
-
-Cependant formulé de cette manière, l’approche comporte plusieurs failles. Premièrement,
-il est clair que même si les \num{3} objectifs ne sont pas impactés par les mêmes
-paramètres, une tendance commune est identifiable. Ainsi, sans objectifs évoluant de
-manière \enquote{contradictoires} l’optimisation risque de converger vers un ensemble
-de solution très réduites voir une solution unique.
-
-Deuxièmement, l’approche introduit un biais important sur la surface de $PV$. Afin de
-respecter la contrainte, deux configurations extrêmes sont possibles~:
-\begin{itemize}
-  \item Avoir beaucoup de $PV$ et peu de capteurs thermiques
-  \item Avoir beaucoup de capteurs thermiques et suffisamment de $PV$ pour couvrir
-        les consommations des équipements internes.
-\end{itemize}
-Cependant, une fois que la surface de $PV$ permettant d’obtenir une $Conso_{totale}$
-a atteinte la limite basse imposée par la contrainte (\SI{300}{kWh}), elle ne peut plus
-augmenter car la contrainte serait violée (production trop importante d’électricité). De plus,
-augmenter la surface de $PV$ impacte aucun des objectifs, les solutions avec une surface
-de $PV$ plus importante seront toujours rejetées.
-
-Afin que la surface de $PV$ soit influente sur au moins un objectif il est possible
-de minimiser la $Conso_{totale}$ au lieu de minimiser la $Conso_{app}$.
-Cependant, il a été vu au chapitre précédent que la dominance de Pareto implique que une solution
-est meilleure qu’une autre si et seulement si elle est meilleure sur un objectif et au moins
-aussi bonne sur les autres (\defref{def:dominance_de_pareto}). Il est donc clair que
-cette modification ne permet pas de corriger ce biais qui réduit fortement l’espace
-de décision comme celui des solutions.
-% subsubsection approche_naive (end)
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Approche retenue} % (fold)
-\label{ssub:approche_retenue}
-Afin de palier aux difficultés rencontrées, une autre formulation est proposée où les objectifs
-sont~:
-\begin{itemize}
-  \item Augmenter le $F_{sol}^{ECS}$
-  \item Augmenter le $F_{sol}^{CH}$
-  \item Réduire la $Prod_{PV}$
-\end{itemize}
-De plus la contrainte est exprimée comme~: $|Conso_{totale}| \leq 300$
-
-Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
-objectifs. Il est aussi clair que les deux premiers objectifs sont en contradiction nette
-avec le dernier et le biais n’existe donc plus. En effet, il est maintenant possible en
-théorie d’obtenir des solutions avec une surface de $PV$ importante et une surface de
-capteur thermique faible et inversement.
-Le problème est maintenant correctement formulé pour explorer l’espace de décision et
-répondre au problème initial~: réaliser une maison passive dont les besoins sont couverts
-par l’énergie solaire.
-% subsubsection approche_retenue (end)
-% subsection objectifs_et_contraintes (end)
-% section description_de_l_etude_de_cas (end)
-
-
-
-
-
-% ..............................................................................
-% ..............................................................................
-\section{Vers un modèle simplifié} % (fold)
-\label{sec:vers_un_modele_simplifie}
-% ------------------------------------------------------------------------------
-\subsection{Réduction de la cardinalité} % (fold)
-\label{sub:reduction_de_la_cardinalite}
+\subsection{Analyse des résultats} % (fold)
+\label{sub:analyse_des_resultats}
 ~
 \itodo{Décrire les résultats obtenues Bordeaux et Strasbourg}
 \iunsure{Faire en même temps ou faire des sections}
@@ -264,30 +283,83 @@ L’analyse de Morris a été réalisée en considérant \num{15} trajectoires u
 (le $F_{sol}^{CH}$, le $F_{sol}^{ECS}$, et la $Conso_{app}$) mais aussi sur les parts
 actives et passives du chauffage solaire, respectivement notées $Prod_{sol}^{active}$ et
 $Prod_{sol}^{passive}$. En effet, les ballons étant dans le bâtiment, une partie de
-l’énergie solaire est fournie par leurs déperditions.
+l’énergie solaire est fournie par leurs déperditions. Il est alors intéressant de
+mieux comprendre les interactions existantes.
 
 \itodo{Faire en détail la description avec des chiffres pour moyenne et écart type}
-\itodo{$Conso_{app}$}
-Les résultats (\figref{fig:morris_analysis_indicateurs}) sur la $Conso_{app}$ montrent
-que les paramètres $a_{1}$, $a_{2}$, $\eta_{0}$, $Émis_{ext}$, le volume du ballon $ECS$,
-la surface vitrée à l’Est et au Sud, la résistance thermique des murs et du plafond, ainsi que le nombre de capteurs thermiques,
-sont tous influents. L’ensemble des paramètres influents on un impact linéaire à l’exception
-du volume du ballon $ECS$ dont l’influence est ou non-linéaire ou avec des interactions.
-Il apparaît aussi que le niveau d’isolation des ballons comme des canalisations ne soit pas
-très impactant.
 
-Ainsi au regard de ces premiers résultats le performance thermique des vitrage doit être
-considéré tout comme le type de capteur solaire utilisé car ces trois indicateurs caractéristiques
-sont influents.
 
-\itodo{$F_{sol}^{ECS}$}
+\subsubsection{Valorisation de l’énergie solaire~:} % (fold)
+\label{ssub:valorisation_de_l_energie_solaire_}
+L’analyse de l’influence des facteurs montre que les $Pertes_{réseau}$ sont fortement
+impactées par la surface totale de capteur comme de l’épaisseur de l’isolant au niveau
+des canalisations. Plus intéressant, les résultats montrent que le volume du ballon sanitaire
+a aussi un impact important. Afin de mieux comprendre le signe de l’influence, il est
+nécessaire de regarder l’évolution de la moyenne ($\mu$) (\mtodo{figref annexe}). En comparant l’évolution
+de $\mu^{*}$ et de $\mu$ il est clair que augmenter le volume influe négativement les $Pertes_{réseau}$.
+Il est aussi observé que pour Bordeaux comme Strasbourg, l’impact est avec interaction ou
+non linéaire même si l’effet est plus important sur Bordeaux. La $Prod_{sol}$ étant plus
+importante sur Bordeaux que Strasbourg, les $Pertes_{réseau}$ sont aussi augmentées.
+Dans une moindre mesure le $DeltaT_{sol}$ est aussi influent et a des interaction non linéaires
+ou avec des interactions. Contrairement aux observations réalisés sur les indicateurs
+sélectionnées comme des objectifs, le facteur semble plus influent sur Strasbourg.
+
+Maintenant si on s’intéresse à l’effet de ces pertes sur la $Prod_{sol}^{valorisée}$,
+la performance thermiques des canalisations ne sont plus importantes. Cependant le volume
+du ballon sanitaire est toujours influent mais les effets sont cette fois linéaires. Il est
+aussi possible d’identifier un nouveau facteur influent de manière linéaire~: le volume du ballon tampon.
+L’explication est simple~: la proportion des $Pertes_{réseau}$ est moins importante que la
+$Prod_{sol}$, ainsi les facteurs les plus influents pour la $Prod_{sol}^{valorisée}$ sont ceux
+ayant une influence sur la $Prod_{sol}$.
+
+Il est aussi intéressant de voir que la performance des vitrages ($Émis_{ext}$) est un facteur
+impactant avec des effets non linéaires ou des interactions. Il semble en effet que la dégradation
+de la performance des fenêtre permette de valoriser plus d’énergie solaire. Pour les deux
+climats, l’nfluence est similaire mais il a été noté que la dégradation de l’$Émis_{ext}$ des
+vitrages impacte fortement la $Conso_{app}$ particulièrement pour Strasbourg. Le solaire
+ne semble donc capable de couvrir que une partie de l’augmentation des besoins.
+
+Enfin il est noté que le $DeltaT_{sol}$ a une influence seulement pour Bordeaux expliquant
+en partie pourquoi lors de l’évaluation sur l’indicateur $F_{sol}^{CH}$ ce paramètre n’apparaît
+pas comme influent pour Strasbourg.
+% subsubsection valorisation_de_l_energie_solaire_ (end)
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Consommation de l’appoint} % (fold)
+\label{ssub:consommation_de_l_appoint}
+Les résultats (\figref{fig:sigma_mu_star_objectifs}) montrent que les paramètres $a_{1}$,
+$a_{2}$, $\eta_{0}$, $Émis_{ext}$, le volume du ballon $ECS$, la résistance thermique des
+murs et du plafond, ainsi que le nombre de capteurs thermiques, sont tous influents. Seul
+le volume du ballon $ECS$ a une influence non-linéaire ou avec des interactions. Il apparaît aussi que le niveau
+d’isolation des ballons comme des canalisations ne soit pas très important.
+Pour Strasbourg, contrairement à Bordeaux, de nombreux facteurs liés à l’enveloppe
+sont impactant. La résistance du plancher et le $\tau_{sol}$ ont en effet un impact
+linéaire et les surfaces vitrées au Sud comme à l’Est ont elles un impact non-linéaire
+ou avec interactions.
+Pour Bordeaux, il peut cependant être noté que la $Conso_{app}^{CH}$ est influencée par
+la surface de vitrage au Sud mais les besoins en chauffage étant moins important que
+les besoins en $ECS$ l’indicateur n’est pas parmis les plus influents sur la $Conso_{app}$.
+Ainsi au regard de résultats il apparaît que la performance du $SSC$ est plus impacté par
+les caractéristiques de l’enveloppe lorsque les conditions extérieures sont plus rudes.
+% paragraph climat_bordeaux (end)
+% subsubsection consommation_de_l_appoint (end)
+
+
+\subsubsection{Couverture solaire sur l’eau chaude sanitaire} % (fold)
+\label{ssub:couverture_solaire_sur_l_ECS}
 Sur l’indicateur $F_{sol}^{ECS}$ les facteurs ayant une influence linéaire sont
-peu nombreux~: la surface de capteur et ces caractéristiques ($a_{1}$, $a_{2}$, $\eta_{0}$)
+peu nombreux~: la surface de capteur et ses caractéristiques ($a_{1}$, $a_{2}$, $\eta_{0}$)
 ainsi que le volume du ballon sanitaire. La $Ech_{sol}^{pos}$ quand à elle a une influence
-non-linéaire ou avec des interactions.
+non-linéaire ou avec des interactions. L’ordre des facteurs influents reste sensiblement le
+même pour Bordeaux et Strasbourg.
+% subsubsection couverture_solaire_sur_l_ECS (end)
 
 
-\itodo{$F_{sol}^{CH}$}
+\subsubsection{Couverture solaire sur le chauffage} % (fold)
+\label{ssub:couverture_solaire_sur_le_chauffage}
+~
+\itodo{ICI}
+\itodo{Parler surface sud sur solaire actif}
 Sur l’indicateur $F_{sol}^{CH}$ les facteurs ayant une influence linéaire sont~: la
 surface des capteurs thermiques, le volume des deux ballons, les \num{3} coefficients
 caractéristiques des capteurs solaires ($a_{1}$, $a_{2}$, et $\eta_{0}$), la performance
@@ -303,6 +375,7 @@ d’autres comme la résistance thermique des ballons influence uniquement la $P
 Il peut aussi être noté que le volume du ballon tampon influence plus fortement la
 $Prod_{sol}^{passive}$ alors que l’on observe l’inverse pour la performance thermique
 des vitrages.
+% subsubsection couverture_solaire_sur_le_chauffage (end)
 
 
 \itodo{$Conso_{totale}$}
@@ -330,10 +403,10 @@ les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de 
 \begin{landscape}
     \begin{figure}
         \begin{center}
-            \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star.pdf}
+            \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star_objectifs.pdf}
         \end{center}
         \caption{Résultat de l’analyse de Morris pour les indicateurs principaux.
-                 \label{fig:sigma_mu_star}}
+                 \label{fig:sigma_mu_star_objectifs}}
     \end{figure}
 
     \begin{figure}
@@ -341,10 +414,16 @@ les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de 
           \includegraphics{Ressources/Images/Sensibilite/graphInfluence.pdf}
       \end{center}
       \caption{Résultat de l’analyse de Morris pour différent indicateurs.
-               \label{fig:graphe_influence}}
+               \label{fig:graphe_influence_objectifs}}
   \end{figure}
 \end{landscape}
+% subsection analyse_des_resultats (end)
 
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Paramètres retenus} % (fold)
+\label{sub:parametres_retenus}
 \begin{table}
 \centering
 \caption{Liste des paramètres retenus pour l’optimisation.}
@@ -361,15 +440,16 @@ les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de 
   $Ech_{sol}^{pos}$    & \num{0.8}  &  \num{1.3}  & Continue    & -          & Position relative à la taille du ballon     \\
   Volume ballon tampon & \num{100}  &  \num{500}  & Discrète    & \num{50}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}   \\
   Volume ballon $ECS$  & \num{100}  &  \num{500}  & Discrète    & \num{50}   &    \\
-  $DeltaT_{sol}$       & \num{5}    &  \num{15}   & Continue    & -          &        \\
+  $DeltaT_{sol}$       & \num{5}    &  \num{15}   & Continue    & -          &  \emph{Uniquement pour Bordeaux}      \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}             \\
   \midrule
   $R$ murs             & \num{4}    &  \num{7}    & Discrète    & \num{0.5}  & -                                  \\
   $R$ plafond          & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & -                                                                      \\
+  $R$ plancher         & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & \emph{Uniquement pour Strasbourg}                                                                     \\
   Surface vitrée Sud  & \num{5.42} &  \num{8.13} & Continue    &  -         & \multirow{2}{*}{Surface totale \SI{26.4}{\metre\squared}}       \\
-  Surface vitrée Est  & \num{4.3}  &  \num{6.46} & Continue    &  -         &   \\
+  Surface vitrée Est  & \num{4.3}  &  \num{6.46} & Continue    &  -         &  \emph{Uniquement pour Strasbourg} \\
   Type de vitrage      & -          &  -          & Qualitative &  -         & Voir \tabref{tab:carac_vitrages} \\
   \\
   \addlinespace[\defaultaddspace]
@@ -381,7 +461,6 @@ les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de 
 \end{table}
 
 \begin{table}
-\itodo{Ajouter variations des capteurs DIMA voir optimisation}
 \centering
 \caption{Caractéristiques des panneaux solaires.
 \label{tab:capteurs_specs}}
@@ -423,29 +502,47 @@ les caractéristiques du $SSC$. De plus cette méthode de criblage a permise de 
 \caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673}) des différents vitrages envisagés.
          \label{tab:carac_vitrages}}
 \end{table}
+% subsection parametres_retenus (end)
+% section reduction_de_la_cardinalite (end)
 
-% subsection reduction_de_la_cardinalite (end)
 
-% ------------------------------------------------------------------------------
-\subsection{Construction d’un modèle de substitution} % (fold)
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Construction d’un modèle de substitution} % (fold)
 \label{sub:construction_d_un_modele_de_substitution}
-Afin de réduire la durée de simulation le modèle détaillée peut être substitué à un méta-modèle. Comme décrit dans le
-chapitre précédent un ensemble représentatif des combinaisons
+\subsection{Création de l’échantillon} % (fold)
+\label{sub:creation_de_l_echantillon}
+Afin de réduire la durée de simulation le modèle détaillée peut être substitué à un méta-
+modèle. Comme décrit dans le chapitre précédent un ensemble représentatif des combinaisons
 possibles est nécessaire afin de construire un modèle valide. Il est donc important
-spécialement dans notre cas de réduire le nombre de variables en amont grâce à une
-méthode de criblage afin de réduire
-la taille de l’échantillon nécessaire pour construire le modèle.
-L’échantillon a été construit par une méthode de pseudo-Monte-Carlo avec la suite
-de Halton comme générateur. Les solutions construites sont donc équitablement réparties
-, assurant une bonne représentativité de l’espace de décision.
+spécialement dans notre cas, de réduire le nombre de variables en amont grâce à une méthode
+de criblage. De cette manière la taille de l’échantillon nécessaire pour construire le
+modèle est réduit. L’échantillon a été construit grâce à une méthode de pseudo-Monte-Carlo
+en considérant la suite de halton comme générateur pseudo-aléatoire. Les solutions construites
+sont donc équitablement réparties, assurant une bonne représentativité de l’espace de décision.
+% subsection creation_de_l_echantillon (end)
+
+\subsection{Création des modèles de substitution} % (fold)
+\label{sub:creation_des_modeles_de_substitution}
+Une fois l’échantillon simulé, la bibliothèque \textit{OpenTurns} a été utilisée
+afin de construire les \num{3} méta-modèles. La $Prod_{sol}$ étant pré-calculée,
+un modèle est uniquement nécessaire pour le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$, et la $Conso_{app}$.
+De plus afin de construire les méta-modèles, une loi de probabilité doit être attribué à chaque
+paramètres. L’étude se plaçant en phase de conception, une loi uniforme est retenue.
+
+
+\itodo{Décrire MAE et RMSE}
+Afin d’évaluer la concordance entre les méta-modèles et le modèle de référence,
+deux indicateurs sont introduits. Le premier la ... ($RMSE$, Root Mean Square)
 
 \itodo{Décrire la création de l’échantillon et résultats (erreur relative)}
-\itodo{Expliquer la variable utilisé pour vitrages et capteurs}
-\ftodo{Régression entre modèle et méta-modèle}
-
-% subsection construction_d_un_modele_de_substitution (end)
-% section vers_un_modele_simplifie (end)
-
+\itodo{Décrire performance avec différents paramètres caractéristiques}
+Afin de représenter les variables qualitatives, vitrages et capteurs, leurs variables
+caractéristiques sont utilisés en substitution. Au regard des résultats il apparaît ...
+% subsection creation_des_modeles_de_substitution (end)
+% section construction_d_un_modele_de_substitution (end)
 
 
 
