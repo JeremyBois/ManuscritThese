@@ -88,6 +88,8 @@
 
 % Hyper links and meta data
 \RequirePackage{bookmark}                                % load hyperref internaly
+% Force link to point to the top of a figure
+\RequirePackage{caption}
 % Add quick command to make correct references
 \newcommand{\figref}{Fig.~\ref}  % Figures
 \newcommand{\defref}{Déf.~\ref}  % Définitions
