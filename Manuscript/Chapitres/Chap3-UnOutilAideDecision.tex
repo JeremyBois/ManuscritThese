@@ -44,7 +44,7 @@ nécessaire de définir les critères à optimiser. On parle alors des objectifs
 optimisation multi-critère ou multi-objectif. La définition des fonctions objectifs et des
 contraintes est propre à chaque problème et est directement dépendant des données
 disponibles. Dans le secteur du bâtiment, il est courant de considérer certaines sorties
-des logiciels de simulation dynamique (\textit{STD}, \textit{CFD}, ...) comme objectifs.
+des logiciels de simulation dynamique (\textit{STD}, \textit{CFD}\dots) comme objectifs.
 \textcite{Attia2013110}, montrent que dans le cas d’études sur la performance des bâtiment
 passifs la consommation, le coût, et le confort son couramment sélectionnés .
 \itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
@@ -295,7 +295,7 @@ dites globales, s’intéressant à l’ensemble du domaine de définition.
 
 \begin{figure}
     \centering
-        \itodo{Refaire une version plus propre ...}
+        \itodo{Refaire une version plus propre\dots}
     \includegraphics{Ressources/Images/Sensibilite/classement_mauvais.png}
     \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.
              \label{fig:classement_methode_sensibilite}}
@@ -464,7 +464,7 @@ méthode de décomposition de la variance (voir Fig~\ref{fig:classement_methode_
 ~\\
 \itodo{Ajouter exemple dans le solaire et bâtiment, Armand-Decker2015, Chen2016422}
 Récemment \mtodo{Cite Anto}{Anto} a utilisé les méta-modèles dans le cadre de garantie de
-performance pour un bâtiment de bureaux. L’approche a de plus été comparée avec ...
+performance pour un bâtiment de bureaux. L’approche a de plus été comparée avec \dots
 \textcite{Armand-Decker2015} les utilisent afin de réaliser une optimisation multi-
 objectif d’un bâtiment. Le méta-modèle est alors utilisé comme substitut à un modèle de
 bâtiment réalisé sous Energy Plus.
@@ -490,7 +490,7 @@ suivants en considération~:
 \begin{itemize}
   \item Le nombre de simulations nécessaires pour créer le méta-modèle
   \item Le nombre de simulations nécessaires pour l’optimisation sans méta-modèle
-  \item Le type des variables d’entrées (continue, discrètes, ...)
+  \item Le type des variables d’entrées (continue, discrètes\dots)
   \item L’utilité à terme de l’outil d’optimisation / d’aide à la décision
 \end{itemize}
 % subsubsection principe (end)
@@ -542,7 +542,7 @@ La méthodologie retenue (\figref{fig:methode_aide_decision}) est dans la contin
 l’approche décrite dans le chapitre précédent.
 Dans un premier temps la modélisation est réalisée de manière itérative et une étude
 paramétrique permet de définir les différents paramètres clés (objectifs, contraintes,
-variables, bornes, ...). Ensuite, la cardinalité du problème est réduite grâce à la
+variables, bornes\dots). Ensuite, la cardinalité du problème est réduite grâce à la
 \textit{méthode de Morris} appliquée sur chaque objectif et contrainte. Le problème
 résultant est alors substitué par un ensemble de méta-modèles afin de fortement réduire le
 temps de calcul nécessaire pour une évaluation. Les modèles de substitutions obtenues
@@ -607,11 +607,11 @@ Il peut être formulé de la manière suivante dans le cas d’une minimisation~
 \begin{equation}\label{eq:def_optimisation}
   \begin{aligned}
                            & \underset{\vec{x} \in \mathbb{R}^{D}}{\min(\vec{f}(\vec{x}))}&
-                           & \quad (f_{m})_{m \in [1 \dots M]} & \longmapsto \mathbb{R} \\
+                           & \quad (f_{m})_{m \in [1,\dotsc M]} & \longmapsto \mathbb{R} \\
     \text{Sujet à~: }\quad & \vec{g}(\vec{x}) \leqslant 0                                 &
-                           & \quad (g_{q})_{q \in [1 \dots Q]} & \longmapsto \mathbb{R} \\
+                           & \quad (g_{q})_{q \in [1,\dotsc Q]} & \longmapsto \mathbb{R} \\
                            & \vec{h}(\vec{x}) = 0                                         &
-                           & \quad (g_{c})_{c \in [1 \dots C]} & \longmapsto \mathbb{R} \\
+                           & \quad (g_{c})_{c \in [1,\dotsc C]} & \longmapsto \mathbb{R} \\
   \end{aligned}
 \end{equation}
 Avec $\vec{x}$ représentant la valeur des $D$ variables de décision et
@@ -871,7 +871,7 @@ ils peuvent tous être classés dans la branche de l’Intelligence Artificielle
 notion a été définie par
 \href{http://www-formal.stanford.edu/jmc/whatisai/whatisai.html}{John McCarthy
 et Marvin Lee Minsky} et ne cesse de s’améliorer dans de nombreux domaines comme le
-déplacement organisé en groupe (humains, oiseaux, poissons, ...) ou encore l’apprentissage
+déplacement organisé en groupe (humains, oiseaux, poissons\dots) ou encore l’apprentissage
 et la réflexion. \textit{Deep Blue} a ainsi été le premier programme informatique à battre
 le champion du monde d’échec de l’époque \parencite{Hsu199970}. Le jeu de Go est un autre
 exemple témoignant de la forte évolution de l’$IA$. Alors que les anciens programmes étaient
@@ -1031,7 +1031,7 @@ problèmes d’interfaçage.
 Le choix d’une approche peut ainsi être guidé par les réponses aux questions
 suivantes~:
 \begin{itemize}
-  \item Quelle est la nature des variables de décision (discrètes, continues, ...)~?
+  \item Quelle est la nature des variables de décision (discrètes, continues\dots)~?
   \item Quelles sont les contraintes imposées par l’outil de modélisation~?
   \item L’algorithme nécessite-t-il la définition de nombreux paramètres~?
   \item La définition de ces paramètres est-elle ardue~?
@@ -1158,7 +1158,7 @@ Puis, \textcite{Camazine1991547} élaborent un modèle mathématique permettant 
 le comportement social caractéristique des abeilles.
 L’idée de s’inspirer des abeilles mellifères pour l’optimisation n’est cependant introduit
 qu’en 2005 \parencite{Karaboga2005}. Même si de nombreuses formulations existent (Bee
-Algorithm (\textit{BA}), Bee Colony Optimization (\textit{BCO}), ...), la formulation de
+Algorithm (\textit{BA}), Bee Colony Optimization (\textit{BCO})\dots), la formulation de
 l’$ABC$ reste la plus répandue et sera retenue dans ces travaux (\figref{fig:abc_repartition}).
 
 \begin{figure}
@@ -1227,8 +1227,8 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 L’algorithme $ABC$ est une approche itérative constituée de 3 phases principales.
 En amont de ce processus itératif, $N = \frac{NP}{2}$ sources sont initialisées
 aléatoirement \eqref{eq:init_source}, avec $NP$ la taille de la population.
-Chaque source $i$ est un vecteur $\vec{x}_{i}(i = 1, 2, \dotsc, N)$ de dimension $D$
-avec $D$ le nombre de variables de décision $x_{ij} (j = 1, 2, \dotsc, D)$.
+Chaque source $i$ est un vecteur $\vec{x}_{i}(i = 1, 2, \dotsc N)$ de dimension $D$
+avec $D$ le nombre de variables de décision $x_{ij} (j = 1, 2, \dotsc D)$.
 
 \begin{equation}\label{eq:init_source}
   x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})
@@ -1396,7 +1396,7 @@ aléatoires dont chaque état ne dépend que de l’état précédent. Si on not
 la somme des pas aléatoires consécutifs $X_{w}$ alors $S_{W}$ est une marche aléatoire:
 \begin{equation}\label{eq:marche_aleatoire}
     \begin{split}
-        S_{W} &= \sum_{w=1}^{W} X_{w} = X_{1} + \dots + X_{W}\\
+        S_{W} &= \sum_{w=1}^{W} X_{w} = X_{1} + \dotsb + X_{W}\\
               &= S_{W-1} + X_{W}
     \end{split}
 \end{equation}
@@ -1415,7 +1415,7 @@ Un vol de Lévy est une marche aléatoire dont la longueur du pas (positif ou n�
 est définie aléatoirement à partir d’une distribution de Lévy stable et symétrique
 couramment décrite par la transformée de Fourier suivante:
 \begin{equation}\label{eq:fourier_levy}
-    \mathcal{F}(k) = \exp(-\alpha\mathopen{|}k\mathclose{|}^{\beta}) \qquad  0 < \beta \leq 2
+    \mathcal{F}(k) = \exp(-\alpha\abs{k}^{\beta}) \qquad  0 < \beta \leq 2
 \end{equation}
 La forme analytique étant définie par~:
 \begin{equation}\label{eq:dist_levy}
@@ -1437,7 +1437,7 @@ L’algorithme de Mantegna \parencite{Mantegna19944677} est alors utilisé afin
 d’approximer cette distribution pour $0.3 < \beta < 1.99$ \eqref{eq:mantegna_algo}.
 
 \begin{align}\label{eq:mantegna_algo}
-    s &= \frac{u}{\mathopen{|}v\mathclose{|}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}),
+    s &= \frac{u}{\abs{v}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}),
         \quad v \sim \mathcal{N}(0, \sigma_{v}^{2}) \\[1em]
     \shortintertext{avec}
     \sigma_{u} &= \left[ \frac{\bm{{\Gamma}}(1+\beta)\sin(\pi\frac{\beta}{2})}%
@@ -1481,10 +1481,10 @@ a priori, \textcite{Tizhoosh2005695} a développé l’apprentissage par vecteur
 ($OBL$ pour Opposite Based Learning) (\defref{def:oblm}).
 
 \begin{Def}[OBL~:~Apprentissage par vecteur opposé]\label{def:oblm}
-Admettons une position de dimension $D$, $\vec{x}(x_{1}, x_{2}, ..., x_{D})$ avec
-$x_{1}, x_{2}, ..., x_{D}$ des valeurs bornées. Si $x_{j} \in [c_{j}, d_{j}]$ pour
-$j = 1, 2, ..., D$ alors la position opposée est $\vec{\check{x}}(\check{x_{1}},%
-\check{x_{2}}, ..., \check{x_{D}})$ est définie par:
+Admettons une position de dimension $D$, $\vec{x}(x_{1}, x_{2}, \dotsc, x_{D})$ avec
+$x_{1}, x_{2}, \dotsc, x_{D}$ des valeurs bornées. Si $x_{j} \in [c_{j}, d_{j}]$ pour
+$j = 1, 2, \dotsc, D$ alors la position opposée est $\vec{\check{x}}(\check{x_{1}},%
+\check{x_{2}}, \dotsc, \check{x_{D}})$ est définie par:
 \[\check{x_{j}} = c_{j} + d_{j} - x_{j}\]
 \end{Def}
 
@@ -1541,7 +1541,7 @@ choisis pour chaque objectif et est donc toujours garantie d’être finie.
 \begin{Def}[$\epsilon$-dominance]\label{def:eps_dominance}
 L’$\epsilon$-dominance assume que deux solutions sont identiques lorsqu’elles appartiennent
 au même hypercube dont les dimensions des arrêtes sont définies par
-$\vec{\epsilon}_{m}, m \in \{1, ..., M\}$ avec $M$ le nombre de fonctions objectif.
+$\vec{\epsilon}_{m}, m \in \{1, \dotsc, M\}$ avec $M$ le nombre de fonctions objectif.
 Dans le cas d’une maximisation il est dit que $\vec{x}_{a}$ $\epsilon$-domine $\vec{x}_{b}$ si~:
 \begin{align*}
   \forall m \in \{1, M\}, \qquad
@@ -1588,7 +1588,7 @@ Les résultats indiquent que les approches \textit{PESA} et \textit{NSGA II} obt
 bonne représentation du front de Pareto que celles utilisant l’$\epsilon$-dominance
 (\textit{$\epsilon$-MOEA}) ou le clustering (\textit{C-NSGA II}, \textit{SPEA}).
 Cette observation est d’autant plus vraie pour des problèmes ayant plus de deux
-objectifs (\textit{DTLZ1}, ..., \textit{DTLZ7}).
+objectifs (\textit{DTLZ1} \dots \textit{DTLZ7}).
 De plus les résultats mettent aussi en évidence que le \textit{NSGA II} et le \textit{$\epsilon$-MOEA}
 convergent plus rapidement que le \textit{SPEA II}.
 Un désavantage à cette méthode peut cependant être noté. De part sa formulation
@@ -1785,7 +1785,7 @@ de problèmes pouvant être rencontrés dans un problème d’optimisation.
 
 La bibliothèque \textit{pyMOABC} a été développée autour de tests unitaires
 (Test-driven development).
-Chaque éléments (fonction / méthodes / ...) et comportements (minimisation / maximisation / ...)
+Chaque éléments (fonction / méthodes /\dots) et comportements (minimisation / maximisation /\dots)
 ont ainsi été testés afin de garantir que la bibliothèque implémente correctement
 les éléments et comportements nécessaires. De part son approche, chaque nouvelle
 modification tient implicitement compte des tests précédents et garantie ainsi

@@ -1,5 +1,18 @@
-\ProvidesClass{JeremyThesis}[2017/05/03 Class used to build Jeremy Bois PhD thesis]
+\ProvidesClass{JeremyThesis}[2017/05/03. A modified version of report for french with a lot of utilities%
+                             Works with PDFLaTeX and XeTeX]
 \NeedsTeXFormat{LaTeX2e}
+
+% ------------------------------------------------------------------------------
+% Author : Jérémy Bois
+%
+% Notes for windows users of XeTeX
+%   https://tex.stackexchange.com/questions/325278/xelatex-runs-slow-on-windows-machine
+%
+% Recommended fonts
+%   Serif font      : GandhiSerif
+%   Sans Serif font : PT-Sans
+%   Math font       : Asana-Math
+% ------------------------------------------------------------------------------
 
 % Class structure: declaration of options part
 \LoadClass{report}
@@ -17,7 +30,7 @@
   \setkeys{Gin}{width=\maxwidth,height=\maxheight, keepaspectratio}
 }
 
-% Look after a config file option.these
+% Look after a configuration file option.these
 % Add other to report argument options
 \DeclareOption*{\InputIfFileExists{\CurrentOption.these}{}{%
                 \PassOptionsToClass{\CurrentOption}{report}}}
@@ -45,10 +58,10 @@
 \RequirePackage[autostyle=true, threshold=0]{csquotes}              % Ensure correct quote text even nested one
 \renewcommand{\mkblockquote}[4]{%
               \color{SolarizedBrBlack}\openautoquote\itshape#1%
-              \closeautoquote\color{ClassicBlack}\normalfont#2#3#4}                     % Add << and italic to blockquotes
+              \closeautoquote\color{ClassicBlack}\normalfont#2#3#4} % Add << and italic to block quotes
 \RequirePackage[greek, french]{babel}                               % http://daniel.flipo.free.fr/frenchb/
 \frenchspacing                                                      % Simple space after paragraph
-\frenchbsetup{StandardLists=true}                                   % Turn off french list style
+\frenchbsetup{StandardLists=true}                                   % Turn off French list style
 
 
 
@@ -81,13 +94,13 @@
 % ------------------------------------------------------------------------------
 % Page layout
 % ------------------------------------------------------------------------------
-%    \hypersetup{}                                          % Add meta-data to pdf
+%    \hypersetup{}                                       % Add meta-data to pdf
 
 % Add appendix
 \RequirePackage{appendix}
 
 % Hyper links and meta data
-\RequirePackage{bookmark}                                % load hyperref internaly
+\RequirePackage{bookmark}                                % load hyperref internally
 % Force link to point to the top of a figure
 \RequirePackage{caption}
 % Add quick command to make correct references
@@ -134,9 +147,9 @@
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{%
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
-\advance\dimen0-0.2\ht0
+\advance\dimen0-0.1\ht0
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
-{\box0\lower0.7pt\box2}}
+{\box0\lower0.59pt\box2}}
 \LetLtxMacro{\oldsqrt}{\sqrt}
 \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
 
@@ -163,7 +176,7 @@
   {\itshape}                                                       % Content style
   {\parindent}                                                     % Title Indentation
   {\bfseries}                                                      % Title style
-  {}                                                               % Ponctuation after title and before title spacing
+  {}                                                               % Punctuation after title and before title spacing
   {\newline}                                                       % Space after Title
   {\thmname{#1}\thmnumber{ \textup{#2}}\thmnote{~(\textit{#3})}}   % Title construction
 \theoremstyle{Def}
@@ -174,6 +187,18 @@
 % Quick and easy way to typeset floor and ceil
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+% Quick and easy way to typeset abs (|) and norm (||)
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% Swap the definition of \abs* and \norm*, so that \abs and \norm resizes the
+% size of the brackets, and the starred version does not.
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+
 
 % If using XeLaTeX
 \ifXeTeX
@@ -204,7 +229,7 @@
 \RequirePackage{booktabs}                                  % Easy pro tables
 \RequirePackage{multirow}                                  % Multiple row
 
-% New column type to wrap column without lossing alignment
+% New column type to wrap column without losing alignment
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}    % Centered
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}  % Left aligned
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}   % Right aligned
@@ -441,7 +466,7 @@
 
 
 % ------------------------------------------------------------------------------
-% Correct french support of babel
+% Expand French support of babel
 % ------------------------------------------------------------------------------
 \addto\captionsfrench{
   \renewcommand{\contentsname}{Sommaire}
