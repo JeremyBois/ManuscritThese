@@ -7,8 +7,6 @@
 
 \ifix{Surface vitrée Est pas influente pour Bordeaux}
 
-\itodo{Demander ce que c’est que \textbf{nominal value} pour le méta-modèle}
-
 % Pour optimisation
 % Par exemple un pas de \num{0.1} avec des bornes min de \num{0} et max de \num{0.5} donnera
 % les variations possibles suivantes~: (\num{0} - \num{0.1} - \num{0.2} - \num{0.3} - \num{0.4} - \num{0.5}).
@@ -63,8 +61,8 @@ couvrir l’énergie consommée par les équipements internes (électroménager 
 ainsi que la $Conso_{app}$. Ainsi une contrainte est introduite afin de ne retenir que
 les solutions proposant une maison faiblement consommatrice \eqref{eq:conso_totale} fixé arbitrairement à~:
 \begin{itemize}
-   \item $|Conso_{totale}| \leq \SI{300}{kWh}$ pour Bordeaux
-   \item $|Conso_{totale}| \leq \SI{600}{kWh}$ pour Strasbourg
+   \item $\abs{Conso_{totale}} \leq \SI{300}{kWh}$ pour Bordeaux
+   \item $\abs{Conso_{totale}} \leq \SI{600}{kWh}$ pour Strasbourg
  \end{itemize}
 De cette manière, les bâtiments produisant localement respectivement trop ou pas assez d’énergie sont
 écartés.
@@ -111,8 +109,8 @@ sont~:
 \end{itemize}
 La contrainte elle n’est pas modifiée~:
 \begin{itemize}
-   \item $|Conso_{totale}| \leq \SI{300}{kWh}$ pour Bordeaux
-   \item $|Conso_{totale}| \leq \SI{600}{kWh}$ pour Strasbourg
+   \item $\abs{Conso_{totale}} \leq \SI{300}{kWh}$ pour Bordeaux
+   \item $\abs{Conso_{totale}} \leq \SI{600}{kWh}$ pour Strasbourg
 \end{itemize}
 
 Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
@@ -465,7 +463,7 @@ nombre de combinaisons à évaluer est ainsi fortement réduit.
   $R$ murs             & \num{4}    &  \num{7}    & Discrète    & \num{0.5}  & -                                  \\
   $R$ plafond          & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & -                                                                      \\
   $R$ plancher         & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & \emph{Uniquement pour Strasbourg}                                                                     \\
-  Surface vitrée Sud  & \num{5.42} &  \num{8.13} & Continue    &  -         & \multirow{2}{*}{Surface totale \SI{26.4}{\metre\squared}}       \\
+  Surface vitrée Sud  & \num{5.42} &  \num{8.13} & Continue    &  -         & -       \\
   Surface vitrée Est  & \num{4.3}  &  \num{6.46} & Continue    &  -         &  \emph{Uniquement pour Strasbourg} \\
   Type de vitrage      & -          &  -          & Qualitative &  -         & Voir \tabref{tab:carac_vitrages} \\
   \\
@@ -545,16 +543,65 @@ sont donc équitablement réparties, assurant une bonne représentativité de l�
 Une fois l’échantillon simulé, la bibliothèque \textit{OpenTurns} a été utilisée
 afin de construire les \num{3} méta-modèles. La $Prod_{sol}$ étant pré-calculée,
 un modèle est uniquement nécessaire pour le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$, et la $Conso_{app}$.
-De plus afin de construire les méta-modèles, une loi de probabilité doit être attribué à chaque
-paramètres. L’étude se plaçant en phase de conception, une loi uniforme est retenue.
+Bien que la $Conso_{app}$ ne soit pas un objectif de l’optimisation, sa connaissance est
+nécessaire afin de déterminer la contrainte~: la $Conso_{totale}$.
+
+Étant en phase de conception et cherchant à explorer l’ensemble du domaine de recherche,
+une loi uniforme est utilisée pour chaque paramètre durant la construction des méta-
+modèles. Afin d’évaluer leurs précisions par rapport aux modèles de références, l’erreur
+quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale ($MAE$,
+Maximal Absolute Error) sont introduites. La $RMSE$ permet d’évaluer l’écart moyen entre les
+sorties du méta-modèle ($\mathcal{M}$) et du modèle de référence ($f$) \eqref{eq:rmse}. Le
+second, la $MAE$, permet d’obtenir l’écart maximal existant entre le méta-modèle et le
+modèle de référence \eqref{eq:mae}.
+
+\begin{align}
+  \label{eq:rmse}
+  RMSE &= \sqrt{\frac{1}{N}\sum^{N}_{i=1} \left[ f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i}) \right]^{2} } \\
+  \label{eq:mae}
+  MAE  &= max \left( \abs{f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i})}, \: x \in \{1, 2, \dotsc, N\} \right)
+\end{align}
+
+Afin de déterminer la taille minimale nécessaire pour construire un méta-modèle
+valide, une étude paramétrique a été menée (\figref{fig:meta_taille_echantillon}).
+Celle-ci permet de caractériser l’évolution de la $RMSE$ et de la $MAE$ en fonction
+du nombre de solution de référence simulées.
+\itodo{Décrire résultats}
 
 
-\itodo{Décrire MAE et RMSE}
-Afin d’évaluer la concordance entre les méta-modèles et le modèle de référence,
-deux indicateurs sont introduits. Le premier la ... ($RMSE$, Root Mean Square)
+\begin{figure}
+    \centering
+    \itodo{Ajouter variation MAE et RMSE en fonction de la taille de l’échantillon + Ordre méta}
+    % \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star_objectifs.pdf}
+    \caption{Résultat de l’analyse de Morris pour les objectifs principaux
+             ($f(\mu^{*}) = \sigma$).}
+    \label{fig:meta_taille_echantillon}
+\end{figure}
 
-\itodo{Décrire la création de l’échantillon et résultats (erreur relative)}
-\itodo{Décrire performance avec différents paramètres caractéristiques}
+Un méta-modèle d’ordre \num{3} est donc retenu pour chaque indicateur, le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$,
+et la $Conso_{app}$ dont les erreurs statistiques sont fournies à travers le \tabref{tab:meta_retenus}.
+
+
+\begin{table}
+\centering
+\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{3} méta-modèles.
+\label{tab:meta_retenus}}
+\begin{tabular}{l c c c c r}
+    \toprule
+                    & \multicolumn{2}{c}{Bordeaux} & \multicolumn{2}{c}{Strasbourg} & \multirow{2}{*}{Unité} \\
+                    \cmidrule(r){2-3}
+                    \cmidrule(r){4-5}
+                    & $RMSE$ & $MAE$               & $RMSE$ & $MAE$                 &                        \\
+    \midrule
+    $F_{sol}^{ECS}$ &  & & & & \\
+    \addlinespace[\defaultaddspace]
+    $F_{sol}^{ECS}$ &  & & & & \\
+    \addlinespace[\defaultaddspace]
+    $Conso_{app}$   &  & & & & \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
 Afin de représenter les variables qualitatives, vitrages et capteurs, leurs variables
 caractéristiques sont utilisés en substitution. Au regard des résultats il apparaît ...
 % subsection creation_des_modeles_de_substitution (end)
