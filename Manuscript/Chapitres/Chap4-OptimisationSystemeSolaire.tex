@@ -547,13 +547,14 @@ Bien que la $Conso_{app}$ ne soit pas un objectif de l’optimisation, sa connai
 nécessaire afin de déterminer la contrainte~: la $Conso_{totale}$.
 
 Étant en phase de conception et cherchant à explorer l’ensemble du domaine de recherche,
-une loi uniforme est utilisée pour chaque paramètre durant la construction des méta-
-modèles. Afin d’évaluer leurs précisions par rapport aux modèles de références, l’erreur
+une loi uniforme est utilisée pour chaque paramètre durant la construction des méta-modèles.
+Afin d’évaluer leurs précisions par rapport au modèle de référence, l’erreur
 quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale ($MAE$,
-Maximal Absolute Error) sont introduites. La $RMSE$ permet d’évaluer l’écart moyen entre les
-sorties du méta-modèle ($\mathcal{M}$) et du modèle de référence ($f$) \eqref{eq:rmse}. Le
-second, la $MAE$, permet d’obtenir l’écart maximal existant entre le méta-modèle et le
-modèle de référence \eqref{eq:mae}.
+Maximal Absolute Error) sont utilisées. La $RMSE$ permet d’évaluer l’écart moyen entre
+les sorties du méta-modèle ($\mathcal{M}$) et du modèle de référence ($f$)
+\eqref{eq:rmse}. Le second, la $MAE$, permet d’obtenir l’écart maximal existant entre le
+méta-modèle et le modèle de référence \eqref{eq:mae}. Ainsi ces deux variables statistiques
+permettent d’évaluer la qualité de l’approximation du méta-modèle.
 
 \begin{align}
   \label{eq:rmse}
@@ -562,29 +563,56 @@ modèle de référence \eqref{eq:mae}.
   MAE  &= max \left( \abs{f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i})}, \: x \in \{1, 2, \dotsc, N\} \right)
 \end{align}
 
-Afin de déterminer la taille minimale nécessaire pour construire un méta-modèle
-valide, une étude paramétrique a été menée (\figref{fig:meta_taille_echantillon}).
-Celle-ci permet de caractériser l’évolution de la $RMSE$ et de la $MAE$ en fonction
-du nombre de solution de référence simulées.
-\itodo{Décrire résultats}
+\itodo{Décrire choix variable pour capteurs et vitrages}
+Afin de représenter les variables qualitatives, vitrages et capteurs, leurs variables
+caractéristiques sont utilisés en substitution. Au regard des résultats il apparaît que
+les capteurs sont mieux approximer si on le substitue par sa valeur pour le coefficient
+$a_{1}$. Pour les vitrages il semble que l’approximation est meilleur si on utilise en
+substitut la valeur de l’$Émis_{ext}$  (\mtodo{ref tab annexe}).
+
+\itodo{Ajouter analyse des courbes une fois étude finies}
+Une étude paramétrique est ensuite réalisée afin de déterminer la taille minimale
+nécessaire pour construire un méta-modèle approximant au mieux le modèle de référence.
+L’évolution de la $RMSE$ (\figref{fig:rmse}) et de la $MAE$ (\figref{fig:rmse}) est
+alors analysé.
 
 
 \begin{figure}
     \centering
-    \itodo{Ajouter variation MAE et RMSE en fonction de la taille de l’échantillon + Ordre méta}
-    % \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star_objectifs.pdf}
-    \caption{Résultat de l’analyse de Morris pour les objectifs principaux
-             ($f(\mu^{*}) = \sigma$).}
-    \label{fig:meta_taille_echantillon}
+    \includegraphics{Ressources/Images/EtudeDeCas/RMSE.pdf}
+    \caption[Évolution de la $RMSE$ en fonction de l’échantillon]
+            {Évolution de la $RMSE$ pour les \num{3} méta-modèles
+             en fonction de la taille de l’échantillon.}
+    \label{fig:rmse}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/MAE.pdf}
+    \caption[Évolution de la $MAE$ en fonction de l’échantillon]
+            {Évolution de la $MAE$ pour les \num{3} méta-modèles
+             en fonction de la taille de l’échantillon.}
+    \label{fig:mae}
 \end{figure}
 
 Un méta-modèle d’ordre \num{3} est donc retenu pour chaque indicateur, le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$,
 et la $Conso_{app}$ dont les erreurs statistiques sont fournies à travers le \tabref{tab:meta_retenus}.
+La comparaison entre les méta-modèles et le modèle de référence est aussi illustré pour chaque
+point de l’échantillon non utilisés pour sa construction (\figref{fig:validite_meta}).
 
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/validite_meta.pdf}
+    \caption[Validité des méta-modèles]
+            {Évaluation de la validité des méta-modèles pour un échantillon
+             de taille \num{1000}.}
+    \label{fig:validite_meta}
+\end{figure}
 
 \begin{table}
 \centering
-\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{3} méta-modèles.
+\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{3} méta-modèles retenus
+         (taille de l’échantillon de \num{1000})
 \label{tab:meta_retenus}}
 \begin{tabular}{l c c c c r}
     \toprule
@@ -593,17 +621,16 @@ et la $Conso_{app}$ dont les erreurs statistiques sont fournies à travers le \t
                     \cmidrule(r){4-5}
                     & $RMSE$ & $MAE$               & $RMSE$ & $MAE$                 &                        \\
     \midrule
-    $F_{sol}^{ECS}$ &  & & & & \\
+    $F_{sol}^{ECS}$ &  & & & & \si{\percent} \\
     \addlinespace[\defaultaddspace]
-    $F_{sol}^{ECS}$ &  & & & & \\
+    $F_{sol}^{ECS}$ &  & & & & \si{\percent} \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}$   &  & & & & \\
+    $Conso_{app}$   &  & & & & \si{kWh}      \\
     \bottomrule
 \end{tabular}
 \end{table}
 
-Afin de représenter les variables qualitatives, vitrages et capteurs, leurs variables
-caractéristiques sont utilisés en substitution. Au regard des résultats il apparaît ...
+
 % subsection creation_des_modeles_de_substitution (end)
 % section construction_d_un_modele_de_substitution (end)
 
