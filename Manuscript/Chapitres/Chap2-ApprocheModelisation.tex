@@ -78,8 +78,8 @@ que l’inconnu soit isolé a priori par le programmeur.
     \centering
     \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
     \caption{Différences entre modélisation acausale (par composant) et causal (par bloc)
-             d’après .
-             \label{fig:acausal_vs_causal}}
+             (\href{http://www.wolfram.com/system-modeler/}{Wolfram}).}
+    \label{fig:acausal_vs_causal}
 \end{figure}
 
 \subsubsection{Dymola} % (fold)
@@ -105,8 +105,8 @@ simplifiant le développement afin de se focaliser sur le problème physique à 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/exemple.PNG}
-    \caption{Modélisation d’un échange thermique entre deux masses en Modelica.
-             \label{fig:exemple_modelica}}
+    \caption{Modélisation d’un échange thermique entre deux masses en Modelica.}
+    \label{fig:exemple_modelica}
 \end{figure}
 % subsubsection dymola (end)
 
@@ -160,15 +160,15 @@ est considérée comme uniforme.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/Batiment/plan.png}
-    \caption{Plan du bâtiment utilisé à travers ces travaux.
-             \label{fig:plan_maison}}
+    \caption{Plan du bâtiment utilisé à travers ces travaux.}
+    \label{fig:plan_maison}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/maison.png}
-    \caption{Représentation du bâtiment sous Modelica.
-             \label{fig:modelisation_maison}}
+    \caption{Représentation du bâtiment sous Modelica.}
+    \label{fig:modelisation_maison}
 \end{figure}
 
 Les caractéristiques thermiques des parois opaques sont décrites en fonction de
@@ -254,7 +254,7 @@ somme des surfaces dites froides correspondant à la somme des surfaces donnant
 vers l’extérieur à l’exception du plancher bas \eqref{eq:infiltrations}.
 \begin{equation}
     \begin{aligned}
-    Infiltrations &= \num{0.4} \times (Parois_{Verticales} + Parois_{velux} + Plafond)\\
+    Infiltrations &= \num{0.4} \times (Parois_{verticales} + Parois_{velux} + Plafond)\\
     &              \backsimeq \SI{85}{m^{3}/h}
     \label{eq:infiltrations}
     \end{aligned}
@@ -382,8 +382,8 @@ en inoccupation.
     \centering
     \includegraphics{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}
     \caption{Profil de référence pour les charges internes (occupants, équipements et éclairage)
-             et la consigne de chauffage.
-             \label{fig:scenario_reference}}
+             et la consigne de chauffage.}
+    \label{fig:scenario_reference}
 \end{figure}
 
 % section description_du_cas_d_etude_le_batiment (end)
@@ -420,8 +420,8 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}
-    \caption{Description schématique du système solaire couplé à la ventilation.
-             \label{fig:air_complet_mono}}
+    \caption{Description schématique du système solaire couplé à la ventilation.}
+    \label{fig:air_complet_mono}
 \end{figure}
 
 
@@ -575,8 +575,8 @@ surface inclinée (\figref{fig:compare_capteurs}, droite).
     \caption[Comparaisons de l’irradiation entre \textit{TrnSys}, \textit{Modelica}]
              {Comparaisons par mois~: (gauche) l’irradiation sur les capteurs entre un modèle
              \textit{TrnSys} et \textit{Modelica}, (droite) la production des capteurs entre des résultats
-             expérimentaux et le modèle \textit{Modelica}.
-             \label{fig:compare_capteurs}}
+             expérimentaux et le modèle \textit{Modelica}.}
+    \label{fig:compare_capteurs}
 \end{figure}
 % subsubsection verifications (end)
 % subsection description_du_systeme_solaire (end)
@@ -602,8 +602,8 @@ ainsi suivant trois principaux modes ordonnées afin de valoriser l’énergie s
     \caption[Description schématique des différents modes de fonctionnements du $SSC$]
     {Description schématique des différents modes de fonctionnements du $SSC$. Système
     global (a), fonctionnement $Indirect$ (b), fonctionnement $Direct$ avec besoin de
-    chauffage (c), et, fonctionnement $Direct$ sans besoin de chauffage (d).
-             \label{fig:schema_modes}}
+    chauffage (c), et, fonctionnement $Direct$ sans besoin de chauffage (d).}
+    \label{fig:schema_modes}
 \end{figure}
 
 La priorité revient respectivement au maintien du ballon sanitaire, au respect de la température de
@@ -682,43 +682,43 @@ l’algorithme.
     \centering
     \includegraphics{Ressources/Images/Modelisation/Regulation/exemple_fsm.pdf}
     \caption{Illustration du fonctionnement d’un automate finie appliqué au contrôle
-             d’un personnage fictif grâce à deux boutons~: A et B.
-             \label{fig:automate_fini}}
+             d’un personnage fictif grâce à deux boutons~: A et B.}
+    \label{fig:automate_fini}
 \end{figure}
 
-Le $FSM$ gouvernant le chauffage admet trois états primaires~: $Chauffage_{OFF}$,
-$Chauffage_{ON}$, et $Surchauffe_{ON}$ (\figref{fig:automate_chauffage}). L’état
-$Chauffage_{ON}$ admet deux $FSM$ fonctionnant en parallèle~: celui du chauffage
+Le $FSM$ gouvernant le chauffage admet trois états primaires~: $Chauffage_{off}$,
+$Chauffage_{on}$, et $Surchauffe_{on}$ (\figref{fig:automate_chauffage}). L’état
+$Chauffage_{on}$ admet deux $FSM$ fonctionnant en parallèle~: celui du chauffage
 solaire, et celui du chauffage électrique. Le chauffage solaire admet ainsi trois sous-états~:
-$Solaire_{OFF}$, $Solaire_{Direct}$, ou $Solaire_{Indirect}$. Le premier est actif lorsque
+$Solaire_{off}$, $Solaire_{direct}$, ou $Solaire_{indirect}$. Le premier est actif lorsque
 il n’y a pas d’énergie solaire disponible ou pas assez pour couvrir les besoins en ECS et
-en chauffage. Le second ($Solaire_{Direct}$) est actif lorsque il y a une demande en
+en chauffage. Le second ($Solaire_{direct}$) est actif lorsque il y a une demande en
 chauffage et que le système est en mode $Direct$. Finalement le dernier état est atteint
 lorsque il existe toujours une demande en chauffage et que le système est en mode
 $Indirect$.
 Il peut être noté l’ajout d’un hystérésis de \SI{5}{\celsius} mis en place sur la
-transition entre $Solaire_{OFF}$ et les deux autres états. Dans les deux cas, une
+transition entre $Solaire_{off}$ et les deux autres états. Dans les deux cas, une
 temporisation permet d’assurer que l’énergie est vraiment disponible et que ce n’est pas
 le résultat d’une variation parasite temporaire (activation d’une pompe, fermeture d’une
-vanne\dots). Le chauffage électrique lui admet deux états~: $Appoint_{OFF}$ et
-$Appoint_{ON}$. Seul une temporisation est utilisée afin de favoriser le solaire thermique.
+vanne\dots). Le chauffage électrique lui admet deux états~: $Appoint_{off}$ et
+$Appoint_{on}$. Seul une temporisation est utilisée afin de favoriser le solaire thermique.
 L’appoint électrique reste ainsi actif tant que le besoin de chauffage n’est pas couvert.
 Lorsque le besoin de chauffage est couvert, le chauffage passe dans l’état
-$Surchauffe_{ON}$. Comme décrit ci-avant, cet état autorise une élévation de la température
+$Surchauffe_{on}$. Comme décrit ci-avant, cet état autorise une élévation de la température
 dans le bâtiment. Finalement, dans le cas où la surchauffe n’est pas autorisée ou que de nouveaux
-besoins en chauffage apparaissent l’état du chauffage est réinitialisé à $Chauffage_{OFF}$
+besoins en chauffage apparaissent l’état du chauffage est réinitialisé à $Chauffage_{off}$
 et la boucle de contrôle recommence.
 L’exemple suivant illustre le fonctionnement de l’algorithme.
 \blockquote{L’énergie disponible au niveau des capteurs est suffisante pour couvrir les besoins en chauffage de
 la maison. Le système solaire est alors en mode $Direct$ et le chauffage dans l’état
-$Chauffage_{ON}$ avec le chauffage solaire dans le sous-état $Solaire_{Direct}$ et
-l’appoint électrique dans le sous-état $Appoint_{OFF}$.}
+$Chauffage_{on}$ avec le chauffage solaire dans le sous-état $Solaire_{direct}$ et
+l’appoint électrique dans le sous-état $Appoint_{off}$.}
 Un des habitants décide de prendre sa douche, abaissant la température de l’eau du ballon
 sanitaire en dessous du seuil minimal (\SI{55}{\celsius}). Dans cette configuration la
 pompe $S5$ va s’enclencher pour fournir de l’énergie au ballon sanitaire. Si l’énergie
 disponible au niveau des capteurs est insuffisante pour le chauffage et le maintien du
 ballon sanitaire alors la pompe $S2$ (chauffage) va s’arrêter car l’ECS est prioritaire.
-Le chauffage solaire passe alors dans l’état $Solaire_{OFF}$ et l’appoint électrique est
+Le chauffage solaire passe alors dans l’état $Solaire_{off}$ et l’appoint électrique est
 en attente d’activation pour permettre de couvrir le chauffage (temporisation de
 \SI{3}{\minute}).
 
@@ -726,8 +726,8 @@ en attente d’activation pour permettre de couvrir le chauffage (temporisation 
     \centering
     \includegraphics{Ressources/Images/Modelisation/Regulation/chauffage_fsm.pdf}
     \caption{Description détaillée de l’$FSM$ contrôlant la transition entre
-             les différents modes de chauffage.
-             \label{fig:automate_chauffage}}
+             les différents modes de chauffage.}
+    \label{fig:automate_chauffage}
 \end{figure}
 % paragraph architecture_de_l_algorithme_ (end)
 
@@ -775,13 +775,13 @@ garantir le maintien du confort thermique (\figref{fig:chauffage_aeraulique}).
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/Regulation/chauffage_aeraulique.pdf}
-    \caption{Fonctionnement de la régulation du chauffage par vecteur air.
-             \label{fig:chauffage_aeraulique}}
+    \caption{Fonctionnement de la régulation du chauffage par vecteur air.}
+    \label{fig:chauffage_aeraulique}
 \end{figure}
 
 Afin d’améliorer la couverture solaire sur le chauffage, l’algorithme autorise la
 surchauffe de la maison durant les périodes d’inoccupation diurnes
-(\figref{fig:control_air}) mais seul l’état $Solaire_{Direct}$ est autorisé. Dans ce
+(\figref{fig:control_air}) mais seul l’état $Solaire_{direct}$ est autorisé. Dans ce
 cas, le débit minimum sanitaire est maintenue et seul $T_{air}^{cons}$ varie afin que la
 température intérieure atteigne la température limite de surchauffe~: $T^{cons}_{sol}$.
 L’augmentation de la température intérieure permet de profiter de l’inertie du bâtiment, et
@@ -790,8 +790,8 @@ l’appoint électrique sur le chauffage est réduit.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/Regulation/control_air_curve.pdf}
-    \caption{Principe de la surchauffe diurne durant une journée hivernale.
-             \label{fig:control_air}}
+    \caption{Principe de la surchauffe diurne durant une journée hivernale.}
+    \label{fig:control_air}
 \end{figure}
 % subsubsection controle_du_chauffage_solaire (end)
 % subsection algorithme_de_controle (end)
@@ -829,8 +829,8 @@ pour 5 villes~: Bordeaux, Nantes, Strasbourg, Limoges, et Marseille (\figref{fig
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/Batiment/France_map.pdf}
-    \caption{Cartographie des villes sélectionnées pour l’étude paramétrique.
-             \label{fig:carte_france}}
+    \caption{Cartographie des villes sélectionnées pour l’étude paramétrique.}
+    \label{fig:carte_france}
 \end{figure}
 La ville de Marseille correspond à un climat très ensoleillé avec une faible demande en
 chauffage. À l’opposée le climat de Strasbourg est rude avec
@@ -922,8 +922,8 @@ journaliers sont pondérées en fonction du jour de la semaine (\tabref{tab:coef
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Modelisation/Scenario/puisage.pdf}
-    \caption{Description des profils de puisage envisagés.
-             \label{fig:profil_puisage}}
+    \caption{Description des profils de puisage envisagés.}
+    \label{fig:profil_puisage}
 \end{figure}
 % paragraph profils_retenus (end)
 
@@ -1027,7 +1027,7 @@ L’impact de la température de consigne solaire est aussi discuté. Deux confi
 simulées. La première admet une température de consigne de \SI{22}{\celsius} et la seconde
 ne considère pas d’élévation de la température par le solaire. Pour rappel l’élévation de
 la température n’est réalisé que par l’énergie solaire provenant des capteurs, et donc
-uniquement si le système est dans l’état $Solaire_{Direct}$. Finalement les interactions
+uniquement si le système est dans l’état $Solaire_{direct}$. Finalement les interactions
 entre consigne et consigne solaire de chauffage sont aussi discutées
 % paragraph consigne_de_chauffage_solaire (end)
 % subsubsection temperature_de_consigne (end)
@@ -1214,7 +1214,7 @@ et sur le chauffage.
 \begin{table}
 \centering
 \caption{Description de la solution de référence et de variations étudiées.}
-  \label{tab:ref_description}
+\label{tab:ref_description}
   \begin{tabular}{l c C{4cm} r r}
     \toprule
     \addlinespace
@@ -1331,8 +1331,8 @@ même si durant décembre et janvier l’appoint électrique est nécessaire pon
     \caption[Évolution des température internes des ballons du $SSC$]
             {Évolution des température internes des ballons du $SSC$ en fonction du mois
              de l’année avec indication de la moyenne (triangle vert) et
-             de la médiane (rectangle horizontal bleu).
-             \label{fig:temp_ballon_mensuel}}
+             de la médiane (rectangle horizontal bleu).}
+    \label{fig:temp_ballon_mensuel}
 \end{figure}
 
 \iunsure{Ajouter couverture par mois en fonction des climats}
@@ -1436,16 +1436,16 @@ dites à énergie positive ($NZEB$, Near Zero Energy House).
     \centering
     \includegraphics{Ressources/Images/Parametrique/parametric_consigne.pdf}
     \caption{Impact de la température de consigne sur la performance
-             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)
-             \label{fig:impact_temp_consigne}}
+             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)}
+    \label{fig:impact_temp_consigne}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Parametrique/besoins_charges_internes.pdf}
     \caption{Comparaison annuelle des charges internes et des besoins du bâtiment
-             pour la simulation de référence~: (haut) Bordeaux, (bas) Strasbourg.
-             \label{fig:besoins_charges_internes}}
+             pour la simulation de référence~: (haut) Bordeaux, (bas) Strasbourg.}
+    \label{fig:besoins_charges_internes}
 \end{figure}
 % subsubsection impact_des_scenarios_internes (end)
 
@@ -1488,8 +1488,8 @@ différentes conditions de fonctionnement.
     \centering
     \includegraphics{Ressources/Images/Parametrique/importance_chauffage_ecs.pdf}
     \caption{Évolution mensuelle de la répartition des consommations et du taux
-             de couverture solaire ($F_{sol}$) à Bordeaux (01/10 - 30/04)
-             \label{fig:importance_chauffage_ecs}}
+             de couverture solaire ($F_{sol}$) à Bordeaux (01/10 - 30/04)}
+    \label{fig:importance_chauffage_ecs}
 \end{figure}
 
 L’analyse de l’impact de la position de l’échangeur est illustré à travers la
@@ -1515,8 +1515,8 @@ d’améliorer la $Prod_{sol}^{valorisée}$.
     \centering
     \includegraphics{Ressources/Images/Parametrique/parametric_echangeur.pdf}
     \caption{Impact de la position de l’échangeur solaire sur la performance
-             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)
-             \label{fig:impact_pos_ech}}
+             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04).}
+    \label{fig:impact_pos_ech}
 \end{figure}
 % subsubsection impact_des_ballons (end)
 
@@ -1553,8 +1553,8 @@ de l’évaluation du $SSC$.
     \centering
     \includegraphics{Ressources/Images/Parametrique/parametric_puisage.pdf}
     \caption{Impact du profil de puisage sur la performance
-             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04)
-             \label{fig:impact_profil_puisage}}
+             du $SSC$ à Strasbourg durant la période de chauffage (01/10 - 30/04).}
+    \label{fig:impact_profil_puisage}
 \end{figure}
 % subsubsection impact_du_profil_de_puisage (end)
 
@@ -1651,7 +1651,7 @@ $Conso_{app}$ pour le chauffage et la production d’$ECS$. Uniquement considér
 $Conso_{app}$ ne permet en effet pas de tenir compte des influences bidirectionnelles
 entre le $SSC$ et le bâtiment illustrées à travers l’étude paramétrique. Dans l’optique
 d’une aide à la décision, il apparaît donc important de considérer à la fois la
-$Conso_{app}$, le $F_{ECS}$, et le $F_{CH}$. L’approche est donc multi-objectif en plus
+$Conso_{app}$, le $F_{sol}^{ECS}$, et le $F_{sol}^{CH}$. L’approche est donc multi-objectif en plus
 d’être multi-critère et une méthode spécialisée est nécessaire. Dans le chapitre suivant,
 le choix de la méthode retenue est discutée, et sa mise en place illustrée à travers les
 résultats dans le dernier chapitre.

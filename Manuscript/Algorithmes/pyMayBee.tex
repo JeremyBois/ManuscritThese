@@ -31,12 +31,12 @@
 \SetKwData{ATirageB}{TirageB}
 \SetKwData{ARatio}{Ratio}
 \SetKwData{AMR}{MR}
-\SetKwData{ATrial}{Echec}
-\SetKwData{AMaxTrial}{MaxEchec}
+\SetKwData{ATrial}{échec}
+\SetKwData{AMaxTrial}{$Max_{échec}$}
 
 
 % Phase d’initialisation
-\begin{algorithm}\label{alg:init_phase}
+\begin{algorithm}
   \SetAlgoVlined
   \DontPrintSemicolon
   \emph{Initialisation des \ASources sur l’ensemble de l’espace de décision}\;
@@ -71,11 +71,12 @@
   }
   Mise à jour des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
   \caption{Initialisation des sources par OBLM (Définition~\ref{def:oblm}).}
+  \label{alg:init_phase}
 \end{algorithm}
 
 
 % Phase des éclaireuses
-\begin{algorithm}\label{alg:scout_phase}
+\begin{algorithm}
   \SetAlgoVlined
   \DontPrintSemicolon
   \AComment{Exploration par les \AScouts}
@@ -88,11 +89,12 @@
   }
   Mise à jour de la position des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
   \caption{Phase des éclaireuses.}
+  \label{alg:scout_phase}
 \end{algorithm}
 
 
 % Phase des ouvrières
-\begin{algorithm}\label{alg:onlooker_phase}
+\begin{algorithm}
   \SetAlgoVlined
   \DontPrintSemicolon
   \AComment{Exploitation des sources par les \AOnlookers}
@@ -128,11 +130,12 @@
 
   Mise à jour de la position des \ASources qui ont été modifiées d’après Algorithme~\ref{alg:maj_phase}\;
   \caption{Phase des ouvrières.}
+  \label{alg:onlooker_phase}
 \end{algorithm}
 
 
 % Maj des sources
-\begin{algorithm}\label{alg:maj_phase}
+\begin{algorithm}
   \SetAlgoVlined
   \DontPrintSemicolon
   Récupérer le maximum et minimum pour chaque objectif dans l’\AHive\;
@@ -164,11 +167,12 @@
     }
   }
   \caption{Mise à jour des \textbf{Sources} par les \textbf{Abeilles}}
+  \label{alg:maj_phase}
 \end{algorithm}
 
 
 % Phase des butineuses
-\begin{algorithm}\label{alg:employed_phase}
+\begin{algorithm}
   \SetAlgoVlined
   \DontPrintSemicolon
   \AComment{Exploration des sources par les \AEmployed}
@@ -227,4 +231,5 @@
   \AComment{On ne conserve qu’une seule position par source}
   Mise à jour de la position des \ASources d’après Algorithme~\ref{alg:maj_phase}\;
   \caption{Phase des butineuses.}
+  \label{alg:employed_phase}
 \end{algorithm}

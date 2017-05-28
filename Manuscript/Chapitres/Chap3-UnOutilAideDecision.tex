@@ -62,8 +62,8 @@ dite catégorielle (ex~: couleur) ou bien floue (ex~: beau / laid).
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/type_variable.pdf}
-    \caption{Description des catégories existantes pour une variable.
-             \label{fig:type_variable}}
+    \caption{Description des catégories existantes pour une variable.}
+    \label{fig:type_variable}
 \end{figure}
 
 Des contraintes peuvent aussi être ajoutées afin de répondre aux exigences
@@ -118,8 +118,8 @@ optimale au cours du processus d’optimisation.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/multi_to_mono.pdf}
-    \caption{Transformation d’un problème multi-objectif en optimisation mono-objectif.
-             \label{fig:multi_to_mono}}
+    \caption{Transformation d’un problème multi-objectif en optimisation mono-objectif.}
+    \label{fig:multi_to_mono}
 \end{figure}
 % subsubsection decision_a_priori (end)
 
@@ -297,8 +297,8 @@ dites globales, s’intéressant à l’ensemble du domaine de définition.
     \centering
         \itodo{Refaire une version plus propre\dots}
     \includegraphics{Ressources/Images/Sensibilite/classement_mauvais.png}
-    \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.
-             \label{fig:classement_methode_sensibilite}}
+    \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.}
+    \label{fig:classement_methode_sensibilite}
 \end{figure}
 
 Dans notre cas, l’analyse de sensibilité choisie doit être globale, peu coûteuse,
@@ -340,8 +340,8 @@ sensibilité~: la littérature suggère $R \geq 10$ et de $z = 4$ \parencite{Cam
     \includegraphics{Ressources/Images/Sensibilite/cube_morris.pdf}
     \caption[Illustration du fonctionnement de la méthode de Morris]
             {Illustration du fonctionnement de la méthode de Morris pour la création
-             de 3 trajectoires ($R = 3,~~ z = 3,~~ j = 3$) d’après \textcite{Munaretto2014}.
-             \label{fig:fonctionnement_morris}}
+             de 3 trajectoires ($R = 3,~~ z = 3,~~ j = 3$) d’après \textcite{Munaretto2014}.}
+    \label{fig:fonctionnement_morris}
 \end{figure}
 % paragraph principe (end)
 
@@ -351,9 +351,8 @@ La première implémentation de la méthode permet d’évaluer qualitativement 
 chaque facteur grâce à la moyenne, $\mu$ \eqref{eq:moyenne} et à l’écart type, $\sigma$
 \eqref{eq:ecart_type}. La moyenne permet d’évaluer les effets linéaires, et l’écart type
 d’identifier les influences non linéaires ou les interactions entre facteurs.
-\iunsure{Ajouter graphique expliquant linéaire et non linéaire}
-% Plus $\sigma$ est important par rapport à $\mu$ plus l’hypothèse de non linéarité
-% ou d’intéractions est probable
+En effet, plus $\sigma$ est important par rapport à $\mu$, plus l’hypothèse de non linéarité
+ou d’intéractions est probable.
 
 \begin{equation}\label{eq:moyenne}
     \mu = \sum_{r = 1}^{R} \frac{EE_{r}}{R}
@@ -381,10 +380,10 @@ la moyenne (à cause des compensations dues aux signes).
 
 La seconde modification proposée est la génération d’un grand nombre de trajectoires,
 dans lesquelles, $R$ trajectoires dissimilaires sont sélectionnées. La méthode de sélection
-proposée est cependant faite par \textit{Brute force} et demande donc une puissance de
+proposée est cependant faite par \enquote{Brute force} et demande donc une puissance de
 calcul importante.
 Afin de palier à ce problème, \textcite{Ruano2012103} proposent une approximation de
-la méthode par \textit{Brute force} pour un temps de calcul très court permettant d’obtenir
+la méthode par \enquote{Brute force} pour un temps de calcul très court permettant d’obtenir
 une sélection représentative et hétérogène des trajectoires.
 % paragraph interpretation (end)
 
@@ -432,8 +431,8 @@ sur les deux sorties considérées.
     \end{minipage}
   \caption[Exemple de résultats de la méthode de Morris]
           {Résultat de la méthode de Morris ($R = 5,~~ z = 4,~~ j=8$) pour deux
-           sorties distinctes mais les mêmes facteurs \parencite{Iooss2011}.
-             \label{fig:meth_graph_morris}}
+           sorties distinctes mais les mêmes facteurs \parencite{Iooss2011}.}
+  \label{fig:meth_graph_morris}
 \end{figure}
 % paragraph analyse (end)
 % subsubsection la_methode_de_morris (end)
@@ -520,8 +519,8 @@ ces travaux, la suite de Halton est utilisée comme générateur pseudo aléatoi
     \caption[Échantillon suivant la méthode de Monte-Carlo et de Quasi-Monte-Carlo]
             {Échantillon pseudo aléatoire suivant la méthode de Monte-Carlo et de
              Quasi-Monte-Carlo (suite de Halton) pour deux paramètres suivant une
-             distribution uniforme.
-             \label{fig:halton_vs_uniform}}
+             distribution uniforme.}
+    \label{fig:halton_vs_uniform}
 \end{figure}
 
 Finalement, afin de pouvoir vérifier que le modèle se comporte correctement sur l’ensemble
@@ -555,8 +554,8 @@ avec le modèle d’origine afin d’évaluer le gain apporté par les modèles 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/methode.pdf}
-    \caption{Description de la méthode d’aide à la décision retenue.
-             \label{fig:methode_aide_decision}}
+    \caption{Description de la méthode d’aide à la décision retenue.}
+    \label{fig:methode_aide_decision}
 \end{figure}
 
 Afin d’appliquer cette méthodologie, il est maintenant nécessaire de définir une approche
@@ -711,8 +710,8 @@ objectif.
     \caption[Illustration du Point Idéal et du point Nadir]
             {Illustration du Point Idéal et du point Nadir sur une minimisation
              à deux objectifs d’un ensemble $S$ pour un front convexe (a) et non
-             convexe (b).
-             \label{fig:convex_nadir}}
+             convexe (b).}
+    \label{fig:convex_nadir}
 \end{figure}
 % subsection vocabulaire_et_definition (end)
 
@@ -770,8 +769,8 @@ une méthode dite approchée. Ces approches sont discutées dans la section suiv
     \centering
     \includegraphics{Ressources/Images/Optimisation/methodes_exactes.pdf}
     \caption{Transformation d’un problème multi-objectif en optimisation par méthodes
-             exactes.
-             \label{fig:multi_exactes}}
+             exactes.}
+    \label{fig:multi_exactes}
 \end{figure}
 % subsection les_methodes_exactes (end)
 
@@ -815,8 +814,8 @@ recherche vers les chemins prometteurs.
             {Illustration de l’utilisation d’une heuristique pour limiter l’espace
              de recherche~: mouvements dans les 8 directions (a), mouvements
              horizontaux ou verticaux (4 directions). La zone de couleur verte
-             représente l’espace du domaine de recherche exploré.
-             \label{fig:a_star}}
+             représente l’espace du domaine de recherche exploré.}
+    \label{fig:a_star}
 \end{figure}
 
 Comme nous venons de le voir une heuristique est fortement liée au problème et
@@ -853,8 +852,8 @@ l’approximer de manière suffisante.
     \centering
     \includegraphics{Ressources/Images/Optimisation/meta_heuristique.pdf}
     \caption{Transformation d’un problème multi-objectif en optimisation
-             multi-objectif en utilisant une méta-heuristique.
-             \label{fig:multi_meta}}
+             multi-objectif en utilisant une méta-heuristique.}
+    \label{fig:multi_meta}
 \end{figure}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1001,7 +1000,7 @@ leurs applications.
 
 
 \subsubsection{Comment choisir~?} % (fold)
-\label{ssub:comment_choisir_}
+\label{ssub:comment_choisir}
 De nombreuses approches ont été développées mais il n’existe cependant pas de
 méthode permettant de sélectionner la plus adaptée~: \textcite{Wolpert199767}
 formalisent ce concept. La complexité de l’approche, et d’autres caractères
@@ -1051,7 +1050,7 @@ suivantes~:
     \end{itemize}
 \end{itemize}
 }
-% subsubsection comment_choisir_ (end)
+% subsubsection comment_choisir (end)
 % subsection les_meta_heuristiques (end)
 % section selection_d_une_approche_d_optimisation_multi_objectif (end)
 
@@ -1073,14 +1072,14 @@ problème d’optimisation en lui-même. Ainsi plus le nombre de paramètres est
 plus le nombre d’itérations nécessaires pour leur détermination est important.
 
 Contrairement aux approches les plus couramment utilisées, l’algorithme de
-colonie d’abeilles virtuelles ($ABC$, Artificial Bee colony) requiert la
+colonie d’abeilles virtuelles ($ABC$, Artificial Bee Colony) requiert la
 définition de seulement trois paramètres, faisant de lui un candidat adapté dont
 la formulation est intuitive (\tabref{tab:meta_compare}). Le premier paramètre,
 $IT$, est commun à l’ensemble des approches et représente la condition d’arrêt.
 Les deux autres impactent de manière prévisible les proportions d’exploration et
 d’exploitation. La taille de la population, ($NP$), permet d’augmenter
 l’exploration mais peut affecter négativement la convergence. Le nombre
-d’essai maximum $Max_{Echec}$, permet de contrôler l’exploitation. Un nombre
+d’essai maximum $Max_{échec}$, permet de contrôler l’exploitation. Un nombre
 trop faible risque d’entraîner l’abandon prématuré d’une solution réduisant les chances de
 l’améliorer. À l’inverse, un nombre trop important risque de ralentir la convergence
 ou limiter la diversité.
@@ -1099,7 +1098,7 @@ ou limiter la diversité.
     \\
     $\mu$ nombre d’individus                 & $m$ nombre de fourmis                      & $\mu$ nombre de particules       & $NP$ taille de la population                            \\
     \\
-    Type de population (vecteur ou binaire)  & $\rho$ évaporation                         & $w$ coefficient d’inertie       & $Max_{Echec}$ Nombre maximal de variations infructueuses  \\
+    Type de population (vecteur ou binaire)  & $\rho$ évaporation                         & $w$ coefficient d’inertie       & $Max_{échec}$ Nombre maximal de variations infructueuses  \\
     \\
     Méthode de croisement                    & $\tau_{0}$ valeur initiale des phéromones  & $c_{1}$ coefficient cognitif    &                                                         \\
     \\
@@ -1165,8 +1164,8 @@ l’$ABC$ reste la plus répandue et sera retenue dans ces travaux (\figref{fig:
     \centering
     \includegraphics{Ressources/Images/Optimisation/ABC/abc_repartition.pdf}
     \caption{Pourcentage de publications en fonction de l’approche retenue pour différents
-             algorithmes de colonies d’abeilles d’après \cite{Karaboga201221}.
-             \label{fig:abc_repartition}}
+             algorithmes de colonies d’abeilles d’après \cite{Karaboga201221}.}
+    \label{fig:abc_repartition}
 \end{figure}
 % subsection inspiration (end)
 
@@ -1215,8 +1214,8 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
-    \caption{Organisation sociale des abeilles lors de la recherche de nourriture.
-             \label{fig:bee_dance}}
+    \caption{Organisation sociale des abeilles lors de la recherche de nourriture.}
+    \label{fig:bee_dance}
 \end{figure}
 % paragraph intractions (end)
 
@@ -1227,8 +1226,8 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 L’algorithme $ABC$ est une approche itérative constituée de 3 phases principales.
 En amont de ce processus itératif, $N = \frac{NP}{2}$ sources sont initialisées
 aléatoirement \eqref{eq:init_source}, avec $NP$ la taille de la population.
-Chaque source $i$ est un vecteur $\vec{x}_{i}(i = 1, 2, \dotsc N)$ de dimension $D$
-avec $D$ le nombre de variables de décision $x_{ij} (j = 1, 2, \dotsc D)$.
+Chaque source $i$ est un vecteur $\vec{x}_{i}(i \in \{1, 2, \dotsc, N\})$ de dimension $D$
+avec $D$ le nombre de variables de décision $x_{ij} (j \in \{1, 2, \dotsc, D\})$.
 
 \begin{equation}\label{eq:init_source}
   x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})
@@ -1256,7 +1255,7 @@ table de probabilité biaisée est créée~: une probabilité est attribuée à 
 en fonction de leur qualité. Ensuite, les ouvrières exploitent les sources sélectionnées
 et la position des sources est mise à jour. Finalement les sources non fructueuses sont
 remplacées par une nouvelle position aléatoire définie par les éclaireuses.
-\begin{algorithm}\label{alg:ABC_phases}
+\begin{algorithm}
   \SetAlgoVlined
   \emph{Initialisation des sources (population) selon \eqref{eq:init_source}}\;
   \While{Critère d’arrêt non atteint}
@@ -1272,6 +1271,7 @@ remplacées par une nouvelle position aléatoire définie par les éclaireuses.
   }
   }
   \caption{Principe de l’algorithme $ABC$.}
+  \label{alg:ABC_phases}
 \end{algorithm}
 
 % Attribution des probabilités
@@ -1314,8 +1314,8 @@ aux différents problèmes d’optimisation (\figref{fig:abc_publication}).
     \centering
     \includegraphics{Ressources/Images/Optimisation/ABC/abc_publication.pdf}
     \caption{Évolution du nombre de publications depuis la publication de l’algorithme
-             jusqu’à aujourd’hui.
-             \label{fig:abc_publication}}
+             jusqu’à aujourd’hui.}
+    \label{fig:abc_publication}
 \end{figure}
 
 La méta-heuristique étant plus faible en exploitation qu’en exploration, de nombreuses
@@ -1406,8 +1406,8 @@ la somme des pas aléatoires consécutifs $X_{w}$ alors $S_{W}$ est une marche a
     \centering
     \includegraphics{Ressources/Images/Optimisation/LevyFlight/distribution_pdf.pdf}
     \caption{Densité de probabilité des lois de Cauchy, uniforme, normale, Lévy stable et symétrique.
-             L’expression analytique est représentée par la courbe noire.
-             \label{fig:distribution_pdf}}
+             L’expression analytique est représentée par la courbe noire.}
+    \label{fig:distribution_pdf}
 \end{figure}
 
 \begin{Def}[Vol de Lévy]\label{def:vol_levy}
@@ -1462,8 +1462,8 @@ ces travaux implémentent un vol de Lévy comme marche aléatoire durant la phas
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
-    \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.
-             \label{fig:levy_vs_gaussian}}
+    \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.}
+    \label{fig:levy_vs_gaussian}
 \end{figure}
 % subsection vol_de_levy (end)
 
@@ -1579,8 +1579,8 @@ L’$\epsilon$-archive permet ainsi d’assurer~:
     \centering
     \includegraphics{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}
     \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
-             Adapté de \cite{Deb2005501}.
-             \label{fig:epsilon_dominance}}
+             Adapté de \cite{Deb2005501}.}
+    \label{fig:epsilon_dominance}
 \end{figure}
 L’étude réalisée par \textcite{Deb2005501} montre que l’$\epsilon$-dominance permet
 d’obtenir une très bonne convergence et une grande diversité sur le front final.
@@ -1733,8 +1733,8 @@ de l’archive forme le front de Pareto.
 \begin{figure}
     \centering
     \includegraphics[width=10cm]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
-    \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.
-             \label{fig:abc_complet}}
+    \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.}
+    \label{fig:abc_complet}
 \end{figure}
 
 Dans l’optique de l’optimisation d’un modèle solaire développé sous \textit{Dymola}, l’algorithme
