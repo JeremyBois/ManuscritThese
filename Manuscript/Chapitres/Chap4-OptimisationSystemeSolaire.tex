@@ -68,7 +68,7 @@ De cette manière, les bâtiments produisant localement respectivement trop ou p
 écartés.
 
 \begin{equation} \label{eq:conso_totale}
-  Conso_{totale} = Conso_{app} + Conso_{équipements} + Conso_{éclairage} - Prod_{PV}
+  Conso_{totale} = Conso_{app} + Conso_{équipements} + Conso_{éclairage} - Prod_{PV} \\
 \end{equation}
 
 Cependant formulé de cette manière, l’approche comporte plusieurs failles. Premièrement,
@@ -352,17 +352,21 @@ l’enveloppe lorsque les conditions extérieures sont plus rudes.
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Bilan énergétique passif} % (fold)
-\label{ssub:bilan_énergétique_passif}
-Si on s’intéresse à l’indicateur de $Bilan_{passif}$ ($\nicefrac{Prod_{PV}}{Conso_{totale}}$)
-il est observé une très forte influence linéaire de la surface de $PV$. En comparaison,
-les autres paramètres ont une influence modérée~: nombre des capteurs, isolation des vitrages,
-$a_{1}$, $\eta_{0}$ ainsi que le ballon sanitaire dont l’impact est non-linéaire ou avec des interactions.
-En effet, la surface de $PV$ est le seul facteur permettant de couvrir les consommations
-électriques des équipements internes qui représente la majorité des consommations. Enfin sur
-Strasbourg le second facteur le plus influent est l’$Émis_{ext}$ alors que c’est le nombre
-de capteur pour Bordeaux.
-% subsubsection bilan_énergétique_passif (end)
+\subsubsection{Consommation totale} % (fold)
+\label{ssub:consommation_totale}
+Sur la $Conso_{totale}$, il est observé une très forte influence linéaire de la surface de
+$PV$. En comparaison, les autres paramètres ont une influence modérée sur Bordeaux~:
+nombre des capteurs et ses caractéristiques, volume du ballon sanitaire, isolation des
+vitrages, des murs, et du plafond. La surface de $PV$ est le seul facteur permettant de
+couvrir la consommation électrique des équipements internes. Ces équipements représentant
+la majorité des consommations pour Bordeaux, il est normal que ce facteur soit très
+influents. Par contre sur Strasbourg, où la $Conso_{app}$ est importante, et plus
+particulièrement la $Conso_{app}^{CH}$ les facteurs caractérisant l’enveloppe ont une plus
+grande importance. Ainsi sur Strasbourg, le second facteur le plus influent est
+l’$Émis_{ext}$ alors que c’est le nombre de capteurs pour Bordeaux. Enfin, le volume du
+ballon sanitaire a un impact non-linéaire ou avec des interactions et linéaire
+respectivement pour Bordeaux et Strasbourg.
+% subsubsection consommation_totale (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -498,8 +502,9 @@ nombre de combinaisons à évaluer est ainsi fortement réduit.
 
 \begin{table}
 \centering
-\caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673}) des différents vitrages envisagés.
-         \label{tab:carac_vitrages}}
+\caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
+         des différents vitrages envisagés.}
+\label{tab:carac_vitrages}
 \begin{tabular}{l c c c r}
   \toprule
                      & Planitherm XN       & Planitherm ONE       & OptiwhiteKGlass       & Unité                        \\
