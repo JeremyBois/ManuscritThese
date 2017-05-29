@@ -565,7 +565,7 @@ permettent d’évaluer la qualité de l’approximation du méta-modèle.
   \label{eq:rmse}
   RMSE &= \sqrt{\frac{1}{N}\sum^{N}_{i=1} \left[ f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i}) \right]^{2} } \\
   \label{eq:mae}
-  MAE  &= max \left( \abs{f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i})}, \: x \in \{1, 2, \dotsc, N\} \right)
+  MAE  &= max \left( \abs{f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i})}, \: x = 1, 2, \dotsc, N \right)
 \end{align}
 
 \itodo{Décrire choix variable pour capteurs et vitrages}
@@ -584,7 +584,7 @@ alors analysé.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/RMSE.pdf}
+    \includegraphics{Ressources/Images/MetaModele/RMSE.pdf}
     \caption[Évolution de la $RMSE$ en fonction de l’échantillon]
             {Évolution de la $RMSE$ pour les \num{3} méta-modèles
              en fonction de la taille de l’échantillon.}
@@ -593,7 +593,7 @@ alors analysé.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/MAE.pdf}
+    \includegraphics{Ressources/Images/MetaModele/MAE.pdf}
     \caption[Évolution de la $MAE$ en fonction de l’échantillon]
             {Évolution de la $MAE$ pour les \num{3} méta-modèles
              en fonction de la taille de l’échantillon.}
@@ -607,7 +607,7 @@ point de l’échantillon non utilisés pour sa construction (\figref{fig:validi
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/validite_meta.pdf}
+    \includegraphics{Ressources/Images/MetaModele/validite_meta.pdf}
     \caption[Validité des méta-modèles]
             {Évaluation de la validité des méta-modèles pour un échantillon
              de taille \num{1000}.}
