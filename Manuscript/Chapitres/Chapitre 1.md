@@ -1,5 +1,5 @@
 # L’impact de l’homme sur l’environnement
-## Une prise de conscience nécessaire
+## Une prise de conscience progressive
 La prise de conscience de l’impact de l’humain sur son environnement intervient vers
 la fin du 20ème siècle. Il est alors mis en exergue les nombreux problème dont les
 générations futures devront gérer~: destruction de la couche d’ozone, gestion des
@@ -28,33 +28,83 @@ Le terme de \enquote{sustainable development} traduit par
 Au début porté par des militants, la conscience collective amène à la prise en compte de
 l’environnement dans les textes réglementaires avec notamment le protocole de Montreal
 (1987) mettant en place des restrictions afin de protéger la couche d’ozone. Peu de temps
-après, le 3ème Sommet de la Terre se tenant à Rio en 1992, la Convention-cadre des Nations
+après, au 3ème Sommet de la Terre se tenant à Rio en 1992, la Convention-cadre des Nations
 unies sur les changements climatiques (CCNUCC) est adoptée et est aujourd’hui ratifiée par 197
-pays montrant l’importance des question écologiques sur le plan international.
+pays montrant l’importance des question du développement durable sur le plan international.
 (http://unfccc.int/essential_background/convention/status_of_ratification/items/2631.php)
-
 Elle développe un plan d’action pour le 21ème siècle connu sous le nom d’Agenda 21
 mais aussi 27 principes pour sa mise en œuvre. Les domaines traités sont très variés
 et couvrent par exemple la pauvreté, la gestion des ressources notamment en eau, des déchets,
 mais aussi la pollution ou l’agriculture...
 La 3ème Conférence des Parties (COP, Conference Of Parties) à Kyoto (1997) entrée
 en vigueur début 2005, complète la convention par un accord visant à réduire les
-émissions de gaz à effet de serre.
-La 21ème COP a permise d’aller encore plus loin avec l’acception de la mise en place
-de mesures pour la réduction des Gaz à Effet de Serre (GES) avec notamment l’objectif
-de contenir le réchauffement climatique en dessous des 2°C et ainsi permettre
+émissions de gaz à effet de serre (GES).
+Pour la première fois, en 2006, le rapport Stern (\mtodo{Ajouter ref}) commandé par
+le gouvernement anglo-saxon décrit sur le plan économique l’impact d’une inaction
+sur le problème du réchauffement climatique. Précédemment porté par des scientifiques,
+la sonnette d’alarme est ici tiré par un économiste mettant en avant les risques
+tant sur le plan humain que économique. Le réchauffement impacte en effet directement
+les composantes essentielles de notre mode de vie~: l’accès à la santé, à la nourriture,
+l’eau ... Afin de solutionner la problématique, il est suggérer de mettre en place
+la coopération technique en augmentant l’effort de recherche sur le sujet mais aussi
+sur la mise en place de moyens techniques mais aussi d’équilibrer les dépenses
+entre les pays développés et en voie de développement. Il met ainsi en avant la nécessité
+pour les pays riches qui sont les principaux responsables du réchauffement climatique
+d’aider un développement respectueux de l’environnement pour les pays plus pauvres.
+Une coopération internationale est ainsi indispensable afin de répondre à la problématique
+de manière efficace.
+En France, les loi Grenelles I (2007) et II (2010) marquent le premier pas vers
+une démarche responsable sur les transport, la santé, l’énergie ou encore la préservation
+de la bio-diversité comme notamment avec la labellisation de l’agriculture BIO ou
+la réduction de la précarité énergétiques des foyers.
+
+(http://www.ecologique-solidaire.gouv.fr/loi-transition-energetique-croissance-verte)
+En 2015, l’adoption de la Loi pour la Transition Énergétique et la Croissance
+Verte (LTECV) fixe plusieurs objectifs tant sur la consommation énergétique
+que sur les émissions de GES afin de préparer à la sortie des énergies fossiles
+et créer de l’emploi pour une population en augmentation. Il y est notamment inscrit
+l’objectif d’une réduction de 40% de l’émission de GES entre 1990 et 2030 et la
+réalisation du facteur 4 pour 2050. Sur l’énergie, une réduction de la consommation
+en énergie finale et primaire pour 2030 est aussi détaillée tant sur le plan économique
+que logistique avec respectivement des objectifs de -20% (-50% en 2050) et de -30%.
+De plus des mesures propres à notre bouquet énergétiques sont aussi décrites comme
+la réduction de la dépendance de la France à l’énergie nucléaire.
+
+(https://www.edf.fr/groupe-edf/espaces-dedies/l-energie-de-a-a-z/tout-sur-l-energie/produire-de-l-electricite/le-nucleaire-en-chiffres)
+La mesure engage l’état à réduite à 50% la part de production électrique d’origine nucléaire
+qui est en 2014 de 77%.
+
+
+Au niveau international, la 21ème COP (2016) a permise d’aller encore plus loin avec l’acception de la mise en place
+de mesures pour la réduction des émissions (GES) avec notamment l’objectif
+de contenir le réchauffement climatique en dessous des 2°C (réalisation du plan facteur 4) et ainsi permettre
 d’atteindre la \enquote{neutralité carbone} en compensant les GES dans la seconde moitié
-du siècle. Contrairement au précédent accord (Kyoto), le parti-pris a été
+du siècle. Contrairement au précédent accord (Accords de Kyoto), le parti-pris est ici
 la transparence entre les différents signataires. En effet chaque signataire à l’obligation de rendre
 compte régulièrement des objectifs et évolutions réalisées et ces informations seront
-rendues publiques afin d’inciter à exemplarité. Bien que l’accord soit symboliquement
-fort, un pas en avant vers un développement plus durable, aucunes prise de mesure
-n’est obligatoire. De plus la sobriété énergétique n’est pas mentionnée dans l’accord
+rendues publiques afin d’inciter à l’exemplarité. Bien que l’accord soit symboliquement
+fort et un pas en avant vers un développement plus durable, aucunes prises de mesures
+n’est cependant obligatoires. De plus la sobriété énergétique n’est pas mentionnée dans l’accord
 principe pourtant clé du scénario NégaWatt.
 
 \itodo{Décrire Négawatt}
+L’association NégaWatt qui développe depuis 2003 un scénario pour la transition énergétique
+à travers 3 mesures principales (\figref{figure sur association négawatt}) met clairement
+en avant la nécessité de la sobriété énergétique, la nécessité de repenser la manière
+dont nous consommons l’énergie en réduisant le gaspillage. La dernière mise à jour
+du scénario (2017) permet d’atteindre une couverture 100% renouvelable grâce à la
+biomasse, puis l’éolien et le photovoltaïque et la fermeture en 2035 du dernier
+réacteur nucléaire arrivant à plus de 40 ans d’années de fonctionnement.
+https://fr.wikipedia.org/wiki/Afterres2050
+Au niveau de l’agriculture et donc de l’accès à la nourriture, le scénario NégaWatt
+est complété par le scénario Afterres2050 développé par l’ONG Solagro. Celui-ci s’inspire
+des avancées déjà proposées à travers les loi Grenelle et du scénario NégaWatt et montre
+que le respect notamment du facteur 4 pourrait permettre de couvrir les besoins
+alimentaires de l’ensemble des français en mettant en avant une fois de plus la
+sobriété comme élément clé avec notamment la réduction de la consommation de viande.
 
 
+### S’appuyer sur des données scientifiques
 Les décision politiques étant étroitement lié aux résultats scientifiques sur le
 sujet, une organisation indépendante a été créé en 1988 afin de fournir une base
 scientifique solide. Cette organisation connu sous le nom de
@@ -70,9 +120,14 @@ politiques soit pris.
 
 
 \itodo{Définition gaz effet de serre, température de la terre}
+\itodo{Énergie primaire et énergie finale}
+Ainsi, il est nécessaire dans un premier temps d’expliquer les principaux termes
+nécessaire à la compréhension de la situation climatique afin de présenter les chiffres
+clés.
 
 \itodo{Évolution de la température et des énergies}
 
+\itodo{Mettre en avant l’accélération des consommations / GES / population}
 
 
 \itodo{Parler du projet DeserTec}
@@ -93,10 +148,20 @@ des foyers.
 
 
 ## Le bâtiment passif
+### Une volonté de réduire l’impact climatique
+\itodo{Réglementation jusqu’à RT 2005 pour introduire BBC}
 Le développement de la performance des bâtiment a ainsi débuté avec la prise de
 conscience de l’impact de l’Homme sur son environnement, et surtout avec la prise
 de conscience des conséquence néfastes en résultant.
-Minergie, Passivhaus, BBC
+
+
+### L’exemple français
+\itodo{Décrire BBC et BBC + pour la préparation de la réglementation}
+\itodo{Maisons test, validation des mesures, validation de la faisabilité}
+
+### Les autres approches européennes
+\itodo{Décrire les autres approches}
+Minergie, Passivhaus
 
 
 ## Le bâtiment à énergie positive
@@ -164,16 +229,7 @@ Les grandes lignes sont ainsi définies mais leurs misent en place est propre à
 du fait de leur spécificités économiques, politiques et des objectifs de réduction les engageant.
 
 
-### Énergie finale:
-C’est la quantité d’énergie utilisé par l’utilisateur nécessaire pour couvrir ces besoins
-en chauffage, en ECS...
 
-
-### Énergie primaire:
-C’est la quantité d’énergie réellement prélevé à l’environnement pour obtenir
-la quantité nécessaire en énergie finale pour l’utilisateur final. Contrairement
-à l’énergie finale, l’énergie primaire tient donc compte des pertes
-durant les transformations, le transport, ou encore le stockage.
 
 
 
