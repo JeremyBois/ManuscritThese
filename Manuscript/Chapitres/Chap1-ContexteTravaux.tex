@@ -330,11 +330,59 @@ Minergie, Passivhaus
 \section{La maison solaire} % (fold)
 \label{sec:la_maison_solaire}
 % ------------------------------------------------------------------------------
+\subsection{L’énergie solaire} % (fold)
+\label{sub:l_energie_solaire}
+Avant de détailler les avancées réalisées dans le domaine du solaire et plus particulièrement
+dans le solaire thermique appliqué au bâtiment, il est nécessaire de décrire pourquoi
+et comment cette énergie est récupéré et surtout les avantages et inconvénients.
+
+\itodo{Radiation solaire}
+L’énergie solaire provient sans surprise du soleil mais dans le cas de l’étude
+de système solaire terrestre, il est important de faire la distinction entre
+le rayonnement au niveau de l’atmosphère (partie supérieure) et le rayonnement
+au sol dit terrestre ou au niveau de la mer. C’est ce dernier qui nous intéresse et plus particulièrement le proche
+Infrarouge (IR), le visible, et le proche Ultra Violet (UV) dont la longueur
+d’onde est majoritairement entre 300 à 2500nm (rayonnement terrestre).
+Le soleil est sphère gazeuse dont la température effective est de \SI{5777}{\kelvin}.
+On entend par température effective, la température d’un corps noir émettant la même quantité
+de rayonnement électromagnétique et représente ici une approximation de la température
+de surface. En effet la température intérieure est estimée entre \num{8} à \SI{40e-6}{\kelvin}
+(\ref{Duffie1980}). Dans ces travaux, seul le rayonnement radiatif au niveau de la
+photosphère nous intéresse.
+% subsection l_energie_solaire (end)
+
+% ------------------------------------------------------------------------------
 \subsection{D’hier à aujourd’hui} % (fold)
 \label{sub:d_hier_a_aujourd_hui}
 ~
 \itodo{Décrire historique photovoltaïque et thermique, surtout thermique}
 % subsection d_hier_a_aujourd_hui (end)
+
+
+
+
+\itodo{Le débit passant dans le collecteur p.490}
+Avant 1979, pour une installation domestique et afin de couvrir les besoins
+en $ECS$, un débit de l’ordre de \SI{0.015}{kg\per(\metre\squared\period\second)}
+est couramment retenue. En \mtodo{Van Koopen 1979} montre que un débit réduit
+permet d’améliorer la stratification. Partant de ce constat, \mtodo{Wuestling 1985}
+observe le lien entre débit, stratification, et [fraction solaire]{Ajouter définition}.
+Il montre alors que lorsque la stratification est importante, l’utilisation d’un débit
+réduit (\num{0.002} à \SI{0.007}{kg\per(\metre\squared\period\second)}) permet
+d’obtenir une fraction solaire plus importante d’un tiers comparé à un ballon dont
+l’eau est fortement mixé. Comme le souligne \mtodo{Hollands and Lightstone} en pratique
+un ballon n’est jamais fortement stratifié. Il est cependant possible par son dimensionnement
+d’augmenter sa stratification, en évitant par exemple que le volume de stockage soit
+complètement vidé de son énergie en matinée. Ainsi en plus d’impacter positivement
+la performance du système le coût de la pompe est réduit. Plus tard (\mtodo{Norton and Probert, 1986}),
+cherche à évaluer le comportement des système dont le débit est créé naturellement
+par le différentielle de température implémenté par la suite dans TRNSYS. Les études
+suivantes (\mtodo{Tabor 1969, Gordon abd Zarmi 1981}) montre de plus que un unique
+passage du fluide à travers l’echangeur du ballon amène à la même performance que
+l’utilisation d’un débit plus important impliquant plusieurs passages. Comme explicité
+ci-avant, la stratification permet d’améliorer la fraction solaire et autant d’énergie est
+alors transmis dans les deux cas. Il est cependant nécessaire de relativiser ces
+résultats car ils font l’hyphothèse forte que le puisage est nul durant cette période.
 
 
 
