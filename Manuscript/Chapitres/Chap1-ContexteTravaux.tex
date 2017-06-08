@@ -329,6 +329,8 @@ Minergie, Passivhaus
 % ..............................................................................
 \section{La maison solaire} % (fold)
 \label{sec:la_maison_solaire}
+% irradiation / ensoleillement  / insolation = énergie / m2
+% irradiance / rayonnement = puissance / m2  = densité de flux énergétique == densité de la puissance rayonnée
 % ------------------------------------------------------------------------------
 \subsection{L’énergie solaire} % (fold)
 \label{sub:l_energie_solaire}
@@ -337,18 +339,144 @@ dans le solaire thermique appliqué au bâtiment, il est nécessaire de décrire
 et comment cette énergie est récupéré et surtout les avantages et inconvénients.
 
 \itodo{Radiation solaire}
-L’énergie solaire provient sans surprise du soleil mais dans le cas de l’étude
-de système solaire terrestre, il est important de faire la distinction entre
-le rayonnement au niveau de l’atmosphère (partie supérieure) et le rayonnement
-au sol dit terrestre ou au niveau de la mer. C’est ce dernier qui nous intéresse et plus particulièrement le proche
-Infrarouge (IR), le visible, et le proche Ultra Violet (UV) dont la longueur
-d’onde est majoritairement entre 300 à 2500nm (rayonnement terrestre).
-Le soleil est sphère gazeuse dont la température effective est de \SI{5777}{\kelvin}.
-On entend par température effective, la température d’un corps noir émettant la même quantité
-de rayonnement électromagnétique et représente ici une approximation de la température
-de surface. En effet la température intérieure est estimée entre \num{8} à \SI{40e-6}{\kelvin}
+L’énergie solaire provient sans surprise du soleil qui est sphère gazeuse
+dont  la température intérieure est estimée entre \num{8} à \SI{40e-6}{\kelvin}
 (\ref{Duffie1980}). Dans ces travaux, seul le rayonnement radiatif au niveau de la
-photosphère nous intéresse.
+photosphère nous intéresse dont la température effective est de \SI{5777}{\kelvin}. On
+entend par température effective, la température d’un corps noir émettant la même quantité
+de rayonnement électromagnétique et représente ici une approximation de la température de
+surface du soleil.
+Le soleil se trouve à \SI{1.495e11}{\metre} et la densité de la
+puissance rayonnée reçue au niveau de la surface extérieure de l’atmosphère terrestre, la
+constante solaire ($G_{cs}$) estimée pour la première fois à \num{1228} par \mtodo{Claude Pouillet, 1838}.
+Aujourd’hui grâce au satellites équipés de radiomètres, elle est estimée
+à \SI{1360.8 +- 0.5}{\watt\per\metre\squared} (\ref{Kopp2011}). Après
+pénétration dans l’atmosphère une partie est absorbée, dévié, ou reflété et on distingue
+la part directe ($G_{dir}$) de la part diffuse ($G_{dif}$.) L’irradiance directe est la part de la puissance
+rayonnée non dispersé au passage dans l’atmosphère et est souvent exprimée pour une surface perpendiculaire
+a la direction de propagation ($G_{dir,\,nor}$). L’irradiance diffuse est au contraire
+déviée lors de son passage dans l’atmosphère et est souvent exprimée à l’horizontale
+($G_{dif}$), la direction de propagation n’étant plus unique. Finalement, la somme des
+parts directes et diffuses forment l’irradiance globale et est le plus souvent exprimé à
+l’horizontale ($G$). Dans l’optique de l’évaluation d’un système solaire, il est
+aussi courant de décrire l’énergie solaire reçue par unité de surface~: l’irradiation.
+Lorsque uniquement le spectre solaire est considéré,
+, soit les longueurs d’ondes allant de \num{0.3} à \SI{3}{\micro\metre}, les termes
+d’ensoleillement ou d’insolation ($I$) sont plus courants.
+Dans le reste du document, sauf indication explicite, l’ensoleillement ($I$) et le rayonnement ($G$)
+sont globaux et pour une surface horizontale.
+
+\itodo{Le soleil dans l’espace et le temps}
+\itodo{$\beta \alpha \omega$ sont pris pour le vol de Lévy.}
+La Terre tournant autour du soleil, le temps standard (UTC, Temps Universel Coordonné)
+et plus particulièrement le temps solaire ou Temps Universel (UT1) intervient dans
+toute les relations permettant de calculer la position du soleil.
+En plus de tourner autour du soleil, la terre tourne sur elle-même et n’est pas
+parfaitement circulaire. Il est ainsi nécessaire afin de déterminer la position
+du soleil d’introduire un certain nombre de paramètres~:
+\begin{itemize}
+    \item Le jour de l’année, compris entre 1 et 365 inclus
+    \item La déclinaison ($\delta$)~: angle entre la droite reliant la terre et le soleil
+          (centre) et le plan équatorial variant entre \num{-23.45} et \SI{23.45}{\degree}
+          (positive au Nord)
+    \item Latitude ($\phi$)~: position Nord-Sud d’un point par rapport à l’équateur
+    \item La longitude ($L$)~: position Est-Ouest d’un point par rapport au méridien de Greenwich.
+    \item L’angle horaire ($\omega$)~: L’écart par rapport au méridien local, négatif le
+          matin et positif en après-midi.
+    \item L’angle d’incidence ($\theta$)~: écart angulaire entre le segment reliant le soleil
+          à une surface et la normale à cette même surface.
+    \item L’angle zénithal ($\theta_{sol}$)~: L’angle d’incidence pour une surface horizontale
+    \item L’altitude solaire ($\alpha_{sol}$)~: écart angulaire entre une surface horizontale et le segment reliant
+          le soleil à cette même surface. C’est l’angle complémentaire
+          de l’angle zénithal.
+    \item Azimut solaire ($\gamma_{sol}$)~: Écart angulaire entre la projection du segment reliant
+          le soleil et une surface et le Sud (positif dans le sens horaire)
+    \item Azimut de la surface ($\gamma$)~: Déviation par rapport au Sud de la projection
+          de la surface sur l’horizontale ($\SI{-180}{\degree} \leq \gamma \leq \SI{180}{\degree}$). Pour une surface orienté Sud~: $\gamma=0$.
+    \item Inclinaison de la surface ($\beta$)~: Angle formé entre la surface et l’horizontale.
+          Si $\beta > \SI{90}{\degree}$ alors la surface est dos au soleil.
+    \item L’angle de profil ($\alpha_{p}$)~: angle résultant de la projection de $\alpha_{sol}$ sur un plan perpendiculaire
+          à la surface considérée.
+\end{itemize}
+\ftodo{Ajouter schéma avec les angles}
+\iunsure{Décrire les équations utilisés pour les approximer}
+\mtodo{Cooper 1969 et Spencer 1971} proposent diverses équations permettant d’approximer
+les différents angles solaires ($\omega$, $\theta$, $\gamma_{sol}$, $\delta$, $\alpha_{sol}$).
+Ainsi afin de calculer la position du soleil il est alors uniquement nécessaire de connaître la latitude, la longitude,
+l’orientation de la surface ($\gamma$) ainsi que l’heure locale. Ces équations simplifiées
+couplées à la géométrie des bâtiment permettent alors de calculer le masque créé par les obstructions
+tel qu’une avancée de toiture, un arbre, une montagne... grâce des relations trigonométriques simples.
+Couplée au données d’ensoleillement estimées il est de plus possible d’apprécier l’ensoleillement
+sur une surface inclinée~: un capteur solaire thermique, un vitrage...
+Il est aussi possible par exemple grâce à \href{http://pysolar.org/}{Pysolar} de calculer
+de manière très \href{http://docs.pysolar.org/en/latest/#validation}{précise} la
+position du soleil pour n’importe quel position du globe.
+
+
+\itodo{Mesurer l’irradiation}
+Maintenant qu’il est possible d’estimer la position du soleil et que le vocabulaire
+décrivant l’énergie solaire est introduit, il est temps de comprendre comment
+le rayonnement terrestre est mesurée. Plusieurs instruments existent, les deux principaux
+étant le pyranomètre et le pyrhéliomètre qui font tout les deux partie de la famille
+des radiomètres car ils permettent de mesurer l’intensité du flux solaire.
+Le pyrhéliomètre est inventé en 1825 par Herschel (\ref{Kutz2013}) même si l’invention
+ne prendra ce nom que avec la construction du pyrhéliomètre de Pouillet en 1837 (\ref{Boer1985}).
+Il mesure le $G_{dir,\,nor}$ grâce à un cône de visibilité très
+restreint même si une faible part du rayonnement issue du ciel est aussi captée.
+Les rayons solaires pénètre dans un collimateur afin d’être dirigé vers une cavité.
+Une thermopile est alors utilisée afin de transformer l’énergie thermique en énergie électrique.
+Il peut être noté que pour fonctionner correctement, l’instrument doit toujours être orienté
+en direction du soleil et donc monté sur un traqueur solaire.
+Le premier pyranomètre sphérique est quand à lui inventé en 1836 par Belloni (\ref{Boer1985}).
+Contrairement au pyrhéliomètre, il permet de mesurer le rayonnement hémisphérique total
+comprenant direct et diffus à l’horizontal ($G$) et ne demande pas de dispositif de
+suivi du soleil. Le rayonnement est aussi calculé grâce à une thermopile mais un
+dispositif basé sur des cellules photovoltaïques existent aussi bien que moins précis
+à cause d’une réponse non uniforme sur le spectre solaire. Grâce à un anneau de protection,
+il est aussi possible de supprimer la part directe ($G_{dir,\,hor}$) limitant la mesure
+à la part diffuse ($G_{dif,\,hor}$). Ainsi en couplant les résultats de ces deux instruments
+au équations permettant le calcul de l’angle solaire, il est d’évaluer précisément le
+rayonnement solaire sur une surface inclinée.
+
+
+\itodo{Les fichiers météos~: différence entre réelles et typiques}
+Afin d’estimer la performance d’un système solaire il est nécessaire d’avoir des
+données d’ensoleillement. La première approche consiste à utiliser des données réelles
+du passé. Ces données peuvent alors être disponibles à plusieurs fréquences et
+une distinction est nécessaire entre les données récupérées par des stations météos et les
+données récupérer à partir de données satellites. Avec les données issues de stations météo
+le rayonnement mesurée est directement le rayonnement
+terrestre et comme il a été vu, il est possible de capturer le direct,
+le diffus, ou bien le rayonnement global. Néanmoins, l’installation d’instruments de mesures est nécessaire et
+la position géographique retenue doit être suffisamment proche du site étudié.
+En France, ces données peuvent être obtenues à partir des stations météos de
+Météo France ou bien plus récemment avec l’organisme WhiteBoxTechnologie \mtodo{Ajouter ref}
+Les données satellites permettent de récupérer les irradiations à n’importe quel
+point du globe et tiennent compte des spécificité du lieu comme le dénivelé. Cependant
+le rayonnement au sol issue des données satellites et calculé à partir d’images couplées
+à un algorithme de conversion dépend du type de fichier météo.
+\iunsure{Décrire les différents types existant}
+La SOlar radiation DAta ($SODA$) est la principale source de donnée regroupant les
+services de 4 pays~: la France, les États-Unis, la Suisse, et l’Italie.
+
+La seconde approche consiste à utiliser des méthodes statistiques sur un échantillon
+importante de données ($\pm 30$) afin de créer un fichier météo dit typique. Ce fichier
+météo est alors constituer de différents blocs (souvent des mois entiers) de données
+sélectionnées sur l’ensemble de l’échantillon.
+
+\itodo{Ajouter description faite sur rapport IGC}
+
+Il est aujourd’hui couramment utilisé des fichiers météos
+ayant un pas de temps horaire mais certains travaux montre des progrès dans l’estimation
+d’un profil réaliste à partir de données mensuels et/ou des méthodes statistiques
+(\mtodo{Ref mois vers heure}).
+
+
+
+
+\itodo{Énergie utile / différentiel d’énergie utile}
+
+
 % subsection l_energie_solaire (end)
 
 % ------------------------------------------------------------------------------
@@ -356,9 +484,14 @@ photosphère nous intéresse.
 \label{sub:d_hier_a_aujourd_hui}
 ~
 \itodo{Décrire historique photovoltaïque et thermique, surtout thermique}
-% subsection d_hier_a_aujourd_hui (end)
+
+\itodo{Capteur plan / sous-vide / amorphe / vitrée}
+\iunsure{Description physique des capteurs, convection, radiation, ...}
 
 
+\itodo{Exemple d’utilisation : Tours solaires, panneaux, tampon, cuisson, moteur, ...}
+
+\itodo{La disposition des capteurs}
 
 
 \itodo{Le débit passant dans le collecteur p.490}
@@ -383,6 +516,7 @@ l’utilisation d’un débit plus important impliquant plusieurs passages. Comm
 ci-avant, la stratification permet d’améliorer la fraction solaire et autant d’énergie est
 alors transmis dans les deux cas. Il est cependant nécessaire de relativiser ces
 résultats car ils font l’hyphothèse forte que le puisage est nul durant cette période.
+% subsection d_hier_a_aujourd_hui (end)
 
 
 

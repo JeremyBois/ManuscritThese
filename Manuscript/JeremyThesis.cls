@@ -60,6 +60,7 @@
               \color{SolarizedBrBlack}\openautoquote\itshape#1%
               \closeautoquote\color{ClassicBlack}\normalfont#2#3#4} % Add << and italic to block quotes
 \RequirePackage[greek, french]{babel}                               % http://daniel.flipo.free.fr/frenchb/
+\RequirePackage[french]{translator}                                 % french as global option
 \frenchspacing                                                      % Simple space after paragraph
 \frenchbsetup{StandardLists=true}                                   % Turn off French list style
 
@@ -133,7 +134,8 @@
 % Math / Unit support
 % ------------------------------------------------------------------------------
 % \mathbf not working with xelatex better to use /bm with bm package (sometimes required {{\Gamma}})
-\RequirePackage{siunitx}                                % Unit package
+\RequirePackage[separate-uncertainty=true,%
+                per-mode=symbol]{siunitx}               % Unit package
 \RequirePackage{amsmath, amssymb, amsthm, mathtools,bm} % Allow adding complex equations
 \RequirePackage{nicefrac}                               % for \nicefrac macro
 \RequirePackage{letltxmacro}                            % Support for optional argument in redefinition
