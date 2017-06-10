@@ -134,34 +134,10 @@ clés.
 
 ## Le bâtiment~: un élément clé
 
-\itodo{Loi Grenelle I et II}
-En france la loi Grenelle I (2007) puis II (2010) venant compléter la première, porte l’engagement national
-sur l’environnement en définissant un cadre d’action afin de répondre à l’urgence écologique.
-Elle est notamment porteuse de l’initiative d’un programme accéléré de rénovation thermique du
-parc des bâtiments existants afin de réduire l’émission de GES mais aussi la précarité énergétique
-des foyers.
-
-
 
 
 # Vers des bâtiment à énergie positive
 
-
-## Le bâtiment passif
-### Une volonté de réduire l’impact climatique
-\itodo{Réglementation jusqu’à RT 2005 pour introduire BBC}
-Le développement de la performance des bâtiment a ainsi débuté avec la prise de
-conscience de l’impact de l’Homme sur son environnement, et surtout avec la prise
-de conscience des conséquence néfastes en résultant.
-
-
-### L’exemple français
-\itodo{Décrire BBC et BBC + pour la préparation de la réglementation}
-\itodo{Maisons test, validation des mesures, validation de la faisabilité}
-
-### Les autres approches européennes
-\itodo{Décrire les autres approches}
-Minergie, Passivhaus
 
 
 ## Le bâtiment à énergie positive
