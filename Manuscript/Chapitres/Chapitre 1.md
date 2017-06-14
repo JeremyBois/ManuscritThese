@@ -262,3 +262,11 @@ prix.
 # Climat :
 [Action climat](http://www.ecofys.com/en/publication/warsaw-unpacked-a-race-to-the-bottom/)
 [Après 2020](http://www.ecofys.com/en/publication/the-need-and-necessity-of-an-eu-wide-renewable-energy-target-for-203/)
+
+
+# Other
+Solar house design : From solar building design to Net Zero Energy Buildings_performance insights of an office building.pdf
+PV vs Thermal : Economic and energy analysis of three solar assisted heat pump systems in near zero energy buildings
+
+Detailed energy simulations of a net-zero energy triplex in Montreal
+Domestic hot water production in a net zero energy triplex in Montreal
