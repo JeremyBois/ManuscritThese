@@ -784,7 +784,7 @@ qui ne peut donc pas accéder au titre de $nearly\,ZEB$.
 \section{La maison solaire} % (fold)
 \label{sec:la_maison_solaire}
 % irradiation / ensoleillement  / insolation = énergie / m2
-% irradiance / rayonnement = puissance / m2  = densité de flux énergétique == densité de la puissance rayonnée
+% irradiance / rayonnement = densité de flux énergétique == densité de la puissance rayonnée = puissance / m2
 % ------------------------------------------------------------------------------
 \subsection{L’énergie solaire} % (fold)
 \label{sub:l_energie_solaire}
@@ -934,19 +934,191 @@ d’un profil réaliste à partir de données mensuels et/ou des méthodes stati
 % subsection l_energie_solaire (end)
 
 % ------------------------------------------------------------------------------
-\subsection{D’hier à aujourd’hui} % (fold)
-\label{sub:d_hier_a_aujourd_hui}
-~
-\itodo{Décrire historique photovoltaïque et thermique, surtout thermique}
+\subsection{Le capteur solaire thermique} % (fold)
+\label{sub:le_capteur_solaire_thermique}
+Nous savons maintenant d’où vient l’énergie solaire et comment elle est mesurée
+au niveau du sol. Il a de plus été vu que l’énergie solaire après son passage dans
+l’atmosphère doit être considéré suivant une part directe et une part diffuse.
+Cette partie s’intéresse ainsi à décrire les moyens existants permettant de récupérer
+cette énergie ou du moins une partie et plus particulièrement les applications
+dites de solaire thermique qui est au cœur du sujet de ces travaux. Comme il a été
+vu l’énergie solaire est utilisé depuis très longtemps afin de fournir soit de l’électricité,
+soit de l’énergie sous forme de chaleur.
+Le système le plus courant dans le domaine du bâtiment est appelé panneau solaire, ou capteur solaire.
+On distingue trois grandes familles de capteurs solaires~:
+\begin{itemize}
+    \item Le capteur plan
+    \item Le capteur sous-vide
+    \item Le capteur à concentration
+\end{itemize}
 
-\itodo{Capteur plan / sous-vide / amorphe / vitrée}
-\iunsure{Description physique des capteurs, convection, radiation, ...}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Le capteur plan} % (fold)
+\label{ssub:le_capteur_plan}
+C’est le système le plus ancien et aujourd’hui encore le plus économique. Parmi les
+capteurs plan, une distinction peut être faite entre les capteurs sans vitrages
+et les capteurs vitrées.
+
+\paragraph{Le capteur non-vitré~:} % (fold)
+\label{par:le_capteur_non_vitre}
+Un capteur solaire sans vitrage est composé d’un tube en plastique noir laissant
+passer un fluide caloporteur. Le rayonnement solaire incident est en partie absorbée
+par le fluide par conduction. L’énergie restante est perdue soit par convection soit
+par rayonnement (\figref{fig:schema_capteur_plan}, gauche). C’est le système le plus simple
+et le plus économique mais les pertes importantes par convection font que ce système
+n’est pas très performant. N’ayant pas de protection, ni d’isolation il est en
+effet très sensible au vent et à la température extérieure.
+Pour ces raisons, il est principalement utilisé pour
+des opérations annexes tel que le chauffage d’une piscine en été.
+% paragraph le_capteur_non_vitre (end)
+
+\paragraph{Le capteur vitré~:} % (fold)
+\label{par:le_capteur_vitre}
+L’invention du premier capteur vitré \mtodo{Trouver ref} a permis de réduire de manière
+importante les pertes thermiques par convection et par rayonnement infrarouge.
+De manière schématique, un capteur vitrée est composé d’une surface transparente, d’un absorbeur,
+de tubes, et d’un isolant thermique (\figref{fig:schema_capteur_plan}, droite).
+
+\begin{figure}
+    \centering
+    \ftodo{Capteur plan non et vitrés}
+    % \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
+    \caption{Description schématique d’un capteur plan, non vitré (gauche), et vitrée (droite)
+             d’après.}
+    \label{fig:schema_capteur_plan}
+\end{figure}
+
+Un vitrage est utilisé pour la surface transparente afin de laisser passer la
+majorité du rayonnement solaire (visible et Proche InfraRouge ($PIR$)) grâce à ces propriétés
+optiques.
+L’absorbeur comme son nom l’indique doit absorber au maximum l’énergie solaire et
+émettre le moins possible dans l’infrarouge. En effet d’après la loi du déplacement
+de Wien, à température ambiante les objets émettent spontanément dans l’InfraRouge
+Moyen ($MIR$) entre \SIrange{3}{50}{\micro\metre}.
+L’absorbeur est ainsi de couleur noire (\SI{\leq 95}{\percent}) afin d’absorber un maximum dans le visible
+et subit un traitement chimique (chrome ou de céramique à base d’oxydes
+métalliques) afin d’obtenir une surface faiblement émissive (\SI{\leq 12}{\percent}).
+Le vitrage peut lui aussi être faiblement émissif afin de laisser passer le rayonnement
+solaire mais réfléchir le $MIR$. La combinaison des deux permet alors de récupérer
+la majorité du spectre solaire au niveau de l’absorbeur tout en limitant les
+pertes grâce aux inter-réflexions. Les tubes contiennent le fluide caloporteur
+et le cuivre est le matériaux le plus utilisé car il est simple à travailler et
+à une conductivité thermique importante ($\lambda = \SI{390}{\watt\per(\metre\period\kelvin)}$).
+Finalement l’isolant permet de réduire les pertes par conduction en face arrière et
+sur les cotés.
+% paragraph le_capteur_vitre (end)
+% subsubsection le_capteur_plan (end)
 
 
-\itodo{Exemple d’utilisation : Tours solaires, panneaux, tampon, cuisson, moteur, ...}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Le capteur sous-vide} % (fold)
+\label{ssub:le_capteur_sous_vide}
+À la différence du capteur plan, le capteur sous-vide réduit les déperditions
+au niveau de l’absorbeur en remplaçant l’air par du vide supprimant les échanges
+convectifs. On distingue quatre types~: le capteur à circulation directe,
+le capteur à caloduc, le capteur à effet \enquote{Thermos}, et le capteur à
+réflecteur intégré. Pour le capteur à circulation direct, l’absorbeur est une structure
+plan à ailettes et la circulation de l’eau est assurée par un système de tube en $U$.
+L’absorbeur de chaque tube est contrairement aux autres modèles, orientable permettant
+de les utiliser en façades. Le capteur à caloduc utilise le principe de la vaporisation
+de l’eau déminéralisé dans le caloduc lui-même à l’intérieur du tube. L’eau en se vaporisant
+remonte jusqu’à la tête du caloduc et s’y condense au contact du fluide solaire.
+Le capteur à effet \enquote{Thermos} est lui composé de deux tubes concentriques,
+le tube intérieur étant l’absorbeur. Le vide est réalisé entre les deux tubes et
+l’échange de chaleur se fait soit par un système de caloduc, soit directement par
+circulation du fluide dans le tube intérieur. Afin d’améliorer la part solaire reçu,
+un réflecteur peut être ajouté soit sur la paroi intérieur du tube extérieur (\mtodo{ref Schott-Rohglas})
+soit à l’extérieur (\mtodo{ref $CPC$}).
 
-\itodo{La disposition des capteurs}
+\begin{figure}
+    \centering
+    \ftodo{Image capteurs vitrés sous vide}
+    % \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
+    \caption{Exemple de capteurs solaires thermique avec~: (a), (b), (c), (d)}
+    \label{fig:image_panneaux_solaires}
+\end{figure}
+% subsubsection le_capteur_sous_vide (end)
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Le capteur à concentration} % (fold)
+\label{ssub:le_capteur_a_concentration}
+\iunsure{Ajouter des exemples}
+Ces capteurs cherchent à concentrer en un point focal le rayonnement direct
+grâce à un système de de réflecteur ou de lentille. Grâce à l’énergie concentré
+la température atteinte sur ce point est comprise entre \SIrange{400}{1500}{\celsius}
+en fonction des systèmes. Contrairement aux capteurs précédent, les hautes températures
+obtenues permettent de fabriquer de l’électricité soit par conversion directe, soit par
+détente. Dans cette famille, il est considéré, les capteurs
+cylindro-paraboliques, les capteurs paraboliques, les centrales à tour, et les
+fours solaires.
+Les capteurs cylindro-paraboliques utilise des réflecteur cylindrique orientable
+sur un axe (pour suivre le soleil) afin de concentrer le rayonnement direct sur un
+foyer linéaire ou passe un fluide (souvent de l’huile). La vapeur produite est envoyé
+vers une turbine pour fabriquer de l’électricité par détente.
+Les capteurs paraboliques utilise un système de suivi du soleil sur deux axes
+et un réflecteur en forme de paraboloïde de révolution (\mtodo{Trouver ref}).
+L’électricité est produite par conversion directe via un moteur Stirling.
+Ayant aussi un système de suivi sur deux axes, la centrale à tour peut suivre parfaitement
+le soleil afin de capter un maximum du rayonnement direct. Il comporte un miroir
+plan ou légèrement concave et permet de monter jusqu’à \SI{1500}{\celsius}. L’électricité
+est fabriqué soit à l’aide d’une turbine et d’un fluide intermédiaire, soit par
+production directe. Finalement le dernier dispositif est le four solaire
+composé d’un miroir concave concentrant le rayonnement en son foyer. Deux applications
+peuvent être notées. La première et la production d’électricité
+comme par exemple avec le four solaire français mondialement connu
+d’\href{http://www.promes.cnrs.fr/index.php?page=historique}{Odeillo}
+qui permet d’atteindre une puissance d’\SI{1}{\mega\watt}. Il utilise un ensemble
+de miroirs orientables (héliostats) dirigeant les rayons vers un miroir concave géant
+concentrant les rayons vers le foyer. La deuxième application et la cuisson avec
+des appareils plus ou moins rudimentaires.
+\itodo{Ajouter exemple d’applications concentrique pas dans le bâtiment}
+% subsubsection le_capteur_a_concentration (end)
+
+\itodo{Réglementation et calcul du rendement}
+\itodo{Niveau critique de rayonnement voir p.266}
+\itodo{La disposition orientation inclinaison des capteurs}
+% subsection le_capteur_solaire_thermique (end)
+
+
+% ------------------------------------------------------------------------------
+\subsection{Le solaire thermique appliqué au bâtiment} % (fold)
+\label{sub:le_solaire_thermique_applique_au_batiment}
+
+\subsubsection{Le solaire d’hier à aujourd’hui} % (fold)
+\label{ssub:le_solaire_d_hier_a_aujourd_hui}
+\itodo{Évolution du domaine dans le bâtiment avec des chiffres}
+\itodo{**Mauthner2016** et **Weiss2017** pour l’évolution du solaire.}
+
+
+% subsubsection le_solaire_d_hier_a_aujourd_hui (end)
+
+
+\subsubsection{Les dispositifs existants} % (fold)
+\label{ssub:les_dispositifs_existants}
+\itodo{Les dispositifs existants}
+Non compatible avec des installations traditionnelles de chauffage ou de production
+d’$ECS$ les capteurs à concentration sont en majorité utilisés pour des applications
+industrielles comme décrit ci-avant. Dans le bâtiment des système de cogénération
+se développent cependant couplant un moteur à vapeur avec des capteurs à concentration
+cylindro-paraboliques \mtodo{Ajouter ref}.
+
+\itodo{Intégration au bâti, ...}
+% subsubsection les_dispositifs_existants (end)
+
+\subsubsection{Les travaux existants} % (fold)
+\label{ssub:les_travaux_existants}
+\itodo{Les travaux / technologies existants}
+% Solar house design : From solar building design to Net Zero Energy Buildings performance insights of an office building (pdf)
+% PV vs Thermal : Economic and energy analysis of three solar assisted heat pump systems in near zero energy buildings
+% Detailed energy simulations of a net-zero energy triplex in Montreal
+% Domestic hot water production in a net zero energy triplex in Montreal
+
+\itodo{Ce qui est en cours}
+\href{http://www.iea-shc.org/tasks-current}{IEA}\\
+\href{http://task53.iea-shc.org/publications}{Task 53}\\
+\href{http://task54.iea-shc.org/publications}{Task 54}\\
 
 \itodo{Le débit passant dans le collecteur p.490}
 Avant 1979, pour une installation domestique et afin de couvrir les besoins
@@ -970,16 +1142,11 @@ l’utilisation d’un débit plus important impliquant plusieurs passages. Comm
 ci-avant, la stratification permet d’améliorer la fraction solaire et autant d’énergie est
 alors transmis dans les deux cas. Il est cependant nécessaire de relativiser ces
 résultats car ils font l’hypothèse forte que le puisage est nul durant cette période.
-% subsection d_hier_a_aujourd_hui (end)
 
 
-
-% ------------------------------------------------------------------------------
-\subsection{Le solaire thermique en maison individuelle} % (fold)
-\label{sub:le_solaire_thermique_en_maison_individuelle}
-~
-\itodo{Décrire les travaux existant sur le solaire et les avancées}
-% subsection le_solaire_thermique_en_maison_individuelle (end)
+\itodo{Ce qui reste à faire}
+% subsubsection les_travaux_existants (end)
+% subsection le_solaire_thermique_applique_au_batiment (end)
 
 
 
