@@ -6,19 +6,153 @@
 \section{Modélisation détaillée d’un système solaire innovant} % (fold)
 \label{sec:modelisation_detaillee_d_un_systeme_solaire_innovant}
 % ------------------------------------------------------------------------------
-\subsection{Quelles contraintes} % (fold)
-\label{sub:quelles_contraintes}
-Il existe plusieurs méthodes permettant d’évaluer un système énergétique. Le premier
-consiste à reproduire expérimentalement le système et son environnement. Ce processus est
-coûteux, particulièrement si le système est évalué à l’échelle du bâtiment. De plus les
-conditions extérieures ne peuvent être contrôlées et les modifications du système sont complexes à mettre en place.
-Le second, la modélisation, permet de contrôler l’ensemble des éléments~: équipements,
-algorithme de contrôle, et les conditions limites (météo).
-Il est alors possible d’évaluer le système de
-manière totalement libre rendant cette approche particulièrement adaptée pour une
-étude de faisabilité, un dimensionnement, ou encore l’optimisation d’un système. Pour ces raisons,
-une approche par modélisation est retenue dans ces travaux.
+\subsection{Le choix d’une approche par modélisation} % (fold)
+\label{sub:le_choix_d_une_approche_par_modelisation}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{L’expérimentation} % (fold)
+\label{ssub:l_experimentation}
+L’approche par expérimentation est la seule manière d’évaluer un système dans des
+conditions réelles. Elle est ainsi toujours nécessaire afin de confronter les résultats
+obtenus par simulation. Malgré sa nécessité, l’expérimentation a des limites expliquant
+pourquoi la simulation numérique est considéré comme une alternative pertinente.
 
+L’installation d’une expérimentation nécessite un investissement important là ou pour
+la modélisation seul le coût du développement des modèles est considéré. Cette investissement
+est nécessaire pour préparer et acheter le matériel, le mettre en place, et finalement
+pour le démantèlement. Cette contrainte économique intervient
+tout au long du fonctionnement de l’expérimentation, si un équipement doit être changé ou
+déplacé, si il est nécessaire de modifier la configuration de base afin d’étudier une
+variation ... Il existe ainsi une contraste évidente entre une expérimentation
+et une modélisation sur le plan économique.
+De par ces limites physiques, une expérimentation est aussi dépendante de son environnement,
+dont l’analyse parfois complexe est indispensable pour l’interprétation des résultats.
+Il est alors nécessaire de récolter des informations sur l’environnement,
+et sur les variables d’intérêts du système considéré. Là où avec la modélisation, l’ajout
+du suivi d’une variable ce fait par simple sélection, un banc expérimental nécessite
+l’ajout de capteurs. Ces capteurs existe en plusieurs modèles et certaines variables
+sont parfois délicate à mesurer sans parasité l’expérimentation.
+D’autres problèmes comme une méconnaissance d’un phénomène ou le malfonctionnement
+d’un équipement peuvent aussi survenir et parasiter les données recueillis. Finalement,
+les conditions limites ne sont pas toujours contrôlées ou contrôlables.
+Par exemple lors de l’évaluation de la performance d’un capteur solaire, les données
+météorologiques jouent un rôle crucial mais l’expérimentateur ne les contrôles pas.
+Contrairement à une modélisation, le temps n’est pas juste une variable, il est nécessaire
+d’attendre que certaines conditions extérieures soient remplies pour pouvoir réaliser l’étude.
+De la même manière évaluer par exemple la température d’une maison sur une année nécessiterais
+une année complète d’expérimentations. Au niveau numérique, une étude sur une année entière
+est facilité. Grâce aux données recueillis dans le passé, il est possible de simuler
+l’évolution de la température du bâtiment sur l’année.
+Un autre paramètre important à prendre en compte lorsque une expérimentation est
+mise en place est son échelle. En effet, il n’est pas toujours possible de réaliser
+des expérimentation à échelle $1$, soit pour des raisons techniques, soit pour
+des raisons économiques. Une expertise importante est ainsi nécessaire afin d’éviter
+la présentation de résultats erronés.
+% subsubsection l_experimentation (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{La modélisation} % (fold)
+\label{ssub:la_modelisation}
+Bien que la simulation soit un outil puissant, elle dépend intrinsèquement du niveau de
+détail retenu pour chaque composant. Bien que possible en théorie, une
+modélisation ne permet pas de simuler la complexité inhérente à la réalité, une
+modélisation est toujours une approximation simulant de manière plus ou moins précise un
+système dans des conditions imposées. Un modèle est donc représenté par des systèmes
+d’équations qui admettent des hypothèses et ne tiennent compte que d’une partie des
+phénomènes.
+Un bon niveau d’expertise est ainsi nécessaire de définir le niveau de détail des modèles
+représentant au mieux le système afin d’éviter des erreurs numériques ou des résultats erronés.
+
+
+Il est aussi clair que les installations sont en réalité imparfaites et même dans l’hypothèse
+d’une modélisation complète de l’ensemble des phénomènes il restera un écart entre
+le modèle et la réalité car des facteurs ne sont pas pris en compte~: les imperfections
+techniques, les malfonctionnements, et  les erreurs d’installations.
+Le système considéré peut en effet comporter des fuites, des problèmes de raccord,
+un équipement peut avoir des caractéristiques différentes que ceux de sa fiche technique ...
+Il arrive aussi que un contrôleur puisse avoir des ratés où que le système sur chantier
+ne soit pas implémenter exactement de la même manière.
+Il n’est donc nécessaire de comparer les résultats des deux approches afin de
+comprendre les limites d’un modèle et pouvoir les corriger.
+% subsubsection la_modelisation (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Bilan} % (fold)
+\label{ssub:bilan}
+L’expérimentation comme la modélisation revient à interpréter des valeurs d’intérêts à
+partir des informations récoltées sur les conditions de fonctionnement et sur les
+conditions limites. Les deux approches sont complémentaires et comportent des avantages et
+des inconvénients.
+L’expérimentation permet d’analyser un système dans des conditions
+réelles et peut être utilisé pour confronter les résultats théoriques à la réalité.
+Elle est cependant couteuse et complexe à mettre en place. À l’inverse, la modélisation
+est contrainte par des systèmes d’équations approchant la réalité mais est moins couteuse
+à mettre en place et offre une liberté importante sur les conditions de fonctionnement.
+L’ensemble des paramètres étant contrôlables, la modélisation offre en effet l’opportunité
+d’évaluer différentes configurations. Elle est donc particulièrement
+adaptée pour des études paramétrique nécessitant de faire varier chaque paramètres indépendamment
+les uns des autres pour analyser leur effets respectifs.
+De plus les études paramétrique ou de faisabilité, le dimensionnement,
+ou encore l’optimisation nécessite de nombreuses itération sur des périodes importantes.
+L’expérimentation de par ces contraintes, ne permet donc pas de répondre à la problématique
+et l’approche par modélisation est donc le choix le plus pertinent.
+Cette conclusion nécessite cependant d’être ajustée. Bien que seule la simulation puisse
+répondre à ces questions, l’expérimentation est complémentaire et permet de vérifier
+le modèle numérique. L’approche la plus correcte serait donc de réaliser un modèle
+numérique pour ensuite le valider à travers une approche expérimentale. Une fois
+validé, le modèle peut être utilisé pour étudier l’impact de diverses variations.
+Pour des raisons économiques et de temps, ces travaux ne comportent pas d’études
+expérimentales permettant de valider l’ensemble du modèle solaire. Cependant comme
+détaillé dans le chapitre suivant, les modèles retenues ont fait pour la plupart
+l’objet de vérifications permettant d’apporter une confiance dans les résultats
+obtenues.
+% subsubsection bilan (end)
+% subsection le_choix_d_une_approche_par_modelisation (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Le choix de l’outil de modélisation} % (fold)
+\label{sub:le_choix_de_l_outil_de_modelisation}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Les outils existants} % (fold)
+\label{ssub:les_outils_existants}
+\itodo{Existants}
+Au fil des années de nombreux bibliothèque ou logiciels ont été développés. Parmi
+ces approches certaines cherchent à modéliser de manière très précise la dynamique
+de l’échange au niveau de capteurs sur alors que d’autres se focalise sur une estimation
+grossière des performances. Les deux approches permettent d’évaluer de manière plus ou
+moins précise un système solaire à différentes échelles de temps, une heure, un jour,
+un mois ...
+Les panneaux solaires tubulaires étant apparu plus récemment, les premiers outils
+comme par exemple \enquote{Collector Design Program} ($CoDePro$) permettent uniquement
+d’évaluer la performance de capteurs plan \mtodo{Koo1999}.
+
+L’outil le plus connu est le plus utilisé pour la modélisation de systèmes solaires
+et sans aucun doute, la suite logiciel $TRNSYS$ aujourd’hui en version $18$ \parencite{Klein2017}.
+Disponible dès $1975$ (version $6$), le logiciel est alors développé à l’origine pour des applications
+solaires. À partir de $1994$, la version $14$ regroupe cinq programmes sous le méta-programme TRNSHELL~:
+\begin{itemize}
+    \item TRNSYS~: moteur de calcul et bibliothèque de base
+    \item PRESIM~: une interface graphique pour la composition des modèles
+    \item ONLINE~: visualisation des résultats durant la simulation
+    \item PREBID~: aide à la construction de bâtiment
+    \item TRNSED~: un éditeur de texte pour créer des modules
+\end{itemize}
+Un des points fort du logiciel et son approche modulaire permettant au logiciel
+d’évoluer avec le temps et les besoins des utilisateurs. Il offre aussi aux utilisateurs la possibilité
+d’ajouter de nouveau modules, expliquant d’une part sa large bibliothèque et
+d’autre part sa longévité. Finalement il propose aussi le couplage avec divers
+logiciels tels que $MATLAB$ ou $COMIS$. Après $40$ d’existence le logiciel profite
+aujourd’hui d’une des plus large bibliothèque et permet de modéliser tout type de procédé
+thermique ou électrique pour différentes échelles comme un bâtiment ou un simple
+contrôleur ou pompe.
+L’$IEA$ l’utilise ainsi à travers la tâche $26$ \parencite{Task262003}
+
+
+
+\itodo{Justification du choix}
 Il existe cependant de nombreux langages ou logiciels permettant de réaliser des
 simulations plus ou moins complexes. Il est ainsi nécessaire, dans un premier temps, de
 définir le niveau de précision nécessaire pour les différentes parties du modèle. Il est
@@ -36,13 +170,15 @@ permettre de modifier, ajouter, et supprimer rapidement et simplement des compos
 problème à modéliser est un problème multi-physique et l’outil doit être adapté à la
 modélisation d’un système hydraulique (solaire), d’un système aéraulique (ventilation),
 d’un algorithme de contrôle (régulation), le tout couplé à un modèle thermique (bâtiment).
-% subsection quelles_contraintes (end)
+% subsubsection les_outils_existants (end)
 
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Outils retenues} % (fold)
+\label{ssub:outils_retenues}
 
-% ------------------------------------------------------------------------------
-\subsection{Quelles solutions} % (fold)
-\label{sub:quelles_solutions}
+\paragraph{Modelica} % (fold)
+\label{par:modelica}
 Le langage \textit{Modelica} (3.2.2) et le logiciel \textit{Dymola} (Dynamics MOdeling
 LAboratory) (2017) permettent de répondre à l’ensemble des contraintes décrites dans la
 section précédente. \textit{Modelica} est un langage de programmation libre et ouvert
@@ -81,9 +217,10 @@ que l’inconnu soit isolé a priori par le programmeur.
              (\href{http://www.wolfram.com/system-modeler/}{Wolfram}).}
     \label{fig:acausal_vs_causal}
 \end{figure}
+% paragraph modelica (end)
 
-\subsubsection{Dymola} % (fold)
-\label{ssub:dymola}
+\paragraph{Dymola} % (fold)
+\label{par:dymola}
 \textit{Dymola} est une suite de logiciels développée par \textit{Dassault Systèmes}
 permettant de simplifier le développement de modèles numériques grâce au langage
 \textit{Modelica}. Il offre une interface graphique permettant de connecter les modèles
@@ -108,11 +245,10 @@ simplifiant le développement afin de se focaliser sur le problème physique à 
     \caption{Modélisation d’un échange thermique entre deux masses en Modelica.}
     \label{fig:exemple_modelica}
 \end{figure}
-% subsubsection dymola (end)
+% paragraph dymola (end)
 
-
-\subsubsection{Buildings} % (fold)
-\label{ssub:buildings}
+\paragraph{Buildings et BuildingsPy} % (fold)
+\label{par:buildings_et_buildingspy}
 Le couplage de \textit{Modelica} et de \textit{Dymola} permet le développement itératif
 nécessaire à notre problème tout en offrant un contrôle total sur chaque partie du modèle.
 Le langage \textit{Modelica}, en pleine croissance dans le secteur du bâtiment est cependant
@@ -128,9 +264,9 @@ afin d’automatiser la simulation de nombreux modèles la bibliothèque
 \href{http://simulationresearch.lbl.gov/modelica/buildingspy/}{\textit{Buildingspy}}
 est utilisée. Développée par le $LBNL$, elle permet d’interfacer le langage \textit{Python}
 avec le langage de script de \textit{Dymola}.
-% subsubsection buildings (end)
-% subsection quelles_solutions (end)
-% section modelisation_detaillee_d_un_systeme_solaire_innovant (end)
+% paragraph buildings_et_buildingspy (end)
+% subsubsection outils_retenues (end)
+% subsection le_choix_de_l_outil_de_modelisation (end)
 
 
 
@@ -403,6 +539,9 @@ l’origine du système.
 
 \iunsure{Mentionner IGC}
 \iunsure{Mentionner COMEPOS ou seulement dans chapitre 1}
+
+\itodo{Ajouter détail équation EN 12975 + régression pour le capteur + citation}
+
 Le système décrit dans ce chapitre est un $SSC$ utilisant l’air comme vecteur de chaleur
 afin d’éviter l’installation d’un système de chauffage conventionnel (radiateurs, plancher
 chauffant\dots). Le système permet donc, par l’intermédiaire du réseau de ventilation, de
