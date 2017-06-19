@@ -451,11 +451,13 @@
 ]}
 
 % Add units
-\newcommand{\nomunit}[1]{%
-\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\newcommand{\nomunit}[1]{\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 
-% Add symbol on the left (default)
-\renewcommand{\nomlabel}[1]{#1\hfil}
+% Add symbol on the left in normal font (default)
+\def\nomlabel#1{#1\hfil}
+
+% Add command to add acronym to be consistent in all document (math mode)
+\newcommand{\acro}[1]{#1}
 
 
 % ------------------------------------------------------------------------------
