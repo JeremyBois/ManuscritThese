@@ -16,64 +16,61 @@ conditions réelles. Elle est ainsi toujours nécessaire afin de confronter les 
 obtenus par simulation. Malgré sa nécessité, l’expérimentation a des limites expliquant
 pourquoi la simulation numérique est considéré comme une alternative pertinente.
 
-L’installation d’une expérimentation nécessite un investissement important là ou pour
-la modélisation seul le coût du développement des modèles est considéré. Cette investissement
+L’installation d’une expérimentation nécessite un investissement important là ou pour la
+modélisation seul le coût du développement des modèles est considéré. Cette investissement
 est nécessaire pour préparer et acheter le matériel, le mettre en place, et finalement
-pour le démantèlement. Cette contrainte économique intervient
-tout au long du fonctionnement de l’expérimentation, si un équipement doit être changé ou
-déplacé, si il est nécessaire de modifier la configuration de base afin d’étudier une
-variation ... Il existe ainsi une contraste évidente entre une expérimentation
-et une modélisation sur le plan économique.
-De par ces limites physiques, une expérimentation est aussi dépendante de son environnement,
-dont l’analyse parfois complexe est indispensable pour l’interprétation des résultats.
-Il est alors nécessaire de récolter des informations sur l’environnement,
+pour le démantèlement. Cette contrainte économique intervient tout au long du
+fonctionnement de l’expérimentation, si un équipement doit être changé ou déplacé, si il
+est nécessaire de modifier la configuration de base afin d’étudier une variation ... Il
+existe ainsi une contraste évidente entre une expérimentation et une modélisation sur le
+plan économique. De par ces limites physiques, une expérimentation est aussi dépendante de
+son environnement, dont l’analyse parfois complexe est indispensable pour l’interprétation
+des résultats. Il est alors nécessaire de récolter des informations sur l’environnement,
 et sur les variables d’intérêts du système considéré. Là où avec la modélisation, l’ajout
 du suivi d’une variable ce fait par simple sélection, un banc expérimental nécessite
-l’ajout de capteurs. Ces capteurs existe en plusieurs modèles et certaines variables
-sont parfois délicate à mesurer sans parasité l’expérimentation.
-D’autres problèmes comme une méconnaissance d’un phénomène ou le malfonctionnement
-d’un équipement peuvent aussi survenir et parasiter les données recueillis. Finalement,
-les conditions limites ne sont pas toujours contrôlées ou contrôlables.
-Par exemple lors de l’évaluation de la performance d’un capteur solaire, les données
-météorologiques jouent un rôle crucial mais l’expérimentateur ne les contrôles pas.
-Contrairement à une modélisation, le temps n’est pas juste une variable, il est nécessaire
-d’attendre que certaines conditions extérieures soient remplies pour pouvoir réaliser l’étude.
-De la même manière évaluer par exemple la température d’une maison sur une année nécessiterais
-une année complète d’expérimentations. Au niveau numérique, une étude sur une année entière
-est facilité. Grâce aux données recueillis dans le passé, il est possible de simuler
-l’évolution de la température du bâtiment sur l’année.
-Un autre paramètre important à prendre en compte lorsque une expérimentation est
-mise en place est son échelle. En effet, il n’est pas toujours possible de réaliser
-des expérimentation à échelle $1$, soit pour des raisons techniques, soit pour
-des raisons économiques. Une expertise importante est ainsi nécessaire afin d’éviter
-la présentation de résultats erronés.
+l’ajout de capteurs. Ces capteurs existe en plusieurs modèles et certaines variables sont
+parfois délicate à mesurer sans parasité l’expérimentation. D’autres problèmes comme une
+méconnaissance d’un phénomène ou le malfonctionnement d’un équipement peuvent aussi
+survenir et parasiter les données recueillis. Finalement, les conditions limites ne sont
+pas toujours contrôlées ou contrôlables. Par exemple lors de l’évaluation de la
+performance d’un capteur solaire, les données météorologiques jouent un rôle crucial mais
+l’expérimentateur ne les contrôles pas. Contrairement à une modélisation, le temps n’est
+pas juste une variable, il est nécessaire d’attendre que certaines conditions extérieures
+soient remplies pour pouvoir réaliser l’étude. De la même manière évaluer par exemple la
+température d’une maison sur une année nécessiterais une année complète
+d’expérimentations. Au niveau numérique, une étude sur une année entière est facilité.
+Grâce aux données recueillis dans le passé, il est possible de simuler l’évolution de la
+température du bâtiment sur l’année. Un autre paramètre important à prendre en compte
+lorsque une expérimentation est mise en place est son échelle. En effet, il n’est pas
+toujours possible de réaliser des expérimentation à échelle $1$, soit pour des raisons
+techniques, soit pour des raisons économiques. Une expertise importante est ainsi
+nécessaire afin d’éviter la présentation de résultats erronés.
 % subsubsection l_experimentation (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{La modélisation} % (fold)
 \label{ssub:la_modelisation}
-Bien que la simulation soit un outil puissant, elle dépend intrinsèquement du niveau de
-détail retenu pour chaque composant. Bien que possible en théorie, une
-modélisation ne permet pas de simuler la complexité inhérente à la réalité, une
-modélisation est toujours une approximation simulant de manière plus ou moins précise un
-système dans des conditions imposées. Un modèle est donc représenté par des systèmes
-d’équations qui admettent des hypothèses et ne tiennent compte que d’une partie des
-phénomènes.
-Un bon niveau d’expertise est ainsi nécessaire de définir le niveau de détail des modèles
-représentant au mieux le système afin d’éviter des erreurs numériques ou des résultats erronés.
+La simulation est un outil puissant qui dépend cependant intrinsèquement du niveau de
+détail retenu pour chaque composant. Bien que possible en théorie, une modélisation ne
+permet pas de simuler la complexité inhérente à la réalité, une modélisation est toujours
+une approximation simulant de manière plus ou moins précise un système dans des conditions
+imposées. Un modèle est donc représenté par des systèmes d’équations qui admettent des
+hypothèses et ne tiennent compte que d’une partie des phénomènes. Un bon niveau
+d’expertise est ainsi nécessaire de définir le niveau de détail des modèles représentant
+au mieux le système afin d’éviter des erreurs numériques ou des résultats erronés.
 
 
-Il est aussi clair que les installations sont en réalité imparfaites et même dans l’hypothèse
-d’une modélisation complète de l’ensemble des phénomènes il restera un écart entre
-le modèle et la réalité car des facteurs ne sont pas pris en compte~: les imperfections
-techniques, les malfonctionnements, et  les erreurs d’installations.
-Le système considéré peut en effet comporter des fuites, des problèmes de raccord,
-un équipement peut avoir des caractéristiques différentes que ceux de sa fiche technique ...
-Il arrive aussi que un contrôleur puisse avoir des ratés où que le système sur chantier
-ne soit pas implémenter exactement de la même manière.
-Il n’est donc nécessaire de comparer les résultats des deux approches afin de
-comprendre les limites d’un modèle et pouvoir les corriger.
+Il est aussi clair que les installations sont en réalité imparfaites et même dans
+l’hypothèse d’une modélisation complète de l’ensemble des phénomènes il restera un écart
+entre le modèle et la réalité car des facteurs ne sont pas pris en compte~: les
+imperfections techniques, les malfonctionnements, ou les erreurs d’installations. Le
+système considéré peut en effet comporter des fuites, des problèmes de raccord, un
+équipement peut avoir des caractéristiques différentes que ceux de sa fiche technique\dots
+Il arrive aussi que un contrôleur puisse avoir des ratés où que le système sur chantier ne
+soit pas implémenter exactement de la même manière. Il n’est donc nécessaire de comparer
+les résultats des deux approches afin de comprendre les limites d’un modèle et pouvoir les
+corriger.
 % subsubsection la_modelisation (end)
 
 
@@ -83,30 +80,30 @@ comprendre les limites d’un modèle et pouvoir les corriger.
 L’expérimentation comme la modélisation revient à interpréter des valeurs d’intérêts à
 partir des informations récoltées sur les conditions de fonctionnement et sur les
 conditions limites. Les deux approches sont complémentaires et comportent des avantages et
-des inconvénients.
-L’expérimentation permet d’analyser un système dans des conditions
-réelles et peut être utilisé pour confronter les résultats théoriques à la réalité.
-Elle est cependant couteuse et complexe à mettre en place. À l’inverse, la modélisation
-est contrainte par des systèmes d’équations approchant la réalité mais est moins couteuse
-à mettre en place et offre une liberté importante sur les conditions de fonctionnement.
+des inconvénients. L’expérimentation permet d’analyser un système dans des conditions
+réelles et peut être utilisé pour confronter les résultats théoriques à la réalité. Elle
+est cependant couteuse et complexe à mettre en place. À l’inverse, la modélisation est
+contrainte par des systèmes d’équations approchant la réalité mais est moins couteuse à
+mettre en place et offre une liberté importante sur les conditions de fonctionnement.
 L’ensemble des paramètres étant contrôlables, la modélisation offre en effet l’opportunité
-d’évaluer différentes configurations. Elle est donc particulièrement
-adaptée pour des études paramétrique nécessitant de faire varier chaque paramètres indépendamment
-les uns des autres pour analyser leur effets respectifs.
-De plus les études paramétrique ou de faisabilité, le dimensionnement,
-ou encore l’optimisation nécessite de nombreuses itération sur des périodes importantes.
-L’expérimentation de par ces contraintes, ne permet donc pas de répondre à la problématique
-et l’approche par modélisation est donc le choix le plus pertinent.
-Cette conclusion nécessite cependant d’être ajustée. Bien que seule la simulation puisse
-répondre à ces questions, l’expérimentation est complémentaire et permet de vérifier
-le modèle numérique. L’approche la plus correcte serait donc de réaliser un modèle
-numérique pour ensuite le valider à travers une approche expérimentale. Une fois
-validé, le modèle peut être utilisé pour étudier l’impact de diverses variations.
+d’évaluer différentes configurations. Elle est donc particulièrement adaptée pour des
+études paramétrique nécessitant de faire varier chaque paramètres indépendamment les uns
+des autres pour analyser leur effets respectifs. De plus les études paramétrique ou de
+faisabilité, le dimensionnement, ou encore l’optimisation nécessite de nombreuses
+itération sur des périodes importantes. L’expérimentation de par ces contraintes, ne
+permet donc pas de répondre à la problématique et l’approche par modélisation est donc le
+choix le plus pertinent.
+Cette conclusion nécessite cependant d’être corrigé. Bien que
+seule la simulation puisse répondre à ces questions, l’expérimentation est complémentaire
+et permet de vérifier le modèle numérique. L’approche la plus correcte serait donc de
+réaliser un modèle numérique pour ensuite le valider à travers une approche expérimentale.
+Une fois validé, le modèle peut être utilisé pour étudier l’impact de diverses variations.
 Pour des raisons économiques et de temps, ces travaux ne comportent pas d’études
 expérimentales permettant de valider l’ensemble du modèle solaire. Cependant comme
-détaillé dans le chapitre suivant, les modèles retenues ont fait pour la plupart
-l’objet de vérifications permettant d’apporter une confiance dans les résultats
-obtenues.
+détaillé dans le chapitre suivant, les modèles retenues ont fait pour la plupart l’objet
+de vérifications analytiques \parencite{Bontemps2016}. Bien que ne garantissant pas la validité
+du modèle global, les tests et vérification effectuées au niveau du composant permettent d’apporter
+une confiance dans les résultats du modèle solaire global.
 % subsubsection bilan (end)
 % subsection le_choix_d_une_approche_par_modelisation (end)
 
@@ -148,7 +145,13 @@ logiciels tels que $MATLAB$ ou $COMIS$. Après $40$ d’existence le logiciel pr
 aujourd’hui d’une des plus large bibliothèque et permet de modéliser tout type de procédé
 thermique ou électrique pour différentes échelles comme un bâtiment ou un simple
 contrôleur ou pompe.
-L’$IEA$ l’utilise ainsi à travers la tâche $26$ \parencite{Task262003}
+L’$IEA$ l’utilise à travers la tâche $26$ \parencite{Task262003}
+
+
+\itodo{Simulink Mosallat2013686}
+
+\itodo{ISOFOTON SENSOLAR F-CHART Cuadros200796}
+
 
 
 

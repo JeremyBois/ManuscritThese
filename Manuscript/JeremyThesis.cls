@@ -457,7 +457,7 @@
 \def\nomlabel#1{#1\hfil}
 
 % Add command to add acronym to be consistent in all document (math mode)
-\newcommand{\acro}[1]{#1}
+\newcommand{\abr}[1]{#1}
 
 
 % ------------------------------------------------------------------------------
