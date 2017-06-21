@@ -1456,42 +1456,128 @@ en comparant différent débit de puisage.
 \itodo{Task 26}
 \itodo{Séparer ref en sous-tache}
 Une des majeure contribution aux $SSC$ pour la maison individuelle a été réalisé au cours
-de la tâche\,$26$ \parencite{Task262003}. La tâche s’articule en trois sous-tâches et
-l’ensemble des modèles ont été modélisé à l’aide du logiciel \textit{TRNSYS}.
+de la tâche\,$26$ \parencite{Task262003} qui s’articule en trois sous-tâches. Au cours
+de la tâche pays sont intervenus et un nombre conséquent de résultats obtenus.
+Ces travaux sont ainsi utilisé dans ce document comme fil conducteur auxquels des
+références plus récentes ou plus anciennes sont greffés. Ce choix est fait afin
+de pouvoir apprécier l’étendue des travaux dans le domaine tout en limitant au
+maximum les redondances.
 Dans la sous-tâche A, une méthodologie est définie pour le développement des modèles
-numérique et le calcul des indicateurs permettant d’apprécier la performance au
-regard des économies engendrés par rapport à un système de référence avec une
-chaudière, soit au gaz, soit au fioul. $3$ indicateurs sont ainsi retenus, le
-$f_{sav, therm}$, le $f_{sav, ext}$, et le $f_{si}$. Le premier est le taux d’économie
-et caractérise la réduction de la consommation de l’appoint au regard du système
-de référence. Le second ajoute au calcul la prise en compte des auxiliaires électriques
-supplémentaires dues à l’ajout d’un système solaire. Le dernier
+numérique et le calcul des indicateurs permettant d’apprécier la performance au regard des
+économies engendrés par rapport à un système de référence avec une chaudière, soit au gaz,
+soit au fioul. $3$ indicateurs sont ainsi retenus~: le $f_{sav, therm}$, le $f_{sav,
+ext}$, et le $f_{si}$. Le premier est le taux d’économie et caractérise la réduction de la
+consommation de l’appoint au regard d’un système de référence. Le second ajoute au calcul
+du premier la prise en compte des auxiliaires électriques supplémentaires dues à l’ajout
+d’un système solaire. Le dernier ajoute un coefficient de pénalité si le confort
+intérieur ou la production d’$ECS$ n’est pas satisfaite de manière satisfaisante.
+Cette méthodologie s’appuie principalement sur l’état de l’art alors réalisé \parencite{Task26A2002}.
+Une corrélation est aussi faite avec l’indicateur de couverture des consommation
+(\abr{FSC}, Fractional Solar Consumption) qui correspond à la part
+théorique énergétique maximale que le système puissent couvrir dans un cas idéal sans
+pertes. Il est donc défini comme étant la somme des production solaires mensuelles
+utiles divisé par la consommation totale des appoints.
 
+Dans la sous-tâche B, le nouveau modèle de capteur solaire implémenté dans TRNSYS, (type
+132) est discuté. Le rendement du capteur est définie à partir des équations quasi-
+dynamiques explicitées dans l’ISO\,$9806$-$3$ qui définit la procédure de test nécessaire
+pour les capteurs solaires non vitrés \parencite{Task26B2002}. Les deux procédures, la
+quasi-dynamique et la statique sont introduites dans \ref{ssub:rendement_d_un_capteur_solaire_thermique}.
 
-
-Dans la sous-tâche B, le nouveau modèle de capteur solaire implémenté dans TRNSYS,
-(type 132) est discuté. Le rendement du capteur est définie à partir des équations
-quasi-dynamiques explicitées dans l’ISO\,$9806$-$3$ qui définit la procédure
-de test nécessaire pour les capteurs solaires non vitrés \mtodo{Ajouter ref}.
-Cette procédure a été depuis implémenté de manière similaire au sein de la dernière
-réglementation européenne en vigueur, la EN\,$12975$-$2$ \parencite{EN129752006}. Celle
-ci propose est possible soit de calculé la performance du capteur à partir
-de l’équation dite statique soit de l’équation dite quasi-dynamique. La première
-est celle déjà définie à travers la EN\,$12975$ \parencite{EN129752002}
-
-
-sous-tâche C, une analyse de sensibilité a été réalisé sur $9$ systèmes existants
+Finalement dans la sous-tâche C \parencite{Task26C2007}, une analyse de sensibilité a été réalisé sur $9$ systèmes
 différents balayant une large variété de paramètres tels que~: surface de capteurs,
 orientation, inclinaison, débit de puisage, position des capteurs dans le ballon, position
 de l’échangeur solaire, différence de température minimale pour le chauffage et l’ECS,
 paramètres relatif aux émetteurs, climat, qualité de l’enveloppe... Chaque système est
-évalué par rapport au même cas de référence et une analyse paramétrique est effectuée. La
-sensibilité du système pour chaque paramètres est ensuite déduite de ces résultats.
-Les systèmes considérés ont tours une spécificité propre et la tâche donne ainsi
+modélisé dans \abr{TRNSYS} et est évalué par rapport au même cas de référence à
+travers une analyse paramétrique. La sensibilité du système pour chaque paramètres est ensuite déduite de ces résultats.
+Les systèmes considérés ont tous une spécificité propre et la tâche donne ainsi
 un vision globale des facteurs les plus impactant pour les différents systèmes existants
 sur le marché.
 
 
+\itodo{différences des systèmes}
+Les différents systèmes sont décrits très brièvement afin de fournir un aperçu des
+technologies et logiques modélisés (\tabref{tab:diff_ssc}).
+Sur les $9$ systèmes, $2$ sont pensés pour une application en maisons ou appartements
+collectifs. Seul ces $2$ systèmes, \emph{\#9b} et \emph{\#19}, comportent plus de $1$ ballon,
+respectivement $3$ et $2$. \emph{\#9b} comporte deux ballons pour l’$ECS$ dont un immergé
+dans le ballon tampon. \emph{\#19} utilise le même réseau secondaire pour le chauffage
+et la production \abr{ECS}.
+
+Au niveau des capteurs, la pompe solaire est dans toutes les configurations déclenché
+par le différentiel de température entre la sorties des capteurs et le bas du ballon
+principal. Dans le cas de \emph{\#12}, \emph{\#15}, et \emph{\#8}, le débit est
+modulé afin de maximiser le rendement des capteurs. Dans \emph{\#12}, le choix a été
+fait d’utiliser deux échangeurs, un en partie basse, et vers le centre (sous l’appoint
+électrique) afin d’augmenter la stratification du ballon.
+Alors que le système \emph{\#2} préfères l’utilisation d’un unique échangeur externe
+à plaque, le système \emph{\#19} utilise un échangeur externe à plaque est considéré en plus
+d’un échangeur en tube stratifié interne. Les autres systèmes considèrent uniquement
+des échangeurs internes.
+Le système \emph{\#15} contrairement aux autres, est pensé comme une unique unité
+regroupant un échangeur en tube stratifié pour la partie solaire, la pompe solaire,
+la chaudière au gaz, l’échangeur à plaques pour l’\abr{ECS}, et le ballon de stockage.
+L’installation sur site est donc facilité et le système est plus compact.
+
+Parmi les systèmes, il est aussi noté que seul les systèmes \emph{\#8}, \emph{\#9b},
+et \emph{\#19} assure la logique de contrôle complète du système. Les autres systèmes
+étant dépendant d’un contrôle externe pour définir quand le chauffage est nécessaire
+ou quand il doit se désactiver.
+Il est cependant noté que le système \emph{\#12} est capable de désactiver
+l’appoint électrique si la pompe solaire se met en marche.
+
+Pour la production d’\abr{ECS} $5$ systèmes ont fait le choix d’une production
+d’$ECS$ par l’intermédiaire d’un échangeur. \emph{\#19}, \emph{\#15} ayant fait le
+choix d’utiliser un échangeur externe à plaque. Dans \emph{\#19} l’échangeur
+assure le transfert d’énergie vers le second ballon chargé $1$ à $2$ fois par
+pour fournir un stock journalière d’\abr{ECS}. \emph{\#12}, \emph{\#19}, et \emph{\#19} optent eux pour
+un échangeur interne couvrant la hauteur du ballon de stockage. La géométrie
+du serpentin est cependant optimisé uniquement pour récupérer de la chaleur en
+partie basse et haute du ballon. Ces options permettent de maintenir une
+stratification dans le ballon lors des puisages importants contrairement à une approche
+directe.
+
+La couverture solaire du chauffage est assuré par un circuit direct pour
+\emph{\#3a} et \emph{\#2}. Le premier ne permet pas au solaire d’assurer simultanément
+le chauffage et la production d’\abr{ECS} alors que le second ne permet pas de fournir
+aux émetteurs de l’énergie provenant à la fois de l’appoint et du solaire.
+Les autres systèmes s’oriente vers un chauffage indirect uniquement. Il est noté que
+aucun des systèmes ne permet l’alternance entre chauffage direct et indirect.
+
+Les résultats des différentes approches sont décrits à travers la \figref{fig:compare_perf_ssc}.
+Il est observé que pour une surface faible de capteurs solaires, le système \emph{\#15}
+obtient des performances plus importantes. Le système \emph{\#3a} arrive en seconde place
+mais nécessite une surface de capteur plus importante. Sans surprise le système pensé
+pour des installation collectives \emph{\#19} est le moins performant. Le seul système
+ne permettant pas de fournir à la fois de l’énergie pour la production d’\abr{ECS}
+et pour le chauffage (\emph{\#2}) fait lui aussi parti des systèmes les moins performant.
+Cependant son faible coût fait le place en bonne position sur le plan économique.
+
+\begin{table}
+\centering
+\ttodo{Ajouter différences entre systèmes}
+\caption{Différences principales entre les différents modèles modélisés dans la tâche 26.}
+\label{tab:diff_ssc}
+% \begin{tabular}{}
+
+% \end{tabular}
+\end{table}
+
+
+\begin{figure}
+    \centering
+    \ftodo{Performance entre systèmes}
+    % \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
+    \caption{Comparaisons de la performance des \abr{SSC} étudiés dans la tâche
+             26 d’après \textcite{Task26C2007}.}
+    \label{fig:compare_perf_ssc}
+\end{figure}
+
+
+\itodo{Influences des paramètres}
+Les résultats s’accordent à montrer que la performance du système augmente avec la réduction des
+besoins en chauffage et ce indépendamment du système considéré.
 Il est aussi observée que l’orientation optimale des capteurs est légèrement décalé vers
 l’ouest (\SIrange{-5}{-10}{\degree}), la température plus élevée durant l’après midi pouvant
 expliquer ces résultats.
@@ -1515,10 +1601,15 @@ qui par définition impose un système de chauffage utilisant le vecteur air. L�
 capteurs verticaux semble améliorer la performance du système par rapport à des
 capteur implémentés en toiture sur une structure inclinée à \SI{78}{\degree} pensé pour optimiser les apports
 en hiver. Il peut être noté les résultats obtenus sont en désaccord avec les études
-de \textcite{Task262003,Shariah2002587}.
+de \textcite{Task26C2007,Shariah2002587}.
+
+\itodo{Position des capteurs dans le ballon p.34}
+
+\itodo{Position de l’échangeur dans le ballon p. 31}
+
 
 Au niveau de la surface, il est identifié que l’impact est moins important à mesure
-que la surface augmente \parencite{Task262003}. En effet, la température du stockage augmentant les pompes
+que la surface augmente \parencite{Task26C2007}. En effet, la température du stockage augmentant les pompes
 tournent plus longtemps sans pour autant apporter plus d’énergie au système. En dehors
 de la période hivernale, remplacer la chaudière dont le rendement décroit par un appoint
 électrique est aussi montré comme pertinent économiquement et énergétiquement.
@@ -1548,33 +1639,11 @@ Dans les deux cas le système est capable de couvrir entre \SI{45}{\percent} et 
 des besoins totaux variant de \SIrange{250}{3400}{kWh}.
 
 
-Toujours à travers les résultats de la tâche\,$26$ \parencite{Task262003}, l’ensemble
-des systèmes considèrent un ballon unique à l’exception du système \emph{\#3a}.
-
-
-
-
-
-
-
-Les résultats montrent que la performance du système augmente avec la réduction des
-besoins en chauffage.
-
-
-
 \itodo{Les travaux / technologies existants voir article}
 % Solar house design : From solar building design to Net Zero Energy Buildings performance insights of an office building (pdf)
 % PV vs Thermal : Economic and energy analysis of three solar assisted heat pump systems in near zero energy buildings
 % Detailed energy simulations of a net-zero energy triplex in Montreal
 % Domestic hot water production in a net zero energy triplex in Montreal
-
-
-
-
-\itodo{Task 40}
-La tâche\,$40$ \mtodo{Ajouter ref} s’inscrit elle dans une démarche plus globale,
-et considère le $BEPOS$ dans son ensemble en coopeération avec l’annexe $52$. Les
-approches solaires passives comme actives y sont discutées de manière générale.
 
 
 
@@ -1587,13 +1656,6 @@ approches solaires passives comme actives y sont discutées de manière généra
 
 
 \itodo{Bilan}
-
-
-\itodo{Réglementation et calcul du rendement}
-\itodo{Niveau critique de rayonnement voir p.266}
-\itodo{Énergie utile / différentiel d’énergie utile}
-\itodo{La disposition orientation inclinaison des capteurs}
-\itodo{Ce qui reste à faire}
 % subsection les_avancées_dans_le_domaine_du_solaire_thermique (end)
 
 
