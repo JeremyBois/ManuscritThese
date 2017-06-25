@@ -1,3 +1,4 @@
+# Notes :
 ## Optimisation :
 
 ### Modifier algorithme solaire :
@@ -45,18 +46,39 @@
 
 ### Fsav-aux = 1 - conso / conso_ref
 
-    - Nécessite une consommation de référence pour Bordeaux et Strasbourg
+  - Nécessite une consommation de référence pour Bordeaux et Strasbourg
+  - Construction de deux méta-modèles : Chauffage et ECS
+    - Construire `simulator` adapté : revient à juste virer le surplus du simulateur solaire
+    - Etude paramétrique sur modèle de référence (500 - 1000 simulations)
+    - Création des méta modèles
+
 
 **--> Faire une étude paramétrique supplémentaire pour chaque climat**
 **--> Inutile pour sensibilité car on perdrait des informations**
 
 
 
+***
 
 
-# Rédaction :
+
+# À faire :
+## Rapport :
+
+  - (Reporté) Dépôt algorithme
+  - (Fait) Résumé thèse
+
+
+
+## chapitre 1 :
+### Rédaction :
+
+  - Mettre au propre
+
+
 
 ## chapitre 2 :
+### Rédaction :
 
   - Envoyé mail à Aurélie pour questions
   - Décrire débit moyen des pompes avec moyenne et écart type
@@ -73,8 +95,21 @@
 
 
 
+## chapitre 3 :
+### Simulations
+
+  - Convergence algorithme
+
+
+### Rédaction :
+
+  - Détailler plus méta-modèles
+  - Convergence algorithme
+
+
 
 ## chapitre 4 :
+### Rédaction :
 
   - Décrire les variations de l’algorithme considéré : contrôle du chauffage
   - Description du calcul de FSC et Fsav
@@ -88,19 +123,26 @@
     - Mettre en exergue par les couleurs qu’elle solution utilise le mieux le sytème (FSC)
 
 
+### Simulations:
 
-## chapitre 1 :
-
-  - Mettre au propre
-
-
-## chapitre 3 :
-
-  - Détailler plus méta-modèles
-  - Convergence algorithme
-
-## Rapport :
-
-  - Dépôt algorithme
-
-  - Résumé thèse
+  - Production PV
+    - (Fait) Bordeaux (500)
+    - (Fait) Strasbourg (500)
+  - Sensibilité
+    - Bordeaux (500)
+    - (En cours) Strasbourg (500)
+  - Paramétrique
+    - Ref Bordeaux (500)
+    - Ref Strasbourg (500)
+    - Bordeaux (1000)
+    - Strasbourg (1000)
+  - Test performance méta (optionnel)
+    - Ref Bordeaux (+500)
+    - Ref Strasbourg (+500)
+    - Bordeaux (+1000)
+    - Strasbourg (+1000)
+  - Optimisation
+    - Construction 5 méta-modèles
+    - Objectifs : FsavCH, FsavECS, Production PV
+    - Contraintes : abs(Consommation appoint) <= 300
+    - Consommation de : Chauffage, ECS, Électroménager, Éclairage
