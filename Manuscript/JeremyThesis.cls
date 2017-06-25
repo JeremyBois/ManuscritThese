@@ -130,6 +130,25 @@
 %\RequirePackage[sf]{titlesec}                           % Sans serif font for titles
 
 
+% Redefinition of layout for items and description list
+\RequirePackage[shortlabels]{enumitem}                   % List option with enumerate compatibility
+
+% New description environment using item label width as indentation
+% Useful for long label.
+\newlength{\xdescwd}
+\newenvironment{blockdescription}[1]
+  {\settowidth{\xdescwd}{\textbf{#1}}%
+   \begin{description}[leftmargin=\dimexpr\xdescwd+.5em\relax,
+     labelindent=0pt,labelsep=.5em,
+     labelwidth=\xdescwd,align=right]}
+  {\end{description}}
+% Remove some space between items
+\setlist[enumerate]{itemsep=-1mm}
+\setlist[itemize]{itemsep=-1mm}
+% Change alignment to start according to indentation
+\setlist[description]{labelindent=\parindent, leftmargin=2\parindent}
+
+
 % ------------------------------------------------------------------------------
 % Math / Unit support
 % ------------------------------------------------------------------------------
