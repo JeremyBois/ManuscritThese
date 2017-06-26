@@ -105,6 +105,7 @@
 
   - Détailler plus méta-modèles
   - Convergence algorithme
+  - Citation sur importance initialisation (Théo)
 
 
 

@@ -1,12 +1,214 @@
 %!TEX root = ../main.tex
 % Chapitres\Chap1-ContexteTravaux.tex
 
+
+% ...........................................................................
+% ...........................................................................
+\section{Objectifs de ces travaux} % (fold)
+\label{sec:objectifs_de_ces_travaux}
 \itodo{Ajouter section objectifs}
+% section objectifs_de_ces_travaux (end)
+
+
+
+
 
 % ...........................................................................
 % ...........................................................................
 \section{L’Homme au centre d’un trouble climatologique} % (fold)
 \label{sec:l_homme_au_centre_d_un_trouble_climatologique}
+% ------------------------------------------------------------------------------
+\subsection{L’origine du réchauffement climatique} % (fold)
+\label{sub:l_origine_du_rechauffement_climatique}
+L’énergie (\defref{def:energie}) subit une évolution importante lors de la révolution
+industrielle au début des années $1990$ avec le développement des machines consommant une
+nouvelle forme d’énergie. Auparavant les différentes tâches étaient principalement
+réalisées soit en utilisant les éléments (vent, eau, feu) soit en utilisant la force
+animale (bœufs, chevaux\dots). La tendance s’accélère après la seconde guerre mondiale,
+durant la période des $30$ glorieuses, où la France et d’autres pays développés profitent
+d’une croissance forte tant au niveau économique, que démographique (baby-boom). Cette
+expansion est portée par un accès aisé aux énergies et particulièrement aux énergies
+fossiles principaux vecteur de développement de nos civilisations occidentales. Durant
+cette période marquée par le développement du capitalisme, une énergie bon marché
+considérée comme inépuisable, et un accroissement important de la population, la demande
+énergétique explose.
+Afin de pouvoir comparer les différentes énergies entres elles, une unité commune est
+retenue~: le tonne équivalent pétrole (\abr{tep}) ou tonnes of oil equivalent (\abr{toe}) dans sa
+version anglophone qui équivaut au pouvoir calorifique d’une tonne de pétrole, soit
+\SI{41.868}{\giga\joule}.
+À titre de comparaison, l’énergie primaire consommée en $1973$ était de
+\SI{6101}{\mega tep} dont \SI{87}{\percent} en énergie fossile alors qu’elle est en $2014$
+à \SI{13699}{\mega tep} pour une part de près de \SI{81}{\percent} en énergie fossile
+(\figref{fig:energy_fraction}). Il peut ainsi être noté que l’énergie d’origine fossile
+reste aujourd’hui encore fortement majoritaire même si la production de pétrole
+diminue.
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Environnement/repartition_energy.png}
+    \caption{Répartition des sources de production des énergies primaire pour
+             $1973$ et $2014$ d’après \textcite{IEA2016}. \enquote{other} comprend
+             la géothermie, le solaire, et l’éolien.}
+    \label{fig:energy_fraction}
+\end{figure}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics{Ressources/Images/Environnement/energy_region.png}
+%     \caption{Évolution de la consommation d’énergie primaire mondiale par région
+%              entre $1971$ et $2014$ d’après \textcite{IEA2016}.}
+%     \label{fig:energy_region_evolution}
+% \end{figure}
+
+
+Une fraction de cette énergie est utilisée pour le chauffage, la voiture, ou encore pour
+nos équipements électriques de plus en plus nombreux. L’autre fraction moins visible est
+pourtant majoritaire, c’est l’énergie utilisée pour la production, le transport ou le
+stockage des biens de consommation de la vie courante.
+La sur exploitation de ces énergies montre cependant des limites et impacte de manière
+importante l’environnement. Les effets du réchauffement climatiques sont aujourd’hui facilement observables
+et sont tels qu’ils sont capables de bouleverser le fonctionnement de la planète.
+Bien que non imputable en totalité au réchauffement climatique, les évènements extrêmes
+tels que l’augmentation des occurrences de canicules ou de fortes précipitations est fortement
+lié à l’augmentation de la température mondiale moyenne. De même l’augmentation de la température moyenne
+et du niveau des océans sont fortement corrélés (\figref{fig:evolution_climat}).
+Le développement humain (transport, bâtiment, population, robotisation\dots)
+et aussi responsable de nombreux autres facteurs environnementaux aggravants (acidification des sols, augmentation de la
+température moyenne, pollution de l’air, réduction de la biodiversité\dots) \parencite{Biermann2016341}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Environnement/elevation_temperature.jpg}
+    \caption{Mise en évidence des effets anthropiques globaux et à l’échelle de la région
+              à travers l’évolution des température des océans et des terres, des précipitations
+              de l’énergie stockée dans les océans (\abr{OHC}, Ocean Heat Content), et
+              de la surface de mer gelée. Les lignes rouges et bleus foncées représentent l’évolution moyenne
+              des différentes simulations respectivement avec et sans influences humaines. Les zones
+              ombrée en bleu et rose représentent les intervalles de confiance pour les différentes
+              simulations. Finalement les lignes noires décrivent les observations \parencite{AchutaRao2013}.
+             }
+    \label{fig:evolution_climat}
+\end{figure}
+
+\ifix{Trouver sources plus récentes pour effet de serre}
+La sur-utilisation des énergies fossiles couplée à une forte évolution démographique se
+traduit par de trop fortes émissions en Gaz dits \enquote{à Effet de Serre (\defref{def:effet_serre})} (\abr{GES}).
+La température moyenne sur l’ensemble de la surface du globe est ainsi le résultat du bilan radiatif entre le
+rayonnement solaire incident et le rayonnement infrarouge terrestre émis.
+L’eau contribuant à près de \SI{55}{\percent} à l’effet de serre apparaît comme
+le composant principal. L’Homme n’ayant pas d’impact direct sur sa
+quantité dans l’atmosphère, il n’est pas considéré lors de l’étude des émissions de
+\abr{GES} anthropiques. Le quantité de $CO_{2}$ dans l’atmosphère, second composant
+responsable du réchauffement climatique avec \SI{39}{\percent} est alors retenue.
+Il représente près de \SI{74}{\percent} des effets anthropiques (\figref{fig:prop_gaz_serre}).
+
+
+\begin{Def}[Énergie]\label{def:énergie}
+Dans l’ensemble de ce document, le terme énergie réfère non à son sens morale mais à son
+sens physique. L’énergie en physique est la mesure de la capacité d’un système à produire
+de la chaleur, modifier un état, ou encore entraîner un mouvement. Dans notre
+problématique une distinction est nécessaire entre l’énergie dite \textbf{primaire} et
+l’énergie dite \textbf{finale}. L’énergie primaire correspond à l’énergie prélevée à
+l’environnement alors que l’énergie finale est l’énergie primaire après soustraction des
+pertes de stockage, de transport, et de transformation. L’énergie finale correspond ainsi
+à l’énergie consommée par l’utilisateur sans tenir compte des consommations engendrées pour sa
+production à l’opposée de l’énergie primaire. Le bouquet énergétique étant propre à chaque
+pays, les facteurs de conversion sont eux aussi dépendant de chaque pays. Pour la France,
+les coefficients souvent admis sont définies dans \tabref{tab:coef_finale_primaire}.
+\end{Def}
+
+\begin{table}
+\centering
+\ifix{Mettre ailleurs}
+\caption[Coefficients conventionnels de passage en énergie primaire non renouvelable]
+         {Coefficients conventionnels de passage en énergie primaire non renouvelable
+          d’après \textcite{Effinergie2015}.}
+\label{tab:coef_finale_primaire}
+\begin{tabular}{L{5cm} C{5cm} c}
+    \toprule
+    Énergie                   & Coefficient pour l’énergie entrant                      & Coefficient pour l’énergie sortante \\
+    \midrule
+    Électricité               & \num{2.58}                                              & \num{-2.58}                         \\
+    Bois                      & \num{0}                                                 & -                                   \\
+    Réseau de chaleur lorsque la chaleur est produite au moins à \SI{50}{\percent} à partir
+    de la biomasse, de géothermie, d’incinération de déchets ou d’énergie de
+    récupération              & \num{0.5} ou la part de non-\abr{EnR} si celle-ci est
+                                certifiée par un organisme indépendant                  & -                                   \\
+    Autres réseaux de chaleur & \num{1}                                                 & -                                   \\
+    Gaz, fioul, autres        &  \num{1}                                                & -                                   \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{Def}[Effet de serre]\label{def:effet_serre}
+C’est un phénomène naturel engendré par la présence de divers composés
+gazeux dans l’atmosphère. L’atmosphère ayant un faible indice de réflexion et d’absorption
+pour le rayonnement solaire (visible, proche \abr{UV} et proche \abr{IR}), un grande
+partie du rayonnement est transmis à la surface de la terre. Une fraction est alors
+absorbée alors qu’une autre est réfléchie et repart dans l’espace. la part absorbée
+engendre un échauffement, le sol émet alors un rayonnement dans le domaine de l’\abr{IR}
+lointain. Certains composants gazeux de l’atmosphère étant faiblement transparents pour ce
+domaine d’émission, une partie de l’énergie est absorbée au lieu d’être rejetée dans
+l’espace~: c’est le mécanisme d’effet de serre. Dans des conditions normales ce mécanisme
+permet de maintenir une température correcte pour le développement de la biodiversité
+alors que en son absence la température moyenne de la terre serait de \SI{-18}{\celsius}.
+\end{Def}
+
+
+\begin{figure}
+    \centering
+    \ftodo{Pourcentage de la contribution des émissions anthropiques}
+    % \includegraphics{Ressources/Images/Environnement/triptyque_negaWatt.png}
+    \caption{Répartition des émissions anthropiques responsable de l’effet de serre.}
+    \label{fig:prop_gaz_serre}
+\end{figure}
+
+\itodo{Introduire GIEC}
+Les décision politiques étant étroitement liées aux résultats scientifiques,
+une organisation indépendante a été créé en $1988$ par l’Organisme des Nations
+Unies (\abr{ONU}) afin de fournir une base
+scientifique solide. Cette organisation connu sous le nom de
+Groupe d'experts Intergouvernemental sur l'Évolution du Climat (\abr{GIEC}), regroupe
+des experts en climatologie dont le but est d’apporter un regard critique sur
+les travaux provenant de différents groupes de recherche scientifiques, techniques,
+et socio-économiques. Il a pour but la réalisation sans parti-pris de l’expertise
+des risques liés au réchauffement climatique et de faire re-sortir les informations
+et découvertes faisant consensus dans la communauté scientifique. Finalement, grâce à ces
+publications périodiques, les connaissances accumulées sur le sujet permettent de
+sensibiliser le public non expert, élément indispensable pour que des engagements
+politiques soit pris.
+
+
+\itodo{Citer un truc du GIEC}
+% International Energy Agency (IEA), Energy Technologies Perspectives:
+% Scenarios and Strategies to 2050,OECD/IEA, 2008, Paris.
+Actuellement les mesures montre un forçage radiatif excédentaire entraînant une
+lente augmentation de la température du sol. En $2003$, le GIEC estimait ce forçage
+à \SI{2.3}{\watt\per\metre\squared} dont \SI{1.6}{\watt\per\metre\squared} imputable
+aux émissions anthropiques. Bien que nous soyons en période de réchauffement
+(causes externes astronomiques), l’activité humaine semble être responsable d’une
+augmentation anormalement rapide comme le confirme les données récentes (\figref{page 895}).
+
+
+
+\begin{figure}
+    \centering
+    \ftodo{Pourcentage de la contribution des émissions anthropiques}
+    % \includegraphics{Ressources/Images/Environnement/triptyque_negaWatt.png}
+    \caption{Répartition des émissions anthropiques responsable de l’effet de serre.}
+    \label{fig:prop_gaz_serre}
+\end{figure}
+
+Il est ainsi clair que des mesures doivent être
+prises afin de limiter la consommation en énergie primaire. De plus une alternative
+respectueuse de l’environnement, les énergies renouvelables, réduisant les émissions de
+GES est indispensable pour permettre d’inverser la tendance.
+
+% subsection l_origine_du_rechauffement_climatique (end)
+
+
 % ------------------------------------------------------------------------------
 \subsection{Vers une prise de conscience collective} % (fold)
 \label{sub:vers_une_prise_de_conscience_collective}
@@ -27,211 +229,140 @@ diversité\dots En $1987$ un nouveau rapport cette fois commandité par les Nati
 Contrairement au rapport \textit{Meadows} qui présente des scénarios de ce qui pourrait
 arriver si rien ne change, ce document pose les bases pour un développement équitable
 mettant en avant la protection des ressources naturelles mais aussi de l’équité des
-individus face aux ressources. Le terme \enquote{Développement durable}, aujourd’hui
-largement repris, est introduit~:
+individus face aux ressources. Le terme \enquote{Développement durable} (\figref{fig:developpement_durable},
+aujourd’hui largement repris, est introduit~:
 \itodo{Vérifier citation}
 \blockquote{
     Un développement qui répond aux besoins des générations présentes sans
     compromettre la capacité des générations futures de répondre aux leurs.
 }
-\ftodo{Ajouter représentation du développement durable}
 
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Environnement/developpement_durable.png}
+    \caption[Principe du développement durable]
+            {Principe du développement durable \protect\footnotemark}
+    \label{fig:developpement_durable}
+\end{figure}
+\footnotetext{\url{http://www.cdcmortainais.fr}}
 
-
-\href{http://unfccc.int/essential_background/convention/status_of_ratification/items/2631.php}{CCNUCC}\\
 Au début porté par des militants, la conscience collective amène à la prise en compte de
 l’environnement dans les textes réglementaires avec notamment le \textit{protocole de
 Montreal} ($1987$) mettant en place des restrictions afin de protéger la couche d’ozone.
 Peu de temps après, au $3ème$ \textit{Sommet de la Terre} se tenant à Rio en $1992$, la
-Convention-cadre des Nations Unies sur les changements climatiques (CCNUCC) est adoptée et
-est aujourd’hui ratifiée par $197$ pays montrant l’importance des question du
-développement durable sur le plan international. Cette convention développe un plan
-d’action pour le $21ème$ siècle connu sous le nom d’Agenda $21$ mais aussi $27$ principes
-pour sa mise en œuvre. Les domaines traités sont très variés et couvrent par exemple la
-pauvreté, la gestion des ressources notamment en eau, des déchets, mais aussi la pollution
-ou l’agriculture\dots La $3ème$ Conférence des Parties (\abr{COP}, Conference Of Parties)
-à Kyoto ($1997$) entrée en vigueur début $2005$, complète la convention par un accord
-visant à réduire les émissions de gaz à effet de serre (\abr{GES}).
+Convention-Cadre des Nations Unies sur les Changements Climatiques
+(\fnref{http://unfccc.int/essential_background/convention/status_of_ratification/items/2631.php}{\abr{CCNUCC}})
+est adoptée. Cette convention développe un plan d’action pour le $21ème$ siècle,
+l’\textit{Agenda $21$} mais aussi $27$ principes pour sa mise en œuvre. Les domaines
+traités sont très variés et couvrent par exemple la pauvreté, la gestion des ressources
+notamment en eau, des déchets, mais aussi la pollution ou l’agriculture\dots Elle est
+ensuite complétée par un accord visant à réduire les émissions de gaz à effet de serre
+(\abr{GES}) lors de la $3ème$ Conférence des Parties (\abr{COP}, Conference Of Parties) à
+Kyoto ($1997$) avec une entrée en vigueur début $2005$. La \abr{CCNUCC} est aujourd’hui
+ratifiée par $197$ pays montrant l’intérêt des questions du développement durable sur le
+plan international. Pour la première fois, en $2006$, le \textit{rapport Stern}
+\parencite{Stern2006} commandé par le gouvernement britannique décrit sur le plan
+économique l’impact d’une inaction face aux problèmes du réchauffement climatique.
+Précédemment porté par des scientifiques, la sonnette d’alarme est ici tirée par un
+économiste mettant en avant les risques tant sur le plan humain que économique. Le
+réchauffement impacte en effet directement les composantes essentielles de notre mode de
+vie~: l’accès à la santé, à la nourriture ou encore à l’eau.Il est alors suggéré un effort
+de recherche et une coopération technique au niveau international afin de répondre à la
+problématique de manière efficace. Il est aussi mis en avant la nécessité pour les pays
+riches, principaux responsables du réchauffement climatique, d’aider au développement des
+pays plus pauvres dans des conditions respectueuses de l’environnement.
 
-\href{http://www.automatesintelligents.com/echanges/2006/nov/rapportstern.html}{Stern bilan}\\
-Pour la première fois, en $2006$, le \textit{rapport Stern} \parencite{Stern2006} commandé
-par le gouvernement britannique décrit sur le plan économique l’impact d’une inaction face
-aux problèmes du réchauffement climatique. Précédemment porté par des scientifiques, la
-sonnette d’alarme est ici tirée par un économiste mettant en avant les risques tant sur le
-plan humain que économique. Le réchauffement impacte en effet directement les composantes
-essentielles de notre mode de vie~: l’accès à la santé, à la nourriture, à l’eau\dots Il
-est alors suggéré un effort de recherche et une coopération technique au niveau
-international afin de répondre à la problématique de manière efficace. Il met aussi en
-avant la nécessité pour les pays riches, principaux responsables du réchauffement
-climatique, d’aider au développement des pays plus pauvres dans des conditions
-respectueuses de l’environnement.
-
-
-Au niveau européen, la réunion de mars $2007$ entre gouvernements et chefs d’états de
-l’Union Européenne (\abr{EU}) définissent des objectifs globaux pour $2020$. Ces objectifs
-sont au cœur de la directive $20/20/20$ (\mtodo{Ajouter ref}) et engage l’Europe à réduire
-de \SI{20}{\percent} (par rapport à $1990$) ces émissions de Gaz à Effet de Serre
-(\abr{GES}), à améliorer de \SI{20}{\percent} l’efficacité énergétique, et à couvrir
-\SI{20}{\percent} de la consommation finale par des énergies renouvelables. En France,
-l’engagement \enquote{facteur 4} ($2003$) et la directive européenne sont repris dans les
-objectifs des lois \textite{Grenelle I et II} \parencite{Grenelle2010}. Ce texte traduit
-pour la France une volonté de décisions sur le long terme à la fois sur le plan sociétal,
-politique, et économique, même si la question du nucléaire n’est pas encore à l’ordre du
-jour. Ces lois marquent le premier pas vers une démarche responsable sur les transport, la
-santé, l’énergie ou encore la préservation de la bio-diversité comme notamment avec la
-labellisation de l’agriculture BIO ou la réduction de la précarité énergétiques des
-foyers.
-
-\itodo{ICI ICI ICI}
-\href{http://www.ecologique-solidaire.gouv.fr/loi-transition-energetique-croissance-verte}{LTECV}
-\href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000031742863&dateTexte=20170606}{LTECV}\\
-En $2015$, l’adoption de la Loi pour la Transition Énergétique et la Croissance
-Verte (LTECV) fixe plusieurs objectifs tant sur la consommation énergétique
-que sur les émissions de \abr{GES} afin de préparer à la sortie des énergies fossiles
-et créer de l’emploi pour une population en augmentation. Il y est notamment inscrit
-l’objectif d’une réduction de 40\% de l’émission de \abr{GES} entre 1990 et 2030 et la
-réalisation du facteur 4 pour $2050$. Sur l’énergie, une réduction de la consommation
-en énergie finale et primaire pour $2030$ est aussi détaillée tant sur le plan économique
-que logistique avec respectivement des objectifs de -20\% (-50\% en 2050) et de -30\%.
-De plus des mesures propres à notre bouquet énergétiques sont aussi décrites comme
-la réduction de la dépendance de la France à l’énergie nucléaire.
-
-\href{https://www.edf.fr/groupe-edf/espaces-dedies/l-energie-de-a-a-z/tout-sur-l-energie/produire-de-l-electricite/le-nucleaire-en-chiffres}{EDF}\\
-La mesure engage l’état à réduite à 50\% la part de production électrique d’origine nucléaire
-qui est en 2014 de 77\%.
+Dès $2007$, la réunion entre gouvernements et chefs d’états de l’Union Européenne
+(\abr{EU}) définissent des objectifs globaux pour $2020$. Ces objectifs sont au cœur du
+\fnref{http://www.assemblee-nationale.fr/13/europe/rap- info/i1260.asp}{paquet climat-
+énergie} et engage l’Europe à réduire de \SI{20}{\percent} (par rapport à $1990$) ces
+émissions de \abr{GES}, à améliorer de \SI{20}{\percent} l’efficacité énergétique, et à
+couvrir \SI{20}{\percent} de la consommation finale par des énergies renouvelables
+(\abr{EnR}). Au niveau international, la $21ème$ \abr{COP} ($2016$) a permise d’aller
+encore plus loin avec l’acception de la mise en place de mesures pour la réduction des
+émissions de \abr{GES} avec notamment l’objectif de contenir le réchauffement climatique
+en dessous des \SI{2}{\degree} (réalisation du plan facteur $4$) À terme, le respect de la trajectoire
+permettra d’atteindre la \enquote{neutralité carbone} en compensant les émissions de
+\abr{GES} dans la seconde moitié du siècle. Contrairement au précédent accord
+(\textit{Accords de Kyoto}), le parti-pris est ici d’imposer une transparence entre les
+différents signataires. Chaque signataire doit ainsi rendre compte régulièrement des
+objectifs et évolutions réalisées, informations qui seront rendues publiques afin
+d’inciter à l’exemplarité. Ancré d’une forte symbolique et marquant un pas important vers
+un développement plus durable, aucunes prises de mesures n’est cependant obligatoires et
+la sobriété énergétique n’est pas mentionnée.
 
 
-Au niveau international, la 21ème COP (2016) a permise d’aller encore plus loin avec l’acception de la mise en place
-de mesures pour la réduction des émissions (\abr{GES}) avec notamment l’objectif
-de contenir le réchauffement climatique en dessous des 2°C (réalisation du plan facteur 4) et ainsi permettre
-d’atteindre la \enquote{neutralité carbone} en compensant les \abr{GES} dans la seconde moitié
-du siècle. Contrairement au précédent accord (Accords de Kyoto), le parti-pris est ici
-la transparence entre les différents signataires. En effet chaque signataire à l’obligation de rendre
-compte régulièrement des objectifs et évolutions réalisées et ces informations seront
-rendues publiques afin d’inciter à l’exemplarité. Bien que l’accord soit symboliquement
-fort et un pas en avant vers un développement plus durable, aucunes prises de mesures
-n’est cependant obligatoires. De plus la sobriété énergétique n’est pas mentionnée dans l’accord
-principe pourtant clé du scénario NégaWatt \parencite{Salomon2012}.
+\subsubsection{Le cas français} % (fold)
+\label{ssub:le_cas_francais}
+En France, l’engagement \enquote{facteur 4} ($2003$) et le paquet climat-énergie définies
+au niveau européen sont repris dans les objectifs des lois \textit{Grenelle I et II}
+\parencite{Grenelle2010}. Ce texte traduit pour la France une volonté de décisions sur le
+long terme à la fois sur le plan sociétal, politique, et économique, même si la question
+du nucléaire n’est pas encore à l’ordre du jour. Ces lois marquent le premier pas vers une
+démarche responsable sur les transport, la santé, l’énergie ou encore la préservation de
+la bio-diversité comme notamment avec la labellisation de l’agriculture BIO ou la
+réduction de la précarité énergétiques des foyers. Ces mesures s’appuie notamment sur le
+plan de transition énergétique proposé par l’association \textit{négaWatt}
+\parencite{Salomon2012}.
 
-~\\ \itodo{Décrire Négawatt}
-L’association NégaWatt qui développe depuis $2003$ un scénario pour la transition énergétique
-à travers 3 mesures principales (\mtodo{ref figure}) met clairement
-en avant la nécessité de la sobriété énergétique, la nécessité de repenser la manière
-dont nous consommons l’énergie en réduisant le gaspillage. La dernière mise à jour
-du scénario ($2017$) permet d’atteindre une couverture 100\% renouvelable grâce à la
-biomasse, puis l’éolien et le photovoltaïque et la fermeture en 2035 du dernier
-réacteur nucléaire arrivant à plus de 40 ans d’années de fonctionnement.
-\href{https://fr.wikipedia.org/wiki/Afterres2050}{Afterres2050}
-Au niveau de l’agriculture et donc de l’accès à la nourriture, le scénario NégaWatt
-est complété par le scénario \abr{Afterres2050} développé par l’\abr{ONG} Solagro. Celui-ci s’inspire
-des avancées déjà proposées à travers les loi Grenelle et du scénario NégaWatt et montre
-que le respect notamment du facteur 4 pourrait permettre de couvrir les besoins
-alimentaires de l’ensemble des français en mettant en avant une fois de plus la
-sobriété comme élément clé avec notamment la réduction de la consommation de viande.
+\textit{négaWatt} est une association française qui développe depuis $2003$ un scénario de
+transition énergétique permettant à l’horizon $2050$ de couvrir les besoins énergétiques à
+\SI{100}{\percent} grâce aux énergies renouvelables~: biomasse, éolien, solaire \parencite{negaWatt2017}. La
+trajectoire proposée suit trois axes principaux (\figref{fig:negawatt_axes})~: plus de
+sobriété, améliorer l’efficacité énergétique, promouvoir les énergies renouvelables.
+L’association regroupe dans cet objectif, des experts du domaine de l’énergie, des
+économistes, des sociologues\dots, et tient compte des données statistiques sur des
+domaines multiples comme l’évolution démographique, la consommation des foyers, le coût
+des énergies\dots La sobriété élément clé du scénario invite à repenser son mode de vie et
+propose ainsi à la fois une transition énergétique mais aussi comportemental basé sur un
+principe simple à l’origine du mot \textit{négawatt}~:
+\blockquote{L’énergie qui pollue le moins est celle que l’on ne consomme pas.}
+Parmi les mesures concrètes proposées, il peut être cité, l’amélioration des transports en
+commun, la réduction des dépenses électriques inutiles, l’isolation du bâti existant,
+l’économie circulaire, ou encore un programme de sortie progressive du nucléaire pour
+$2035$.
 
-\ftodo{Ajouter représentation de la transition par négaWatt}
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Environnement/triptyque_negaWatt.png}
+    \caption{Principe du scénario \textit{négaWatt} d’après \textcite{Salomon2012}.}
+    \label{fig:negawatt_axes}
+\end{figure}
 
-\itodo{Parler du projet DeserTec}
-\itodo{Impact à différentes échelles}
+Depuis $2012$, au niveau de l’agriculture et donc de l’accès à la nourriture, le scénario \textit{négaWatt}
+est complété par le scénario \textit{Afterres2050} développé par l’\abr{ONG} \textit{Solagro}. Ce
+scenario s’intéresse principalement à la gestion des forêts, la biodiversité, ou encore
+les terres agricoles afin de nourrir de manière durable la population française.
+Le scénario met notamment en avant que le respect du facteur $4$ couplé à une alimentation
+et une agriculture plus raisonnée permettrait de couvrir les besoins alimentaires
+de l’ensemble des français. S’appuyant aussi sur le principe de sobriété, le scénario
+indique aussi que un réduction par deux de la consommation de viande est aussi
+nécessaire afin d’une part de réduire les émissions de gaz à effet de serre mais
+aussi afin de libérer des terres pour la production de biomasse.
+Le travail de ces association est rapidement reconnu et s’inscrit en $2015$ dans le cadre de
+de la Loi pour la Transition Énergétique et la Croissance Verte
+(\fnref{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031044385}{\abr{LTECV}})
+comme un des scenario de maîtrise de l’énergie au coté du scénario de l’\textit{ADEME}
+basée sur l’efficacité, du scénario \textit{ANCRE} basé sur la diversité des énergies, et du scénario \textit{Négatep}
+basé sur la dé-carbonisation.
+La loi décrit ainsi de nombreux engagement visant à réduire l’impact de l’homme sur le
+climat, créer de l’emploi pour une population grandissante, mais aussi réduire la précarité
+avec un plan de rénovation du patrimoine bâti. Des engagement forts sont ainsi pris au
+niveau énergétique et environnemental pour $2030$~:
+\begin{itemize}
+    \item réduire de \SI{40}{\percent} (par rapport à $1990$) les émissions des gaz a
+          effet de serre et par quatre à l’horizon $2050$.
+    \item réduire de \SI{20}{\percent} (par rapport à $2012$) la consommation en énergie
+          finale et de \SI{-50}{\percent} pour $2050$.
+    \item réduire de \SI{30}{\percent} la consommation en énergie primaire.
+    \item porter à \SI{32}{\percent} la part des \abr{EnR} sur la consommation finale brute.
+    \item réduire la dépendance à l’énergie nucléaire pour la production d’électricité à
+          \SI{50}{\percent} qui est en $2014$ à \fnref{http://tinyurl.com/y7ujs7dn}{\SI{77}{\percent}}
+\end{itemize}
+
+\iunsure{Parler du projet DeserTec}
+% subsubsection le_cas_francais (end)
 % subsection vers_une_prise_de_conscience_collective (end)
-
-
-
-% ------------------------------------------------------------------------------
-\subsection{Comprendre l’évolution} % (fold)
-\label{sub:comprendre_l_evolution}
-
-\subsubsection{Un bagage nécessaire} % (fold)
-\label{ssub:un_bagage_necessaire}
-~
-\itodo{Décrire rapports GIEC et évolution}
-Les décision politiques étant étroitement lié aux résultats scientifiques sur le
-sujet, une organisation indépendante a été créé en $1988$ afin de fournir une base
-scientifique solide. Cette organisation connu sous le nom de
-Groupe d'experts Intergouvernemental sur l'Évolution du Climat (\abr{GIEC}), regroupe
-des experts en climatologie dont le but est d’apporter un regard critique sur
-des travaux provenant de différents groupes de recherche scientifiques, techniques,
-et socio-économiques. Il a pour but la réalisation sans parti-pris de l’expertise
-des risques liés au réchauffement climatique et de faire re-sortir les informations
-et découvertes faisant consensus dans la communauté scientifique. Finalement, grâce à ces
-publications périodiques, les connaissances accumulées sur le sujet permettent de
-sensibiliser le public non expert, élément indispensable pour que des engagements
-politiques soit pris. Ainsi, il est nécessaire dans un premier temps d’expliquer les principaux termes
-nécessaire à la compréhension de la situation climatique avant d’en présenter les chiffres
-clés.
-
-\href{https://fr.wikipedia.org/wiki/%C3%89nergie_(physique)}{Énergie}
-L’énergie qui tient une place centrale dans la problématique est ici utilisé non dans
-son sens morale mais dans son sens physique. L’énergie en physique est la mesure
-de la capacité d’un système à produire de la chaleur, modifier un état, ou encore
-entraîner un mouvement. Dans notre problématique il est principalement considéré
-deux types d’énergie~: l’énergie dite primaire et l’énergie dite finale.
-L’énergie primaire correspond à l’énergie prélevée à l’environnement alors que l’énergie
-finale est l’énergie après soustraction des pertes de stockage, de transport, et de
-transformation. L’énergie finale correspond ainsi à l’énergie consommée par l’utilisateur
-finale et ne tient ainsi pas compte des moyens utilisés pour sa production.
-
-\ttodo{Ajouter les facteurs de conversion en France}
-
-D’un point de vue environnemental, l’augmentation des émissions de GES et l’élévation
-de la température de la planète représente une menace importante
-Le premier facteur fait intervenir la notion d’effet de serre, un phénomène naturel
-engendré par la présence de divers composés gazeux dans l’atmosphère.
-L’atmosphère ayant une faible réflexion et absorption pour le rayonnement solaire
-(visible, proche \abr{UV} et \abr{IR}), un grande partie arrive à la surface de la terre. Une
-partie est alors absorbée alors qu’une autre est renvoyé vers l’espace. Dû à cet
-échauffement, le sol émet un rayonnement dans le domaine de l’IR lointain. Certain
-composant gazeux étant faiblement transparents à ce domaine d’émission, une partie
-de l’énergie est absorbée au lieu d’être rejeté dans l’espace~: c’est le mécanisme
-de l’effet de serre.
-La température moyenne sur l’ensemble de la surface du globe est ainsi le résultat
-du bilan radiatif entre le rayonnement solaire incident et le rayonnement infrarouge.
-N’ayant pas d’influence sur la vapeur d’eau présente dans l’atmosphère
-(55\% de la contribution à l’effet de serre), le $CO_{2}$ joue alors un rôle essentiel
-dans l’étude de l’impact de l’homme et des conséquences à moyen et long terme.
-
-\ftodo{Pourcentage de la contribution des émissions anthropiques}
-
-% Sans l’impact de l’être humain, le bilan permet à la terre d’atteindre une température
-% moyenne de \SI{15}{\celsius} au lieu de \SI{-18}{\celsius}.
-
-
-% subsubsection un_bagage_necessaire (end)
-
-\subsubsection{Évolution des facteurs environnementaux} % (fold)
-\label{ssub:evolution_des_facteurs_environnementaux}
-~
-\itodo{Évolution de la température et des énergies}
-% International Energy Agency (IEA), Energy Technologies Perspectives:
-% Scenarios and Strategies to 2050,OECD/IEA, 2008, Paris.
-Actuellement les mesures montre un forçage radiatif excédentaire entraînant une
-lente augmentation de la température du sol. En $2003$, le GIEC estimait ce forçage
-à \SI{2.3}{\watt\per\metre\squared} dont \SI{1.6}{\watt\per\metre\squared} imputable
-aux émissions anthropiques. Bien que nous soyons en période de réchauffement
-(causes externes astronomiques), l’activité humaine semble être responsable d’une
-augmentation anormalement rapide.
-\itodo{Ajouter résultats GIEC plus récent sur GES, voir *GEA 2012*}
-
-
-\itodo{Mettre en avant l’accélération des consommations / GES / population}
-\ftodo{Ajouter évolution CO2 selon GIEC}
-Cet accroissement est lié à deux grand facteurs. Premièrement, l’augmentation de la robotisation
-et le développement très rapide depuis les années $90$ de l’industrialisation à fortement
-augmenter la consommation d’énergie fossiles. Deuxièmement, l’accroissement très important
-de la population en quelques années entraînant une explosion de la demande énergétique
-(\mtodo{GEA 2012}). Cette énergie est aujourd’hui a \SI{80}{\percent} produite grâce à des sources
-carbonées, le pétrole, le charbon. Il est ainsi clair que des mesures doivent être
-prises afin de limiter la consommation en énergie primaire. De plus une alternative
-respectueuse de l’environnement, les énergies renouvelables, réduisant les émissions de
-GES est indispensable pour permettre d’inverser la tendance.
-
-\itodo{Le coût des énergies renouvelables}
-\href{http://decrypterlenergie.org/les-energies-renouvelables-coutent-elles-trop-cher}{coût ENR}\\
-C’est dans cette optique que les mesures décrites ci-dessus ont été prise, mais
-il demeure encore aujourd’hui une
-
-% subsubsection evolution_des_facteurs_environnementaux (end)
-% subsection comprendre_l_evolution (end)
 % section l_homme_au_centre_d_un_trouble_climatologique (end)
 
 
@@ -247,11 +378,7 @@ il demeure encore aujourd’hui une
 \label{sub:un_long_chemin_deja_parcouru}
 ~
 \itodo{Réglementation jusqu’à \abr{RT\,$2005$} pour introduire BBC}
-À la suite de la seconde guerre mondiale, durant la période des 30 glorieuses, la France
-et d’autres pays développés profitent d’une croissance forte tant au niveau économique,
-que démographique (baby-boom). Cette expansion est portée par un accès aisé aux énergies
-et particulièrement aux énergies fossiles. L’abondance de ressources énergétique traduit
-alors un développement industriel important et dans le bâtiment par des
+L’abondance de ressources énergétique se traduit dans le bâtiment par des
 constructions énergivores et une perte du savoir faire ancien. C’est suite au premier choc
 pétrolier de $1973$ (\mtodo{ref}), que la France met en place en 1974 la première
 Réglementation Thermique (RT) afin de faire face aux dépenses énergétiques importantes
@@ -427,7 +554,7 @@ de 1 sur le critère \abr{C-}. Ces labels ajoute en plus, la prise en compte du 
 et l’efficacité énergétique. De par leur exigences, ces nouveaux labels s’inscrivent dans une
 démarche plus globale en tenant compte de la performance énergétique mais aussi de l’émission
 des \abr{GES}, du confort des occupants et de la sobriété qui est pour rappel l’élément clé
-du scénario $NégaWatt$.
+du scénario $négaWatt$.
 
 \itodo{Label BBCA}
 Concernant la partie \abr{C-} ces labels n’exigent cependant pas une performance supplémentaires

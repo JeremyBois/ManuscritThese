@@ -124,6 +124,9 @@
 \let\Oldsubsection\subsection
 \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}  % For subsection
 
+% Add links as hyperlinks (numeric version) and in footnotes (printed version)
+\newcommand\fnref[2]{\href{#1}{#2}\footnote{\url{#1}}}
+
 
 % Redefinition of chapter and other sections
 \RequirePackage{tikz}
