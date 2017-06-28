@@ -130,16 +130,14 @@
     - (Fait) Bordeaux (500)
     - (Fait) Strasbourg (500)
   - Sensibilité
-    - Bordeaux (500)
-    - (En cours) Strasbourg (500)
+    - (Fait) Bordeaux (500)
+    - (Fait) Strasbourg (500)
   - Paramétrique
-    - Ref Bordeaux (500)
-    - Ref Strasbourg (500)
+    - (Fait) Ref Bordeaux (1000)
+    - (En cours) Ref Strasbourg (1000)
     - Bordeaux (1000)
     - Strasbourg (1000)
   - Test performance méta (optionnel)
-    - Ref Bordeaux (+500)
-    - Ref Strasbourg (+500)
     - Bordeaux (+1000)
     - Strasbourg (+1000)
   - Optimisation

@@ -151,6 +151,9 @@
 % Change alignment to start according to indentation
 \setlist[description]{labelindent=\parindent, leftmargin=2\parindent}
 
+% Change default behavior for float positionning to avoid bottom figure
+\renewcommand{\fps@figure}{htp}
+\renewcommand{\fps@table}{htp}
 
 % ------------------------------------------------------------------------------
 % Math / Unit support
