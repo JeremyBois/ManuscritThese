@@ -170,6 +170,9 @@
 \DeclareMathSymbol{.}{\mathord}{letters}{"3B}           % Decimal separator in math mode ...
 \sisetup{output-decimal-marker={,}}                     % ... and in siunitx: dot with comma
 
+% Sign function
+\DeclareMathOperator{\sign}{sign}
+
 % Change the ways square root appears
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{%
