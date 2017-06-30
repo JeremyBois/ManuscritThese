@@ -146,8 +146,8 @@
      labelwidth=\xdescwd,align=right]}
   {\end{description}}
 % Remove some space between items
-\setlist[enumerate]{itemsep=-1mm}
-\setlist[itemize]{itemsep=-1mm}
+\setlist[enumerate]{itemsep=0mm}
+\setlist[itemize]{itemsep=0mm}
 % Change alignment to start according to indentation
 \setlist[description]{labelindent=\parindent, leftmargin=2\parindent}
 
@@ -264,7 +264,9 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}  % Left aligned
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}   % Right aligned
 
-
+% New column entry that Gobbles it's entries
+\newsavebox{\mybox}
+\newcolumntype{G}{@{}>{\begin{lrbox}{\mybox}}l<{\end{lrbox}}@{}}
 % ------------------------------------------------------------------------------
 % Notes support
 % ------------------------------------------------------------------------------
