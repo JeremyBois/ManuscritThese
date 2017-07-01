@@ -977,7 +977,7 @@ le rayonnement terrestre direct ($G_{dir,\,nor}$), diffus ($G_{dif,\,hor}$), ou 
 (pyranomètres ou des pyrhéliomètres) à une position géographique suffisamment proche du
 site étudié afin de fournir des données pertinentes. En France, ces données peuvent aussi
 être obtenues à partir des stations météos de Météo France ou bien plus récemment auprès
-de l’organisme WhiteBoxTechnologie \mtodo{Ajouter ref}.
+de l’organisme \fnref{http://weather.whiteboxtechnologies.com/}{WhiteBoxTechnologie}.
 
 Les données satellites permettent elles de récupérer les données solaires à n’importe quel
 point du globe ($265$ pays) et tiennent compte des spécificité du lieu comme le dénivelé.
@@ -1477,7 +1477,7 @@ Non compatible avec des installations traditionnelles de chauffage ou de product
 d’\abr{ECS} les capteurs à concentration sont en majorité utilisés pour des applications
 industrielles comme décrit ci-avant. Dans le bâtiment des systèmes de cogénération
 se développent cependant en couplant un moteur à vapeur avec des capteurs à concentration
-cylindro-paraboliques \mtodo{Ajouter ref}.
+cylindro-paraboliques mais les applications restent mineures.
 
 \itodo{Information générales }
 IEA2012
@@ -1647,10 +1647,10 @@ secteur du solaire thermique est ainsi au niveau mondial en décroissance forte 
 sur le continent Européen. Bien que des applications de \abr{SSC} existent au niveau
 Européen, la tendance est aussi à la baisse. Ces tendances traduisent une perte de
 confiance dans cette technologie déjà observée par les industriels. La même observation
-est faite par \textcite{Musall2010} à travers l’analyse de $280$ \textit{Net}\,$ZEB$ qui
-montre que moins de \SI{10}{\percent} des maisons individuelles sélectionnent un $SSC$
+est faite par \textcite{Musall2010} à travers l’analyse de $280$ \textit{Net}\,\abr{ZEB} qui
+montre que moins de \SI{10}{\percent} des maisons individuelles sélectionnent un \abr{SSC}
 comme mesure là ou près de \SI{70}{\percent} recommande une production d’\abr{ECS}
-solaire. Le $SSC$ est ainsi aujourd’hui une technologie principalement utilisé dans la rénovation
+solaire. Le \abr{SSC} est ainsi aujourd’hui une technologie principalement utilisé dans la rénovation
 \parencite{Ellehauge2003}. Cependant l’ouverture de nouveaux travaux de recherche
 autant sur la compétitivité économique que sur les applications de refroidissement
 par le solaire permettront à terme de mieux valoriser ces systèmes pour les nouvelles
@@ -1660,7 +1660,7 @@ commencer début $2018$ devrait permettre d’accompagner le développement de s
 permettant de produire de manière combinée énergie électrique et thermique. Finalement, la
 nouvelle norme en préparation (\abr{prEN\,$15603$}) amène aussi à reconsidérer la manière
 de construire des \abr{BEPOS} en ajoutant une contrainte forte de production renouvelable
-locale par type d’énergie laissant présager d’un futur pour les $SSC$.
+locale par type d’énergie laissant présager d’un futur pour les \abr{SSC}.
 % paragraph conclusion (end)
 % subsubsection les_chiffres_cles (end)
 
@@ -1679,7 +1679,7 @@ réalisable. Il faudra attendre $1972$ et $1974$ pour voir apparaître respectiv
 en France et en Angleterre les premières maisons solaires utilisant des systèmes passifs
 et actifs \parencite{Michaelides1993}. Un modèle numérique développé par \textcite{Hunn197733}
 permet en $1977$ d’évaluer pour un pas de temps horaire l’effet des conditions
-météorologiques sur la performance d’$SSC$. Étudiant la performance des capteurs, il
+météorologiques sur la performance d’\abr{SSC}. Étudiant la performance des capteurs, il
 conclut qu’une seconde vitre sur les capteurs plan permet d’améliorer les performances
 dans un climat caractérisé par une forte couverture nuageuse. Ces travaux sont complété
 par \textcite{Elsayed198989} qui étudie plus en détail la transmission du rayonnement à
@@ -1718,7 +1718,7 @@ en comparant différent débit de puisage.
 
 \itodo{Task 26}
 \itodo{Séparer ref en sous-tache}
-Une des majeure contribution aux $SSC$ pour la maison individuelle a été réalisé au cours
+Une des majeure contribution aux \abr{SSC} pour la maison individuelle a été réalisé au cours
 de la tâche\,$26$ qui fait intervenir $10$ pays (États-Unis et des pays de l’Europe)
 et s’articule en trois sous-tâches \parencite{Task26C2003}. Au cours
 de la tâche $21$ systèmes ont été étudiés dont $9$ de manière détaillé apportant
@@ -1744,7 +1744,7 @@ qui correspond à la part solaire théorique maximale que le système peut couvr
 l’ensoleillement à la surface des capteurs. Il est donc défini comme étant la somme des production solaires mensuelles
 utiles divisé par la consommation totale de l’appoint \parencite{Letz2009}. L’avantage de cet indicateur
 est qu’il est indépendant du site, et ne dépend pas du système étudié. Il est alors possible
-de comparer entre eux plusieurs $SSC$, le plus performant étant celui qui a le meilleur taux d’économie
+de comparer entre eux plusieurs \abr{SSC}, le plus performant étant celui qui a le meilleur taux d’économie
 ($F_{sav,\,therm}$ ou $F_{sav,\,ext}$ ou $F_{si}$) pour un même $FSC$. De plus il est montré
 que le taux d’économie peut s’exprimer en fonction de $FSC$ sous la forme d’un polynôme de second ordre
 permettant d’obtenir une estimation de la performance du système pour différentes conditions climatiques.
@@ -1761,8 +1761,8 @@ permettant d’obtenir une estimation de la performance du système pour différ
         FSC = \frac{\sum_{1}^{12} \left( \min(Conso_{ref, mois}, I_{inc} \times A) \right)}{Conso_{ref}}
 \end{equation}
 
-Dans la sous-tâche B, ue nouveau modèle de capteur solaire est implémenté dans \textit{TRNSYS}, (type
-$132$). Le rendement du capteur est définie à partir des équations quasi-
+Dans la sous-tâche B, un nouveau modèle de capteur solaire plus détaillé est ajouté à \textit{TRNSYS}, (type
+$132$). Le rendement du capteur est défini à partir des équations quasi-
 dynamiques explicitées à travers \ref{ssub:rendement_d_un_capteur_solaire_thermique}.
 
 Finalement dans la sous-tâche C \parencite{Task26C2007}, une analyse a été réalisé sur
@@ -1772,84 +1772,66 @@ la position des capteurs dans le ballon, la position de l’échangeur solaire, 
 température minimale pour le chauffage et l’ECS, climat, qualité de l’enveloppe\dots
 Chaque système est modélisé dans \textit{TRNSYS} et est évalué par
 rapport au même cas de référence à travers une analyse paramétrique. La sensibilité du
-système pour chaque paramètres est ensuite déduite de ces résultats. Les systèmes
+système pour chaque paramètre est ensuite déduit des résultats. Les systèmes
 considérés ont tous une spécificité propre et la tâche donne ainsi un vision globale des
 facteurs les plus impactant pour les différents systèmes existants sur le marché.
 
 \itodo{différences des systèmes}
-Les différents systèmes sont décrits très brièvement afin de fournir un aperçu des
-technologies et logiques modélisés (\tabref{tab:diff_ssc}).
+Les différents systèmes sont décrits brièvement afin de fournir un aperçu des
+technologies et logiques de contrôle modélisés (\tabref{tab:diff_ssc}).
 Sur les $9$ systèmes, $2$ sont pensés pour une application en maisons ou appartements
-collectifs. Seul ces $2$ systèmes, \emph{\#9b} et \emph{\#19}, comportent plus de $1$ ballon,
-respectivement $3$ et $2$. \emph{\#9b} comporte deux ballons pour l’$ECS$ dont un immergé
+collectifs, \emph{\#9b} et \emph{\#19},avec respectivement $3$ et $2$ ballons.
+\emph{\#9b} comporte deux ballons pour l’$ECS$ dont un immergé
 dans le ballon tampon. \emph{\#19} utilise le même réseau secondaire pour le chauffage
 et la production \abr{ECS}.
 
-Au niveau des capteurs, la pompe solaire est dans toutes les configurations déclenché
-par le différentiel de température entre la sorties des capteurs et le bas du ballon
+Au niveau des capteurs, la pompe solaire est dans toutes les configurations déclenchée
+par le différentiel de température entre la sortie des capteurs et le bas du ballon
 principal. Dans le cas de \emph{\#12}, \emph{\#15}, et \emph{\#8}, le débit est
 modulé afin de maximiser le rendement des capteurs. Dans \emph{\#12}, le choix a été
-fait d’utiliser deux échangeurs, un en partie basse, et vers le centre (sous l’appoint
+fait d’utiliser deux échangeurs, un en partie basse, et un vers le centre (sous l’appoint
 électrique) afin d’augmenter la stratification du ballon.
-Alors que le système \emph{\#2} préfères l’utilisation d’un unique échangeur externe
-à plaque, le système \emph{\#19} utilise un échangeur externe à plaque est considéré en plus
-d’un échangeur en tube stratifié interne. Les autres systèmes considèrent uniquement
-des échangeurs internes.
-Le système \emph{\#15} contrairement aux autres, est pensé comme une unique unité
-regroupant un échangeur en tube stratifié pour la partie solaire, la pompe solaire,
-la chaudière au gaz, l’échangeur à plaques pour l’\abr{ECS}, et le ballon de stockage.
-L’installation sur site est donc facilité et le système est plus compact.
+Alors que le système \emph{\#2} préfère l’utilisation d’un unique échangeur externe
+à plaques, le système \emph{\#19} utilise un échangeur externe à plaque couplée
+à un échangeur en tube stratifié interne afin de mieux répartir l’énergie et conserver
+la stratification. Les autres systèmes considèrent uniquement
+des échangeurs tubulaires internes.
+Le système \emph{\#15} est l’unique système tout-en-un et regroupe ainsi
+un échangeur solaire en tube stratifié, une pompe coté solaire,
+une chaudière au gaz, un échangeur à plaques pour l’\abr{ECS}, et le ballon de stockage.
+De part son approche compact, l’installation sur site est facilité.
 
 Parmi les systèmes, il est aussi noté que seul les systèmes \emph{\#8}, \emph{\#9b},
 et \emph{\#19} assure la logique de contrôle complète du système. Les autres systèmes
-étant dépendant d’un contrôle externe pour définir quand le chauffage est nécessaire
-ou quand il doit se désactiver.
-Il est cependant noté que le système \emph{\#12} est capable de désactiver
-l’appoint électrique si la pompe solaire se met en marche.
+sont dépendant d’un contrôleur externe pour la gestion du chauffage même si le système
+\emph{\#12} est capable de désactiver l’appoint électrique si la pompe solaire se met en marche.
 
 Pour la production d’\abr{ECS} $5$ systèmes ont fait le choix d’une production
-d’$ECS$ par l’intermédiaire d’un échangeur. \emph{\#19}, \emph{\#15} ayant fait le
-choix d’utiliser un échangeur externe à plaque. Dans \emph{\#19} l’échangeur
-assure le transfert d’énergie vers le second ballon chargé $1$ à $2$ fois par
-pour fournir un stock journalière d’\abr{ECS}. \emph{\#12}, \emph{\#19}, et \emph{\#19} optent eux pour
+d’$ECS$ indirecte, par l’intermédiaire d’un échangeur. \emph{\#19}, \emph{\#15} ayant fait le
+choix d’utiliser un échangeur externe à plaque. Pour \emph{\#19}, l’échangeur
+assure le transfert d’énergie vers le second ballon chargé $1$ à $2$ fois par jour afin
+de refaire le stock d’\abr{ECS}. \emph{\#12}, \emph{\#11}, et \emph{\#8} optent eux pour
 un échangeur interne couvrant la hauteur du ballon de stockage. La géométrie
 du serpentin est cependant optimisé uniquement pour récupérer de la chaleur en
 partie basse et haute du ballon. Ces options permettent de maintenir une
 stratification dans le ballon lors des puisages importants contrairement à une approche
-directe.
+directe. En effet dans les autres systèmes l’\abr{ECS} est puisé directement du ballon.
 
-La couverture solaire du chauffage est assuré par un circuit direct pour
+La couverture du chauffage par le solaire est assurée par un circuit direct pour
 \emph{\#3a} et \emph{\#2}. Le premier ne permet pas au solaire d’assurer simultanément
 le chauffage et la production d’\abr{ECS} alors que le second ne permet pas de fournir
-aux émetteurs de l’énergie provenant à la fois de l’appoint et du solaire.
-Les autres systèmes s’oriente vers un chauffage indirect uniquement. Il est noté que
-aucun des systèmes ne permet l’alternance entre chauffage direct et indirect.
+aux émetteurs de l’énergie provenant en même temps de l’appoint et du solaire.
+Les $7$ autres systèmes s’orientent eux vers un chauffage indirect uniquement. Il est noté que
+aucun des systèmes étudié ne permet l’alternance entre chauffage direct et indirect.
 
 Les résultats des différentes approches sont décrits à travers la \figref{fig:compare_perf_ssc}.
-Il est observé que pour une surface faible de capteurs solaires, le système \emph{\#15}
+Il est observé que pour une surface faible de capteurs solaires ($FSC$ faible), le système \emph{\#15}
 obtient des performances plus importantes. Le système \emph{\#3a} arrive en seconde place
 mais nécessite une surface de capteur plus importante. Sans surprise le système pensé
 pour des installation collectives \emph{\#19} est le moins performant. Le seul système
 ne permettant pas de fournir à la fois de l’énergie pour la production d’\abr{ECS}
 et pour le chauffage (\emph{\#2}) fait lui aussi parti des systèmes les moins performant.
-Cependant son faible coût fait le place en bonne position sur le plan économique.
 
-
-% \begin{tabular}{l *{9}{c}}
-%                          & \#2 & \#3a & \#4 & \#8 & \#9b & \#11 & \#12 & \#15 & \#19 \\
-%     Chaudière            & gaz ou fioul & gaz ou fioul & gaz ou fioul & gaz ou fioul & gaz ou fioul & gaz ou fioul &  gaz ou fioul& gaz ou fioul & gaz ou fioul \\
-%     Appoint électrique   &  &  &  &  &  &  &  &  &  \\
-%     \abr{CH} mixte       &  &  &  &  &  &  &  &  &  \\
-%     \abr{CH} et $ECS$    &  &  &  &  &  &  &  &  &  \\
-%     Type \abr{CH}        &  &  &  &  &  &  &  &  &  \\
-%     Type \abr{ECS}       &  &  &  &  &  &  &  &  &  \\
-%     Débit variable       &  &  &  &  &  &  &  &  &  \\
-%     Contrôleur unique    &  &  &  &  &  &  &  &  &  \\
-%     Échangeur externe    &  &  &  &  &  &  &  &  &  \\
-%     Nombre d’échangeurs  &  &  &  &  &  &  &  &  &  \\
-%     Nombre de ballons    &  &  &  &  &  &  &  &  &  \\
-%     Référence            &  &  &  &  &  &  &  &  &  \\
-% \end{tabular}
 
 \begin{table}
 \centering
@@ -1857,20 +1839,11 @@ Cependant son faible coût fait le place en bonne position sur le plan économiq
 \caption{Différences principales entre les différents modèles modélisés dans la tâche\,$26$
          avec \abr{CH} pour CHauffage et \abr{ECS} pour Eau Chaude Sanitaire.}
 \label{tab:diff_ssc}
-\begin{tabular}{l *{6}{c} *{5}{G} r}
+\begin{tabular}{l *{6}{c} *{5}{G} G}
     \toprule
             & Type & Appoint    & \abr{CH}  & \abr{CH} et \abr{ECS}  & Type     & Type      & Débit    & Contrôleur unique       & $Ech_{sol}$  & Nombre      & Nombre & \\
             & Chaudière & électrique & mixte     & simultanés        & \abr{CH} & \abr{ECS} & variable & \abr{CH} et \abr{ECS}   & externe    & d’échangeur & de ballons & \\
     \midrule
-    \#2     & gaz ou fioul          & Oui            & Oui   & Non   & Direct    & Direct    & Non   & Non   & Oui   & 2 & 1 & \\
-    \#3a    & gaz                   & Non            & Non   & Oui   & Direct    & Direct    & Non   & Non   & Non   & 2 & 1 & \\
-    \#4     & gaz ou fioul          & Non            & - & Oui   & Indirect  & Direct    & Non   & Non   & Non   & 2 & 1 & \\
-    \#8     & gaz ou fioul          & Non            & - & Oui   & Indirect  & Indirect  & Oui (capteurs)    & Oui   & Non   & 2 & 1 & \\
-    \#9b    & gaz ou fioul          & Oui            & - & Oui   & Indirect  & Directe (ballon immergé)  & Non   & Oui (sauf ECS)    & - & 0 (circulation directe)   & 3 & \\
-    \#11    & bois (optionnelle)    & Oui (principal)   & - & Oui   & Indirect  & Indirecte & Non   & Non   & Non   & 2 & 1 & \\
-    \#12    & bois (optionnelle)    & Oui (principal)   & - & Oui   & Indirect  & Indirecte & Oui (capteurs)    & Non   & Non   & 3 (2 solaires)    & 1 & \\
-    \#15    & gaz (unité compacte)  & Non   & - &   & Indirecte & Indirecte (échangeur à plaque)    & Oui (capteurs et chauffage)   &   & Non   & 2 + tube stratifiés   & 1 & \\
-    \#19    & gaz ou fioul          & Non   & Oui   & Non   & Indirecte & Indirecte (échangeur à plaque)    & Non   & Oui   & Oui   & 2 + tube stratifiés   & 2 & \\
     \bottomrule
 \end{tabular}
 \\[10pt]
@@ -1879,15 +1852,6 @@ Cependant son faible coût fait le place en bonne position sur le plan économiq
             & Type & Appoint    & \abr{CH}  & \abr{CH} et \abr{ECS}  & Type     & Type      & Débit    & Contrôleur unique       & $Ech_{sol}$  & Nombre      & Nombre & \\
             & Chaudière & électrique & mixte     & simultanés        & \abr{CH} & \abr{ECS} & variable & \abr{CH} et \abr{ECS}   & externe    & d’échangeur & de ballons & \\
     \midrule
-    \#2     & gaz ou fioul          & Oui            & Oui   & Non   & Direct    & Direct    & Non   & Non   & Oui   & 2 & 1 & \\
-    \#3a    & gaz                   & Non            & Non   & Oui   & Direct    & Direct    & Non   & Non   & Non   & 2 & 1 & \\
-    \#4     & gaz ou fioul          & Non            & - & Oui   & Indirect  & Direct    & Non   & Non   & Non   & 2 & 1 & \\
-    \#8     & gaz ou fioul          & Non            & - & Oui   & Indirect  & Indirect  & Oui (capteurs)    & Oui   & Non   & 2 & 1 & \\
-    \#9b    & gaz ou fioul          & Oui            & - & Oui   & Indirect  & Directe (ballon immergé)  & Non   & Oui (sauf ECS)    & - & 0 (circulation directe)   & 3 & \\
-    \#11    & bois (optionnelle)    & Oui (principal)   & - & Oui   & Indirect  & Indirecte & Non   & Non   & Non   & 2 & 1 & \\
-    \#12    & bois (optionnelle)    & Oui (principal)   & - & Oui   & Indirect  & Indirecte & Oui (capteurs)    & Non   & Non   & 3 (2 solaires)    & 1 & \\
-    \#15    & gaz (unité compacte)  & Non   & - &   & Indirecte & Indirecte (échangeur à plaque)    & Oui (capteurs et chauffage)   &   & Non   & 2 + tube stratifiés   & 1 & \\
-    \#19    & gaz ou fioul          & Non   & Oui   & Non   & Indirecte & Indirecte (échangeur à plaque)    & Non   & Oui   & Oui   & 2 + tube stratifiés   & 2 & \\
     \bottomrule
 \end{tabular}
 \end{table}
@@ -1895,10 +1859,9 @@ Cependant son faible coût fait le place en bonne position sur le plan économiq
 
 \begin{figure}
     \centering
-    \ftodo{Performance entre systèmes}
-    % \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
+    \includegraphics{Ressources/Images/Solaire/compare_systems.png}
     \caption{Comparaisons de la performance des \abr{SSC} étudiés dans la tâche
-             26 d’après \textcite{Task26C2007}.}
+             \,$26$ d’après \textcite{Task26C2007}.}
     \label{fig:compare_perf_ssc}
 \end{figure}
 
@@ -1909,9 +1872,8 @@ besoins en chauffage et ce indépendamment du système considéré.
 Il est aussi observée que l’orientation optimale des capteurs est légèrement décalé vers
 l’ouest (\SIrange{-5}{-10}{\degree}), la température plus élevée durant l’après midi pouvant
 expliquer ces résultats.
-
 L’inclinaison joue aussi un rôle prépondérant et les résultats suggère \SI{50}{\degree}
-pour une orientation optimale et une latitude de \SI{45}{\degree}. Cette observation est
+pour une orientation optimale à une latitude de \SI{45}{\degree}. Cette observation est
 aussi reporté par \textcite{Shariah2002587} à travers une analyse paramétrique qui montre
 que l’inclinaison optimale est fonction de la latitude du site et est définie par
 $\phi + $(\SIrange{0}{10}{\degree}) pour les pays de l’union européenne. La plage de performance
@@ -1923,21 +1885,23 @@ en évidence que réduire l’inclinaison favorise le système durant la périod
 là où le solaire est déjà maximal. Il est donc recommandé à la fois pour diminuer
 les risques de surchauffes et pour améliorer la performance de favoriser une
 inclinaison selon la première relation.
-\textcite{Badescu2006129} grâce au logiciel \textit{TRNSYS} modélise un $SSC$
-appliqué à une maison passive (selon le standard PassivHauss) de \SI{150}{\metre\squared}
+\textcite{Badescu2006129} grâce au logiciel \textit{TRNSYS} modélise un \abr{SSC}
+appliqué à une maison passive (selon le standard \textit{PassivHauss}) de \SI{150}{\metre\squared}
 qui par définition impose un système de chauffage utilisant le vecteur air. L’approche montre que des
 capteurs verticaux semble améliorer la performance du système par rapport à des
 capteur implémentés en toiture sur une structure inclinée à \SI{78}{\degree} pensé pour optimiser les apports
 en hiver. Il peut être noté les résultats obtenus sont en désaccord avec les études
 de \textcite{Task26C2007,Shariah2002587}.
 
-Les différentes études menées lors de ce projet mettent aussi en évidence l’importance
+Les différentes études menées durant la tâche $26$ mettent aussi en évidence l’importance
 de la position des différents équipements techniques et en particulier sur le ballon
 de stockage. Il est ainsi préférable de disposer en partie basse l’échangeur solaire
 afin de maximiser l’échange. L’appoint doit lui être en parti haute afin de réserver
 le chauffage de la majeure partie du volume au solaire. Il est cependant nécessaire
 de ne pas le positionner trop haut afin de garantir la température de puisage~: le volume
-réservé est donc fonction de la réactivité de l’appoint.
+réservé est donc fonction de la réactivité de l’appoint. Les systèmes \emph{\#11} et
+\emph{\#12} recommandent ainsi pour une chaudière bois de placer le retour en partie
+basse du ballon alors qu’il est placé en partie haute sur des chaudières gaz.
 Au regard de ces résultats, le volume du ballon maintenu par l’appoint doit donc
 être le plus faible possible. De même la température de maintien doit être minimale.
 Un bon réglage permet donc de maximiser la part solaire sans dégrader le confort des occupants.
@@ -1949,8 +1913,8 @@ qui doit être maintenu à une température plus importante.
 
 La logique de contrôle étant dépendant des informations retournées par les sondes,
 l’impact de sa position est aussi évaluée. Il est recommandé de placer la sonde
-de température pour l’échangeur solaire à $\frac{2}{6}$ en dessous de sa position haute
-afin de maximiser la période de fonctionnement du solaire.
+de température pour l’échangeur solaire à $\frac{2}{6}$ en dessous de la position haute
+de l’échangeur afin de maximiser la période de fonctionnement du solaire.
 
 Au niveau de la surface, il est identifié que l’impact est moins important à mesure
 que la surface augmente \parencite{Task26C2007}. En effet, la température du stockage augmentant les pompes
@@ -1958,15 +1922,14 @@ tournent plus longtemps sans pour autant apporter plus d’énergie au système.
 de la période hivernale, remplacer la chaudière dont le rendement décroit par un appoint
 électrique est aussi montré comme pertinent économiquement et énergétiquement.
 Une forte interaction entre surface de capteur et volume de ballon est aussi identifié
-mais aucune corrélation n’est mis en avant au regard des résultats très disparate
+mais aucune corrélation n’est mis en avant au regard des résultats très disparates
 obtenues en fonction du système considéré. Il est cependant conseillé de ne pas utiliser
 un volume de stockage plus grand que \SI{100}{\litre\per\metre\squared (capteurs)}.
 Ces résultats sont intégré et complétés avec l’ajout de $6$ nouveaux systèmes à travers
 le projet européen \href{http://www.combisol.eu/}{\textit{CombiSol}} ($2007$-$2010$) qui reprend
-les travaux existants et notamment ceux de la tâche $26$ à travers une approche pragmatique.
+les travaux existants et notamment ceux de la tâche $26$ dans une approche pragmatique.
 Les bonnes pratiques et de recommandations pour les installateurs, les autorités concernées,
 et les industriels du secteur sont ainsi explicitées \parencite{Thuer2011}.
-\iunsure{Ajouter figure 27 p.28 task 26}
 
 Une étude plus récente \textcite{Tsalikis2015743} identifie aussi cette interaction
 sur une \abr{\textit{Net} ZEB}. Le système est implémenté en Grèce en suivant
@@ -2008,21 +1971,28 @@ chauffage de respectivement $25$, $250$, $1000$ maisons~: ballon non-isolé, bal
 non-isolé enterré, ballon isolé enterré. En se basant sur une évolution mensuelle de
 l’irradiation et de la température extérieure, il est observé que le stockage solaire
 enterré permet d’atteindre une meilleure couverture et que les économies financières et
-énergétiques sont réduites à mesure que le nombre de bâtiment alimentés par le système est
-important. Des travaux similaires appliqués à une maisons individuelle ont aussi
-été réalisés \parencite{Yumrutas2012983}. L’étude complète les travaux précédent en
+énergétiques sont réduites à mesure que le nombre de bâtiment alimentés par le système augmente.
+Des travaux similaires appliqués à une maisons individuelle ont aussi
+été réalisés \parencite{Yumrutas2012983} complétant les travaux précédent en
 indiquant une forte dépendance entre la température moyenne du ballon enterré et
-le type de sol exception faite de la période hivernale.
+le type de sol, exception faite de la période hivernale.
+
+\itodo{Bilan}
+Les \abr{SSC} existent ainsi sous de nombreuses variations utilisant soit des chaudière,
+soit des \abr{PAC}, soit simplement un appoint électrique. La performance de ces
+systèmes est très variable et de nombreux facteurs influents ont été identifiés. De plus
+la littérature met en évidence que les paramètres externes au système comme le climat,
+ou la position des capteurs a une forte influence sur la performance du système. Au cours
+de la tâche $26$ une corrélation a été trouvé permettant de comparer entre eux les
+différent \abr{SSC} pour différents climats ou surface de capteurs. Il est cependant noté que
+peu de travaux on cherché à étudié le comportement de ces systèmes pour des \abr{BEPOS}
+et encore moins à travers une approche dynamique.
 
 
 \itodo{Optimisation à mettre dans chapitre 3}
 Fraisse2009232 et Deng2013212 et Hin2012 et Hin2014102
 Bornatico201231 et Rey2016622 et et Asaee2014510 et Poppi20161062
 
-
-
-
-\itodo{Bilan}
 % subsubsection d_hier_a_aujourd_hui (end)
 % subsection les_avancées_dans_le_domaine_du_solaire_thermique (end)
 
@@ -2033,10 +2003,9 @@ Bornatico201231 et Rey2016622 et et Asaee2014510 et Poppi20161062
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Le processus de conception dans le bâtiment} % (fold)
 \label{ssub:le_processus_de_conception_dans_le_batiment}
-La étapes de construction d’un bâtiment public sont définies à travers la loi
+Les étapes de construction d’un bâtiment public sont définies à travers la loi
 \href{https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000693683}{$85$-$704$ du $12$ juillet $1985$}
-Le texte décrit la construction d’un bâtiment à travers trois principales étapes
-souvent repris dans le secteur privé~:
+Le texte identifie trois principales étapes souvent repris dans le secteur privé~:
 \begin{blockdescription}{Programmation}
     \item[Programmation] Aussi appelée phase de Faisabilité, elle fait principalement intervenir la
           maîtrise d’ouvrage qui établit le cahier des charges avec les tiers. Les besoins
@@ -2044,30 +2013,30 @@ souvent repris dans le secteur privé~:
           sont réalisés.
     \item[Conception] Elle fait intervenir la \abr{MOA} et la maîtrise d’œuvre (\abr{MOE}).
           Des études technique et architecturales permettent de définir plus finement le cahier des charges
-          définit durant la phase amont.
+          défini durant la phase amont.
           \begin{blockdescription}{ESQ}
-              \item [ESQ] L’ESQuisse ou AVant Projet (AVP) vérifie la faisabilité technique du projet au regard
+              \item [\abr{ESQ}] L’ESQuisse ou AVant Projet (\abr{AVP}) vérifie la faisabilité technique du projet au regard
                     des différentes contraintes (économique, technique, réglementaire). Durant cette
                     phase sont définis~: les paramètres d’usages
                     (charges internes, scénarios), le cadre réglementaire (thermique, acoustique, mécanique),
                     les objectifs d’exemplarité à travers l’obtention de labels ($E+C-$,
                     \abr{BBC} Éffinergie 2017, \abr{BBCA}\dots) et les caractéristiques de l’implémentation
                     (données climatiques, étude du sol\dots).
-              \item [APS] L’Avant Projet Sommaire consiste à définir la géométrie générale
+              \item [\abr{APS}] L’Avant Projet Sommaire consiste à définir la géométrie générale
                     du projet à travers la définition des principaux volumes, l’aspect extérieur,
                     et les coûts prévisionnels.
-              \item [APD] L’Avant Projet Définitif permet d’affiner la géométrie du bâtiment
+              \item [\abr{APD}] L’Avant Projet Définitif permet d’affiner la géométrie du bâtiment
                     à partir des résultats des différentes études techniques. La géométrie
                     les caractéristiques de l’enveloppe, les systèmes techniques sont
-                    arrêtés et les coût prévisionnels découpés par lot.
-              \item [PRO] La phase de PROjet permet de finaliser l’étude et d’estimer
+                    arrêtés et les coûts prévisionnels découpés par lot.
+              \item [\abr{PRO}] La phase de PROjet permet de finaliser l’étude et d’estimer
                      à la fois le coût des travaux et d’exploitation. La planning des travaux
                      doit aussi être réalisé et le détail de chaque lot réalisé. Ces éléments
                      sont décrits à travers un dossier des Spécificités Techniques
                      détaillées (\abr{STD}) et un Dossier de Consultation des Entreprises (\abr{DCE}).
           \end{blockdescription}
     \item[Réalisation] Aussi appelée phase de construction, elle fait intervenir l’ensemble des acteurs
-          du bâtiment, \abr{MOA}, \abr{MOE}, entreprises, tiers\dots Le cahier des charges définit
+          du bâtiment, \abr{MOA}, \abr{MOE}, entreprises, tiers\dots Le cahier des charges défini
           en phase de programmation puis affiné en phase de conception est suivi. Cette
           phase comprend alors le suivi technique et financier du chantier mais aussi sa
           réception et mise en service.
@@ -2092,8 +2061,8 @@ d’\abr{APD} où le choix technique est affiné à travers un processus d’opt
 
 \paragraph{Critique de l’approche actuelle dans le bâtiment} % (fold)
 \label{par:critique_de_l_approche_actuelle_dans_le_batiment}
-La construction d’un bâtiment est à l’origine guidé par le bon sens et l’expérience
-acquise dans l’optique de satisfaire aux besoins immédiat du client. La prise
+La construction d’un bâtiment est à l’origine guidée par le bon sens et l’expérience
+acquise dans l’optique de satisfaire aux besoins immédiats du client. La prise
 de conscience d’une quantité de ressource limité avec le premier choc pétrolier
 a comme expliqué en introduction changé la vision de la construction et les diverses
 réglementation visent à toujours plus d’exemplarité. Le bâtiment d’aujourd’hui doit
