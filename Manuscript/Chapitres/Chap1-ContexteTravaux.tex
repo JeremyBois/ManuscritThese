@@ -7,6 +7,10 @@
 \section{Objectifs de ces travaux} % (fold)
 \label{sec:objectifs_de_ces_travaux}
 \itodo{Ajouter section objectifs}
+
+\itodo{Voir Hugo Stéphanie et thomas}
+
+\iunsure{Utile de le mettre ici seulement à la fin}
 % section objectifs_de_ces_travaux (end)
 
 
@@ -1722,7 +1726,8 @@ Une des majeure contribution aux \abr{SSC} pour la maison individuelle a été r
 de la tâche\,$26$ qui fait intervenir $10$ pays (États-Unis et des pays de l’Europe)
 et s’articule en trois sous-tâches \parencite{Task26C2003}. Au cours
 de la tâche $21$ systèmes ont été étudiés dont $9$ de manière détaillé apportant
-un nombre conséquent de résultats et recommandations.
+un nombre conséquent de résultats et recommandations à travers les travaux de nombreux
+auteurs indépendants.
 Ces travaux sont ainsi utilisé dans ce document comme fil conducteur auxquels des
 références plus récentes ou plus anciennes sont greffés. Ce choix est fait afin
 de pouvoir apprécier l’étendue des travaux dans le domaine tout en limitant au
@@ -2042,6 +2047,7 @@ Le texte identifie trois principales étapes souvent repris dans le secteur priv
           réception et mise en service.
 \end{blockdescription}
 
+\iunsure{plus dans bilan et description de l’approche}
 Ces travaux s’inscrivent donc dans la phase de conception en proposant une méthodologie
 permettant l’optimisation de la construction de maisons solaires positives à énergie solaire.
 De manière plus détaillée ce travail intervient au cours de trois tâches~: \abr{ESQ}, \abr{APS}
@@ -2051,7 +2057,7 @@ puisage retenu mais aussi les différentes caractéristiques d’implémentation
 spécificités souhaitées. Les chapitres $3$ et $4$ quand à eux s’inscrivent dans la phase
 d’\abr{APD} où le choix technique est affiné à travers un processus d’optimisation.
 
-\iunsure{Décrire ici sensibilité et méta-modèles}
+~\\ \iunsure{Décrire ici sensibilité et méta-modèles}
 % subsubsection le_processus_de_conception_dans_le_batiment (end)
 
 
@@ -2062,82 +2068,123 @@ d’\abr{APD} où le choix technique est affiné à travers un processus d’opt
 \paragraph{Critique de l’approche actuelle dans le bâtiment} % (fold)
 \label{par:critique_de_l_approche_actuelle_dans_le_batiment}
 La construction d’un bâtiment est à l’origine guidée par le bon sens et l’expérience
-acquise dans l’optique de satisfaire aux besoins immédiats du client. La prise
-de conscience d’une quantité de ressource limité avec le premier choc pétrolier
-a comme expliqué en introduction changé la vision de la construction et les diverses
-réglementation visent à toujours plus d’exemplarité. Le bâtiment d’aujourd’hui doit
-ainsi être placé dans une vision plus large.
-Parallèlement le développement de l’informatique a permis le développement d’outils
-techniques et économiques marquant une évolution dans le processus de construction.
-Au début réservé à une élite, sa démocratisation a permis son application dans le secteur
-énergétique et est aujourd’hui largement utilisé par les bureaux d’études mais
-les habitudes ont survécu à ce changement de moyens~: la phase de conception est toujours
-guidé par l’expérience. L’accès à la simulation a cependant permis d’améliorer
-l’exploration de solutions et de vérifier certaines suppositions plus rapidement
-à travers une approche par essai / erreur. À partir d’un cas de référence définie
-par l’expérience un ensemble de variations sont introduites à l’aide d’itération
-successive. Ce processus est couteux en temps et ne permet pas de valoriser la puissance
-de calcul disponible aujourd’hui. De plus, les contraintes économiques amènent les bureaux
-d’études à accélérer leur études et à produire dans l’urgence à cause d’une méthodologie
-basée sur le temps humain.
-Les enjeux étant de plus en plus complexe, il convient de valoriser au maximum le
-temps machine afin d’aider les acteurs du bâtiment dans l’analyse d’options techniques
-de plus en plus importantes.
-En effet la miniaturisation, la finesse de gravure,
-et l’augmentation du nombre de transistor par processeur a permis une croissance
-exponentielle de la puissance de calcul. L’arrivée des processeurs multi-cœur à encore
-repoussée les limites de calcul, si bien que le développement d’une méthodologie basée
-sur le temps machine est tout à fait pertinente.
+acquise dans l’optique de satisfaire aux besoins immédiats du client. Les problèmes de
+changement climatique couplés à la prise de conscience d’une quantité limitée d’énergies
+fossiles ont introduit un changement dans la construction à travers des réglementations
+thermiques visant à de plus en plus d’exemplarité. Le secteur du bâtiment qui est
+aujourd’hui considéré comme le secteur consommant le plus d’énergie est aujourd’hui vu
+comme une part d’un ensemble considérant le confort des occupants, les limitations des
+émissions de $CO_{2}$, la limitation de la consommation en énergie primaire.
+
+Parallèlement les progrès de l’informatique ont permis le développement d’outils
+techniques et économiques marquant une évolution dans le processus de construction. Au
+début réservé à une élite, sa démocratisation a permis de l’exploiter dans le domaine de
+l’énergétique du bâtiment et plus particulièrement dans les bureaux d’études. Cependant
+les habitudes sont fortement ancrées et l’outil numérique est aujourd’hui principalement
+employé à travers une approche par essai/erreur. De part sa rapidité de calcul, il offrant
+ainsi la possibilité d’explorer un nombre important de solutions et de vérifier des
+suppositions plus rapidement. À partir d’un cas de référence généralement définie par
+l’expérience, un ensemble de variations sont introduites à l’aide d’itérations
+successives. Ce processus est couteux en temps humain et ne permet pas de valoriser la
+puissance de calcul disponible. De plus, les réalités économiques et la forte concurrence
+lors des appels d’offres amènent les bureaux d’études à répondre de plus en plus
+rapidement aux marchés dont la complexité et la combinatoire augmente.
+
+Ainsi afin de pouvoir répondre au nouvelles contraintes du marché, le temps humain doit
+être valorisé pour des tâches cognitives et le temps machines assujetti aux tâches
+répétitives. En effet la miniaturisation, la finesse de gravure, et l’augmentation du
+nombre de transistor par processeur a permis une croissance exponentielle de la puissance
+de calcul. L’arrivée des processeurs multi-cœur à encore repoussée les limites de calcul,
+si bien que le développement d’une méthodologie basée sur le temps machine est tout à fait
+pertinente. Dans cette optique il est nécessaire d’automatiser le processus de décision en
+phase de conception grâce à l’automatisation, l’intelligence artificielle qui impose le
+développement d’une méthodologie adaptée.
 % paragraph critique_de_l_approche_actuelle_dans_le_batiment (end)
 
 \paragraph{Approche proposée} % (fold)
 \label{par:approche_proposee}
-La construction d’un bâtiment est par définition multi-critère car faisant intervenir
-un nombre conséquent de paramètres que ce soit sur l’enveloppe, les systèmes, la logique
-de contrôle, le climat, ou bien le comportement des occupants.
-La construction d’une maison solaire à énergie positive est de plus multi-objectif
-en cherchant conjointement à améliorer la part solaire sur le chauffage, l’\abr{ECS},
-à obtenir un bilan positif. Ce bilan positif peut être obtenu soit en réduisant au
-maximum la consommation, soit en compensant l’énergie consommée sur place par une production locale.
-Dans le cas d’une maison solaire la production locale peut être assurée par une production
-photovoltaïque. Cette production est en effet la seule manière de couvrir les besoins
-spécifiques des occupants d’origine électrique tels que l’éclairage ou les consommations
-électroménagères. À l’opposée réduire la consommation sur site peut être réalisé
-soit en optimisant l’enveloppe pour minimiser les déperditions, soit en utilisant
-le solaire thermique afin de couvrir au maximum les besoins en \abr{ECS} et en chauffage
-de la maison.
-Comme décrit dans la directive européenne \parencite{EPBD2010} et explicité à travers
-la norme \abr{prEN\,$15603$} (\mtodo{Ajouter ref}) le bâtiment à énergie positive européen
-doit avoir une enveloppe performante (objectif $1$), des systèmes performants (objectif $2$),
-une part renouvelable sur site et par usage importante (objectif $3$), et assurer un
-bilan énergétique sur les cinq usages nul.
-Le respect de chaque objectif étant péremptoire, il convient donc de faire un effort
-sur chaque aspect du bâtiment. Ces objectifs indique aussi clairement que la part
-d’énergie renouvelable consommée sur site devra couvrir une majeure partie des
-consommations faisant de la performance du système solaire thermique, une priorité.
+La construction d’un bâtiment est par définition multi-critère, elle fait intervenir un
+nombre conséquent de paramètres que ce soit sur l’enveloppe, les systèmes, la logique de
+contrôle, le climat, ou encore le comportement des occupants. Elle doit de plus à minima
+satisfaire un cadre réglementaire que ce soit sur des contraintes acoustiques, thermiques,
+mécaniques. Par extension la construction d’un \abr{BEPOS} solaire est donc aussi multi-
+critère.
 
-Ces travaux proposent dans cette optique une méthodologie d’optimisation
-multi-objectif et multi-critère pour aider en particulier le développement de
-maisons solaires à énergie positives. La performance de l’enveloppe sera évaluée
-conjointement à la performance du système allant à contre courant des pratiques
-actuelles de la \abr{RT\,$2012$} qui favorise dans un premier temps une étude de l’enveloppe
-(respect du \abr{$B_{bio}$\,max}) et dans un second temps la performance des systèmes
-(respect du \abr{$C_{ep}$\,max}). Ce choix est motivé par le troisième objectif du cadre
-normatif en construction au niveau européen. Ces travaux amènent ainsi à repenser
-les caractéristiques de l’enveloppe comme étant complémentaire à la performance du système
-et soulève la question de la pertinence de la course à la sur-isolation en amont
-de l’évaluation des systèmes énergétiques mis en place.
-Les travaux actuels sur les \abr{SSC} relègue au second plan la partie algorithmique
-Ces travaux s’inscrivent aussi dans une démarche visant à valoriser l’énergie solaire
-par le développement d’une logique de contrôle minutieuse et précise. Bien que
-l’algorithme de fonctionnement soit décrit dans la littérature au niveau des installation
-industrielles, les applications dans le bâtiment et plus particulièrement dans les
-maisons individuelles ne sont pas légions. Ces travaux tiendront aussi compte
-des spécificités de chaque climat et décriront de manière conjointe les différences
-observées. Ces travaux visent finalement à définir les compromis existants entre
-enveloppe, performance du système thermique, et bilan énergétique positif mais aussi
-au compromis existant pour chaque climat entre production \abr{ECS} et chauffage.
+~\\ \itodo{Discuter les travaux existants sur le solaire thermique}
 
+% Les travaux actuels sur les \abr{SSC} relègue au second plan la partie algorithmique
+% Ces travaux s’inscrivent aussi dans une démarche visant à valoriser l’énergie solaire
+% par le développement d’une logique de contrôle minutieuse et précise. Bien que
+% l’algorithme de fonctionnement soit décrit dans la littérature au niveau des installation
+% industrielles, les applications dans le bâtiment et plus particulièrement dans les
+% maisons individuelles ne sont pas légions. Ces travaux tiendront aussi compte
+% des spécificités de chaque climat et décriront de manière conjointe les différences
+% observées. Ces travaux visent finalement à définir les compromis existants entre
+% enveloppe, performance du système thermique, et bilan énergétique positif mais aussi
+% au compromis existant pour chaque climat entre production \abr{ECS} et chauffage.
+
+~\\ \itodo{Discuter sur la norme pour introduire l’axe de recherche retenue}
+Il a été vu à travers la première section que les problèmes d’émissions de $CO_{2}$
+sont une conséquence de la sur-utilisation des énergies fossiles, énergies qui sont
+finies et donc il est nécessaire de s’émanciper. Dans cette optique, un cadre réglementaire
+a évolué et des approches associatives ont aidé à son développement notamment avec
+la mise en place de labels certifiant une qualité supérieur. L’état est aussi un acteur
+important à travers ces décisions politiques incitatrices en particulier sur la politique
+de rachat de l’énergie électrique produite localement ou encore les aides financières
+obtenables lors de travaux de rénovation ou d’exemplarité énergétiques. C’est les
+actions combinés de tout ces intervenants qui permet aujourd’hui d’être à l’aube
+d’un cadre réglementaire européen (\abr{prEN\,$15603$}) sur le \abr{BEPOS} dont chaque pays membres devra s’inspirer
+pour la définition de leur nouvelle réglementation thermique.
+Bien que la norme ne soit pour l’heure qu’un brouillon, les axes principaux sont
+d’ores et déjà établis. La norme s’articule autour de quatre objectifs péremptoires~:
+assurer une performance minimale sur l’enveloppe, assurer l’efficacité des systèmes
+installés, assurer un bilan énergétique global positif, et assurer une part minimale
+d’énergie renouvelable pour la production locale.
+
+Ces travaux cherchent ainsi à travers une approche innovante à valoriser l’énergie
+solaire thermique aussi bien sur le chauffage que sur l’\abr{ECS} afin d’assurer
+la construction de maisons à énergie positive ayant une empreinte énergétique sur
+sa durée de vie la plus faible possible. Comme le souligne l’association \textit{négaWatt}
+\enquote{L’énergie qui pollue le moins est celle que l’on ne consomme pas.}.
+De plus comme l’indique la norme en construction à travers l’indicateur $RER$,
+la consommation locale en énergie primaire devra être fortement couverte
+par des énergies renouvelables dont l’élévation se fera par type d’énergie.
+L’approche choisi à travers ces travaux est donc la minimisation de la consommation
+d’énergie non renouvelable en couvrant au maximum la demande énergétique par le solaire
+thermique. Il apparaît donc prioritaire de valoriser le solaire thermique par rapport
+au solaire électrique, le photovoltaïque.
+Ainsi dans ces travaux, la production d’énergie photovoltaïque
+est considérée comme secondaire et doit permettre de couvrir les besoins électriques
+de plus en plus importants dans les maisons individuelles. Il est ainsi évalué
+à la fois les besoins de chauffage et d’\abr{ECS}, mais aussi les charges internes.
+Même si la réglementation française ne considère pour le moment que les charges d’éclairage
+l’approche retenue tient aussi compte des charges électro-domestiques qui sont majoritaires.
+
+Les autres objectifs de la norme \abr{prEN\,$15603$} seront aussi pris en compte
+même si plus de liberté est prise afin d’explorer l’ensemble des solutions envisageables.
+Ainsi la méthodologie retenue cherche à caractériser le bâtiment et ses systèmes conjointement
+afin d’offrir une cohésion de l’ensemble. En effet la norme restreint fortement l’exploratoire
+en imposant d’une part une enveloppe performante et d’autre part une limitation de la
+consommation sur site. Il apparaît pour l’auteur que ces contraintes relèvent
+d’une volonté de sobriété énergétique afin de garantir une empreinte énergétique
+la plus faible possible. Cependant dans le cas d’une maison solaire il est intéressant
+d’explorer les combinaisons complémentaires possibles qui pourront peut être offrir des alternatives
+cohérentes sans aller à l’encontre de la sobriété.
+
+Finalement ces travaux intègrent l’énergie primaire comme indicateur de référence
+pour la définition du bilan positif comme décrit par la $4^{ème}$ directive de la
+prochaine norme européenne. La méthodologie retenue impose ainsi un bilan positif
+sur les quatre usages considérés~: le chauffage, la production d’\abr{ECS}, la
+consommation de l’électro-ménager, la consommation de l’éclairage.
+
+~\\ \itodo{Conclure --> Bilan du bilan}
+Au final, l’approche cherche à explorer et identifier des combinaisons pertinentes
+entre système et enveloppe du bâti qui répondent aux contraintes explicitées ci-dessus
+afin d’aider au développement de solution de \abr{BEPOS} solaires.
+
+
+
+~\\ \itodo{Décrire l’architecture de la thèse}
 Dans un premier temps, le choix des outils est introduit à travers une étude comparative.
 Suit une description du bâtiment de référence et des développements réalisés sur le
 \abr{SSC} à travers une présentation du système technique et une étude rétrospective
