@@ -111,10 +111,10 @@
 \newcommand{\algref}{Alg.~\ref}  % Algorithmes
 
 % Layout
-\RequirePackage[top=2cm,
+\RequirePackage[top=1.5cm,
                 bottom=2cm,
-                left=2cm,
-                right=3cm,
+                left=2.5cm,
+                right=2.5cm,
                 a4paper]{geometry}                       % Define default geometry
 
 % Float options
