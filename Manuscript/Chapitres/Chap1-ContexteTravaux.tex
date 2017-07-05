@@ -1889,34 +1889,40 @@ aux émetteurs de l’énergie provenant en même temps de l’appoint et du sol
 Les $7$ autres systèmes s’orientent eux vers un chauffage indirect uniquement. Il est noté que
 aucun des systèmes étudié ne permet l’alternance entre chauffage direct et indirect.
 
+\begin{landscape}
 \begin{table}
 \centering
-\ttodo{Ajouter différences entre systèmes + références}
-\caption{Différences principales entre les différents modèles modélisés dans la tâche\,$26$
-         avec \abr{CH} pour CHauffage et \abr{ECS} pour Eau Chaude Sanitaire.}
+\small
+\caption{Différences principales entre les différents modèles modélisés dans la tâche\,$26$.
+         Le CHauffage est désigné \abr{CH} et l’Eau Chaude Sanitaire par \abr{ECS}.}
 \label{tab:diff_ssc}
-\begin{tabular}{l *{6}{C{2.2cm}} *{5}{G} G}
+\begin{tabular}{l C{2cm} C{1.5cm} C{0.6cm} C{1.4cm} C{1.7cm} C{1.7cm} C{1.2cm} C{1.5cm} C{1.2cm} C{2.5cm} C{1cm} r}
     \toprule
-            & Type de Chaudière    & Appoint électrique  & \abr{CH} mixte  & \abr{CH} et \abr{ECS} simultanés & Type $Prod_{CH}$ & Type $Prod_{ECS}$ & Débit  variable & Contrôleur unique \abr{CH} et \abr{ECS} & $Ech_{sol}$ externe & Nombre d’échangeurs solaires & Nombre de ballons & Référence \\
-    \#2     & Gaz / fioul          & Oui                 & Oui             & Non                              & Directe          & Directe   & Non   & Non   & Oui   & 2 & 1 & \cite{Ellehauge2002}  \\
-    % \#3a    & Gaz                  & Non                 & Non             & Oui                              & Directe          & Directe   & Non   & Non   & Non   & 2 & 1 & \cite{Cheze2002}  \\
-    % \#4     & Gaz /  fioul         & Non                 & -               & Oui                              & Indirecte        & Directe   & Non   & Non   & Non   & 2 & 1 & \cite{Shah2002}   \\
-    % \#8     & Gaz / fioul          & Non                 & -               & Oui                              & Indirecte        & Indirecte & Oui (capteurs)    & Oui   & Non   & 2 & 1 & \cite{Bony2002}   \\
-    % \#9b    & Gaz / fioul          & Oui                 & -               & Oui                              & Indirecte        & Directe (ballon immergé)  & Non   & Oui (sauf \abr{ECS})  & - & 0 (circulation directe)   & 3 & \cite{Peter2003}  \\
-    % \#11    & Bois / gaz / fioul   & Oui                 & -               & Oui                              & Indirecte        & Indirecte & Non   & Non   & Non   & 2 & 1 & \cite{Bales2002}  \\
-    % \#12    & Bois / gaz / fioul   & Oui                 & -               & Oui                              & Indirecte        & Indirecte & Oui (capteurs)    & Non   & Non   & 3 (2 solaires)    & 1 & \cite{Bales2002a} \\
-    % \#15    & Gaz (unité compacte) & Non                 & -               & Oui                              & Indirecte        & Indirecte (échangeur à plaque)    & Oui (capteurs et \abr{CH})    &   & Non   & 2 + tube stratifiés   & 1 & \cite{Jaehnig2002}    \\
-    % \#19    & Gaz / fioul          & Non                 & Oui             & Non                              & Indirecte        & Indirecte (échangeur à plaque)    & Non   & Oui   & Oui   & 2 + tube stratifiés   & 2 & \cite{Heimrath2003}   \\
+            & Type de Chaudière    & Appoint électrique  & \abr{CH} mixte  & \abr{CH} et \abr{ECS} ensemble & Type $Prod_{CH}$ & Type $Prod_{ECS}$ & Débit  variable & Contrôleur unique \abr{CH} et \abr{ECS} & $Ech_{sol}$ externe & Nombre d’échangeurs & Nombre de ballons & Référence \\
     \midrule
-    \bottomrule
-\end{tabular}
-\\[10pt]
-\begin{tabular}{l *{6}{G} *{5}{c} r}
-    \toprule
-    \midrule
+    \addlinespace[1.5\defaultaddspace]
+    \#2 & Gaz / fioul & Oui & Oui & Non & Directe & Directe & Non & Non & Oui & $2$ & $1$ & \cite{Ellehauge2002}  \\
+    \addlinespace[1.5\defaultaddspace]
+    \#3a  & Gaz & Non & Non & Oui & Directe & Directe & Non & Non & Non & $2$ & $1$ & \cite{Cheze2002}  \\
+    \addlinespace[1.5\defaultaddspace]
+    \#4 & Gaz /  fioul  & Non & - & Oui & Indirecte & Directe & Non & Non & Non & $2$ & $1$ & \cite{Shah2002} \\
+    \addlinespace[1.5\defaultaddspace]
+    \#8 & Gaz / fioul & Non & - & Oui & Indirecte & Indirecte & Oui (capteurs)  & Oui & Non & $2$ & $1$ & \cite{Bony2002} \\
+    \addlinespace[1.5\defaultaddspace]
+    \#9b  & Gaz / fioul & Oui & - & Oui & Indirecte & Directe (ballon immergé)  & Non & Oui (\abr{CH})  & - & $0$ (circulation directe) & $3$ & \cite{Peter2003}  \\
+    \addlinespace[1.5\defaultaddspace]
+    \#11  & Bois / gaz / fioul  & Oui & - & Oui & Indirecte & Indirecte & Non & Non & Non & $2$ & $1$ & \cite{Bales2002}  \\
+    \addlinespace[1.5\defaultaddspace]
+    \#12  & Bois / gaz / fioul  & Oui & - & Oui & Indirecte & Indirecte & Oui (capteurs)  & Non & Non & $3$ ($2$ solaires)  & 1 & \cite{Bales2002a} \\
+    \addlinespace[1.5\defaultaddspace]
+    \#15  & Gaz (unité compacte)  & Non & - & Oui & Indirecte & Indirecte (échangeur à plaques)  & Oui (capteurs et \abr{CH})  & Oui  & Non & $2$ + tube stratifiés & $1$ & \cite{Jaehnig2002}  \\
+    \addlinespace[1.5\defaultaddspace]
+    \#19  & Gaz / fioul & Non & Oui & Non & Indirecte & Indirecte (échangeur à plaques)  & Non & Oui & Oui & $2$ + tube stratifiés & $2$ & \cite{Heimrath2003} \\
+    \addlinespace[1.5\defaultaddspace]
     \bottomrule
 \end{tabular}
 \end{table}
+\end{landscape}
 % paragraph systemes_de_la_sous_tache_c (end)
 
 \paragraph{Évaluation globale~:} % (fold)
@@ -2130,7 +2136,7 @@ mono-objectif d’un \abr{SSC} couplé à un \abr{\textit{Net} ZEB} est discuté
 composant le \abr{SSC} sont retenue comme critères de décisions. L’optimisation mono-
 objectif est réalisée sur la somme pondérée des différents objectifs (\abr{LCE}
 et \abr{CCV}). L’étude montre que l’obtention de solution résultant d’un compromis entre
-les divers objectifs est un travail fastidieux et couteux en temps lorsque l’approche mono-
+les divers objectifs est un travail fastidieux et coûteux en temps lorsque l’approche mono-
 objectif est utilisée.
 % subsubsection optimisation_de_ssc (end)
 
@@ -2248,7 +2254,7 @@ employé à travers une approche par essai/erreur. À partir d’un cas de réf�
 généralement défini par l’expérience, un ensemble de variations sont introduites à l’aide
 d’itérations successives. De part sa rapidité de calcul, il offre pourtant la possibilité
 d’explorer un nombre important de solutions et de vérifier des suppositions plus
-rapidement. Ce processus est couteux en temps humain et ne permet pas de valoriser la
+rapidement. Ce processus est coûteux en temps humain et ne permet pas de valoriser la
 puissance de calcul disponible. De plus, les réalités économiques et la forte concurrence
 lors des appels d’offres amènent les bureaux d’études à répondre de plus en plus
 rapidement aux marchés dont la complexité et la combinatoire augmentent parallèlement aux
