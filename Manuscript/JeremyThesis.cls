@@ -90,7 +90,8 @@
 \definecolor{SolarizedBrBlack}{HTML}{002b36}
 \definecolor{ClassicBlack}{HTML}{000000}
 
-
+% Force default as black
+\AtBeginDocument{\colorlet{defaultcolor}{.}}
 
 % ------------------------------------------------------------------------------
 % Page layout
@@ -117,21 +118,47 @@
                 right=2.5cm,
                 a4paper]{geometry}                       % Define default geometry
 
-% Float options
-\RequirePackage{placeins}                                % Float always where defined
-\let\Oldsection\section
-\renewcommand{\section}{\FloatBarrier\Oldsection}        % For section
-\let\Oldsubsection\subsection
-\renewcommand{\subsection}{\FloatBarrier\Oldsubsection}  % For subsection
 
 % Add links as hyperlinks (numeric version) and in footnotes (printed version)
 \newcommand\fnref[2]{\href{#1}{#2}\footnote{\url{#1}}}
 
 
 % Redefinition of chapter and other sections
-\RequirePackage{tikz}
-%\RequirePackage[sf]{titlesec}                           % Sans serif font for titles
-
+\RequirePackage{titlesec}                                % Redefined titles
+\RequirePackage{placeins}                                % Float always where defined
+% Chapter number as a roman number
+\renewcommand{\thechapter}{\Roman{chapter}}
+% Change chapter format
+\titleformat{\chapter}[display]                                     % Chapter title in a different paragraph
+{\normalfont\scshape\huge}                                          % Small caps for chapter title
+{\color{SolarizedBrBlack}
+ \filleft \normalfont \scshape \bfseries \chaptertitlename          % Add Chapitre
+ \enspace \Huge \color{SolarizedBrYellow}
+ \fontsize{2cm}{0cm} \thechapter \normalfont                     % Add Chapter number as a larger font
+}
+{1ex}                                                               % Add space between chapter and chapter title
+{\color{SolarizedBrBlack} \titlerule[2pt] \vspace{2ex} \filcenter   % Lighter color for lines
+ \color{defaultcolor}                                               % Reset default color
+}
+[\color{SolarizedBrBlack} \vspace{2ex} \titlerule \vspace{4ex}      % Lighter color for lines
+ \normalfont \normalsize \color{defaultcolor}                       % Reset default color and font
+]
+% Change starred chapter format
+\titleformat{name=\chapter, numberless}[display]                    % Chapter title in a different paragraph
+{\normalfont\scshape\Huge}                                          % Small caps for chapter title
+{}
+{0ex}                                                               % Add space between chapter and chapter title
+{\vspace{-8ex}
+ \color{SolarizedBrBlack} \titlerule[2pt] \vspace{1ex} \filcenter   % Lighter color for lines
+ \color{defaultcolor}                                               % Reset default color
+}
+[\vspace{1ex} \normalfont \normalsize \color{defaultcolor}                      % Reset default color and font
+]
+% Rewrite other title and add float barrier to section and subsections
+\titleformat*{\section}{\FloatBarrier\normalfont\Large\bfseries}
+\titleformat*{\subsection}{\FloatBarrier\normalfont\large\bfseries}
+\titleformat*{\subsubsection}{\normalfont\normalsize\bfseries}
+\titleformat*{\paragraph}{\normalfont\normalsize\bfseries}
 
 % Redefinition of layout for items and description list
 \RequirePackage[shortlabels]{enumitem}                   % List option with enumerate compatibility
@@ -168,6 +195,9 @@
 }
 \RequirePackage{setspace}  % Used to correct spacing inside document
 \thesisspacing
+
+% Used later in class
+\RequirePackage{tikz}
 
 % ------------------------------------------------------------------------------
 % Math / Unit support
@@ -515,11 +545,8 @@
 % Other commands
 % ------------------------------------------------------------------------------
 % Add command to bubble a text
-\newcommand\encircle[1]{%
-  \tikz[baseline=(X.base)]
-    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
-
-
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt, line width=2pt] (char) {#1};}}
 
 % ------------------------------------------------------------------------------
 % Expand French support of babel
