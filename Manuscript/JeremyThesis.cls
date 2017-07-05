@@ -155,6 +155,20 @@
 \renewcommand{\fps@figure}{htp}
 \renewcommand{\fps@table}{htp}
 
+% Change line spacing to 1.4
+\newcommand{\thesisspacing}{%
+  \setstretch{1.167}%  default
+  \ifcase \@ptsize \relax % 10pt
+    \setstretch {1.167}%
+  \or % 11pt
+    \setstretch {1.132}%
+  \or % 12pt
+    \setstretch {1.158}%
+  \fi
+}
+\RequirePackage{setspace}  % Used to correct spacing inside document
+\thesisspacing
+
 % ------------------------------------------------------------------------------
 % Math / Unit support
 % ------------------------------------------------------------------------------
@@ -267,6 +281,9 @@
 % New column entry that Gobbles it's entries
 \newsavebox{\mybox}
 \newcolumntype{G}{@{}>{\begin{lrbox}{\mybox}}l<{\end{lrbox}}@{}}
+
+
+
 % ------------------------------------------------------------------------------
 % Notes support
 % ------------------------------------------------------------------------------
@@ -418,6 +435,7 @@
                   #1]{#2}}
 
 
+
 % ------------------------------------------------------------------------------
 % Bibliography support
 % ------------------------------------------------------------------------------
@@ -453,12 +471,14 @@
   \clearfield{note}%
   \clearfield{owner}%
   \clearfield{language}%
+  \clearfield{abstract}%
   \ifentrytype{article}{%
     \clearfield{issn}%
   }{}
 }
 
 \newcommand\mathplus{+}  % Needed to avoid weird error in biblatex processing
+
 
 
 % ------------------------------------------------------------------------------
@@ -490,6 +510,7 @@
 \newcommand{\abr}[1]{#1}
 
 
+
 % ------------------------------------------------------------------------------
 % Other commands
 % ------------------------------------------------------------------------------
@@ -497,6 +518,7 @@
 \newcommand\encircle[1]{%
   \tikz[baseline=(X.base)]
     \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
 
 
 % ------------------------------------------------------------------------------

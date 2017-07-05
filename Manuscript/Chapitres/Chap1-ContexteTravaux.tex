@@ -194,14 +194,14 @@ aujourd’hui largement repris, est introduit~:
 
 \begin{figure}
     \centering
-    \begin{subfigure}{0.55\textwidth}
+    \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics{Ressources/Images/Environnement/developpement_durable.png}
         \caption{}
         \label{fig:developpement_durable}
     \end{subfigure}
     \quad
-    \begin{subfigure}{0.4\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics{Ressources/Images/Environnement/triptyque_negaWatt.png}
         \caption{}
@@ -376,13 +376,13 @@ l’industrie (\SI{30}{\percent}) et les transports (\SI{28}{\percent}).
 
 \begin{figure}
     \centering
-    \begin{subfigure}{0.45\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics{Ressources/Images/Environnement/evolution_energie_finale.png}
         \caption{}
         \label{fig:evolution_energy_finale}
     \end{subfigure}
     \quad
-    \begin{subfigure}{0.45\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics{Ressources/Images/Environnement/repartition_energy_primaire.png}
         \caption{}
         \label{fig:repartition_conso_primaire}
@@ -1888,7 +1888,30 @@ le chauffage et la production d’\abr{ECS} alors que le second ne permet pas de
 aux émetteurs de l’énergie provenant en même temps de l’appoint et du solaire.
 Les $7$ autres systèmes s’orientent eux vers un chauffage indirect uniquement. Il est noté que
 aucun des systèmes étudié ne permet l’alternance entre chauffage direct et indirect.
+% paragraph systemes_de_la_sous_tache_c (end)
 
+\paragraph{Évaluation globale~:} % (fold)
+\label{par:evaluation_globale}
+Les résultats des différentes approches sont décrits à travers la \figref{fig:compare_perf_ssc}.
+Il est observé que pour une surface faible de capteurs solaires ($FSC$ faible), le système \emph{\#15}
+obtient des performances plus importantes. Le système \emph{\#3a} arrive en seconde place
+mais nécessite une surface de capteur plus importante. Sans surprise le système pensé
+pour des installation collectives \emph{\#19} est le moins performant. Le seul système
+ne permettant pas de fournir à la fois de l’énergie pour la production d’\abr{ECS}
+et pour le chauffage (\emph{\#2}) fait lui aussi parti des systèmes les moins performant.
+Finalement, les résultats s’accordent à montrer que la performance du système augmente avec la réduction des
+besoins en chauffage et ce indépendamment du système considéré.
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Solaire/compare_systems.png}
+    \caption{Comparaisons de la performance des \abr{SSC} étudiés dans la tâche
+             \,$26$ d’après \textcite{Task26C2007}.}
+    \label{fig:compare_perf_ssc}
+\end{figure}
+% paragraph evaluation_globale (end)
+
+% Used by previous paragraph
 \begin{landscape}
 \begin{table}
 \centering
@@ -1923,28 +1946,6 @@ aucun des systèmes étudié ne permet l’alternance entre chauffage direct et 
 \end{tabular}
 \end{table}
 \end{landscape}
-% paragraph systemes_de_la_sous_tache_c (end)
-
-\paragraph{Évaluation globale~:} % (fold)
-\label{par:evaluation_globale}
-Les résultats des différentes approches sont décrits à travers la \figref{fig:compare_perf_ssc}.
-Il est observé que pour une surface faible de capteurs solaires ($FSC$ faible), le système \emph{\#15}
-obtient des performances plus importantes. Le système \emph{\#3a} arrive en seconde place
-mais nécessite une surface de capteur plus importante. Sans surprise le système pensé
-pour des installation collectives \emph{\#19} est le moins performant. Le seul système
-ne permettant pas de fournir à la fois de l’énergie pour la production d’\abr{ECS}
-et pour le chauffage (\emph{\#2}) fait lui aussi parti des systèmes les moins performant.
-Finalement, les résultats s’accordent à montrer que la performance du système augmente avec la réduction des
-besoins en chauffage et ce indépendamment du système considéré.
-
-\begin{figure}
-    \centering
-    \includegraphics{Ressources/Images/Solaire/compare_systems.png}
-    \caption{Comparaisons de la performance des \abr{SSC} étudiés dans la tâche
-             \,$26$ d’après \textcite{Task26C2007}.}
-    \label{fig:compare_perf_ssc}
-\end{figure}
-% paragraph evaluation_globale (end)
 % subsubsection la_tâche_26 (end)
 
 
