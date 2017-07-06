@@ -17,18 +17,17 @@ obtenus par simulation. Malgré sa nécessité, l’expérimentation a des limit
 pourquoi la simulation numérique est considéré comme une alternative pertinente.
 
 L’installation d’une expérimentation nécessite un investissement important là ou pour la
-modélisation seul le coût du développement des modèles est considéré. Cette investissement
+modélisation seul le coût du développement des modèles est considéré. Cet investissement
 est nécessaire pour préparer et acheter le matériel, le mettre en place, et finalement
 pour le démantèlement. Cette contrainte économique intervient tout au long du
 fonctionnement de l’expérimentation, si un équipement doit être changé ou déplacé, si il
-est nécessaire de modifier la configuration de base afin d’étudier une variation ... Il
+est nécessaire de modifier la configuration de base afin d’étudier une variation\dots\ Il
 existe ainsi une contraste évidente entre une expérimentation et une modélisation sur le
 plan économique. De par ces limites physiques, une expérimentation est aussi dépendante de
 son environnement, dont l’analyse parfois complexe est indispensable pour l’interprétation
-des résultats. Il est alors nécessaire de récolter des informations sur l’environnement,
-et sur les variables d’intérêts du système considéré. Là où avec la modélisation, l’ajout
-du suivi d’une variable ce fait par simple sélection, un banc expérimental nécessite
-l’ajout de capteurs. Ces capteurs existe en plusieurs modèles et certaines variables sont
+des résultats. Alors que pour la modélisation, la prise en compte d’une nouvelle variable
+nécessite une simple sélection, l’ajout de capteur est nécessaire avec un banc expérimental.
+Ces capteurs existe en plusieurs modèles et certaines variables sont
 parfois délicate à mesurer sans parasité l’expérimentation. D’autres problèmes comme une
 méconnaissance d’un phénomène ou le malfonctionnement d’un équipement peuvent aussi
 survenir et parasiter les données recueillis. Finalement, les conditions limites ne sont
@@ -37,11 +36,8 @@ performance d’un capteur solaire, les données météorologiques jouent un rô
 l’expérimentateur ne les contrôles pas. Contrairement à une modélisation, le temps n’est
 pas juste une variable, il est nécessaire d’attendre que certaines conditions extérieures
 soient remplies pour pouvoir réaliser l’étude. De la même manière évaluer par exemple la
-température d’une maison sur une année nécessiterais une année complète
-d’expérimentations. Au niveau numérique, une étude sur une année entière est facilité.
-Grâce aux données recueillis dans le passé, il est possible de simuler l’évolution de la
-température du bâtiment sur l’année. Un autre paramètre important à prendre en compte
-lorsque une expérimentation est mise en place est son échelle. En effet, il n’est pas
+température d’une maison sur une année nécessite une année complète d’expérimentations.
+Enfin les expérimentations sont contraintes par l’échelle du banc d’essai. En effet, il n’est pas
 toujours possible de réaliser des expérimentation à échelle $1$, soit pour des raisons
 techniques, soit pour des raisons économiques. Une expertise importante est ainsi
 nécessaire afin d’éviter la présentation de résultats erronés.
@@ -53,24 +49,25 @@ nécessaire afin d’éviter la présentation de résultats erronés.
 \label{ssub:la_modelisation}
 La simulation est un outil puissant qui dépend cependant intrinsèquement du niveau de
 détail retenu pour chaque composant. Bien que possible en théorie, une modélisation ne
-permet pas de simuler la complexité inhérente à la réalité, une modélisation est toujours
+permet pas de simuler la complexité inhérente à la réalité. Une modélisation est toujours
 une approximation simulant de manière plus ou moins précise un système dans des conditions
 imposées. Un modèle est donc représenté par des systèmes d’équations qui admettent des
 hypothèses et ne tiennent compte que d’une partie des phénomènes. Un bon niveau
-d’expertise est ainsi nécessaire de définir le niveau de détail des modèles représentant
-au mieux le système afin d’éviter des erreurs numériques ou des résultats erronés.
-
+d’expertise est ainsi nécessaire afin de déterminer le niveau de détail des modèles
+permettant de représenter au mieux le système afin d’éviter des erreurs numériques ou
+des résultats erronés.
 
 Il est aussi clair que les installations sont en réalité imparfaites et même dans
 l’hypothèse d’une modélisation complète de l’ensemble des phénomènes il restera un écart
 entre le modèle et la réalité car des facteurs ne sont pas pris en compte~: les
 imperfections techniques, les malfonctionnements, ou les erreurs d’installations. Le
 système considéré peut en effet comporter des fuites, des problèmes de raccord, un
-équipement peut avoir des caractéristiques différentes que ceux de sa fiche technique\dots
-Il arrive aussi que un contrôleur puisse avoir des ratés où que le système sur chantier ne
+équipement peut avoir des caractéristiques différentes que ceux de sa fiche technique
+\dots\ Il arrive aussi que un contrôleur puisse avoir des ratés où que le système sur chantier ne
 soit pas implémenter exactement de la même manière. Il n’est donc nécessaire de comparer
 les résultats des deux approches afin de comprendre les limites d’un modèle et pouvoir les
-corriger.
+corriger. Une modélisation est donc une représentation plus ou moins précise de la
+réalité admettant des conditions limites contrôlables.
 % subsubsection la_modelisation (end)
 
 
@@ -81,29 +78,27 @@ L’expérimentation comme la modélisation revient à interpréter des valeurs 
 partir des informations récoltées sur les conditions de fonctionnement et sur les
 conditions limites. Les deux approches sont complémentaires et comportent des avantages et
 des inconvénients. L’expérimentation permet d’analyser un système dans des conditions
-réelles et peut être utilisé pour confronter les résultats théoriques à la réalité. Elle
+réelles et peut être utilisée pour confronter les résultats théoriques à la réalité. Elle
 est cependant couteuse et complexe à mettre en place. À l’inverse, la modélisation est
-contrainte par des systèmes d’équations approchant la réalité mais est moins couteuse à
-mettre en place et offre une liberté importante sur les conditions de fonctionnement.
-L’ensemble des paramètres étant contrôlables, la modélisation offre en effet l’opportunité
-d’évaluer différentes configurations. Elle est donc particulièrement adaptée pour des
-études paramétrique nécessitant de faire varier chaque paramètres indépendamment les uns
-des autres pour analyser leur effets respectifs. De plus les études paramétrique ou de
-faisabilité, le dimensionnement, ou encore l’optimisation nécessite de nombreuses
-itération sur des périodes importantes. L’expérimentation de par ces contraintes, ne
+contrainte par ces systèmes d’équations mais offre une liberté importante sur les
+conditions de fonctionnement. L’ensemble des paramètres étant contrôlables, la
+modélisation offre en effet l’opportunité d’évaluer différentes configurations. Elle est
+donc particulièrement adaptée pour des études nécessitant l’évaluation de nombreuses
+variations afin de pouvoir analyser les effets respectifs de chaque paramètre comme les
+études paramétriques ou d’optimisation. L’expérimentation de par ces contraintes, ne
 permet donc pas de répondre à la problématique et l’approche par modélisation est donc le
 choix le plus pertinent.
-Cette conclusion nécessite cependant d’être corrigé. Bien que
-seule la simulation puisse répondre à ces questions, l’expérimentation est complémentaire
-et permet de vérifier le modèle numérique. L’approche la plus correcte serait donc de
-réaliser un modèle numérique pour ensuite le valider à travers une approche expérimentale.
-Une fois validé, le modèle peut être utilisé pour étudier l’impact de diverses variations.
-Pour des raisons économiques et de temps, ces travaux ne comportent pas d’études
-expérimentales permettant de valider l’ensemble du modèle solaire. Cependant comme
-détaillé dans le chapitre suivant, les modèles retenues ont fait pour la plupart l’objet
-de vérifications analytiques \parencite{Bontemps2016}. Bien que ne garantissant pas la validité
-du modèle global, les tests et vérification effectuées au niveau du composant permettent d’apporter
-une confiance dans les résultats du modèle solaire global.
+
+Cette conclusion nécessite cependant d’être ajustée. Bien que seule la simulation puisse
+répondre à ces questions, l’expérimentation est complémentaire et permet de vérifier le
+modèle numérique. L’approche la plus correcte serait donc de réaliser un modèle numérique
+pour ensuite le valider à travers une approche expérimentale. Une fois validé, le modèle
+peut être utilisé pour étudier l’impact de diverses variations. Pour des raisons de
+moyens, ces travaux ne comportent pas d’études expérimentales permettant de valider
+l’ensemble du modèle solaire. Cependant comme détaillé dans le chapitre suivant, les
+modèles retenues ont fait pour la plupart l’objet de vérifications analytiques. Bien que
+ne garantissant pas la validité du modèle global, les tests et vérification effectuées au
+niveau des composants permettent d’apporter une confiance dans les résultats du système global.
 % subsubsection bilan (end)
 % subsection le_choix_d_une_approche_par_modelisation (end)
 
@@ -113,23 +108,41 @@ une confiance dans les résultats du modèle solaire global.
 \subsection{Le choix de l’outil de modélisation} % (fold)
 \label{sub:le_choix_de_l_outil_de_modelisation}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Les contraintes de modélisation} % (fold)
+\label{ssub:les_contraintes_de_modelisation}
+Ces travaux cherche à évaluer la performance d’un \abr{SSC} à l’échelle d’une maison
+individuelle. De plus il est envisagé le développement et l’évaluation d’un algorithme de
+contrôle détaillé. Il est donc nécessaire de sélectionner un outil permettant un accès
+complet au différents composants du modèle. Ce contrôle est nécessaire pour permettre
+l’analyse des interactions induites par des variations au niveau du composant et le
+fonctionnement global du système au niveau du bâtiment. De plus, l’algorithme étant en
+développement le processus est dans un premier temps fortement itératif. L’outil
+sélectionné doit par conséquent permettre de modifier, ajouter, et supprimer rapidement et
+simplement des composants. Finalement le problème à modéliser est un problème multi-
+physique et l’outil doit être adapté à la modélisation d’un système hydraulique (solaire),
+d’un système aéraulique (ventilation), d’un algorithme de contrôle (régulation), le tout
+couplé à un modèle thermique (bâtiment).
+% subsubsection les_contraintes_de_modelisation (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Les outils existants} % (fold)
 \label{ssub:les_outils_existants}
-\itodo{Existants}
-Au fil des années de nombreux bibliothèque ou logiciels ont été développés. Parmi
-ces approches certaines cherchent à modéliser de manière très précise la dynamique
-de l’échange au niveau de capteurs sur alors que d’autres se focalise sur une estimation
+Au fil des années de nombreux bibliothèque ou logiciels ont été développés. Parmi ces
+approches certaines cherchent à modéliser de manière très précise la dynamique de
+l’échange au niveau de capteurs alors que d’autres se focalise sur une estimation
 grossière des performances. Les deux approches permettent d’évaluer de manière plus ou
-moins précise un système solaire à différentes échelles de temps, une heure, un jour,
-un mois ...
-Les panneaux solaires tubulaires étant apparu plus récemment, les premiers outils
-comme par exemple \enquote{Collector Design Program} ($CoDePro$) permettent uniquement
-d’évaluer la performance de capteurs plan \mtodo{Koo1999}.
+moins précise un système solaire pour différents pas de temps. Les panneaux solaires
+tubulaires étant apparu plus récemment, les premiers outils comme \enquote{Collector
+Design Program} (\textit{CoDePro}) permettent uniquement d’évaluer la performance de capteurs
+plan.
 
-L’outil le plus connu est le plus utilisé pour la modélisation de systèmes solaires
-et sans aucun doute, la suite logiciel $TRNSYS$ aujourd’hui en version $18$ \parencite{Klein2017}.
-Disponible dès $1975$ (version $6$), le logiciel est alors développé à l’origine pour des applications
-solaires. À partir de $1994$, la version $14$ regroupe cinq programmes sous le méta-programme TRNSHELL~:
+\paragraph{TRNSYS~:} % (fold)
+\label{par:trnssys}
+Aujourd’hui en version $18$ \parencite{Klein2017} il est développée par l’université de Madison (\abr{USA}).
+C’est l’outil le plus utilisé pour la modélisation de systèmes solaires.
+Disponible dès $1975$ (version $6$), le logiciel est développé à l’origine pour des applications
+solaires. À partir de $1994$, la version $14$ regroupe cinq programmes sous le méta-programme \textit{TRNSHELL}~:
 \begin{itemize}
     \item TRNSYS~: moteur de calcul et bibliothèque de base
     \item PRESIM~: une interface graphique pour la composition des modèles
@@ -137,54 +150,66 @@ solaires. À partir de $1994$, la version $14$ regroupe cinq programmes sous le 
     \item PREBID~: aide à la construction de bâtiment
     \item TRNSED~: un éditeur de texte pour créer des modules
 \end{itemize}
-Un des points fort du logiciel et son approche modulaire permettant au logiciel
-d’évoluer avec le temps et les besoins des utilisateurs. Il offre aussi aux utilisateurs la possibilité
-d’ajouter de nouveau modules, expliquant d’une part sa large bibliothèque et
-d’autre part sa longévité. Finalement il propose aussi le couplage avec divers
-logiciels tels que $MATLAB$ ou $COMIS$. Après $40$ d’existence le logiciel profite
-aujourd’hui d’une des plus large bibliothèque et permet de modéliser tout type de procédé
-thermique ou électrique pour différentes échelles comme un bâtiment ou un simple
-contrôleur ou pompe.
-L’$IEA$ l’utilise à travers la tâche $26$ \parencite{Task262003}
+De part son approche modulaire, le logiciel peut être étendus afin de répondre aux
+nouveaux besoins simplement. Cette approche offre aussi la possibilité aux utilisateurs
+d’ajouter de nouveau modules, expliquant d’une part sa large bibliothèque, et d’autre part
+sa longévité. Finalement, il propose aussi le couplage avec divers logiciels tels que
+\textit{MATLAB} ou \textit{COMIS}. Après $40$ d’existence le logiciel profite aujourd’hui
+d’une des plus large bibliothèque et permet de modéliser tout type de procédé thermique ou
+électrique pour différentes échelles que ce soit un bâtiment ou un simple contrôleur.
+L’$IEA$ l’utilise par exemple à travers la tâche $26$ et a participé à l’amélioration de
+sa bibliothèque \parencite{Task26B2002}.
+% paragraph trnsys(end)
 
+\paragraph{Simulink~:} % (fold)
+\label{par:simulink}
+Développé par \textit{MathWorks}, c’est un outil de programmation graphique permettant de
+créer des modèles complexes par association de blocs causaux. Il est fortement intégré
+avec le logiciel \textit{Matlab} qui s’occupe de résoudre les systèmes d’équations, et par
+conséquent les fonctions de l’environnement \textit{Matlab} peuvent être appelées dans
+\textit{Simulink}. Développé dans les années $1990$, la bibliothèque couvre
+aujourd’hui de nombreux domaines de l’ingénierie. Comme \textit{TrnSys}, il permet de
+simuler des systèmes linéaires et non-linéaire. Il peut de plus générer du code source C,
+permettant d’embarquer le modèle développé dans un procédé pour un fonctionnement en temps
+réel. \textcite{Mosallat2013686} l’utilisent afin de modéliser un système solaire pour le
+chauffage d’un bâtiment d’entrepreneuriat social et compare les résultats obtenus par
+l’approche dynamique à ceux d’une approche statique obtenus avec le logiciel
+\fnref{www.retscreen.net}{\textit{RETScreen}}. Les résultats montrent la performance
+du système solaire est sur-évaluée avec l’approche statique.
+% paragraph simulink_ (end)
 
-\itodo{Simulink Mosallat2013686}
+\paragraph{EnergyPlus~:} % (fold)
+\label{par:energyplus}
+Développé par le département de l’énergie des états-unies (\abr{DOE}), c’est un logiciel
+\enquote{open source} permettant de simuler la consommation de l’énergie dans les
+bâtiments. Comme \textit{TrnSys}, il utilise un pas de temps fixe qui doit représenter
+$\nicefrac{1}{n}$ d’heure. Il permet soit de simuler le bâtiment avec un système
+idéal, soit de le coupler avec des systèmes en proposant un choix important de solutions
+techniques. \textit{EnergyPlus} propose une interface graphique de base même si son
+utilisation en particulier pour modéliser des systèmes reste complexe. Pour cette raison
+des interfaces plus conviviales ont été développées comme \textit{OpenStudio},
+\textit{Design Builder}, ou \textit{Simergy}. Un plugin pour le
+logiciel de dessin $3$D \textit{Sketchup} permettant d’exporter le bâtiment modélisé dans
+\textit{EnergyPlus} a aussi été développé.
+% paragraph energyplus_ (end)
 
-\itodo{ISOFOTON SENSOLAR F-CHART Cuadros200796}
+\paragraph{IDA-ICE~:} % (fold)
+\label{par:ida_ice}
+Développé par \textit{EQUA Simulation AB}, c’est un logiciel permettant le calcul des
+consommations mais aussi du confort intérieur avec un pas de temps variable
+\parencite{Kalamees2004}. Dans cette optique il offre une solution tout-en-un avec une
+interface et des solutions modernes. Le logiciel comprend un moteur de calcul (\abr{IDA}),
+un éditeur $3$D, et un outil de post- traitement permettant d’évaluer les résultats à
+travers des courbes classiques ou bien des animations $3$D du bâtiment et des systèmes.
+L’interface propose $3$ niveaux de contrôle afin de couvrir les besoins de différents
+types d’utilisateurs. Le bâtiment et ces systèmes peuvent ainsi être modélisés, soit à
+travers des étapes simples, soit par association de composants, soit en créant de nouveaux
+composants grâce à un langage de programmation équationnel.
+% paragraph ida_ice (end)
 
-
-
-
-\itodo{Justification du choix}
-Il existe cependant de nombreux langages ou logiciels permettant de réaliser des
-simulations plus ou moins complexes. Il est ainsi nécessaire, dans un premier temps, de
-définir le niveau de précision nécessaire pour les différentes parties du modèle. Il est
-aussi important de déterminer le niveau de contrôle que l’on souhaite avoir sur chaque
-composant. En effet il existe principalement deux familles d’outils~: les modèles opaques
-(boîtes noires) qui masquent à l’utilisateur le fonctionnement internes, et les modèles
-ouverts (boîtes blanches) dont la composition est connue et souvent modifiable. Notre cas
-d’étude se place à l’échelle du bâtiment mais il est souhaitable de conserver un contrôle
-important sur la gestion des équipements. Ce contrôle est nécessaire pour permettre
-l’analyse des interactions entre des variations au niveau du composant et le
-fonctionnement global du système. De plus, le processus de construction du modèle est dans un
-premier temps fortement itératif afin de permettre la définition d’un système solaire
-performant dont l’algorithme de contrôle est détaillé ci-après. L’outil sélectionné doit par conséquent
-permettre de modifier, ajouter, et supprimer rapidement et simplement des composants. Finalement le
-problème à modéliser est un problème multi-physique et l’outil doit être adapté à la
-modélisation d’un système hydraulique (solaire), d’un système aéraulique (ventilation),
-d’un algorithme de contrôle (régulation), le tout couplé à un modèle thermique (bâtiment).
-% subsubsection les_outils_existants (end)
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Outils retenues} % (fold)
-\label{ssub:outils_retenues}
-
-\paragraph{Modelica} % (fold)
-\label{par:modelica}
-Le langage \textit{Modelica} (3.2.2) et le logiciel \textit{Dymola} (Dynamics MOdeling
-LAboratory) (2017) permettent de répondre à l’ensemble des contraintes décrites dans la
-section précédente. \textit{Modelica} est un langage de programmation libre et ouvert
+\paragraph{Modelica~:} % (fold)
+\label{par:modelica_}
+\textit{Modelica} est un langage de programmation libre et ouvert
 développé pour répondre aux contraintes de la modélisation multi-physique. Il a été pensé
 pour être intuitif en offrant une approche équationnelle et orientée objet au développeur
 \parencite{Wetter2016290}.
@@ -197,13 +222,7 @@ simplifiant l’ajout de nouvelles fonctionnalités ou le couplage des deux. Fin
 langage est acausal (\defref{def:acausal}), permettant au modeleur de rapidement
 créer des prototypes de systèmes complexes sans devoir à chaque modification réécrire
 l’ensemble des systèmes d’équations. Il est cependant toujours possible de définir
-explicitement quelles sont les inconnus d’un modèle en héritant de la classe \textit{Bloc}.
-En effet en plus de proposer une bibliothèque avec un nombre conséquent de briques
-permettant de construire des modèles complexes, le langage propose aussi des classes de
-référence permettant à l’utilisateur de spécialiser chaque élément de son modèle. Cet
-outil assure alors un processus itératif efficace tout en offrant une grande liberté sur
-le détail de chaque composant du modèle final.
-
+explicitement un composant comme étant causal en héritant de la classe \textit{Bloc}.
 
 \begin{Def}[Acausal]\label{def:acausal}
 Un modèle est dit acausal lorsque le sens de la définition d’une équation n’est pas
@@ -220,10 +239,64 @@ que l’inconnu soit isolé a priori par le programmeur.
              (\href{http://www.wolfram.com/system-modeler/}{Wolfram}).}
     \label{fig:acausal_vs_causal}
 \end{figure}
-% paragraph modelica (end)
+% paragraph modelica(end)
 
-\paragraph{Dymola} % (fold)
-\label{par:dymola}
+\paragraph{Méthodes de calculs~:} % (fold)
+\label{par:methodes_de_calculs}
+Elles permettent d’estimer le potentiel solaire mais ne fournissent pas d’informations sur
+la dynamique du système. D’après \textcite{Duffie1980} il existe $3$ catégories de
+méthodologie issues soit~:
+\begin{enumerate}
+    \item de corrélations entre caractéristiques des capteurs et
+          données météorologiques
+    \item de corrélations à partir de nombreuses simulations détaillées
+    \item du calcul suivant des journées typiques pour un ciel clair et nuageux
+          pondérées en fonction de la couverture nuageuse moyenne du site.
+\end{enumerate}
+La méthode la plus répandue, \textit{F-CHART}, permet d’estimer la performance
+d’un \abr{SSC} (vecteur air ou eau) ou bien d’une système produisant uniquement de
+l’\abr{ECS}. la méthode utilise une corrélation établie sur la base de systèmes de
+références pour lesquels des variations paramétriques ont été réalisées. La méthode
+nécessite la connaissance des conditions extérieures comme la température et de l’ensoleillement
+sur une base mensuelle et permet d’obtenir l’indicateur $F_{sol}$. \textcite{Cuadros200796} montre que cette
+méthode sur-estime la performance du système solaire pour la production d’\abr{ECS} et
+propose une autre méthodologie. La nouvelle approche est plus performante lorsque les
+besoins d’\abr{ECS} sont important en particulier pour des capteurs sous-vide. Cependant
+lorsque le puisage journalier est inférieur à \SI{\sim 500}{\litre}, l’écart entre les
+différentes méthodes est moindre. Finalement l’ensemble des méthodes évaluées sont
+comparées avec un logiciel de simulation dynamique~:\textit{TrnSys}. Il est montré que
+toutes les approches sur-estiment le potentiel solaire, en particulier lorsque des
+capteurs plan vitrés sont considérés.
+% paragraph methodes_de_calculs (end)
+
+\paragraph{Bilan~:} % (fold)
+\label{par:bilan}
+Il existe ainsi de nombreux logiciels, langages, et méthodes, permettant d’évaluer la
+performance d’un \abr{SSC}. L’approche retenue cherchant à caractériser de manière
+détaillée l’algorithme de contrôle, les méthodes issues de corrélations sont écartées au
+profit d’une approche par simulation dynamique. Parmi les choix disponibles, le logiciel
+\textit{EnergyPlus} est écarté à cause de sa complexité. Bien qu’il soit relativement aisé
+de définir l’enveloppe, la logique de contrôle et l’ajout de système n’est pas intuitive.
+
+Ces travaux nécessitant la réalisation de nombreuses modifications durant la phase de
+développement, le choix a été fait de retenir \textit{Modelica} ($3.2.2$) pour son
+approche acausale facilitant le processus itératif de construction tout en offrant une
+liberté de détail sur chaque composant. \textit{Modelica} n’étant qu’un langage de
+modélisation, il est aussi retenu \textit{Dymola} (Dynamics MOdeling LAboratory) et la
+bibliothèque \textit{Buildings} décrits ci-après.
+% paragraph bilan (end)
+% subsubsection les_outils_existants (end)
+% subsection le_choix_de_l_outil_de_modelisation (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Outils complémentaires} % (fold)
+\label{sub:outils_complementaires}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Dymola} % (fold)
+\label{ssub:dymola}
+
 \textit{Dymola} est une suite de logiciels développée par \textit{Dassault Systèmes}
 permettant de simplifier le développement de modèles numériques grâce au langage
 \textit{Modelica}. Il offre une interface graphique permettant de connecter les modèles
@@ -248,10 +321,14 @@ simplifiant le développement afin de se focaliser sur le problème physique à 
     \caption{Modélisation d’un échange thermique entre deux masses en Modelica.}
     \label{fig:exemple_modelica}
 \end{figure}
-% paragraph dymola (end)
+% subsubsection dymola (end)
 
-\paragraph{Buildings et BuildingsPy} % (fold)
-\label{par:buildings_et_buildingspy}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Buildings and BuildingsPy} % (fold)
+\label{ssub:buildings_and_buildingspy}
+
+% subsubsection buildings_and_buildingspy (end)
 Le couplage de \textit{Modelica} et de \textit{Dymola} permet le développement itératif
 nécessaire à notre problème tout en offrant un contrôle total sur chaque partie du modèle.
 Le langage \textit{Modelica}, en pleine croissance dans le secteur du bâtiment est cependant
@@ -268,8 +345,7 @@ afin d’automatiser la simulation de nombreux modèles la bibliothèque
 est utilisée. Développée par le $LBNL$, elle permet d’interfacer le langage \textit{Python}
 avec le langage de script de \textit{Dymola}.
 % paragraph buildings_et_buildingspy (end)
-% subsubsection outils_retenues (end)
-% subsection le_choix_de_l_outil_de_modelisation (end)
+% subsection outils_complementaires (end)
 
 
 
@@ -694,7 +770,7 @@ compatible avec les informations techniques disponibles sur les fiches technique
 différents fabricants~: ce dernier point exclue une modélisation détaillée. L’approche
 retenue utilise le modèle disponible dans la bibliothèque \textit{Buildings} basant son
 système d’équations sur les relations empiriques décrites dans le volet 2 de la norme
-\textcite{EN129752}. Dans cette approche, deux principaux coefficients permettent de
+\textcite{EN1297522006}. Dans cette approche, deux principaux coefficients permettent de
 caractériser les pertes thermiques des capteurs : les coefficients de pertes linéiques et
 surfaciques notés respectivement $a_{1}$ et $a_{2}$. Deux autres coefficients, le rendement
 solaire sans pertes ($\eta_{0}$) et le coefficient de modulation de la part solaire issue du diffus
@@ -872,7 +948,7 @@ en attente d’activation pour permettre de couvrir le chauffage (temporisation 
              les différents modes de chauffage.}
     \label{fig:automate_chauffage}
 \end{figure}
-% paragraph architecture_de_l_algorithme_ (end)
+% paragraph architecture_de_l_algorithme(end)
 
 
 \paragraph{} % (fold)
@@ -1252,7 +1328,7 @@ eux.
 
 Au cours de l’étude paramétrique, l’orientation, la surface, et l’inclinaison
 des capteurs est évaluée afin de comparer les résultats avec les observations déjà
-relevées au cours des études existantes \parencite{Task262003,Shariah2002587}.
+faites au cours des études antérieures \parencite{Task26C2007,Shariah2002587}.
 Les variations suivantes sont retenues~:
 \begin{itemize}
   \item Inclinaison~: \SI{18.9}{\degree} (\SI{33}{\percent}), \SI{33}{\degree}, \SI{45}{\degree}, \SI{60}{\degree}
