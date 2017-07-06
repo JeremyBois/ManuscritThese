@@ -199,20 +199,25 @@
 % Used later in class
 \RequirePackage{tikz}
 
+
 % ------------------------------------------------------------------------------
 % Math / Unit support
 % ------------------------------------------------------------------------------
 % \mathbf not working with xelatex better to use /bm with bm package (sometimes required {{\Gamma}})
 \RequirePackage[separate-uncertainty=true,%
                 per-mode=symbol]{siunitx}               % Unit package
+\sisetup{output-decimal-marker={,}}                     % ... and in siunitx: dot with comma
+
 \RequirePackage{amsmath, amssymb, amsthm, mathtools,bm} % Allow adding complex equations
 \RequirePackage{nicefrac}                               % for \nicefrac macro
 \RequirePackage{letltxmacro}                            % Support for optional argument in redefinition
 
 % Writing a dot print a comma in math mode
 \mathchardef\period=\mathcode`.                         % Allows to still write a dot if needed
-\DeclareMathSymbol{.}{\mathord}{letters}{"3B}           % Decimal separator in math mode ...
-\sisetup{output-decimal-marker={,}}                     % ... and in siunitx: dot with comma
+
+\ifPDFTeX
+  \DeclareMathSymbol{.}{\mathord}{letters}{"3B}           % Decimal separator in math mode ...
+\fi
 
 % Sign function
 \DeclareMathOperator{\sign}{sign}
@@ -289,9 +294,11 @@
 
   % More used
   \DeclareMathUnicode{é}{\acute{e}}
-  \DeclareMathUnicode{è}{\grave{e}}
   \DeclareMathUnicode{É}{\acute{E}}
+  \DeclareMathUnicode{è}{\grave{e}}
   \DeclareMathUnicode{È}{\grave{E}}
+  \DeclareMathUnicode{ê}{\hat{e}}
+  \DeclareMathUnicode{Ê}{\hat{E}}
 \fi
 
 

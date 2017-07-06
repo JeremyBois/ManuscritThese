@@ -65,7 +65,7 @@
 # À faire :
 ## Rapport :
 
-  - (Reporté) Dépôt algorithme
+  - (Fait) Dépôt algorithme
   - (Fait) Résumé thèse
 
 
@@ -73,14 +73,14 @@
 ## chapitre 1 :
 ### Rédaction :
 
-  - Mettre au propre
+  - (Fait) Mettre au propre
 
 
 
 ## chapitre 2 :
 ### Rédaction :
 
-  - Envoyé mail à Aurélie pour questions
+  - (Fait) Envoyé mail à Aurélie pour questions
   - Décrire débit moyen des pompes avec moyenne et écart type
   - Parlé du modèle de puisage utilisé
   - Parlé du modèle de capteur
@@ -88,7 +88,7 @@
   - Corriger algo chauffage
   - Mieux décrire les onOff et hystérésis
   - Expliciter l’initialisation
-  - Ajouter comparaison avec autres logiciels
+  - (Fait) Ajouter comparaison avec autres logiciels
   - Introduire nouveau algorithme
     - Activation indirect et directe en fonction de Tin échangeur
     - Comparer avec ancien algorithme
@@ -135,13 +135,13 @@
   - Paramétrique
     - (Fait) Ref Bordeaux (1000)
     - (En cours) Ref Strasbourg (1000)
-    - Bordeaux (1000)
+    - (Fait) Bordeaux (1000)
     - Strasbourg (1000)
   - Test performance méta (optionnel)
     - Bordeaux (+1000)
     - Strasbourg (+1000)
   - Optimisation
     - Construction 5 méta-modèles
-    - Objectifs : FsavCH, FsavECS, Production PV
-    - Contraintes : abs(Consommation appoint) <= 300
+    - Objectifs : FsavCH, FsavECS, Production PV, Nbr capteur PV
+    - Contraintes : abs(Consommation totale) <= 300
     - Consommation de : Chauffage, ECS, Électroménager, Éclairage
