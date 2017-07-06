@@ -134,13 +134,13 @@
 {\color{SolarizedBrBlack}
  \filleft \normalfont \scshape \bfseries \chaptertitlename          % Add Chapitre
  \enspace \Huge \color{SolarizedBrYellow}
- \fontsize{2cm}{0cm} \thechapter \normalfont                     % Add Chapter number as a larger font
+ \fontsize{2cm}{2cm} \thechapter \normalfont                     % Add Chapter number as a larger font
 }
 {1ex}                                                               % Add space between chapter and chapter title
-{\color{SolarizedBrBlack} \titlerule[2pt] \vspace{2ex} \filcenter   % Lighter color for lines
+{\color{SolarizedBrBlack} \titlerule[2pt] \vspace{1.5ex} \filcenter   % Lighter color for lines
  \color{defaultcolor}                                               % Reset default color
 }
-[\color{SolarizedBrBlack} \vspace{2ex} \titlerule \vspace{4ex}      % Lighter color for lines
+[\color{SolarizedBrBlack} \vspace{1.5ex} \titlerule \vspace{4ex}      % Lighter color for lines
  \normalfont \normalsize \color{defaultcolor}                       % Reset default color and font
 ]
 % Change starred chapter format
@@ -482,6 +482,9 @@
                 backref=true,           % Back reference to citation page in bibliography
                 backrefstyle=none,      % Do not compress page list
                 idemtracker=true,
+                bibencoding=utf8,
+                uniquename=false,
+                uniquelist=false,
                 ]{biblatex}             % Bibliography support
 
 
