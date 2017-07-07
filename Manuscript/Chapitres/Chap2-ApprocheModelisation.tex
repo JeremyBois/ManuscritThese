@@ -515,10 +515,18 @@ utilisé est celui de Bordeaux
 La consigne de chauffage est de \SI{19}{\celsius} en occupation et de \SI{16}{\celsius} en
 inoccupation. L’étude ne portant pas sur l’évaluation du confort estival, seule les
 besoins en chauffage ont été comparés. Les résultats pour l’approche mono-zone et de l’approche
-multi-zone sont similaires~: respectivement \SI{1114}{\kilo\watt\hour} et
-\SI{1190}{\kilo\watt\hour} pour une année complète.
+multi-zone sont similaires~: respectivement \SI{1153}{\kilo\watt\hour} et
+\SI{1189}{\kilo\watt\hour} pour une année complète (\figref{fig:compare_models}).
+\itodo{Trouver un moyen de rendre clair la comparaison}
 
-\iunsure{Ajouter comparatif des puissances entre Energy Plus et Buildings}.
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Modelisation/Batiment/compare_power.pdf}
+    \caption[Comparatif de l’évolution entre le modèle mono-zone et multi-zone]
+             {Évolution de la puissance et de l’énergie avec le modèle mono-zone
+              (\textit{Modelica}) et le modèle multi-zone (\textit{EnergyPlus}).}
+    \label{fig:compare_models}
+\end{figure}
 % subsubsection comparaison_avec_un_modele_multi_zone (end)
 % subsection modelisation_monozone (end)
 
@@ -660,9 +668,6 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 \subsection{Description du système solaire} % (fold)
 \label{sub:description_du_systeme_solaire}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\itodo{Décrire le modèle specifique retenu pour chaque équipement}
-\itodo{régression linéaire IAM pour le capteur}
-
 \subsubsection{Partie hydraulique} % (fold)
 \label{ssub:partie_hyraulique}
 Le système hydraulique (\figref{fig:air_complet_mono}) est composé de deux ballons dont les
@@ -694,9 +699,8 @@ système aéraulique à l’aide d’un échangeur de chaleur. Finalement, le sy
 pompes~: $S6$, $S5$, et $S2$. Un débit nominal de \SI{40}{\litre\per(\hour\period\meter\squared)}
 (capteur) pour les pompes est considéré comme première approximation
 \parencite{Peuser2005}. Les pompes utilisées sont des pompes à vitesse variable afin de
-limiter les arrêts intempestifs \parencite{Kicsiny20123489} et favoriser des débits
-réduit comme le recommande la littérature. Ainsi sur la période de chauffage le débit
-moyen est de \mtodo{Ajouter moyenne} pour un écart type de \mtodo{Ajouter écart type}.
+limiter les arrêts intempestifs \parencite{Kicsiny20123489} et permettre de maintenir
+constant un différentiel de température comme décrit dans la suite du document.
 
 
 \begin{table}
@@ -725,24 +729,52 @@ moyen est de \mtodo{Ajouter moyenne} pour un écart type de \mtodo{Ajouter écar
 
 \begin{table}
 \centering
-\itodo{Vérifier valeurs}
-\caption{Caractéristiques du collecteur de référence (modèle IDMK\,25 de chez Sonnenkraft).}
+\caption{Caractéristiques du collecteur de référence (\textit{Sonnenkraft IDMK\,25-AL}) d’après \figref{fig:caracs_idmk}.}
 \label{tab:idmk_specs}
 \begin{tabular}{lcr}
     \toprule
     Paramètre                                   & Valeur         & Unité                 \\
     \midrule
-    Surface nette                               & \num{2.32}           & \si{m^{2}}            \\
-    Poids à vide                                & \num{54}             & \si{kg}               \\
+    Surface d’entrée                            & \num{2.33}           & \si{m^{2}}            \\
+    Poids à vide                                & \num{49}             & \si{kg}               \\
     Contenance                                  & \num{1.35}           & \si{l}                \\
-    Rendement optique ($\eta_{0}$)              & \num{78}             & \si{\%}               \\
-    Pente                                       & \num{-5.103}         & -                     \\
-    Coefficient de pertes linéiques ($a_{1}$)   & \num{3.796}          & \si{W/(m^{2}\period K)}      \\
-    Coefficient de pertes surfaciques ($a_{2}$) & \num{0.013}          & \si{W/(m^{2}\period K^{2})}  \\
-    Modulation du diffus ($IMDiff$)             & \num{100}            & \si{\%}               \\
+    Rendement optique ($\eta_{0}$)              & \num{76.5}           & \si{\percent}               \\
+    Coefficient de pertes linéiques ($a_{1}$)   & \num{3.951}          & \si{W/(m^{2}\period K)}      \\
+    Coefficient de pertes surfaciques ($a_{2}$) & \num{0.011}          & \si{W/(m^{2}\period K^{2})}  \\
+    Modulation du direct ($b_{0}$)              & \num{-0.1396}        & \si{-}               \\
+    Modulation du direct ($b_{1}$)              & \num{-0.0004}        & \si{-}               \\
+    Modulation du diffus ($K_{\theta,\, dif}$)  & \num{92}             & \si{\percent}               \\
     \bottomrule
 \end{tabular}
 \end{table}
+
+\paragraph{Calcul des \abr{IAM}~:} % (fold)
+\label{par:calcul_des_iam}
+Les capteurs solaires thermiques sont modélisés par l’équation \enquote{quasi-dynamique}
+implémentée dans le modèle \textit{Fluid.SolarCollectors.EN12975} de la bibliothèque \textit{Buildings}.
+Alors que la norme considère un unique modificateur d’\abr{IAM} ($b_{0}$)
+le modèle \textit{Fluid.SolarCollectors.EN12975} considère deux modificateurs ($b_{0}$ et $b_{1}$),
+permettant de mieux approcher le comportement réel du capteur \eqref{eq:iam_dir_plan_model}.
+
+\begin{equation}\label{eq:iam_dir_plan_model}
+    K_{\theta,\,dir} (\theta) = 1 + b_{0} \times \left(\frac{1}{\cos(\theta)} - 1\right)
+                                  + b_{1} \times \left(\frac{1}{\cos(\theta)} - 1\right)^{2}
+\end{equation}
+
+Ces modificateurs ont été définis par régression linéaire (\figref{fig:IAM_idmk}) à partir des données
+expérimentales disponibles dans le certificat du capteur (\figref{fig:caracs_idmk} en annexe)
+pour des angles d’incidences allant de \SIrange{0}{70}{\degree}.
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Modelisation/Capteurs/IDMK/IAM.pdf}
+    \caption[\abr{IAM} pour le rayonnement direct]
+             {Évolution de $K_{\theta,\,dir}$ en fonction de l’angle d’incidence.
+              Les croix représentent les points expérimentaux, et la courbe le résultat
+              de la régression linéaire.}
+    \label{fig:IAM_idmk}
+\end{figure}
+% paragraph calcul_des_abr (end)
 
 \paragraph{Équilibrage du réseau~:} % (fold)
 \label{par:equilibrage_du_reseau}
@@ -785,7 +817,7 @@ système d’équations sur les relations empiriques décrites dans le volet 2 d
 caractériser les pertes thermiques des capteurs : les coefficients de pertes linéiques et
 surfaciques notés respectivement $a_{1}$ et $a_{2}$. Deux autres coefficients, le rendement
 solaire sans pertes ($\eta_{0}$) et le coefficient de modulation de la part solaire issue du diffus
-($IMDiff$) permettent de caractériser la part solaire absorbée.
+($K_{\theta,\, dif}$) permettent de caractériser la part solaire absorbée.
 
 Afin de vérifier la pertinence du modèle des données expérimentales fournies
 par l’entreprise \textit{SolisArt} ont été utilisées.
@@ -808,7 +840,54 @@ surface inclinée (\figref{fig:compare_capteurs}, droite).
              expérimentaux et le modèle \textit{Modelica}.}
     \label{fig:compare_capteurs}
 \end{figure}
+\FloatBarrier
 % subsubsection verifications (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Modèle utilisés~:} % (fold)
+\label{ssub:modele_utilises}
+Afin de permettre la reproductibilité des résultats les différents
+modèles de la bibliothèque \fnref{https://github.com/lbl-srg/modelica-buildings}{\textit{Buildings}}
+retenus pour chaque composant du système sont listés et les modèles développés
+décrit brièvement~:
+\begin{blockdescription}{Combles et Vide sanitaire}
+    \item [Ballon] \textit{Fluid.Storage.StratifiedEnhancedInternalHex} qui modélise
+                   un ballon avec stratification.
+    \item [Échangeur interne] \textit{Fluid.Storage.BaseClasses.IndirectTankHeatExchanger}.
+    \item [Vase d’expansion] \textit{Buildings.Fluid.Storage.ExpansionVessel}.
+    \item [Pompes] \textit{Fluid.Movers.SpeedControlled\_Nrpm} permettant
+                   de contrôler le indirectement le débit par modulation de la vitesse
+                   de rotation normalisée de la pompe.
+    \item [Ventilateurs] \textit{Fluid.Movers.FlowControlled\_m\_flow}.
+                          permettant de contrôler le débit directement.
+    \item [Parseur météo] \textit{BoundaryConditions.WeatherData.ReaderTMY3}.
+                          Nécessite de transformer le fichier météo dans un format propre au modèle.
+                          Un outil en \textit{Java} est disponible pour convertir un fichier de
+                          type \textit{.epw} dans le format supporté \textit{.mos}.
+    \item [Capteur solaire] \textit{Fluid.SolarCollectors.EN12975} implémentant
+          l’équation quasi-dynamique décrite en \ref{par:approche_quasi_dynamique}.
+    \item [Échangeur eau/air] \textit{Fluid.HeatExchangers.ConstantEffectiveness} qui
+          modélise un échangeur avec une efficacité constante fixée à \SI{80}{\percent}.
+    \item [Zone chauffée] \textit{Rooms.MixedAir} qui assume une zone où l’air est
+          complètement mixé. Le modèle calcule séparement les échanges radiatifs
+          et conductifs et permet de modéliser des fenêtres et des scénarios
+          internes \parencite{Wetter2011}.
+    \item [Combles et Vide sanitaire] Une version simplifiée de \textit{Rooms.MixedAir}
+          ne permettant pas l’ajout de fenêtres ni d’apports internes.
+    \item [Fenêtres] \textit{Rooms.Constructions.ConstructionWithWindow} séparant
+          les apports radiatifs des apports convectifs nécessitant donc une description
+          détaillée des composants de la fenêtre.
+    \item [Vanne $\bm{3}$ voies] \textit{Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear}
+    \item [Vanne $\bm{2}$ voies] \textit{Fluid.Actuators.Valves.TwoWayEqualPercentage}
+    \item [Canalisation extérieures] \textit{Fluid.FixedResistances.Pipe} permettant
+          de discrétiser le volume de fluide afin de mieux évaluer les déperditions.
+    \item [Puisage] À partir d’une loi de mélange, le volume d’eau du ballon nécessaire
+          pour obtenir une température de puisage de \SI{40}{\celsius} est puisé
+          par une pompe hors du ballon sanitaire.
+\end{blockdescription}
+
+% subsubsection modele_utilises (end)
 % subsection description_du_systeme_solaire (end)
 
 
@@ -955,7 +1034,6 @@ en attente d’activation pour permettre de couvrir le chauffage (temporisation 
 
 \begin{figure}
     \centering
-    \itodo{Corriger température mini stockage à 40 pas 45}
     \includegraphics{Ressources/Images/Modelisation/Regulation/chauffage_fsm.pdf}
     \caption{Description détaillée de l’$FSM$ contrôlant la transition entre
              les différents modes de chauffage.}
@@ -1007,7 +1085,6 @@ garantir le maintien du confort thermique (\figref{fig:chauffage_aeraulique}).
 
 \begin{figure}
     \centering
-    \itodo{Corriger valeur à 400}
     \includegraphics{Ressources/Images/Modelisation/Regulation/chauffage_aeraulique.pdf}
     \caption{Fonctionnement de la régulation du chauffage par vecteur air.}
     \label{fig:chauffage_aeraulique}
@@ -1332,11 +1409,11 @@ capacité massique constante permettant de simplifier les systèmes d’équatio
 %     Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}      & \si{m^{2}}                  \\
 %     Poids à vide                 & \num{54}             & \num{36}             & \num{53}        & \si{kg}                     \\
 %     Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}      & \si{\litre}                 \\
-%     $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}        & \si{\%}                     \\
+%     $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}        & \si{\percent}                     \\
 %     Pente                        & \num{-5.103}         & \num{-4.777}         & \num{-0.975}    & -                           \\
 %     $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}    & \si{W/(m^{2}\period K)}     \\
 %     $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}   & \si{W/(m^{2}\period K^{2})} \\
-%     $IMDiff$                     & \num{100}            & \num{96}             & \num{102}       & \si{\%}                     \\
+%     $K_{\theta,\, dif}$                     & \num{100}            & \num{96}             & \num{102}       & \si{\percent}                     \\
 %     \bottomrule
 % \end{tabular}
 % \end{table}
@@ -1410,7 +1487,6 @@ l’air. Le cas de référence admet une temporisation de \SI{10}{min} notée $T
 
 \begin{table}
 \centering
-\itodo{Ajouter Delta et Tmini ECS}
 \caption{Variations algorithmiques étudiées lors de l’étude paramétrique.
 \label{tab:variations_algo}}
 \begin{tabular}{l c c r}
@@ -1423,6 +1499,9 @@ l’air. Le cas de référence admet une temporisation de \SI{10}{min} notée $T
     \bottomrule
 \end{tabular}
 \end{table}
+
+\itodo{Ajouter Delta et Tmini ECS et expliquer la variation}
+
 % subsubsection algorithme (end)
 % subsection variations_techniques_etudiees (end)
 
@@ -1448,6 +1527,7 @@ et sur le chauffage.
 
 \begin{table}
 \centering
+\itodo{Ajouter variations algorithmiques}
 \caption{Description de la solution de référence et de variations étudiées.}
 \label{tab:ref_description}
   \begin{tabular}{l c C{4cm} r r}
@@ -1466,7 +1546,7 @@ et sur le chauffage.
     \addlinespace[\defaultaddspace]
     \multicolumn{5}{l}{\textbf{Équipements}}                                                                                                                              \\
     \midrule
-    Modèle des capteurs                    & IDMK\,25  & 308C\,HP, 12\,CPC58                    & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
+    % Modèle des capteurs                    & IDMK\,25  & 308C\,HP, 12\,CPC58                    & -             & \multirow{4}{*}{\ref{ssub:capteurs_solaires}}         \\
     Nombre de capteurs                     & \num{4}   & \num{2}, \num{6}, \num{8}              & -             &                                                       \\
     Inclinaison des capteurs               & \num{33}  & \num{18.9}, \num{45}, \num{60}         & \si{\degree}  &                                                       \\
     Orientation des capteurs               & Sud       & Est, Ouest                             & -             &                                                       \\
@@ -1527,7 +1607,7 @@ solaires semblent insuffisants pour couvrir les besoins importants.
 \label{tab:performance_annuelles}
 \begin{tabular}{l c c c c c c c c c c c c}
     \toprule
-               &   \multicolumn{9}{c}{Consommation [\si{\kilo\watt\hour}]} & & \multicolumn{2}{c}{\multirow{2}{*}{\%}} \\
+               &   \multicolumn{9}{c}{Consommation [\si{\kilo\watt\hour}]} & & \multicolumn{2}{c}{\multirow{2}{*}{\si{\percent}}} \\
     \cmidrule(r){2-10}
                & \multicolumn{2}{c}{\textbf{Totale}} &  \multicolumn{3}{c}{\textbf{Électrique}}  & \multicolumn{4}{c}{\textbf{Solaire}} & \\
     \cmidrule(r){2-3}
@@ -1571,7 +1651,7 @@ même si durant décembre et janvier l’appoint électrique est nécessaire pon
     \label{fig:temp_ballon_mensuel}
 \end{figure}
 
-\iunsure{Ajouter couverture par mois en fonction des climats}
+\itodo{Ajouter couverture mensuelle en fonction des climats}
 
 \paragraph{Période de simulation~:} % (fold)
 \label{par:periode_de_simulation}

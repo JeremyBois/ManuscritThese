@@ -133,8 +133,8 @@
     - (Fait) Bordeaux (500)
     - (Fait) Strasbourg (500)
   - Paramétrique
-    - (Fait) Ref Bordeaux (1000)
-    - (En cours) Ref Strasbourg (1000)
+    - (En cours) Ref Bordeaux (1000)
+    - (Fait) Ref Strasbourg (1000)
     - (Fait) Bordeaux (1000)
     - Strasbourg (1000)
   - Test performance méta (optionnel)

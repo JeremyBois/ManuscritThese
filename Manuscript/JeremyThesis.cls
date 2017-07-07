@@ -216,7 +216,7 @@
 \mathchardef\period=\mathcode`.                         % Allows to still write a dot if needed
 
 \ifPDFTeX
-  \DeclareMathSymbol{.}{\mathord}{letters}{"3B}           % Decimal separator in math mode ...
+  \DeclareMathSymbol{.}{\mathord}{letters}{"3B}         % Decimal separator in math mode ...
 \fi
 
 % Sign function
