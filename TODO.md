@@ -81,17 +81,15 @@
 ### Rédaction :
 
   - (Fait) Envoyé mail à Aurélie pour questions
-  - Décrire débit moyen des pompes avec moyenne et écart type
-  - Parlé du modèle de puisage utilisé
-  - Parlé du modèle de capteur
-  - Décrire pour les autres modèles le composant utilisé
-  - Corriger algo chauffage
-  - Mieux décrire les onOff et hystérésis
-  - Expliciter l’initialisation
+  - (Non) Décrire débit moyen des pompes avec moyenne et écart type
+  - (Fait) Parlé du modèle de puisage utilisé
+  - (Fait) Parlé du modèle de capteur
+  - (Fait) Décrire pour les autres modèles le composant utilisé
+  - (Fait) Corriger algo chauffage
+  - (En cours) Mieux décrire les onOff et hystérésis
+  - (Fait) Expliciter l’initialisation
   - (Fait) Ajouter comparaison avec autres logiciels
-  - Introduire nouveau algorithme
-    - Activation indirect et directe en fonction de Tin échangeur
-    - Comparer avec ancien algorithme
+  - (Fait) Introduire nouveau algorithme
 
 
 
@@ -112,13 +110,13 @@
 ## chapitre 4 :
 ### Rédaction :
 
-  - Décrire les variations de l’algorithme considéré : contrôle du chauffage
-  - Description du calcul de FSC et Fsav
-  - Introduire 3 variables pour Morris
+  - (Fait) Décrire les variations de l’algorithme considéré : contrôle du chauffage
+  - (Fait) Introduire 3 variables pour Morris
     - DeltaLow buffer     (0-30)
     - DeltaLow collecteur (0-30)
     - Mini Temp ECS       (15-40)
-  - Ne pas faire Fsav pour Morris
+  - (Ok) Ne pas faire Fsav pour Morris
+  - Description du calcul de FSC et Fsav
   - Expliciter FsavCH et FsavECS comme objectifs
   - Calculer FSC sur les solutions du front de Pareto uniquement
     - Mettre en exergue par les couleurs qu’elle solution utilise le mieux le sytème (FSC)

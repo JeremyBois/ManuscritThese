@@ -45,6 +45,51 @@ illustré à travers une approche paramétrique. Afin de rendre la comparaison p
 le processus sera mené de manière parallèle pour Bordeaux et Strasbourg. Finalement, la
 fidélité des méta-modèles pour l’ensemble des solutions optimales est aussi discuté.
 
+\paragraph{Valorisation de l’énergie solaire~:} % (fold)
+\label{par:valorisation_de_l_energie_solaire}
+Au cours de l’étude paramétrique, $\Delta T_{sol}$ a été évalué comme impactant et
+est donc retenue lors de l’analyse de sensibilité.
+Dans l’optique d’une valorisation maximale de l’énergie solaire pour le chauffage, il est aussi
+investigué $3$ variations algorithmiques supplémentaires \tabref{tab:variations_algo_sensibilite}.
+Le fonctionnement de base de l’algorithme admet une priorité sur la production d’\abr{ECS}
+car les travaux de la littérature ont montrés que l’énergie était mieux valorisée de cette
+manière. Pour rappel, la température au niveau de l’échangeur solaire ($T3$) doit être
+supérieure à \SI{30}{\degree} afin de pouvoir charger le ballon tampon. Le choix de cette
+borne ($T3_{mini}$) est arbitraire et l’impact de sa variation est donc investiguée.
+
+L’activation du chauffage solaire ($Solaire_{direct}$ ou $Solaire_{indirect}$) est aussi
+contrôlé par une borne fixe \figref{fig:automate_chauffage}. Dans le cas du
+$Solaire_{direct}$, la température en sortie des capteurs $T1$ doit être supérieure ou
+égale au maximum entre \SI{40}{\degree} et la température de l’eau en sortie de
+l’échangeur eau/air ($T7$). Dans le cas du $Solaire_{indirect}$, la température du ballon
+tampon ($T5$) doit être supérieure à \SI{40}{\degree}. Afin de chercher à valoriser au
+maximum l’énergie solaire pour le chauffage, il est proposé non pas une borne fixe mais un
+différentiel de température minimal. Dans les deux modes de chauffage, la consigne
+d’activation est alors variable. Il est alors introduit deux nouvelles variables~: $\Delta
+Mini_{capteur}$ et $\Delta Mini_{tampon}$. Le chauffage peut ainsi être en
+$Solaire_{direct}$ lorsque, la différence de température entre la sortie des capteurs
+($T1$) et l’air après le caisson de mélange $T_{air}^{mix}$ est plus importante que
+$\Delta Mini_{capteur}$. De même, le chauffage peut être en $Solaire_{indirect}$, lorsque
+la différence de température entre le haut du ballon tampon et $T_{air}^{mix}$ est
+supérieure à $\Delta Mini_{tampon}$. Afin d’éviter des instabilité, il est de plus ajouté
+un hystérésis de \SI{5}{\degree} sur la consigne flottante.
+
+\begin{table}
+\centering
+\caption{Variations algorithmiques étudiées lors de l’analyse de sensibilité.
+\label{tab:variations_algo_sensibilite}}
+\begin{tabular}{l r}
+    \toprule
+    Paramètre                & Variations    \\
+    \midrule
+    $\Delta T_{sol}$           & \SIrange{5}{20}{\degree} \\
+    $\Delta Mini_{capteur}$  & \SIrange{0}{30}{\degree} \\
+    $\Delta Mini_{tampon}$   & \SIrange{0}{30}{\degree} \\
+    $T3_{mini}$              & \SIrange{15}{40}{\degree} \\
+    \bottomrule
+\end{tabular}
+\end{table}
+% paragraph valorisation_de_l_energie_solaire (end)
 
 
 % ------------------------------------------------------------------------------
