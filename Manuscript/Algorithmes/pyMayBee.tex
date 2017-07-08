@@ -45,17 +45,17 @@
     \emph{Initialisation des variables de décision pour chaque source}\;
     \For{$j \leftarrow 0$ \KwTo \ANbrVariables}
     {
-      \encircle{a} \emph{Initialisation de la position de la $\ASource_{i}$ de manière aléatoire}\;
+      \circled[b]{a} \emph{Initialisation de la position de la $\ASource_{i}$ de manière aléatoire}\;
       \Indp
       $x_{ij} = x_{j}^{min} + RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min})$\;
       \Indm
       \BlankLine
-      \encircle{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est calculée suivant Définition~\ref{def:oblm}}\;
+      \circled[b]{b}  \emph{Génération de l’$\ABee_{i}$ dont la position est calculée suivant Définition~\ref{def:oblm}}\;
       \Indp
       $ \check{x_{ij}} = x_{j}^{min} + x_{j}^{max} - x_{ij}$\;
       \Indm
       \BlankLine
-      \encircle{c} \emph{Évaluation de la $\ASource_{i}$ et de l’$\ABee_{i}$}\;
+      \circled[b]{c} \emph{Évaluation de la $\ASource_{i}$ et de l’$\ABee_{i}$}\;
       \BlankLine
       avec $RandUniform$ un tirage aléatoire suivant une loi uniforme, et $x_{j}^{min}$, $x_{j}^{max}$
       respectivement le minimum et le maximum de la variable $j$\;
@@ -70,7 +70,7 @@
     }
   }
   Mise à jour des \ASources d’après Algorithm~\ref{alg:maj_phase}\;
-  \caption{Initialisation des sources par OBLM (Définition~\ref{def:oblm}).}
+  \caption{Initialisation des sources par \abr{OBLM} (Définition~\ref{def:oblm}).}
   \label{alg:init_phase}
 \end{algorithm}
 
@@ -104,7 +104,7 @@
       Sélection aléatoire d’une \ASource $i$ selon la probabilité
       définie par l’équation \eqref{eq:attribution_prob_to_source}\;
       Sélection aléatoire d’une source $a$ ($a \neq i$) dans l’\AArchive\;
-      \encircle{a} \emph{Génération d’une nouvelle position $\vec{x_{i}}'$ à partir de la
+      \circled[b]{a} \emph{Génération d’une nouvelle position $\vec{x_{i}}'$ à partir de la
                          position $\vec{x_{i}}$ pour l’\AOuvriere }\;
       \For{$j \leftarrow 0$ \KwTo \ANbrVariables}
       {
@@ -120,7 +120,7 @@
       Avec \AMR est la probabilité de réaliser une modification (fixée à \num{0.2}) et
       \ATirageB un nombre aléatoire entre \num{0} et \num{1}\;
       \BlankLine
-      \encircle{b} \emph{Évaluation des objectifs pour la nouvelle position $\vec{x_{i}}'$}\;
+      \circled[b]{b} \emph{Évaluation des objectifs pour la nouvelle position $\vec{x_{i}}'$}\;
       \BlankLine
       \If{\AOuvriere respecte toutes les contraintes}
       {
@@ -181,7 +181,7 @@
     Sélection aléatoire d’une source $a$ ($a \neq i$) dans l’\AArchive\;
     Sélection aléatoire d’une source $b$ ($b \neq i$) dans l’\AHive\;
     \BlankLine
-    \encircle{a} \emph{Génération d’une nouvelle position $\vec{x_{i}}'$ à partir de la %
+    \circled[b]{a} \emph{Génération d’une nouvelle position $\vec{x_{i}}'$ à partir de la %
                        position $\vec{x_{i}}$ pour la \AButineuse $i$}\;
     \If{$\ATirageA < \ARatio $ }
       {
@@ -221,14 +221,14 @@
       de réaliser une modification (fixée à \num{0.3}). \ATirageA et \ATirageB étant des nombres aléatoires
       (entre \num{0} et \num{1}) tirés dans une distribution uniforme\;
       \BlankLine
-    \encircle{b} \emph{Évaluation des objectifs pour la nouvelle position $\vec{x_{i}}'$}\;
+    \circled[b]{b} \emph{Évaluation des objectifs pour la nouvelle position $\vec{x_{i}}'$}\;
     \If{$\AButineuse_{i}$ respecte toutes les contraintes}
     {
       \AComment{On ajoute la nouvelle source à l’archive}
       $\AArchive \pluseq \AButineuse_{i}$\;
     }
   }
-  \AComment{On ne conserve qu’une seule position par source}
+%   \AComment{On ne conserve qu’une seule position par source}
   Mise à jour de la position des \ASources d’après Algorithme~\ref{alg:maj_phase}\;
   \caption{Phase des butineuses.}
   \label{alg:employed_phase}

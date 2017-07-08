@@ -9,13 +9,13 @@
 % ------------------------------------------------------------------------------
 \subsection{Introduction} % (fold)
 \label{sub:mcda_introduction}
-L’utilisation d’une méthode multi-critère d’aide à la décision ($MCDA$, Multi-Criteria
+L’utilisation d’une méthode multi-critère d’aide à la décision (\abr{MCDA}, Multi-Criteria
 Decision Analysis) fait toujours suite à une pré-analyse permettant d’évaluer la ou les
 raisons motivant sa formulation. Elle peut être définie comme le processus permettant
 d’obtenir des éléments de réponse ou des prescriptions à partir de l’ensemble des
 informations disponibles. D’après \textcite{Roy1996}, un problème peut être
 classé suivant trois problématiques, à savoir, de choix, de tri, ou de classement. Dans les
-trois cas les différentes méthodes de $MCDA$ nécessitent le respect de quatre étapes~:
+trois cas les différentes méthodes de \abr{MCDA} nécessitent le respect de quatre étapes~:
 \begin{itemize}
   \item Lister les actions potentielles
   \item Lister les critères à considérer
@@ -44,7 +44,7 @@ nécessaire de définir les critères à optimiser. On parle alors des objectifs
 optimisation multi-critère ou multi-objectif. La définition des fonctions objectifs et des
 contraintes est propre à chaque problème et est directement dépendant des données
 disponibles. Dans le secteur du bâtiment, il est courant de considérer certaines sorties
-des logiciels de simulation dynamique (\textit{STD}, \textit{CFD}\dots) comme objectifs.
+des logiciels de simulation dynamique (\abr{STD}, \abr{CFD}\dots) comme objectifs.
 \textcite{Attia2013110}, montrent que dans le cas d’études sur la performance des bâtiment
 passifs la consommation, le coût, et le confort son couramment sélectionnés .
 \itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
@@ -80,7 +80,7 @@ Elles peuvent s’exprimer sous la forme de bornes, d’équations ou inéquatio
 
 La suite de cette section vise à présenter de manière succincte les différentes
 approches existantes. Pour le lecteur intéressé, une introduction plus complète
-des $MCDA$ ainsi que de nombreuses références sont proposées par \textcite{BenMena2000}.
+des \abr{MCDA} ainsi que de nombreuses références sont proposées par \textcite{BenMena2000}.
 Finalement, l’optimisation multi-objectif est décrite et l’approche retenue
 détaillée à travers une description complète de l’algorithme.
 % subsection introduction (end)
@@ -155,8 +155,8 @@ fonction de l’appréciation par le décideur en se basant sur des éléments s
 L’ensemble de ces fonctions est ensuite agrégé afin de construire la note unique.
 De nombreuses techniques comme la somme, la moyenne, le produit, ou encore la distance
 pondérée sont utilisées pour réaliser cette agrégation.
-Les méthodes $MAUT$ (Multiple Attribute Utility Theory) \parencite{Fishburn1970}
-ou $AHP$ (Analytic Hierarchy Process) \parencite{Saaty1987161} sont deux exemples utilisant
+Les méthodes \abr{MAUT} (Multiple Attribute Utility Theory) \parencite{Fishburn1970}
+ou \abr{AHP} (Analytic Hierarchy Process) \parencite{Saaty1987161} sont deux exemples utilisant
 l’approche par critère de synthèse.
 Ces approches assurent l’obtention d’une solution unique mais comportent
 cependant un fort effet compensatoire due à l’agrégation par pondération pour
@@ -212,7 +212,7 @@ contraintes permet de réduire l’espace de recherche pour converger vers une s
 répondant aux critères du décideur \parencite{Hwang1979}. Cette méthode fait ainsi
 intervenir technicien et décideur de manière similaire aux approches a posteriori à
 l’exception que le processus est itératif et progressif.
-\textcite{Flourentzou2002185} à travers le projet Européen $TOBUS$ (Tool for selecting Office Building
+\textcite{Flourentzou2002185} à travers le projet Européen \abr{TOBUS} (Tool for selecting Office Building
 Upgrading Solutions) implémentent une méthode interactive afin d’aider
 à la création de scénario de rénovation en tenant compte de nombreux critères comme les
 besoins énergétiques et le coût. L’outil informe aussi l’expert au fur et à mesure de la
@@ -236,7 +236,7 @@ permet une meilleure exploration de l’espace de décision.
 Une fois la surface de compromis atteinte, l’introduction de la préférence du décideur
 permet de réduire le nombre de solutions et/ou de les classer. Dans ces travaux, un trie
 par coordonnées parallèles \parencite{Inselberg198725} a été retenue. Le logiciel
-\href{http://www.xdat.org/}{\textit{XDAT}} sera utilisé afin de permettre au décideur d’adapter la
+\fnref{http://www.xdat.org/}{\textit{XDAT}} sera utilisé afin de permettre au décideur d’adapter la
 solution finale à ses contraintes et ses préférences propres de manière interactive.
 L’outil permet en effet de réduire le nombre de solution en réduisant les intervalles de variation
 pour chaque critère et chaque variable de décision grâce à un jeu de curseurs. L’approche
@@ -318,15 +318,15 @@ ou bien variable \parencite{Saltelli2004}.
 
 \paragraph{Principe~:} % (fold)
 \label{par:principe}
-La méthode de Morris utilise un plan $OAT$ (One (Factor) At the Time) et est basée
-sur l’$EEM$ (Elementary Effect Method) \parencite{Saltelli2004}. Chaque facteur
+La méthode de Morris utilise un plan \abr{OAT} (One (Factor) At the Time) et est basée
+sur l’\abr{EEM} (Elementary Effect Method) \parencite{Saltelli2004}. Chaque facteur
 (entrée) assume $z$ valeurs discrètes appelées \textit{niveaux} couvrant l’ensemble de la
 plage de validité. L’intervalle entre les différents niveaux est appelée \textit{pas}
 ($\delta$) et doit être un multiple de $\frac{1}{(z - 1)}$. La littérature utilise
 couramment $\delta = \frac{z}{2 \times (z - 1)}$ \parencite{Morris1991161, Campolongo20071509}.
 
 La méthode consiste en l’évaluation des effets élémentaires ($EE$) pour $R$ trajectoires
-(répétitions) à l’intérieur du plan $OAT$ (\figref{fig:fonctionnement_morris}).
+(répétitions) à l’intérieur du plan \abr{OAT} (\figref{fig:fonctionnement_morris}).
 Pour chaque trajectoire, une position de départ, puis la direction des variations
 élémentaires successives sont tirées aléatoirement. La méthode de Morris demande alors $R
 \times (j + 1)$ évaluations avec $j$ le nombre de facteurs dont on cherche à évaluer
@@ -528,8 +528,8 @@ du domaine de définition, \SI{90}{\percent} de l’échantillon sera utilisé p
 méta-modèle et les \SI{10}{\percent} restants sont utilisés afin de le valider. De plus le
 nombre minimal d’évaluations nécessaire pour la construction des méta-modèles sera aussi
 investigué. Les méta-modèles associés aux objectifs et contraintes étant propres au cas
-d’étude, le détail de leur construction est décrit à travers le cas d’étude (\mtodo{Ref
-chap 4}).
+d’étude, le détail de leur construction est décrit à travers le cas d’étude dans le
+dernier chapitre.
 % subsubsection construction (end)
 % subsection modeles_de_substitution (end)
 
@@ -542,7 +542,7 @@ l’approche décrite dans le chapitre précédent.
 Dans un premier temps la modélisation est réalisée de manière itérative et une étude
 paramétrique permet de définir les différents paramètres clés (objectifs, contraintes,
 variables, bornes\dots). Ensuite, la cardinalité du problème est réduite grâce à la
-\textit{méthode de Morris} appliquée sur chaque objectif et contrainte. Le problème
+méthode de \textit{Morris} appliquée sur chaque objectif et contrainte. Le problème
 résultant est alors substitué par un ensemble de méta-modèles afin de fortement réduire le
 temps de calcul nécessaire pour une évaluation. Les modèles de substitutions obtenues
 sont finalement utilisés pour réaliser l’optimisation multi-objectif dans l’optique
@@ -866,14 +866,14 @@ combinant exploration (\defref{def:exploration}) et exploitation
 mémoire et de l’expérience acquise à travers son évolution pour converger
 (\defref{def:convergence}) vers l’ensemble formé par les solutions optimales
 (\defref{def:optimum}). Il existe de nombreux algorithmes dans la littérature et
-ils peuvent tous être classés dans la branche de l’Intelligence Artificielle ($IA$). La
+ils peuvent tous être classés dans la branche de l’Intelligence Artificielle (\abr{IA}). La
 notion a été définie par
-\href{http://www-formal.stanford.edu/jmc/whatisai/whatisai.html}{John McCarthy
+\fnref{http://www-formal.stanford.edu/jmc/whatisai/whatisai.html}{John McCarthy
 et Marvin Lee Minsky} et ne cesse de s’améliorer dans de nombreux domaines comme le
 déplacement organisé en groupe (humains, oiseaux, poissons\dots) ou encore l’apprentissage
 et la réflexion. \textit{Deep Blue} a ainsi été le premier programme informatique à battre
 le champion du monde d’échec de l’époque \parencite{Hsu199970}. Le jeu de Go est un autre
-exemple témoignant de la forte évolution de l’$IA$. Alors que les anciens programmes étaient
+exemple témoignant de la forte évolution de l’\abr{IA}. Alors que les anciens programmes étaient
 loin d’être compétitifs contre le bas du classement des joueurs professionnels,
 \textit{AlphaGo} \parencite{Silver2016484} a battu le champion Européen (Fan Hui) puis un
 des meilleurs joueurs au monde au titre de 9 dan professionnel (Lee Sedol).
@@ -902,7 +902,7 @@ globaux (\defref{def:optimum}).
 \begin{Def}[Optimums locaux et globaux]\label{def:optimum}
 Il existe deux types d’optimum~: les locaux (fort ou faible) et les globaux. Un
 optimum est considéré comme local fort quand il domine l’ensemble des solutions du
-\textit{voisinage} et faible s’il est seulement non-dominé dans ce voisinage (plusieurs
+\textbf{voisinage} et faible s’il est seulement non-dominé dans ce voisinage (plusieurs
 optimum locaux identiques existent). Un optimum est considéré comme global
 lorsqu’il domine l’ensemble des solutions existantes dans le domaine de
 décision. Dans le cas d’une optimisation multi-objectif, l’ensemble des
@@ -953,19 +953,19 @@ familles se distinguent: les algorithmes évolutionnaires et les algorithmes d�
 %
 Ces méthodes sont basées sur les mécanismes de la sélection naturelle et les algorithmes
 génétiques sont les méthodes les plus répandues pour les problèmes combinatoires~:
-le plus connu étant l’algorithme \textit{NSGA II}
+le plus connu étant l’algorithme \abr{NSGA II}
 \parencite{Deb2002182} mais de nombreuses variations existent. L’algorithme
-\textit{SPEA2} par exemple améliore la diversité du front de Pareto grâce à une approche
+\abr{SPEA2} par exemple améliore la diversité du front de Pareto grâce à une approche
 par clustering au prix d’une convergence plus lente \parencite{Zitzler2001}. À
-l’inverse l’algorithme \textit{PESA} lui tent à améliorer la convergence au prix
+l’inverse l’algorithme \abr{PESA} lui tent à améliorer la convergence au prix
 de la diversité des solutions du front final. Appliquée au bâtiment,
-\textcite{Rivallain2013} a utilisé une méthode approchée (\textit{NSGA-II}) pour identifier
+\textcite{Rivallain2013} a utilisé une méthode approchée (\abr{NSGA-II}) pour identifier
 des programmes séquentiels efficaces de réhabilitation énergétique. Il a ainsi
 optimisé la combinaison des modifications pour chaque phase mais aussi l’ordre
 dans lequel ces améliorations doivent être réalisées. Pour les différentes
 solutions, l’impact environnemental, le confort des occupants en période
 estivale, et le coût, ont été évalués. Plus récemment, \textcite{Recht2016} a
-utilisé l’algorithme \textit{NSGA II} pour optimiser de manière combiné, le coût,
+utilisé l’algorithme \abr{NSGA II} pour optimiser de manière combiné, le coût,
 l’émission de Gaz à effet de serre, et les besoins d’une maison à énergie
 positive. Dans les deux cas, les résultats montrent que l’approche par méta-
 heuristique permet de récupérer la majorité des solutions optimales au sens de Pareto pour
@@ -986,7 +986,7 @@ explore une partie du domaine de décision en laissant une trace de phéromone
 derrière elle. Les phéromones permettent de guider les autres fourmis vers les
 solutions optimales et son évaporation impose un équilibre entre exploration et
 exploitation afin d’éviter la stagnation.
-Le \textit{PSO} (Particule Swarm Optimization), un autre algorithme, s’inspire du
+Le \abr{PSO} (Particule Swarm Optimization), un autre algorithme, s’inspire du
 comportement des oiseaux qui volent de manière synchrone et qui sont capables
 d’éviter les collisions même lors de changements brusques de direction. Cette
 approche a été appliquée au domaine du bâtiment pour l’optimisation multi-
@@ -1009,7 +1009,7 @@ les méta-heuristiques ont en commun l’introduction de mécanismes stochastiqu
 et nécessitent le réglage de différents paramètres. Ces paramètres sont dans la
 majorité déterminés de manière empirique même si certaines méthodes
 existent afin d’automatiser ce paramétrage. \textcite{Lopez-Ibanez2012861} ont ainsi
-adapté l’algorithme F-Race \parencite{Birattari2010311} aux problèmes multi-
+adapté l’algorithme \textit{F-Race} \parencite{Birattari2010311} aux problèmes multi-
 objectifs et proposent un outil permettant d’automatiser la paramétrisation de
 différents algorithmes de colonies de fourmis \parencite{Lopez-Ibanez2012861}.
 Les auteurs montrent ainsi qu’un réglage automatique par apprentissage permet
@@ -1072,7 +1072,7 @@ problème d’optimisation en lui-même. Ainsi plus le nombre de paramètres est
 plus le nombre d’itérations nécessaires pour leur détermination est important.
 
 Contrairement aux approches les plus couramment utilisées, l’algorithme de
-colonie d’abeilles virtuelles ($ABC$, Artificial Bee Colony) requiert la
+colonie d’abeilles virtuelles (\abr{ABC}, Artificial Bee Colony) requiert la
 définition de seulement trois paramètres, faisant de lui un candidat adapté dont
 la formulation est intuitive (\tabref{tab:meta_compare}). Le premier paramètre,
 $IT$, est commun à l’ensemble des approches et représente la condition d’arrêt.
@@ -1115,13 +1115,12 @@ ou limiter la diversité.
 
 L’approche sélectionnée, son implémentation doit être simple à coupler avec les outils
 utilisés pour la modélisation. La restriction principale étant le couplage avec le
-logiciel \textit{Dymola} par l’intermédiaire de son langage de script. De plus, un outil a
-été développé sur la base de la bibliothèque \textit{BuildingsPy} afin de réaliser l’étude
-paramétrique. Cet outil permet de simuler de manière concurrente le modèle, et ainsi
-fortement réduire le temps nécessaire par simulation. Afin de profiter de ces outils et
+logiciel \textit{Dymola} par l’intermédiaire de son langage de script. Afin
+de pouvoir simuler de manière concurrente un jeu de simulations une bibliothèque
+en \textit{Python} a été développée (\textit{DymTK}). Afin de profiter de ces outils et
 simplifier le couplage, seules les solutions développées en \textit{Python} sont retenues.
-Les suites logiciels telles que \href{http://jmetal.sourceforge.net/index.html}{jMetal}
-ou \href{http://moeaframework.org/index.html}{MOEA Framework} sont ainsi écartées.
+Les suites logiciels telles que \fnref{http://jmetal.sourceforge.net/index.html}{jMetal}
+ou \fnref{http://moeaframework.org/index.html}{MOEA Framework} sont ainsi écartées.
 
 Dans un premier temps \textit{DEAP} \parencite{Fortin20122171} une bibliothèque
 \textit{Python} a été choisie. Elle est construite de manière à permettre à
@@ -1131,13 +1130,13 @@ Bien que compatible avec les différents outils utilisés, la bibliothèque ne s
 pas retenue car les briques existantes sont principalement utiles pour créer un
 algorithme évolutionnaire. Par exemple la gestion de la nature des variables,
 les différentes marches aléatoires, ou encore les différentes phases de
-l’algorithme $ABC$ doivent être re-implémentées.
+l’algorithme \abr{ABC} doivent être re-implémentées.
 
 L’approche retenue a ainsi été de développer une bibliothèque permettant une utilisation
 simple et intuitive de l’algorithme dans l’optique de la ré-utilisabilité. De plus,
 de nombreuses améliorations proposées dans la littérature ont ainsi été mises en place
 afin de construire une méthode alternative aux approches plus traditionnelles.
-La section suivante présente plus en détail l’histoire de l’$ABC$ et l’évolution de
+La section suivante présente plus en détail l’histoire de l’\abr{ABC} et l’évolution de
 son fonctionnement à travers les améliorations sélectionnées.
 Le but étant d’améliorer l’exploration et l’exploitation tout en limitant la quantité
 de paramètres à définir de manière empirique afin de simplifier son utilisation.
@@ -1147,7 +1146,7 @@ de paramètres à définir de manière empirique afin de simplifier son utilisat
 % ------------------------------------------------------------------------------
 \subsection{Inspiration} % (fold)
 \label{sub:inspiration}
-Comme de nombreuses méta-heuristiques, l’$ABC$ est inspiré du comportement des êtres
+Comme de nombreuses méta-heuristiques, l’\abr{ABC} est inspiré du comportement des êtres
 vivants, ici plus particulièrement, du comportement des abeilles mellifères. De
 nombreux travaux ont vu le jour sur le comportement de ces abeilles comme leurs méthodes
 de communication et le fonctionnement de la récolte. \textcite{Visscher19821790} montrent
@@ -1157,8 +1156,8 @@ Puis, \textcite{Camazine1991547} élaborent un modèle mathématique permettant 
 le comportement social caractéristique des abeilles.
 L’idée de s’inspirer des abeilles mellifères pour l’optimisation n’est cependant introduit
 qu’en 2005 \parencite{Karaboga2005}. Même si de nombreuses formulations existent (Bee
-Algorithm (\textit{BA}), Bee Colony Optimization (\textit{BCO})\dots), la formulation de
-l’$ABC$ reste la plus répandue et sera retenue dans ces travaux (\figref{fig:abc_repartition}).
+Algorithm (\abr{BA}), Bee Colony Optimization (\abr{BCO})\dots), la formulation de
+l’\abr{ABC} reste la plus répandue et sera retenue dans ces travaux (\figref{fig:abc_repartition}).
 
 \begin{figure}
     \centering
@@ -1223,7 +1222,7 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Formulation} % (fold)
 \label{ssub:formulation}
-L’algorithme $ABC$ est une approche itérative constituée de 3 phases principales.
+L’algorithme \abr{ABC} est une approche itérative constituée de 3 phases principales.
 En amont de ce processus itératif, $N = \frac{NP}{2}$ sources sont initialisées
 aléatoirement \eqref{eq:init_source}, avec $NP$ la taille de la population.
 Chaque source $i$ est un vecteur $\vec{x}_{i}(i \in \{1, 2, \dotsc, N\})$ de dimension $D$
@@ -1249,7 +1248,7 @@ avec $D$ le nombre de variables de décision $x_{ij} (j \in \{1, 2, \dotsc, D\})
         permet de diversifier la recherche et d’éviter la stagnation.
 \end{itemize}
 
-L’\algref{alg:ABC_phases} décrit le principe de l’algorithme $ABC$ original.
+L’\algref{alg:ABC_phases} décrit le principe de l’algorithme \abr{ABC} original.
 À chaque itération les sources sont mises à jour par les butineuses. Ensuite une
 table de probabilité biaisée est créée~: une probabilité est attribuée à chaque source
 en fonction de leur qualité. Ensuite, les ouvrières exploitent les sources sélectionnées
@@ -1270,7 +1269,7 @@ remplacées par une nouvelle position aléatoire définie par les éclaireuses.
     \emph{Si la qualité de la source stagne réinitialiser sa position selon \eqref{eq:init_source}}\;
   }
   }
-  \caption{Principe de l’algorithme $ABC$.}
+  \caption{Principe de l’algorithme \abr{ABC}.}
   \label{alg:ABC_phases}
 \end{algorithm}
 
@@ -1320,11 +1319,11 @@ aux différents problèmes d’optimisation (\figref{fig:abc_publication}).
 
 La méta-heuristique étant plus faible en exploitation qu’en exploration, de nombreuses
 propositions d’améliorations ont vu le jour. Certains s’inspirent des algorithmes
-évolutionnaires \parencite{Bi2011174,Zhao2010558} et d’autres s’inspirent du \textit{PSO}.
-\textcite{Zhu20103166} développent l’algorithme GBest Artificial Bee Colony (\textit{GABC}) en
+évolutionnaires \parencite{Bi2011174,Zhao2010558} et d’autres s’inspirent du \abr{PSO}.
+\textcite{Zhu20103166} développent l’algorithme GBest Artificial Bee Colony (\abr{GABC}) en
 ajoutant la prise en compte de l’inertie et de la meilleure solution actuelle.
-\textcite{Li2012320} mimiquent la formulation du \textit{PSO} en ajoutant une inertie, l’accélération et la prise
-en compte de la meilleure solution et le nomme Improved Artificial Bee Colony (\textit{I-ABC}).
+\textcite{Li2012320} mimiquent la formulation du \abr{PSO} en ajoutant une inertie, l’accélération et la prise
+en compte de la meilleure solution et le nomme Improved Artificial Bee Colony (\abr{I-ABC}).
 Afin d’améliorer la diversité dans la population initiale, \textcite{Xiang20131256}
 initialisent la position des sources en utilisant une séquence issue de la théorie
 du chaos en place d’une initialisation stochastique. Il peut aussi être cité
@@ -1333,13 +1332,13 @@ basée sur la distribution de Lévy.
 
 L’algorithme a aussi été adapté afin de résoudre des problèmes multi-objectif.
 \textcite{Akbari201239} proposent une approche comprenant un essaim unique et le nomment
-\textit{MO-ABC} pour Multi-Objective Artificial Bee Colony. L’auteur utilise une archive
+\abr{MO-ABC} pour Multi-Objective Artificial Bee Colony. L’auteur utilise une archive
 basée sur l’$\epsilon$-dominance afin de maintenir la diversité et assurer la convergence
 vers le front de Pareto. Durant les phases des butineuses et des ouvrières seulement une
 variable est mise à jour en utilisant une version modifiée de l’équation
 \eqref{eq:update_source} où $a$ représente une solution de l’archive sélectionnée
 aléatoirement.
-\textcite{Omkar2011489} considèrent un essaim par objectif et nomme son approche~: \textit{VEABC}
+\textcite{Omkar2011489} considèrent un essaim par objectif et nomme son approche~: \abr{VEABC}
 pour Vector Evaluated Artificial Bee Colony. Une collaboration est mise en place
 permettant aux sources d’un essaim d’être mises à jour à partir des sources d’un autre
 essaim. L’approche est appliquée aux problèmes sous contraintes où l’auteur cherche à
@@ -1383,11 +1382,11 @@ forme caractéristique de la distribution de \textit{Lévy} retenue dont l’exp
 analytique est définie que pour certaines valeurs de paramètres contrairement aux autres
 distributions (\figref{fig:distribution_pdf}).
 
-\textcite{Sharma2012213}, utilisent le vol de Lévy afin de réaliser une recherche locale
+\textcite{Sharma2012213}, utilisent le vol de \textit{Lévy} afin de réaliser une recherche locale
 et \textcite{Hakli2013254}, l’utilisent pour améliorer l’exploitation durant la phase des
 exploratrices. Le \textit{Vol de Lévy} est aussi utilisé dans une méta-heuristique
 récente~: le \textit{Cuckko search}. Inspiré du comportement parasitaire de la
-reproduction des \href{https://fr.wikipedia.org/wiki/Cuculidae}{cuculidés}, il a aussi
+reproduction des \fnref{https://fr.wikipedia.org/wiki/Cuculidae}{cuculidés}, il a aussi
 fait l’objet d’une adaptation aux problèmes multi-critères \parencite{Yang20131616}.
 
 \begin{Def}[Marche aléatoire]\label{def:marche_aleatoire}
@@ -1405,14 +1404,14 @@ la somme des pas aléatoires consécutifs $X_{w}$ alors $S_{W}$ est une marche a
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/LevyFlight/distribution_pdf.pdf}
-    \caption{Densité de probabilité des lois de Cauchy, uniforme, normale, Lévy stable et symétrique.
+    \caption{Densité de probabilité des lois de Cauchy, uniforme, normale, \textit{Lévy} stable et symétrique.
              L’expression analytique est représentée par la courbe noire.}
     \label{fig:distribution_pdf}
 \end{figure}
 
 \begin{Def}[Vol de Lévy]\label{def:vol_levy}
-Un vol de Lévy est une marche aléatoire dont la longueur du pas (positif ou négatif)
-est définie aléatoirement à partir d’une distribution de Lévy stable et symétrique
+Un vol de \textit{Lévy} est une marche aléatoire dont la longueur du pas (positif ou négatif)
+est définie aléatoirement à partir d’une distribution de \textit{Lévy} stable et symétrique
 couramment décrite par la transformée de Fourier suivante:
 \begin{equation}\label{eq:fourier_levy}
     \mathcal{F}(k) = \exp(-\alpha\abs{k}^{\beta}) \qquad  0 < \beta \leq 2
@@ -1422,12 +1421,12 @@ La forme analytique étant définie par~:
     L(s) = \frac{1}{\pi} \int_{0}^{\infty} \cos(k s)\exp(-\alpha k^{\beta}) dk \qquad  0 < \beta \leq 2,
            \quad \alpha > 0
 \end{equation}
-On peut alors définir un Vol de Lévy pour une position initiale $x$ comme~:
+On peut alors définir un Vol de \textit{Lévy} pour une position initiale $x$ comme~:
 \begin{equation}
   x(t + 1) = x(t) + \omega \times T_{L} \times \Phi
 \end{equation}
 avec $\omega$ un facteur d’échelle permettant de limiter l’agressivité du pas,
-$T_{L}$ un nombre tiré aléatoirement dans la distribution de Lévy et $\Phi$
+$T_{L}$ un nombre tiré aléatoirement dans la distribution de \textit{Lévy} et $\Phi$
 un indicateur d’apprentissage propre à la méta-heuristique.
 \end{Def}
 
@@ -1452,17 +1451,17 @@ et est définie par:
   \bm{{\Gamma}}(\beta) = \int_{0}^{\infty} t^{\beta-1}e^{-t} dt
 \end{equation*}
 
-Le vol de Lévy peut ainsi être assimilé à une intensification (forte probabilité de générer un petit pas)
+Le vol de \textit{Lévy} peut ainsi être assimilé à une intensification (forte probabilité de générer un petit pas)
 couplée à de l’exploration (faible probabilité de générer un saut important) décrite par
-l’effet d’île caractéristique du vol de Lévy (\figref{fig:levy_vs_gaussian})
+l’effet d’île caractéristique du vol de \textit{Lévy} (\figref{fig:levy_vs_gaussian})
 Il est ainsi possible d’améliorer l’exploration mais aussi de se dégager des optimums
 locaux ou des solutions non prometteuses. Afin d’améliorer l’exploitation et l’exploration
-ces travaux implémentent un vol de Lévy comme marche aléatoire durant la phase des butineuses.
+ces travaux implémentent un vol de \textit{Lévy} comme marche aléatoire durant la phase des butineuses.
 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
-    \caption{Mouvement brownien (en vert) et vol de Lévy (en bleu) pour 200 pas aléatoires.}
+    \caption{Mouvement brownien (en vert) et vol de \textit{Lévy} (en bleu) pour 200 pas aléatoires.}
     \label{fig:levy_vs_gaussian}
 \end{figure}
 % subsection vol_de_levy (end)
@@ -1478,7 +1477,7 @@ L’approche la plus répandue consiste à construire une population initiale st
 à l’aide d’une distribution uniforme suivant \eqref{alg:init_phase}.
 Afin d’améliorer la diversité / qualité de la population initiale sans connaissance
 a priori, \textcite{Tizhoosh2005695} a développé l’apprentissage par vecteur opposé
-($OBL$ pour Opposite Based Learning) (\defref{def:oblm}).
+(\abr{OBL} pour Opposite Based Learning) (\defref{def:oblm}).
 
 \begin{Def}[OBL~:~Apprentissage par vecteur opposé]\label{def:oblm}
 Admettons une position de dimension $D$, $\vec{x}(x_{1}, x_{2}, \dotsc, x_{D})$ avec
@@ -1488,17 +1487,17 @@ $j = 1, 2, \dotsc, D$ alors la position opposée est $\vec{\check{x}}(\check{x_{
 \[\check{x_{j}} = c_{j} + d_{j} - x_{j}\]
 \end{Def}
 
-\textcite{Rahnamayan2008906} l’adaptent pour l’algorithme Differential Evolution (\textit{DE})
+\textcite{Rahnamayan2008906} l’adaptent pour l’algorithme Differential Evolution (\abr{DE})
 et montrent que la probabilité d’améliorer une solution est plus grande si on sélectionne
 la position opposée que si on tire aléatoirement une autre position.
 Dans leur implémentation, ils l’utilisent durant l’initialisation mais aussi au cours du
 processus d’optimisation. Les bornes ($c_{j}$ et $d_{j}$) sont alors définies dynamiquement
 afin d’éviter de ralentir la convergence.
-Cette approche a aussi été appliquée avec succès dans le cas de l’algorithme $ABC$
+Cette approche a aussi été appliquée avec succès dans le cas de l’algorithme \abr{ABC}
 en association avec un opérateur de mutation \parencite{Bi2011174}, ou encore en coopération
 avec une marche aléatoire \parencite{Sharma2012213}. Elle a aussi été utilisée pour
 résoudre des problèmes à objectifs multiples, en combinaison avec un algorithme
-évolutionnaire \parencite{Ma201448}, ou encore avec le \textit{PSO} \parencite{Gao2013114}.
+évolutionnaire \parencite{Ma201448}, ou encore avec le \abr{PSO} \parencite{Gao2013114}.
 
 L’approche est ainsi retenue afin d’améliorer la diversité de la population initiale
 et sera aussi utilisée durant la phase des exploratrices afin d’augmenter la qualité
@@ -1519,11 +1518,11 @@ Afin de garantir la convergence, il est nécessaire d’utiliser une approche é
 en limitant la population de l’archive aux solutions les plus performantes \parencite{Zitzler2000173}.
 De plus, afin d’éviter de converger vers un front local, la population doit conserver
 une bonne diversité.
-L’algorithme de base du \textit{NSGA-II} \parencite{Deb2002182}, utilise le \textit{Fast
+L’algorithme de base du \abr{NSGA-II} \parencite{Deb2002182}, utilise le \textit{Fast
 Non Dominated Sorting Algorithm} afin de construire son archive. Dans cette approche une
 sélection par rang est appliquée afin de trier les solutions en différents niveaux et la
 distance dite de crowding (distance moyenne entre deux solutions) est utilisée afin de
-maintenir la diversité. L’algorithme \textit{SPEA II} cherche à améliore la diversité du
+maintenir la diversité. L’algorithme \abr{SPEA II} cherche à améliore la diversité du
 front final au prix d’une convergence plus lente en utilisant une approche par clustering.
 Dans cette approche la taille limite de l’archive est définie par le nombre de cluster.
 Ces clusters sont formés en se basant sur la distance euclidienne et une seule solution
@@ -1532,7 +1531,7 @@ est retenue.
 grille dont les dimensions sont définies par le vecteur $\vec{\epsilon}$. Dans cette
 approche l’espace des objectifs est divisé en hypercubes, et chaque hypercube est comparé
 selon l’$\epsilon$-dominance (\defref{def:eps_dominance}). Bien que d’autres
-approches utilisent une grille similaire (\textit{PAES}) \parencite{Knowles2000149},
+approches utilisent une grille similaire (\abr{PAES}) \parencite{Knowles2000149},
 l’$\epsilon$-dominance n’accepte qu’une unique solution par hypercube assurant une plus
 grande diversité de la population. La taille de l’archive est donc fonction des $\epsilon$
 choisis pour chaque objectif et est donc toujours garantie d’être finie.
@@ -1584,13 +1583,13 @@ L’$\epsilon$-archive permet ainsi d’assurer~:
 \end{figure}
 L’étude réalisée par \textcite{Deb2005501} montre que l’$\epsilon$-dominance permet
 d’obtenir une très bonne convergence et une grande diversité sur le front final.
-Les résultats indiquent que les approches \textit{PESA} et \textit{NSGA II} obtiennent une moins
+Les résultats indiquent que les approches \abr{PESA} et \abr{NSGA II} obtiennent une moins
 bonne représentation du front de Pareto que celles utilisant l’$\epsilon$-dominance
-(\textit{$\epsilon$-MOEA}) ou le clustering (\textit{C-NSGA II}, \textit{SPEA}).
+(\abr{$\epsilon$-MOEA}) ou le clustering (\abr{C-NSGA II}, \abr{SPEA}).
 Cette observation est d’autant plus vraie pour des problèmes ayant plus de deux
-objectifs (\textit{DTLZ1} \dots \textit{DTLZ7}).
-De plus les résultats mettent aussi en évidence que le \textit{NSGA II} et le \textit{$\epsilon$-MOEA}
-convergent plus rapidement que le \textit{SPEA II}.
+objectifs (\textit{DTLZ1} \dots\ \textit{DTLZ7}).
+De plus les résultats mettent aussi en évidence que le \abr{NSGA II} et le \abr{$\epsilon$-MOEA}
+convergent plus rapidement que le \abr{SPEA II}.
 Un désavantage à cette méthode peut cependant être noté. De part sa formulation
 les solutions au niveau des extrêmes sur le front de Pareto sont plus difficilement
 atteignables.
@@ -1713,7 +1712,7 @@ multi-objectif retenue est décrit.
 
 L’algorithme (\figref{fig:abc_complet}) et le détail de chaque phase est décrit ci-après.
 Les sources sont initialisées (\algref{alg:init_phase}) suivant la méthode
-$OBL$ (\defref{def:oblm}) afin d’obtenir une meilleure représentation du
+\abr{OBL} (\defref{def:oblm}) afin d’obtenir une meilleure représentation du
 domaine de décision en amont de l’optimisation.
 Durant la phase des butineuses (\algref{alg:employed_phase}), chaque source
 subit une variation en tenant compte de deux sources, une de l’essaim et une de l’archive.
@@ -1739,8 +1738,8 @@ de l’archive forme le front de Pareto.
 
 Dans l’optique de l’optimisation d’un modèle solaire développé sous \textit{Dymola}, l’algorithme
 a été implémenté en \textit{Python} afin de faciliter le couplage avec la bibliothèque
-\textit{BuildingsPy} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
-la simulation de modèle \textit{Modelica} sous \textit{Dymola}. La bibliothèque est
+\textit{DymTK} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
+la simulation concurrente de modèle \textit{Modelica} sous \textit{Dymola}. La bibliothèque est
 disponible sous le nom de \textit{pyMOABC} et implémente~:
 \begin{itemize}
   \item Une $\epsilon$-archive et la hypercube-dominance
@@ -1783,7 +1782,7 @@ performance de l’algorithme simplifiant sa paramétrisation.
 Cette section permet d’apprécier la performance de l’approche pour différentes types
 de problèmes pouvant être rencontrés dans un problème d’optimisation.
 
-La bibliothèque \textit{pyMOABC} a été développée autour de tests unitaires
+La bibliothèque \textit{pyMayBee} a été développée autour de tests unitaires
 (Test-driven development).
 Chaque éléments (fonction / méthodes /\dots) et comportements (minimisation / maximisation /\dots)
 ont ainsi été testés afin de garantir que la bibliothèque implémente correctement

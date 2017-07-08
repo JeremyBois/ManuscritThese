@@ -14,9 +14,6 @@
 %   Math font       : Asana-Math
 % ------------------------------------------------------------------------------
 
-% Class structure: declaration of options part
-\LoadClass{report}
-
 \RequirePackage{graphicx}
 \RequirePackage{grffile}
 
@@ -36,7 +33,15 @@
                 \PassOptionsToClass{\CurrentOption}{report}}}
 
 % Class structure: execution of options part
-\ProcessOptions \relax
+\ProcessOptions*\relax
+
+% Class structure: declaration of options part
+\LoadClass{report}
+
+% ------------------------------------------------------------------------------
+% If then else clause support
+% ------------------------------------------------------------------------------
+\RequirePackage{etoolbox}
 
 
 % ------------------------------------------------------------------------------
@@ -99,7 +104,7 @@
 %    \hypersetup{}                                       % Add meta-data to pdf
 
 % Add appendix
-\RequirePackage{appendix}
+\RequirePackage[page, toc]{appendix}
 
 % Hyper links and meta data
 \RequirePackage{bookmark}                                % load hyperref internally
@@ -111,12 +116,47 @@
 \newcommand{\tabref}{Tab.~\ref}  % Tableaux
 \newcommand{\algref}{Alg.~\ref}  % Algorithmes
 
-% Layout
-\RequirePackage[top=1.5cm,
-                bottom=2cm,
-                left=2.5cm,
-                right=2.5cm,
-                a4paper]{geometry}                       % Define default geometry
+% Prevent headings and footers to appear on empty pages
+\RequirePackage{emptypage}
+
+% Change headers and footers
+\RequirePackage{fancyhdr}
+% Quick way to control where to put and not put heading and footnotes
+\newcommand{\footOn}{\pagestyle{fancy}}
+\newcommand{\footOff}{\pagestyle{empty}}
+% Redefine of command only works after first call of \pagestyle{fancy}
+\footOn
+\fancyhf{}  % Clean all headers and footers
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\headrulewidth}{0pt}
+
+% Change footer and layout based on argument sent to report class
+\if@twoside
+  % Layout
+  \RequirePackage[top=1.5cm,
+                  bottom=2.25cm,
+                  footskip=1.25cm,
+                  width=170mm,         % Same size as in oneside
+                  headheight=30pt,
+                  a4paper]{geometry}  % a4
+
+  \fancyfoot[LE, RO]{\thepage}
+  \fancyfoot[C]{}
+  \fancyfoot[RE]{\chaptername \enspace \large\thechapter}
+  \fancyfoot[LO]{\textit{\leftmark \nouppercase{\rightmark}}}
+\else
+  % Layout
+  \RequirePackage[top=1.5cm,
+                  bottom=2.25cm,
+                  footskip=1.25cm,
+                  width=170mm,         % Same size as in oneside
+                  headheight=30pt,
+                  a4paper]{geometry}  % a4
+  \fancyfoot[R]{\thepage}
+  \fancyfoot[C]{}
+  \fancyfoot[L]{\textit{\chaptername \enspace \large\thechapter}\enspace \bullet \enspace \textit{\leftmark \nouppercase{\rightmark}}}
+\fi
+\footOff
 
 
 % Add links as hyperlinks (numeric version) and in footnotes (printed version)
@@ -152,13 +192,14 @@
  \color{SolarizedBrBlack} \titlerule[2pt] \vspace{1ex} \filcenter   % Lighter color for lines
  \color{defaultcolor}                                               % Reset default color
 }
-[\vspace{1ex} \normalfont \normalsize \color{defaultcolor}                      % Reset default color and font
+[\vspace{1ex} \normalfont \normalsize \color{defaultcolor}          % Reset default color and font
 ]
 % Rewrite other title and add float barrier to section and subsections
 \titleformat*{\section}{\FloatBarrier\normalfont\Large\bfseries}
 \titleformat*{\subsection}{\FloatBarrier\normalfont\large\bfseries}
 \titleformat*{\subsubsection}{\normalfont\normalsize\bfseries}
 \titleformat*{\paragraph}{\normalfont\normalsize\bfseries}
+\assignpagestyle{\chapter}{empty}                                   % Clean page number on first page
 
 % Redefinition of layout for items and description list
 \RequirePackage[shortlabels]{enumitem}                   % List option with enumerate compatibility
@@ -528,10 +569,10 @@
 %   \nomenclature{symbol}{definition \nomunit{unité}}  % Add new item with unit
 
 \RequirePackage{nomencl}
-\RequirePackage{etoolbox}
 
 % Add groups
 \renewcommand\nomgroup[1]{%
+  \bigskip
   \bigskip
   \item[\bfseries
   \ifstrequal{#1}{A}{Abréviations}{%
@@ -554,18 +595,30 @@
 % ------------------------------------------------------------------------------
 % Other commands
 % ------------------------------------------------------------------------------
-% Add command to bubble a text
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-    \node[shape=circle,draw,inner sep=2pt, line width=2pt] (char) {#1};}}
+% Add command to bubble a text with optional argument to keep same size for all
+% \circled{1}       % fit argument size
+% \circled{1}[10]   % fit optional argument size
+\newcommand{\circled}[2][]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape = circle, draw, inner sep = 2pt, line width=0.5pt]
+    (char) {\phantom{\ifblank{#1}{#2}{#1}}};%
+    \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
+
 
 % ------------------------------------------------------------------------------
 % Expand French support of babel
 % ------------------------------------------------------------------------------
-\addto\captionsfrench{
+\addto\captionsfrench{%
   \renewcommand{\contentsname}{Sommaire}
   \renewcommand{\listfigurename}{Liste des Figures}
   \renewcommand{\listtablename}{Liste des Tableaux}
   \renewcommand{\appendixtocname}{Annexes}
   \renewcommand{\appendixpagename}{Annexes}
   \renewcommand{\appendixname}{Annexe}
+}
+
+\DefineBibliographyStrings{french}{%
+  bibliography = {Références bibliographiques},
+  references = {Références bibliographiques},
 }

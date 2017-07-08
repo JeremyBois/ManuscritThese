@@ -26,9 +26,10 @@
 
 % Load thesis config with auto scale graphics and figures
 \documentclass[11pt, oneside, fixOverflow]{JeremyThesis}
+% \documentclass[11pt, twoside, openright, fixOverflow]{JeremyThesis}
 
 % Load thesis config without auto scale graphics and figures (final)
-% \documentclass[11pt, twoside]{JeremyThesis}
+% \documentclass[11pt, twoside, openright]{JeremyThesis}
 
 
 % ------------------------------------------------------------------------------
@@ -91,10 +92,6 @@ BoldFont=*Bold,
 ItalicFont=*Italic,
 BoldItalicFont=*BoldItalic,
 ]
-
-% \setsansfont{PT Sans}[
-% % Color=SolarizedBrBlack,
-% ] % Same as in figure
 
 % Sans Serif font (figures (titles ??))
 \setsansfont{PTS}[
@@ -168,9 +165,10 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
 % Document start here
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
 \begin{document}
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
 
 
 % ------------------------------------------------------------------------------
@@ -184,6 +182,7 @@ Extension=.otf,
 \pagenumbering{arabic}
 
 
+
 % ------------------------------------------------------------------------------
 % Resume
 % ------------------------------------------------------------------------------
@@ -193,22 +192,22 @@ Extension=.otf,
 % Merci merci ...
 
 
+
 % ------------------------------------------------------------------------------
 % Tables of contents
 % ------------------------------------------------------------------------------
-\tableofcontents
-\listoffigures
-\listoftables
-\listofalgorithms
-\input{Nomenclature/nomenclature}
-\printnomenclature[3cm]
-\thispagestyle{empty}
-\newpage
-\listoftodos[Notes]
-\newpage
-\itodo{Ajouter en-tête indiquant le chapitre en cours}
-\itodo{Ajouter note de bas de page indiquant : nom / université / année}
-\itodo{Ajouter en bas de page les liens vers les sites pour la version papier}
+% \tableofcontents
+% \listoffigures
+% \listoftables
+% \listofalgorithms
+% \input{Nomenclature/nomenclature}
+% \printnomenclature[3cm]
+% \thispagestyle{empty}
+% \newpage
+% \listoftodos[Notes]
+% \clearpage
+\footOn
+
 
 
 % ------------------------------------------------------------------------------
@@ -221,10 +220,10 @@ Extension=.otf,
 % \input{Chapitres/Chap1-ContexteTravaux}
 
 \chapter{Modélisation détaillée d’un système solaire combiné innovant}
-\input{Chapitres/Chap2-ApprocheModelisation}
+% \input{Chapitres/Chap2-ApprocheModelisation}
 
 \chapter{Développement d’une méthode d’aide à la décision}
-% \input{Chapitres/Chap3-UnOutilAideDecision}
+\input{Chapitres/Chap3-UnOutilAideDecision}
 
 \chapter{Application: Optimisation multi-objectif d’un système solaire combiné couplé à une maison passive}
 % \input{Chapitres/Chap4-OptimisationSystemeSolaire}
@@ -233,49 +232,79 @@ Extension=.otf,
 % \input{Chapitres/Conclusion}
 
 
-% % ------------------------------------------------------------------------------
-% % Appendix
-% % ------------------------------------------------------------------------------
-\newpage
-\addappheadtotoc
-\appendix
-\appendixpage
 
-% \chapter*{Énergie} % (fold)
+% ------------------------------------------------------------------------------
+% Appendix
+% ------------------------------------------------------------------------------
+% \begin{appendices}
+% \assignpagestyle{\chapter}{plain}  % Page number in first page
+% \fancyhf{}                         % Clean all headers and footers
+
+% % Add Appendix name and page number only
+% \makeatletter
+% \if@twoside
+%   \fancyfoot[LE, RO]{\thepage}
+%   \fancyfoot[RE, LO]{\appendixname \enspace \large\thechapter}
+% \else
+%   \fancyfoot[R]{\thepage}
+%   \fancyfoot[L]{\appendixname \enspace \large\thechapter}
+% \fi
+% \makeatother
+
+% \chapter{Énergie} % (fold)
 % \label{cha:energie}
-% \include{Annexes/primaire_finale_coefs}
+% \input{Annexes/primaire_finale_coefs}
 
-\chapter*{Bâtiment} % (fold)
-\label{cha:batiment}
-\include{Annexes/parois}
-\include{Annexes/vitrages}
+% \chapter{Bâtiment} % (fold)
+% \label{cha:batiment}
+% \input{Annexes/vitrages}
+% \include{Annexes/parois}
 
-\chapter*{Système solaire} % (fold)
-\label{cha:systeme_solaire}
-\include{Annexes/ssc}
+% \chapter{Système solaire} % (fold)
+% \label{cha:systeme_solaire}
+% \include{Annexes/ssc}
 
-% \chapter*{Répartition des capteurs} % (fold)
-% \label{cha:repartition_des_capteurs}
-% \include{Annexes/packaging}
+% % \chapter{Répartition des capteurs} % (fold)
+% % \label{cha:repartition_des_capteurs}
+% % \include{Annexes/packaging}
 
-% \chapter*{Analyse de sensibilité} % (fold)
-% \label{cha:analyse_de_sensibilite}
-% \include{Annexes/sensibilite}
+% % \chapter{Analyse de sensibilité} % (fold)
+% % \label{cha:analyse_de_sensibilite}
+% % \include{Annexes/sensibilite}
 
-% \chapter*{Création des méta-modèles} % (fold)
-% \label{cha:creation_des_meta_modeles}
-% \include{Annexes/meta-modele}
+% % \chapter{Création des méta-modèles} % (fold)
+% % \label{cha:creation_des_meta_modeles}
+% % \include{Annexes/meta-modele}
+% \end{appendices}
+
+
 
 % ------------------------------------------------------------------------------
 % Bibliography
 % ------------------------------------------------------------------------------
 \newpage
-\printbibliography[title={Références bibliographiques}]
+\assignpagestyle{\chapter}{plain}  % Page number in first page
+\fancyhf{}                         % Clean all headers and footers
+
+\makeatletter
+\if@twoside
+  \fancyfoot[LE, RO]{\thepage}
+  \fancyfoot[RE, LO]{\bibname}
+\else
+  \fancyfoot[R]{\thepage}
+  \fancyfoot[L]{\bibname}
+\fi
+\makeatother
+
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\printbibliography
 
 
-\end{document}
+
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
 % Document end here
+\end{document}
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
