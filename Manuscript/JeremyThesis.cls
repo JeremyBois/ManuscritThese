@@ -361,6 +361,9 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
+% Sometimes auto scaling is not enought and manual tuning can be done using
+% ( \big( \Big( \bigg( \Bigg(
+
 % Swap the definition of \abs* and \norm*, so that \abs and \norm resizes the
 % size of the brackets, and the starred version does not.
 \let\oldabs\abs
