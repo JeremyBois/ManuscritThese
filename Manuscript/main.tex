@@ -25,8 +25,8 @@
 % \documentclass[11pt, draft, oneside, fixOverflow]{JeremyThesis}
 
 % Load thesis config with auto scale graphics and figures
-\documentclass[11pt, oneside, fixOverflow]{JeremyThesis}
-% \documentclass[11pt, twoside, openright, fixOverflow]{JeremyThesis}
+% \documentclass[11pt, oneside, fixOverflow]{JeremyThesis}
+\documentclass[11pt, twoside, openright, fixOverflow]{JeremyThesis}
 
 % Load thesis config without auto scale graphics and figures (final)
 % \documentclass[11pt, twoside, openright]{JeremyThesis}
@@ -121,6 +121,7 @@ Extension=.otf,
 % \usepackage{lscape}   % Printed version (rotate only content)
 
 
+
 % ------------------------------------------------------------------------------
 % Algorithm support
 % ------------------------------------------------------------------------------
@@ -128,6 +129,7 @@ Extension=.otf,
             linesnumbered, lined,
             boxed,
             commentsnumbered]{algorithm2e}
+
 
 
 % ------------------------------------------------------------------------------
@@ -196,16 +198,16 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % Tables of contents
 % ------------------------------------------------------------------------------
-% \tableofcontents
-% \listoffigures
-% \listoftables
-% \listofalgorithms
-% \input{Nomenclature/nomenclature}
-% \printnomenclature[3cm]
-% \thispagestyle{empty}
-% \newpage
-% \listoftodos[Notes]
-% \clearpage
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms
+\input{Nomenclature/nomenclature}
+\printnomenclature[3cm]
+\thispagestyle{empty}
+\newpage
+\listoftodos[Notes]
+\clearpage
 \footOn
 
 
@@ -213,20 +215,24 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % Chapters
 % ------------------------------------------------------------------------------
+\itodo{Ajouter introduction}
+\itodo{Ajouter résumé par chapitre}
+\itodo{Ajouter Conclusion}
+
 % \chapter*{Introduction}
 % \input{Chapitres/Introduction}
 
-\chapter{Le solaire thermique appliqué au bâtiment, un problème multicritère}
+\chapter{Le solaire thermique appliqué au bâtiment, un problème multi-critères}
 % \input{Chapitres/Chap1-ContexteTravaux}
 
 \chapter{Modélisation détaillée d’un système solaire combiné innovant}
 % \input{Chapitres/Chap2-ApprocheModelisation}
 
 \chapter{Développement d’une méthode d’aide à la décision}
-\input{Chapitres/Chap3-UnOutilAideDecision}
+% \input{Chapitres/Chap3-UnOutilAideDecision}
 
-\chapter{Application: Optimisation multi-objectif d’un système solaire combiné couplé à une maison passive}
-% \input{Chapitres/Chap4-OptimisationSystemeSolaire}
+\chapter{Optimisation multi-objectifs d’un \abr{SSC} couplé à une \abr{MEPOS}}
+\input{Chapitres/Chap4-OptimisationSystemeSolaire}
 
 % \chapter*{Conclusion et Perspectives}
 % \input{Chapitres/Conclusion}
@@ -236,21 +242,7 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % Appendix
 % ------------------------------------------------------------------------------
-% \begin{appendices}
-% \assignpagestyle{\chapter}{plain}  % Page number in first page
-% \fancyhf{}                         % Clean all headers and footers
-
-% % Add Appendix name and page number only
-% \makeatletter
-% \if@twoside
-%   \fancyfoot[LE, RO]{\thepage}
-%   \fancyfoot[RE, LO]{\appendixname \enspace \large\thechapter}
-% \else
-%   \fancyfoot[R]{\thepage}
-%   \fancyfoot[L]{\appendixname \enspace \large\thechapter}
-% \fi
-% \makeatother
-
+\begin{thesisAppendices}
 % \chapter{Énergie} % (fold)
 % \label{cha:energie}
 % \input{Annexes/primaire_finale_coefs}
@@ -275,30 +267,14 @@ Extension=.otf,
 % % \chapter{Création des méta-modèles} % (fold)
 % % \label{cha:creation_des_meta_modeles}
 % % \include{Annexes/meta-modele}
-% \end{appendices}
+\end{thesisAppendices}
 
 
 
 % ------------------------------------------------------------------------------
 % Bibliography
 % ------------------------------------------------------------------------------
-\newpage
-\assignpagestyle{\chapter}{plain}  % Page number in first page
-\fancyhf{}                         % Clean all headers and footers
-
-\makeatletter
-\if@twoside
-  \fancyfoot[LE, RO]{\thepage}
-  \fancyfoot[RE, LO]{\bibname}
-\else
-  \fancyfoot[R]{\thepage}
-  \fancyfoot[L]{\bibname}
-\fi
-\makeatother
-
-\phantomsection
-\addcontentsline{toc}{chapter}{\bibname}
-\printbibliography
+\thesisPrintbibliography
 
 
 

@@ -116,20 +116,6 @@
 \newcommand{\tabref}{Tab.~\ref}  % Tableaux
 \newcommand{\algref}{Alg.~\ref}  % Algorithmes
 
-% Prevent headings and footers to appear on empty pages
-\RequirePackage{emptypage}
-
-% Change headers and footers
-\RequirePackage{fancyhdr}
-% Quick way to control where to put and not put heading and footnotes
-\newcommand{\footOn}{\pagestyle{fancy}}
-\newcommand{\footOff}{\pagestyle{empty}}
-% Redefine of command only works after first call of \pagestyle{fancy}
-\footOn
-\fancyhf{}  % Clean all headers and footers
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
-\renewcommand{\headrulewidth}{0pt}
-
 % Change footer and layout based on argument sent to report class
 \if@twoside
   % Layout
@@ -139,11 +125,6 @@
                   width=170mm,         % Same size as in oneside
                   headheight=30pt,
                   a4paper]{geometry}  % a4
-
-  \fancyfoot[LE, RO]{\thepage}
-  \fancyfoot[C]{}
-  \fancyfoot[RE]{\chaptername \enspace \large\thechapter}
-  \fancyfoot[LO]{\textit{\leftmark \nouppercase{\rightmark}}}
 \else
   % Layout
   \RequirePackage[top=1.5cm,
@@ -152,16 +133,85 @@
                   width=170mm,         % Same size as in oneside
                   headheight=30pt,
                   a4paper]{geometry}  % a4
+\fi
+
+% Change headers and footers (must be load after geometry to work)
+\RequirePackage{fancyhdr}
+% Quick way to control where to put and not put heading and footnotes
+\newcommand{\footOn}{\pagestyle{fancy}}
+\newcommand{\footOff}{\pagestyle{empty}}
+% Redefine footer style (must be done after first call of \pagestyle{fancy}
+\footOn
+
+\fancyhf{}  % Clean all headers and footers
+% Remove header and footer lines
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\if@twoside
+  \renewcommand{\chaptermark}[1]{\markboth{ \textit{\chaptername \enspace \large \thechapter}%
+                                 \enspace \bullet \enspace%
+                                 \textit{#1}}{}}
+  \renewcommand{\sectionmark}[1]{\markright{\normalsize \textit{#1}}}
+  \fancyfoot[LE, RO]{\thepage}
+  \fancyfoot[C]{}
+  \fancyfoot[RE]{\nouppercase{\leftmark}}
+  \fancyfoot[LO]{\nouppercase{\rightmark}}
+\else
+  \renewcommand{\sectionmark}[1]{\markboth{\textit{\chaptername \enspace \large \thechapter}%
+                                           \enspace \bullet \enspace%
+                                           \textit{#1}}{}}
   \fancyfoot[R]{\thepage}
   \fancyfoot[C]{}
-  \fancyfoot[L]{\textit{\chaptername \enspace \large\thechapter}\enspace \bullet \enspace \textit{\leftmark \nouppercase{\rightmark}}}
+  \fancyfoot[L]{\nouppercase{\leftmark}}
 \fi
+
+% Footer and headers style for bibliography
+% \thispagestyle{bibliographyplain}                  % Select this style for one page
+% \pagestyle{bibliographyplain}                      % Apply this style for remaining pages
+\fancypagestyle{bibliographyPlain}{%
+  % Add page number on chapter first page
+  \assignpagestyle{\chapter}{plain}
+  % Define style for footer
+  \fancyhf{}  % Clean all headers and footers
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \if@twoside
+    \fancyfoot[LE, RO]{\thepage}
+    \fancyfoot[RE, LO]{\bibname}
+  \else
+    \fancyfoot[R]{\thepage}
+    \fancyfoot[L]{\bibname}
+  \fi
+}
+
+% Footer and headers style for appendices
+% \thispagestyle{appendicesplain}                  % Select this style
+% \pagestyle{appendicesplain}                      % Apply this style
+\fancypagestyle{appendicesPlain}{%
+  % Add page number on chapter first page
+  \assignpagestyle{\chapter}{plain}
+  % Define style for footer
+  \fancyhf{}  % Clean all headers and footers
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \if@twoside
+    \fancyfoot[LE, RO]{\thepage}
+    \fancyfoot[RE, LO]{\appendixname \enspace \large\thechapter}
+  \else
+    \fancyfoot[R]{\thepage}
+    \fancyfoot[L]{\appendixname \enspace \large\thechapter}
+  \fi
+}
+
+
+% Adding a footer must be explicitly done by user
 \footOff
 
+% Prevent headings and footers to appear on empty pages
+\RequirePackage{emptypage}
 
 % Add links as hyperlinks (numeric version) and in footnotes (printed version)
 \newcommand\fnref[2]{\href{#1}{#2}\footnote{\url{#1}}}
-
 
 % Redefinition of chapter and other sections
 \RequirePackage{titlesec}                                % Redefined titles
@@ -593,7 +643,7 @@
 
 
 % ------------------------------------------------------------------------------
-% Other commands
+% Tools commands
 % ------------------------------------------------------------------------------
 % Add command to bubble a text with optional argument to keep same size for all
 % \circled{1}       % fit argument size
@@ -604,6 +654,28 @@
     (char) {\phantom{\ifblank{#1}{#2}{#1}}};%
     \node at (char.center) {\makebox[0pt][c]{#2}};}}
 \robustify{\circled}
+
+
+% Add environnement for APPENDICES with class style
+% Name differs from original to force user to call it explicitly
+\newenvironment{thesisAppendices}{%
+    \begin{appendices}
+    \pagestyle{appendicesPlain}      % for other pages
+    }
+    {\end{appendices} \clearpage \pagestyle{fancy}}  % Close appendices environment
+
+
+% Add command to put BIBLIOGRAPHY with class style
+% Name differs from original to force user to call it explicitly
+\newcommand{\thesisPrintbibliography}{%
+  \pagestyle{bibliographyPlain}
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\bibname}
+  \printbibliography
+  \clearpage
+  \pagestyle{fancy}
+}
+
 
 
 % ------------------------------------------------------------------------------
