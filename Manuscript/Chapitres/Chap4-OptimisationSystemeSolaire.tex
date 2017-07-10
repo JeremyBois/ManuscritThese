@@ -189,6 +189,8 @@ seront écartées.
 % subsection hypotheses_retenus (end)
 
 
+\itodo{Décrire paramètres a priori avant objectifs}
+
 
 % ------------------------------------------------------------------------------
 \subsection{Définition des objectifs} % (fold)
@@ -199,64 +201,93 @@ seront écartées.
 \noindent Dans un premier temps, fort de l’expérience acquise à travers l’étude paramétrique,
 les objectifs sont formalisés de la manière suivante~:
 \begin{itemize}
-  \item Maximiser le $F_{sol}^{ECS}$ ou le $F_{sav}^{ECS}$
-  \item Maximiser le $F_{sol}^{CH}$ ou le $F_{sav}^{CH}$
+  \item Maximiser le $F_{sol}^{ECS}$
+  \item Maximiser le $F_{sol}^{CH}$
   \item Minimiser la $Conso_{app}$
 \end{itemize}
 
-Cependant formulé de cette manière, l’approche comporte plusieurs failles. Premièrement,
-il est clair que même si les \num{3} objectifs ne sont pas impactés par les mêmes
-paramètres, une tendance commune est identifiable. Ainsi, sans objectifs évoluant de
-manière \enquote{contradictoires} l’optimisation risque de converger vers un ensemble
-de solution très réduit voir une solution unique.
-Deuxièmement, l’approche introduit un biais important sur la surface de $PV$. Afin de
-respecter la contrainte, deux configurations extrêmes sont possibles~:
+Formulé de cette manière, l’approche comporte plusieurs limites. Il est clair que même si
+les \num{3} objectifs ne sont pas impactés par les mêmes paramètres, une tendance commune
+existe et l’optimisation risque de converger vers un ensemble de solution très réduit voir
+une solution unique.
+
+Concernant les deux premiers objectifs, $F_{sol}^{ECS}$ et $F_{sol}^{CH}$, un autre
+problème est soulevé. Comme identifié dans la littérature, ces indicateurs évaluent la
+part solaire respectivement pour la production d’\abr{ECS} et le chauffage. Cependant une
+augmentation de la part solaire ne signifie pas forcement une diminution de la part de
+l’appoint en particulier durant la période estivale où le solaire est abondant. Même si
+dans ces travaux, la de simulation est limitée à la période s’étendant du $1^{er}$ octobre
+au $30$ avril, il est toujours possible que certains apports solaires soient inutiles, en
+particulier les apports passifs au niveau des ballons.
+
+Finalement, le troisième objectif introduit un biais important sur la surface de $PV$
+limitant l’exploratoire de l’algorithme. En effet, l’approche retenue dans ces travaux
+cherche à caractériser l’ensemble des combinaisons existantes permettant d’obtenir
+une \abr{MEPOS} solaire. Ainsi deux configurations extrêmes sont identifiés~:
 \begin{itemize}
   \item Avoir beaucoup de $PV$ et peu de capteurs thermiques
   \item Avoir beaucoup de capteurs thermiques et suffisamment de $PV$ pour couvrir
         les consommations des équipements internes.
 \end{itemize}
-Cependant, une fois que la $Conso_{totale}$
-a atteinte la limite basse imposée par la contrainte (par exemple \SI{-298}{kWH} pour Bordeaux),
-la surface de $PV$ ne peut plus augmenter sans que la contrainte soit violée (production trop importante d’électricité).
-La surface de $PV$ n’a en effet aucun impact sur les objectifs résultant et les solutions avec
-une surface plus importante seront donc rejetées.
-Afin que la surface de $PV$ soit influente sur au moins un objectif il est possible
-de minimiser la $Conso_{totale}$ au lieu de minimiser la $Conso_{app}$.
-Cependant, il a été vu au chapitre précédent que la dominance de Pareto implique que une solution
-est meilleure qu’une autre si et seulement si elle est meilleure sur un objectif et au moins
-aussi bonne sur tous les autres (\defref{def:dominance_de_pareto}). Il est donc clair que
-cette modification ne permet pas de corriger le biais sur la surface de $PV$.
+Cependant la surface de capteurs \abr{PV} est uniquement prise en compte que dans le
+calcul de la contrainte. Ainsi, lorsque l’optimisation trouve des solutions minimisant au
+maximum la $Conso_{tot}$, la surface de capteurs \abr{PV} ne peut plus augmenter sans que
+les solutions violent la borne inférieure de la contrainte. En effet d’après
+\defref{def:dominance_de_pareto}, une solution est meilleure qu’une autre si et seulement
+si elle est meilleure sur un objectif et au moins aussi bonne sur tous les autres. Il est
+donc clair que comme la surface de \abr{PV} n’impacte pas les objectifs, des solutions
+avec une surface de capteurs \abr{PV} importantes ne sont pas atteignables. Il pourrait
+être considéré la minimisation de la $Conso_{tot}$ en place de la $Conso_{app}$ afin qu’un
+objectif tiennent compte des capteurs \abr{PV}. Cependant toujours d’après
+\defref{def:dominance_de_pareto}, le problème reste entier.
 % subsubsection approche_naive (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Approche retenue} % (fold)
 \label{ssub:approche_retenue}
-\noindent Afin de palier aux difficultés rencontrées, une autre formulation est proposée où les objectifs
-sont~:
+\noindent Afin de palier aux difficultés rencontrées, une autre formulation est proposée~:
 \begin{itemize}
-  \item Maximiser le $F_{sol}^{ECS}$
-  \item Maximiser le $F_{sol}^{CH}$
-  \item Minimiser la $Prod_{PV}$
-\end{itemize}
-La contrainte elle n’est pas modifiée~:
-\begin{itemize}
-   \item $\abs{Conso_{totale}} \leq \SI{300}{kWh}$ pour Bordeaux
-   \item $\abs{Conso_{totale}} \leq \SI{600}{kWh}$ pour Strasbourg
+  \item Maximiser le $F_{sav}^{ECS}$
+  \item Maximiser le $F_{sav}^{CH}$
+  \item Maximiser la $Prod_{PV}$
+  \item Minimiser la $Surf_{PV}$
 \end{itemize}
 
 Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
-objectifs. Il est aussi clair que les deux premiers objectifs sont \enquote{contradictoires} avec
-le dernier. En effet, réduire la surface de capteur thermique permet d’améliorer la
-production des $PV$ (Plus de capteurs au Sud) mais impacte négativement les autres
-objectifs. Inversement, une surface de capteur thermique importante implique une
-production des $PV$ plus faible. Il est donc maintenant possible d’obtenir des
-solutions avec une surface de $PV$ importante et une surface de capteur thermique
-faible et inversement.
+objectifs. Il est aussi clair que les différents objectifs sont \enquote{contradictoires}.
+En effet, réduire la surface de capteur thermique permet d’améliorer la production des
+$PV$ (plus de capteurs au sud) mais impacte négativement les autres objectifs.
+Inversement, une surface de capteur thermique importante implique une production des $PV$
+plus faible. Ainsi l’ajout d’une maximisation de la $Prod_{PV}$, permet d’obtenir des
+solutions variées~: avec une surface de $PV$ importante et une surface de capteur
+thermique faible et inversement.
+
+De plus en remplaçant les indicateurs $F_{sol}^{CH}$ et $F_{sol}^{ECS}$ par respectivement
+$F_{sav}^{CH}$ et $F_{sav}^{ECS}$, l’algorithme favorise non plus les solutions
+augmentant la part solaire, mais les solutions réduisant la part de l’appoint au
+profit d’une part plus importante de solaire. Cependant ces nouveaux objectifs
+nécessitent un modèle de référence afin d’évaluer la réduction de la consommation
+induite par l’ajout d’un \abr{SSC}. Comme il est évalué conjointement des variations
+sur l’enveloppe et sur le \abr{SSC}, il est nécessaire d’obtenir une consommation
+de référence pour chaque performance d’enveloppe afin d’évaluer uniquement
+l’amélioration induite par le \abr{SSC}. Un modèle de référence sans apports solaires
+(tous électrique) est donc introduit. Il admet un unique ballon de \SI{200}{\litre} pour le stockage
+d’\abr{ECS} et seul une batterie électrique en terminal est utilisée.
+
+Finalement le dernier objectif, minimiser la $Surf_{PV}$ , est introduit afin de proposer des solutions non-dominées
+sur toute l’intervalle définie par la contrainte. En effet, sans cet objectif les solutions
+retenues sont toutes proches de la bornes inférieure car c’est l’espace de solution
+maximisant la production des capteurs \abr{PV}. Cependant ces travaux considèrent que
+toutes les solutions comprises dans l’intervalle sont admissibles. Il existe en effet,
+une forte incertitude sur la performance réelle à la fois du bâtiment et des équipements,
+incertitudes inhérente à toutes simulations de part les hypothèses retenues. De plus le parti pris de cette
+approche est de proposer une large variété de solutions et proposer des solutions
+sur l’ensemble de l’intervalle répond à cet objectif.
+
 Le problème est maintenant correctement formulé afin de permettre d’explorer l’espace de décision et
-répondre au problème initial~: réaliser une maison passive dont les besoins sont couverts
-par l’énergie solaire.
+répondre au problème initial~: explorer l’ensemble de solutions non-dominées permettant
+d’obtenir une \abr{MEPOS} solaire.
 % subsubsection approche_retenue (end)
 % subsection definition_des_objectifs (end)
 % section description_de_l_etude_de_cas (end)
