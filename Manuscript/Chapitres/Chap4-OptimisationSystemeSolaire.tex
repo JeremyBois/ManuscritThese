@@ -1,18 +1,10 @@
 %!TEX root = ../main.tex
 % Chapitres/Chap4-OptimisationSystemeSolaire.tex
 
-\iunsure{Considérer l’électroménager dans le bilan énergétique}
 
 \iunsure{Description commune de Bordeaux et Strasbourg pour éviter répétition (section 2, 3)}
 \iunsure{Relancer les simulations Pareto optimales avec Dymola pour comparaison}
 \iunsure{Nécessaire de garder des facteurs avec $sigma = \mu^{*}$ même si distance faible}
-
-\ifix{Surface vitrée Est pas influente pour Bordeaux}
-
-% Pour optimisation
-% Par exemple un pas de \num{0.1} avec des bornes min de \num{0} et max de \num{0.5} donnera
-% les variations possibles suivantes~: (\num{0} - \num{0.1} - \num{0.2} - \num{0.3} - \num{0.4} - \num{0.5}).
-
 
 
 % ..............................................................................
@@ -30,7 +22,7 @@ important de tenir compte de la variation du profil de puisage au cours de l’a
 ne pas sur-estimer la performance du $SSC$. Enfin, l’inclinaison des capteurs est définie
 suivant la pente de la toiture du bâtiment. Pour Bordeaux la pente du bâtiment existant
 est de \SI{33}{\percent} soit \SI{18.9}{\degree}. Pour Strasbourg, il est retenu une pente
-de \SI{54}{\degree} typique d’une architecture Alsacienne.
+de \SI{54}{\degree} typique d’une architecture alsacienne.
 
 L’optimisation est réalisée dans un premier temps sur Bordeaux, dont le climat
 est doux et l’ensoleillement important. Dans un second temps, sur Strasbourg caractérisé
@@ -39,8 +31,9 @@ important durant la période estival.
 \iunsure{Ajouter comparatif de l’évolution mensuelle de l’énergie disponible pour les deux.}
 
 L’optimisation multi-objectifs est réalisée à la fois sur l’enveloppe, le \abr{SSC},
-et sur l’algorithme de contrôle. Ainsi, il est dans un premier temps défini les
-objectifs, les contraintes, et les paramètres a priori. Afin de limiter la
+et sur l’algorithme de contrôle. Dans un premier temps, les hypothèses
+et paramètres a priori sont explicités, puis les contraintes et objectifs retenus
+discutés. Afin de limiter la
 cardinalité du problème, une étude de sensibilité est réalisée en utilisant la méthode de
 \textit{Morris}. Comme explicité précédemment elle permet d’identifier les facteurs les
 plus influents de manière qualitative. Le but étant de réduire le nombre de variables de
@@ -189,15 +182,215 @@ seront écartées.
 % subsection hypotheses_retenus (end)
 
 
-\itodo{Décrire paramètres a priori avant objectifs}
+
+% ------------------------------------------------------------------------------
+\subsection{Description des paramètres a priori} % (fold)
+\label{sub:description_des_parametres_a_priori}
+Comme décrit dans le chapitre précédent, une analyse de sensibilité est nécessaire
+afin de réduire la cardinalité du problème et mieux guider l’exploration durant l’optimisation.
+Couvrant à la fois les caractéristiques de l’enveloppe et du \abr{SSC}, l’ensemble des
+paramètres retenus a priori sont disponibles dans le \tabref{tab:parametre_a_priori}.
+
+\begin{table}
+\centering
+\caption{Liste des paramètres a priori utilisés pour l’analyse de sensibilité.}
+\label{tab:parametre_a_priori}
+\begin{tabular}{l c c l}
+  \toprule
+  \addlinespace
+                                               & Borne min     & Borne max   & Remarques                                                            \\
+  \addlinespace
+  \multicolumn{4}{l}{\textbf{\abr{SSC}}}                                                                           \\
+  \midrule
+  Nombre capteurs                              & \num{2}       & \num{5} ou \num{7} & \SIrange{4.6}{11.6}{\metre\squared} ou \SI{16.2}{\metre\squared}                            \\
+  Type de capteurs                             & -             & -           & Voir \tabref{tab:capteurs_specs_optimisation}   \\                                                                   \\
+  $Ech_{sol}^{pos}$                            & \num{0.8}     & \num{1.3}   & Position relative à la hauteur du ballon                              \\
+  Volume ballon tampon                         & \num{100}     & \num{400}   & \multirow{2}{*}{Géométrie adaptée proportionnellement}             \\
+  Volume ballon $ECS$                          & \num{100}     & \num{400}   &                                                                      \\
+  $Isolation_{ballon, ép}$ tampon        & \num{0.055}   & \num{0.12}  &  \multirow{2}{*}{Résistance dépend du volume du ballon}   \\
+  $Isolation_{ballon, ép}$ \abr{ECS}     & \num{0.055}   & \num{0.12}  &                                                           \\
+  $Isolation_{réseau, ép}$               & \num{0.013}   & \num{0.04}  & Résistance dépendante du nombre de capteurs                           \\
+  $\Delta T_{sol}$                             & \num{5}       & \num{20}    &  -                                                                  \\
+  $\Delta T Mini_{capteur}$                      & \num{0}       & \num{30}    &  -                                                                   \\
+  $\Delta T Mini_{tampon}$                       & \num{0}       & \num{30}    &  -                                                                   \\
+  $T3_{mini}$                                  & \num{15}      & \num{40}    &  -                                                                   \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}                                                                              \\
+  \midrule
+  Type de vitrage                              & -             & -           &  Voir \tabref{tab:carac_vitrages}                                             \\
+  $R$ murs                                     & \num{4}       & \num{7}     &  -                                                                   \\
+  $R$ plafond                                  & \num{6}       & \num{10}    &  -                                                                   \\
+  $R$ plancher                                 & \num{6}       & \num{10}    &  -                                                                   \\
+  Surface vitrée Est                           & \num{4.3}     & \num{6.46}  & \multirow{4}{*}{Surface totale du mur \SI{26.4}{\metre\squared}}            \\
+  Surface vitrée Nord                          & \num{0.46}    & \num{0.684} &                                                                      \\
+  Surface vitrée Sud                           & \num{5.42}    & \num{8.13}  &                                                                      \\
+  Surface vitrée Ouest                         & \num{2.6}     & \num{3.89}  &                                                                      \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{4}{l}{\textbf{Production d’électricité}}                                                                     \\
+  \midrule
+  Nombre de capteurs $PV$                      & \num{8}       &  \num{30}   &  Capteurs thermiques prioritaires sur le pan Sud \\                                                             \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Logique de contrôle} % (fold)
+\label{ssub:logique_de_controle}
+Au cours de l’étude paramétrique, $\Delta T_{sol}$ a été évalué comme impactant et
+est donc retenue lors de l’application de la méthodologie d’aide à la décision.
+Dans l’optique d’une valorisation maximale de l’énergie solaire pour le chauffage, il est aussi
+investigué $3$ variations algorithmiques supplémentaires.
+Le fonctionnement de base de l’algorithme admet une priorité sur la production d’\abr{ECS}
+car les travaux de la littérature ont montré que l’énergie était mieux valorisée de cette
+manière. Pour rappel, la température au niveau de l’échangeur solaire ($T3$) doit être
+supérieure à \SI{30}{\degree} afin de pouvoir charger le ballon tampon. Le choix de cette
+borne ($T3_{mini}$) est arbitraire et l’impact de sa variation est donc investigué.
+L’activation du chauffage solaire ($Solaire_{direct}$ ou $Solaire_{indirect}$) est aussi
+contrôlé par une borne fixe \figref{fig:automate_chauffage}. Dans le cas du
+$Solaire_{direct}$, la température en sortie des capteurs $T1$ doit être supérieure ou
+égale au maximum entre \SI{40}{\degree} et la température de l’eau en sortie de
+l’échangeur eau/air ($T7$). Dans le cas du $Solaire_{indirect}$, la température du ballon
+tampon ($T5$) doit être supérieure à \SI{40}{\degree}. Afin de chercher à valoriser au
+maximum l’énergie solaire pour le chauffage, il est proposé non pas une borne fixe mais un
+différentiel de température minimal. Dans les deux modes de chauffage, la consigne
+d’activation s’adapte ainsi au rapport entre la production et la demande. Il est
+alors introduit deux nouvelles variables~: $\Delta Mini_{capteur}$ et $\Delta Mini_{tampon}$.
+Le chauffage peut ainsi être en $Solaire_{direct}$ lorsque, la différence de température entre la sortie des capteurs
+($T1$) et l’air après le caisson de mélange $T_{air}^{mix}$ est plus importante que
+$\Delta Mini_{capteur}$. De même, le chauffage peut être en $Solaire_{indirect}$, lorsque
+la différence de température entre le haut du ballon tampon et $T_{air}^{mix}$ est
+supérieure à $\Delta Mini_{tampon}$. Afin d’éviter des instabilité, il est de plus ajouté
+un hystérésis de \SI{5}{\degree} sur le différentiel de référence.
+% subsubsection logique_de_controle (end)
+
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Variables qualitatives} % (fold)
+\label{ssub:variables_qualitatives}
+Le choix a aussi été fait d’introduire deux capteurs plans et deux capteurs sous-vides avec
+des caractéristiques optiques et thermiques hétérogènes. La recherche a été faite
+à travers deux bases de données (\fnref{http://www.sunwindenergy.com}{\textit{Sun\&Wind Energy}} et
+\fnref{http://www.solar-rating.org/}{\textit{ICC-SRCC}}) et seul des capteurs récents sont considérés.
+Les capteurs ont tous une \textbf{surface totale} similaire afin de pouvoir évaluer
+aisément leurs performances en fonction de la surface installée. Par contre, les caractéristiques
+de chaque capteur sont décrites suivant la surface considérée dans leur certification \enquote{Solar Keymark},
+indiquée par un \emph{*} (\tabref{tab:capteurs_specs_optimisation}). Les capteurs
+retenus sont ainsi dans la mesure du possible, similaires d’un point de vue géométrique
+mais offre une diversité d’un point de vue des caractéristiques de performance. Bien que
+la surface totale soit similaire, la largeur et la hauteur de chaque capteur varie, et
+l’algorithme de \enquote{packaging} est utilisé pour chaque variation afin d’évaluer le
+nombre maximal de capteur pouvant loger sur chaque pan de toiture. Il est observée que
+malgré les différences géométriques (capteur de chez \textit{Ritter}), il est possible de
+loger le même nombre de capteur sur le pan sud, même sur Bordeaux où la surface disponible
+est réduite. Comme pour le capteur solaire thermique \textit{IDMK\,25-AL}, une régression
+linéaire est réalisée afin d’identifier les coefficients d’\abr{IAM} $b_{0}$ et $b_{1}$
+(\figref{fig:correlation_IAM_all}).
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Modelisation/Capteurs/IAM_all.pdf}
+    \caption[Évolution des \abr{IAM}s en fonction de l’angle d’incidence]
+    {Évolution des \abr{IAM}s respectifs des quatre capteurs considérés en fonction
+     de l’angle d’incidence.}
+    \label{fig:correlation_IAM_all}
+\end{figure}
+
+Finalement la performance des vitrages est aussi variable et $3$ variantes sont proposées
+dont le détail est disponible dans le \tabref{tab:carac_vitrages}. Les caractéristiques
+des vitrages sont ici présentés avec les coefficient caractéristiques mais les vitrages
+sont implémentés de manière détaillés \ref{ssub:deperditions_a_travers_les_fenetres}.
+Le type de vitrage s’applique sur l’ensemble des parois verticales, la fenêtre verticale
+conserve ses caractéristiques propres.
+
+Dans la suite du document l’optimisation est réalisée pour chaque type de capteur solaire
+mais le type de vitrage est un paramètre variable. Ainsi le front de \textit{Pareto}
+obtenu pour chaque capteur est discuté.
+
+\begin{table}
+\centering
+\caption{Caractéristiques des capteurs solaires thermiques sélectionnés. La présence d’un astérisque (*)
+         indique la surface utilisée pour les corrélations.}
+\label{tab:capteurs_specs_optimisation}
+\begin{tabular}{l c c c c r}
+    \toprule
+                                 & IDMK\,25-AL                & CPC 14 Star              & SKY PRO 12 CPC 58          & Energy + ECO 25         & Unité                       \\
+    \midrule
+    Fabricant                    & Sonnenkraft                & Ritter                   & Kloben                     & Dima                    & -                           \\
+    Type                         & Plan vitrée                & Sous-vide                & Sous-vide                  & Plan vitrée             & -                           \\
+    \addlinespace[\defaultaddspace]
+    Surface totale               & \num{2.52}                 & \num{2.62}               & \num{2.59}*                & \num{2.53}              & \si{\metre\squared}                  \\
+    Surface d’entrée             & \num{2.33}*                & \num{2.33}*              & \num{2.28}                 & \num{2.31}*              & \si{\metre\squared}                  \\
+    Longueur totale              & \num{2.061}                & \num{1.622}              & \num{1.927}                & \num{2.008}             & \si{\metre}                  \\
+    Largeur totale               & \num{1.225}                & \num{1.616}              & \num{1.342}                & \num{1.258}             & \si{\metre}                  \\
+    Poids à vide                 & \num{49}                   & \num{41.2}               & \num{51}                   & \num{34}                & \si{kg}                     \\
+    Contenance                   & \num{1.7}                  & \num{2.31}               & \num{1.76}                 & \num{1.9}               & \si{\litre}                 \\
+    \addlinespace[\defaultaddspace]
+    $\eta_{0}$                   & \num{76.5}                 & \num{0.644}              & \num{64.1}                 & \num{74.0}              & \si{\percent}                     \\
+    $a_{1}$                      & \num{3.951}                & \num{0.749}              & \num{0.935}                & \num{5.116}             & \si{W/(m^{2}\period K)}     \\
+    $a_{2}$                      & \num{0,011}                & \num{0.005}              & \num{0.004}                & \num{0.023}             & \si{W/(m^{2}\period K^{2})} \\
+    $b_{0}$                      & \num{-0.1396}              & \num{-0.0709}            & \num{-0.1050}              & \num{-0.1284}           & -                     \\
+    $b_{1}$                      & \num{-0.0004}              & \num{0.0006}             & \num{0.0114}               & \num{-0.0008}           & -                     \\
+    $K_{\theta,\, dif}$          & \num{0.93}                 & \num{0.93}               & \num{97.2}                 & \num{0.93}              & \si{\percent}  \\
+    \addlinespace[\defaultaddspace]
+    Fiche technique              & \figref{fig:caracs_idmk}   & \figref{fig:caracs_star} & \figref{fig:caracs_skypro} & \figref{fig:caracs_eco} & - \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
+         des différents vitrages envisagés.}
+\label{tab:carac_vitrages}
+\begin{tabular}{l c c c r}
+  \toprule
+                     & Planitherm XN       & Planitherm ONE       & OptiwhiteKGlass       & Unité                        \\
+  \midrule
+  Fabricant    & \fnref{http://fr.saint-gobain-glass.com/product/2422/sgg-planitherm-xn}{%
+                       St Gobain}
+               & \fnref{http://eg.saint-gobain-glass.com/product/1659/}{%
+                       St Gobain}
+               & \fnref{https://www.pilkington.com/en-gb/uk/products/product-categories/thermal-insulation/pilkington-k-glass-range/pilkington-k-glass}{%
+                       Pilkington}                                                              & -                             \\
+  Construction & \num{4}-16-4              & \num{4}-16-4            & \num{4}-16-4             & -                             \\
+  Gaz          & Argon                     & Argon                   & Argon                    & -                             \\
+  $U_{g}$      & \num{1}.1                 & \num{1}.0               & \num{1}.5                & \si{W/(m^{2}\period \kelvin)} \\
+  $g$          & \num{82}                  & \num{49}                & \num{78}                 & \si{\percent}                 \\
+  \bottomrule
+    \end{tabular}
+\end{table}
+% subsubsection variables_qualitatives (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Autres paramètres} % (fold)
+\label{ssub:autres_parametres}
+Les bornes inférieures et supérieures retenus pour les isolants représentent respectivement les valeurs typiques observés
+pour des bâtiment du niveau \abr{RT\,$2012$} et des bâtiment à énergie positive.
+La plage de variation pour les surfaces vitrées a été fixée arbitrairement à plus ou moins
+\SI{20}{\percent} de leur valeur d’origine et les proportions de cadre sont ajustées
+en fonction de la nouvelle surface (les caractéristiques du cadre et des ponts thermiques
+restent constantes).
+Le nombre minimal de $PV$ a été définie à $8$ afin de couvrir \SI{80}{\percent} (\SI{\approx
+2408}{\kWh}) de la consommation des équipements internes (\SI{\approx 3082}{\kWh}) à minima.
+Pour les capteurs solaires thermiques, il est considéré au minimum $2$ capteurs et respectivement
+$5$ et $7$ pour Bordeaux et Strasbourg. Une distinction est faite entre les deux climats afin
+de tenir compte des spécificités de chaque climats.
+% subsubsection autres_parametres (end)
+% subsection description_des_parametres_a_priori (end)
+
 
 
 % ------------------------------------------------------------------------------
 \subsection{Définition des objectifs} % (fold)
 \label{sub:definition_des_objectifs}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Approche naïve} % (fold)
-\label{ssub:approche_naive}
+\subsubsection{Approche initiale} % (fold)
+\label{ssub:approche_initiale}
 \noindent Dans un premier temps, fort de l’expérience acquise à travers l’étude paramétrique,
 les objectifs sont formalisés de la manière suivante~:
 \begin{itemize}
@@ -240,7 +433,7 @@ avec une surface de capteurs \abr{PV} importantes ne sont pas atteignables. Il p
 être considéré la minimisation de la $Conso_{tot}$ en place de la $Conso_{app}$ afin qu’un
 objectif tiennent compte des capteurs \abr{PV}. Cependant toujours d’après
 \defref{def:dominance_de_pareto}, le problème reste entier.
-% subsubsection approche_naive (end)
+% subsubsection approche_initiale (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -255,7 +448,7 @@ objectif tiennent compte des capteurs \abr{PV}. Cependant toujours d’après
 \end{itemize}
 
 Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
-objectifs. Il est aussi clair que les différents objectifs sont \enquote{contradictoires}.
+objectifs. Il est aussi clair que les différents objectifs sont antinomique.
 En effet, réduire la surface de capteur thermique permet d’améliorer la production des
 $PV$ (plus de capteurs au sud) mais impacte négativement les autres objectifs.
 Inversement, une surface de capteur thermique importante implique une production des $PV$
@@ -277,12 +470,13 @@ d’\abr{ECS} et seul une batterie électrique en terminal est utilisée.
 
 Finalement le dernier objectif, minimiser la $Surf_{PV}$ , est introduit afin de proposer des solutions non-dominées
 sur toute l’intervalle définie par la contrainte. En effet, sans cet objectif les solutions
-retenues sont toutes proches de la bornes inférieure car c’est l’espace de solution
-maximisant la production des capteurs \abr{PV}. Cependant ces travaux considèrent que
+retenues sont toutes proches de la borne inférieure (maximisation de la surface de capteurs \abr{PV})
+car c’est l’espace de solution maximisant la production des capteurs \abr{PV}. Cependant ces travaux considèrent que
 toutes les solutions comprises dans l’intervalle sont admissibles. Il existe en effet,
-une forte incertitude sur la performance réelle à la fois du bâtiment et des équipements,
-incertitudes inhérente à toutes simulations de part les hypothèses retenues. De plus le parti pris de cette
-approche est de proposer une large variété de solutions et proposer des solutions
+une forte incertitude sur la performance réelle à la fois du bâtiment et des équipements. Ces
+incertitudes introduites par le choix des hypothèses sont inhérente à toutes simulations numériques.
+De plus le parti pris de cette approche est de proposer une large variété de solutions dans le
+respect de la contrainte de \enquote{bilan positif}~: proposer des solutions
 sur l’ensemble de l’intervalle répond à cet objectif.
 
 Le problème est maintenant correctement formulé afin de permettre d’explorer l’espace de décision et
@@ -298,144 +492,75 @@ d’obtenir une \abr{MEPOS} solaire.
 % ..............................................................................
 \section{Réduction de la cardinalité} % (fold)
 \label{sec:reduction_de_la_cardinalite}
-% ------------------------------------------------------------------------------
-\subsection{Paramètres a priori} % (fold)
-\label{sub:parametres_a_priori}
-~
-\iunsure{Ajouter explication variables discrètes}
-\iunsure{Relancer sensibilité avec les vraies bornes des capteurs retenus}
 
-\itodo{Critères variables}
-Au cours de l’étude paramétrique, $\Delta T_{sol}$ a été évalué comme impactant et
-est donc retenue lors de l’analyse de sensibilité.
-Dans l’optique d’une valorisation maximale de l’énergie solaire pour le chauffage, il est aussi
-investigué $3$ variations algorithmiques supplémentaires \tabref{tab:variations_algo_sensibilite}.
-Le fonctionnement de base de l’algorithme admet une priorité sur la production d’\abr{ECS}
-car les travaux de la littérature ont montrés que l’énergie était mieux valorisée de cette
-manière. Pour rappel, la température au niveau de l’échangeur solaire ($T3$) doit être
-supérieure à \SI{30}{\degree} afin de pouvoir charger le ballon tampon. Le choix de cette
-borne ($T3_{mini}$) est arbitraire et l’impact de sa variation est donc investiguée.
+Afin de réduire la cardinalité du problème, la méthode de \enquote{screening} de
+\textit{Morris} est retenue. L’analyse a été réalisée sur Bordeaux et Strasbourg en
+considérant \num{20} trajectoires uniques et \num{4} niveaux. Dans un premier temps les
+résultats sont discutés pour les principaux indicateurs d’un \abr{SSC}. Puis un graphe
+d’influence est réalisé sur les indicateurs $F_{sol}^{CH}$, $F_{sol}^{ECS}$,
+$Conso_{app}$, et $Conso_{tot}$ permettant de représenter les facteurs influents
+considérés dans le reste de l’étude.
 
-L’activation du chauffage solaire ($Solaire_{direct}$ ou $Solaire_{indirect}$) est aussi
-contrôlé par une borne fixe \figref{fig:automate_chauffage}. Dans le cas du
-$Solaire_{direct}$, la température en sortie des capteurs $T1$ doit être supérieure ou
-égale au maximum entre \SI{40}{\degree} et la température de l’eau en sortie de
-l’échangeur eau/air ($T7$). Dans le cas du $Solaire_{indirect}$, la température du ballon
-tampon ($T5$) doit être supérieure à \SI{40}{\degree}. Afin de chercher à valoriser au
-maximum l’énergie solaire pour le chauffage, il est proposé non pas une borne fixe mais un
-différentiel de température minimal. Dans les deux modes de chauffage, la consigne
-d’activation est alors variable. Il est alors introduit deux nouvelles variables~: $\Delta
-Mini_{capteur}$ et $\Delta Mini_{tampon}$. Le chauffage peut ainsi être en
-$Solaire_{direct}$ lorsque, la différence de température entre la sortie des capteurs
-($T1$) et l’air après le caisson de mélange $T_{air}^{mix}$ est plus importante que
-$\Delta Mini_{capteur}$. De même, le chauffage peut être en $Solaire_{indirect}$, lorsque
-la différence de température entre le haut du ballon tampon et $T_{air}^{mix}$ est
-supérieure à $\Delta Mini_{tampon}$. Afin d’éviter des instabilité, il est de plus ajouté
-un hystérésis de \SI{5}{\degree} sur la consigne flottante.
+\subsection{Hypothèses} % (fold)
+\label{sub:hypotheses}
+La méthode de Morris nécessite que l’ensemble des variables soient continues
+et puissent varier indépendamment les unes des autres. Ainsi pour des variables
+qualitatives comme le type de capteurs solaires thermiques et le type de vitrage,
+les caractéristiques principales ont été considérées comme indépendantes uniquement
+lors de l’étude de sensibilité.
+Les capteurs sont ainsi exprimées en fonction des coefficient $a_{1}$, $a_{2}$, et
+du rendement optique ($\eta_{0}$). Ainsi, il est uniquement considéré le capteur
+\textit{IDMK\,25-AL} auquel les variations sont appliquées.
+Les vitrages sont eux exprimés en fonction de l’émissivité
+du verre intérieur ($Émis_{int}$) et de son coefficient de transmission solaire ($\tau_{sol}$).
+Ainsi il est considéré uniquement le vitrage \textit{Planitherm XN} auquel les variations
+sont assignées. Les bornes inférieures et supérieures retenues sont issues des caractéristiques
+des différents capteurs et vitrages considérés (\tabref{tab:variabilite_capteur_vitrage}).
+Bien que la méthode permette de regrouper les paramètres afin d’évaluer
+l’influence de l’ensemble et non de chaque élément le composant, les éléments groupés
+nécessitent de pouvoir varier indépendamment. Cet option n’est donc pas applicable.
+Ce choix est fait afin d’évaluer de possibles interactions existantes avec d’autres facteurs.
+Bien entendu, dans le reste de l’étude (optimisation), les variables sont
+considérées comme qualitatives et admettent uniquement un des choix existants.
+
+Moins contraignant, l’échantillon créé par la méthode de \textit{Morris} suppose que
+la variable est continue. Dans notre cas le nombre de capteurs solaires thermiques
+et de capteurs \abr{PV} sont cependant obligatoirement des entiers. Afin de contourner
+ce problème, la plage de variation de ces deux facteurs a été choisie comme~:
+\begin{itemize}
+  \item \SIrange{2}{5}{} capteurs solaires thermiques soit une variation de \SI{7}{\metre\squared}
+  \item \SIrange{8}{14}{} capteurs \abr{PV} soit une variation de \SI{9}{\metre\squared}
+\end{itemize}
+Ce choix est fait afin d’obtenir la surface équivalente la plus proche possible, tout
+en assurant que les valeurs prises lors de la création de l’échantillon sont des entiers
+lorsque la méthode considère quatre niveaux.
+
 
 \begin{table}
 \centering
-\caption{Variations algorithmiques étudiées lors de l’analyse de sensibilité.
-\label{tab:variations_algo_sensibilite}}
-\begin{tabular}{l r}
-    \toprule
-    Paramètre                & Variations    \\
-    \midrule
-    $\Delta T_{sol}$           & \SIrange{5}{20}{\degree} \\
-    $\Delta Mini_{capteur}$  & \SIrange{0}{30}{\degree} \\
-    $\Delta Mini_{tampon}$   & \SIrange{0}{30}{\degree} \\
-    $T3_{mini}$              & \SIrange{15}{40}{\degree} \\
-    \bottomrule
-\end{tabular}
-\end{table}
-% paragraph valorisation_de_l_energie_solaire (end)
-
-
-Comme décrit dans le chapitre précédent, une analyse de sensibilité est nécessaire
-afin de réduire la cardinalité du problème, évitant ainsi de simuler des variations
-non influentes relativement aux autres paramètres.
-L’étude de cas est réalisée pour deux climat différents, Bordeaux et Strasbourg,
-et un ensemble de \num{22} paramètres a priori est retenue (\tabref{tab:facteur_sensibilite})
-en faisant varier à la fois la performance de l’enveloppe et les caractéristiques du $SSC$.
-\itodo{Vérifier sources}
-Au niveau des isolants, les bornes inférieures et supérieures représentent respectivement
-le niveau recommandé pour obtenir le niveau \textit{RT\,2005} et le \textit{MEPOS}.
-La plage de variation pour les surfaces vitrées a été fixée arbitrairement à plus ou moins \SI{20}{\percent}
-de leur valeur d’origine.
-La surface minimale de $PV$ a elle été définie afin de couvrir \SI{75}{\percent} (\SI{\approx
-2330}{\kWh}) de la consommation des équipements internes sur Bordeaux (\SI{\approx 3082}{\kWh}).
-De plus la même variation surfacique est considérée pour les capteurs $PV$ et
-thermiques~: \SI{\approx 7}{\metre\squared} afin de pouvoir comparer leurs influences respectives.
-
-
-\paragraph{Variables qualitatives} % (fold)
-\label{par:variables_qualitatives}
-La méthode de Morris nécessite que l’ensemble des variables soient quantitatives et chaque
-paramètre varie indépendamment. Il n’est donc pas possible d’évaluer directement
-l’influence des capteurs solaires ou des vitrages qui sont des variables qualitatives.
-
-Afin de tenir compte de ces paramètres, leurs caractéristiques principales sont considérés
-comme des paramètres indépendants. Dans le cas des capteurs solaires, le rendement optique
-$\eta_{0}$ et les coefficients $a_{1}$ et $a_{2}$ sont retenues. Dans le cas des vitrages
-les caractéristiques principales souvent utilisées sont le $U_{g}$ et le $g$ permettant
-respectivement d’évaluer la résistance au transfert thermique et au passage de l’énergie
-solaire. Les vitrages étant définies de manière détaillé, les paramètres $Émis_{ext}$
-et $\tau_{sol}$ sont retenues. Bien que la méthode de Morris a été adapté afin de permettre de
-regrouper un jeu de paramètre en un paramètre unique (création d’un groupe), ils restent
-indépendants et l’approche n’est donc pas mise en place. Ainsi, les combinaisons réalisées
-représentent des capteurs / vitrages hypothétiques dont la faisabilité technique n’est pas
-garantie mais dont la diversité est représentative des capteurs existants. L’approche permet
-aussi de mettre en exergue l’importance relative de chaque
-caractéristique sur la performance du capteur ou du vitrage et son impact global au niveau
-du $SSC$. De plus, les autres paramètres définies a priori peuvent tenir compte de la
-forte variabilité des capteurs et des vitrages. En effet, il est possible qu’il existe des
-interactions entre les vitrages ou capteurs solaires et les autres facteurs quantitatifs.
-% paragraph variables_qualitatives (end)
-
-\begin{table}
-\centering
-\caption{Liste des paramètres a priori utilisés pour l’analyse de sensibilité.}
-\label{tab:facteur_sensibilite}
-\begin{tabular}{l c c l}
+\caption{Variabilité des caractéristiques des capteurs et des vitrages pour l’étude
+         de sensibilité.}
+\label{tab:variabilite_capteur_vitrage}
+\begin{tabular}{l c c}
   \toprule
   \addlinespace
-                                               & Borne min     & Borne max   & Remarques                                                            \\
-  \addlinespace
-  \multicolumn{4}{l}{\bm{$SSC$}}                                                                           \\
+                                               & Borne min     & Borne max    \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{2}{l}{\textbf{Vitrages}}                                       \\
   \midrule
-  Nombre capteurs                              & \num{2}       & \num{5}     & \num{4.64} -- \SI{11.6}{\metre\squared}                              \\
-  $\eta_{0}$                                   & \num{0.63}    & \num{0.84}  & \multirow{3}{*}{Diversité issue de \href{www.solar-rating.org}{ICC-SRCC}}   \\
-  $a_{1}$                                      & \num{0.65}    & \num{6.7}   &                                                                      \\
-  $a_{2}$                                      & \num{0.00069} & \num{0.29}  &                                                                      \\
-  $Ech_{sol}^{pos}$                            & \num{0.8}     & \num{1.3}   & Position relative à la taille du ballon                              \\
-  Volume ballon tampon                         & \num{100}     & \num{500}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}             \\
-  Volume ballon $ECS$                          & \num{100}     & \num{500}   &                                                                      \\
-  $R$ ballon sanitaire                         & \num{7}       & \num{10}    & \multirow{2}{*}{Variation uniquement de l’épaisseur de l’isolant}    \\
-  $R$ ballon tampon                            & \num{7}       & \num{10}    &                                                                      \\
-  $Isolant_{réseau}^{épaisseur}$               & \num{0.013}   & \num{0.04}  & Résistance dépendant du nombre de capteurs                           \\
-  $DeltaT_{sol}$                               & \num{5}       & \num{15}    &  -                                                                   \\
+  $Émis_{int}$                                 & \num{0.047}   & \num{0.837}  \\
+  $\tau_{sol}$                                 & \num{0.643}   & \num{0.849}  \\
   \\
   \addlinespace[\defaultaddspace]
-  \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}                                                                              \\
+  \multicolumn{3}{l}{\textbf{Capteurs solaires}}                              \\
   \midrule
-  $R$ plancher                                 & \num{6}       & \num{10}    &  -                                                                   \\
-  $R$ murs                                     & \num{4}       & \num{7}     &  -                                                                   \\
-  $R$ plafond                                  & \num{6}       & \num{10}    &  -                                                                   \\
-  $\tau_{sol}$                                 & \num{0.643}   & \num{0.849} & \multirow{2}{*}{Variation des vitrages Nord et Ouest uniquement}     \\
-  $Émis_{ext}$                                 & \num{0.037}   & \num{0.837} &                                                                      \\
-  Surface vitrée Est                           & \num{4.3}     & \num{6.46}  & \multirow{4}{*}{Surface totale \SI{26.4}{\metre\squared}}            \\
-  Surface vitrée Nord                          & \num{0.46}    & \num{0.684} &                                                                      \\
-  Surface vitrée Sud                           & \num{5.42}    & \num{8.13}  &                                                                      \\
-  Surface vitrée Ouest                         & \num{2.3}     & \num{3.89}  &                                                                      \\
-  \\
-  \addlinespace[\defaultaddspace]
-  \multicolumn{4}{l}{\textbf{Production d’électricité}}                                                                     \\
-  \midrule
-  Surface $PV$                                 & \num{12}       &  \num{19}   &  Capteurs thermiques prioritaires sur le pan Sud                                                             \\
+  $a_{1}$                                      & \num{0.749}   &  \num{5.116} \\
+  $a_{2}$                                      & \num{0.004}   &  \num{0.023} \\
+  $\eta_{0}$                                   & \num{0.644}   &  \num{0.764} \\
   \bottomrule
   \end{tabular}
 \end{table}
-% subsection parametres_a_priori (end)
+% subsection hypotheses (end)
 
 
 
@@ -656,50 +781,50 @@ nombre de combinaisons à évaluer est ainsi fortement réduit.
 \itodo{Présenter les résultats de la régression + ref équations chapitre 2}
 
 
-\begin{table}
-\centering
-\itodo{Remplacer avec les bons capteurs et expliciter les paramètres}
-\caption{Caractéristiques des panneaux solaires.
-\label{tab:capteurs_specs_optimisation}}
-\begin{tabular}{l c c c c r}
-    \toprule
-                                 & IDMK\,25             & 308C\,HP             & 12\,CPC58      & ECO 25        & Unité                       \\
-    \midrule
-    Fabricant                    & Sonnenkraft          & Radco                & Sky Pro        & Dima          & -                           \\
-    Type                         & Plan vitrée          & Plan vitrée          & Tubulaire      & Plan vitrée   & -                           \\
-    Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}     & \num{2.312}   & \si{m^{2}}                  \\
-    Poids à vide                 & \num{54}             & \num{36}             & \num{53}       & \num{41}      & \si{kg}                     \\
-    Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}     & \num{1.9}     & \si{\litre}                 \\
-    $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}       & \num{66.4}    & \si{\percent}                     \\
-    $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}   & \num{4.9510}  & \si{W/(m^{2}\period K)}     \\
-    $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}  & \num{0.01527} & \si{W/(m^{2}\period K^{2})} \\
-    $IMDiff$                     & \num{100}            & \num{96}             & \num{102}      & \num{93}      & \si{\percent}                     \\
-    \bottomrule
-\end{tabular}
-\end{table}
+% \begin{table}
+% \centering
+% \itodo{Remplacer avec les bons capteurs et expliciter les paramètres}
+% \caption{Caractéristiques des panneaux solaires.
+% \label{tab:capteurs_specs_optimisation}}
+% \begin{tabular}{l c c c c r}
+%     \toprule
+%                                  & IDMK\,25             & 308C\,HP             & 12\,CPC58      & ECO 25        & Unité                       \\
+%     \midrule
+%     Fabricant                    & Sonnenkraft          & Radco                & Sky Pro        & Dima          & -                           \\
+%     Type                         & Plan vitrée          & Plan vitrée          & Tubulaire      & Plan vitrée   & -                           \\
+%     Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}     & \num{2.312}   & \si{m^{2}}                  \\
+%     Poids à vide                 & \num{54}             & \num{36}             & \num{53}       & \num{41}      & \si{kg}                     \\
+%     Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}     & \num{1.9}     & \si{\litre}                 \\
+%     $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}       & \num{66.4}    & \si{\percent}                     \\
+%     $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}   & \num{4.9510}  & \si{W/(m^{2}\period K)}     \\
+%     $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}  & \num{0.01527} & \si{W/(m^{2}\period K^{2})} \\
+%     $IMDiff$                     & \num{100}            & \num{96}             & \num{102}      & \num{93}      & \si{\percent}                     \\
+%     \bottomrule
+% \end{tabular}
+% \end{table}
 
-\begin{table}
-\centering
-\caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
-         des différents vitrages envisagés.}
-\label{tab:carac_vitrages}
-\begin{tabular}{l c c c r}
-  \toprule
-                     & Planitherm XN       & Planitherm ONE       & OptiwhiteKGlass       & Unité                        \\
-  \midrule
-  Fabricant    & \href{http://fr.saint-gobain-glass.com/product/2422/sgg-planitherm-xn}{%
-                       St Gobain}
-               & \href{http://eg.saint-gobain-glass.com/product/1659/}{%
-                       St Gobain}
-               & \href{https://www.pilkington.com/en-gb/uk/products/product-categories/thermal-insulation/pilkington-k-glass-range/pilkington-k-glass}{%
-                       Pilkington}                                                              & -                             \\
-  Construction & \num{4}-16-4              & \num{4}-16-4            & \num{4}-16-4             & -                             \\
-  Gaz          & Argon                     & Argon                   & Argon                    & -                             \\
-  $U_{g}$      & \num{1}.1                 & \num{1}.0               & \num{1}.5                & \si{W/(m^{2}\period \kelvin)} \\
-  $g$          & \num{82}                  & \num{49}                & \num{78}                 & \si{\percent}                 \\
-  \bottomrule
-    \end{tabular}
-\end{table}
+% \begin{table}
+% \centering
+% \caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
+%          des différents vitrages envisagés.}
+% \label{tab:carac_vitrages}
+% \begin{tabular}{l c c c r}
+%   \toprule
+%                      & Planitherm XN       & Planitherm ONE       & OptiwhiteKGlass       & Unité                        \\
+%   \midrule
+%   Fabricant    & \href{http://fr.saint-gobain-glass.com/product/2422/sgg-planitherm-xn}{%
+%                        St Gobain}
+%                & \href{http://eg.saint-gobain-glass.com/product/1659/}{%
+%                        St Gobain}
+%                & \href{https://www.pilkington.com/en-gb/uk/products/product-categories/thermal-insulation/pilkington-k-glass-range/pilkington-k-glass}{%
+%                        Pilkington}                                                              & -                             \\
+%   Construction & \num{4}-16-4              & \num{4}-16-4            & \num{4}-16-4             & -                             \\
+%   Gaz          & Argon                     & Argon                   & Argon                    & -                             \\
+%   $U_{g}$      & \num{1}.1                 & \num{1}.0               & \num{1}.5                & \si{W/(m^{2}\period \kelvin)} \\
+%   $g$          & \num{82}                  & \num{49}                & \num{78}                 & \si{\percent}                 \\
+%   \bottomrule
+%     \end{tabular}
+% \end{table}
 % subsection parametres_retenus (end)
 % section reduction_de_la_cardinalite (end)
 
