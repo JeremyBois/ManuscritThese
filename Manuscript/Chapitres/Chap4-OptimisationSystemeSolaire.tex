@@ -152,8 +152,7 @@ aux occupants sont fixes et suivent un scénario prédéfini. Ainsi la productio
 En couplant les résultats des deux simulations, il est donc possible d’évaluer
 la consommation totale sur les quatre usages considérés. Le \abr{SSC} couvrant en
 totalité les besoins sur la période non simulée, la consommation de l’appoint
-est équivalente à la consommation des pompes qui au regard des résultats de l’étude
-paramétrique sont négligeables. Il est donc possible d’approximer $Conso_{app}$
+est équivalente à la consommation des pompes. Il est donc possible d’approximer $Conso_{app}$
 par la consommation de l’appoint sur la période simulée. Ainsi il peut être
 obtenue la consommation totale suivant \eqref{eq:conso_totale}.
 
@@ -167,7 +166,7 @@ obtenue la consommation totale suivant \eqref{eq:conso_totale}.
 \subsubsection{Définition des contraintes} % (fold)
 \label{ssub:definition_des_contraintes}
 Afin de pouvoir proposer un ensemble d’alternatives, la maison est considérée
-à énergie positive si sa consommation totale \eqref{eq:conso_totale} ($Conso_{tot}$)
+à énergie positive si le bilan charge / production (\ref{ssub:la_methodologie_de_calcul})
 est proche de $0$~:
 \iunsure{Mettre un plage différente pour Strasbourg comme la RT2012}
 \begin{blockdescription}{Strasbourg}
@@ -202,18 +201,18 @@ paramètres retenus a priori sont disponibles dans le \tabref{tab:parametre_a_pr
   \addlinespace
   \multicolumn{4}{l}{\textbf{\abr{SSC}}}                                                                           \\
   \midrule
-  Nombre capteurs                              & \num{2}       & \num{5} ou \num{7} & \SIrange{4.6}{11.6}{\metre\squared} ou \SI{16.2}{\metre\squared}                            \\
-  Type de capteurs                             & -             & -           & Voir \tabref{tab:capteurs_specs_optimisation}   \\                                                                   \\
+  Nombre capteurs \abr{TH}                     & \num{2}       & \num{5} ou \num{7}* & \SIrange{4.6}{11.6}{\metre\squared} ou \SI{16.2}{\metre\squared}                            \\
+  Type de capteurs \abr{TH}                    & -             & -           & Voir \tabref{tab:capteurs_specs_optimisation}   \\                                                                   \\
   $Ech_{sol}^{pos}$                            & \num{0.8}     & \num{1.3}   & Position relative à la hauteur du ballon                              \\
-  Volume ballon tampon                         & \num{100}     & \num{400}   & \multirow{2}{*}{Géométrie adaptée proportionnellement}             \\
-  Volume ballon $ECS$                          & \num{100}     & \num{400}   &                                                                      \\
-  $Isolation_{ballon, ép}$ tampon        & \num{0.055}   & \num{0.12}  &  \multirow{2}{*}{Résistance dépend du volume du ballon}   \\
-  $Isolation_{ballon, ép}$ \abr{ECS}     & \num{0.055}   & \num{0.12}  &                                                           \\
-  $Isolation_{réseau, ép}$               & \num{0.013}   & \num{0.04}  & Résistance dépendante du nombre de capteurs                           \\
+  Volume ballon tampon                         & \num{100}     & \num{500}   & \multirow{2}{*}{Géométrie adaptée proportionnellement}             \\
+  Volume ballon $ECS$                          & \num{100}     & \num{500}   &                                                                      \\
+  $Isolant_{ballon,\, ep}$ tampon                & \num{0.055}   & \num{0.12}  &  \multirow{2}{*}{Résistance dépendante du volume du ballon}   \\
+  $Isolant_{ballon,\, ep}$ \abr{ECS}             & \num{0.055}   & \num{0.12}  &                                                           \\
+  $Isolant_{réseau,\, ep}$                       & \num{0.013}   & \num{0.04}  & Résistance dépendante du nombre de capteurs                           \\
   $\Delta T_{sol}$                             & \num{5}       & \num{20}    &  -                                                                  \\
-  $\Delta T Mini_{capteur}$                      & \num{0}       & \num{30}    &  -                                                                   \\
-  $\Delta T Mini_{tampon}$                       & \num{0}       & \num{30}    &  -                                                                   \\
-  $T3_{mini}$                                  & \num{15}      & \num{40}    &  -                                                                   \\
+  $\Delta T min_{capteur}$                     & \num{0}       & \num{30}    &  -                                                                   \\
+  $\Delta T min_{tampon}$                      & \num{0}       & \num{30}    &  -                                                                   \\
+  $T3_{min}$                                   & \num{15}      & \num{40}    &  -                                                                   \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}                                                                              \\
@@ -222,10 +221,10 @@ paramètres retenus a priori sont disponibles dans le \tabref{tab:parametre_a_pr
   $R$ murs                                     & \num{4}       & \num{7}     &  -                                                                   \\
   $R$ plafond                                  & \num{6}       & \num{10}    &  -                                                                   \\
   $R$ plancher                                 & \num{6}       & \num{10}    &  -                                                                   \\
-  Surface vitrée Est                           & \num{4.3}     & \num{6.46}  & \multirow{4}{*}{Surface totale du mur \SI{26.4}{\metre\squared}}            \\
-  Surface vitrée Nord                          & \num{0.46}    & \num{0.684} &                                                                      \\
-  Surface vitrée Sud                           & \num{5.42}    & \num{8.13}  &                                                                      \\
-  Surface vitrée Ouest                         & \num{2.6}     & \num{3.89}  &                                                                      \\
+  Surface vitrée est                           & \num{4.3}     & \num{6.46}  & \multirow{4}{*}{Surface totale du mur \SI{26.4}{\metre\squared}}            \\
+  Surface vitrée nord                          & \num{0.46}    & \num{0.684} &                                                                      \\
+  Surface vitrée sud                           & \num{5.42}    & \num{8.13}  &                                                                      \\
+  Surface vitrée ouest                         & \num{2.6}     & \num{3.89}  &                                                                      \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{4}{l}{\textbf{Production d’électricité}}                                                                     \\
@@ -233,6 +232,7 @@ paramètres retenus a priori sont disponibles dans le \tabref{tab:parametre_a_pr
   Nombre de capteurs $PV$                      & \num{8}       &  \num{30}   &  Capteurs thermiques prioritaires sur le pan Sud \\                                                             \\
   \bottomrule
   \end{tabular}
+  *~: $5$ pour Bordeaux et $7$ pour Strasbourg.
 \end{table}
 
 
@@ -247,7 +247,7 @@ Le fonctionnement de base de l’algorithme admet une priorité sur la productio
 car les travaux de la littérature ont montré que l’énergie était mieux valorisée de cette
 manière. Pour rappel, la température au niveau de l’échangeur solaire ($T3$) doit être
 supérieure à \SI{30}{\degree} afin de pouvoir charger le ballon tampon. Le choix de cette
-borne ($T3_{mini}$) est arbitraire et l’impact de sa variation est donc investigué.
+borne ($T3_{min}$) est arbitraire et l’impact de sa variation est donc investigué.
 L’activation du chauffage solaire ($Solaire_{direct}$ ou $Solaire_{indirect}$) est aussi
 contrôlé par une borne fixe \figref{fig:automate_chauffage}. Dans le cas du
 $Solaire_{direct}$, la température en sortie des capteurs $T1$ doit être supérieure ou
@@ -257,12 +257,12 @@ tampon ($T5$) doit être supérieure à \SI{40}{\degree}. Afin de chercher à va
 maximum l’énergie solaire pour le chauffage, il est proposé non pas une borne fixe mais un
 différentiel de température minimal. Dans les deux modes de chauffage, la consigne
 d’activation s’adapte ainsi au rapport entre la production et la demande. Il est
-alors introduit deux nouvelles variables~: $\Delta Mini_{capteur}$ et $\Delta Mini_{tampon}$.
+alors introduit deux nouvelles variables~: $\Delta min_{capteur}$ et $\Delta min_{tampon}$.
 Le chauffage peut ainsi être en $Solaire_{direct}$ lorsque, la différence de température entre la sortie des capteurs
 ($T1$) et l’air après le caisson de mélange $T_{air}^{mix}$ est plus importante que
-$\Delta Mini_{capteur}$. De même, le chauffage peut être en $Solaire_{indirect}$, lorsque
+$\Delta min_{capteur}$. De même, le chauffage peut être en $Solaire_{indirect}$, lorsque
 la différence de température entre le haut du ballon tampon et $T_{air}^{mix}$ est
-supérieure à $\Delta Mini_{tampon}$. Afin d’éviter des instabilité, il est de plus ajouté
+supérieure à $\Delta min_{tampon}$. Afin d’éviter des instabilité, il est de plus ajouté
 un hystérésis de \SI{5}{\degree} sur le différentiel de référence.
 % subsubsection logique_de_controle (end)
 
@@ -288,7 +288,10 @@ malgré les différences géométriques (capteur de chez \textit{Ritter}), il es
 loger le même nombre de capteur sur le pan sud, même sur Bordeaux où la surface disponible
 est réduite. Comme pour le capteur solaire thermique \textit{IDMK\,25-AL}, une régression
 linéaire est réalisée afin d’identifier les coefficients d’\abr{IAM} $b_{0}$ et $b_{1}$
-(\figref{fig:correlation_IAM_all}).
+(\figref{fig:correlation_IAM_all}). Il peut être noté que les capteurs sous-vides
+(\textit{CPC $14$ Star}, \textit{SKY PRO $12$ CPC $58$}) sont beaucoup moins sensible à la
+variation de l’angle d’incidence expliquant que leurs performances soient constantes sur
+la journée comme montré dans le premier chapitre (\ref{fig:compare_static_quasi_dyn})
 
 \begin{figure}
     \centering
@@ -317,7 +320,7 @@ obtenu pour chaque capteur est discuté.
 \label{tab:capteurs_specs_optimisation}
 \begin{tabular}{l c c c c r}
     \toprule
-                                 & IDMK\,25-AL                & CPC 14 Star              & SKY PRO 12 CPC 58          & Energy + ECO 25         & Unité                       \\
+                                 & IDMK\,$25$-AL              & CPC $14$ Star            & SKY PRO $12$ CPC $58$      & Energy + ECO 25         & Unité                       \\
     \midrule
     Fabricant                    & Sonnenkraft                & Ritter                   & Kloben                     & Dima                    & -                           \\
     Type                         & Plan vitrée                & Sous-vide                & Sous-vide                  & Plan vitrée             & -                           \\
@@ -356,10 +359,10 @@ obtenu pour chaque capteur est discuté.
                        St Gobain}
                & \fnref{https://www.pilkington.com/en-gb/uk/products/product-categories/thermal-insulation/pilkington-k-glass-range/pilkington-k-glass}{%
                        Pilkington}                                                              & -                             \\
-  Construction & \num{4}-16-4              & \num{4}-16-4            & \num{4}-16-4             & -                             \\
-  Gaz          & Argon                     & Argon                   & Argon                    & -                             \\
-  $U_{g}$      & \num{1}.1                 & \num{1}.0               & \num{1}.5                & \si{W/(m^{2}\period \kelvin)} \\
-  $g$          & \num{82}                  & \num{49}                & \num{78}                 & \si{\percent}                 \\
+  Construction & \num{4}-\num{16}-\num{4}  & \num{4}-\num{16}-\num{4} & \num{4}-\num{16}-\num{4} & -                             \\
+  Gaz          & Argon                     & Argon                    & Argon                    & -                             \\
+  $U_{g}$      & \num{1.1}                 & \num{1.0}                & \num{1.5}                & \si{W/(m^{2}\period \kelvin)} \\
+  $g$          & \num{82}                  & \num{49}                 & \num{78}                 & \si{\percent}                 \\
   \bottomrule
     \end{tabular}
 \end{table}
@@ -492,7 +495,6 @@ d’obtenir une \abr{MEPOS} solaire.
 % ..............................................................................
 \section{Réduction de la cardinalité} % (fold)
 \label{sec:reduction_de_la_cardinalite}
-
 Afin de réduire la cardinalité du problème, la méthode de \enquote{screening} de
 \textit{Morris} est retenue. L’analyse a été réalisée sur Bordeaux et Strasbourg en
 considérant \num{20} trajectoires uniques et \num{4} niveaux. Dans un premier temps les
@@ -541,6 +543,7 @@ lorsque la méthode considère quatre niveaux.
 \caption{Variabilité des caractéristiques des capteurs et des vitrages pour l’étude
          de sensibilité.}
 \label{tab:variabilite_capteur_vitrage}
+\begin{minipage}[t][][b]{0.45\linewidth}
 \begin{tabular}{l c c}
   \toprule
   \addlinespace
@@ -550,7 +553,14 @@ lorsque la méthode considère quatre niveaux.
   \midrule
   $Émis_{int}$                                 & \num{0.047}   & \num{0.837}  \\
   $\tau_{sol}$                                 & \num{0.643}   & \num{0.849}  \\
-  \\
+  \bottomrule
+  \end{tabular}
+\end{minipage}%
+\begin{minipage}[t][][b]{0.45\linewidth}
+\begin{tabular}{l c c}
+  \toprule
+  \addlinespace
+                                               & Borne min     & Borne max    \\
   \addlinespace[\defaultaddspace]
   \multicolumn{3}{l}{\textbf{Capteurs solaires}}                              \\
   \midrule
@@ -559,170 +569,218 @@ lorsque la méthode considère quatre niveaux.
   $\eta_{0}$                                   & \num{0.644}   &  \num{0.764} \\
   \bottomrule
   \end{tabular}
+\end{minipage}
 \end{table}
 % subsection hypotheses (end)
 
 
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsection{Analyse des résultats} % (fold)
-% \label{sub:analyse_des_resultats_morris}
-% L’analyse de Morris a été réalisée en considérant \num{15} trajectoires uniques à travers
-% \num{4} niveaux. Les résultats sont analysés sur les indicateurs caractéristiques d’un $SSC$
-% (le $F_{sol}^{CH}$, le $F_{sol}^{ECS}$, et la $Conso_{app}$) mais aussi sur les parts
-% actives et passives du chauffage solaire, respectivement notées $Prod_{sol}^{active}$ et
-% $Prod_{sol}^{passive}$. En effet, les ballons étant dans le bâtiment, une partie de
-% l’énergie solaire est fournie par leurs déperditions. Il est alors intéressant de
-% mieux comprendre les interactions existantes.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Analyse des résultats} % (fold)
+\label{sub:analyse_des_resultats_morris}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Couverture solaire sur l’eau chaude sanitaire} % (fold)
+\label{ssub:couverture_solaire_sur_l_ECS}
+Les mêmes facteurs influents sont identifiés pour l’indicateur $F_{sol}^{ECS}$ que ce soit
+pour Bordeaux ou Strasbourg, cependant les interactions et l’ordre d’importance diffèrent
+(\figref{fig:objectifs_mu_star}). Dans les deux cas le nombre de capteurs \abr{TH} et le
+volume du ballon \abr{ECS} sont les facteurs les plus influents. Sur Bordeaux, les
+facteurs $\Delta T_{sol}$, $\Delta min_{capteur}$, et $\Delta min_{tampon}$ ont des effets
+non-linéaires ou avec des interactions alors que les autres ont des impacts linéaires. Sur
+Strasbourg, chaque facteur a un impact linéaire à l’exception de $\Delta T_{sol}$ dont
+l’influence peut être estimée comme non-linéaire ou avec des interactions. Bien que
+n’ayant pas d’action directe sur la production d’\abr{ECS}, la performance thermique des
+vitrages est évaluée comme faiblement influente. Le \abr{SSC} répartissant l’énergie
+solaire disponible entre chauffage et production d’\abr{ECS}, réduire les besoins de
+chauffage permet de valoriser une plus grande part de l’énergie solaire disponible pour la
+production d’\abr{ECS}.
+% subsubsection couverture_solaire_sur_l_ECS (end)
 
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Couverture solaire sur l’eau chaude sanitaire} % (fold)
-% \label{ssub:couverture_solaire_sur_l_ECS}
-% Sur l’indicateur $F_{sol}^{ECS}$ (\figref{fig:objectifs_mu_star}) les facteurs ayant une influence linéaire sont
-% peu nombreux~: la nombre de capteur et ses caractéristiques ($a_{1}$, $a_{2}$, $\eta_{0}$)
-% ainsi que le volume du ballon sanitaire. La $Ech_{sol}^{pos}$ quand à elle a une influence
-% non-linéaire ou avec des interactions. L’ordre des facteurs influents reste sensiblement le
-% même pour Bordeaux et Strasbourg.
-% % subsubsection couverture_solaire_sur_l_ECS (end)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Couverture solaire sur le chauffage} % (fold)
+\label{ssub:couverture_solaire_sur_le_chauffage}
+La même tendance que pour l’indicateur $F_{sol}^{ECS}$ est observée~: les facteurs
+influents ont plus d’effets non-linéaires ou avec des interactions pour le climat de
+Bordeaux que pour Strasbourg. En effet sur Bordeaux le volume du ballon \abr{ECS}, le
+$\Delta min_{capteur}$, et la $Ech_{sol}^{pos}$ ont tous des effets non linéaires ou avec
+interaction alors que sur Strasbourg, seul le $\Delta T_{sol}$ est identifié.
+Pour les deux climats, le volume du ballon
+tampon et le nombre de capteurs solaires thermiques sont les plus influents. Il apparaît
+que les caractéristiques de l’enveloppe, exception faite des vitrages, ne soit pas parmi
+les plus influentes même sur le climat strasbourgeois où les besoins en chauffage sont
+importants. Il est même complètement exclut des facteurs influent la résistance thermique du plancher.
+Sur Bordeaux et sur Strasbourg les paramètres liés au réglage de l’algorithme de contrôle
+($\Delta T_{sol}$, $\Delta min_{capteur}$, $\Delta min_{tampon}$) sont aussi identifiés
+comme fortement influents. Il est aussi noté pour Bordeaux un faible impact de la
+$Ech_{sol}^{pos}$ et de la surface vitrée à l’est. L’épaisseur de l’isolant du ballon
+tampon semble aussi être influent sur Bordeaux.
+
+Afin de mieux comprendre pourquoi ces paramètres sont influents, l’analyse de
+\textit{Morris} est réalisée en distinguant la part active ($Prod_{sol}^{CH}$ active) de
+la part passive (pertes des ballons, $Prod_{sol}^{CH}$ passive) (annexes,
+\figref{fig:prod_sol_chauffage_mu}). Pour Bordeaux et Strasbourg, il est ainsi mis en
+évidence que l’amélioration de l’isolation des ballons à un effet négatif sur la part
+passive mais aucuns effets sur la part active. À l’inverse lorsque le paramètre
+$Émis_{int}$ augmente ($U_{g}$ diminue) la part solaire active est plus importante mais
+aucuns effets n’est observé sur la part passive. Il semble donc qu’il existe un compromis
+entre la qualité de l’enveloppe et la part des consommations couverte par le solaire. De
+plus pour Bordeaux, si seule la part active est considérée il est noté que les facteurs
+influents sont principalement, le nombre de capteur, la performance des vitrages, et le
+$\Delta min_{tampon}$. En effet, augmenter le volume du ballon \abr{ECS} améliore la part
+solaire passive mais diminue la part active, expliquant pourquoi ce facteur n’est pas
+parmi les plus influent uniquement sur la part active. Par contre l’augmentation du volume
+du ballon tampon améliore à la fois la part active et la part passive même si le facteur
+est plus influent sur cette dernière.
+
+Il apparaît que l’analyse des facteurs liés à l’algorithme de contrôle soit plus complexe.
+Augmenter le $\Delta min_{tampon}$ semble influencer négativement la part active sur
+Bordeaux et Strasbourg, mais permet d’améliorer la part passive uniquement sur
+Strasbourg. Les conditions d’ensoleillement étant meilleures et les besoins moins
+important sur Bordeaux, le ballon tampon est en moyenne à une température plus élevée et
+faire varier le $\Delta min_{tampon}$ est donc moins impactant. Aussi il est observé que
+augmenter le $\Delta min_{capteur}$ impacte négativement la part solaire active sur
+Strasbourg et est fortement non-linéaire ou avec des interactions sur Bordeaux (annexe,
+\figref{fig:prod_sol_chauffage_mu_star}). Finalement le $\Delta T_{sol}$ a un impact non-
+linéaire ou avec des interactions sur Strasbourg pour la part solaire active mais ne fait
+pas parti des facteurs influent sur Bordeaux.
+
+\paragraph{Bilan} % (fold)
+\label{par:bilan_prod_sol_chauff}
+Il est exposer la complexité liée à l’évaluation couplée d’un \abr{SSC}
+et d’un bâtiment. Bien que les facteurs identifiés comme influents soit similaires
+entre Bordeaux et Strasbourg, l’analyse détaillée considérant séparément la part solaire
+active et passive met en évidence que le \abr{SSC} ne se comporte pas de la même manière
+sur les deux climats. Ainsi en plus d’une forte interaction
+identifiée entre la $F_{sol}^{ECS}$ et la $F_{sol}^{CH}$, il est mis en évidence
+une forte interaction entre le chauffage solaire actif et passif.
+Pour cette raison il est préféré les indicateurs $F_{sav}^{ECS}$ et $F_{sav}^{CH}$
+dans l’optimisation. En effet il n’existe pas à la connaissance de l’auteur de moyen
+d’identifier la part passive utile de la part inutile. En considérant la part
+économisé d’appoint, il est pris indirectement en compte de l’utilité de l’énergie
+solaire apportée au bâtiment, que ce soit la part active ou passive.
+Finalement un l’existence d’un compromis entre qualité de l’enveloppe et performance du \abr{SSC}
+sur le chauffage est aussi identifié.
+% paragraph bilan_prod_sol_chauff (end)
+% subsubsection couverture_solaire_sur_le_chauffage (end)
 
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Couverture solaire sur le chauffage} % (fold)
-% \label{ssub:couverture_solaire_sur_le_chauffage}
-% Sur l’indicateur $F_{sol}^{CH}$ (\figref{fig:objectifs_mu_star}), le nombre de capteur, ces caractéristiques ($a_{1}$,
-% $a_{2}$, et $\eta_{0}$), le volume des deux ballons et la performance thermique des
-% vitrages ($Émis_{ext}$) sont tous influents. Pour Bordeaux comme Strasbourg le volume du
-% ballon $ECS$ a un effet non linéaire ou avec des interactions. Cependant, il peut aussi
-% être noté que l’$Émis_{ext}$ a un effet non linéaire sur Strasbourg alors qu’il est
-% fortement linéaire sur Bordeaux. Aussi, le $DeltaT_{sol}$ et la $Ech_{sol}^{pos}$ ont
-% aussi tous deux des effets non linéaire ou avec des interactions mais l’impact est
-% important uniquement sur le climat Bordelais. De même la résistance thermique de
-% l’enveloppe ($R$ murs et $R$ plafond) a un impact linéaire uniquement sur Bordeaux.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Consommation de l’appoint} % (fold)
+\label{ssub:consommation_de_l_appoint}
+Sur la $Conso_{app}$ (\figref{fig:objectifs_mu_star}) les facteurs les plus influents sont
+pour les deux climats~: le nombre de capteurs solaires thermiques et l’$Émis_{int}$ des
+vitrages. Les autres caractéristiques de l’enveloppe ont aussi des influences linéaires
+($R$ plafond, $R$ murs) sur Bordeaux et Strasbourg. La qualité du plancher est cependant
+identifiée comme impactant uniquement sur Strasbourg. Les caractéristiques de l’enveloppe
+sont donc sur Strasbourg toutes influentes et la performance du vitrage est le facteur
+prédominant.
+L’algorithme semble aussi influencer directement la consommation de l’appoint avec
+$\Delta min_{tampon}$ sur Bordeaux et $\Delta min_{capteur}$ sur Strasbourg, les deux
+ayant une influence non-linéaire ou avec des interactions. Il est aussi observé que
+le volume du ballon \abr{ECS} est un facteur important dans les deux climats alors
+que le volume de l’appoint n’est influent que sur Strasbourg.
 
-% Afin de mieux comprendre l’influence de chaque facteur, il est intéressant d’analyser
-% l’impact sur la $Prod_{sol}^{CH}$ passive et la $Prod_{sol}^{CH}$ active qui forment à eux
-% deux la $Prod_{sol}^{CH}$ (\figref{fig:prod_sol_chauffage_mu_star}, \figref{fig:prod_sol_chauffage_mu}).
-% Pour les deux climats le volume du ballon tampon influence principalement la
-% $Prod_{sol}^{CH}$ passive. Sur Strasbourg, ce facteur est d’ailleurs le plus influent
-% devant le nombre de capteurs. À l’opposé l’$DeltaT_{sol}$ et $Émis_{ext}$ influence
-% principalement la $Prod_{sol}^{CH}$ active sur Bordeaux comme Strasbourg. Il est aussi
-% clair que le $DeltaT_{sol}$ a un effet fortement non-linéaire ou avec de fortes
-% interactions sur Bordeaux. Bien que non influent si on considère la $Prod_{sol}^{CH}$, la
-% performance de l’isolation des ballons est un facteur impactant sur la part passive.
-% D’autre part, il apparaît que la surface vitrée Sud est influente (non- linéaire ou avec
-% des interactions) sur la $Prod_{sol}^{CH}$ mais pas sur le $F_{sol}^{CH}$. Enfin le nombre
-% de capteurs et leur performance sont influents autant sur la part passive que la part
-% active.
+Afin de mieux comprendre, l’analyse est détaillée en séparant la part attribuée au
+chauffage et à la production d’\abr{ECS} (annexe, \figref{fig:conso_app_mu_star}).
+Si on considère uniquement les consommations sur le chauffage ($Conso_{app}^{CH}$),
+la qualité thermique du vitrage arrive largement devant les autres facteurs que ce
+soit pour Bordeaux ou Strasbourg. Sur Bordeaux le nombre de capteurs solaires
+thermiques est aussi fort impactant par rapport aux autres facteurs. Par contre
+sur Strasbourg, la performance thermique des murs est aussi importante que le nombre
+de capteurs solaires expliqué par une part des besoins en chauffage plus important
+pour ce climat.
 
-% Il est donc mis en exergue la complexité liée à l’évaluation couplée d’un système
-% et du bâtiment. Il existe de nombreux facteurs influents autant sur l’enveloppe que
-% sur le système. Certains influence principalement la part passive, d’autres la part
-% active, et enfin d’autres les deux. Enfin, de nombreux facteurs ont un impact non-linéaire
-% ou avec des interactions en particulier pour le climat Bordelais.
-% % subsubsection couverture_solaire_sur_le_chauffage (end)
+$\Delta min_{tampon}$ et $\Delta min_{capteur}$ sont influents pour les deux climats
+mais uniquement sur la $Conso_{app}^{CH}$. Sur la $Conso_{app}^{ECS}$ la $\Delta min_{tampon}$ et le seul
+facteur impactant pour Bordeaux alors que sur Strasbourg, seul $\Delta min_{capteur}$ est influent.
+Cette remarque permet d’expliquer pourquoi uniquement un des deux facteurs est influent lorsque
+on considère la consommation totale $Conso_{app}$. La même observation peut être faite
+pour le ballon tampon dont le volume impacte uniquement la $Conso_{app}^{CH}$ sur Bordeaux.
+Enfin les caractéristiques des capteurs sont influentes à la fois sur la
+$Conso_{app}^{CH}$ et la $Conso_{app}^{ECS}$.
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Consommation de l’appoint} % (fold)
-% \label{ssub:consommation_de_l_appoint}
-% Les résultats sur les objectifs principaux (\figref{fig:objectifs_mu_star}) montrent que
-% les paramètres $a_{1}$, $a_{2}$, $\eta_{0}$, $Émis_{ext}$, le volume du ballon $ECS$, la
-% résistance thermique des murs et du plafond, ainsi que le nombre de capteurs thermiques,
-% sont tous influents. Seul le volume du ballon $ECS$ a une influence non-linéaire ou avec
-% des interactions. Il apparaît aussi que le niveau d’isolation des ballons comme des
-% canalisations ne soit pas très important. Pour Strasbourg, contrairement à Bordeaux, de
-% nombreux facteurs liés à l’enveloppe sont impactant. La résistance du plancher et le
-% $\tau_{sol}$, ont en effet un impact linéaire, et les surfaces vitrées au Sud comme à
-% l’Est un impact non-linéaire ou avec interactions. Aussi l’isolation des vitrages
-% ($Émis_{ext}$) est le facteur le plus influent sur Strasbourg, devant le nombre de
-% capteur.
-
-% Lorsque seule la $Conso_{app}^{CH}$ (\figref{fig:conso_app_mu_star}, \figref{fig:conso_app_mu})
-% est considérée, il est clair que l’enveloppe joue un rôle important même pour Bordeaux où
-% l’$Émis_{ext}$ est le facteur le plus influent suivit par le nombre de capteur et la
-% résistance des murs. Pour Bordeaux, il peut aussi être noté que la $Conso_{app}^{CH}$ est
-% influencée par la surface de vitrage au Sud mais les besoins en chauffage étant moins
-% important que les besoins en $ECS$ l’indicateur n’est pas parmi les plus influents sur la
-% $Conso_{app}$. Enfin pour Bordeaux comme Strasbourg, le volume du ballon tampon comme la
-% $Ech_{sol}^{pos}$ sont influent sur la $Conso_{app}^{ECS}$. Ainsi au regard de résultats
-% il apparaît que la performance du $SSC$ est plus impactée par les caractéristiques de
-% l’enveloppe lorsque les conditions extérieures sont plus rudes.
-% % subsubsection consommation_de_l_appoint (end)
+\paragraph{Bilan} % (fold)
+\label{par:bilan_conso_app}
+L’analyse met en évidence que certain facteurs influencent soit la $Conso_{app}^{ECS}$,
+soit pour la $Conso_{app}^{CH}$. Les besoins en chauffage sur Strasbourg étant plus
+important que sur Bordeaux, les facteurs caractérisants l’enveloppe sont tous influent à a
+fois sur $Conso_{app}^{CH}$ et la $Conso_{app}$ sur Strasbourg. Sur Bordeaux ou le
+chauffage représente une part moindre par rapport aux besoins en \abr{ECS}, les facteurs
+peu impactant sur le chauffage n’apparaissent pas lorsque la consommation totale est
+considérée. Cette tendance est de plus renforcée par l’ensoleillement plus important sur
+Bordeaux, permettant au
+\abr{SSC} de couvrir un part plus importante des besoins et donc de diminuer
+la variation de la consommation du chauffage lorsque l’enveloppe est modifiée. Ces
+résultats confirment la nécessité de considérer les systèmes et l’enveloppe de concert
+afin de proposer une solution adaptée aux contraintes du climat.
+% paragraph bilan_conso_app (end)
+% subsubsection consommation_de_l_appoint (end)
 
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Consommation totale} % (fold)
-% \label{ssub:consommation_totale}
-% Sur la $Conso_{totale}$, il est observé une très forte influence linéaire de la surface de
-% $PV$. En comparaison, les autres paramètres ont une influence modérée sur Bordeaux~:
-% nombre des capteurs et ses caractéristiques, volume du ballon sanitaire, isolation des
-% vitrages, des murs, et du plafond. La surface de $PV$ est le seul facteur permettant de
-% couvrir la consommation électrique des équipements internes. Ces équipements représentant
-% la majorité des consommations pour Bordeaux, il est normal que ce facteur soit très
-% influents. Par contre sur Strasbourg, où la $Conso_{app}$ est importante, et plus
-% particulièrement la $Conso_{app}^{CH}$ les facteurs caractérisant l’enveloppe ont une plus
-% grande importance. Ainsi sur Strasbourg, le second facteur le plus influent est
-% l’$Émis_{ext}$ alors que c’est le nombre de capteurs pour Bordeaux. Enfin, le volume du
-% ballon sanitaire a un impact non-linéaire ou avec des interactions et linéaire
-% respectivement pour Bordeaux et Strasbourg.
-% % subsubsection consommation_totale (end)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Consommation totale} % (fold)
+\label{ssub:consommation_totale}
+Concernant la consommation totale, le nombre de capteur \abr{PV} est le plus influent.
+En effet, les consommations propres aux charges internes (électro-domestique et éclairage)
+représentent une part importante des consommations. De plus, la surface de capteurs
+thermiques minimale permet déjà de couvrir une partie des besoins, notamment sur la
+production d’\abr{ECS}. Il est aussi important de garder à l’esprit que la surface de
+capteur \abr{PV} varie de \SI{2}{\metre\squared} de plus que celle des capteurs solaires
+thermiques pour les raisons explicitées en introduction de section. Ces observations permettent
+d’expliquer pourquoi le nombre de capteur \abr{PV} est le facteur le plus influent.
+Cependant, sur Strasbourg ou les besoins en \abr{ECS} et en chauffage sont prédominants,
+la performance des vitrages et le nombre de capteurs solaires thermiques sont aussi
+fortement influents.
+% subsubsection consommation_totale (end)
 
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Valorisation de l’énergie solaire~:} % (fold)
-% \label{ssub:valorisation_de_l_energie_solaire_}
-% L’analyse de l’influence des facteurs (\figref{fig:prod_sol_valorisee_mu_star}) montre que
-% les $Pertes_{réseau}$ sont fortement impactées par la surface totale de capteur comme de
-% l’épaisseur de l’isolant au niveau des canalisations. Plus intéressant, les résultats
-% montrent que le volume du ballon sanitaire a aussi un impact important. Afin de mieux
-% comprendre le signe de l’influence, il est nécessaire de regarder l’évolution de la
-% moyenne ($\mu$) (\figref{fig:prod_sol_valorisee_mu}). En comparant l’évolution de
-% $\mu^{*}$ et de $\mu$ il est clair que augmenter le volume influe négativement les
-% $Pertes_{réseau}$. Il est aussi observé que pour Bordeaux comme Strasbourg, l’impact est
-% avec interaction ou non linéaire même si l’effet est plus important sur Bordeaux. La
-% $Prod_{sol}$ étant plus importante sur Bordeaux que Strasbourg, les $Pertes_{réseau}$ sont
-% aussi augmentées. Dans une moindre mesure le $DeltaT_{sol}$ est aussi influent et a des
-% interaction non linéaires ou avec des interactions. Contrairement aux observations
-% réalisés sur les indicateurs sélectionnées comme des objectifs, le facteur semble plus
-% influent sur Strasbourg.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Valorisation de l’énergie solaire~:} % (fold)
+\label{ssub:valorisation_de_l_energie_solaire}
+Cette dernière partie décrit les facteurs influençant la part solaire absorbée
+au niveau des capteurs ($Prod_{sol}$), les pertes en ligne ($Pertes_{réseau}$),
+et la part solaire valorisée ($Prod_{sol}^{valorisée} = Prod_{sol} - Pertes_{réseau}$)
+(annexe, \figref{fig:prod_sol_valorisee_mu_star}).
+Pour Bordeaux comme Strasbourg le volume des ballons, le type de capteur, et le
+nombre de capteurs solaires influencent la $Prod_{sol}^{valorisée}$.
+Comme observée pour la $Conso_{app}$, le $\Delta min_{capteur}$ n’est influent
+que sur le climat de Strasbourg, et le $\Delta min_{tampon}$ ne l’est que sur Bordeaux. Ces deux
+facteurs ayant une influence non-linéaire ou avec des interactions.
+Sur Bordeaux, il est aussi mis en évidence que la performance des vitrages a un impact
+non linéaire ou avec des interaction importantes. Afin de l’expliquer, il est nécessaire
+de croiser plusieurs informations. Il a été vu qu’un compromis existe entre qualité
+de l’enveloppe et performance du \abr{SSC} sur le chauffage (\ref{ssub:couverture_solaire_sur_le_chauffage}).
+De plus, les résultats de l’étude paramétrique montrent que sur le climat de Bordeaux,
+les besoins en chauffage sont faibles et que le solaire peut couvrir la majeure partie.
+Avec un climat disposant d’un ensoleillement important, le \abr{SSC} sur Bordeaux
+peut fournir l’énergie supplémentaire nécessaire lorsque les besoins de chauffage
+augmente (augmentation de l’$Émis_{int}$). Sur Strasbourg ce facteur n’est donc
+pas influent car le \abr{SSC} couvre moins bien les besoins de chauffage plus importants.
+De plus l’ensoleillement est moindre et l’augmentation des pertes thermiques induites
+par une diminution de la performance des vitrages et plus grande.
 
-% Maintenant si on s’intéresse à l’effet de ces pertes sur la $Prod_{sol}^{valorisée}$, la
-% performance thermiques des canalisations ne sont plus importantes. Cependant le volume du
-% ballon sanitaire est toujours influent mais les effets sont cette fois linéaires. Il est
-% aussi possible d’identifier un nouveau facteur influent de manière linéaire~: le volume du
-% ballon tampon. L’explication est simple~: la proportion des $Pertes_{réseau}$ est moins
-% importante que la $Prod_{sol}$, ainsi les facteurs les plus influents pour la
-% $Prod_{sol}^{valorisée}$ sont ceux ayant une influence sur la $Prod_{sol}$.
-
-% Il est aussi intéressant de voir que la performance des vitrages ($Émis_{ext}$) est un
-% facteur impactant avec des effets non linéaires ou des interactions. Il semble en effet
-% que la dégradation de la performance des fenêtre permette de valoriser plus d’énergie
-% solaire. Pour les deux climats, l’influence est similaire mais il a été noté que la
-% dégradation de l’$Émis_{ext}$ des vitrages impacte fortement la $Conso_{app}$
-% particulièrement pour Strasbourg. Le solaire ne semble donc capable de couvrir que une
-% partie de l’augmentation des besoins.
-% % subsubsection valorisation_de_l_energie_solaire_ (end)
+Enfin, les $Pertes_{réseau}$ sont fortement impactées par la surface totale de capteur
+comme de l’épaisseur de l’isolant au niveau des canalisations. Le volume du ballon
+sanitaire a aussi un impact important. En comparant l’effet élémentaire sur la moyenne
+(\figref{fig:prod_sol_valorisee_mu}) et sur la moyenne pondérée, il apparaît que augmenter
+le volume du ballon réduise les pertes en ligne. Les variations algorithmiques impacte
+aussi les $Pertes_{réseau}$. $\Delta min_{capteur}$ a en effet une influence non-linéaire
+ou avec interaction pour les deux climats et $\Delta min_{tampon}$ uniquement pour
+Bordeaux. La part solaire perdue en ligne ($Pertes_{réseau}$) étant faible au regard des
+apports solaires ($Prod_{sol}$), l’isolation des canalisations ($Isolant_{réseau}^{ep}$)
+n’est pas influent sur la $Prod_{sol}^{valorisée}$. Par extension, il n’est pas influent
+non plus sur les indicateurs $F_{sol}^{ECS}$ ou $F_{sol}^{CH}$.
+% subsubsection valorisation_de_l_energie_solaire (end)
 
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star_objectifs.pdf}
-    \caption{Résultat de l’analyse de Morris pour les objectifs principaux
+    \includegraphics{Ressources/Images/Sensibilite/sigma_mu_star_1.pdf}
+    \caption{Résultat de l’analyse de \textit{Morris} pour les indicateurs principaux
              ($f(\mu^{*}) = \sigma$).}
     \label{fig:objectifs_mu_star}
 \end{figure}
-
-
-\begin{landscape}
-    \begin{figure}
-        \centering
-        \includegraphics{Ressources/Images/Sensibilite/graphInfluence.pdf}
-        \caption[Graphe d’influence du $SSC$ pour Bordeaux et Strasbourg]
-                {Graphe d’influence du $SSC$ pour Bordeaux et Strasbourg avec les
-                 relations linéaires (noir), non-linéaires (bleu), et indirectes (pointillées).}
-        \label{fig:graphe_influence_objectifs}
-    \end{figure}
-\end{landscape}
 % subsection analyse_des_resultats (end)
 
 
@@ -730,21 +788,60 @@ lorsque la méthode considère quatre niveaux.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Paramètres retenus} % (fold)
 \label{sub:parametres_retenus}
-Au regard de cette analyse, un récapitulatif des paramètres conservés permet de voir que
-des facteurs à la fois sur l’enveloppe, et le système ont été retenus. Au cours de
-l’optimisation, des capteurs et vitrages existants sont utilisé afin d’être cohérent avec
-les performances existantes sur le marché (\tabref{tab:capteurs_specs_optimisation},
-\tabref{tab:carac_vitrages}). Il peut aussi être noté que l’enveloppe impacte de manière
-plus importante le $SSC$ sur le climat Strasbourgeois où le climat est plus rude. Il
-existe ainsi des compromis intéressants entre la qualité de l’enveloppe, la surface de
-$PV$, et les caractéristiques du $SSC$. Enfin le criblage a permis de passer de
-\num{19} paramètres à \num{11} pour Bordeaux et \num{12} pour Strasbourg. Le
-nombre de combinaisons à évaluer est ainsi fortement réduit.
+L’analyse de sensibilité a permis de réduire le nombre de critères de décision
+pour Bordeaux et Strasbourg. Ainsi sur les $22$ facteurs a priori, il en est retenu
+$14$ pour Bordeaux et $15$ pour Strasbourg.  Il est en effet retenue à la fois des variables discrètes, continues,
+et qualitatives dont les bornes de variation sont décrites dans \tabref{tab:facteur_retenues}.
+Aussi, suite aux observations faites dans l’analyse des résultats, la borne maximale pour le volume des
+ballons a été réajustée à \SI{400}{\litre} maximum par ballon contre \SI{500}{\litre}
+auparavant.
+Les résultats du criblage sont aussi présentés sous une forme synthétique grâce à un
+graphe d’influence qui décrit le lien entre chaque facteur, et chaque indicateur
+(\figref{fig:graphe_influence_objectifs}). La visualisation permet de mettre en évidence
+les facteurs influents peu (Surfaces vitrées, isolation du ballon tampon\dots) ou beaucoup
+d’indicateurs (type de vitrage, nombre de capteurs \abr{PV}\dots).
+
+L’analyse a aussi permis de mettre en évidence plusieurs remarques~:
+\begin{itemize}
+  \item Le \abr{SSC} est fortement influencé par des éléments de l’enveloppe, des équipements,
+        mais aussi par les variations algorithmiques.
+  \item $16$ facteurs différents ont été identifiés comme influents sur les objectifs de
+        l’optimisation pour Bordeaux et Strasbourg cumulés.
+  \item Augmenter l’isolation des canalisations n’a pas d’intérêts.
+  \item Les variations du \abr{SSC} sont plus influente lorsque la $Conso_{app}$
+        est plus importante que la consommation des équipements internes.
+  \item Le potentiel de réduction de la consommation de l’appoint est plus important
+        pour Strasbourg que Bordeaux.
+  \item Il existe un compromis entre qualité de l’enveloppe, la performance du \abr{SSC}
+        et la surface installée de capteur \abr{PV}.
+  \item Le dimensionnement d’un bâtiment doit être le résultat d’une évaluation
+        couplée du bâtiment et du système installée, en particulier lorsque le système
+        utilise des énergies renouvelables.
+\end{itemize}
+
+Malgré une réduction du nombre de paramètres de décisions, la temps de simulation
+important est toujours un frein à l’application d’une méthode d’optimisation
+par méta-heuristique. De plus, il est nécessaire d’évaluer en parallèle le modèle
+de référence pour chaque variation de l’enveloppe afin de pouvoir calculer l’économie
+d’appoint permise par le \abr{SSC}~: $F_{sav}^{CH}$ et $F_{sav}^{ECS}$. Il est donc
+proposer d’utiliser des modèles de substitutions.
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/Sensibilite/graphInfluence.pdf}
+    \caption[Graphe d’influence du $SSC$ pour Bordeaux et Strasbourg]
+            {Graphe d’influence du $SSC$ pour Bordeaux et Strasbourg avec les
+             relations linéaires (noir), non-linéaires (bleu), et indirectes (pointillées).}
+    \label{fig:graphe_influence_objectifs}
+\end{figure}
+
 
 
 \begin{table}
 \centering
-\caption{Liste des paramètres retenus pour l’optimisation.}
+\caption[Description des paramètres retenus pour l’optimisation]
+         {Description des paramètres retenus pour l’optimisation. Les facteurs uniquement retenus
+          sur Bordeaux sont sous un fond crème, et ceux uniquement pour Strasbourg sous un fond gris.}
 \label{tab:facteur_retenues}
 \begin{tabular}{l c c c c l}
   \toprule
@@ -753,78 +850,40 @@ nombre de combinaisons à évaluer est ainsi fortement réduit.
   \addlinespace
   \multicolumn{5}{l}{\bm{$SSC$}}         \\
   \midrule
-  Nombre capteurs      & \num{2}    & \num{5}     & Discrète    & \num{1}    & \num{4.64} -- \SI{11.6}{\metre\squared}   \\
-  Type de capteur      & -          &  -          & Qualitative & -          & Voir \tabref{tab:capteurs_specs_optimisation}   \\
-  $Ech_{sol}^{pos}$    & \num{0.8}  &  \num{1.3}  & Continue    & -          & Position relative à la taille du ballon     \\
-  Volume ballon tampon & \num{100}  &  \num{500}  & Discrète    & \num{50}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}   \\
-  Volume ballon $ECS$  & \num{100}  &  \num{500}  & Discrète    & \num{50}   &    \\
-  $DeltaT_{sol}$       & \num{5}    &  \num{15}   & Continue    & -          &  \emph{Uniquement pour Bordeaux}      \\
+  \rowcolor{SolarizedBrWhite}
+  Nombre capteurs \abr{TH}    & \num{2}    & \num{5} & Discrète    & \num{1}    & \SIrange{4.6}{11.6}{\metre\squared}  \\
+  \rowcolor{SolarizedBrCyan}
+  Nombre capteurs \abr{TH}    & \num{2}    & \num{7} & Discrète    & \num{1}    & \SIrange{4.6}{16.2}{\metre\squared}   \\
+  Type capteurs \abr{TH}      & -          &  -      & Qualitative & -          & Voir \tabref{tab:capteurs_specs_optimisation}   \\
+
+  $Ech_{sol}^{pos}$           & \num{0.8}  &  \num{1.3}  & Continue    & -          & Position relative à la hauteur du ballon     \\
+  Volume ballon tampon        & \num{100}  &  \num{400}  & Discrète    & \num{50}   & \multirow{2}{*}{Dimensions adaptées proportionnellement}   \\
+  Volume ballon $ECS$         & \num{100}  &  \num{400}  & Discrète    & \num{50}   &    \\
+  \rowcolor{SolarizedBrWhite}
+  $Isolant_{ballon}$ tampon   & \num{0.055} &  \num{0.12} & Discrète    & \num{50}   &  Résistance dépendante du volume du ballon  \\
+  $\Delta T_{sol}$            & \num{5}    &  \num{20}   & Continue    & -          &  -      \\
+  $\Delta min_{capteur}$      & \num{0}    &  \num{30}   & Continue    & -          &  -      \\
+  $\Delta min_{tampon}$       & \num{0}    &  \num{30}   & Continue    & -          &  -      \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}             \\
   \midrule
   $R$ murs             & \num{4}    &  \num{7}    & Discrète    & \num{0.5}  & -                                  \\
   $R$ plafond          & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & -                                                                      \\
-  $R$ plancher         & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & \emph{Uniquement pour Strasbourg}                                                                     \\
-  Surface vitrée Sud  & \num{5.42} &  \num{8.13} & Continue    &  -         & -       \\
-  Surface vitrée Est  & \num{4.3}  &  \num{6.46} & Continue    &  -         &  \emph{Uniquement pour Strasbourg} \\
+  \rowcolor{SolarizedBrCyan}
+  $R$ plancher         & \num{6}    &  \num{10}   & Discrète    & \num{0.5}  & -                                                                     \\
+  \rowcolor{SolarizedBrCyan}
+  Surface vitrée sud   & \num{5.42} &  \num{8.13} & Continue    &  -          & -       \\
+  Surface vitrée est   & \num{4.3}  &  \num{6.46} & Continue    &  -          & - \\
   Type de vitrage      & -          &  -          & Qualitative &  -         & Voir \tabref{tab:carac_vitrages} \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{5}{l}{\textbf{Production d’électricité}}      \\
   \midrule
-  Surface PV           & \num{14}   &  \num{30}   & Discret    &  \num{1}   & Capteurs thermiques prioritaires sur le pan Sud   \\
+  Nombre capteurs \abr{PV}         & \num{14}   &  \num{30}   & Discrète    &  \num{1}   & Capteurs thermiques prioritaires sur le pan Sud   \\
   \bottomrule
 \end{tabular}
 \end{table}
-
-\itodo{Présenter les résultats de la régression + ref équations chapitre 2}
-
-
-% \begin{table}
-% \centering
-% \itodo{Remplacer avec les bons capteurs et expliciter les paramètres}
-% \caption{Caractéristiques des panneaux solaires.
-% \label{tab:capteurs_specs_optimisation}}
-% \begin{tabular}{l c c c c r}
-%     \toprule
-%                                  & IDMK\,25             & 308C\,HP             & 12\,CPC58      & ECO 25        & Unité                       \\
-%     \midrule
-%     Fabricant                    & Sonnenkraft          & Radco                & Sky Pro        & Dima          & -                           \\
-%     Type                         & Plan vitrée          & Plan vitrée          & Tubulaire      & Plan vitrée   & -                           \\
-%     Surface nette                & \num{2.32}           & \num{2.193}          & \num{2.28}     & \num{2.312}   & \si{m^{2}}                  \\
-%     Poids à vide                 & \num{54}             & \num{36}             & \num{53}       & \num{41}      & \si{kg}                     \\
-%     Contenance                   & \num{1.35}           & \num{3.5}            & \num{1.83}     & \num{1.9}     & \si{\litre}                 \\
-%     $\eta_{0}$                   & \num{78}             & \num{83.4}           & \num{63}       & \num{66.4}    & \si{\percent}                     \\
-%     $a_{1}$                      & \num{3.796}          & \num{1.4539}         & \num{0.9249}   & \num{4.9510}  & \si{W/(m^{2}\period K)}     \\
-%     $a_{2}$                      & \num{0,013}          & \num{0.0589}         & \num{0.00069}  & \num{0.01527} & \si{W/(m^{2}\period K^{2})} \\
-%     $IMDiff$                     & \num{100}            & \num{96}             & \num{102}      & \num{93}      & \si{\percent}                     \\
-%     \bottomrule
-% \end{tabular}
-% \end{table}
-
-% \begin{table}
-% \centering
-% \caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
-%          des différents vitrages envisagés.}
-% \label{tab:carac_vitrages}
-% \begin{tabular}{l c c c r}
-%   \toprule
-%                      & Planitherm XN       & Planitherm ONE       & OptiwhiteKGlass       & Unité                        \\
-%   \midrule
-%   Fabricant    & \href{http://fr.saint-gobain-glass.com/product/2422/sgg-planitherm-xn}{%
-%                        St Gobain}
-%                & \href{http://eg.saint-gobain-glass.com/product/1659/}{%
-%                        St Gobain}
-%                & \href{https://www.pilkington.com/en-gb/uk/products/product-categories/thermal-insulation/pilkington-k-glass-range/pilkington-k-glass}{%
-%                        Pilkington}                                                              & -                             \\
-%   Construction & \num{4}-16-4              & \num{4}-16-4            & \num{4}-16-4             & -                             \\
-%   Gaz          & Argon                     & Argon                   & Argon                    & -                             \\
-%   $U_{g}$      & \num{1}.1                 & \num{1}.0               & \num{1}.5                & \si{W/(m^{2}\period \kelvin)} \\
-%   $g$          & \num{82}                  & \num{49}                & \num{78}                 & \si{\percent}                 \\
-%   \bottomrule
-%     \end{tabular}
-% \end{table}
 % subsection parametres_retenus (end)
 % section reduction_de_la_cardinalite (end)
 
@@ -837,6 +896,8 @@ nombre de combinaisons à évaluer est ainsi fortement réduit.
 \label{sub:construction_d_un_modele_de_substitution}
 \subsection{Création de l’échantillon} % (fold)
 \label{sub:creation_de_l_echantillon}
+
+\itodo{Mettre en avant la réutilisation de l’échantillon}
 Afin de réduire la durée de simulation le modèle détaillée peut être substitué à un méta-
 modèle. Comme décrit dans le chapitre précédent un ensemble représentatif des combinaisons
 possibles est nécessaire afin de construire un modèle valide. Grâce à une méthode

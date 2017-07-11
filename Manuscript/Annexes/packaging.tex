@@ -8,7 +8,8 @@
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Demonstration/repartition_capteur.pdf}
-    \caption{Représentation schématique du problème de enquote{packaging} pour
+    \caption[Représentation schématique du problème de \enquote{packaging}]
+            {Représentation schématique du problème de \enquote{packaging} pour
              un triangle aïgue (gauche) et un triangle obtue (droite).
              \label{fig:rects_in_triangle}}
 \end{figure}
@@ -33,7 +34,7 @@ en fonction de $H$.
     DE = \frac{BE \times AC}{BC} = \frac{(H - h) \times AC}{H}
 \end{equation}
 
-\noindent Le nombre total de rectangle sans chevauchement peut alors être définie \eqref{eq:nb_rects_in_triangle}:
+\noindent Le nombre total de rectangle sans chevauchement peut alors être définie suivant \eqref{eq:nb_rects_in_triangle}:
 \begin{equation}
     N_{rect} = \sum_{n = 1}^{\floor*{\frac{H}{h}}} \, \floor*{\frac{(H - n \times h) \times AC}{l \times H}}
     \label{eq:nb_rects_in_triangle}
