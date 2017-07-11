@@ -469,7 +469,7 @@ sur l’enveloppe et sur le \abr{SSC}, il est nécessaire d’obtenir une consom
 de référence pour chaque performance d’enveloppe afin d’évaluer uniquement
 l’amélioration induite par le \abr{SSC}. Un modèle de référence sans apports solaires
 (tous électrique) est donc introduit. Il admet un unique ballon de \SI{200}{\litre} pour le stockage
-d’\abr{ECS} et seul une batterie électrique en terminal est utilisée.
+d’\abr{ECS} et une batterie électrique en terminal pour le chauffage.
 
 Finalement le dernier objectif, minimiser la $Surf_{PV}$ , est introduit afin de proposer des solutions non-dominées
 sur toute l’intervalle définie par la contrainte. En effet, sans cet objectif les solutions
@@ -493,8 +493,8 @@ d’obtenir une \abr{MEPOS} solaire.
 
 % ..............................................................................
 % ..............................................................................
-\section{Réduction de la cardinalité} % (fold)
-\label{sec:reduction_de_la_cardinalite}
+\section{Méthode de criblage de Morris} % (fold)
+\label{sec:methode_criblage_de_morris}
 Afin de réduire la cardinalité du problème, la méthode de \enquote{screening} de
 \textit{Morris} est retenue. L’analyse a été réalisée sur Bordeaux et Strasbourg en
 considérant \num{20} trajectoires uniques et \num{4} niveaux. Dans un premier temps les
@@ -885,7 +885,7 @@ proposer d’utiliser des modèles de substitutions.
 \end{tabular}
 \end{table}
 % subsection parametres_retenus (end)
-% section reduction_de_la_cardinalite (end)
+% section methode_criblage_de_morris (end)
 
 
 
@@ -896,31 +896,54 @@ proposer d’utiliser des modèles de substitutions.
 \label{sub:construction_d_un_modele_de_substitution}
 \subsection{Création de l’échantillon} % (fold)
 \label{sub:creation_de_l_echantillon}
-
-\itodo{Mettre en avant la réutilisation de l’échantillon}
-Afin de réduire la durée de simulation le modèle détaillée peut être substitué à un méta-
-modèle. Comme décrit dans le chapitre précédent un ensemble représentatif des combinaisons
-possibles est nécessaire afin de construire un modèle valide. Grâce à une méthode
-de criblage réalisée en amont la taille de l’échantillon nécessaire pour construire le
-modèle est réduit. Il a été construit grâce à une méthode de pseudo-Monte-Carlo
-en considérant la suite de Halton comme générateur pseudo-aléatoire. Les solutions construites
-sont donc équitablement réparties, assurant une bonne représentativité de l’espace de décision.
+Grâce au criblage, le nombre de variables de décisions a été réduit permettant
+d’éviter d’explorer des combinaisons non fructueuses durant la phase d’optimisation.
+Cependant le modèle demande un temps de simulation trop important pour pouvoir
+permettre l’optimisation dans des temps raisonnables. En effet, il est nécessaire de
+compter \SIrange{1}{3}{h} pour simuler le \abr{SSC} et \SIrange{10}{30}{min} pour
+le système de référence.
+Ainsi des modèles de substitutions sont utilisés pour calculer les indicateurs suivants
+sur Bordeaux et sur Strasbourg, soit au total $10$ méta-modèles~:
+\begin{itemize}
+  \item $Conso_{app}^{CH}$ la consommation de l’appoint pour le chauffage
+  \item $Conso_{ref}^{CH}$ la consommation de référence sur le chauffage (sans solaire)
+  \item $Conso_{app}^{ECS}$ la consommation de l’appoint pour la production d’\abr{ECS}
+  \item $Conso_{ref}^{ECS}$ la consommation de référence pour la production d’\abr{ECS} (sans solaire)
+  \item $Conso_{app}$ la consommation cumulée de l’appoint pour le chauffage et l’\abr{ECS}
+\end{itemize}
+Il est préférable de construire un méta-modèle pour chaque consommation et ensuite
+estimer les valeurs des objectifs $F_{sav}^{CH}$ et $F_{sav}^{ECS}$ que de directement
+construire un méta-modèle pour chaque objectif. La raison principale est la modularité
+de l’approche. En construisant un modèle de substitution pour la valeur de référence
+et pour le système, il est possible de modifier le système de référence sans devoir
+relancer les simulations sur le \abr{SSC} et inversement. De plus estimer la complexité
+de l’indicateur $F_{sav}$ directement nécessite plus de simulations que nécessaire
+pour approcher la $Conso_{app}$.
+La production des capteurs \abr{PV} étant pré-calculé, il n’y a pas besoin de construire
+de modèle de substitution.
 % subsection creation_de_l_echantillon (end)
 
 \subsection{Création des modèles de substitution} % (fold)
 \label{sub:creation_des_modeles_de_substitution}
-Une fois l’échantillon simulé, la bibliothèque \textit{OpenTurns} a été utilisée
-afin de construire les \num{3} méta-modèles. La $Prod_{sol}$ étant pré-calculée,
-un modèle est uniquement nécessaire pour le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$, et la $Conso_{app}$.
-Bien que la $Conso_{app}$ ne soit pas un objectif de l’optimisation, sa connaissance est
-nécessaire afin de déterminer la contrainte~: la $Conso_{totale}$.
+Afin de construire les modèles de substitutions, il est nécessaire dans un premier temps
+de construire un échantillon. Comme explicité dans le chapitre précédent, une méthode de
+pseudo-Monte-Carlo considérant la suite de Halton comme générateur pseudo-aléatoire est
+utilisé. Les solutions construites sont donc équitablement réparties, assurant une bonne
+représentativité de l’espace de décision. Afin de construire les $10$ modèles de
+substitutions, il est nécessaire de simuler $4$ échantillons, deux échantillons par climat
+(référence et \abr{SSC}). Un échantillon de $2000$ simulations pour le \abr{SSC}
+et de $1000$ simulations pour le système de référence est retenu. Un échantillon important
+est utilisé afin de pouvoir étudier la qualité du méta-modèle en fonction de la taille
+de l’échantillon.
 
+Une fois l’échantillon simulé, la bibliothèque \fnref{http://openturns.org/}{\textit{OpenTurns}}
+et les travaux de \textcite{Rania2013} sont utilisés pour construire les modèles.
 Étant en phase de conception et cherchant à explorer l’ensemble du domaine de recherche,
 une loi uniforme est utilisée pour chaque paramètre durant la construction des méta-modèles.
-Afin d’évaluer leurs précisions par rapport au modèle de référence, l’erreur
-quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale ($MAE$,
+De plus afin d’évaluer la précision des modèles de substitutions par rapport au modèle original,
+l’erreur quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale ($MAE$,
 Maximal Absolute Error) sont utilisées. La $RMSE$ permet d’évaluer l’écart moyen entre
-les sorties du méta-modèle ($\mathcal{M}$) et du modèle de référence ($f$)
+les sorties du méta-modèle ($\mathcal{M}$) et du modèle original ($f$)
 \eqref{eq:rmse}. Le second, la $MAE$, permet d’obtenir l’écart maximal existant entre le
 méta-modèle et le modèle de référence \eqref{eq:mae}. Ainsi ces deux variables statistiques
 permettent d’évaluer la qualité de l’approximation du méta-modèle.
@@ -932,18 +955,23 @@ permettent d’évaluer la qualité de l’approximation du méta-modèle.
   MAE  &= max \left( \abs{f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i})}, \: x = 1, 2, \dotsc, N \right)
 \end{align}
 
-\itodo{Décrire choix variable pour capteurs et vitrages}
-Afin de représenter les variables qualitatives, vitrages et capteurs, leurs variables
-caractéristiques sont utilisés en substitution. Au regard des résultats il apparaît que
-les capteurs sont mieux approximer si on le substitue par sa valeur pour le coefficient
-$a_{1}$. Pour les vitrages il semble que l’approximation est meilleur si on utilise en
-substitut la valeur de l’$Émis_{ext}$  (\mtodo{ref tab annexe}).
 
-\itodo{Ajouter analyse des courbes une fois étude finies}
-Une étude paramétrique est ensuite réalisée afin de déterminer la taille minimale
-nécessaire pour construire un méta-modèle approximant au mieux le modèle de référence.
-L’évolution de la $RMSE$ (\figref{fig:rmse}) et de la $MAE$ (\figref{fig:rmse}) est
-alors analysé.
+\subsubsection{Sélection des méta-modèles} % (fold)
+\label{ssub:selection_des_meta_modeles}
+\itodo{Décrire prise en compte capteurs et vitrages}
+\itodo{Quelles figures mettre}
+Afin d’offrir une meilleure lisibilité, seul les principaux résultats sont intégrés dans
+le cœur du document. Cependant comme pour l’étude de sensibilité, tous
+les résultats sont disponibles en annexes (\ref{cha:creation_des_meta_modeles}).
+
+Pour les indicateurs $Conso_{ref}^{CH}$, et $Conso_{ref}^{ECS}$, le modèle de substitution
+est précis dès $100$ simulations et la $MAE$ est inférieure à \SI{1}{kWh} pour Bordeaux
+comme pour Strasbourg à partir d’un échantillon de taille $400$ (annexes, \figref{fig:rmse_ref_evolution},
+\figref{fig:mae_ref_evolution}).
+
+Pour les indicateurs du \abr{SSC}, un échantillon de $1000$ simulations est nécessaire
+afin de réduire la $MAE$ et la $RMSE$.
+% subsubsection selection_des_meta_modeles (end)
 
 
 \begin{figure}
@@ -980,21 +1008,26 @@ point de l’échantillon non utilisés pour sa construction (\figref{fig:validi
 
 \begin{table}
 \centering
-\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{3} méta-modèles retenus
-         (taille de l’échantillon de \num{1000})
+\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{10} méta-modèles
+         construits)
 \label{tab:meta_retenus}}
-\begin{tabular}{l c c c c r}
+\begin{tabular}{l c c c c c c c c c}
     \toprule
-                    & \multicolumn{2}{c}{Bordeaux} & \multicolumn{2}{c}{Strasbourg} & \multirow{2}{*}{Unité} \\
-                    \cmidrule(r){2-3}
-                    \cmidrule(r){4-5}
-                    & $RMSE$ & $MAE$               & $RMSE$ & $MAE$                 &                        \\
+                    & \multicolumn{4}{c}{Bordeaux} & \multicolumn{4}{c}{Strasbourg} &
+                      Taille \\
+                    \cmidrule(r){2-5}
+                    \cmidrule(r){6-9}
+                    & $RMSE$ & $MAE$  & Ordre & Intervalle            & $RMSE$ & $MAE$ & Ordre & Intervalle & échantillon \\                        \\
     \midrule
-    $F_{sol}^{ECS}$ &  & & & & \si{\percent} \\
+    $Conso_{ref}^{CH}$  &  & & & \numrange{228}{620}   & & & & \numrange{1363}{2110}& \num{400}  \\
     \addlinespace[\defaultaddspace]
-    $F_{sol}^{ECS}$ &  & & & & \si{\percent} \\
+    $Conso_{ref}^{ECS}$ &  & & & \numrange{1735}{1743} & & & & \numrange{1931}{1935}& \num{400} \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}$   &  & & & & \si{kWh}      \\
+    $Conso_{app}^{CH}$  &  & & & \numrange{84}{440}    & & & & & \num{1000} \\
+    \addlinespace[\defaultaddspace]
+    $Conso_{app}^{ECS}$ &  & & & \numrange{156}{1043}  & & & & & \num{1000} \\
+    \addlinespace[\defaultaddspace]
+    $Conso_{app}$       &  & & & \numrange{324}{1372}  & & & & & \num{1000} \\
     \bottomrule
 \end{tabular}
 \end{table}
