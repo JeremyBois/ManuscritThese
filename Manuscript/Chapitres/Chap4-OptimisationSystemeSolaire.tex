@@ -183,8 +183,8 @@ seront écartées.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Description des paramètres a priori} % (fold)
-\label{sub:description_des_parametres_a_priori}
+\subsection{Définition des paramètres a priori} % (fold)
+\label{sub:definition_des_parametres_a_priori}
 Comme décrit dans le chapitre précédent, une analyse de sensibilité est nécessaire
 afin de réduire la cardinalité du problème et mieux guider l’exploration durant l’optimisation.
 Couvrant à la fois les caractéristiques de l’enveloppe et du \abr{SSC}, l’ensemble des
@@ -229,10 +229,11 @@ paramètres retenus a priori sont disponibles dans le \tabref{tab:parametre_a_pr
   \addlinespace[\defaultaddspace]
   \multicolumn{4}{l}{\textbf{Production d’électricité}}                                                                     \\
   \midrule
-  Nombre de capteurs $PV$                      & \num{8}       &  \num{30}   &  Capteurs thermiques prioritaires sur le pan Sud \\                                                             \\
+  Nombre de capteurs $PV$                      & \num{8}       &  \num{24}   &  Capteurs thermiques prioritaires sur le pan Sud \\                                                             \\
   \bottomrule
   \end{tabular}
-  *~: $5$ pour Bordeaux et $7$ pour Strasbourg.
+  \raggedright
+  *  $5$ pour Bordeaux et $7$ pour Strasbourg.
 \end{table}
 
 
@@ -384,7 +385,7 @@ Pour les capteurs solaires thermiques, il est considéré au minimum $2$ capteur
 $5$ et $7$ pour Bordeaux et Strasbourg. Une distinction est faite entre les deux climats afin
 de tenir compte des spécificités de chaque climats.
 % subsubsection autres_parametres (end)
-% subsection description_des_parametres_a_priori (end)
+% subsection definition_des_parametres_a_priori (end)
 
 
 
@@ -462,7 +463,7 @@ thermique faible et inversement.
 De plus en remplaçant les indicateurs $F_{sol}^{CH}$ et $F_{sol}^{ECS}$ par respectivement
 $F_{sav}^{CH}$ et $F_{sav}^{ECS}$, l’algorithme favorise non plus les solutions
 augmentant la part solaire, mais les solutions réduisant la part de l’appoint au
-profit d’une part plus importante de solaire. Cependant ces nouveaux objectifs
+profit d’une part plus importante de solaire \eqref{eq:taux_economie_opti}. Cependant ces nouveaux objectifs
 nécessitent un modèle de référence afin d’évaluer la réduction de la consommation
 induite par l’ajout d’un \abr{SSC}. Comme il est évalué conjointement des variations
 sur l’enveloppe et sur le \abr{SSC}, il est nécessaire d’obtenir une consommation
@@ -470,6 +471,12 @@ de référence pour chaque performance d’enveloppe afin d’évaluer uniquemen
 l’amélioration induite par le \abr{SSC}. Un modèle de référence sans apports solaires
 (tous électrique) est donc introduit. Il admet un unique ballon de \SI{200}{\litre} pour le stockage
 d’\abr{ECS} et une batterie électrique en terminal pour le chauffage.
+
+\begin{align}\label{eq:taux_economie_opti}
+  F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\[10pt]
+  F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}} \\[10pt]
+  F_{sav}        &= 1 - \frac{Conso_{app} + Conso_{aux}}{Conso_{ref}}
+\end{align}
 
 Finalement le dernier objectif, minimiser la $Surf_{PV}$ , est introduit afin de proposer des solutions non-dominées
 sur toute l’intervalle définie par la contrainte. En effet, sans cet objectif les solutions
@@ -830,8 +837,9 @@ proposer d’utiliser des modèles de substitutions.
     \centering
     \includegraphics{Ressources/Images/Sensibilite/graphInfluence.pdf}
     \caption[Graphe d’influence du $SSC$ pour Bordeaux et Strasbourg]
-            {Graphe d’influence du $SSC$ pour Bordeaux et Strasbourg avec les
-             relations linéaires (noir), non-linéaires (bleu), et indirectes (pointillées).}
+            {Graphe d’influence du $SSC$ pour Bordeaux (gauche) et Strasbourg (droite) où les
+             relations linéaires sont de couleur noire, et les relations non-linéaires ou
+             avec interactions de couleur bleue.}
     \label{fig:graphe_influence_objectifs}
 \end{figure}
 
@@ -880,7 +888,7 @@ proposer d’utiliser des modèles de substitutions.
   \addlinespace[\defaultaddspace]
   \multicolumn{5}{l}{\textbf{Production d’électricité}}      \\
   \midrule
-  Nombre capteurs \abr{PV}         & \num{14}   &  \num{30}   & Discrète    &  \num{1}   & Capteurs thermiques prioritaires sur le pan Sud   \\
+  Nombre capteurs \abr{PV}         & \num{14}   &  \num{24}   & Discrète    &  \num{1}   & Capteurs thermiques prioritaires sur le pan Sud   \\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -896,57 +904,61 @@ proposer d’utiliser des modèles de substitutions.
 \label{sub:construction_d_un_modele_de_substitution}
 \subsection{Création de l’échantillon} % (fold)
 \label{sub:creation_de_l_echantillon}
-Grâce au criblage, le nombre de variables de décisions a été réduit permettant
-d’éviter d’explorer des combinaisons non fructueuses durant la phase d’optimisation.
-Cependant le modèle demande un temps de simulation trop important pour pouvoir
-permettre l’optimisation dans des temps raisonnables. En effet, il est nécessaire de
+Grâce à une approche par criblage, les variables de décisions non influentes ont pu être
+écartées. La combinatoire du problème s’en voit ainsi réduit et permet d’éviter
+l’évaluation de variations non influentes.
+Cependant le temps de simulation est toujours un facteur limitant et ne permet pas
+de réaliser l’optimisation dans des temps raisonnables. En effet, il est nécessaire de
 compter \SIrange{1}{3}{h} pour simuler le \abr{SSC} et \SIrange{10}{30}{min} pour
 le système de référence.
-Ainsi des modèles de substitutions sont utilisés pour calculer les indicateurs suivants
-sur Bordeaux et sur Strasbourg, soit au total $10$ méta-modèles~:
+Ainsi des modèles de substitutions sont utilisés sur Bordeaux et sur Strasbourg
+soit au total $8$ méta-modèles couvrant les indicateurs suivants~:
 \begin{itemize}
   \item $Conso_{app}^{CH}$ la consommation de l’appoint pour le chauffage
   \item $Conso_{ref}^{CH}$ la consommation de référence sur le chauffage (sans solaire)
   \item $Conso_{app}^{ECS}$ la consommation de l’appoint pour la production d’\abr{ECS}
-  \item $Conso_{ref}^{ECS}$ la consommation de référence pour la production d’\abr{ECS} (sans solaire)
   \item $Conso_{app}$ la consommation cumulée de l’appoint pour le chauffage et l’\abr{ECS}
 \end{itemize}
-Il est préférable de construire un méta-modèle pour chaque consommation et ensuite
-estimer les valeurs des objectifs $F_{sav}^{CH}$ et $F_{sav}^{ECS}$ que de directement
-construire un méta-modèle pour chaque objectif. La raison principale est la modularité
-de l’approche. En construisant un modèle de substitution pour la valeur de référence
-et pour le système, il est possible de modifier le système de référence sans devoir
-relancer les simulations sur le \abr{SSC} et inversement. De plus estimer la complexité
-de l’indicateur $F_{sav}$ directement nécessite plus de simulations que nécessaire
-pour approcher la $Conso_{app}$.
-La production des capteurs \abr{PV} étant pré-calculé, il n’y a pas besoin de construire
-de modèle de substitution.
-% subsection creation_de_l_echantillon (end)
 
-\subsection{Création des modèles de substitution} % (fold)
-\label{sub:creation_des_modeles_de_substitution}
-Afin de construire les modèles de substitutions, il est nécessaire dans un premier temps
-de construire un échantillon. Comme explicité dans le chapitre précédent, une méthode de
-pseudo-Monte-Carlo considérant la suite de Halton comme générateur pseudo-aléatoire est
-utilisé. Les solutions construites sont donc équitablement réparties, assurant une bonne
-représentativité de l’espace de décision. Afin de construire les $10$ modèles de
-substitutions, il est nécessaire de simuler $4$ échantillons, deux échantillons par climat
-(référence et \abr{SSC}). Un échantillon de $2000$ simulations pour le \abr{SSC}
-et de $1000$ simulations pour le système de référence est retenu. Un échantillon important
-est utilisé afin de pouvoir étudier la qualité du méta-modèle en fonction de la taille
-de l’échantillon.
+Ces indicateurs ne correspondent pas directement aux objectifs mais permettent de les construire.
+En suivant \eqref{eq:taux_economie_opti} il est en effet possible d’obtenir $F_{sav}^{CH}$ et $F_{sav}^{ECS}$.
+En suivant \eqref{eq:conso_totale}, il est possible de calculer la $Conso_{tot}$.
+Ce choix est préféré car il est plus modulaire. En considérant séparément les consommations
+du système de référence et du \abr{SSC}, les deux modèles restent indépendant. Il est
+ainsi possible de modifier un des modèles sans impacter le second. Pour rappel, le
+modèle de référence est estimée pour chaque variations de l’enveloppe afin de considérer
+uniquement le gain apportée par le solaire et non par l’enveloppe.
 
+Concernant les autres objectifs, un modèle de substitution n’est pas nécessaire.
+La production des capteurs \abr{PV} est pré-calculée en considérant la répartition
+décrite dans \eqref{eq:repartition_toiture} et la $Conso_{ref}^{ECS}$ est considérée
+comme constante et est fixée à \SI{1739}{kWh} pour Bordeaux et \SI{1933}{kWh} pour Strasbourg.
+En effet les variations de l’enveloppe n’affectent que très peu la consommation de
+référence~: \SIrange{1735}{1743}{kWh} pour Bordeaux et \SIrange{1931}{1935}{kWh}
+pour Strasbourg.
+
+La méthodologie décrite dans \ref{sub:modeles_de_substitution} est appliquée pour
+construire les $4$ échantillons nécessaires (référence et \abr{SSC} pour chaque climat) à
+la définition des $8$ modèles de substitution. Les solutions sont générées
+pseudo-aléatoirement à partir de la suite de Halton qui permet d’obtenir un échantillon
+équitablement réparties afin d’obtenir une bonne représentativité de l’espace de décision.
 Une fois l’échantillon simulé, la bibliothèque \fnref{http://openturns.org/}{\textit{OpenTurns}}
-et les travaux de \textcite{Rania2013} sont utilisés pour construire les modèles.
+et les travaux de \textcite{Rania2013} sont utilisés pour construire les modèles de substitutions.
 Étant en phase de conception et cherchant à explorer l’ensemble du domaine de recherche,
-une loi uniforme est utilisée pour chaque paramètre durant la construction des méta-modèles.
-De plus afin d’évaluer la précision des modèles de substitutions par rapport au modèle original,
-l’erreur quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale ($MAE$,
-Maximal Absolute Error) sont utilisées. La $RMSE$ permet d’évaluer l’écart moyen entre
-les sorties du méta-modèle ($\mathcal{M}$) et du modèle original ($f$)
-\eqref{eq:rmse}. Le second, la $MAE$, permet d’obtenir l’écart maximal existant entre le
-méta-modèle et le modèle de référence \eqref{eq:mae}. Ainsi ces deux variables statistiques
-permettent d’évaluer la qualité de l’approximation du méta-modèle.
+une loi uniforme est considérée pour chaque paramètre.
+La précision des modèles de substitutions par rapport au modèle original est évaluée sur
+deux critères~: l’erreur quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale ($MAE$,
+Maximal Absolute Error). La $RMSE$ permet d’évaluer l’écart moyen entre,
+les sorties du méta-modèle ($\mathcal{M}$), et celles du modèle original ($f$)
+\eqref{eq:rmse}. La $MAE$ permet d’obtenir l’écart maximal existant entre le
+méta-modèle et le modèle de référence \eqref{eq:mae}.
+
+Pour le système de référence, l’échantillon est construit en faisant varier les différents
+paramètres de l’enveloppe soit $6$ facteurs. Pour le système solaire l’ensemble des
+variables influentes est considéré, soit respectivement $14$ et $15$ facteurs pour
+Bordeaux et Strasbourg (\tabref{tab:facteur_retenues}).
+La qualité de l’approximation est discutée pour différentes tailles d’échantillons
+dans la section qui suit.
 
 \begin{align}
   \label{eq:rmse}
@@ -958,19 +970,31 @@ permettent d’évaluer la qualité de l’approximation du méta-modèle.
 
 \subsubsection{Sélection des méta-modèles} % (fold)
 \label{ssub:selection_des_meta_modeles}
-\itodo{Décrire prise en compte capteurs et vitrages}
-\itodo{Quelles figures mettre}
-Afin d’offrir une meilleure lisibilité, seul les principaux résultats sont intégrés dans
+\iunsure{Décrire prise en compte capteurs et vitrages}
+Afin d’offrir une meilleure lisibilité, seuls les principaux résultats sont intégrés dans
 le cœur du document. Cependant comme pour l’étude de sensibilité, tous
 les résultats sont disponibles en annexes (\ref{cha:creation_des_meta_modeles}).
 
-Pour les indicateurs $Conso_{ref}^{CH}$, et $Conso_{ref}^{ECS}$, le modèle de substitution
-est précis dès $100$ simulations et la $MAE$ est inférieure à \SI{1}{kWh} pour Bordeaux
-comme pour Strasbourg à partir d’un échantillon de taille $400$ (annexes, \figref{fig:rmse_ref_evolution},
-\figref{fig:mae_ref_evolution}).
+Pour l’indicateur $Conso_{ref}^{CH}$, peu de simulations ont été nécessaires afin
+d’obtenir une bonne approximation (annexes, \figref{fig:mae_rmse_qualite_ref}). En effet,
+à partir d’un échantillon de taille $100$, le méta-modèle est d’ordre $3$ et précis à
+\SI{+- 1.5}{kWh}. À partir de $400$ simulations l’erreur quadratique moyenne et l’erreur
+absolue stagne tout les deux en dessous de \SI{0.5}{kWh} (\tabref{tab:meta_result_bilan}).
+Au regard des résultats, un échantillon de taille $400$ est donc suffisant pour obtenir
+une bonne approximation.
 
-Pour les indicateurs du \abr{SSC}, un échantillon de $1000$ simulations est nécessaire
-afin de réduire la $MAE$ et la $RMSE$.
+Le modèle du \abr{SSC} étant plus complexe, un nombre plus important de simulation est
+nécessaire. Premièrement car le nombre de combinaisons est plus important et modifie à la
+fois le système et l’enveloppe. Deuxièmement, à cause des fortes interactions identifiées
+entre les parts solaires respectives sur le chauffage et l’\abr{ECS}. Ainsi, il est à
+minima nécessaire de considérer un échantillon de taille $600$ afin d’approcher
+correctement le modèle original. Pour les $3$ méta-modèles, l’erreur moyenne quadratique
+est pour Bordeaux inférieure à \SI{3.5}{\percent} et l’erreur maximale absolue inférieure
+à \SI{8}{\percent}. Sur Strasbourg l’erreur moyenne quadratique est inférieure à
+\SI{2.7}{\percent} et l’erreur absolue maximale inférieure à \SI{6.8}{\percent}. Entre
+$600$ et $1000$, la qualité de l’approximation oscille pour les trois indicateurs sur
+Bordeaux comme sur Strasbourg. Enfin au delà de $1000$, l’approximation s’améliore
+lentement même si sur Strasbourg, l’erreur absolue maximal continue d’osciller.
 % subsubsection selection_des_meta_modeles (end)
 
 
@@ -983,15 +1007,6 @@ afin de réduire la $MAE$ et la $RMSE$.
     \label{fig:rmse}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics{Ressources/Images/MetaModele/MAE.pdf}
-    \caption[Évolution de la $MAE$ en fonction de l’échantillon]
-            {Évolution de la $MAE$ pour les \num{3} méta-modèles
-             en fonction de la taille de l’échantillon.}
-    \label{fig:mae}
-\end{figure}
-
 Un méta-modèle d’ordre \num{3} est donc retenu pour chaque indicateur, le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$,
 et la $Conso_{app}$ dont les erreurs statistiques sont fournies à travers le \tabref{tab:meta_retenus}.
 La comparaison entre les méta-modèles et le modèle de référence est aussi illustré pour chaque
@@ -999,35 +1014,33 @@ point de l’échantillon non utilisés pour sa construction (\figref{fig:validi
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/MetaModele/validite_meta.pdf}
-    \caption[Validité des méta-modèles]
-            {Évaluation de la validité des méta-modèles pour un échantillon
-             de taille \num{1000}.}
-    \label{fig:validite_meta}
+    \includegraphics{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}
+    \caption[Évaluation de la validité des méta-modèles du \abr{SSC}]
+            {Évolution des résultats obtenus par le méta-modèle (axe Y) et du modèle
+             original (axe X). La ligne noire représente une approximation parfaite.}
+    \label{fig:validite_meta_ssc}
 \end{figure}
 
 \begin{table}
 \centering
 \caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{10} méta-modèles
          construits)
-\label{tab:meta_retenus}}
-\begin{tabular}{l c c c c c c c c c}
+\label{tab:meta_result_bilan}}
+\begin{tabular}{l c c c c c c c c c c}
     \toprule
-                    & \multicolumn{4}{c}{Bordeaux} & \multicolumn{4}{c}{Strasbourg} &
+                    & \multicolumn{4}{c}{Bordeaux} & & \multicolumn{4}{c}{Strasbourg} &
                       Taille \\
                     \cmidrule(r){2-5}
-                    \cmidrule(r){6-9}
-                    & $RMSE$ & $MAE$  & Ordre & Intervalle            & $RMSE$ & $MAE$ & Ordre & Intervalle & échantillon \\                        \\
+                    \cmidrule(r){7-10}
+                    & $RMSE$ & $MAE$  & Ordre & Variation  &       & $RMSE$ & $MAE$ & Ordre & Variation & échantillon \\                        \\
     \midrule
-    $Conso_{ref}^{CH}$  &  & & & \numrange{228}{620}   & & & & \numrange{1363}{2110}& \num{400}  \\
+    $Conso_{ref}^{CH}$  & 0.2  & 0.6  & 2 & \numrange{228}{620}&   & 0.19   & 0.93  & 3     & \numrange{1363}{2110} & \num{400}  \\
     \addlinespace[\defaultaddspace]
-    $Conso_{ref}^{ECS}$ &  & & & \numrange{1735}{1743} & & & & \numrange{1931}{1935}& \num{400} \\
+    $Conso_{app}^{CH}$  & 7.7  & 22.0 & 2 & \numrange{84}{440} &   & 16.9   & 38.0  & 2     & \numrange{612}{1861}       & \num{600} \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}^{CH}$  &  & & & \numrange{84}{440}    & & & & & \num{1000} \\
+    $Conso_{app}^{ECS}$ & 15.7 & 56.4 & 2 & \numrange{156}{1043}&  & 21.3   & 70.8  & 2     & \numrange{397}{1360}       & \num{600} \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}^{ECS}$ &  & & & \numrange{156}{1043}  & & & & & \num{1000} \\
-    \addlinespace[\defaultaddspace]
-    $Conso_{app}$       &  & & & \numrange{324}{1372}  & & & & & \num{1000} \\
+    $Conso_{app}$       & 16.6 & 52.4 & 2 & \numrange{324}{1372}&  & 22.3   & 65.1  & 2     & \numrange{1222}{3117}       & \num{600} \\
     \bottomrule
 \end{tabular}
 \end{table}
@@ -1049,7 +1062,6 @@ point de l’échantillon non utilisés pour sa construction (\figref{fig:validi
 ~
 \itodo{Décrire l’évolution du front et le panel de solution obtenue}
 \itodo{Décrire l’exploration de l’espace}
-\ftodo{Représentation 3D}
 \ftodo{Représentation 2D}
 \ftodo{Évolution du front en fonction des itérations}
 \ftodo{Identification de sous-groupe par couleur}
