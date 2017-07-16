@@ -338,7 +338,7 @@ obtenu pour chaque capteur est discuté.
     $a_{2}$                      & \num{0,011}                & \num{0.005}              & \num{0.004}                & \num{0.023}             & \si{W/(m^{2}\period K^{2})} \\
     $b_{0}$                      & \num{-0.1396}              & \num{-0.0709}            & \num{-0.1050}              & \num{-0.1284}           & -                     \\
     $b_{1}$                      & \num{-0.0004}              & \num{0.0006}             & \num{0.0114}               & \num{-0.0008}           & -                     \\
-    $K_{\theta,\, dif}$          & \num{0.93}                 & \num{0.93}               & \num{97.2}                 & \num{0.93}              & \si{\percent}  \\
+    $K_{\theta,\, dif}$          & \num{93.0}                 & \num{93.0}               & \num{97.2}                 & \num{93.0}              & \si{\percent}  \\
     \addlinespace[\defaultaddspace]
     Fiche technique              & \figref{fig:caracs_idmk}   & \figref{fig:caracs_star} & \figref{fig:caracs_skypro} & \figref{fig:caracs_eco} & - \\
     \bottomrule
@@ -1065,6 +1065,215 @@ point de l’échantillon non utilisés pour sa construction (\figref{fig:validi
 \ftodo{Représentation 2D}
 \ftodo{Évolution du front en fonction des itérations}
 \ftodo{Identification de sous-groupe par couleur}
+
+Dans l’optique de ces travaux, il a été proposé d’évaluer la performance couplée
+du système et du bâtiment à travers un processus d’optimisation. Dans un premier temps
+un ensemble de paramètre a priori couvrant à la fois des variations
+au niveau du système (logique de contrôle et systèmes), et des variations de l’enveloppe,
+a été proposé. Grâce à une méthode de criblage le nombre de facteurs a été limité
+aux plus impactants puis des méta-modèles ont été construits afin de se substituer
+aux modèles originaux dont le temps d’évaluation est important.
+Cette partie s’intéresse à l’analyse des solutions obtenues à travers l’optimisation.
+Dans un premier temps le front complet est présenté. Ensuite une analyse statistique
+est réalisée afin de mieux comprendre les intéractions principales existantes~:
+\begin{itemize}
+  \item répartition qualitative des critères de décisions
+  \item influence du niveau d’isolation
+  \item influence du nombre et du type de capteur solaire thermique
+  \item influence de la taille des ballons, tampon comme sanitaire
+  \item influence des variations algorithmiques
+  \item variation du nombre de capteurs \abr{PV}
+\end{itemize}
+
+
+\subsubsection{Analyse globale des solutions non-dominées} % (fold)
+\label{ssub:analyse_globale_des_solutions_non_dominees}
+\itodo{Décrire paramètres algo et nbr itérations}
+\ftodo{Pareto front pour montrer les solutions obtenues}
+\ftodo{Countplot pour répartition des critères}
+\ttodo{Récapitulatif des maximums et minimums obtenues}
+
+% subsubsection analyse_globale_des_solutions_non_dominees (end)
+
+
+\subsubsection{Corrélation entre performance de l’enveloppe et \abr{SSC}} % (fold)
+\label{ssub:correlation_entre_performance_de_l_enveloppe_et_ssc}
+\itodo{Influence isolation}
+Cette section s’intéresse plus particulièrement aux corrélations existantes entre la
+performance de l’enveloppe et la performance et la performance du \abr{SSC}. Ainsi $3$
+indicateurs sont introduits, les coefficients de corrélation de \textit{Pearson}
+($pearsonr$) et \textit{Spearman} ($spearmanr$), mais aussi $p$, la probabilité qu’une
+corrélation existe entre deux variables. $pearsonr$ permet d’évaluer le niveau de
+corrélation linéaire existant entre deux variables et $spearmanr$ si il existe une
+relation monotone. Leurs signes renseignent sur le sens de la relation, une valeur
+positive indiquant que si une des variables augmente, l’autre aussi. La valeur indique le
+niveau de corrélation, $-1$ ou $1$ signifiant qu’il existe une corrélation totale alors
+que $0$ indique qu’il n’existe pas de corrélation du tout. Le second paramètre $p$ indique
+lui la probabilité que le système ne soit pas corrélé, $0$ indiquant qu’il l’est.
+
+\figref{fig:conso_ref_vs_app} montre qu’il existe une corrélation linéaire forte entre la
+consommation du système de référence ($Conso_{ref}^{CH}$) et la consommation de l’appoint sur
+le \abr{SSC} ($Conso_{app}^{CH}$). Ainsi améliorer l’isolation du bâtiment semble permettre
+de réduire la $Conso_{app}^{CH}$. Maintenant si on cherche à évaluer la performance du
+\abr{SSC} de manière globale, il est utile dévaluer la relation existante entre
+le taux d’économie en tenant compte de la consommation des pompes ($F_{sav,\,ext}$)
+et la qualité de l’enveloppe. Au regard des résultats (\figref{fig:conso_ref_vs_f_sav}),
+il apparaît que la corrélation n’est pas linéaire mais l’évolution peut être définie
+comme monotone ($spearmanr = \num{-0.63}$). Le système est donc en moyenne plus performant
+lorsque la qualité de l’enveloppe augmente. Ainsi, les solutions optimales
+considèrent majoritairement une enveloppe performante qui permet à la fois de réduire
+$Conso_{app}^{CH}$ et d’augmenter $F_{sav,\,ext}$. En améliorant l’enveloppe, les besoins
+sur le chauffage sont réduits et donc une part solaire plus importante peut être
+utilisée pour couvrir les besoins en \abr{ECS}.
+Il serait alors tentant de conclure que améliorer l’isolation au maximum est
+toujours une bonne recommendation mais la \figref{fig:conso_ref_vs_diffconso} permet
+de modérer cette conclusion. Dans un premier temps, il est clairement mis en évidence
+qu’il n’existe pas de corrélation entre $Conso_{ref}^{CH} - Conso_{app}^{CH}$ et
+$Conso_{ref}^{CH}$. Ainsi sur le front de Pareto, il existe des solutions diverses
+et variées pour la même performance d’enveloppe. De plus il existe un saut (\SI{110}{kWh})
+net lorsque l’écart de consommation est inférieur à $1550$. Renforcer l’isolation
+au delà impacte ainsi négativement la performance du \abr{SSC} au regard de l’économie
+absolue.
+
+Ainsi, le choix du niveau d’isolation doit bien être déterminé parallèlement au
+choix des équipements du \abr{SSC}. Il est de plus nécessaire de considérer un
+autre indicateur afin d’arbitrer ce choix. Ce nouvel indicateur peut par exemple
+être le coût de l’installation, ou le temps de retour sur investissement.
+Cependant comme le montre la littérature, l’évaluation du coût est très délicat
+car il fait intervenir de nombreux facteurs. La condition essentielle pour estimer
+correctement le coût de l’installation est de travailler en collaboration avec
+des industriels pour avoir une idée réaliste du coût des équipements, et avec
+des installateurs pour obtenir une indication quand au coût d’installation,
+et surtout de la main d’oeuvre qui est souvent exprimée de manière approximative comme un simple
+ratio. De même sur l’enveloppe, une intervention d’un expert est nécessaire afin
+d’évaluer le coût réel. Par exemple, il est souvent considéré pour l’isolant un coût fixe
+dépendant uniquement de son épaisseur. Cette approximation bien que valide pour une certaine
+plage de variation, oublie de considérée le bâtiment dans son ensemble. Ainsi en fonction
+de la structure du bâtiment des surcoût \emph{importants} peuvent survenir lorsque on passe
+d’une épaisseur à une autre. De plus si l’objectif est de calculer un temps de retour
+sur investissement, alors un nombre conséquent de facteur entre en jeu, le taux
+d’intérêt, l’inflation, l’évolution du coût des énergies, la valeur ajoutée au bâtiment,
+la durée de vie des équipements, le coût de maintenance
+\dots\ Ainsi l’évaluation économique nécessite un large panel de connaissances
+afin de fournir des résultats pertinents et les travaux de la littératures mettent
+en avant cette difficulté à travers des temps de retour variant de quelques années
+à plus de $100$ ans.
+Dans le cadre d’une \abr{MEPOS}, il est aussi possible de diriger son choix en tenant
+compte des résultats d’une Analyse de Cycle de Vie (\abr{ACV}) ou bien du confort des occupants.
+L’utilisation de modèle de substitution permet en effet de simuler très rapidement
+un ensemble de solution et ne nécessite pas de connaissances sur le modèle, ou bien le
+logiciel utilisé pour construire le modèle original. Ainsi de part sa modularité
+et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est trivial.
+
+
+\begin{figure}
+% conso_chauffage_joinplot
+    \centering
+    \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/correlation/conso_ref_vs_app.pdf}
+        \caption{}
+        \label{fig:conso_ref_vs_app}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/correlation/conso_ref_vs_f_sav.pdf}
+        \caption{}
+        \label{fig:conso_ref_vs_f_sav}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/correlation/conso_ref_vs_diffconso.pdf}
+        \caption{}
+        \label{fig:conso_ref_vs_diffconso}
+    \end{subfigure}
+    \caption[Corrélation entre la qualité de l’enveloppe et la performance du \abr{SSC}]
+             {Corrélations entre la qualité de l’enveloppe et la performance du \abr{SSC}
+              en fonction des indicateurs suivants~: (a) $Conso_{app}$, (b) $F_{sav, ext}$,
+              (c) $Conso_{ref} - Conso_{app}$.}
+    \label{fig:conso_ref_vs_app_f_sav}
+\end{figure}
+% subsubsection correlation_entre_performance_de_l_enveloppe_et_ssc (end)
+
+
+\subsubsection{Influence du type de capteur} % (fold)
+\label{ssub:influence_du_type_de_capteur}
+Dans le processus d’aide à la décision retenue, il est nécessaire dans un premier
+temps de faire une optimisation multi-objectifs. Le front obtenu est ensuite
+évaluer de manière intéractive grâce à une méthode paramétrique. Cependant,
+l’approche comme toutes approches impliquant une optimisation contraint à retenir
+uniquement les meilleures solutions. De ce fait, elle ne permet pas d’obtenir les
+solutions qui ne sont pas optimales au sens stricte du terme mais qui ont une
+performance équivalente, peut être pour des combinaisons de paramètres plus intéressantes.
+Afin de pouvoir analyser l’influence du type de capteur sur la performance du système,
+il est cependant nécessaire de chercher à évaluer la performance maximale pour chaque
+capteurs.
+
+Profitant d’un temps d’évaluation très faible grâce aux modèles de substitutions,
+une approche itérative exploratoire est retenue.
+En effet, l’optimisation a été réalisée dans un premier
+temps en considérant l’ensemble des paramètres et montre une majorité écrasante de
+solutions qui considèrent un capteur sous-vide \textit{SkyPro} (\figref{fig:occurence_type_capteur}).
+La question qui se pose est donc de savoir si cette solution est retenue car elle
+apporte une amélioration de la performance importante ou bien si son apport est
+peu important. Dans le premier cas, il est logique de favoriser ce type de capteur,
+mais dans le second cas, d’autres indicateurs sont nécessaires pour définir quel
+est le choix le plus pertinent.
+
+\begin{figure}
+% count_collector_type
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/occurence_type_capteur.pdf}
+    \caption[Occurences de chaque type de capteurs pour les solutions du front de Pareto]
+             {Occurences de chaque type de capteurs pour les solutions du front de Pareto
+              en fonction du nombre installés.}
+    \label{fig:occurence_type_capteur}
+\end{figure}
+
+Afin de pouvoir comparer la performance maximale de chaque capteurs, \num{4} optimisations
+successives sont alors réalisées et les fronts sont regroupés dans un archive commune.
+Cette archive ne considère pas de relation de dominance, l’ensemble des solutions sont
+conservées. Les résultats (\tabref{tab:capteur_perf_variation}) sont cohérents avec les
+proportions obtenues lorsque le type de capteur est un critère de décision. Le capteur
+\textit{SkyPro} est en effet le plus performant devant le capteur \textit{IDMK} mais
+l’écart de performance est peu impactant. Par contre pour les deux autres capteurs,
+l’écart de performance est plus important ($Conso_{app}$ variant de \SIrange{100}{200}{kWh}).
+
+\begin{table}
+\centering
+\caption[Performance maximale pouvant être obtenue pour les différents capteurs solaires]
+         {Évolution de la performance maximale obtenue sur l’indicateur
+          $F_{sav,\, ext}$ pour les \num{4} capteurs considérés.}
+\label{tab:capteur_perf_variation}
+\begin{tabular}{l c c c c c c c c c}
+    \toprule
+              & $F_{sav,\,ext}$ & $F_{sav}^{ECS}$ & $F_{sav}^{CH}$ & &  $Conso_{app}$ & & $Conso_{ref}$ & $Conso_{ref}^{ECS}$ & $Conso_{ref}^{CH}$ \\
+    \midrule
+    SkyPro    & \num{73} & \num{86} & \num{54} & & \num{1134} & & \num{4199} & \num{2866} & \num{1333} \\
+    IDMK      & \num{72} & \num{83} & \num{56} & & \num{1173} & & \num{4242} & \num{2866} & \num{1376} \\
+    CPCStar   & \num{70} & \num{83} & \num{53} & & \num{1270} & & \num{4201} & \num{2866} & \num{1737} \\
+    EnergyEco & \num{68} & \num{80} & \num{52} & & \num{1339} & & \num{4201} & \num{2866} & \num{1335} \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\ftodo{Évolution en fonction du volume du ballon}
+\ftodo{Évolution en fonction du nombre de capteur}
+
+Afin de mieux comprendre les intéractions
+
+
+
+
+
+
+% subsubsection influence_du_type_de_capteur (end)
+
+
+
+
 % ------------------------------------------------------------------------------
 \subsection{Aide à la décision a posteriori} % (fold)
 \label{sub:aide_a_la_decision_a_posteriori}
