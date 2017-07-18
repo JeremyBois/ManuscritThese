@@ -167,13 +167,7 @@ obtenue la consommation totale suivant \eqref{eq:conso_totale}.
 \label{ssub:definition_des_contraintes}
 Afin de pouvoir proposer un ensemble d’alternatives, la maison est considérée
 à énergie positive si le bilan charge / production (\ref{ssub:la_methodologie_de_calcul})
-est proche de $0$~:
-\iunsure{Mettre un plage différente pour Strasbourg comme la RT2012}
-\begin{blockdescription}{Strasbourg}
-  \item[Bordeaux~:]   \qquad $\abs{Conso_{tot}}   \leq  8 \quad (\si{kWh_{ep}\per\metre\squared})$
-  \item[Strasbourg~:]   \qquad $\abs{Conso_{tot}}   \leq  8 \quad (\si{kWh_{ep}\per\metre\squared})$
-  % \item[Strasbourg~:] $-3 \leq  Conso_{tot} \leq  13 \quad (\si{kWh_{ep}\per\metre\squared})$
-\end{blockdescription}
+est proche de $0$~: $\abs{Conso_{tot}}   \leq  8 \quad (\si{kWh_{ep}\per\metre\squared})$
 
 Ainsi les solutions produisant trop d’énergie comme celle produisant trop peu d’énergie
 seront écartées.
@@ -1075,7 +1069,7 @@ aux plus impactants puis des méta-modèles ont été construits afin de se subs
 aux modèles originaux dont le temps d’évaluation est important.
 Cette partie s’intéresse à l’analyse des solutions obtenues à travers l’optimisation.
 Dans un premier temps le front complet est présenté. Ensuite une analyse statistique
-est réalisée afin de mieux comprendre les intéractions principales existantes~:
+est réalisée afin de mieux comprendre les interactions principales existantes~:
 \begin{itemize}
   \item répartition qualitative des critères de décisions
   \item influence du niveau d’isolation
@@ -1089,9 +1083,125 @@ est réalisée afin de mieux comprendre les intéractions principales existantes
 \subsubsection{Analyse globale des solutions non-dominées} % (fold)
 \label{ssub:analyse_globale_des_solutions_non_dominees}
 \itodo{Décrire paramètres algo et nbr itérations}
+L’algorithme de colonie d’abeilles virtuelles (\ref{sub:description_de_l_approche_globale})
+est utilisé afin de réaliser l’optimisation multi-objectifs. L’optimisation est réalisée
+sur $4$ objectifs et est contraint afin d’obtenir uniquement des solutions à énergie
+positives~:
+\begin{itemize}
+  \item Maximiser le $F_{sav}^{ECS}$ ($\epsilon = 0.005$)
+  \item Maximiser le $F_{sav}^{CH}$ ($\epsilon = 0.005$)
+  \item Maximiser la $Prod_{PV}$ ($\epsilon = 5$)
+  \item Minimiser la $Surf_{PV}$ ($\epsilon = 0.1$)
+  \item Contraint par $\abs{Conso_{tot}}   \leq  8 \ \si{kWh_{ep}\per\metre\squared}$.
+\end{itemize}
+Une archive par $\epsilon$-dominance est utilisée pour stocker stocker les solutions
+optimales durant le processus d’optimisation afin d’améliorer à la fois l’exploitation
+et l’exploration afin d’éviter de converger vers des optimums locaux.
+Pour les objectifs $F_{sav}^{ECS}$ et de $F_{sav}^{CH}$ une solution est considérée comme
+équivalente à une autre si l’écart est de moins de \SI{0.5}{\percent}. Dans le cas de
+l’objectif $Prod_{PV}$, la valeur retenue n’est que peu impactante car la variation de
+la production des capteurs \abr{PV} est discrète. La même remarques est faite pour
+l’objectif $Surf_{PV}$. Ainsi dans les deux cas la valeur de l’$\epsilon$ choisie est
+arbitraire. Pour rappel deux solutions sont considérées équivalentes uniquement si elles
+se trouvent dans le même hypercube. Ainsi, une solution ayant un écart inférieur à un des
+$\epsilon$ peut tout à fait être retenue. Par exemple, le front peut considérer plusieurs
+solutions avec $F_{sav}^{ECS} = \SI{50}{\percent}$. Enfin il est important de noter que le
+quadrillage formé par les hypercubes est fixe. La valeur de l’$\epsilon$ n’est pas relatif
+à l’objectif, il contraint uniquement le nombre de solution dans chaque hypercube.
+
+L’algorithme est définie avec les paramètres suivants~:
+\begin{itemize}
+  \item $IT = 400$
+  \item $NP = 90$
+  \item $Max_{Echec} = 2 \times \text{nombre de variables de décisions} = 32$
+\end{itemize}
+
+Ainsi l’algorithme réalise au minimum \num{36000} évaluations ($90 * IT$) mais est
+en pratique toujours supérieur.
+Le nombre d’évaluation total est en effet dépendant de $Max_{Echec}$ qui indique
+le nombre maximal de variations consécutives que peut subir une source avant
+d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source aléatoirement
+puis de sa position opposée. Ainsi dans notre cas si une source n’est pas amélioré
+au bout de $32$ essais alors elle est abandonnée et l’algorithme évalue donc une
+solution supplémentaire pour cette itération.
+
+
+
 \ftodo{Pareto front pour montrer les solutions obtenues}
+Le front de Pareto obtenu comprend \num{220} solutions pour Strasbourg et
+\num{128} pour Bordeaux. Dans les deux cas, il est capable d’offrir une large
+diversité sur les différents objectifs en proposant à la fois des solutions
+favorisant le solaire thermique, d’autres le photovoltaïque, et des combinaisons
+des deux. De plus en considérant de manière disctinctes le chauffage et la production
+d’\abr{ECS}, il est aussi obtenu de nombreux compromis sur les critères de décisions.
+Les bornes du front de Pareto sont décrites dans \tabref{tab:bornes_front_pareto}.
+
+\begin{table}
+\centering
+\caption[Performance maximale pouvant être obtenue pour différents indicateurs]
+         {Variation de la performance obtenue pour chaque indicateur en fonction du climat}
+\label{tab:bornes_front_pareto}
+\begin{tabular}{L{2cm} c c c c c c c c c c}
+    \toprule
+                & $F_{sav,\,ext}$ & $F_{sav}^{ECS}$ & $F_{sav}^{CH}$ & & $Conso_{app}$ & $Conso_{app}^{ECS}$ & $Conso_{app}^{CH}$ & & $Prod_{PV}$ & $Nbr_{PV}$ \\
+    \addlinespace
+    \multicolumn{11}{l}{\textbf{Bordeaux}} \\
+    \midrule
+    Max & 90  & 94  & 83  &   & 1414  & 1033  & 442 &   & 4743  & 16  \\
+    Min & 55  & 60  & 18  &   & 274 & 161 & 46  &   & 3239  & 11  \\
+    \addlinespace
+    \multicolumn{11}{l}{\textbf{Strasbourg}} \\
+    \midrule
+    Max & 75  & 88  & 60  &   & 2857  & 1339  & 1843  &   & 6021  & 24  \\
+    Min & 39  & 53  & 4 &   & 1071  & 341 & 539 &   & 4014  & 16  \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
 \ftodo{Countplot pour répartition des critères}
 \ttodo{Récapitulatif des maximums et minimums obtenues}
+
+Les résultats montrent que le nombre de capteur \abr{PV} est inversement proportionnel
+à la performance du \abr{SSC}. Lorsque elle augmente, la production photovoltaïque
+diminue la production solaire thermique augmente. Ainsi sur Strasbourg, augmenter
+le nombre de capteur thermiques de $5$ permet de réduire de $8$ le nombre de
+capteurs \abr{PV} nécessaire (\figref{fig:fsav_pv_stras}). Sur Bordeaux une variation de $3$ capteurs
+thermique permet de réduire de $5$ le nombre de capteurs \abr{PV} (\figref{fig:fsav_pv_bor}).
+
+\itodo{Discuter figure}
+Pour le nombre de capteurs \abr{PV} considérés, les solutions  il n’existe pas de solutions
+sur la borne inférieure de la contrainte
+
+
+
+\begin{figure}
+% perf_th_vs_nb_pv
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_bor.pdf}
+        \caption{}
+        \label{fig:fsav_pv_bor}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_stras.pdf}
+        \caption{}
+        \label{fig:fsav_pv_stras}
+    \end{subfigure}
+    \caption[À faire]
+             {À faire}
+    \label{fig:fsav_pv_bor_stras}
+\end{figure}
+
+
+
+
+Il est important de noter que les capteurs solaires thermiques
+apportent une réduction
+effective de la part de l’appoint basée sur un bilan mensuel alors que la
 
 % subsubsection analyse_globale_des_solutions_non_dominees (end)
 
@@ -1125,16 +1235,24 @@ considèrent majoritairement une enveloppe performante qui permet à la fois de 
 $Conso_{app}^{CH}$ et d’augmenter $F_{sav,\,ext}$. En améliorant l’enveloppe, les besoins
 sur le chauffage sont réduits et donc une part solaire plus importante peut être
 utilisée pour couvrir les besoins en \abr{ECS}.
+
 Il serait alors tentant de conclure que améliorer l’isolation au maximum est
-toujours une bonne recommendation mais la \figref{fig:conso_ref_vs_diffconso} permet
+toujours une bonne recommandation mais la \figref{fig:conso_ref_vs_diffconso} permet
 de modérer cette conclusion. Dans un premier temps, il est clairement mis en évidence
 qu’il n’existe pas de corrélation entre $Conso_{ref}^{CH} - Conso_{app}^{CH}$ et
 $Conso_{ref}^{CH}$. Ainsi sur le front de Pareto, il existe des solutions diverses
 et variées pour la même performance d’enveloppe. De plus il existe un saut (\SI{110}{kWh})
 net lorsque l’écart de consommation est inférieur à $1550$. Renforcer l’isolation
 au delà impacte ainsi négativement la performance du \abr{SSC} au regard de l’économie
-absolue.
+absolue. Cependant, retenir $Conso_{ref}^{CH} - Conso_{app}^{CH}$ comme objectif
+pour l’optimisation n’est pas judicieux. Formulé ainsi, le front de Pareto
+comportera des solutions favorisant une enveloppe peu performante afin que le gain
+absolue potentiel soit plus important. On obtiendra donc des solutions
+maximisant $F_{sav}^{ECS}$ (car $Conso_{ref}^{ECS}$ est fixe) mais aucunes ne
+favorisant $F_{sav}^{CH}$.
 
+
+\itodo{Reformuler}
 Ainsi, le choix du niveau d’isolation doit bien être déterminé parallèlement au
 choix des équipements du \abr{SSC}. Il est de plus nécessaire de considérer un
 autre indicateur afin d’arbitrer ce choix. Ce nouvel indicateur peut par exemple
@@ -1146,11 +1264,12 @@ des industriels pour avoir une idée réaliste du coût des équipements, et ave
 des installateurs pour obtenir une indication quand au coût d’installation,
 et surtout de la main d’oeuvre qui est souvent exprimée de manière approximative comme un simple
 ratio. De même sur l’enveloppe, une intervention d’un expert est nécessaire afin
-d’évaluer le coût réel. Par exemple, il est souvent considéré pour l’isolant un coût fixe
-dépendant uniquement de son épaisseur. Cette approximation bien que valide pour une certaine
-plage de variation, oublie de considérée le bâtiment dans son ensemble. Ainsi en fonction
-de la structure du bâtiment des surcoût \emph{importants} peuvent survenir lorsque on passe
-d’une épaisseur à une autre. De plus si l’objectif est de calculer un temps de retour
+d’évaluer le coût réel. Par exemple, il est souvent considéré pour l’isolant, un coût
+dépendant uniquement de son épaisseur. Cette approximation ne permet cependant pas
+de considérer le bâtiment dans son ensemble. En effet en fonction
+de la structure du bâtiment des surcoûts \emph{importants} peuvent survenir lorsque on passe
+d’une épaisseur à une autre de part les contraintes de support, de hauteur\dots\ De
+plus si l’objectif est de calculer un temps de retour
 sur investissement, alors un nombre conséquent de facteur entre en jeu, le taux
 d’intérêt, l’inflation, l’évolution du coût des énergies, la valeur ajoutée au bâtiment,
 la durée de vie des équipements, le coût de maintenance
@@ -1191,8 +1310,8 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est tr
     \end{subfigure}
     \caption[Corrélation entre la qualité de l’enveloppe et la performance du \abr{SSC}]
              {Corrélations entre la qualité de l’enveloppe et la performance du \abr{SSC}
-              en fonction des indicateurs suivants~: (a) $Conso_{app}$, (b) $F_{sav, ext}$,
-              (c) $Conso_{ref} - Conso_{app}$.}
+              en fonction des indicateurs suivants~: (a) $Conso_{app}^{CH}$, (b) $F_{sav,\, ext}$,
+              (c) $Conso_{ref}^{CH} - Conso_{app}^{CH}$.}
     \label{fig:conso_ref_vs_app_f_sav}
 \end{figure}
 % subsubsection correlation_entre_performance_de_l_enveloppe_et_ssc (end)
@@ -1200,16 +1319,16 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est tr
 
 \subsubsection{Influence du type de capteur} % (fold)
 \label{ssub:influence_du_type_de_capteur}
-Dans le processus d’aide à la décision retenue, il est nécessaire dans un premier
-temps de faire une optimisation multi-objectifs. Le front obtenu est ensuite
-évaluer de manière intéractive grâce à une méthode paramétrique. Cependant,
-l’approche comme toutes approches impliquant une optimisation contraint à retenir
+Dans le processus d’aide à la décision retenue, il est dans un premier
+une optimisation multi-objectifs est réalisée puis le front obtenu est ensuite
+évalué de manière interactive grâce à une méthode paramétrique. Cependant,
+cette approche comme toutes approches impliquant une optimisation contraint à retenir
 uniquement les meilleures solutions. De ce fait, elle ne permet pas d’obtenir les
 solutions qui ne sont pas optimales au sens stricte du terme mais qui ont une
 performance équivalente, peut être pour des combinaisons de paramètres plus intéressantes.
-Afin de pouvoir analyser l’influence du type de capteur sur la performance du système,
-il est cependant nécessaire de chercher à évaluer la performance maximale pour chaque
-capteurs.
+Ainsi afin de pouvoir analyser l’influence du type de capteur sur la performance du système,
+il est nécessaire de chercher à évaluer la performance maximale pour chaque
+capteurs suivant un processus d’optimisation indépendant.
 
 Profitant d’un temps d’évaluation très faible grâce aux modèles de substitutions,
 une approche itérative exploratoire est retenue.
@@ -1218,7 +1337,7 @@ temps en considérant l’ensemble des paramètres et montre une majorité écra
 solutions qui considèrent un capteur sous-vide \textit{SkyPro} (\figref{fig:occurence_type_capteur}).
 La question qui se pose est donc de savoir si cette solution est retenue car elle
 apporte une amélioration de la performance importante ou bien si son apport est
-peu important. Dans le premier cas, il est logique de favoriser ce type de capteur,
+marginal. Dans le premier cas, il est logique de favoriser ce type de capteur,
 mais dans le second cas, d’autres indicateurs sont nécessaires pour définir quel
 est le choix le plus pertinent.
 
@@ -1226,8 +1345,8 @@ est le choix le plus pertinent.
 % count_collector_type
     \centering
     \includegraphics{Ressources/Images/EtudeDeCas/occurence_type_capteur.pdf}
-    \caption[Occurences de chaque type de capteurs pour les solutions du front de Pareto]
-             {Occurences de chaque type de capteurs pour les solutions du front de Pareto
+    \caption[Occurrences de chaque type de capteurs pour les solutions du front de Pareto]
+             {Occurrences de chaque type de capteurs pour les solutions du front de Pareto
               en fonction du nombre installés.}
     \label{fig:occurence_type_capteur}
 \end{figure}
@@ -1238,26 +1357,45 @@ Cette archive ne considère pas de relation de dominance, l’ensemble des solut
 conservées. Les résultats (\tabref{tab:capteur_perf_variation}) sont cohérents avec les
 proportions obtenues lorsque le type de capteur est un critère de décision. Le capteur
 \textit{SkyPro} est en effet le plus performant devant le capteur \textit{IDMK} mais
-l’écart de performance est peu impactant. Par contre pour les deux autres capteurs,
-l’écart de performance est plus important ($Conso_{app}$ variant de \SIrange{100}{200}{kWh}).
+l’écart de performance est peu impactant. Par contre pour le capteur \textit{EnergyECO},
+l’écart de performance est plus important (\SI{170}{kWh} sur la $Conso_{app}$). Ces résultats
+indiquent que lors du choix d’un capteur, une attention particulière doit être portée sur~:
+\begin{itemize}
+  \item la valeur du coefficient $a_{1}$ (en particulier pour les capteurs plans où la variation est plus importante)
+  \item la surface de référence utilisée pour déterminer le rendement ($\eta_{0}$)
+\end{itemize}
 
 \begin{table}
 \centering
 \caption[Performance maximale pouvant être obtenue pour les différents capteurs solaires]
          {Évolution de la performance maximale obtenue sur l’indicateur
-          $F_{sav,\, ext}$ pour les \num{4} capteurs considérés.}
+          $F_{sav,\, ext}$ pour les \num{4} capteurs considérés. Les informations entre
+          parenthèses indiquent le maximum obtenus sur l’indicateur.}
 \label{tab:capteur_perf_variation}
 \begin{tabular}{l c c c c c c c c c}
     \toprule
               & $F_{sav,\,ext}$ & $F_{sav}^{ECS}$ & $F_{sav}^{CH}$ & &  $Conso_{app}$ & & $Conso_{ref}$ & $Conso_{ref}^{ECS}$ & $Conso_{ref}^{CH}$ \\
     \midrule
-    SkyPro    & \num{73} & \num{86} & \num{54} & & \num{1134} & & \num{4199} & \num{2866} & \num{1333} \\
-    IDMK      & \num{72} & \num{83} & \num{56} & & \num{1173} & & \num{4242} & \num{2866} & \num{1376} \\
-    CPCStar   & \num{70} & \num{83} & \num{53} & & \num{1270} & & \num{4201} & \num{2866} & \num{1737} \\
-    EnergyEco & \num{68} & \num{80} & \num{52} & & \num{1339} & & \num{4201} & \num{2866} & \num{1335} \\
+    SkyPro    & \num{74} & \num{86}(\num{89}) & \num{54} (\num{62}) & & \num{1133} & & \num{4200} & \num{2866} & \num{1334} \\
+    IDMK      & \num{72} & \num{85}(\num{87}) & \num{47} (\num{60}) & & \num{1166} & & \num{4236} & \num{2866} & \num{1360} \\
+    CPCStar   & \num{71} & \num{84}(\num{86}) & \num{46} (\num{57}) & & \num{1208} & & \num{4200} & \num{2866} & \num{1334} \\
+    EnergyEco & \num{69} & \num{81}(\num{84}) & \num{51} (\num{55}) & & \num{1301} & & \num{4220} & \num{2866} & \num{1354} \\
     \bottomrule
 \end{tabular}
 \end{table}
+
+
+\begin{figure}
+% count_collector_type
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/evolution_capteur_perf.pdf}
+    \caption[Occurences de chaque type de capteurs pour les solutions du front de Pareto]
+             {Évolution de la performance du \abr{SSC} selon l’indicateur $F_{sav,\,ext}$
+              en fonction du nombre de capteurs (colonnes), du type de capteurs (axe des y).
+              La couleur indique le nombre de capteurs \abr{PV} nécessaires pour respecter
+              la contrainte de bilan positif.}
+    \label{fig:occurence_type_capteur}
+\end{figure}
 
 \ftodo{Évolution en fonction du volume du ballon}
 \ftodo{Évolution en fonction du nombre de capteur}
