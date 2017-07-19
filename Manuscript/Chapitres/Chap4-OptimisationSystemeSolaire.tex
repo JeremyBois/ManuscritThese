@@ -103,12 +103,12 @@ Ainsi la surface de capteurs photovoltaïques ($Surf_{PV}$) est définie suivant
   \begin{aligned}
     Surf_{PV}^{sud}   &= \max\left[0,\quad \min \left(Surf_{PV}^{tot},\quad Surf_{PV}^{capteur} \times
                                                       \Bigg\lfloor\frac{Surf_{dispo}^{sud} - Surf_{TH}^{tot}}{Surf_{PV}^{capteur}}\Bigg\rfloor\right)
-                                   \right] \\[10pt]
+                                   \right] \\
     Surf_{PV}^{ouest} &= \max \left[0,\quad \min\left(Surf_{dispo}^{ouest},\quad
                                                       (Surf_{PV}^{tot} - Surf_{PV}^{sud}\right)
-                                    \right] \\[10pt]
+                                    \right] \\
     Surf_{PV}^{est} &= \max \left[0,\quad \min\left(Surf_{dispo}^{est},\quad
-                                                    (Surf_{PV}^{tot} - Surf_{PV}^{sud} - Surf_{PV}^{ouest}) \right) \right] \\[10pt]
+                                                    (Surf_{PV}^{tot} - Surf_{PV}^{sud} - Surf_{PV}^{ouest}) \right) \right] \\
   \end{aligned}
 \end{equation}
 
@@ -156,9 +156,10 @@ est équivalente à la consommation des pompes. Il est donc possible d’approxi
 par la consommation de l’appoint sur la période simulée. Ainsi il peut être
 obtenue la consommation totale suivant \eqref{eq:conso_totale}.
 
-\begin{equation} \label{eq:conso_totale}
-  Conso_{tot} = Conso_{app} + Conso_{électroménager} + Conso_{éclairage} - Prod_{PV} \\
-\end{equation}
+\begin{align} \label{eq:conso_totale}
+  Conso_{tot} &= Conso_{app} + Conso_{usages} - Prod_{PV}  \\
+              &= Conso_{app} + Conso_{électroménager} + Conso_{éclairage} - Prod_{PV} \\
+\end{align}
 % subsubsection conditions_limites (end)
 
 
@@ -467,8 +468,8 @@ l’amélioration induite par le \abr{SSC}. Un modèle de référence sans appor
 d’\abr{ECS} et une batterie électrique en terminal pour le chauffage.
 
 \begin{align}\label{eq:taux_economie_opti}
-  F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\[10pt]
-  F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}} \\[10pt]
+  F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
+  F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}} \\
   F_{sav}        &= 1 - \frac{Conso_{app} + Conso_{aux}}{Conso_{ref}}
 \end{align}
 
@@ -1086,7 +1087,7 @@ est réalisée afin de mieux comprendre les interactions principales existantes~
 L’algorithme de colonie d’abeilles virtuelles (\ref{sub:description_de_l_approche_globale})
 est utilisé afin de réaliser l’optimisation multi-objectifs. L’optimisation est réalisée
 sur $4$ objectifs et est contraint afin d’obtenir uniquement des solutions à énergie
-positives~:
+positives (\ref{ssub:approche_retenue})~:
 \begin{itemize}
   \item Maximiser le $F_{sav}^{ECS}$ ($\epsilon = 0.005$)
   \item Maximiser le $F_{sav}^{CH}$ ($\epsilon = 0.005$)
@@ -1094,20 +1095,20 @@ positives~:
   \item Minimiser la $Surf_{PV}$ ($\epsilon = 0.1$)
   \item Contraint par $\abs{Conso_{tot}}   \leq  8 \ \si{kWh_{ep}\per\metre\squared}$.
 \end{itemize}
-Une archive par $\epsilon$-dominance est utilisée pour stocker stocker les solutions
+Une archive par $\epsilon$-dominance est utilisée pour stocker les solutions
 optimales durant le processus d’optimisation afin d’améliorer à la fois l’exploitation
-et l’exploration afin d’éviter de converger vers des optimums locaux.
+et l’exploration, évitant ainsi de converger vers des optimums locaux.
 Pour les objectifs $F_{sav}^{ECS}$ et de $F_{sav}^{CH}$ une solution est considérée comme
 équivalente à une autre si l’écart est de moins de \SI{0.5}{\percent}. Dans le cas de
-l’objectif $Prod_{PV}$, la valeur retenue n’est que peu impactante car la variation de
+l’objectif $Prod_{PV}$, la valeur retenue n’est que peu importante car la variation de
 la production des capteurs \abr{PV} est discrète. La même remarques est faite pour
 l’objectif $Surf_{PV}$. Ainsi dans les deux cas la valeur de l’$\epsilon$ choisie est
 arbitraire. Pour rappel deux solutions sont considérées équivalentes uniquement si elles
 se trouvent dans le même hypercube. Ainsi, une solution ayant un écart inférieur à un des
 $\epsilon$ peut tout à fait être retenue. Par exemple, le front peut considérer plusieurs
 solutions avec $F_{sav}^{ECS} = \SI{50}{\percent}$. Enfin il est important de noter que le
-quadrillage formé par les hypercubes est fixe. La valeur de l’$\epsilon$ n’est pas relatif
-à l’objectif, il contraint uniquement le nombre de solution dans chaque hypercube.
+quadrillage formé par les hypercubes est fixe, la valeur de l’$\epsilon$ n’est pas relatif
+à un objectif.
 
 L’algorithme est définie avec les paramètres suivants~:
 \begin{itemize}
@@ -1116,25 +1117,127 @@ L’algorithme est définie avec les paramètres suivants~:
   \item $Max_{Echec} = 2 \times \text{nombre de variables de décisions} = 32$
 \end{itemize}
 
-Ainsi l’algorithme réalise au minimum \num{36000} évaluations ($90 * IT$) mais est
-en pratique toujours supérieur.
-Le nombre d’évaluation total est en effet dépendant de $Max_{Echec}$ qui indique
-le nombre maximal de variations consécutives que peut subir une source avant
+Avec cette configuration, l’algorithme réalise au minimum \num{36000} évaluations ($NP * IT$)
+mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi dépendant de $Max_{Echec}$.
+qui correspond au nombre maximal de variations consécutives que peut subir une source avant
 d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source aléatoirement
 puis de sa position opposée. Ainsi dans notre cas si une source n’est pas amélioré
 au bout de $32$ essais alors elle est abandonnée et l’algorithme évalue donc une
-solution supplémentaire pour cette itération.
+solution supplémentaire pour cette itération. Sur Bordeaux, $386$ sources ont été abandonnées
+durant le processus d’optimisation contre $383$ sur Strasbourg.
 
 
+\begin{figure}
+% pair_grid_plot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
+    \caption[Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations]
+             {Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations.
+              Chaque graphique est la projection des objectifs deux à deux.
+              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
+    \label{fig:front_pareto_bordeaux}
+\end{figure}
 
-\ftodo{Pareto front pour montrer les solutions obtenues}
-Le front de Pareto obtenu comprend \num{220} solutions pour Strasbourg et
-\num{128} pour Bordeaux. Dans les deux cas, il est capable d’offrir une large
-diversité sur les différents objectifs en proposant à la fois des solutions
-favorisant le solaire thermique, d’autres le photovoltaïque, et des combinaisons
-des deux. De plus en considérant de manière disctinctes le chauffage et la production
-d’\abr{ECS}, il est aussi obtenu de nombreux compromis sur les critères de décisions.
-Les bornes du front de Pareto sont décrites dans \tabref{tab:bornes_front_pareto}.
+\begin{figure}
+% pair_grid_plot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations]
+             {Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations.
+              Chaque graphique est la projection des objectifs deux à deux.
+              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
+    \label{fig:front_pareto_strasbourg}
+\end{figure}
+
+\itodo{Expliquer la figure}
+
+\itodo{Remarques et observations}
+Le front de Pareto obtenu comprend \num{120} pour Bordeaux (\figref{fig:front_pareto_bordeaux})
+et \num{219} solutions pour Strasbourg (\figref{fig:front_pareto_strasbourg}). Cet écart s’explique
+principalement par la plage de variation optimale de la surface de capteurs \abr{PV}, plus grande
+sur Strasbourg. En effet la la $Conso_{ref}$ pour le climat de Strasbourg est supérieure, que ce
+soit sur le chauffage ou sur la production d’\abr{ECS}.
+De plus la variation de la performance de l’enveloppe entraine une variation de
+la $Conso_{ref}^{CH}$ de \SI{400}{kWh} sur Bordeaux contre \SI{750}{kWh} sur Strasbourg.
+Ainsi la surface de capteurs \abr{PV} maximale nécessaire est supérieure sur Strasbourg ($24$),
+contre $16$ sur Bordeaux.
+
+La borne inférieure est elle définie en fonction de deux élément. Le premier est la
+consommation des usages spécifiques ($Conso_{usages}$) qui
+est la valeur minimale que doit couvrir la production des capteurs \abr{PV}. Le second
+est la performance du \abr{SSC} et plus particulièrement, la différence
+de consommation entre l’appoint et le système de référence ($Conso_{ref} - Conso_{app}$).
+Dans un cas idéal, le nombre de capteurs \abr{PV} nécessaires est donc définie uniquement
+en fonction des usages spécifiques. Dans notre cas, le taux d’économie du \abr{SSC}
+n’atteint pas \SI{100}{\percent} et donc afin d’atteindre un bilan positif, la
+production des capteurs \abr{PV} ($Prod_{PV}$) doit aussi couvrir la consommation
+de l’appoint. Ainsi, plus le \abr{SSC} est performant plus la part à couvrir par les capteurs \abr{PV}
+diminue.
+
+
+\itodo{Diff F sav et économie de conso}
+Il est observé un taux d’économie maximal plus important sur Bordeaux autant sur le
+chauffage que sur la production d’\abr{ECS}, cependant la plage de variation du
+nombre de capteurs \abr{PV} est plus grande sur Strasbourg. Bien que la part relative
+maximale économisée ($F_{sav,\,ext}$) soit inférieure sur Strasbourg, l’économie
+énergétique absolue ($Conso_{ref} - Conso_{app}$) est plus importante. De ce fait,
+le \abr{SSC} permet de substituer un nombre plus important de capteurs \abr{PV}.
+
+\itodo{Plus de capteurs sur Strasbourg}
+
+\itodo{Mettre en exergue éenrgie uitle est potnetiel}
+Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
+sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
+tient donc pas compte de l’adéquation entre les besoins et la demande
+(\figref{fig:evolution_usages_pv}). Ainsi une forte production durant la période estivale
+compense une faible production durant la période hivernale. À l’opposée, l’économie
+engendrée par le \abr{SSC} est calculée par rapport à une solution de référence et tient
+donc implicitement compte de l’adéquation entre besoins et demande (bilan charge /
+production). C’est d’ailleurs pour cette raison que l’indicateur $F_{sav}$ a été préféré
+au taux de couverture ($F_{sol}$) qui permet de tenir compte de l’adéquation entre besoins
+et demande \textbf{uniquement} si il est calculé sur une base mensuelle.
+
+\begin{figure}
+    \centering
+    \ftodo{Ajouter évolution apports PV sur l’année vs besoins spécifiques}
+    % \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[None]
+             {None.}
+    \label{fig:evolution_usages_pv}
+\end{figure}
+
+\itodo{FSC}
+Afin d’évaluer les solutions du front de Pareto obtenu en tenant mieux compte de
+l’adéquation entre besoins et demande, un nouvel indicateur est introduit construit
+en se basant sur le taux de couverture et est nommé $F_{sol.\, tot}$ \eqref{eq:f_sol_mensuel_total}.
+
+
+\begin{align}\label{eq:f_sol_mensuel_total}
+        F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
+        \shortintertext{avec~:}
+        Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
+        Prod_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right) \\
+\end{align}
+
+une surface plus importante de capteurs \abr{PV} est nécessaire pour couvrir les besoins
+
+
+Dans les
+deux cas, il est capable d’offrir une large diversité sur les différents objectifs en
+proposant à la fois des solutions favorisant le solaire thermique, d’autres le
+photovoltaïque, et des combinaisons des deux. De plus, le fait de considérer la couverture
+du chauffage et de l’\abr{ECS} de manière distinctes permet de renforcer le nombre de
+compromis. Le front pour le climat de Strasbourg est plus fournit que celui de Bordeaux
+car les consommations à couvrir sont plus importantes, en particulier sur le chauffage.
+De ce fait, le nombre de capteurs \abr{PV} nécessaire est plus important se traduisant par
+un nombre plus important de combinaisons.
+De plus la consommation maximale sur
+Bordeaux est similaire
+
+
+Les extremums respectifs couverts par le front de Pareto sont décrits dans \tabref{tab:bornes_front_pareto}.
+Le \abr{SSC} permet ainsi d’offrir le
+\itodo{Discuter l’étendu des résultats}
 
 \begin{table}
 \centering
@@ -1147,13 +1250,13 @@ Les bornes du front de Pareto sont décrites dans \tabref{tab:bornes_front_paret
     \addlinespace
     \multicolumn{11}{l}{\textbf{Bordeaux}} \\
     \midrule
-    Max & 90  & 94  & 83  &   & 1414  & 1033  & 442 &   & 4743  & 16  \\
-    Min & 55  & 60  & 18  &   & 274 & 161 & 46  &   & 3239  & 11  \\
+    Max & 90  & 94  & 84  &   & 1379  & 921 & 470 &   & 4743  & 16  \\
+    Min & 57  & 64  & 22  &   & 278 & 164 & 48  &   & 3239  & 11  \\
     \addlinespace
     \multicolumn{11}{l}{\textbf{Strasbourg}} \\
     \midrule
-    Max & 75  & 88  & 60  &   & 2857  & 1339  & 1843  &   & 6021  & 24  \\
-    Min & 39  & 53  & 4 &   & 1071  & 341 & 539 &   & 4014  & 16  \\
+    Max & 74  & 89  & 62  &   & 2780  & 1191  & 1746  &   & 6021  &   \\
+    Min & 42  & 58  & 8 &   & 1118  & 322 & 508 &   & 4014  & 16  \\
     \bottomrule
 \end{tabular}
 \end{table}

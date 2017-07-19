@@ -395,6 +395,9 @@
   \DeclareMathUnicode{Ê}{\hat{E}}
 \fi
 
+% Change vertical space between equations lines
+\setlength{\jot}{10pt}
+
 
 
 % ------------------------------------------------------------------------------
