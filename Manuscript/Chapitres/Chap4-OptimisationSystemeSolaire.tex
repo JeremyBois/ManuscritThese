@@ -27,8 +27,17 @@ de \SI{54}{\degree} typique d’une architecture alsacienne.
 L’optimisation est réalisée dans un premier temps sur Bordeaux, dont le climat
 est doux et l’ensoleillement important. Dans un second temps, sur Strasbourg caractérisé
 par un climat rude et un ensoleillement limité durant la période de chauffage bien que
-important durant la période estival.
-\iunsure{Ajouter comparatif de l’évolution mensuelle de l’énergie disponible pour les deux.}
+important durant la période estival (\figref{fig:diff_ensoleillement_bor_stras}).
+
+
+\begin{figure}
+    \centering
+    \ftodo{Ajouter comparatif de l’évolution mensuelle de l’énergie disponible pour les deux.}
+    % \includegraphics{Ressources/Images/Modelisation/Capteurs/IAM_all.pdf}
+    \caption[Évolution mensuel du potentiel solaire sur Bordeaux et Strasbourg]
+            {Évolution mensuel du potentiel solaire sur Bordeaux et Strasbourg}
+    \label{fig:diff_ensoleillement_bor_stras}
+\end{figure}
 
 L’optimisation multi-objectifs est réalisée à la fois sur l’enveloppe, le \abr{SSC},
 et sur l’algorithme de contrôle. Dans un premier temps, les hypothèses
@@ -101,13 +110,13 @@ Ainsi la surface de capteurs photovoltaïques ($Surf_{PV}$) est définie suivant
 
 \begin{equation}\label{eq:repartition_toiture}
   \begin{aligned}
-    Surf_{PV}^{sud}   &= \max\left[0,\quad \min \left(Surf_{PV}^{tot},\quad Surf_{PV}^{capteur} \times
+    &Surf_{PV}^{sud}   &=& \max\left[0,\quad \min \left(Surf_{PV}^{tot},\quad Surf_{PV}^{capteur} \times
                                                       \Bigg\lfloor\frac{Surf_{dispo}^{sud} - Surf_{TH}^{tot}}{Surf_{PV}^{capteur}}\Bigg\rfloor\right)
                                    \right] \\
-    Surf_{PV}^{ouest} &= \max \left[0,\quad \min\left(Surf_{dispo}^{ouest},\quad
+    &Surf_{PV}^{ouest} &=& \max \left[0,\quad \min\left(Surf_{dispo}^{ouest},\quad
                                                       (Surf_{PV}^{tot} - Surf_{PV}^{sud}\right)
                                     \right] \\
-    Surf_{PV}^{est} &= \max \left[0,\quad \min\left(Surf_{dispo}^{est},\quad
+    &Surf_{PV}^{est} &=& \max \left[0,\quad \min\left(Surf_{dispo}^{est},\quad
                                                     (Surf_{PV}^{tot} - Surf_{PV}^{sud} - Surf_{PV}^{ouest}) \right) \right] \\
   \end{aligned}
 \end{equation}
@@ -443,7 +452,7 @@ objectif tiennent compte des capteurs \abr{PV}. Cependant toujours d’après
   \item Maximiser le $F_{sav}^{ECS}$
   \item Maximiser le $F_{sav}^{CH}$
   \item Maximiser la $Prod_{PV}$
-  \item Minimiser la $Surf_{PV}$
+  \item Minimiser la $Nombre_{PV}$
 \end{itemize}
 
 Dans cette nouvelle formulation, l’ensemble des paramètres influence au minimum un des
@@ -473,7 +482,7 @@ d’\abr{ECS} et une batterie électrique en terminal pour le chauffage.
   F_{sav}        &= 1 - \frac{Conso_{app} + Conso_{aux}}{Conso_{ref}}
 \end{align}
 
-Finalement le dernier objectif, minimiser la $Surf_{PV}$ , est introduit afin de proposer des solutions non-dominées
+Finalement le dernier objectif, minimiser la $Nombre_{PV}$ , est introduit afin de proposer des solutions non-dominées
 sur toute l’intervalle définie par la contrainte. En effet, sans cet objectif les solutions
 retenues sont toutes proches de la borne inférieure (maximisation de la surface de capteurs \abr{PV})
 car c’est l’espace de solution maximisant la production des capteurs \abr{PV}. Cependant ces travaux considèrent que
@@ -983,13 +992,15 @@ nécessaire. Premièrement car le nombre de combinaisons est plus important et m
 fois le système et l’enveloppe. Deuxièmement, à cause des fortes interactions identifiées
 entre les parts solaires respectives sur le chauffage et l’\abr{ECS}. Ainsi, il est à
 minima nécessaire de considérer un échantillon de taille $600$ afin d’approcher
-correctement le modèle original. Pour les $3$ méta-modèles, l’erreur moyenne quadratique
-est pour Bordeaux inférieure à \SI{3.5}{\percent} et l’erreur maximale absolue inférieure
-à \SI{8}{\percent}. Sur Strasbourg l’erreur moyenne quadratique est inférieure à
-\SI{2.7}{\percent} et l’erreur absolue maximale inférieure à \SI{6.8}{\percent}. Entre
-$600$ et $1000$, la qualité de l’approximation oscille pour les trois indicateurs sur
-Bordeaux comme sur Strasbourg. Enfin au delà de $1000$, l’approximation s’améliore
-lentement même si sur Strasbourg, l’erreur absolue maximal continue d’osciller.
+correctement le modèle original (\figref{fig:rmse_mae}).
+Entre $600$ et $1000$, la qualité de l’approximation oscille pour les trois indicateurs
+sur Bordeaux comme sur Strasbourg. Enfin au delà de $1000$, l’approximation s’améliore
+lentement même si sur Strasbourg, l’erreur absolue maximale continue d’osciller. Ainsi,
+pour les $3$ méta-modèlesm un échantillon de taille $600$ est pertinent. En effet,
+l’erreur moyenne quadratique est pour Bordeaux inférieure à
+\SI{3.5}{\percent} et l’erreur maximale absolue inférieure à \SI{8}{\percent}. Sur
+Strasbourg l’erreur moyenne quadratique est inférieure à
+\SI{2.7}{\percent} et l’erreur absolue maximale inférieure à \SI{6.8}{\percent}.
 % subsubsection selection_des_meta_modeles (end)
 
 
@@ -999,13 +1010,16 @@ lentement même si sur Strasbourg, l’erreur absolue maximal continue d’oscil
     \caption[Évolution de la $RMSE$ en fonction de l’échantillon]
             {Évolution de la $RMSE$ pour les \num{3} méta-modèles
              en fonction de la taille de l’échantillon.}
-    \label{fig:rmse}
+    \label{fig:rmse_mae}
 \end{figure}
 
-Un méta-modèle d’ordre \num{3} est donc retenu pour chaque indicateur, le $F_{sol}^{ECS}$, le $F_{sol}^{CH}$,
-et la $Conso_{app}$ dont les erreurs statistiques sont fournies à travers le \tabref{tab:meta_retenus}.
-La comparaison entre les méta-modèles et le modèle de référence est aussi illustré pour chaque
-point de l’échantillon non utilisés pour sa construction (\figref{fig:validite_meta}).
+Comme explicité dans le chapitre précédent,  \SI{90}{\percent} est utilisé pour construire un
+modèle de substitution et \SI{10}{\percent} de l’échantillon est uniquement
+utilisée pour la validation et donc le calcul de la $RMSE$ et la $MAE$.
+Les résultats obtenus (\figref{fig:validite_meta_ssc}) mettent en évidence
+la qualité d’approximation des modèles de substitutions retenus pour évaluer la
+performance du \abr{SSC}. Les points sont en effet quasiment tous compris dans la
+droite d’équation $x = y$ qui indique une approximation parfaite du modèle original.
 
 \begin{figure}
     \centering
@@ -1015,6 +1029,14 @@ point de l’échantillon non utilisés pour sa construction (\figref{fig:validi
              original (axe X). La ligne noire représente une approximation parfaite.}
     \label{fig:validite_meta_ssc}
 \end{figure}
+
+Finalement, \tabref{tab:meta_retenus} récapitule les informations concernant les modèles
+de substitutions retenus mais aussi la variabilité de chaque indicateurs observée sur les
+$2000$ simulations. Sur les $8$ meta-modèles, $7$ sont d’ordre $2$ et un seul, le modèle
+substituant le calcul de $Conso_{ref}^{CH}$ sur Strasbourg, est d’ordre $3$. Il est
+clairement mis en évidence l’écart de consommation important entre Bordeaux et Strasbourg
+pour l’appoint en particulier sur le chauffage où la consommation maximale sur Bordeaux et
+similaire à la consommation minimale sur Strasbourg.
 
 \begin{table}
 \centering
@@ -1081,9 +1103,9 @@ est réalisée afin de mieux comprendre les interactions principales existantes~
 \end{itemize}
 
 
-\subsubsection{Analyse globale des solutions non-dominées} % (fold)
-\label{ssub:analyse_globale_des_solutions_non_dominees}
-\itodo{Décrire paramètres algo et nbr itérations}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Paramétrage de l’optimisation} % (fold)
+\label{ssub:parametrage_de_l_optimisation}
 L’algorithme de colonie d’abeilles virtuelles (\ref{sub:description_de_l_approche_globale})
 est utilisé afin de réaliser l’optimisation multi-objectifs. L’optimisation est réalisée
 sur $4$ objectifs et est contraint afin d’obtenir uniquement des solutions à énergie
@@ -1092,23 +1114,34 @@ positives (\ref{ssub:approche_retenue})~:
   \item Maximiser le $F_{sav}^{ECS}$ ($\epsilon = 0.005$)
   \item Maximiser le $F_{sav}^{CH}$ ($\epsilon = 0.005$)
   \item Maximiser la $Prod_{PV}$ ($\epsilon = 5$)
-  \item Minimiser la $Surf_{PV}$ ($\epsilon = 0.1$)
+  \item Minimiser la $Nombre_{PV}$ ($\epsilon = 0.1$)
   \item Contraint par $\abs{Conso_{tot}}   \leq  8 \ \si{kWh_{ep}\per\metre\squared}$.
 \end{itemize}
-Une archive par $\epsilon$-dominance est utilisée pour stocker les solutions
-optimales durant le processus d’optimisation afin d’améliorer à la fois l’exploitation
-et l’exploration, évitant ainsi de converger vers des optimums locaux.
-Pour les objectifs $F_{sav}^{ECS}$ et de $F_{sav}^{CH}$ une solution est considérée comme
-équivalente à une autre si l’écart est de moins de \SI{0.5}{\percent}. Dans le cas de
-l’objectif $Prod_{PV}$, la valeur retenue n’est que peu importante car la variation de
-la production des capteurs \abr{PV} est discrète. La même remarques est faite pour
-l’objectif $Surf_{PV}$. Ainsi dans les deux cas la valeur de l’$\epsilon$ choisie est
-arbitraire. Pour rappel deux solutions sont considérées équivalentes uniquement si elles
-se trouvent dans le même hypercube. Ainsi, une solution ayant un écart inférieur à un des
-$\epsilon$ peut tout à fait être retenue. Par exemple, le front peut considérer plusieurs
-solutions avec $F_{sav}^{ECS} = \SI{50}{\percent}$. Enfin il est important de noter que le
-quadrillage formé par les hypercubes est fixe, la valeur de l’$\epsilon$ n’est pas relatif
-à un objectif.
+Une archive par $\epsilon$-dominance est utilisée pour stocker les solutions optimales
+durant le processus afin d’améliorer à la fois l’exploitation et l’exploration, évitant
+ainsi de converger vers des optimums locaux. L’archive impose la définition d’un
+hyperplan, où chaque hypercube le formant contient une unique solution. Les dimensions de chaque
+hypercube est définie suivant les valeurs d’$\epsilon$ respectives de chaque objectif.
+Ainsi, l’hyperplan est fixe et n’est pas relatif aux valeurs des objectifs.
+Pour les objectifs $F_{sav}^{ECS}$ et de $F_{sav}^{CH}$, une taille de \SI{0.5}{\percent}
+est retenue, indiquant que deux solutions ayant une différence de plus de
+\SI{0.5}{\percent} sont forcement dans un hypercube différent. Dans le cas de l’objectif $Prod_{PV}$, la
+valeur retenue n’est que peu importante car la variation de la production des capteurs
+\abr{PV} est discrète et est directement liée au nombre de capteur \abr{PV} ($Nombre_{PV}$).
+Dans les deux cas la valeur de l’$\epsilon$ est alors choisie inférieur au saut discret
+mais est arbitraire.
+
+Il est important de rappeler que pour appartenir au même hypercube, deux solutions
+doivent obligatoirement avoir un écart sur chaque objectif inférieur à la valeur d’$\epsilon$.
+Cependant l’hyperplan étant fixe, respecter ces conditions n’est pas suffisant, certaines solutions
+très similaires peuvent en effet se trouver respectivement sur les bornes inférieures
+et supérieures de deux hypercube adjacents. Dans ce cas les deux solutions sont retenus
+car bien que très similaires, elles appartiennent pas au même hypercube et ne violent donc
+pas la contrainte d’unicité au sein d’un même hypercube.
+Par contre si la solution appartient au même hypercube alors, seule la solution la plus
+optimale est retenue. Dans ce cas de figure l’optimalité d’une solution est défini
+comme la solution minimisant la distance normalisée au point idéal de l’hypercube.
+
 
 L’algorithme est définie avec les paramètres suivants~:
 \begin{itemize}
@@ -1117,40 +1150,54 @@ L’algorithme est définie avec les paramètres suivants~:
   \item $Max_{Echec} = 2 \times \text{nombre de variables de décisions} = 32$
 \end{itemize}
 
-Avec cette configuration, l’algorithme réalise au minimum \num{36000} évaluations ($NP * IT$)
-mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi dépendant de $Max_{Echec}$.
-qui correspond au nombre maximal de variations consécutives que peut subir une source avant
-d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source aléatoirement
-puis de sa position opposée. Ainsi dans notre cas si une source n’est pas amélioré
-au bout de $32$ essais alors elle est abandonnée et l’algorithme évalue donc une
-solution supplémentaire pour cette itération. Sur Bordeaux, $386$ sources ont été abandonnées
-durant le processus d’optimisation contre $383$ sur Strasbourg.
+Dans cette configuration, l’algorithme réalise au minimum \num{36000} évaluations ($NP *
+IT$) mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi
+dépendant de $Max_{Echec}$, le nombre maximal de variations consécutives que peut subir
+une source avant d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source
+aléatoirement puis de sa position opposée. Ainsi si une source n’est pas améliorée au bout
+de $32$ essais alors elle est abandonnée et l’algorithme évalue donc une solution
+supplémentaire pour cette itération (position opposée). Sur Bordeaux, $386$ sources ont
+été abandonnées durant le processus d’optimisation contre $383$ sur Strasbourg.
 
-
-\begin{figure}
-% pair_grid_plot
-    \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
-    \caption[Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations]
-             {Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations.
-              Chaque graphique est la projection des objectifs deux à deux.
-              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
-    \label{fig:front_pareto_bordeaux}
-\end{figure}
+\itodo{Ajouter description rapide hypervolume et schott}
+L’évolution de l’optimisation est décrit par \figref{fig:hypervolume_schott_front} à
+travers deux métriques~: la \textit{métrique S} aussi appelée hypervolume, et la métrique
+de \textit{Schott}. Une augmentation de l’hypervolume traduit une meilleure convergence et
+couverture de l’espace des objectifs par l’ensemble des solutions. Une valeur proche de
+zéro pour la métrique de \textit{Schott} indique que les solutions sont réparties
+uniformément dans le domaine des objectifs. Ainsi, l’algorithme converge rapidement en
+début d’optimisation puis se diversifie rapidement dans un premier temps puis lentement
+pour finalement stagner avec obtention d’un front uniformément répartis.
 
 \begin{figure}
-% pair_grid_plot
     \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
-    \caption[Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations]
-             {Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations.
-              Chaque graphique est la projection des objectifs deux à deux.
-              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
-    \label{fig:front_pareto_strasbourg}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \ftodo{Ajouter évolution hypervolume et Schott pour optimisation Bordeaux}
+        % \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_bor.pdf}
+        \caption{}
+        \label{fig:hypervolume_schott_bor}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \ftodo{Ajouter évolution hypervolume et Schott pour optimisation Strasbourg}
+        % \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_stras.pdf}
+        \caption{}
+        \label{fig:hypervolume_schottstras}
+    \end{subfigure}
+    \caption[Évolution de la convergence et de la diversification de l’optimisation]
+             {Évolution de l’hypervolume et de la métrique de \textit{Schott}
+              durant le processus d’optimisation en fonction du nombre d’itérations pour
+              Bordeaux (a) et Strasbourg (b).}
+    \label{fig:hypervolume_schott_front}
 \end{figure}
+% subsubsection parametrage_de_l_optimisation (end)
 
-\itodo{Expliquer la figure}
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Analyse globale des solutions non-dominées} % (fold)
+\label{ssub:analyse_globale_des_solutions_non_dominees}
 \itodo{Remarques et observations}
 Le front de Pareto obtenu comprend \num{120} pour Bordeaux (\figref{fig:front_pareto_bordeaux})
 et \num{219} solutions pour Strasbourg (\figref{fig:front_pareto_strasbourg}). Cet écart s’explique
@@ -1175,6 +1222,29 @@ de l’appoint. Ainsi, plus le \abr{SSC} est performant plus la part à couvrir 
 diminue.
 
 
+\begin{figure}
+% pair_grid_plot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
+    \caption[Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations]
+             {Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations.
+              Chaque graphique est la projection des objectifs deux à deux.
+              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
+    \label{fig:front_pareto_bordeaux}
+\end{figure}
+
+\begin{figure}
+% pair_grid_plot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations]
+             {Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations.
+              Chaque graphique est la projection des objectifs deux à deux.
+              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
+    \label{fig:front_pareto_strasbourg}
+\end{figure}
+
+
 \itodo{Diff F sav et économie de conso}
 Il est observé un taux d’économie maximal plus important sur Bordeaux autant sur le
 chauffage que sur la production d’\abr{ECS}, cependant la plage de variation du
@@ -1185,41 +1255,6 @@ le \abr{SSC} permet de substituer un nombre plus important de capteurs \abr{PV}.
 
 \itodo{Plus de capteurs sur Strasbourg}
 
-\itodo{Mettre en exergue éenrgie uitle est potnetiel}
-Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
-sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
-tient donc pas compte de l’adéquation entre les besoins et la demande
-(\figref{fig:evolution_usages_pv}). Ainsi une forte production durant la période estivale
-compense une faible production durant la période hivernale. À l’opposée, l’économie
-engendrée par le \abr{SSC} est calculée par rapport à une solution de référence et tient
-donc implicitement compte de l’adéquation entre besoins et demande (bilan charge /
-production). C’est d’ailleurs pour cette raison que l’indicateur $F_{sav}$ a été préféré
-au taux de couverture ($F_{sol}$) qui permet de tenir compte de l’adéquation entre besoins
-et demande \textbf{uniquement} si il est calculé sur une base mensuelle.
-
-\begin{figure}
-    \centering
-    \ftodo{Ajouter évolution apports PV sur l’année vs besoins spécifiques}
-    % \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
-    \caption[None]
-             {None.}
-    \label{fig:evolution_usages_pv}
-\end{figure}
-
-\itodo{FSC}
-Afin d’évaluer les solutions du front de Pareto obtenu en tenant mieux compte de
-l’adéquation entre besoins et demande, un nouvel indicateur est introduit construit
-en se basant sur le taux de couverture et est nommé $F_{sol.\, tot}$ \eqref{eq:f_sol_mensuel_total}.
-
-
-\begin{align}\label{eq:f_sol_mensuel_total}
-        F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
-        \shortintertext{avec~:}
-        Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
-        Prod_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right) \\
-\end{align}
-
-une surface plus importante de capteurs \abr{PV} est nécessaire pour couvrir les besoins
 
 
 Dans les
@@ -1261,6 +1296,62 @@ Le \abr{SSC} permet ainsi d’offrir le
 \end{tabular}
 \end{table}
 
+
+\subsubsection{Évaluation de la performance globale} % (fold)
+\label{ssub:evaluation_de_la_performance_globale}
+Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
+sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
+tient donc pas compte de l’adéquation entre les besoins et la demande
+(\figref{fig:evolution_usages_pv}). Ainsi une forte production durant la période estivale
+compense une faible production durant la période hivernale. À l’opposée, l’économie
+engendrée par le \abr{SSC} est calculée par rapport à une solution de référence et tient
+donc implicitement compte de l’adéquation entre besoins et demande (bilan charge /
+production). C’est d’ailleurs pour cette raison que l’indicateur $F_{sav}$ a été préféré
+au taux de couverture ($F_{sol}$) qui permet de tenir compte de l’adéquation entre besoins
+et demande \textbf{uniquement} si il est calculé sur une base mensuelle.
+
+\begin{figure}
+    \centering
+    \ftodo{Ajouter évolution apports PV sur l’année vs besoins spécifiques}
+    % \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[None]
+             {None.}
+    \label{fig:evolution_usages_pv}
+\end{figure}
+
+
+Afin d’évaluer les solutions du front de Pareto obtenu en tenant mieux compte de
+l’adéquation entre besoins et demande, un nouvel indicateur, $F_{sol.\, tot}$ est construit
+en se basant sur le taux de couverture \eqref{eq:f_sol_mensuel_total}. Il permet
+de réaliser un bilan mensuel du rapport entre la part solaire utile et la demande en
+énergie nécessaire pour couvrir l’ensemble des besoins de la maisons, usages spécifiques,
+chauffage, et production d’\abr{ECS}. Étant réaliser à une fréquence mensuelle, l’indicateur
+tient compte en parti de l’adéquation avec le réseau, à la fois pour le thermique et
+pour le photovoltaïque.
+
+
+\begin{align}\label{eq:f_sol_mensuel_total}
+        F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
+        \shortintertext{avec~:}
+        Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
+        Prod_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right) \\
+\end{align}
+
+Le bâtiment et ses équipements est ainsi évaluée en traçant l’évolution de l’indicateur $F_{sol,\, tot}$,
+en fonction du nombre de capteurs \abr{PV} installés. Pour chaque variation du nombre de capteurs \abr{PV},
+il est retenu uniquement la solution ayant la meilleure performance globale sur le \abr{SSC}, la solution
+maximisant $F_{sav,\,ext}$.
+\itodo{Discuter les résultats}
+
+\begin{figure}
+    \centering
+    \ftodo{Ajouter F sol tot en fonction du nombre de capteurs PV}
+    % \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[None]
+             {None.}
+    \label{fig:fsoltot_vs_pvnumber}
+\end{figure}
+% subsubsection evaluation_de_la_performance_globale (end)
 
 \ftodo{Countplot pour répartition des critères}
 \ttodo{Récapitulatif des maximums et minimums obtenues}
