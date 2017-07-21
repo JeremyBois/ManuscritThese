@@ -904,8 +904,9 @@ proposer d’utiliser des modèles de substitutions.
 
 % ..............................................................................
 % ..............................................................................
-\section{Construction d’un modèle de substitution} % (fold)
-\label{sub:construction_d_un_modele_de_substitution}
+\section{Construction des modèles de substitutions} % (fold)
+\label{sec:construction_des_modeles_de_substitutions}
+% ------------------------------------------------------------------------------
 \subsection{Création de l’échantillon} % (fold)
 \label{sub:creation_de_l_echantillon}
 Grâce à une approche par criblage, les variables de décisions non influentes ont pu être
@@ -933,13 +934,12 @@ ainsi possible de modifier un des modèles sans impacter le second. Pour rappel,
 modèle de référence est estimée pour chaque variations de l’enveloppe afin de considérer
 uniquement le gain apportée par le solaire et non par l’enveloppe.
 
-Concernant les autres objectifs, un modèle de substitution n’est pas nécessaire.
-La production des capteurs \abr{PV} est pré-calculée en considérant la répartition
-décrite dans \eqref{eq:repartition_toiture} et la $Conso_{ref}^{ECS}$ est considérée
-comme constante et est fixée à \SI{1739}{kWh} pour Bordeaux et \SI{1933}{kWh} pour Strasbourg.
-En effet les variations de l’enveloppe n’affectent que très peu la consommation de
-référence~: \SIrange{1735}{1743}{kWh} pour Bordeaux et \SIrange{1931}{1935}{kWh}
-pour Strasbourg.
+Concernant les autres objectifs, un modèle de substitution n’est pas nécessaire. La
+production des capteurs \abr{PV} est pré-calculée en considérant la répartition décrite
+dans \eqref{eq:repartition_toiture} et la $Conso_{ref}^{ECS}$ est très peu impactée par
+les variations de l’enveloppe. Sur bordeaux elle est pour une année complète de \SI{2588(4)}{kWh}
+et de \SI{2866 (2)}{kWh} pour Strasbourg. Elle est donc considérée comme constante
+dans le reste du document.
 
 La méthodologie décrite dans \ref{sub:modeles_de_substitution} est appliquée pour
 construire les $4$ échantillons nécessaires (référence et \abr{SSC} pour chaque climat) à
@@ -970,10 +970,13 @@ dans la section qui suit.
   \label{eq:mae}
   MAE  &= max \left( \abs{f(\vec{x}_{i}) - \mathcal{M}(\vec{x}_{i})}, \: x = 1, 2, \dotsc, N \right)
 \end{align}
+% subsection creation_de_l_echantillon (end)
 
 
-\subsubsection{Sélection des méta-modèles} % (fold)
-\label{ssub:selection_des_meta_modeles}
+
+% ------------------------------------------------------------------------------
+\subsection{Sélection des méta-modèles} % (fold)
+\label{sub:selection_des_meta_modeles}
 \iunsure{Décrire prise en compte capteurs et vitrages}
 Afin d’offrir une meilleure lisibilité, seuls les principaux résultats sont intégrés dans
 le cœur du document. Cependant comme pour l’étude de sensibilité, tous
@@ -1001,7 +1004,6 @@ l’erreur moyenne quadratique est pour Bordeaux inférieure à
 \SI{3.5}{\percent} et l’erreur maximale absolue inférieure à \SI{8}{\percent}. Sur
 Strasbourg l’erreur moyenne quadratique est inférieure à
 \SI{2.7}{\percent} et l’erreur absolue maximale inférieure à \SI{6.8}{\percent}.
-% subsubsection selection_des_meta_modeles (end)
 
 
 \begin{figure}
@@ -1061,26 +1063,15 @@ similaire à la consommation minimale sur Strasbourg.
     \bottomrule
 \end{tabular}
 \end{table}
-
-
-% subsection creation_des_modeles_de_substitution (end)
-% section construction_d_un_modele_de_substitution (end)
-
+% subsection selection_des_meta_modeles (end)
+% section construction_des_modeles_de_substitutions (end)
 
 
 
 % ..............................................................................
 % ..............................................................................
-\section{Vers une solution adaptée} % (fold)
-\label{sec:vers_une_solution_adaptee}
-% ------------------------------------------------------------------------------
-\subsection{Optimisation multi-objectif} % (fold)
-\label{sub:optimisation_multi_objectif}
-~
-\itodo{Décrire l’évolution du front et le panel de solution obtenue}
-\itodo{Décrire l’exploration de l’espace}
-\ftodo{Représentation 2D}
-\ftodo{Évolution du front en fonction des itérations}
+\section{Optimisation multi-objectif} % (fold)
+\label{sec:optimisation_multi_objectif}
 \ftodo{Identification de sous-groupe par couleur}
 
 Dans l’optique de ces travaux, il a été proposé d’évaluer la performance couplée
@@ -1103,9 +1094,9 @@ est réalisée afin de mieux comprendre les interactions principales existantes~
 \end{itemize}
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Paramétrage de l’optimisation} % (fold)
-\label{ssub:parametrage_de_l_optimisation}
+% ------------------------------------------------------------------------------
+\subsection{Paramétrage de l’optimisation} % (fold)
+\label{sub:parametrage_de_l_optimisation}
 L’algorithme de colonie d’abeilles virtuelles (\ref{sub:description_de_l_approche_globale})
 est utilisé afin de réaliser l’optimisation multi-objectifs. L’optimisation est réalisée
 sur $4$ objectifs et est contraint afin d’obtenir uniquement des solutions à énergie
@@ -1117,20 +1108,27 @@ positives (\ref{ssub:approche_retenue})~:
   \item Minimiser la $Nombre_{PV}$ ($\epsilon = 0.1$)
   \item Contraint par $\abs{Conso_{tot}}   \leq  8 \ \si{kWh_{ep}\per\metre\squared}$.
 \end{itemize}
+
+\noindent L’algorithme est définie avec les paramètres suivants~:
+\begin{itemize}
+  \item $IT = 400$
+  \item $NP = 90$
+  \item $Max_{Echec} = 2 \times \text{nombre de variables de décisions} = 32$
+\end{itemize}
+Dans cette configuration, l’algorithme réalise au minimum \num{36000} évaluations ($NP *
+IT$) mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi
+dépendant de $Max_{Echec}$, le nombre maximal de variations consécutives que peut subir
+une source avant d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source
+aléatoirement puis de sa position opposée. Ainsi si une source n’est pas améliorée au bout
+de $32$ essais alors elle est abandonnée et l’algorithme évalue donc une solution
+supplémentaire pour cette itération (position opposée). Sur Bordeaux, $386$ sources ont
+été abandonnées durant le processus d’optimisation contre $383$ sur Strasbourg.
+
 Une archive par $\epsilon$-dominance est utilisée pour stocker les solutions optimales
 durant le processus afin d’améliorer à la fois l’exploitation et l’exploration, évitant
 ainsi de converger vers des optimums locaux. L’archive impose la définition d’un
 hyperplan, où chaque hypercube le formant contient une unique solution. Les dimensions de chaque
 hypercube est définie suivant les valeurs d’$\epsilon$ respectives de chaque objectif.
-Ainsi, l’hyperplan est fixe et n’est pas relatif aux valeurs des objectifs.
-Pour les objectifs $F_{sav}^{ECS}$ et de $F_{sav}^{CH}$, une taille de \SI{0.5}{\percent}
-est retenue, indiquant que deux solutions ayant une différence de plus de
-\SI{0.5}{\percent} sont forcement dans un hypercube différent. Dans le cas de l’objectif $Prod_{PV}$, la
-valeur retenue n’est que peu importante car la variation de la production des capteurs
-\abr{PV} est discrète et est directement liée au nombre de capteur \abr{PV} ($Nombre_{PV}$).
-Dans les deux cas la valeur de l’$\epsilon$ est alors choisie inférieur au saut discret
-mais est arbitraire.
-
 Il est important de rappeler que pour appartenir au même hypercube, deux solutions
 doivent obligatoirement avoir un écart sur chaque objectif inférieur à la valeur d’$\epsilon$.
 Cependant l’hyperplan étant fixe, respecter ces conditions n’est pas suffisant, certaines solutions
@@ -1141,24 +1139,17 @@ pas la contrainte d’unicité au sein d’un même hypercube.
 Par contre si la solution appartient au même hypercube alors, seule la solution la plus
 optimale est retenue. Dans ce cas de figure l’optimalité d’une solution est défini
 comme la solution minimisant la distance normalisée au point idéal de l’hypercube.
+Ainsi, l’hyperplan est fixe et n’est pas relatif aux valeurs des objectifs.
+Pour les objectifs $F_{sav}^{ECS}$ et de $F_{sav}^{CH}$, une taille de \SI{0.5}{\percent}
+est retenue, indiquant que deux solutions ayant une différence de plus de
+\SI{0.5}{\percent} sont forcement dans un hypercube différent. Dans le cas de l’objectif $Prod_{PV}$, la
+valeur retenue n’est que peu importante car la variation de la production des capteurs
+\abr{PV} est discrète et est directement liée au nombre de capteur \abr{PV} ($Nombre_{PV}$).
+Dans les deux cas la valeur de l’$\epsilon$ est alors choisie inférieur au saut discret
+mais est arbitraire.
 
 
-L’algorithme est définie avec les paramètres suivants~:
-\begin{itemize}
-  \item $IT = 400$
-  \item $NP = 90$
-  \item $Max_{Echec} = 2 \times \text{nombre de variables de décisions} = 32$
-\end{itemize}
-
-Dans cette configuration, l’algorithme réalise au minimum \num{36000} évaluations ($NP *
-IT$) mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi
-dépendant de $Max_{Echec}$, le nombre maximal de variations consécutives que peut subir
-une source avant d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source
-aléatoirement puis de sa position opposée. Ainsi si une source n’est pas améliorée au bout
-de $32$ essais alors elle est abandonnée et l’algorithme évalue donc une solution
-supplémentaire pour cette itération (position opposée). Sur Bordeaux, $386$ sources ont
-été abandonnées durant le processus d’optimisation contre $383$ sur Strasbourg.
-
+~\\
 \itodo{Ajouter description rapide hypervolume et schott}
 L’évolution de l’optimisation est décrit par \figref{fig:hypervolume_schott_front} à
 travers deux métriques~: la \textit{métrique S} aussi appelée hypervolume, et la métrique
@@ -1173,7 +1164,7 @@ pour finalement stagner avec obtention d’un front uniformément répartis.
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \ftodo{Ajouter évolution hypervolume et Schott pour optimisation Bordeaux}
+        \ftodo{Ajouter évolution hypervolume et Schott abandons pour optimisation Bordeaux}
         % \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_bor.pdf}
         \caption{}
         \label{fig:hypervolume_schott_bor}
@@ -1181,7 +1172,7 @@ pour finalement stagner avec obtention d’un front uniformément répartis.
     \quad
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \ftodo{Ajouter évolution hypervolume et Schott pour optimisation Strasbourg}
+        \ftodo{Ajouter évolution hypervolume et Schott abandons pour optimisation Strasbourg}
         % \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_stras.pdf}
         \caption{}
         \label{fig:hypervolume_schottstras}
@@ -1192,87 +1183,81 @@ pour finalement stagner avec obtention d’un front uniformément répartis.
               Bordeaux (a) et Strasbourg (b).}
     \label{fig:hypervolume_schott_front}
 \end{figure}
-% subsubsection parametrage_de_l_optimisation (end)
+% subsection parametrage_de_l_optimisation (end)
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Analyse globale des solutions non-dominées} % (fold)
-\label{ssub:analyse_globale_des_solutions_non_dominees}
+
+% ------------------------------------------------------------------------------
+\subsection{Analyse globale des solutions non-dominées} % (fold)
+\label{sub:analyse_globale_des_solutions_non_dominees}
 \itodo{Remarques et observations}
-Le front de Pareto obtenu comprend \num{120} pour Bordeaux (\figref{fig:front_pareto_bordeaux})
-et \num{219} solutions pour Strasbourg (\figref{fig:front_pareto_strasbourg}). Cet écart s’explique
-principalement par la plage de variation optimale de la surface de capteurs \abr{PV}, plus grande
-sur Strasbourg. En effet la la $Conso_{ref}$ pour le climat de Strasbourg est supérieure, que ce
-soit sur le chauffage ou sur la production d’\abr{ECS}.
-De plus la variation de la performance de l’enveloppe entraine une variation de
-la $Conso_{ref}^{CH}$ de \SI{400}{kWh} sur Bordeaux contre \SI{750}{kWh} sur Strasbourg.
-Ainsi la surface de capteurs \abr{PV} maximale nécessaire est supérieure sur Strasbourg ($24$),
-contre $16$ sur Bordeaux.
+Le front de Pareto obtenu comprend \num{120} solutions non-dominées sur Bordeaux
+(\figref{fig:front_pareto_bordeaux}) contre \num{219} sur Strasbourg
+(\figref{fig:front_pareto_strasbourg}). Dans les deux cas, il existe une large diversité
+sur les différents objectifs. Certaines solutions favorisant le solaire thermique,
+d’autres le photovoltaïque ou des combinaisons des deux. De plus, le fait de considérer
+la couverture du chauffage et de l’\abr{ECS} de manière distinctes permet de renforcer le
+nombre de compromis et en proposant des alternatives sur l’espace de décision. Le front pour le climat de
+Strasbourg est plus fournit que celui de Bordeaux en raison d’une plage de variation
+optimale plus importante sur le nombre de capteurs \abr{PV}, augmentant le nombre de
+combinaisons possibles.
+La représentation des front est construit sous forme d’une matrice carrée.
+Les graphiques inférieures représentent les projections deux à deux des objectifs~:
+$F_{sav}^{ECS}$ (\si{\percent}), $F_{sav}^{CH}$ (\si{\percent}), et $Prod_{PV}$ (\si{kWh}).
+Les graphiques en partie supérieure décrivent eux aussi les projections deux à deux mais
+avec les axes x et y inversés permettant de mieux
+apprécier la distribution des solutions en fonction des différents objectifs. La couleur des points,
+décrit la répartition des solutions en fonction du dernier objectif~: le nombre de capteurs \abr{PV}.
+Finalement, chaque histogramme sur la diagonale décrit l’évolution et la répartition du
+nombre de capteurs \abr{PV} en fonction des autres objectifs.
 
-La borne inférieure est elle définie en fonction de deux élément. Le premier est la
-consommation des usages spécifiques ($Conso_{usages}$) qui
-est la valeur minimale que doit couvrir la production des capteurs \abr{PV}. Le second
-est la performance du \abr{SSC} et plus particulièrement, la différence
-de consommation entre l’appoint et le système de référence ($Conso_{ref} - Conso_{app}$).
-Dans un cas idéal, le nombre de capteurs \abr{PV} nécessaires est donc définie uniquement
-en fonction des usages spécifiques. Dans notre cas, le taux d’économie du \abr{SSC}
-n’atteint pas \SI{100}{\percent} et donc afin d’atteindre un bilan positif, la
-production des capteurs \abr{PV} ($Prod_{PV}$) doit aussi couvrir la consommation
-de l’appoint. Ainsi, plus le \abr{SSC} est performant plus la part à couvrir par les capteurs \abr{PV}
-diminue.
+\paragraph{} % (fold)
+Les solutions devant toutes respecter un bilan positif, il existe un équilibre en
+production solaire par les capteurs solaires thermiques et par les capteurs \abr{PV}.
+Il est ainsi mis en évidence que sur Bordeaux, afin de réduire au maximum le nombre
+de capteurs \abr{PV}, il est nécessaire d’avoir~:
+$F_{sav}^{CH} > \SI{57}{\percent} \ et \ F_{sav}^{ECS} > \SI{87}{\percent}$.
+Améliorer au delà la performance du système sur le chauffage, ou sur la production d’\abr{ECS},
+ne permet pas de réduire le nombre de capteurs \abr{PV}. La consommation de l’appoint
+est en effet déjà très faible et le production des capteurs \abr{PV} est principalement
+utilisée pour couvrir les consommations électriques des équipements internes ($Conso_{usages}$).
+Sur Strasbourg une réduction supérieure à \SI{38}{\percent} pour la consommation de chauffage, et de
+\SI{84}{\percent} sur la production d’\abr{ECS}, ne permet pas de réduire le nombre de capteurs \abr{PV} nécessaires.
+Comme pour Bordeaux, le gain absolue sur la consommation n’est pas suffisant pour permettre de se passer d’un
+autre capteur \abr{PV}.
+La production des capteurs \abr{PV} admet en effet des sauts discrets car il a été retenue de faire
+varier non pas la surface de capteurs mais le nombre de capteurs. Il est cependant aussi
+noté que pour un même nombre de capteurs installée, la production peut légèrement varier.
+La répartition des capteurs \abr{PV} est en effet dépendante du nombre de capteurs
+solaires thermiques installés. Lorsque que le nombre réduit, il est possible de loger plus
+de capteurs \abr{PV} sur le pan sud et donc d’améliorer la production.
 
-
-\begin{figure}
-% pair_grid_plot
-    \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
-    \caption[Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations]
-             {Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations.
-              Chaque graphique est la projection des objectifs deux à deux.
-              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
-    \label{fig:front_pareto_bordeaux}
-\end{figure}
-
-\begin{figure}
-% pair_grid_plot
-    \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
-    \caption[Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations]
-             {Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations.
-              Chaque graphique est la projection des objectifs deux à deux.
-              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
-    \label{fig:front_pareto_strasbourg}
-\end{figure}
-
-
-\itodo{Diff F sav et économie de conso}
-Il est observé un taux d’économie maximal plus important sur Bordeaux autant sur le
-chauffage que sur la production d’\abr{ECS}, cependant la plage de variation du
-nombre de capteurs \abr{PV} est plus grande sur Strasbourg. Bien que la part relative
-maximale économisée ($F_{sav,\,ext}$) soit inférieure sur Strasbourg, l’économie
-énergétique absolue ($Conso_{ref} - Conso_{app}$) est plus importante. De ce fait,
-le \abr{SSC} permet de substituer un nombre plus important de capteurs \abr{PV}.
-
-\itodo{Plus de capteurs sur Strasbourg}
-
-
-
-Dans les
-deux cas, il est capable d’offrir une large diversité sur les différents objectifs en
-proposant à la fois des solutions favorisant le solaire thermique, d’autres le
-photovoltaïque, et des combinaisons des deux. De plus, le fait de considérer la couverture
-du chauffage et de l’\abr{ECS} de manière distinctes permet de renforcer le nombre de
-compromis. Le front pour le climat de Strasbourg est plus fournit que celui de Bordeaux
-car les consommations à couvrir sont plus importantes, en particulier sur le chauffage.
-De ce fait, le nombre de capteurs \abr{PV} nécessaire est plus important se traduisant par
-un nombre plus important de combinaisons.
-De plus la consommation maximale sur
-Bordeaux est similaire
-
-
-Les extremums respectifs couverts par le front de Pareto sont décrits dans \tabref{tab:bornes_front_pareto}.
-Le \abr{SSC} permet ainsi d’offrir le
-\itodo{Discuter l’étendu des résultats}
+Afin d’apprécier l’étendu du front de Pareto, il est aussi renseigné les bornes de
+l’espace des objectifs (\tabref{tab:bornes_front_pareto}) correspondant aux points nadir
+et idéal. Les valeurs renseignées sont donc les maximums ou minimums pour chaque
+indicateur, chaque ligne ne correspond pas à une solution existante mais à la combinaison
+des solutions maximisant ou minimisant un objectif en particulier.
+Pour les deux climats, la plage de variation des taux d’économies sont similaires~:
+\begin{itemize}
+    \item $F_{sav,\, ext}$~: \SI{\sim 30}{\percent}
+    \item $F_{sav}^{ECS}$~: \SI{\sim 30}{\percent}
+    \item $F_{sav}^{CH}$~: \SI{\sim 60}{\percent}
+\end{itemize}
+Sur Bordeaux, le \abr{SSC} permet au maximum de réduire de
+\SI{90}{\percent} la consommation par rapport au cas de référence soit une économie de
+\SI{2572}{kWh} ($5$ capteurs). À titre de comparaison, la meilleure solution avec
+seulement $2$ capteurs solaires thermique permet une économie de \SI{2038}{kWh}. Ainsi
+l’écart entre les deux est peu important et $2$ capteurs permet déjà d’obtenir un taux
+d’économie important~: \SI{76}{\percent} sur la production d’\abr{ECS} et
+\SI{31}{\percent} sur le chauffage. Sur Strasbourg, l’économie engendrée avec un taux
+d’économie de \SI{74}{\percent} est de \SI{3103}{kWh} avec $7$ capteurs contre
+\SI{2009}{kWh} avec seulement $2$ capteurs. Il apparaît donc que même sur Strasbourg, le
+\abr{SSC} permet avec peu de capteurs solaires d’obtenir de bon taux d’économie~:
+\SI{60}{\percent} sur la production d’\abr{ECS} et \SI{22}{\percent} sur le chauffage.
+Le \abr{SSC} permet sur Strasbourg, d’économiser une part absolue plus importante, en
+particulier sur le chauffage ($Conso_{app}$). Sur Bordeaux les consommation de chauffage
+sont en effet très faibles et par conséquent améliorer le $F_{sav}^{CH}$ impacte plus
+faiblement la consommation totale.
 
 \begin{table}
 \centering
@@ -1297,8 +1282,128 @@ Le \abr{SSC} permet ainsi d’offrir le
 \end{table}
 
 
-\subsubsection{Évaluation de la performance globale} % (fold)
-\label{ssub:evaluation_de_la_performance_globale}
+\begin{figure}
+% pair_grid_plot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
+    \caption[Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations]
+             {Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations.
+              Chaque graphique est la projection des objectifs deux à deux.
+              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
+    \label{fig:front_pareto_bordeaux}
+\end{figure}
+
+\begin{figure}
+% pair_grid_plot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations]
+             {Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations.
+              Chaque graphique est la projection des objectifs deux à deux.
+              Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
+    \label{fig:front_pareto_strasbourg}
+\end{figure}
+% subsection analyse_globale_des_solutions_non_dominees (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Variation du nombre de capteurs \abr{PV}} % (fold)
+\label{sub:variation_du_nombre_de_capteurs_pv}
+Bien que la part relative maximale économisée ($F_{sav,\,ext}$) soit inférieure sur
+Strasbourg, l’économie absolue en énergie ($Conso_{ref} - Conso_{app}$), est elle plus
+importante. De ce fait, le \abr{SSC} permet de substituer un nombre plus important de
+capteurs \abr{PV}. En effet la $Conso_{ref}$ pour le climat de Strasbourg est supérieure,
+autant sur le chauffage ou la production d’\abr{ECS}. De plus la variation de la
+performance de l’enveloppe entraine une variation de la $Conso_{ref}^{CH}$ de
+\SI{400}{kWh} sur Bordeaux contre \SI{750}{kWh} sur Strasbourg. Par extension, vu que
+l’optimisation est multi-objectifs, les solutions maximisant la surface de capteurs
+\abr{PV} doivent produire plus sur Strasbourg afin de compenser l’énergie non économisé
+grâce au \abr{SSC}. Ainsi la surface de capteurs \abr{PV} maximale nécessaire est plus
+importante sur Strasbourg ($24$) que sur Bordeaux ($16$).
+
+La borne inférieure est elle définie en fonction de deux élément. Le premier est la
+consommation des usages spécifiques ($Conso_{usages}$), la valeur minimale que doit
+couvrir la production des capteurs \abr{PV}. Celle-ci ne permet cependant pas d’expliquer
+pourquoi le nombre minimal de capteurs \abr{PV} est plus important sur Strasbourg car la
+$Conso_{usages}$ est équivalente sur les deux climats. Le second élément est la
+performance du \abr{SSC}, et plus particulièrement, la différence de consommation entre
+l’appoint et le système de référence ($Conso_{ref} - Conso_{app}$). Dans notre cas, le
+taux d’économie du \abr{SSC} n’atteint pas \SI{100}{\percent}, il est donc nécessaire pour
+atteindre un bilan positif, que la production des capteurs \abr{PV} ($Prod_{PV}$) couvrent
+aussi une part de la consommation de l’appoint. Ainsi, plus le \abr{SSC} est performant
+plus la part à couvrir par les capteurs \abr{PV} diminue.
+Cependant, comme expliqué au paragraphe précédent, la consommation de référence est plus
+importante sur Strasbourg là où le \abr{SSC} est moins performant. Ainsi, le nombre
+minimal de capteurs \abr{PV} est plus important sur Strasbourg.
+
+Les résultats montrent aussi que le nombre de capteur \abr{PV} est inversement
+proportionnel à la performance du \abr{SSC}. Lorsque elle augmente, la production
+photovoltaïque diminue et la production solaire thermique augmente afin de respecter la
+contrainte de bilan positif. Ainsi sur Strasbourg, augmenter le nombre de capteur
+thermiques de $5$ permet de réduire de $8$ le nombre de capteurs \abr{PV} nécessaire
+(\figref{fig:fsav_pv_stras}). Sur Bordeaux une variation de $3$ capteurs thermique permet
+de réduire de $5$ le nombre de capteurs \abr{PV} (\figref{fig:fsav_pv_bor}). Il est aussi
+mis en évidence que les solutions encadrées sont celles qui maximisent le nombre de
+capteurs \abr{PV} sur la toiture. Contrairement aux solutions en dehors du cadre, elles ne
+couvrent pas l’ensemble de l’intervalle défini par la contrainte de bilan à énergie
+positive. Il n’existe ainsi pas de solution minimisant au maximum la $Conso_{tot}$ et en
+même temps la surface minimale de capteurs \abr{PV}.
+
+\begin{figure}
+% perf_th_vs_nb_pv
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_bor.pdf}
+        \caption{}
+        \label{fig:fsav_pv_bor}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_stras.pdf}
+        \caption{}
+        \label{fig:fsav_pv_stras}
+    \end{subfigure}
+    \caption[À faire]
+             {À faire}
+    \label{fig:fsav_pv_bor_stras}
+\end{figure}
+% subsection variation_du_nombre_de_capteurs_pv (end)
+
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Répartition des critères de décisions} % (fold)
+\label{ssub:repartition_des_criteres_de_decisions}
+\itodo{Variation algo en fonction objectif à maximiser}
+\ttodo{Décrire critère pour les solutions maxisant chaque taux}
+Il est aussi noté que les solutions permettant de réduire au maximum la
+consommation de l’appoint ($\max(F_{sav,\,ext})$) ne sont ni les meilleures sur
+la production d’\abr{ECS}, ni les meilleures sur le chauffage. Il apparaît donc
+qu’il existe un compromis entre amélioration de la performance sur le chauffage et
+amélioration de la production d’\abr{ECS}. En effet en cherchant à maximiser par exemple la production
+d’\abr{ECS} on réduit la part apportée au chauffage et inversement.
+
+\ftodo{Countplot pour répartition des critères}
+% subsubsection repartition_des_criteres_de_decisions (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Bilan} % (fold)
+\label{ssub:bilan}
+Il est important de noter que les capteurs solaires thermiques
+apportent une réduction
+effective de la part de l’appoint basée sur un bilan mensuel alors que la
+% subsubsection bilan (end)
+% subsection analyse_globale_des_solutions_non_dominees (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Adéquation entre besoins et production} % (fold)
+\label{sub:adequation_entre_besoins_et_production}
 Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
 sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
 tient donc pas compte de l’adéquation entre les besoins et la demande
@@ -1334,7 +1439,7 @@ pour le photovoltaïque.
         F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
         \shortintertext{avec~:}
         Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
-        Prod_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right) \\
+        Gain_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right) \\
 \end{align}
 
 Le bâtiment et ses équipements est ainsi évaluée en traçant l’évolution de l’indicateur $F_{sol,\, tot}$,
@@ -1351,69 +1456,26 @@ maximisant $F_{sav,\,ext}$.
              {None.}
     \label{fig:fsoltot_vs_pvnumber}
 \end{figure}
-% subsubsection evaluation_de_la_performance_globale (end)
-
-\ftodo{Countplot pour répartition des critères}
-\ttodo{Récapitulatif des maximums et minimums obtenues}
-
-Les résultats montrent que le nombre de capteur \abr{PV} est inversement proportionnel
-à la performance du \abr{SSC}. Lorsque elle augmente, la production photovoltaïque
-diminue la production solaire thermique augmente. Ainsi sur Strasbourg, augmenter
-le nombre de capteur thermiques de $5$ permet de réduire de $8$ le nombre de
-capteurs \abr{PV} nécessaire (\figref{fig:fsav_pv_stras}). Sur Bordeaux une variation de $3$ capteurs
-thermique permet de réduire de $5$ le nombre de capteurs \abr{PV} (\figref{fig:fsav_pv_bor}).
-
-\itodo{Discuter figure}
-Pour le nombre de capteurs \abr{PV} considérés, les solutions  il n’existe pas de solutions
-sur la borne inférieure de la contrainte
+% subsection adequation_entre_besoins_et_production (end)
 
 
 
-\begin{figure}
-% perf_th_vs_nb_pv
-    \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_bor.pdf}
-        \caption{}
-        \label{fig:fsav_pv_bor}
-    \end{subfigure}
-    \quad
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_stras.pdf}
-        \caption{}
-        \label{fig:fsav_pv_stras}
-    \end{subfigure}
-    \caption[À faire]
-             {À faire}
-    \label{fig:fsav_pv_bor_stras}
-\end{figure}
-
-
-
-
-Il est important de noter que les capteurs solaires thermiques
-apportent une réduction
-effective de la part de l’appoint basée sur un bilan mensuel alors que la
-
-% subsubsection analyse_globale_des_solutions_non_dominees (end)
-
-
-\subsubsection{Corrélation entre performance de l’enveloppe et \abr{SSC}} % (fold)
-\label{ssub:correlation_entre_performance_de_l_enveloppe_et_ssc}
-\itodo{Influence isolation}
+% ------------------------------------------------------------------------------
+\subsection{Corrélation entre performance de l’enveloppe et \abr{SSC}} % (fold)
+\label{sub:correlation_entre_performance_de_l_enveloppe_et_ssc}
+\itodo{Influence isolation (Strasbourg actuellement)}
 Cette section s’intéresse plus particulièrement aux corrélations existantes entre la
 performance de l’enveloppe et la performance et la performance du \abr{SSC}. Ainsi $3$
 indicateurs sont introduits, les coefficients de corrélation de \textit{Pearson}
 ($pearsonr$) et \textit{Spearman} ($spearmanr$), mais aussi $p$, la probabilité qu’une
-corrélation existe entre deux variables. $pearsonr$ permet d’évaluer le niveau de
+corrélation existe entre deux variables. L’indicateur $pearsonr$ permet d’évaluer le niveau de
 corrélation linéaire existant entre deux variables et $spearmanr$ si il existe une
-relation monotone. Leurs signes renseignent sur le sens de la relation, une valeur
-positive indiquant que si une des variables augmente, l’autre aussi. La valeur indique le
-niveau de corrélation, $-1$ ou $1$ signifiant qu’il existe une corrélation totale alors
-que $0$ indique qu’il n’existe pas de corrélation du tout. Le second paramètre $p$ indique
-lui la probabilité que le système ne soit pas corrélé, $0$ indiquant qu’il l’est.
+relation monotone. La valeur est comprise entre $-1$ et $1$, où les extrêmes indiquent
+une corrélation totale et $0$ qu’il n’en existe pas. Le signe indique lui le sens
+d’évolution de la corrélation~: une valeur positive indique que l’augmentation
+d’une des variables implique aussi l’augmentation de la seconde. Le second paramètre, $p$, indique
+lui la probabilité que le système ne soit pas corrélé du tout, $0$ indique donc que le système
+est corrélé et $1$ qu’il ne l’est pas.
 
 \figref{fig:conso_ref_vs_app} montre qu’il existe une corrélation linéaire forte entre la
 consommation du système de référence ($Conso_{ref}^{CH}$) et la consommation de l’appoint sur
@@ -1426,51 +1488,53 @@ il apparaît que la corrélation n’est pas linéaire mais l’évolution peut 
 comme monotone ($spearmanr = \num{-0.63}$). Le système est donc en moyenne plus performant
 lorsque la qualité de l’enveloppe augmente. Ainsi, les solutions optimales
 considèrent majoritairement une enveloppe performante qui permet à la fois de réduire
-$Conso_{app}^{CH}$ et d’augmenter $F_{sav,\,ext}$. En améliorant l’enveloppe, les besoins
+la $Conso_{app}^{CH}$ et augmenter le $F_{sav,\,ext}$. En améliorant l’enveloppe, les besoins
 sur le chauffage sont réduits et donc une part solaire plus importante peut être
 utilisée pour couvrir les besoins en \abr{ECS}.
 
 Il serait alors tentant de conclure que améliorer l’isolation au maximum est
 toujours une bonne recommandation mais la \figref{fig:conso_ref_vs_diffconso} permet
-de modérer cette conclusion. Dans un premier temps, il est clairement mis en évidence
-qu’il n’existe pas de corrélation entre $Conso_{ref}^{CH} - Conso_{app}^{CH}$ et
-$Conso_{ref}^{CH}$. Ainsi sur le front de Pareto, il existe des solutions diverses
+de modérer cette conclusion. Il est en effet clairement mis en évidence
+qu’il n’existe pas de corrélation entre l’économie sur la consommation
+($Conso_{ref}^{CH} - Conso_{app}^{CH}$) et $Conso_{ref}^{CH}$. Ainsi sur le front de Pareto, il existe des solutions diverses
 et variées pour la même performance d’enveloppe. De plus il existe un saut (\SI{110}{kWh})
-net lorsque l’écart de consommation est inférieur à $1550$. Renforcer l’isolation
+net lorsque l’économie est inférieur à \SI{1550}{kWh}. Renforcer l’isolation
 au delà impacte ainsi négativement la performance du \abr{SSC} au regard de l’économie
-absolue. Cependant, retenir $Conso_{ref}^{CH} - Conso_{app}^{CH}$ comme objectif
+absolue. Il semble donc qu’il existe un compromis entre performance de l’enveloppe,
+performance du \abr{SSC} et économie sur l’appoint.
+Cependant, retenir $Conso_{ref}^{CH} - Conso_{app}^{CH}$ comme objectif
 pour l’optimisation n’est pas judicieux. Formulé ainsi, le front de Pareto
 comportera des solutions favorisant une enveloppe peu performante afin que le gain
 absolue potentiel soit plus important. On obtiendra donc des solutions
 maximisant $F_{sav}^{ECS}$ (car $Conso_{ref}^{ECS}$ est fixe) mais aucunes ne
-favorisant $F_{sav}^{CH}$.
+favorisant $F_{sav}^{CH}$. Il est en effet plus intéressant de dégrader la performance
+de l’enveloppe si on cherche à augmente l’économie en valeur absolue.
 
 
 \itodo{Reformuler}
-Ainsi, le choix du niveau d’isolation doit bien être déterminé parallèlement au
-choix des équipements du \abr{SSC}. Il est de plus nécessaire de considérer un
-autre indicateur afin d’arbitrer ce choix. Ce nouvel indicateur peut par exemple
-être le coût de l’installation, ou le temps de retour sur investissement.
-Cependant comme le montre la littérature, l’évaluation du coût est très délicat
-car il fait intervenir de nombreux facteurs. La condition essentielle pour estimer
-correctement le coût de l’installation est de travailler en collaboration avec
-des industriels pour avoir une idée réaliste du coût des équipements, et avec
-des installateurs pour obtenir une indication quand au coût d’installation,
-et surtout de la main d’oeuvre qui est souvent exprimée de manière approximative comme un simple
-ratio. De même sur l’enveloppe, une intervention d’un expert est nécessaire afin
-d’évaluer le coût réel. Par exemple, il est souvent considéré pour l’isolant, un coût
-dépendant uniquement de son épaisseur. Cette approximation ne permet cependant pas
-de considérer le bâtiment dans son ensemble. En effet en fonction
-de la structure du bâtiment des surcoûts \emph{importants} peuvent survenir lorsque on passe
-d’une épaisseur à une autre de part les contraintes de support, de hauteur\dots\ De
-plus si l’objectif est de calculer un temps de retour
-sur investissement, alors un nombre conséquent de facteur entre en jeu, le taux
-d’intérêt, l’inflation, l’évolution du coût des énergies, la valeur ajoutée au bâtiment,
-la durée de vie des équipements, le coût de maintenance
+Ainsi, le choix du niveau d’isolation doit bien être déterminé parallèlement au choix des
+équipements du \abr{SSC}. Il est de plus nécessaire de considérer un autre indicateur afin
+d’arbitrer ce choix. Ce nouvel indicateur peut par exemple être le coût de l’installation,
+ou le temps de retour sur investissement. Cependant comme le montre la littérature,
+l’évaluation du coût est très délicat car il fait intervenir de nombreux facteurs. La
+condition essentielle pour estimer correctement le coût de l’installation est de
+travailler en collaboration avec des industriels pour avoir une idée réaliste du coût des
+équipements, et avec des installateurs pour obtenir une indication quand au coût
+d’installation, en particulier le coût de la main d’œuvre. Celle-ci est en effet difficile
+à estimer et est souvent exprimée de manière approximative comme un simple ratio horaire.
+De même sur l’enveloppe, une intervention d’un expert est nécessaire afin d’évaluer le
+coût réel. Par exemple, il est souvent considéré pour l’isolant, un coût dépendant
+uniquement de son épaisseur. Cette approximation ne permet cependant pas de considérer le
+bâtiment dans son ensemble. En effet en fonction de la structure du bâtiment, des surcoûts
+\emph{importants} peuvent survenir lorsque on passe d’une épaisseur à une autre de part
+les contraintes de support, de hauteur\dots\ De plus si l’objectif est de calculer un
+temps de retour sur investissement, alors un nombre conséquent de facteur entre en jeu, le
+taux d’intérêt, l’inflation, l’évolution du coût des énergies, la valeur ajoutée au
+bâtiment ou valeur verte, la durée de vie des équipements, le coût de maintenance
 \dots\ Ainsi l’évaluation économique nécessite un large panel de connaissances
-afin de fournir des résultats pertinents et les travaux de la littératures mettent
-en avant cette difficulté à travers des temps de retour variant de quelques années
-à plus de $100$ ans.
+afin de fournir des résultats pertinents et les travaux de la littératures mettent en
+avant cette difficulté à travers des temps de retour variant de quelques années à plus de
+$100$ ans lorsque un \abr{SSC} est évaluée.
 Dans le cadre d’une \abr{MEPOS}, il est aussi possible de diriger son choix en tenant
 compte des résultats d’une Analyse de Cycle de Vie (\abr{ACV}) ou bien du confort des occupants.
 L’utilisation de modèle de substitution permet en effet de simuler très rapidement
@@ -1482,6 +1546,7 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est tr
 \begin{figure}
 % conso_chauffage_joinplot
     \centering
+    \itodo{Refaire avec légende mieux visible}
     \begin{subfigure}[b]{0.31\textwidth}
         \centering
         \includegraphics{Ressources/Images/EtudeDeCas/correlation/conso_ref_vs_app.pdf}
@@ -1508,11 +1573,13 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est tr
               (c) $Conso_{ref}^{CH} - Conso_{app}^{CH}$.}
     \label{fig:conso_ref_vs_app_f_sav}
 \end{figure}
-% subsubsection correlation_entre_performance_de_l_enveloppe_et_ssc (end)
+% subsection correlation_entre_performance_de_l_enveloppe_et_ssc (end)
 
 
-\subsubsection{Influence du type de capteur} % (fold)
-\label{ssub:influence_du_type_de_capteur}
+
+% ------------------------------------------------------------------------------
+\subsection{Influence du type de capteur} % (fold)
+\label{sub:influence_du_type_de_capteur}
 Dans le processus d’aide à la décision retenue, il est dans un premier
 une optimisation multi-objectifs est réalisée puis le front obtenu est ensuite
 évalué de manière interactive grâce à une méthode paramétrique. Cependant,
@@ -1583,7 +1650,7 @@ indiquent que lors du choix d’un capteur, une attention particulière doit êt
 % count_collector_type
     \centering
     \includegraphics{Ressources/Images/EtudeDeCas/evolution_capteur_perf.pdf}
-    \caption[Occurences de chaque type de capteurs pour les solutions du front de Pareto]
+    \caption[Occurrences de chaque type de capteurs pour les solutions du front de Pareto]
              {Évolution de la performance du \abr{SSC} selon l’indicateur $F_{sav,\,ext}$
               en fonction du nombre de capteurs (colonnes), du type de capteurs (axe des y).
               La couleur indique le nombre de capteurs \abr{PV} nécessaires pour respecter
@@ -1596,27 +1663,42 @@ indiquent que lors du choix d’un capteur, une attention particulière doit êt
 
 Afin de mieux comprendre les intéractions
 
-
-
-
-
-
-% subsubsection influence_du_type_de_capteur (end)
-
+% subsection influence_du_type_de_capteur (end)
+% section optimisation_multi_objectif (end)
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Aide à la décision a posteriori} % (fold)
-\label{sub:aide_a_la_decision_a_posteriori}
-~
+\subsection{Influence du volume des ballons} % (fold)
+\label{sub:influence_du_volume_des_ballons}
+\ftodo{Variation performance entre mini volume et optimisation libre}
+% subsection influence_du_volume_des_ballons (end)
+
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Aide à la décision a posteriori} % (fold)
+\label{sec:aide_a_la_decision_a_posteriori}
 \itodo{Description des critères qui rentre en jeu~: coût, Suface disponible,
        fournisseurs locaux, type de clientèle, réglementation, ...}
 \itodo{Ajouter un exemple avec XDAT}
 \itodo{Tableau ou figure}
 \ftodo{Ajouter screenshot de XDAT avec la/les solutions retenues}
 \ttodo{Ajouter tableau avec caractéristiques des solutions retenues}
+% section aide_a_la_decision_a_posteriori (end)
 
-% subsection aide_a_la_decision_a_posteriori (end)
-% subsection optimisation_multi_objectif (end)
-% section vers_une_solution_adaptee (end)
+
+
+
+
+
+
+% ..............................................................................
+% ..............................................................................
+\section{Bilan et conclusions} % (fold)
+\label{sec:bilan_et_conclusions}
+
+% section bilan_et_conclusions (end)
