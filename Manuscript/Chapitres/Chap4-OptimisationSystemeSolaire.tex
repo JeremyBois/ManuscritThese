@@ -70,8 +70,8 @@ avec les deux approches sont alors discutés.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Hypothèses retenus} % (fold)
-\label{sub:hypotheses_retenus}
+\subsection{Hypothèses} % (fold)
+\label{sub:hypotheses}
 L’objectif de ces travaux est de déterminer les configurations existantes qui permettent
 de garantir l’obtention d’une \abr{MEPOS} dont les besoins sont majoritairement couverts
 par l’énergie solaire. Le terme \abr{MEPOS} considère ici quatre usages, les consommation
@@ -182,7 +182,7 @@ est proche de $0$~: $\abs{Conso_{tot}}   \leq  8 \quad (\si{kWh_{ep}\per\metre\s
 Ainsi les solutions produisant trop d’énergie comme celle produisant trop peu d’énergie
 seront écartées.
 % subsubsection definition_des_contraintes (end)
-% subsection hypotheses_retenus (end)
+% subsection hypotheses (end)
 
 
 
@@ -797,8 +797,8 @@ non plus sur les indicateurs $F_{sol}^{ECS}$ ou $F_{sol}^{CH}$.
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Paramètres retenus} % (fold)
-\label{sub:parametres_retenus}
+\subsection{Paramètres retenus a posteriori} % (fold)
+\label{sub:parametres_retenus_a_posteriori}
 L’analyse de sensibilité a permis de réduire le nombre de critères de décision
 pour Bordeaux et Strasbourg. Ainsi sur les $22$ facteurs a priori, il en est retenu
 $14$ pour Bordeaux et $15$ pour Strasbourg.  Il est en effet retenue à la fois des variables discrètes, continues,
@@ -896,7 +896,7 @@ proposer d’utiliser des modèles de substitutions.
   \bottomrule
 \end{tabular}
 \end{table}
-% subsection parametres_retenus (end)
+% subsection parametres_retenus_a_posteriori (end)
 % section methode_criblage_de_morris (end)
 
 
@@ -999,7 +999,7 @@ correctement le modèle original (\figref{fig:rmse_mae}).
 Entre $600$ et $1000$, la qualité de l’approximation oscille pour les trois indicateurs
 sur Bordeaux comme sur Strasbourg. Enfin au delà de $1000$, l’approximation s’améliore
 lentement même si sur Strasbourg, l’erreur absolue maximale continue d’osciller. Ainsi,
-pour les $3$ méta-modèlesm un échantillon de taille $600$ est pertinent. En effet,
+pour les $3$ méta-modèles, un échantillon de taille $600$ est pertinent. En effet,
 l’erreur moyenne quadratique est pour Bordeaux inférieure à
 \SI{3.5}{\percent} et l’erreur maximale absolue inférieure à \SI{8}{\percent}. Sur
 Strasbourg l’erreur moyenne quadratique est inférieure à
@@ -1026,9 +1026,9 @@ droite d’équation $x = y$ qui indique une approximation parfaite du modèle o
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}
-    \caption[Évaluation de la validité des méta-modèles du \abr{SSC}]
-            {Évolution des résultats obtenus par le méta-modèle (axe Y) et du modèle
-             original (axe X). La ligne noire représente une approximation parfaite.}
+    \caption[Évaluation de la précision des méta-modèles pour les solutions de l’échantillon]
+            {Évolution des résultats obtenus par les méta-modèles (axes Y) et du modèle
+             original (axes X). La ligne noire représente une approximation parfaite.}
     \label{fig:validite_meta_ssc}
 \end{figure}
 
@@ -1042,28 +1042,138 @@ similaire à la consommation minimale sur Strasbourg.
 
 \begin{table}
 \centering
-\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{10} méta-modèles
-         construits)
-\label{tab:meta_result_bilan}}
+\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) obtenues pour les \num{8} méta-modèles retenus.}
+\label{tab:meta_result_bilan}
 \begin{tabular}{l c c c c c c c c c c}
     \toprule
                     & \multicolumn{4}{c}{Bordeaux} & & \multicolumn{4}{c}{Strasbourg} &
                       Taille \\
                     \cmidrule(r){2-5}
                     \cmidrule(r){7-10}
-                    & $RMSE$ & $MAE$  & Ordre & Variation  &       & $RMSE$ & $MAE$ & Ordre & Variation & échantillon \\                        \\
+                    & $RMSE$ & $MAE$  & Ordre & Variation  &       & $RMSE$ & $MAE$ & Ordre & Variation & échantillon \\
     \midrule
-    $Conso_{ref}^{CH}$  & 0.2  & 0.6  & 2 & \numrange{228}{620}&   & 0.19   & 0.93  & 3     & \numrange{1363}{2110} & \num{400}  \\
+    $Conso_{ref}^{CH}$  & \num{0.2}  & \num{0.6}  & \num{2} & \numrange{228}{620}&   & \num{0.19}   & \num{0.93}  & \num{3}     & \numrange{1363}{2110}      & \num{400}  \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}^{CH}$  & 7.7  & 22.0 & 2 & \numrange{84}{440} &   & 16.9   & 38.0  & 2     & \numrange{612}{1861}       & \num{600} \\
+    $Conso_{app}^{CH}$  & \num{7.7}  & \num{22.0} & \num{2} & \numrange{84}{440} &   & \num{16.9}   & \num{38.0}  & \num{2}     & \numrange{612}{1861}       & \num{600} \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}^{ECS}$ & 15.7 & 56.4 & 2 & \numrange{156}{1043}&  & 21.3   & 70.8  & 2     & \numrange{397}{1360}       & \num{600} \\
+    $Conso_{app}^{ECS}$ & \num{15.7} & \num{56.4} & \num{2} & \numrange{156}{1043}&  & \num{21.3}   & \num{70.8}  & \num{2}     & \numrange{397}{1360}       & \num{600} \\
     \addlinespace[\defaultaddspace]
-    $Conso_{app}$       & 16.6 & 52.4 & 2 & \numrange{324}{1372}&  & 22.3   & 65.1  & 2     & \numrange{1222}{3117}       & \num{600} \\
+    $Conso_{app}$       & \num{16.6} & \num{52.4} & \num{2} & \numrange{324}{1372}&  & \num{22.3}   & \num{65.1}  & \num{2}     & \numrange{1222}{3117}       & \num{600} \\
     \bottomrule
 \end{tabular}
 \end{table}
 % subsection selection_des_meta_modeles (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Qualité de l’approximation sur les front de Pareto} % (fold)
+\label{sub:qualite_de_l_approximation_sur_les_front_de_pareto}
+Afin de valider l’approche par méta-modèle, les solutions optimales obtenues pour Bordeaux
+et Strasbourg sont simulées avec le modèle original (\figref{fig:validite_meta_ssc_optimisation}).
+Comme pour les solutions de l’échantillon, les solutions optimales sont correctement
+approximées même si la dispersion des points est plus importante. Il est cependant
+observée que les modèles de substitutions semblent sous-évaluer la valeur du modèle
+original pour tous les indicateurs en particulier sur Strasbourg pour l’indicateur
+$Conso_{app}^{CH}$. L’algorithme d’optimisation cherche en effet à minimiser ces $3$
+indicateurs afin de pouvoir maximiser les objectifs $F_{sav}^{ECS}$ et $F_{sav}^{CH}$.
+Ainsi en cherchant à trouver les solutions minimisant au maximum les indicateurs, les erreurs
+\abr{RMSE} et \abr{MAE} sont maximisées.
+
+Le \tabref{tab:meta_vs_optimisation} montre que l’erreur moyenne quadratique augmente
+pour tous les indicateurs, en particulier pour l’indicateur $Conso_{app}^{CH}$.
+À l’exception de l’indicateur $Conso_{app}^{CH}$, l’erreur absolue ne varie pas beaucoup,
+elle diminue même sur Bordeaux pour l’indicateur $Conso_{app}^{ECS}$.
+Pour l’indicateur $Conso_{app}^{CH}$, l’erreur maximale est deux fois plus importante.
+Ce résultat était attendu au vu de la forme instabilité observée lors de l’évaluation de
+l’impact de la taille de l’échantillon (annexe, \figref{fig:rmse_mae}). Il avait en
+effet été montré que l’erreur absolue maximale reste importante même pour un échantillon
+de taille $2000$.
+
+L’erreur relative reste inférieure à \SI{6}{\percent} sur Bordeaux et
+\SI{5}{\percent} sur Strasbourg~: les erreurs obtenues sont donc considérées
+comme acceptables.
+
+
+\begin{figure}
+    \centering
+    \includegraphics{Ressources/Images/MetaModele/meta_optimization.pdf}
+    \caption[Évaluation de la précision des méta-modèles pour les solutions optimales]
+            {Évolution des résultats obtenus par les méta-modèles (axes Y) et du modèle
+             original (axes X) pour les solutions du front de Pareto.
+             La ligne noire représente une approximation parfaite.}
+    \label{fig:validite_meta_ssc_optimisation}
+\end{figure}
+
+
+\begin{table}
+\centering
+\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) des méta-modèles sur l’échantillon
+         de validation (gauche) et sur les solutions non-dominées obtenues par
+         l’optimisation (droite).}
+\label{tab:meta_vs_optimisation}
+\begin{tabular}{l c c c c c C{0.5cm} c c c c c}
+    \toprule
+                    & \multicolumn{5}{c}{\textbf{Validation}} & & \multicolumn{5}{c}{\textbf{Optimisation}}  \\
+                    & \multicolumn{2}{c}{Bordeaux} & & \multicolumn{2}{c}{Strasbourg} & & \multicolumn{2}{c}{Bordeaux} & & \multicolumn{2}{c}{Strasbourg} \\
+                    \cmidrule(r){2-3}
+                    \cmidrule(r){8-9}
+                    \cmidrule(r){5-6}
+                    \cmidrule(r){11-12}
+                                     & $RMSE$     & $MAE$        &       & $RMSE$       & $MAE$      &   & $RMSE$       & $MAE$        &      & $RMSE$       & $MAE$ \\
+    \midrule
+    $Conso_{app}^{CH}$               & \num{7.7}  & \num{22.0}   &       & \num{16.9}   & \num{38.0} &   & \num{10.5}   & \num{32.0}   &      & \num{29.7}   & \num{81.0}  \\
+    \addlinespace[\defaultaddspace]
+    $Conso_{app}^{ECS}$              & \num{15.7} & \num{56.4}   &       & \num{21.3}   & \num{70.8} &   & \num{24.3}   & \num{52.8}   &      & \num{31.1}   & \num{77.5}  \\
+    \addlinespace[\defaultaddspace]
+    $Conso_{app}$                    & \num{16.6} & \num{52.4}   &       & \num{22.3}   & \num{65.1} &   & \num{25.6}   & \num{67.2}   &      & \num{33.9}   & \num{73.1}  \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+% \begin{table}
+% \centering
+% \caption{Erreurs caractéristiques ($RMSE$ et $MAE$) des méta-modèles sur l’échantillon
+%          de validation (gauche) et sur les solutions non-dominées obtenues par
+%          l’optimisation (droite).}
+% \label{tab:meta_vs_optimisation}
+% \begin{minipage}[t][][b]{0.45\linewidth}
+% \begin{tabular}{l c c c c c c}
+%     \toprule
+%                     & \multicolumn{5}{c}{Validation} \\
+%                     & \multicolumn{2}{c}{Bordeaux} & & \multicolumn{2}{c}{Strasbourg} \\
+%                     \cmidrule(r){2-3}
+%                     \cmidrule(r){5-6}
+%                                      & $RMSE$ & $MAE$  &       & $RMSE$ & $MAE$  \\
+%     \midrule
+%     $Conso_{app}^{CH}$               & \num{7.7}  & \num{22.0}   &       & \num{16.9}   & \num{38.0}   \\
+%     \addlinespace[\defaultaddspace]
+%     $Conso_{app}^{ECS}$              & \num{15.7} & \num{56.4}   &       & \num{21.3}   & \num{70.8}   \\
+%     \addlinespace[\defaultaddspace]
+%     $Conso_{app}$                    & \num{16.6} & \num{52.4}   &       & \num{22.3}   & \num{65.1}   \\
+%     \bottomrule
+% \end{tabular}
+% \end{minipage}%
+% \begin{minipage}[t][][b]{0.45\linewidth}
+% \begin{tabular}{l c c c c c}
+%     \toprule
+%                     & \multicolumn{5}{c}{Optimisation} \\
+%                     & \multicolumn{2}{c}{Bordeaux} & & \multicolumn{2}{c}{Strasbourg} \\
+%                     \cmidrule(r){2-3}
+%                     \cmidrule(r){5-6}
+%                                      & $RMSE$ & $MAE$  &       & $RMSE$ & $MAE$  \\
+%     \midrule
+%     $Conso_{app}^{CH}$               & \num{10.5}    & \num{32.0}   &      & \num{29.7}   & \num{81.0}   \\
+%     \addlinespace[\defaultaddspace]
+%     $Conso_{app}^{ECS}$              & \num{24.3}   & \num{52.8}   &       & \num{31.1}   & \num{77.5}   \\
+%     \addlinespace[\defaultaddspace]
+%     $Conso_{app}$                    & \num{25.6}   & \num{67.2}   &       & \num{33.9}   & \num{73.1}   \\
+%     \bottomrule
+% \end{tabular}
+% \end{minipage}
+% \end{table}
+
+% subsection qualite_de_l_approximation_sur_les_front_de_pareto (end)
 % section construction_des_modeles_de_substitutions (end)
 
 
@@ -1072,8 +1182,6 @@ similaire à la consommation minimale sur Strasbourg.
 % ..............................................................................
 \section{Optimisation multi-objectif} % (fold)
 \label{sec:optimisation_multi_objectif}
-\ftodo{Identification de sous-groupe par couleur}
-
 Dans l’optique de ces travaux, il a été proposé d’évaluer la performance couplée
 du système et du bâtiment à travers un processus d’optimisation. Dans un premier temps
 un ensemble de paramètre a priori couvrant à la fois des variations
@@ -1115,8 +1223,8 @@ positives (\ref{ssub:approche_retenue})~:
   \item $NP = 90$
   \item $Max_{Echec} = 2 \times \text{nombre de variables de décisions} = 32$
 \end{itemize}
-Dans cette configuration, l’algorithme réalise au minimum \num{36000} évaluations ($NP *
-IT$) mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi
+Dans cette configuration, l’algorithme réalise au minimum \num{36090} évaluations ($NP *
+(IT + 1)$) mais ce nombre est en pratique supérieur car le nombre d’évaluation total est aussi
 dépendant de $Max_{Echec}$, le nombre maximal de variations consécutives que peut subir
 une source avant d’être abandonnée. Son abandon entraine le tirage d’une nouvelle source
 aléatoirement puis de sa position opposée. Ainsi si une source n’est pas améliorée au bout
@@ -1148,32 +1256,64 @@ valeur retenue n’est que peu importante car la variation de la production des 
 Dans les deux cas la valeur de l’$\epsilon$ est alors choisie inférieur au saut discret
 mais est arbitraire.
 
-
-~\\
-\itodo{Ajouter description rapide hypervolume et schott}
 L’évolution de l’optimisation est décrit par \figref{fig:hypervolume_schott_front} à
 travers deux métriques~: la \textit{métrique S} aussi appelée hypervolume, et la métrique
 de \textit{Schott}. Une augmentation de l’hypervolume traduit une meilleure convergence et
 couverture de l’espace des objectifs par l’ensemble des solutions. Une valeur proche de
 zéro pour la métrique de \textit{Schott} indique que les solutions sont réparties
-uniformément dans le domaine des objectifs. Ainsi, l’algorithme converge rapidement en
-début d’optimisation puis se diversifie rapidement dans un premier temps puis lentement
-pour finalement stagner avec obtention d’un front uniformément répartis.
+uniformément dans le domaine des objectifs.
+
+Dans les premières itérations (zone encadrée), les sources contiennent de nombreuses
+solutions ne respectant pas la contraintes. En effet la majorité des combinaisons
+existantes ne permettent pas d’obtenir un bilan positif. Ainsi après l’initialisation, le
+taux de faisabilité est très bas et les abeilles vont alors favoriser les solutions
+qui respectent la contrainte. Ce comportement se traduit par une augmentation très rapide du
+taux de faisabilité et de la taille de la population de l’archive dans les premières
+itérations. Ce comportement est aussi observable à travers la métrique d’hypervolume qui
+augmente rapidement. L’algorithme cherchant dans un premier temps à converger vers le
+front optimal, les solutions de l’archive ne sont pas uniformément réparties (métrique de
+schott). Le front évoluant rapidement, les solutions sont rapidement remplacées par de
+nouvelles plus performantes et le niveau d’uniformité varie en particulier lorsque le
+\abr{SSC} est installé sur Bordeaux. Après $300$ itérations, le front ne semble plus
+évoluer et l’algorithme a couvert l’espace des objectifs uniformément.
+
+Sur Bordeaux, il apparaît que la métrique d’hypervolume évolue par plateau. Si on observe
+l’évolution du taux de faisabilité, un schéma se dégage. Prenons comme point de référence
+le plateau qui démarre à la $155^{ème}$ itération. La qualité du front ne progresse que
+très peu dans un premier temps, les abeilles commencent alors à accepter des solutions ne
+respectant pas les contraintes. Ces solutions ne sont pas admissibles dans l’archive mais
+permettent d’offrir des combinaisons alternatives potentiellement prometteuses. Vers la
+$230$ itération le taux de faisabilité remonte rapidement, les abeilles ont réussis à
+profiter des nouvelles informations pour construire des solutions respectant les
+contraintes et les sources sont mises à jour. L’algorithme en acceptant d’explorer des
+combinaisons a priori non fructueuses a obtenu des informations supplémentaires
+qu’il a pu exploiter pour construire de nouvelles solutions admissibles. Ces nouvelles
+solutions sont ensuite ajoutées à l’archive améliorant la couverture du front optimal
+(amélioration de la métrique hypervolume). L’algorithme à ce stade de l’optimisation a en
+effet déjà convergé mais il est encore possible d’améliorer la couverture de l’espace des
+objectifs.
+L’exemple décrit ci-avant est observable à plus petite échelle au sein même du plateau
+entre $155$ et $260$ itérations. Chaque petite progressions du front est précédé par
+une réduction du taux de faisabilité (exploration) puis son augmentation (apprentissage).
+Sur Strasbourg, le schéma est plus difficilement discernable car l’algorithme ne progresse
+pas par plateau.
+
+Ainsi, l’algorithme converge rapidement en début d’optimisation puis se diversifie
+rapidement dans un premier temps puis plus lentement pour finalement stagner avec obtention
+d’un front uniformément répartis.
 
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \ftodo{Ajouter évolution hypervolume et Schott abandons pour optimisation Bordeaux}
-        % \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_bor.pdf}
+        \includegraphics{Ressources/Images/EtudeDeCas/Bordeaux_algo.pdf}
         \caption{}
         \label{fig:hypervolume_schott_bor}
     \end{subfigure}
     \quad
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \ftodo{Ajouter évolution hypervolume et Schott abandons pour optimisation Strasbourg}
-        % \includegraphics{Ressources/Images/EtudeDeCas/fsavext_pv_stras.pdf}
+        \includegraphics{Ressources/Images/EtudeDeCas/Strasbourg_algo.pdf}
         \caption{}
         \label{fig:hypervolume_schottstras}
     \end{subfigure}
@@ -1190,7 +1330,6 @@ pour finalement stagner avec obtention d’un front uniformément répartis.
 % ------------------------------------------------------------------------------
 \subsection{Analyse globale des solutions non-dominées} % (fold)
 \label{sub:analyse_globale_des_solutions_non_dominees}
-\itodo{Remarques et observations}
 Le front de Pareto obtenu comprend \num{120} solutions non-dominées sur Bordeaux
 (\figref{fig:front_pareto_bordeaux}) contre \num{219} sur Strasbourg
 (\figref{fig:front_pareto_strasbourg}). Dans les deux cas, il existe une large diversité
@@ -1307,9 +1446,25 @@ faiblement la consommation totale.
 
 
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Répartition des critères de décisions} % (fold)
+\label{ssub:repartition_des_criteres_de_decisions}
+\itodo{Variation algo en fonction objectif à maximiser. faire avec XDAT}
+\ttodo{Décrire critère pour les solutions maxisant chaque taux}
+Il est aussi noté que les solutions permettant de réduire au maximum la
+consommation de l’appoint ($\max(F_{sav,\,ext})$) ne sont ni les meilleures sur
+la production d’\abr{ECS}, ni les meilleures sur le chauffage. Il apparaît donc
+qu’il existe un compromis entre amélioration de la performance sur le chauffage et
+amélioration de la production d’\abr{ECS}. En effet en cherchant à maximiser par exemple la production
+d’\abr{ECS} on réduit la part apportée au chauffage et inversement.
+
+\ftodo{Countplot pour répartition des critères}
+% subsubsection repartition_des_criteres_de_decisions (end)
+
+
 % ------------------------------------------------------------------------------
-\subsection{Variation du nombre de capteurs \abr{PV}} % (fold)
-\label{sub:variation_du_nombre_de_capteurs_pv}
+\subsubsection{Variation du nombre de capteurs \abr{PV}} % (fold)
+\label{ssub:variation_du_nombre_de_capteurs_pv}
 Bien que la part relative maximale économisée ($F_{sav,\,ext}$) soit inférieure sur
 Strasbourg, l’économie absolue en énergie ($Conso_{ref} - Conso_{app}$), est elle plus
 importante. De ce fait, le \abr{SSC} permet de substituer un nombre plus important de
@@ -1370,24 +1525,7 @@ même temps la surface minimale de capteurs \abr{PV}.
              {À faire}
     \label{fig:fsav_pv_bor_stras}
 \end{figure}
-% subsection variation_du_nombre_de_capteurs_pv (end)
-
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Répartition des critères de décisions} % (fold)
-\label{ssub:repartition_des_criteres_de_decisions}
-\itodo{Variation algo en fonction objectif à maximiser}
-\ttodo{Décrire critère pour les solutions maxisant chaque taux}
-Il est aussi noté que les solutions permettant de réduire au maximum la
-consommation de l’appoint ($\max(F_{sav,\,ext})$) ne sont ni les meilleures sur
-la production d’\abr{ECS}, ni les meilleures sur le chauffage. Il apparaît donc
-qu’il existe un compromis entre amélioration de la performance sur le chauffage et
-amélioration de la production d’\abr{ECS}. En effet en cherchant à maximiser par exemple la production
-d’\abr{ECS} on réduit la part apportée au chauffage et inversement.
-
-\ftodo{Countplot pour répartition des critères}
-% subsubsection repartition_des_criteres_de_decisions (end)
+% subsubsection variation_du_nombre_de_capteurs_pv (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1406,7 +1544,8 @@ effective de la part de l’appoint basée sur un bilan mensuel alors que la
 \label{sub:adequation_entre_besoins_et_production}
 Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
 sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
-tient donc pas compte de l’adéquation entre les besoins et la demande
+tient donc pas compte de l’adéquation entre les besoins et la demande comme illustré sur
+Bordeaux avec $11$ et $16$ capteurs \abr{PV}.
 (\figref{fig:evolution_usages_pv}). Ainsi une forte production durant la période estivale
 compense une faible production durant la période hivernale. À l’opposée, l’économie
 engendrée par le \abr{SSC} est calculée par rapport à une solution de référence et tient
@@ -1673,6 +1812,15 @@ Afin de mieux comprendre les intéractions
 \label{sub:influence_du_volume_des_ballons}
 \ftodo{Variation performance entre mini volume et optimisation libre}
 % subsection influence_du_volume_des_ballons (end)
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Bilan} % (fold)
+\label{sub:bilan}
+\itodo{Faire bilan de ce qui a été observé}
+% subsection bilan (end)
+
 
 
 
