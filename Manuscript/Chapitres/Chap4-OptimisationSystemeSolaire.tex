@@ -1542,6 +1542,7 @@ effective de la part de l’appoint basée sur un bilan mensuel alors que la
 % ------------------------------------------------------------------------------
 \subsection{Adéquation entre besoins et production} % (fold)
 \label{sub:adequation_entre_besoins_et_production}
+\iunsure{Si j’ai le temps.}
 Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
 sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
 tient donc pas compte de l’adéquation entre les besoins et la demande comme illustré sur
@@ -1573,13 +1574,14 @@ chauffage, et production d’\abr{ECS}. Étant réaliser à une fréquence mensu
 tient compte en parti de l’adéquation avec le réseau, à la fois pour le thermique et
 pour le photovoltaïque.
 
-
-\begin{align}\label{eq:f_sol_mensuel_total}
+\begin{subequations}\label{eq:f_sol_mensuel_total}
+    \begin{align}
         F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
         \shortintertext{avec~:}
         Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
-        Gain_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right) \\
-\end{align}
+        Gain_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right)
+    \end{align}
+\end{subequations}
 
 Le bâtiment et ses équipements est ainsi évaluée en traçant l’évolution de l’indicateur $F_{sol,\, tot}$,
 en fonction du nombre de capteurs \abr{PV} installés. Pour chaque variation du nombre de capteurs \abr{PV},
@@ -1602,9 +1604,8 @@ maximisant $F_{sav,\,ext}$.
 % ------------------------------------------------------------------------------
 \subsection{Corrélation entre performance de l’enveloppe et \abr{SSC}} % (fold)
 \label{sub:correlation_entre_performance_de_l_enveloppe_et_ssc}
-\itodo{Influence isolation (Strasbourg actuellement)}
 Cette section s’intéresse plus particulièrement aux corrélations existantes entre la
-performance de l’enveloppe et la performance et la performance du \abr{SSC}. Ainsi $3$
+performance de l’enveloppe et la performance du \abr{SSC}. Dans cette optique, $3$
 indicateurs sont introduits, les coefficients de corrélation de \textit{Pearson}
 ($pearsonr$) et \textit{Spearman} ($spearmanr$), mais aussi $p$, la probabilité qu’une
 corrélation existe entre deux variables. L’indicateur $pearsonr$ permet d’évaluer le niveau de
@@ -1616,6 +1617,9 @@ d’une des variables implique aussi l’augmentation de la seconde. Le second p
 lui la probabilité que le système ne soit pas corrélé du tout, $0$ indique donc que le système
 est corrélé et $1$ qu’il ne l’est pas.
 
+L’analyse est uniquement réalisée sur Strasbourg car les besoins de chauffage sur Bordeaux
+sont très faibles et l’amélioration de l’indicateur $F_{sav}^{CH}$ n’a que peu d’impact sur
+la $Conso_{app}$.
 \figref{fig:conso_ref_vs_app} montre qu’il existe une corrélation linéaire forte entre la
 consommation du système de référence ($Conso_{ref}^{CH}$) et la consommation de l’appoint sur
 le \abr{SSC} ($Conso_{app}^{CH}$). Ainsi améliorer l’isolation du bâtiment semble permettre
@@ -1706,9 +1710,9 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est tr
         \caption{}
         \label{fig:conso_ref_vs_diffconso}
     \end{subfigure}
-    \caption[Corrélation entre la qualité de l’enveloppe et la performance du \abr{SSC}]
+    \caption[Corrélation entre la qualité de l’enveloppe et la performance du \abr{SSC} sur Strasbourg]
              {Corrélations entre la qualité de l’enveloppe et la performance du \abr{SSC}
-              en fonction des indicateurs suivants~: (a) $Conso_{app}^{CH}$, (b) $F_{sav,\, ext}$,
+              sur Strasbourg en fonction des indicateurs suivants~: (a) $Conso_{app}^{CH}$, (b) $F_{sav,\, ext}$,
               (c) $Conso_{ref}^{CH} - Conso_{app}^{CH}$.}
     \label{fig:conso_ref_vs_app_f_sav}
 \end{figure}
@@ -1719,58 +1723,78 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est tr
 % ------------------------------------------------------------------------------
 \subsection{Influence du type de capteur} % (fold)
 \label{sub:influence_du_type_de_capteur}
-Dans le processus d’aide à la décision retenue, il est dans un premier
-une optimisation multi-objectifs est réalisée puis le front obtenu est ensuite
-évalué de manière interactive grâce à une méthode paramétrique. Cependant,
-cette approche comme toutes approches impliquant une optimisation contraint à retenir
-uniquement les meilleures solutions. De ce fait, elle ne permet pas d’obtenir les
-solutions qui ne sont pas optimales au sens stricte du terme mais qui ont une
-performance équivalente, peut être pour des combinaisons de paramètres plus intéressantes.
-Ainsi afin de pouvoir analyser l’influence du type de capteur sur la performance du système,
-il est nécessaire de chercher à évaluer la performance maximale pour chaque
-capteurs suivant un processus d’optimisation indépendant.
-
+Le processus d’aide à la décision retenue implique dans un premier temps, la réalisation
+d’une optimisation multi-objectifs, puis grâce à une approche paramétrique le front est
+réduit aux solutions de manière interactive afin de répondre aux critères du ou des
+décideurs. Cependant, cette approche comme toutes approches impliquant une optimisation
+contraint à retenir uniquement les meilleures solutions. De ce fait, elle ne permet pas
+d’obtenir les solutions qui ne sont pas optimales au sens stricte du terme mais qui ont
+une performance équivalente, peut être pour des combinaisons de paramètres plus
+intéressantes. Ainsi afin de pouvoir analyser l’influence du type de capteur sur la
+performance du système, il est nécessaire de chercher à évaluer la performance maximale
+pour chaque capteurs suivant un processus d’optimisation indépendant.
 Profitant d’un temps d’évaluation très faible grâce aux modèles de substitutions,
-une approche itérative exploratoire est retenue.
-En effet, l’optimisation a été réalisée dans un premier
-temps en considérant l’ensemble des paramètres et montre une majorité écrasante de
-solutions qui considèrent un capteur sous-vide \textit{SkyPro} (\figref{fig:occurence_type_capteur}).
-La question qui se pose est donc de savoir si cette solution est retenue car elle
-apporte une amélioration de la performance importante ou bien si son apport est
-marginal. Dans le premier cas, il est logique de favoriser ce type de capteur,
-mais dans le second cas, d’autres indicateurs sont nécessaires pour définir quel
-est le choix le plus pertinent.
+une approche itérative exploratoire est donc retenue.
+
+En effet, l’optimisation a été réalisée dans un premier temps en considérant l’ensemble
+des paramètres et montre une majorité écrasante de solutions qui considèrent un capteur
+sous-vide \textit{SkyPro} (\figref{fig:occurence_type_capteur}). La question qui se pose
+est donc de savoir si cette solution est retenue car elle apporte une amélioration de la
+performance importante ou bien si son apport est marginal. Dans le premier cas, il est
+logique de favoriser ce type de capteur, mais dans le second cas, d’autres indicateurs
+sont nécessaires pour définir quel est le choix le plus pertinent.
+
 
 \begin{figure}
 % count_collector_type
     \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/occurence_type_capteur.pdf}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/occurence_type_capteur_bor.pdf}
+        \caption{}
+        \label{fig:occurence_type_capteur_bor}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/EtudeDeCas/occurence_type_capteur_stras.pdf}
+        \caption{}
+        \label{fig:occurence_type_capteur_stras}
+    \end{subfigure}
     \caption[Occurrences de chaque type de capteurs pour les solutions du front de Pareto]
              {Occurrences de chaque type de capteurs pour les solutions du front de Pareto
-              en fonction du nombre installés.}
+              en fonction du nombre installés pour Bordeaux (a) et Strasbourg (b).}
     \label{fig:occurence_type_capteur}
 \end{figure}
 
-Afin de pouvoir comparer la performance maximale de chaque capteurs, \num{4} optimisations
-successives sont alors réalisées et les fronts sont regroupés dans un archive commune.
+Ainsi \num{4} optimisations successives pour le climat de Strasbourg sont réalisées
+et les fronts sont regroupés dans un archive commune.
 Cette archive ne considère pas de relation de dominance, l’ensemble des solutions sont
 conservées. Les résultats (\tabref{tab:capteur_perf_variation}) sont cohérents avec les
 proportions obtenues lorsque le type de capteur est un critère de décision. Le capteur
 \textit{SkyPro} est en effet le plus performant devant le capteur \textit{IDMK} mais
-l’écart de performance est peu impactant. Par contre pour le capteur \textit{EnergyECO},
-l’écart de performance est plus important (\SI{170}{kWh} sur la $Conso_{app}$). Ces résultats
-indiquent que lors du choix d’un capteur, une attention particulière doit être portée sur~:
-\begin{itemize}
-  \item la valeur du coefficient $a_{1}$ (en particulier pour les capteurs plans où la variation est plus importante)
-  \item la surface de référence utilisée pour déterminer le rendement ($\eta_{0}$)
-\end{itemize}
+l’écart de performance impacte que faiblement la $Conso_{app}$. Par contre pour le capteur \textit{EnergyECO},
+l’écart de performance est plus important~: \SI{170}{kWh} sur la $Conso_{app}$.
+Les valeurs entre parenthèses indiquent les maximums obtenus pour chaque objectif.
+Comme observée précédemment, le meilleur taux d’économie est obtenue par un compromis
+entre l’économie sur le chauffage et sur l’\abr{ECS}. La production d’\abr{ECS} étant
+plus importante, elle est favorisée. De plus peut importe le type de capteur, la
+meilleure performance est obtenue pour une consommation de référence similaire
+
+Comme explicité lors du choix des collecteurs, il apparaît que les capteurs plans récents
+ont tous un rendement optique important et de ce fait, le coefficient $a_{1}$ est
+le principal responsable des différences de performance. Il est aussi nécessaire
+de porter une attention particulière à la surface de référence considérée dans la
+fiche technique des capteurs. En effet le capteur \textit{SkyPro} permet d’obtenir
+la meilleure performance car le rendement est inférieure mais considère une surface
+plus importante~: \num{2.59} contre \num{2.32 (1)} pour les autres capteurs.
 
 \begin{table}
 \centering
-\caption[Performance maximale pouvant être obtenue pour les différents capteurs solaires]
-         {Évolution de la performance maximale obtenue sur l’indicateur
-          $F_{sav,\, ext}$ pour les \num{4} capteurs considérés. Les informations entre
-          parenthèses indiquent le maximum obtenus sur l’indicateur.}
+\caption[Performance maximale pouvant être obtenue pour les différents capteurs solaires sur Strasbourg]
+         {Évolution de la performance maximale obtenue sur Strasbourg pour l’indicateur
+          $F_{sav,\, ext}$ en fonction du type de capteur considéré. La valeur maximale
+          de chaque objectif considéré est indiquée entre parenthèses.}
 \label{tab:capteur_perf_variation}
 \begin{tabular}{l c c c c c c c c c}
     \toprule
@@ -1786,39 +1810,209 @@ indiquent que lors du choix d’un capteur, une attention particulière doit êt
 
 
 \begin{figure}
-% count_collector_type
+% type_collector_evolution
     \centering
-    \includegraphics{Ressources/Images/EtudeDeCas/evolution_capteur_perf.pdf}
-    \caption[Occurrences de chaque type de capteurs pour les solutions du front de Pareto]
-             {Évolution de la performance du \abr{SSC} selon l’indicateur $F_{sav,\,ext}$
-              en fonction du nombre de capteurs (colonnes), du type de capteurs (axe des y).
-              La couleur indique le nombre de capteurs \abr{PV} nécessaires pour respecter
-              la contrainte de bilan positif.}
-    \label{fig:occurence_type_capteur}
+    \includegraphics{Ressources/Images/EtudeDeCas/capteurs_type_perf_tampon.pdf}
+    \includegraphics{Ressources/Images/EtudeDeCas/capteurs_type_perf_ecs.pdf}
+    \caption[Évolution de la performance du \abr{SSC} en fonction du type de capteurs sur Strasbourg]
+             {Évolution de la performance du \abr{SSC} sur Strasbourg pour l’indicateur $F_{sav,\,ext}$
+              en fonction du nombre de capteurs (chaque colonne), et du type de capteur
+              (chaque lignes). La couleur indique respectivement, la taille
+              du ballon tampon (figure du haut) et du ballon d’\abr{ECS} (figure du bas).}
+    \label{fig:evolution_type_capteurs}
 \end{figure}
 
-\ftodo{Évolution en fonction du volume du ballon}
-\ftodo{Évolution en fonction du nombre de capteur}
+Afin de mieux comprendre le comportement du \abr{SSC} en fonction du type de capteurs, il
+est observé simultanément l’évolution de la performance globale ($F_{sav,\, ext}$) en
+fonction du nombre de capteur solaires thermiques installés et des tailles respectives
+pour le ballon tampon et le ballon \abr{ECS} (\figref{fig:evolution_type_capteurs}).
+Chaque point représente une solution optimale et chaque ligne correspond donc au front
+optimal obtenu pour chaque type de capteurs. Du bruit sur la verticale est ajouté afin de
+permettre d’identifier chaque point pour chaque groupe de solutions formées en fonction du
+nombre de capteurs solaires thermiques. Chaque type de capteurs étant une information
+qualitative, la variation de la hauteur des points n’apporte pas d’informations
+supplémentaires mais offre une meilleure lisibilité. Bien que cosmétique, ce bruit est
+nécessaire pour identifier les sous-groupes formés par les différentes couleurs. Une
+graine aléatoire identique est utilisée pour les deux graphiques, la position des solutions
+est donc préservée d’une figure à l’autre.
+Finalement, puisque il existe de nombreuses variations possibles pour la taille des ballons, le choix a été
+fait de les regrouper en fonction de leurs tailles dans $3$ sous-groupes. Ainsi un ballon
+dont la taille varie de \SIrange{100}{200}{\litre} inclut se trouvent dans le sous-groupe $100-200$\dots\ .
+Afin d’améliorer la fluidité de la lecture, un volume allant de \SIrange{100}{200}{\litre} sera considéré
+comme \emph{faible ou petit} alors que un volume supérieur à \SI{300}{\litre} sera considéré comme \emph{important
+ou gros}.
 
-Afin de mieux comprendre les intéractions
+Indépendamment du nombre ou du type de capteurs solaires thermiques, il existe des solutions
+optimales pour toutes les tailles de ballon tampon. De plus un $F_{sav,\, ext}$ important
+est obtenu pour des petits comme des gros volumes de ballon tampon. Il semble donc possible
+de retenir un volume de ballon tampon faible sans dégrader la performance globale du \abr{SSC}.
+Par contre un volume de ballon \abr{ECS} important permet d’obtenir la meilleure
+performance globale. Si on considère moins de $5$ capteurs par contre le volume
+du ballon d’\abr{ECS} est moins impactant. Il est aussi noté que même si des volumes
+importants sont favorisés, il existe des solutions très performantes avec des
+volumes peu important d’\abr{ECS}. Ces solutions considèrent cependant un volume
+de ballon tampon plus important. Il semble donc qu’il soit possible de favoriser
+soit le chauffage, soit la production d’\abr{ECS} pour obtenir un taux d’économie
+important. Ces résultats confirment les observations précédentes, un compromis est
+nécessaire entre performance sur le chauffage et sur la production d’\abr{ECS}.
 
+Pour chaque nombre de capteurs installés, l’écart entre la valeur minimale et
+maximale augmente. Ainsi lorsque uniquement $2$
+capteurs sont installés, $F_{sav,\, ext}$ varie de \SIrange{38}{46}{\percent} alors
+que pour $7$ capteurs la variation est de \SIrange{57}{74}{\percent} soit une augmentation
+de l’écart de \SI{9}{\percent}. En effet à mesure que le nombre de capteurs augmente,
+la différence de performance entre les capteurs est accentuée. Ainsi l’écart entre
+la performance maximale pour le capteur \textit{SkyPro} et le capteur \textit{EnergyEco}
+est de \SI{5}{\percent} lorsque $7$ capteurs sont installées contre \SI{2.5}{\percent}
+pour seulement $2$.
+
+
+Les résultats obtenus permettent donc de lever les conclusions suivantes~:
+\begin{itemize}
+    \item Le \abr{SSC} obtient une bonne performance pour les différents types de
+          capteurs.
+    \item Il existe bien un écart de performance lorsque différents types de capteurs
+          sont considérés mais il n’est pas déterminant.
+    \item Le capteur sous-vide \textit{SkyPro} est le plus performant mais le capteurs
+          plan vitré \textit{IDMK} obtient des performances similaires.
+    \item Le capteur plan \textit{EnergyEco} est le moins performant.
+    \item Le \abr{SSC} ne permet pas de maximiser la performance sur le chauffage
+          et sur la production d’\abr{ECS}, il est nécessaire de choisir sa préférence
+          notamment en favorisant un volume important soit sur le tampon, soit sur le
+          ballon d’\abr{ECS}.
+\end{itemize}
+
+Au regard des résultats, il est donc intéressant de chercher à évaluer plus en détail l’impact
+du volume des ballons sur la performance du \abr{SSC}. Cette analyse est donc réalisée
+dans la partie qui suit.
 % subsection influence_du_type_de_capteur (end)
-% section optimisation_multi_objectif (end)
 
 
 
 % ------------------------------------------------------------------------------
 \subsection{Influence du volume des ballons} % (fold)
 \label{sub:influence_du_volume_des_ballons}
-\ftodo{Variation performance entre mini volume et optimisation libre}
+Au regard des résultats obtenus en faisant varier la taille des ballons
+(\figref{fig:occurence_taille_ballons}), il apparaît clairement que un volume important
+pour le ballon d’\abr{ECS} est plus souvent retenue sur Strasbourg. Le volume du ballon
+tampon est plus variant. À l’inverse sur Bordeaux c’est un ballon tampon important qui est
+majoritairement retenu alors que la taille du ballon \abr{ECS} est plus variable même si
+un volume supérieur à \SI{300}{\litre} est majoritairement retenue.
+Un volume important pour le ballon tampon permet d’améliorer le $F_{sav}^{CH}$ mais
+n’impacte que faiblement le $F_{sav,\, ext}$. Les consommations nécessaires pour couvrir
+les besoins en chauffage sont en effet faibles, ainsi améliorer l’efficacité du \abr{SSC}
+sur le chauffage n’apporte pas de gain important. Il semble donc pertinent sur Bordeaux de
+considérer un volume de tampon inférieur à \SI{100}{\litre} voir de chercher à améliorer
+l’isolation et uniquement considérer un système solaire pour la production d’\abr{ECS}
+avec $3$ ou $4$ collecteurs (annexe, \figref{fig:tanks_variations_bordeaux}). En effet
+la $Conso_{ref}$ varient seulement de \SIrange{228}{620}{kWh} et les solutions optimales
+observée montre que la $Conso_{app}$ elle varie de \SI{48}{470}{kWh}. Ainsi le reste
+de cette section s’intéresse uniquement aux variations observée pour le climat de
+Strasbourg où le potentiel du solaire thermique pour le chauffage est plus important.
+
+
+\begin{figure}
+% count_collector_type
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/tanks_count.pdf}
+    \caption[Occurrences de chaque sous-groupe de taille de ballon pour les solutions du front de Pareto]
+             {Occurrences de chaque sous-groupe de taille de ballon pour les solutions du front de Pareto
+              en fonction du nombre installés pour Bordeaux (vert) et Strasbourg (bleu).}
+    \label{fig:occurence_taille_ballons}
+\end{figure}
+
+Afin d’évaluer l’impact de la taille des ballons, il est nécessaire comme pour le type
+de capteurs, de réaliser une nouvelle optimisation en autorisant uniquement des volumes allant
+de \SIrange{100}{200}{\litre}. L’ensemble des solutions optimales des deux front sont ensuite
+ajoutées dans une archive commune sans relation de dominance. L’archive contient ainsi les meilleures
+solutions avec de faibles volumes et les meilleures solutions en laissant l’algorithme décider
+du volume le plus optimal pour chaque ballon.
+Une fois obtenu, le front cumulé est évalué pour les indicateurs principaux du \abr{SSC}
+en fonction du nombre de capteurs, du volume du ballon tampon, et du volume du ballon d\abr{ECS}
+(\figref{fig:tanks_variations_locales_strasbourg}, annexe \figref{fig:tanks_variations_globales_strasbourg}).
+Si on considère séparément le chauffage et la production d’\abr{ECS},
+il apparaît que comme sur Bordeaux, le volume du ballon tampon est uniquement influent
+sur le $F_{sav}^{CH}$ lorsque le nombre de capteur solaires thermiques est faible ($2$).
+Il est aussi clairement mis en évidence que opter pour des volumes faibles pour le
+ballon tampon et le ballon d’\abr{ECS} permet d’obtenir des performances similaires.
+Par exemple pour $7$ capteurs, la \abr{SSC} permet au maximum de couvrir
+\SI{62}{\percent} et \SI{89}{\percent} des consommations pour respectivement le chauffage et l’\abr{ECS}
+En limitant la variation du volume des ballons (\SIrange{100}{200}{\litre}) il est possible d’obtenir respectivement
+\SI{56}{\percent} et \SI{86}{\percent}. Comme le montre la figure, cette conclusion est valable
+peu importe le nombre de capteurs solaires thermiques installés. Si maintenant, on considère
+la performance globale, alors l’écart sur la $Conso_{app}$ est de seulement \SI{70}{kWh}.
+Le front uniquement composé des solutions obtenues pour de faibles volumes est disponible
+en annexe () où le volume exact est décrit par la couleur du point. Les résultats montrent
+qu’un volume minimal sur le tampon (\SI{100}{\litre}) et un volume de \SIrange{150}{200}{\litre}
+pour le ballon d’\abr{ECS} est suffisant sur Strasbourg.
+
+Il est aussi noté que lorsque le nombre de capteurs est faible, il est plus intéressant de considérer un volume faible
+pour les deux ballons. En effet, si il n’y a pas assez d’énergie solaire, la température
+d’un ballon tampon reste trop basse pour pouvoir être ensuite valorisée.
+Finalement, il est aussi observé que même pour une plage de variation réduite, le
+\abr{SSC} est toujours capable de proposer des solutions maximisant soit le $F_{sav}^{CH}$,
+soit le $F_{sav}^{ECS}$. Il semble donc que les critères de décisions sur l’algorithme
+soient les principaux responsables de l’orientation du \abr{SSC}.
+
+
+\begin{figure}
+% volume_collector_factorplot
+    \centering
+    \includegraphics{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_local.pdf}
+    \caption[Évolution de la performance du \abr{SSC} par secteur en fonction du volume des ballons sur Strasbourg.]
+             {Évolution de la performance du \abr{SSC} sur Strasbourg pour les indicateurs $F_{sav}^{CH}$
+              et $F_{sav}^{CH}$ en fonction du volume du ballon tampon (colonne) et
+              du volume du ballon d’\abr{ECS} (couleur).}
+    \label{fig:tanks_variations_locales_strasbourg}
+\end{figure}
+
+
+Ainsi, au regard des résultats, il est plus intéressant de considérer des ballons
+de faible volume~: pour Strasbourg, \SI{100}{\litre} pour le tampon et \SIrange{150}{200}{\litre} pour le ballon d’\abr{ECS}.
+Ces résultats sont encouragent et invitent à repenser la conception d’un \abr{SSC} pour
+les maisons à énergie positives.
+Un volume important présente en effet de nombreux inconvénients qui sont souvent un frein
+à l’adoption d’un tel système~:
+\begin{itemize}
+    \item Le ballon est l’équipement le plus onéreux d’un \abr{SSC}.
+    \item Un volume important réduit l’espace de vie disponible pour les occupants.
+    \item Le volume étant plus important, les déperditions sont plus importantes~:
+    \begin{itemize}
+        \item Si dans un local chauffée, ces déperditions apportent des charges supplémentaires
+              en période estivale.
+        \item Si installée dans un local non chauffée, les pertes sont plus importantes
+              durant la période hivernale.
+    \end{itemize}
+\end{itemize}
+Il a aussi été mis en évidence que le \abr{SSC} est toujours capable de proposer
+la même plage de performance pour le chauffage et la production d’\abr{ECS}.
+La dernière partie de cette section s’intéresse donc à l’influence des critères
+de décisions propre à l’algorithme.
 % subsection influence_du_volume_des_ballons (end)
 
 
 
 % ------------------------------------------------------------------------------
+\subsection{Influence de l’algorithme de contrôle} % (fold)
+\label{sub:influence_de_l_algorithme_de_controle}
+\itodo{Ajouter description sur tendances de l’algorithme}
+
+% subsection influence_de_l_algorithme_de_controle (end)
+
+% ------------------------------------------------------------------------------
 \subsection{Bilan} % (fold)
 \label{sub:bilan}
 \itodo{Faire bilan de ce qui a été observé}
+optimisation performante
+bonne perf solaire
+compromis enveloppe / système
+compromis chauffage / ecs
+petits volume == bonne perf
+capteurs peu impactants
+approche itérative intéressante pour réduire aider à la décision
+introduire xdat
+
+
 % subsection bilan (end)
 
 
