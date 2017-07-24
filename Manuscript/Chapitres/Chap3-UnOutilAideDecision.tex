@@ -1815,3 +1815,31 @@ Concernant la méthode de prise en compte des contraintes, des travaux ont déj�
        évaluant la diversité, la rapidité, et la convergence.}
 % subsection validation_de_la_methode (end)
 % section algorithme_de_colonie_d_abeilles_virtuelles (end)
+
+
+\section{Bilan} % (fold)
+\label{sec:bilan}
+\itodo{Faire un bilan}
+\begin{figure}
+    \centering
+    \ftodo{Ajouter méthodologie avec outils utilisés pour chaque étapes}
+    % \includegraphics{Ressources/Images/Modelisation/Capteurs/IAM_all.pdf}
+    \caption[Outils utilisés pour la mise en place de la méthodologie d’aide à la décision]
+            {Outils utilisés pour la mise en place de la méthodologie d’aide à la décision.}
+    \label{fig:outils_methode}
+\end{figure}
+
+La \figref{fig:outils_methode} récapitule l’ensemble des outils utilisés dans ce chapitre
+afin de mettre en place la méthodologie d’aide à la décision. Comme pour l’étude
+paramétrique, les bibliothèques \textit{Buildingspy} et \textit{DymTK} ont été utilisées
+afin de pouvoir automatiser la simulation en parallèle des modèles à partir du langage
+\textit{Python}. \textit{DyMat} a permis quand à elle de lire les résultats qui ont été
+ensuite traités grâce au bibliothèques \textit{Pandas} et \textit{Numpy}. Afin de réaliser
+l’échantillon pour le screening de Morris, la biblothèque \textit{Salib} a été retenue.
+Pour la construction d’un échantillon uniformément réparti par méthode de quasi-Monte-Carlo
+et la création des méta-modèles, la bibliothèque \textit{OpenTurns} a été utilisée.
+L’optimisation a elle été réalisée à partir de l’algorithme développé dans le chapitre
+précédent et implémentée dans la bibliothèque \textit{PyMayBee}. Finalement l’aide à la
+décision est réalisée par une méthode de coordonnées parallèles grâce au logiciel
+\textit{XDat}.
+% section bilan (end)
