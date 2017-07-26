@@ -218,6 +218,30 @@ Upgrading Solutions) implémentent une méthode interactive afin d’aider
 besoins énergétiques et le coût. L’outil informe aussi l’expert au fur et à mesure de la
 cohérence de son scénario permettant au décideur d’ajuster ses préférences.
 % subsubsection decision_interactive (end)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Visualisation par coordonnées parallèles} % (fold)
+\label{ssub:visualisation_par_coordonnees_paralleles}
+Le trie par coordonnées parallèles a été introduit afin de permettre de visualiser
+sur un même graphe un nombre important de paramètres, là ou les représentations
+graphiques plus classiques montrent leur limites \parencite{Inselberg198725}.
+Son utilisation est rapidement illustré à travers le logiciel \fnref{http://www.xdat.org/}{\textit{XDAT}}
+qui permet de contrôler intéractivement les bornes des paramètres grâce à un jeu de
+curseurs (\figref{fig:principe_xdat}).
+
+\begin{figure}
+    \centering
+    \ftodo{Ajouter screenshot XDAT}
+    % \includegraphics{Ressources/Images/Optimisation/multi_to_mono.pdf}
+    \caption{Principe de la visualisation par coordonnées parallèles.}
+    \label{fig:principe_xdat}
+\end{figure}
+
+\itodo{Décrire le principe}
+
+
+% subsubsection visualisation_par_coordonnees_paralleles (end)
 % subsection les_approches_existantes (end)
 
 
@@ -232,16 +256,16 @@ reformulation d’un problème multi-objectif sous la forme d’un objectif uniq
 biais impactant directement la qualité de la solution finale \parencite{Blondeau2002165}.
 L’approche a posteriori apporte ainsi plus de souplesse dans l’aide à la décision et
 permet une meilleure exploration de l’espace de décision.
-
 Une fois la surface de compromis atteinte, l’introduction de la préférence du décideur
 permet de réduire le nombre de solutions et/ou de les classer. Dans ces travaux, un trie
-par coordonnées parallèles \parencite{Inselberg198725} a été retenue. Le logiciel
-\fnref{http://www.xdat.org/}{\textit{XDAT}} sera utilisé afin de permettre au décideur d’adapter la
-solution finale à ses contraintes et ses préférences propres de manière interactive.
-L’outil permet en effet de réduire le nombre de solution en réduisant les intervalles de variation
-pour chaque critère et chaque variable de décision grâce à un jeu de curseurs. L’approche
-étant intuitive, elle permet rapidement d’identifier un sous-espace de solutions.
-Dans l’optique d’une aide à la décision a posteriori, il est nécessaire de réduire la
+par coordonnées parallèles a été retenue avec le logiciel \textit{XDAT}. Elle est intuitive,
+simple d’utilisation et permet de rapidement identifier un sous-espace de solutions.
+Elle est donc particulièrement adaptée pour l’aide à la conception de maisons solaires
+à énergie positives. En effet la conception d’un bâtiment fait intervenir de nombreux
+corps de métiers, le choix final est donc le résultat d’un compromis. Afin de l’obtenir,
+il est important que l’outil puisse être utilisé directement par les décideurs, qu’ils
+soient acteurs de la décision.
+Enfin dans l’optique d’une aide à la décision a posteriori, il est nécessaire de réduire la
 complexité du modèle et deux méthodes sont présentées dans la section suivante.
 % subsection approche_retenue (end)
 % section les_methodes_d_aide_a_la_decision (end)

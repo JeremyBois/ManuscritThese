@@ -2035,37 +2035,65 @@ maximisant $F_{sav,\,ext}$.
 
 
 
-% ------------------------------------------------------------------------------
-\subsection{Bilan} % (fold)
-\label{sub:bilan}
-\itodo{Faire bilan de ce qui a été observé}
-optimisation performante
-bonne perf solaire
-compromis enveloppe / système
-compromis chauffage / ecs
-petits volume == bonne perf
-capteurs peu impactants
-approche itérative intéressante pour réduire aider à la décision
-introduire xdat
-
-
-% subsection bilan (end)
-
-
-
-
-
-
 % ..............................................................................
 % ..............................................................................
-\section{Aide à la décision a posteriori} % (fold)
-\label{sec:aide_a_la_decision_a_posteriori}
-\itodo{Description des critères qui rentre en jeu~: coût, Suface disponible,
-       fournisseurs locaux, type de clientèle, réglementation, ...}
-\itodo{Ajouter un exemple avec XDAT}
-\itodo{Tableau ou figure}
-\ftodo{Ajouter screenshot de XDAT avec la/les solutions retenues}
-\ttodo{Ajouter tableau avec caractéristiques des solutions retenues}
+\subsection{Aide à la décision a posteriori} % (fold)
+\label{sub:aide_a_la_décision_a_posteriori}
+L’analyse du front de Pareto a permis d’identifier et caractériser l’ensemble des
+solutions optimales obtenues et les résultats sont encourageant pour le développement de
+\abr{SSC} appliqués aux maisons à énergie positive. Une approche exploratoire des
+différents objectifs liés à la performance énergétique s’est en effet montrée être
+pertinente pour mieux comprendre les interactions existantes. Cependant aucunes méthodes
+n’est parfaite et l’approche retenue introduit un élitisme important sur certains critères
+de décisions. Il a donc été proposé de mettre en place un processus itératif d’aide à la
+décision. Dans un premier temps l’optimisation est réalisée en considérant l’ensemble des
+critères de décisions pour les objectifs principaux. En effet il est essentiel dans un
+premier temps de réaliser l’optimisation multi-objectifs sans introduire de caractères
+préférentiels afin de ne pas écarter trop tôt des solutions et d’explorer l’ensemble du
+domaine de décision. Ensuite en fonction des objectifs secondaires et des résultats de la
+première optimisation, certains critères de décisions peuvent être fixés ou la plage de
+variation réduite. Le processus d’optimisation est alors relancé et les solutions
+optimales ajoutées dans une archive commune. Cette méthode a permis d’identifier des
+compromis similaires aux solutions optimales mais proposant de nouvelles combinaisons sur
+les critères de décisions. Ce processus permet ainsi d’affiner la recherche afin de
+proposer un ensemble de solutions optimales à la fois par rapports aux objectifs mais
+aussi aux contraintes propres du ou des décideurs. Elle reste aussi adaptée même pour des
+applications où les objectifs sont tous antinomiques. En effet la complexité augmente
+rapidement avec le nombre d’objectifs considérés et la littérature montre que les
+l’efficacité des méta-heuristiques diminue à mesure que le nombre d’objectifs augmente.
+
+Le processus d’aide à la décision interactif est la dernière étape de la
+méthodologie développée dans le chapitre III pour aider à l’identification et au choix de
+solutions parmi le front de Pareto. Durant ce processus les objectifs ne sont pas
+forcement les mêmes que durant l’optimisation multi-objectifs. En effet l’avantage d’une
+optimisation multi-objectifs réside dans sa capacité à explorer l’espace des objectifs
+afin de proposer différentes combinaisons sans introduire en amont de préférence. De cette
+manière, de nouvelles connaissances sur le problème peuvent émerger comme ce fut le cas
+dans ces travaux. Par contre durant le processus d’aide à la décision, les préférences du
+décideur doivent être introduite. Elles permettront de réduire le nombre de solutions et
+orienter le choix vers celle qui correspond le plus aux contraintes.
+Cette section illustre l’utilisation du logiciel \textit{Xdat}, un outil d’analyse par
+coordonnées paramétriques qui permet comme décrit dans le chapitre précédent de bouger des
+curseurs sur chaque critère afin de réduire la population. L’outil étant graphique, il
+permet de rapidement évaluer l’impact de l’ajout d’une contrainte. De plus il permet de
+voir évoluer à la fois les objectifs de l’optimisation, de nouveaux objectifs, mais aussi
+les critères de décisions de manière simultanée. Afin de profiter de l’ensemble des
+connaissances acquises, l’illustration est réalisée en considérant le front commun formé
+par les optimisations successives sur Strasbourg.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Application de la méthode pour le \abr{SSC} sur Strasbourg} % (fold)
+\label{ssub:application_de_la_méthode_pour_le_ssc_sur_strasbourg}
+\itodo{Critères d’aide à la décision}
+Comme explicité ci-avant, les critères pouvant être retenus pour réaliser l’aide à la décision
+couvrent les critères de décisions utilisés pour l’optimisation, les objectifs de
+l’optimisation, ou encore de nouvelles contraintes. Par exemple, il est
+\itodo{coût, Suface disponible, fournisseurs locaux, type de clientèle, réglementation, ...}
+
+\itodo{Application}
+% subsubsection application_de_la_méthode_pour_le_ssc_sur_strasbourg (end)
+
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Répartition des critères de décisions} % (fold)
@@ -2081,47 +2109,7 @@ d’\abr{ECS} on réduit la part apportée au chauffage et inversement.
 
 \ftodo{Countplot pour répartition des critères}
 % subsubsection repartition_des_criteres_de_decisions (end)
-
-
-Le processus d’aide à la décision a posteriori nécessite un ensemble de solutions
-optimales. Durant ce processus les objectifs peuvent soit être similaires à ceux de
-l’optimisation, soit ajouter des contraintes supplémentaires. En effet l’avantage d’une
-optimisation multi-objectifs réside dans sa capacité à explorer l’espace des objectifs
-afin de proposer les différentes combinaisons existantes sans introduire en amont de
-préférence. De cette manière, de nouvelles connaissances sur le problème peuvent émerger
-comme ce fut le cas dans ces travaux. Une fois la population obtenue, l’outil d’analyse
-par coordonnées paramétrique \textit{XDAT} est utilisé pour réduire le nombre
-de solutions. Cette partie illustre l’utilisation du logiciel pour le climat de
-Strasbourg en considérant le front commun formé par les optimisations successives.
-
-
-L’objectif de ces travaux était de mieux comprendre les interactions existantes entre le
-système solaires combiné développé, et une maison à énergie positive mais aussi de
-caractériser la performance du \abr{SSC}. Une approche exploratoire des différents
-objectifs liés à la performance énergétique a semblé et s’est montrée être pertinente pour
-mieux comprendre les interactions existantes. Cependant aucunes méthodes n’est parfaite et
-l’approche retenue introduit un élitisme important sur certains critères de décisions. Il
-a donc été proposé de mettre en place un processus itératif d’aide à la décision. Dans un
-premier temps l’optimisation est réalisée en considérant l’ensemble des critères de
-décisions pour les objectifs principaux. Ensuite en fonction des objectifs secondaires et
-des résultats de la première optimisation, certains critères de décisions peuvent être
-fixés ou la plage de variation réduite. Le processus d’optimisation est alors relancé et
-les solutions optimales ajoutées dans une archive commune. Cette méthode a permis
-d’identifier des compromis similaires aux solutions optimales mais proposant de nouvelles
-combinaisons sur les critères de décisions. Ce processus permet ainsi d’affiner la
-recherche afin de proposer un ensemble de solutions optimales à la fois par rapports aux
-objectifs mais aussi aux contraintes propres du décideurs. Elle reste aussi adaptée pour
-d’autres applications où le nombre d’objectif considérés est déjà important. En effet la
-complexité augmente rapidement avec le nombre d’objectifs considérés et la littérature
-montre que les l’efficacité des méta-heuristiques diminue à mesure que le nombre
-d’objectifs augmente.
-
-
-
-
-
-
-% section aide_a_la_decision_a_posteriori (end)
+% subsection aide_a_la_décision_a_posteriori (end)
 
 
 
@@ -2133,5 +2121,14 @@ d’objectifs augmente.
 % ..............................................................................
 \section{Bilan et conclusions} % (fold)
 \label{sec:bilan_et_conclusions}
-
+\itodo{Faire bilan de ce qui a été observé}
+méthodologie
+optimisation performante
+bonne perf solaire
+compromis enveloppe / système
+compromis chauffage / ecs
+petits volume == bonne perf
+capteurs peu impactants
+approche itérative intéressante pour réduire aider à la décision
+introduire xdat
 % section bilan_et_conclusions (end)
