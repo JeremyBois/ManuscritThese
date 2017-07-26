@@ -1743,7 +1743,7 @@ un débit de l’ordre de \SI{0.015}{kg\per(\metre\squared\period\second)}
 était couramment retenue. \textcite{Koppen1979} montrent que un débit réduit
 permet d’améliorer la stratification et \textcite{Wuestling1985}
 observent le lien entre débit, stratification, et $F_{sol}$ \eqref{eq:f_sol} le taux de couverture
-solaire permettant de caractériser la part du solaire par rapport à l’appoint.
+solaire permettant de caractériser la part du solaire par rapport à l’appoint ($Conso_{complément}$).
 Il montre alors que lorsque la stratification est importante,
 l’utilisation d’un débit réduit (\num{0.002} à \SI{0.007}{kg\per(\metre\squared\period\second)}) permet
 d’obtenir une fraction solaire plus importante d’un tiers par rapport à un ballon dont
@@ -1754,7 +1754,7 @@ de température entre l’entrée et la sortie des capteurs reste constante dura
 et se situe à \SI{\sim 10}{\celsius}.
 
 \begin{equation}\label{eq:f_sol}
-    F_{sol} = \frac{Prod_{sol}}{Conso_{app} + Prod_{sol}}
+    F_{sol} = \frac{Prod_{sol}}{Conso_{complément} + Prod_{sol}}
 \end{equation}
 
 \textcite{Jordan2001197} étudient l’influence du profil de puisage en comparant le
@@ -1800,9 +1800,9 @@ permettant d’obtenir une estimation de la performance du système pour différ
 
 \begin{subequations}\label{eq:indicateur_performance}
     \begin{align}
-        F_{sav, therm} &= 1 - \frac{Conso_{app}}{Conso_{ref}}                        \\[10pt]
-        F_{sav, ext}   &= 1 - \frac{Conso_{app} + Conso_{aux}}{Conso_{ref} + Conso_{aux, ref}}  \\[10pt]
-        F_{sav, si}    &= 1 - \frac{Conso_{app} + Conso_{aux} + Conso_{pénalité}}{Conso_{ref} + Conso_{aux, ref}}
+        F_{sav, therm} &= 1 - \frac{Conso_{complément}}{Conso_{ref}}                        \\[10pt]
+        F_{sav, ext}   &= 1 - \frac{Conso_{complément} + Conso_{aux}}{Conso_{ref} + Conso_{aux, ref}}  \\[10pt]
+        F_{sav, si}    &= 1 - \frac{Conso_{complément} + Conso_{aux} + Conso_{pénalité}}{Conso_{ref} + Conso_{aux, ref}}
     \end{align}
 \end{subequations}
 
@@ -2086,7 +2086,7 @@ coût, de la consommation, et des émissions en $CO_{2}$~:
 \end{itemize}
 
 \begin{equation}\label{eq:qmin_qsol}
-    \frac{Conso_{app} + Conso_{aux} + Conso_{pénalité}}{Prod_{sol}}
+    \frac{Conso_{complément} + Conso_{aux} + Conso_{pénalité}}{Prod_{sol}}
 \end{equation}
 
 Bien que le système considéré ne permettent pas de couvrir les besoins en chauffage du

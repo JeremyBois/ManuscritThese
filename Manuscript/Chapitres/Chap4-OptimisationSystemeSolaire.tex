@@ -460,22 +460,23 @@ solutions variées~: avec une surface de $PV$ importante et une surface de capte
 thermique faible et inversement.
 
 De plus en remplaçant les indicateurs $F_{sol}^{CH}$ et $F_{sol}^{ECS}$ par respectivement
-$F_{sav}^{CH}$ et $F_{sav}^{ECS}$, l’algorithme favorise non plus les solutions
-augmentant la part solaire, mais les solutions réduisant la part de l’appoint au
-profit d’une part plus importante de solaire \eqref{eq:taux_economie_opti}. Cependant ces nouveaux objectifs
-nécessitent un modèle de référence afin d’évaluer la réduction de la consommation
-induite par l’ajout d’un \abr{SSC}. Comme il est évalué conjointement des variations
-sur l’enveloppe et sur le \abr{SSC}, il est nécessaire d’obtenir une consommation
-de référence pour chaque niveau d’enveloppe afin d’évaluer uniquement
+$F_{sav}^{CH}$ et $F_{sav}^{ECS}$, l’algorithme favorise non plus les solutions augmentant
+la part solaire, mais les solutions réduisant la part de l’appoint au profit d’une part
+plus importante de solaire \eqref{eq:taux_economie_opti}. Pour rappel, la $Conso_{app}$
+inclut la consommation des auxiliaires tels que les pompes. Cependant ces nouveaux
+objectifs nécessitent un modèle de référence afin d’évaluer la réduction de la
+consommation induite par l’ajout d’un \abr{SSC}. Comme il est évalué conjointement des
+variations sur l’enveloppe et sur le \abr{SSC}, il est nécessaire d’obtenir une
+consommation de référence pour chaque niveau d’enveloppe afin d’évaluer uniquement
 l’amélioration induite par le \abr{SSC} et non l’amélioration apportée par l’amélioration
-de l’enveloppe. Un modèle de référence sans apports solaires
-(tous électrique) est donc modélisé. Il admet un unique ballon de \SI{200}{\litre} pour le stockage
-d’\abr{ECS} et une batterie électrique en terminal pour le chauffage.
+de l’enveloppe. Un modèle de référence sans apports solaires (tous électrique) est donc
+modélisé. Il admet un unique ballon de \SI{200}{\litre} pour le stockage d’\abr{ECS} et
+une batterie électrique en terminal pour le chauffage.
 
 \begin{align}\label{eq:taux_economie_opti}
   F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
   F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}} \\
-  F_{sav}        &= 1 - \frac{Conso_{app} + Conso_{aux}}{Conso_{ref}}
+  F_{sav}        &= 1 - \frac{Conso_{app}}{Conso_{ref}}
 \end{align}
 
 Finalement le dernier objectif, minimiser la $Nombre_{PV}$, est introduit afin de proposer
@@ -1498,8 +1499,8 @@ positive. Il n’existe ainsi pas de solution minimisant au maximum la $Conso_{t
         \caption{}
         \label{fig:fsav_pv_stras}
     \end{subfigure}
-    \caption[À faire]
-             {À faire}
+    \caption[Évolution de la performance globale du \abr{SSC} en fonction du nombre de capteurs \abr{PV}.]
+             {Évolution de la performance globale du \abr{SSC} en fonction du nombre de capteurs \abr{PV}.}
     \label{fig:fsav_pv_bor_stras}
 \end{figure}
 % subsection influence_des_capteurs_photovoltaiques (end)
@@ -1927,8 +1928,8 @@ bâtiment dans son ensemble. En effet en fonction de la structure du bâtiment, 
 les contraintes de support, de hauteur\dots\ De plus si l’objectif est de calculer un
 temps de retour sur investissement, alors un nombre conséquent de facteur entre en jeu, le
 taux d’intérêt, l’inflation, l’évolution du coût des énergies, la valeur ajoutée au
-bâtiment ou valeur verte, la durée de vie des équipements, le coût de maintenance
-\dots\ Ainsi l’évaluation économique nécessite un large panel de connaissances
+bâtiment ou valeur verte, la durée de vie des équipements, le coût de maintenance\dots\
+Ainsi l’évaluation économique nécessite un large panel de connaissances
 afin de fournir des résultats pertinents.
 La difficulté inhérente à l’évaluation du coût est mis en avant par les résultats
 disparates obtenus dans la littérature amenant à des temps de retour variant de quelques

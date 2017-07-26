@@ -46,8 +46,9 @@ contraintes est propre à chaque problème et est directement dépendant des don
 disponibles. Dans le secteur du bâtiment, il est courant de considérer certaines sorties
 des logiciels de simulation dynamique (\abr{STD}, \abr{CFD}\dots) comme objectifs.
 \textcite{Attia2013110}, montrent que dans le cas d’études sur la performance des bâtiment
-passifs la consommation, le coût, et le confort son couramment sélectionnés .
-\itodo{Ajouter les objectifs courant sur les systèmes et couplage système / bâtiment}
+passifs la consommation, le coût, et le confort son couramment sélectionnés. Dans le cas
+de l’optimisation d’un \abr{SSC}, les objectifs les plus utilisés sont le taux d’économie ($F_{sav,\, ext}$),
+le taux de couverture ($F_{sol}$), ou le Coût du Cycle de Vie (\abr{CCV}).
 
 Il est aussi nécessaire de définir les variables de décisions intéressantes a priori.
 Les variables peuvent être classées en deux grandes familles~: les quantitatives et
@@ -232,15 +233,36 @@ curseurs (\figref{fig:principe_xdat}).
 
 \begin{figure}
     \centering
-    \ftodo{Ajouter screenshot XDAT}
-    % \includegraphics{Ressources/Images/Optimisation/multi_to_mono.pdf}
-    \caption{Principe de la visualisation par coordonnées parallèles.}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/Demonstration/xdat_complete.png}
+        \caption{}
+        \label{fig:xdat_complete}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics{Ressources/Images/Demonstration/xdat_curseur.png}
+        \caption{}
+        \label{fig:xdat_curseur}
+    \end{subfigure}
+    \caption[Principe de la visualisation par coordonnées parallèles.]
+            {Principe de la visualisation par coordonnées parallèles
+             (\fnref{https://www.xdat.org/index.php?ref=overview}{source})}
     \label{fig:principe_xdat}
 \end{figure}
 
-\itodo{Décrire le principe}
-
-
+Chaque ligne représente une solution, et chaque colonne un critère de décision disposant de
+deux curseurs (min et max). À l’origine les curseurs sont positionnés sur les extremums~:
+toutes les solutions sont donc visibles (\figref{fig:xdat_complete}). En contrôlant la
+position des curseurs, il est possible d’introduire de nouvelles contraintes et donc
+de conserver uniquement les solutions les respectant. Par exemple dans \figref{fig:xdat_curseur},
+la borne maximale pour le critère \emph{température} est réduite et toutes les solutions
+violant la nouvelle contrainte ne sont plus visibles. Cet outil est bien sûr aussi adapté
+pour mieux comprendre les relations existantes entre différentes solutions lorsque de
+nombreux paramètres entre en jeu. Dans le cas de notre exemple, il est clairement mis en
+évidence que la contrainte de rupture (\enquote{failure strain}) est basse lorsque on ne
+retient que des solutions dont la température est elle aussi basse.
 % subsubsection visualisation_par_coordonnees_paralleles (end)
 % subsection les_approches_existantes (end)
 
@@ -283,7 +305,7 @@ décideur sélectionne une solution à partir de ses préférences et contrainte
 Cependant les modèles de simulation dynamique dans le bâtiment nécessitent un temps de calcul
 important non compatible avec des méthodes nécessitant de nombreuses évaluations comme
 certaines méthodes d’optimisation. Cette observation est particulièrement vraie dans notre
-cas~: le modèle nécessite \SI{\approx 1}{\hour} pour une évaluation sur la période s’étendant
+cas~: le modèle nécessite \SIrange{1}{3}{\hour} pour une évaluation sur la période s’étendant
 du $1^{er}$ octobre au $30$ avril (\ref{par:periode_de_simulation}).
 
 Afin de réduire la complexité du problème cette section présente deux méthodes.
@@ -319,7 +341,6 @@ dites globales, s’intéressant à l’ensemble du domaine de définition.
 
 \begin{figure}
     \centering
-        \itodo{Refaire une version plus propre\dots}
     \includegraphics{Ressources/Images/Sensibilite/classement_mauvais.png}
     \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.}
     \label{fig:classement_methode_sensibilite}
