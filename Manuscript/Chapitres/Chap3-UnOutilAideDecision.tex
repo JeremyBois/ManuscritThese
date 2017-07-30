@@ -505,15 +505,16 @@ applications diverses. Certains les utilises pour faire de l’optimisation,
 d’autres dans l’optique de réaliser une analyse de sensibilité détaillée avec des
 méthode de décomposition de la variance (voir Fig~\ref{fig:classement_methode_sensibilite}).
 
-~\\
-\itodo{Ajouter exemple dans le solaire et bâtiment, Armand-Decker2015, Chen2016422}
-Récemment \mtodo{Cite Anto}{Anto} a utilisé les méta-modèles dans le cadre de garantie de
-performance pour un bâtiment de bureaux. L’approche a de plus été comparée avec \dots
 \textcite{Armand-Decker2015} les utilisent afin de réaliser une optimisation multi-
-objectif d’un bâtiment. Le méta-modèle est alors utilisé comme substitut à un modèle de
-bâtiment réalisé sous Energy Plus.
+objectifs d’un bâtiment. Le méta-modèle est alors utilisé comme substitut à un modèle de
+bâtiment réalisé sous \textit{Energy Plus}.
+Plus récemment, \textcite{Faggianelli201761} a utilisé les méta-modèles dans le cadre de garantie de
+performance pour un bâtiment de bureaux. Après réduction du nombre de facteurs grâce à la
+réalisation d’un criblage de \textit{Morris}, plusieurs méthodes permettant l’obtention
+des indices de \textit{Sobol} sont comparées. Les résultats montrent que l’utilisation de
+méta-modèles est tout à fait pertinente et offre de plus un bon compromis entre temps de calcul
+et précision.
 
-~\\
 Dans notre cas où le temps nécessaire pour une simulation est important, l’utilisation de
 méta-modèle a un potentiel très intéressant. De plus, cette approche est adaptable car elle
 permet d’encapsuler un modèle complexe dans des outils métiers. Il est alors possible de
@@ -545,19 +546,26 @@ suivants en considération~:
 \label{ssub:construction}
 Il existe plusieurs moyens permettant de construire un méta-modèle. Dans ces travaux
 l’implémentation réalisée par \textcite{Rania2013} à l’aide de l’algorithme décrit par
-\textcite{Malen2009} est retenue.
-Dans cette approche un échantillon représentatif de l’ensemble des données d’entrées est
-nécessaire afin de pouvoir construire un méta-modèle représentatif du problème. Une
-méthode de Monte-Carlo couplée à une suite à discrépance faible est alors utilisée~: la
-méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à la méthode de
-Monte-Carlo, une suite ayant une discrépance faible permet de maintenir un ensemble de
-point uniformément répartis, même lorsque le nombre de points générés est faible, tout en
-conservant un caractère pseudo-aléatoire (\figref{fig:halton_vs_uniform}). L’ensemble des
-points des deux échantillons ont été générés à partir de la même graine permettant
-d’obtenir exactement les mêmes tirages à partir d’une distribution uniforme. Il peut être
-noté que l’échantillon par Pseudo-Monte-Carlo couvre mieux le domaine de définition. Dans
-ces travaux, la suite de Halton est utilisée comme générateur pseudo aléatoire.
+\textcite{Malen2009} est retenue. Le chaos polynomiale ou décomposition par polynômes du
+chaos (\abr{PC}) est une méthode permettant d’approximer une sortie du modèle original
+($Y = f(\vec{x})$) grâce un modèle analytique simplifié appelé méta-modèle. Il est noté
+$\mathcal{M}(\vec{x})$ où $\vec{x}$ est de dimension $D$ avec $D$ le nombre de variables d’entrées
+$x_{j} (j \in \{1, 2, \dotsc, D\})$ \eqref{eq:meta_principe}.
 
+\begin{equation}\label{eq:meta_principe}
+  Y = f(\vec{x}) \approx \mathcal{M}(\vec{x})
+\end{equation}
+
+Dans un premier temps un échantillon représentatif de l’ensemble des données d’entrées est
+nécessaire. Une méthode de Monte-Carlo couplée à une suite à discrépance faible est retenue~: la
+méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à la méthode de
+Monte-Carlo, une suite ayant une discrépance faible telle que la suite de Halton,
+(\figref{fig:halton_vs_uniform}) permet de maintenir un ensemble de
+point uniformément répartis même lorsque le nombre de points générés est faible.
+L’ensemble des points des deux échantillons ont été générés à partir d’une
+distribution uniforme et les tirages sont strictement identiques (même graine).
+Il peut être noté que l’échantillon par Quasi-Monte-Carlo est une méthode plus robuste car elle
+couvre mieux le domaine de définition.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
@@ -568,13 +576,51 @@ ces travaux, la suite de Halton est utilisée comme générateur pseudo aléatoi
     \label{fig:halton_vs_uniform}
 \end{figure}
 
-Finalement, afin de pouvoir vérifier que le modèle se comporte correctement sur l’ensemble
-du domaine de définition, \SI{90}{\percent} de l’échantillon sera utilisé pour construire le
-méta-modèle et les \SI{10}{\percent} restants sont utilisés afin de le valider. De plus le
-nombre minimal d’évaluations nécessaire pour la construction des méta-modèles sera aussi
-investigué. Les méta-modèles associés aux objectifs et contraintes étant propres au cas
-d’étude, le détail de leur construction est décrit à travers le cas d’étude dans le
-dernier chapitre.
+La seconde étape consiste à construire le méta-modèle à partir d’une partie de
+l’échantillon simulé. Le principe des polynômes du chaos est
+d’approximer une variable d’intérêt par une série de polynômes orthogonaux dépendant de
+chaque variables d’entrées aléatoires. Initialement développée par \textcite{Wiener1938897},
+la forme généralisée du \textit{chaos polynomial} est introduite par \textcite{Xiu2002619}
+\eqref{eq:chaos_generalisee}. La généralisation permet d’associer à chaque variable
+d’entrée aléatoire, une famille de polynômes orthogonaux en fonction de la loi de
+distribution retenue. Étant en phase de conception et cherchant à explorer l’ensemble du
+domaine de recherche, une loi uniforme est considérée pour chaque paramètre. Ainsi chaque
+paramètre se voit associé une base polynomiale de \textit{Legendre}.
+
+\begin{equation}\label{eq:chaos_generalisee}
+  Y = \mathcal{M}(\,\underline{\vec{x}}\,) = \sum_{\vec{\alpha} \in \mathbb{N}^{D}} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}} (\,\underline{\vec{x}}\,)
+\end{equation}
+Où $\underline{\vec{x}}$ est le vecteur des composants indépendants définis à partir des
+variables d’entrées ($\vec{x}$) et de leur distributions de probabilités respectives.
+$c_{\vec{\alpha}}$ sont les coefficients caractéristiques du développement en série, et
+$\psi_{\vec{\alpha}} (\,\underline{\vec{x}}\,)$ sont les vecteurs de la base de polynômes
+à variables multiples. Elle sont construites par tensorisation des familles respectives
+associées à chaque variables \eqref{eq:tensorisation_famille} où $\{\pi_{p}^{(j)},\, p \in \mathbb{N}\}$
+est la famille de polynômes orthonormés associée à la variable $\underline{x}_{j}$.
+\begin{equation}\label{eq:tensorisation_famille}
+   \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) = \prod_{j = 1}^{D}\pi_{\vec{\alpha}p}^{(j)} \left(\,\underline{x}_{j} \right)
+\end{equation}
+
+Pour des raisons numériques, un ordre maximal total ($P$) est défini
+\eqref{eq:chaos_generalisee} afin de tronquer le développement en série~: les polynômes
+dont le degré total est inférieur ou égal à $P$ sont exclus \eqref{eq:chaos_generalisee_tronquee}.
+\begin{equation}\label{eq:chaos_generalisee_tronquee}
+  Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
+\end{equation}
+
+La construction d’un méta-modèle se traduit donc par la détermination des
+$c_{\vec{\alpha}}$ permettant de minimiser l’erreur d’approximation entre le modèle
+original et le modèle de substitution. La minimisation est réalisée par la méthode
+des moindres carrées et consiste à minimiser l’erreur quadratique entre le modèle
+de substitution et le modèle original.
+
+Finalement la dernière étape permet de valider le modèle obtenu. Afin de pouvoir vérifier
+que le modèle se comporte correctement sur l’ensemble du domaine de définition,
+\SI{90}{\percent} de l’échantillon sera utilisé pour construire le méta-modèle et les
+\SI{10}{\percent} restants sont utilisés afin de le valider. De plus le nombre minimal
+d’évaluations nécessaire pour la construction des méta-modèles sera aussi investigué. Les
+méta-modèles associés aux objectifs et contraintes étant propres au cas d’étude, le détail
+de leur construction est décrit à travers le cas d’étude dans le dernier chapitre.
 % subsubsection construction (end)
 % subsection modeles_de_substitution (end)
 
@@ -1476,9 +1522,10 @@ un indicateur d’apprentissage propre à la méta-heuristique.
 \end{Def}
 
 Sa forme analytique \eqref{eq:dist_levy} est uniquement connue pour $\beta = 2$
-(distribution gaussienne) et $\beta = 1$ (distribution de Cauchy).
+(distribution gaussienne) et $\beta = 1$ (distribution de Cauchy) avec $\alpha$
+un facteur d’échelle ($\alpha \in [-1, 1]$).
 L’algorithme de Mantegna \parencite{Mantegna19944677} est alors utilisé afin
-d’approximer cette distribution pour $0.3 < \beta < 1.99$ \eqref{eq:mantegna_algo}.
+d’approximer cette distribution pour $\num{0.3} < \beta < \num{1.99}$ \eqref{eq:mantegna_algo}.
 
 \begin{align}\label{eq:mantegna_algo}
     s &= \frac{u}{\abs{v}^{\nicefrac{1}{\beta}}}, \qquad u \sim \mathcal{N}(0, \sigma_{u}^{2}),
@@ -1516,7 +1563,7 @@ ces travaux implémentent un vol de \textit{Lévy} comme marche aléatoire duran
 \subsection{Apprentissage par vecteur opposé} % (fold)
 \label{sub:apprentissage_par_vecteur_oppose}
 Les méthodes d’optimisation et spécifiquement les méthodes approchées sont fortement
-dépendantes de la population initiale (\mtodo{Théo~: source}). Il est ainsi nécessaire
+dépendantes de la population initiale. Il est ainsi nécessaire
 de constituer une population couvrant de manière homogène l’espace de décision.
 L’approche la plus répandue consiste à construire une population initiale stochastiquement
 à l’aide d’une distribution uniforme suivant \eqref{alg:init_phase}.
@@ -1785,7 +1832,7 @@ Dans l’optique de l’optimisation d’un modèle solaire développé sous \te
 a été implémenté en \textit{Python} afin de faciliter le couplage avec la bibliothèque
 \textit{DymTK} qui comme nous l’avons vu dans le chapitre précédent permet d’automatiser
 la simulation concurrente de modèle \textit{Modelica} sous \textit{Dymola}. La bibliothèque est
-disponible sous le nom de \textit{pyMOABC} et implémente~:
+disponible sous le nom de \textit{pyMayBee} et implémente~:
 \begin{itemize}
   \item Une $\epsilon$-archive et la hypercube-dominance
   \item La dominance au sens de Pareto
@@ -1834,10 +1881,10 @@ ont ainsi été testés afin de garantir que la bibliothèque implémente correc
 les éléments et comportements nécessaires. De part son approche, chaque nouvelle
 modification tient implicitement compte des tests précédents et garantie ainsi
 l’intégrité du code lors de son développement.
-L’algorithme et les briques nécessaires implémentés, des problèmes étalons ont été
-utilisés afin de valider la performance de l’approche. Bien que la réussite d’un
-problème étalon ne soit pas une condition suffisante pour garantir la convergence
-sur un problème réel, il apporte une information importante~: la capacité de
+Après l’implémentation des briques nécessaires et la construction de l’algorithme, des
+problèmes étalons ont été utilisés afin de valider la performance de l’approche. Bien que
+la réussite d’un problème étalon ne soit pas une condition suffisante pour garantir la
+convergence sur un problème réel, il apporte une information importante~: la capacité de
 l’algorithme à s’adapter aux différents types de contraintes pouvant survenir.
 
 Dans cette optique les résultats présentés dans cette section sont sélectionnés
@@ -1864,11 +1911,33 @@ Concernant la méthode de prise en compte des contraintes, des travaux ont déj�
 
 \section{Bilan} % (fold)
 \label{sec:bilan}
-\itodo{Faire un bilan}
+Au cours de ce chapitre une méthodologie d’aide à la décision a été développée.
+Le choix a été fait dans un premier temps de réduire la complexité des modèles à
+travers une analyse de sensibilité globale. Au regard des temps de simulations
+importants, la méthodologie propose l’utilisation de méta-modèles. Cette étape est
+cependant nécessaire dans notre cas mais n’est en aucun cas indispensable. Dans le
+cas où le modèle peut être évalué dans un temps raisonnable, il est toujours préférable
+de conserver le modèle original. Pour l’aide à la décision, une approche a posteriori
+par coordonnées parallèles est retenue afin de ne pas introduire de préférences en amont et permettre d’explorer
+de nouvelles combinaisons. Cependant cette approche nécessite l’obtention préalable
+d’un ensemble de solutions non-dominées et le choix d’une méthode d’optimisation
+multi-objectifs est donc nécessaire. Le problème étant fortement combinatoire, et
+la connaissance du problème réduite, un méta-heuristique s’est imposé comme le choix
+le plus adaptée. Afin de proposer une approche à la fois simple, intuitive et performante,
+un algorithme de colonie d’abeilles virtuelles (\abr{ABC}) a été adaptée
+aux problèmes multi-objectifs. L’approche a ensuite été renforcée par l’ajout d’une
+archive garantissant une bonne diversité de la population, un vol de Lévy pour éviter
+la stagnation et améliorer l’exploratoire. Durant l’initialisation, le choix a été
+fait de retenir l’\abr{OBLM} (\defref{def:oblm}) afin d’offrir une meilleure
+répartition des solutions. Finalement afin d’améliorer l’exploration et l’exploitation
+de l’ensemble de l’espace de faisabilité, les contraintes sont prises en compte
+dynamiquement. Contrairement à une approche stricte plus classique,
+des solutions non faisables peuvent être retenue apportant ainsi de nouvelles
+connaissances sur le problème. Il est ensuite possible par apprentissage, d’obtenir de nouvelles
+solutions optimales.
 \begin{figure}
     \centering
-    \ftodo{Ajouter méthodologie avec outils utilisés pour chaque étapes}
-    % \includegraphics{Ressources/Images/Modelisation/Capteurs/IAM_all.pdf}
+    \includegraphics{Ressources/Images/chapitre3_bilan.pdf}
     \caption[Outils utilisés pour la mise en place de la méthodologie d’aide à la décision]
             {Outils utilisés pour la mise en place de la méthodologie d’aide à la décision.}
     \label{fig:outils_methode}
@@ -1880,11 +1949,16 @@ paramétrique, les bibliothèques \textit{Buildingspy} et \textit{DymTK} ont ét
 afin de pouvoir automatiser la simulation en parallèle des modèles à partir du langage
 \textit{Python}. \textit{DyMat} a permis quand à elle de lire les résultats qui ont été
 ensuite traités grâce au bibliothèques \textit{Pandas} et \textit{Numpy}. Afin de réaliser
-l’échantillon pour le screening de Morris, la biblothèque \textit{Salib} a été retenue.
+l’échantillon pour le criblage de Morris, la bibliothèque \textit{Salib} a été retenue.
 Pour la construction d’un échantillon uniformément réparti par méthode de quasi-Monte-Carlo
 et la création des méta-modèles, la bibliothèque \textit{OpenTurns} a été utilisée.
 L’optimisation a elle été réalisée à partir de l’algorithme développé dans le chapitre
-précédent et implémentée dans la bibliothèque \textit{PyMayBee}. Finalement l’aide à la
+précédent et implémentée dans la bibliothèque \textit{pyMayBee}. Finalement l’aide à la
 décision est réalisée par une méthode de coordonnées parallèles grâce au logiciel
 \textit{XDat}.
+La mise en place de la méthodologie est décrite dans le dernier chapitre à travers l’étude
+de la performance du \abr{SSC} sur Bordeaux et Strasbourg. En plus d’illustrer la
+méthodologie, les résultats de l’analyse exploratoire des solutions du front de Pareto
+invitent à repenser les choix de conception lors du développement de \abr{SSC} couplés à
+des \abr{MEPOS}.
 % section bilan (end)
