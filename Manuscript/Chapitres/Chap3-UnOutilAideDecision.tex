@@ -2,6 +2,20 @@
 % Chapitres/Chap3-UnOutilAideDecision
 
 
+Le couplage d’une maison à énergie positive et d’un système solaire combiné a montré un
+potentiel intéressant à travers les premiers résultats obtenus. Cependant comme explicité
+dans le premier chapitre, une approche basée uniquement sur l’expérience telle qu’une
+étude paramétrique ne permet pas d’explorer l’espace des solutions potentielles. Dans
+cette optique, une méthodologie d’aide à la décision est présentée à travers ce chapitre.
+Dans un premier temps, le principe est explicité et le choix de l’approche argumenté.
+Ensuite, une fois l’approche choisie, les différentes étapes de la méthodologie sont
+décrites et les outils nécessaires détaillés. Afin de tenir compte du temps important
+d’évaluation, il est aussi introduit deux stratégies permettant de simplifier le modèle.
+Enfin en se basant sur une analyse bibliographique, une approche d’optimisation est
+proposée.
+\clearpage
+
+
 % ..............................................................................
 % ..............................................................................
 \section{Les méthodes d’aide à la décision} % (fold)
@@ -41,7 +55,7 @@ résultats obtenus en amont permettent alors d’alimenter la réflexion amenant
 formulation des critères et actions de manière précise nécessaires pour sélectionner une
 méthode d’aide à la décision adaptée. Lorsque le problème suggère une optimisation, il est
 nécessaire de définir les critères à optimiser. On parle alors des objectifs d’une
-optimisation multi-critère ou multi-objectif. La définition des fonctions objectifs et des
+optimisation multi-critère ou multi-objectifs. La définition des fonctions objectifs et des
 contraintes est propre à chaque problème et est directement dépendant des données
 disponibles. Dans le secteur du bâtiment, il est courant de considérer certaines sorties
 des logiciels de simulation dynamique (\abr{STD}, \abr{CFD}\dots) comme objectifs.
@@ -63,7 +77,8 @@ dite catégorielle (ex~: couleur) ou bien floue (ex~: beau / laid).
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/type_variable.pdf}
-    \caption{Description des catégories existantes pour une variable.}
+    \caption[Description des catégories existantes pour une variable]
+            {Description des catégories existantes pour une variable.}
     \label{fig:type_variable}
 \end{figure}
 
@@ -82,7 +97,7 @@ Elles peuvent s’exprimer sous la forme de bornes, d’équations ou inéquatio
 La suite de cette section vise à présenter de manière succincte les différentes
 approches existantes. Pour le lecteur intéressé, une introduction plus complète
 des \abr{MCDA} ainsi que de nombreuses références sont proposées par \textcite{BenMena2000}.
-Finalement, l’optimisation multi-objectif est décrite et l’approche retenue
+Finalement, l’optimisation multi-objectifs est décrite et l’approche retenue
 détaillée à travers une description complète de l’algorithme.
 % subsection introduction (end)
 
@@ -92,7 +107,7 @@ détaillée à travers une description complète de l’algorithme.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Décision a priori} % (fold)
 \label{ssub:decision_a_priori}
-Dans cette approche, le problème multi-objectif est réduit à un problème mono-objectif.
+Dans cette approche, le problème multi-objectifs est réduit à un problème mono-objectif.
 Ce processus de réduction est réalisé à l’aide de méthodes d’agrégation parmi lesquelles
 il est possible de citer les méthodes de pondération, de compromis,
 ou encore de distance (\figref{fig:multi_to_mono}). Dans tous les cas la réduction
@@ -112,14 +127,15 @@ référence et donc encore une fois de la connaissance a priori du problème.
 Dans ces approches, l’introduction d’un caractère préférentiel lorsque la connaissance a priori
 est limitée implique une recherche biaisée dont le risque est d’écarter des zones
 de recherche qui pourraient être prometteuses. Ces méthodes ont cependant l’avantage
-de réduire la complexité en transformant un problème multi-objectif en un problème
+de réduire la complexité en transformant un problème multi-objectifs en un problème
 mono-objectif. Cette nouvelle formulation assure ainsi de trouver une unique solution
 optimale au cours du processus d’optimisation.
 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/multi_to_mono.pdf}
-    \caption{Transformation d’un problème multi-objectif en optimisation mono-objectif.}
+    \caption[Transformation d’un problème multi-objectifs en optimisation mono-objectif]
+            {Transformation d’un problème multi-objectifs en optimisation mono-objectif.}
     \label{fig:multi_to_mono}
 \end{figure}
 % subsubsection decision_a_priori (end)
@@ -127,7 +143,7 @@ optimale au cours du processus d’optimisation.
 
 \subsubsection{Décision a posteriori} % (fold)
 \label{ssub:decision_a_posteriori}
-Contrairement aux autres approches, l’aide à la décision multi-objectif a posteriori
+Contrairement aux autres approches, l’aide à la décision multi-objectifs a posteriori
 suppose qu’un ensemble de solutions optimales a été généré grâce à un processus
 d’optimisation. Lors de l’optimisation aucun caractère préférentiel
 n’est introduit permettant ainsi d’explorer l’espace de décision sans restrictions.
@@ -246,9 +262,9 @@ curseurs (\figref{fig:principe_xdat}).
         \caption{}
         \label{fig:xdat_curseur}
     \end{subfigure}
-    \caption[Principe de la visualisation par coordonnées parallèles.]
+    \caption[Principe de la visualisation par coordonnées parallèles]
             {Principe de la visualisation par coordonnées parallèles
-             (\fnref{https://www.xdat.org/index.php?ref=overview}{source})}
+             (\fnref{https://www.xdat.org/index.php?ref=overview}{source}).}
     \label{fig:principe_xdat}
 \end{figure}
 
@@ -274,7 +290,7 @@ choix final est alors le résultat d’un compromis. Afin de ne pas écarter pr�
 solutions, une approche d’aide à la décision a posteriori a été retenu. L’ensemble des
 solutions optimales offre en effet une nouvelle connaissance sur le problème facilitant
 l’introduction de préférences pour l’aide à la décision. De plus, il a été montré que la
-reformulation d’un problème multi-objectif sous la forme d’un objectif unique introduit un
+reformulation d’un problème multi-objectifs sous la forme d’un objectif unique introduit un
 biais impactant directement la qualité de la solution finale \parencite{Blondeau2002165}.
 L’approche a posteriori apporte ainsi plus de souplesse dans l’aide à la décision et
 permet une meilleure exploration de l’espace de décision.
@@ -300,7 +316,7 @@ complexité du modèle et deux méthodes sont présentées dans la section suiva
 \section{Simplification de modèles en thermique du bâtiment} % (fold)
 \label{sec:simplification_de_modeles_en_thermique_du_batiment}
 L’aide à la décision a posteriori nécessite de réaliser préalablement une optimisation
-multi-objectif afin d’identifier un ensemble de solutions optimales à partir desquelles le
+multi-objectifs afin d’identifier un ensemble de solutions optimales à partir desquelles le
 décideur sélectionne une solution à partir de ses préférences et contraintes.
 Cependant les modèles de simulation dynamique dans le bâtiment nécessitent un temps de calcul
 important non compatible avec des méthodes nécessitant de nombreuses évaluations comme
@@ -310,7 +326,7 @@ du $1^{er}$ octobre au $30$ avril (\ref{par:periode_de_simulation}).
 
 Afin de réduire la complexité du problème cette section présente deux méthodes.
 La première méthode permet de réduire la cardinalité du problème en amont de
-l’optimisation multi-objectif. Le principe est de conserver uniquement les variables
+l’optimisation multi-objectifs. Le principe est de conserver uniquement les variables
 dont la modification a un impact sur les objectifs de l’optimisation grâce à l’analyse de
 sensibilité. La seconde approche permet d’approximer un modèle complexe afin de réduire la
 durée de simulation en utilisant des modèles de substitution.
@@ -342,7 +358,8 @@ dites globales, s’intéressant à l’ensemble du domaine de définition.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Sensibilite/classement_mauvais.png}
-    \caption{Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.}
+    \caption[Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}]
+            {Classement des méthodes d’analyse de sensibilité selon \cite{Iooss2011}.}
     \label{fig:classement_methode_sensibilite}
 \end{figure}
 
@@ -500,26 +517,23 @@ est d’approximer les sorties d’intérêts (objectifs) par une fonction analy
 méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer les différentes
 combinaisons existantes à la place du modèle complexe et coûteux.
 
-L’utilisation de méta-modèle s’est fortement développée, et ceux pour des
-applications diverses. Certains les utilises pour faire de l’optimisation,
-d’autres dans l’optique de réaliser une analyse de sensibilité détaillée avec des
-méthode de décomposition de la variance (voir Fig~\ref{fig:classement_methode_sensibilite}).
-
-\textcite{Armand-Decker2015} les utilisent afin de réaliser une optimisation multi-
-objectifs d’un bâtiment. Le méta-modèle est alors utilisé comme substitut à un modèle de
-bâtiment réalisé sous \textit{Energy Plus}.
-Plus récemment, \textcite{Faggianelli201761} a utilisé les méta-modèles dans le cadre de garantie de
-performance pour un bâtiment de bureaux. Après réduction du nombre de facteurs grâce à la
-réalisation d’un criblage de \textit{Morris}, plusieurs méthodes permettant l’obtention
-des indices de \textit{Sobol} sont comparées. Les résultats montrent que l’utilisation de
-méta-modèles est tout à fait pertinente et offre de plus un bon compromis entre temps de calcul
-et précision.
-
-Dans notre cas où le temps nécessaire pour une simulation est important, l’utilisation de
-méta-modèle a un potentiel très intéressant. De plus, cette approche est adaptable car elle
-permet d’encapsuler un modèle complexe dans des outils métiers. Il est alors possible de
-répondre dans un temps très cours à un problème spécifique sans la complexité d’un
-logiciel de modélisation.
+L’utilisation de méta-modèle s’est fortement développée, et ceux pour des applications
+diverses. Certains les utilises pour faire de l’optimisation, d’autres dans l’optique de
+réaliser une analyse de sensibilité détaillée avec des méthode de décomposition de la
+variance (voir Fig~\ref{fig:classement_methode_sensibilite}). \textcite{Armand-Decker2015}
+les utilisent en substituts à un modèle de bâtiment réalisé sous \textit{Energy Plus} afin
+de réduire le temps nécessaire pour l’optimisation multi- objectifs d’un bâtiment multi-
+étage en bois. Plus récemment, \textcite{Faggianelli201761} a utilisé les méta-modèles
+dans le cadre de garantie de performance pour un bâtiment de bureaux. Après réduction du
+nombre de facteurs grâce à la réalisation d’un criblage de \textit{Morris}, plusieurs
+méthodes permettant l’obtention des indices de \textit{Sobol} sont comparées. Les
+résultats montrent que l’utilisation de méta-modèles est tout à fait pertinente et offre
+de plus un bon compromis entre temps de calcul et précision. Ainsi dans notre cas, où le
+temps nécessaire pour une simulation est important, l’utilisation de méta-modèle a un
+potentiel très intéressant. De plus, cette approche est adaptable car elle permet
+d’encapsuler un modèle complexe dans des outils métiers. Il est alors possible de répondre
+dans un temps très cours à un problème spécifique sans la complexité d’un logiciel de
+modélisation.
 
 L’approche comporte cependant des désavantages. Pour leur création, il est nécessaire
 d’évaluer le modèle complexe sur un échantillon représentatif de l’espace des entrées.
@@ -607,12 +621,11 @@ dont le degré total est inférieur ou égal à $P$ sont exclus \eqref{eq:chaos_
 \begin{equation}\label{eq:chaos_generalisee_tronquee}
   Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
 \end{equation}
-
-La construction d’un méta-modèle se traduit donc par la détermination des
-$c_{\vec{\alpha}}$ permettant de minimiser l’erreur d’approximation entre le modèle
-original et le modèle de substitution. La minimisation est réalisée par la méthode
-des moindres carrées et consiste à minimiser l’erreur quadratique entre le modèle
-de substitution et le modèle original.
+La construction d’un méta-modèle se traduit donc par la détermination des ensemble de
+coefficients $\{c_{\vec{\alpha}},\ \abs{\vec{\alpha}} \leq P\}$ permettant de minimiser
+l’erreur d’approximation entre le modèle original et le modèle de substitution. La
+minimisation est réalisée par la méthode des moindres carrées et consiste à minimiser
+l’erreur quadratique entre le modèle de substitution et le modèle original.
 
 Finalement la dernière étape permet de valider le modèle obtenu. Afin de pouvoir vérifier
 que le modèle se comporte correctement sur l’ensemble du domaine de définition,
@@ -636,7 +649,7 @@ variables, bornes\dots). Ensuite, la cardinalité du problème est réduite grâ
 méthode de \textit{Morris} appliquée sur chaque objectif et contrainte. Le problème
 résultant est alors substitué par un ensemble de méta-modèles afin de fortement réduire le
 temps de calcul nécessaire pour une évaluation. Les modèles de substitutions obtenues
-sont finalement utilisés pour réaliser l’optimisation multi-objectif dans l’optique
+sont finalement utilisés pour réaliser l’optimisation multi-objectifs dans l’optique
 d’une aide à la décision a posteriori. Une fois les solutions optimales obtenues, le
 décideur pourra grâce à une méthode de réduction par coordonnées parallèles sélectionner
 la solution correspondant à ses préférences. En parallèle, l’optimisation sera réalisée
@@ -645,12 +658,13 @@ avec le modèle d’origine afin d’évaluer le gain apporté par les modèles 
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/methode.pdf}
-    \caption{Description de la méthode d’aide à la décision retenue.}
+    \caption[Description de la méthode d’aide à la décision retenue]
+            {Description de la méthode d’aide à la décision retenue.}
     \label{fig:methode_aide_decision}
 \end{figure}
 
 Afin d’appliquer cette méthodologie, il est maintenant nécessaire de définir une approche
-d’optimisation adaptée. La section suivante introduit ainsi l’optimisation multi-objectif,
+d’optimisation adaptée. La section suivante introduit ainsi l’optimisation multi-objectifs,
 ainsi que les différentes méthodes existantes parmi lesquelles le choix sera argumenté.
 % subsection approche_retenue_reduction (end)
 
@@ -660,7 +674,7 @@ ainsi que les différentes méthodes existantes parmi lesquelles le choix sera a
 
 % ..............................................................................
 % ..............................................................................
-\section{Sélection d’une approche d’optimisation multi-objectif} % (fold)
+\section{Sélection d’une approche d’optimisation multi-objectifs} % (fold)
 \label{sec:selection_d_une_approche_d_optimisation_multi_objectif}
 Dans le domaine de la thermique du bâtiment la caractérisation de la performance est
 souvent effectuée de manière itérative à partir d’une solution de référence ou bien de
@@ -677,7 +691,7 @@ appliquées aux bâtiment est discutée.
 % ------------------------------------------------------------------------------
 \subsection{Vocabulaire et Définition} % (fold)
 \label{sub:vocabulaire_et_definition}
-Un problème d’optimisation multi-objectif (\defref{def:optimisation_multi_objectif})
+Un problème d’optimisation multi-objectifs (\defref{def:optimisation_multi_objectif})
 est défini par un espace de recherche et de solution multi-dimensionnel contrairement à
 une approche mono-objectif où seul l’espace de recherche est multi-dimensionnel. Afin de
 pouvoir classer et sélectionner les solutions entre elles, il est alors nécessaire de
@@ -690,8 +704,8 @@ approche les objectifs sont classés selon un ordre d’importance et la compara
 faite dans le respect de cet ordre. Le lecteur intéressé est invité à consulter
 \textcite{Collette2002} afin d’obtenir plus d’informations.
 
-\begin{Def}[Optimisation multi-objectif]\label{def:optimisation_multi_objectif}
-L’optimisation multi-objectif est le processus visant à minimiser ou maximiser un ensemble
+\begin{Def}[Optimisation multi-objectifs]\label{def:optimisation_multi_objectif}
+L’optimisation multi-objectifs est le processus visant à minimiser ou maximiser un ensemble
 d’objectifs tout en respectant un nombre fini de contraintes.
 Il peut être formulé de la manière suivante dans le cas d’une minimisation~:
 \begin{equation}\label{eq:def_optimisation}
@@ -708,7 +722,7 @@ Avec $\vec{x}$ représentant la valeur des $D$ variables de décision et
 $\vec{f}(\vec{x})$ l’ensemble des $M$ fonctions objectif.  $\vec{g}(\vec{x})$ et
 $\vec{h}(\vec{x})$ représente respectivement les $Q$ contraintes d’inégalité et
 $C$ contraintes d’égalité imposées au problème d’optimisation. L’optimisation
-multi-objectif est donc le processus qui cherche à améliorer la qualité des
+multi-objectifs est donc le processus qui cherche à améliorer la qualité des
 solutions en faisant varier la valeur des variables de décisions ($\vec{x}$).
 Lorsque $C > 0$ ou $Q > 0$ on parle de problème d’optimisation sous contraintes.
 \end{Def}
@@ -769,7 +783,7 @@ de certains points dans l’espace des objectifs.
 Point dans l’espace des objectifs dont les coordonnées correspondent à l’optimal
 de chaque objectif pris séparément (\figref{fig:convex_nadir}). Ce point peut
 être utilisé pour guider la recherche. Cependant dans la plupart des cas, ce
-point n’est pas une solution du problème multi-objectif dont les objectifs le
+point n’est pas une solution du problème multi-objectifs dont les objectifs le
 composant sont le plus souvent antinomiques.
 % paragraph le_point_idéal (end)
 
@@ -859,8 +873,8 @@ une méthode dite approchée. Ces approches sont discutées dans la section suiv
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/methodes_exactes.pdf}
-    \caption{Transformation d’un problème multi-objectif en optimisation par méthodes
-             exactes.}
+    \caption[Transformation d’un problème multi-objectifs en optimisation par méthodes exactes]
+            {Transformation d’un problème multi-objectifs en optimisation par méthodes exactes.}
     \label{fig:multi_exactes}
 \end{figure}
 % subsection les_methodes_exactes (end)
@@ -911,7 +925,7 @@ recherche vers les chemins prometteurs.
 
 Comme nous venons de le voir une heuristique est fortement liée au problème et
 doit tenir compte de ces contraintes propres. Cependant dans l’optimisation
-multi-objectif combinatoire appliquée au bâtiment cette connaissance est souvent
+multi-objectifs combinatoire appliquée au bâtiment cette connaissance est souvent
 trop limitée et la définition d’une heuristique risque d’amener un biais trop
 important.
 
@@ -930,7 +944,7 @@ Différentes approches ont été décrites, les méthodes exactes et les méthod
 La non connaissance de la solution optimale écarte les approches utilisant une recherche
 par chemin optimal. La forte cardinalité du problème combinatoire écarte les approches par
 programmation dynamique et énumératives, car le nombre d’évaluations nécessaires serait
-alors trop important (\mtodo{Ajouter nombre nécessaire}). Enfin au regard de la
+alors trop important. Enfin au regard de la
 connaissance du problème, une heuristique spécialisée n’est pas envisageable.
 
 Finalement, une méthode approchée par méta-heuristique est retenue pour l’optimisation du
@@ -942,8 +956,9 @@ l’approximer de manière suffisante.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/meta_heuristique.pdf}
-    \caption{Transformation d’un problème multi-objectif en optimisation
-             multi-objectif en utilisant une méta-heuristique.}
+    \caption[Transformation d’un problème multi-objectifs en optimisation multi-objectifs]
+            {Transformation d’un problème multi-objectifs en optimisation
+             multi-objectifs en utilisant une méta-heuristique.}
     \label{fig:multi_meta}
 \end{figure}
 
@@ -996,7 +1011,7 @@ optimum est considéré comme local fort quand il domine l’ensemble des soluti
 \textbf{voisinage} et faible s’il est seulement non-dominé dans ce voisinage (plusieurs
 optimum locaux identiques existent). Un optimum est considéré comme global
 lorsqu’il domine l’ensemble des solutions existantes dans le domaine de
-décision. Dans le cas d’une optimisation multi-objectif, l’ensemble des
+décision. Dans le cas d’une optimisation multi-objectifs, l’ensemble des
 solutions du front de Pareto sont des optimums globaux formant la surface de
 compromis dans le respect de l’espace de décision.
 \end{Def}
@@ -1033,7 +1048,7 @@ familles se distinguent: les algorithmes évolutionnaires et les algorithmes d�
 % \begin{figure}
 %     \centering
 %     \includegraphics{Ressources/Images/Optimisation/meta_heuristique_detail.pdf}
-%     \caption{L’optimisation multi-objectif par méta-heuristique.
+%     \caption{L’optimisation multi-objectifs par méta-heuristique.
 %              \label{fig:multi_meta_detail}}
 % \end{figure}
 
@@ -1070,7 +1085,7 @@ Ces méthodes sont basées sur l’expérience du vivant et plus particulièreme
 l’organisation au sein d’un groupe, d’un essaim, ou d’une colonie. Parmi les plus connus,
 l’algorithme de colonie de fourmis a été proposé à l’origine par \textcite{Colorni1992509}.
 Comme pour les algorithmes évolutionnaires, de nombreuses variations ont été proposées
-permettant d’étendre l’application aux problèmes multi-objectif et combinatoires
+permettant d’étendre l’application aux problèmes multi-objectifs et combinatoires
 \parencite{MichaelGuntsch2003,Shea2006627}.
 La méthode s’inspire du comportement des colonies de fourmis où chaque fourmis
 explore une partie du domaine de décision en laissant une trace de phéromone
@@ -1177,7 +1192,8 @@ ou limiter la diversité.
 
 \begin{table}
 \centering
-\caption{Comparaison du nombre de paramètres à déterminer de manière empirique pour différents
+\caption[Nombre de paramètres à déterminer pour différents méta-heuristiques à population]
+        {Comparaison du nombre de paramètres à déterminer de manière empirique pour différents
          méta-heuristiques à population (adapté de \cite{Armand-Decker2015}).}
 \label{tab:meta_compare}
 \small
@@ -1253,7 +1269,8 @@ l’\abr{ABC} reste la plus répandue et sera retenue dans ces travaux (\figref{
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/ABC/abc_repartition.pdf}
-    \caption{Pourcentage de publications en fonction de l’approche retenue pour différents
+    \caption[Popularité de l’algorithme de colonies d’abeilles \abr{ABC}]
+            {Pourcentage de publications en fonction de l’approche retenue pour différents
              algorithmes de colonies d’abeilles d’après \cite{Karaboga201221}.}
     \label{fig:abc_repartition}
 \end{figure}
@@ -1304,7 +1321,8 @@ distance par rapport à l’essaim, et des dangers potentiels rencontrés.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
-    \caption{Organisation sociale des abeilles lors de la recherche de nourriture.}
+    \caption[Organisation sociale des abeilles lors de la recherche de nourriture]
+            {Organisation sociale des abeilles lors de la recherche de nourriture.}
     \label{fig:bee_dance}
 \end{figure}
 % paragraph intractions (end)
@@ -1360,7 +1378,8 @@ remplacées par une nouvelle position aléatoire définie par les éclaireuses.
     \emph{Si la qualité de la source stagne réinitialiser sa position selon \eqref{eq:init_source}}\;
   }
   }
-  \caption{Principe de l’algorithme \abr{ABC}.}
+  \caption[Principe de l’algorithme \abr{ABC}]
+          {Principe de l’algorithme \abr{ABC}.}
   \label{alg:ABC_phases}
 \end{algorithm}
 
@@ -1403,8 +1422,8 @@ aux différents problèmes d’optimisation (\figref{fig:abc_publication}).
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/ABC/abc_publication.pdf}
-    \caption{Évolution du nombre de publications depuis la publication de l’algorithme
-             jusqu’à aujourd’hui.}
+    \caption[Évolution du nombre de publication utilisant l’algorithme \abr{ABC}]
+            {Évolution du nombre de publications depuis la publication de l’algorithme \abr{ABC} jusqu’à aujourd’hui.}
     \label{fig:abc_publication}
 \end{figure}
 
@@ -1421,7 +1440,7 @@ du chaos en place d’une initialisation stochastique. Il peut aussi être cité
 une modification du comportement des exploratrices proposée par \textcite{Sharma2012213}
 basée sur la distribution de Lévy.
 
-L’algorithme a aussi été adapté afin de résoudre des problèmes multi-objectif.
+L’algorithme a aussi été adapté afin de résoudre des problèmes multi-objectifs.
 \textcite{Akbari201239} proposent une approche comprenant un essaim unique et le nomment
 \abr{MO-ABC} pour Multi-Objective Artificial Bee Colony. L’auteur utilise une archive
 basée sur l’$\epsilon$-dominance afin de maintenir la diversité et assurer la convergence
@@ -1442,7 +1461,7 @@ sources de référence. L’auteur intègre de plus une méthode de pénalité a
 \parencite{Woldesenbet20073077} afin de pouvoir traiter des problème sous contraintes.
 
 Développé dans un premier temps pour résoudre des problèmes mono-objectif il a été adapté
-aux problèmes multi-objectif. Les nombreux travaux témoignent d’un attrait grandissant
+aux problèmes multi-objectifs. Les nombreux travaux témoignent d’un attrait grandissant
 pour l’approche et mettent en avant sa modularité. En effet, à travers la diversité des
 comportements (butineuses, exploratrices, et ouvrières) il est possible d’équilibrer
 l’exploration et l’exploitation~; condition essentielle pour répondre de manière adaptée
@@ -1495,7 +1514,8 @@ la somme des pas aléatoires consécutifs $X_{w}$ alors $S_{W}$ est une marche a
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/LevyFlight/distribution_pdf.pdf}
-    \caption{Densité de probabilité des lois de Cauchy, uniforme, normale, \textit{Lévy} stable et symétrique.
+    \caption[Densité de probabilité de différentes loi de distribution]
+            {Densité de probabilité des lois de Cauchy, uniforme, normale, \textit{Lévy} stable et symétrique.
              L’expression analytique est représentée par la courbe noire.}
     \label{fig:distribution_pdf}
 \end{figure}
@@ -1553,7 +1573,8 @@ ces travaux implémentent un vol de \textit{Lévy} comme marche aléatoire duran
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
-    \caption{Mouvement brownien (en vert) et vol de \textit{Lévy} (en bleu) pour 200 pas aléatoires.}
+    \caption[Mouvement brownien et vol de \textit{Lévy} pour 200 pas aléatoires]
+            {Mouvement brownien (en vert) et vol de \textit{Lévy} (en bleu) pour 200 pas aléatoires.}
     \label{fig:levy_vs_gaussian}
 \end{figure}
 % subsection vol_de_levy (end)
@@ -1603,7 +1624,7 @@ de retenir la meilleure des deux comme nouvelle position pour la source.
 \subsection[L’epsilon-dominance]{L’$\epsilon$-dominance} % (fold)
 \label{sub:l_epsilon_dominance}
 Contrairement à une approche mono-objectif, il existe plusieurs solutions optimales
-dans une approche multi-objectif. Il apparaît alors nécessaire de conserver l’évolution
+dans une approche multi-objectifs. Il apparaît alors nécessaire de conserver l’évolution
 du front de \textit{Pareto}~: c’est le rôle de l’archive \parencite{Laumanns2002263}.
 
 Afin de garantir la convergence, il est nécessaire d’utiliser une approche élitiste
@@ -1669,7 +1690,8 @@ L’$\epsilon$-archive permet ainsi d’assurer~:
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}
-    \caption{Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
+    \caption[Principe de la mise à jour de l’archive par epsilon-dominance]
+            {Principe de la mise à jour de l’archive par epsilon-dominance (maximisation assumée).
              Adapté de \cite{Deb2005501}.}
     \label{fig:epsilon_dominance}
 \end{figure}
@@ -1694,7 +1716,7 @@ car il représente un bon compromis entre diversité et convergence.
 % ------------------------------------------------------------------------------
 \subsection{Tenir compte des contraintes} % (fold)
 \label{sub:tenir_compte_des_contraintes}
-Les problèmes multi-objectif dans le domaine de l’ingénierie sont souvent
+Les problèmes multi-objectifs dans le domaine de l’ingénierie sont souvent
 dépendants de contraintes limitant l’ensemble des solutions optimales au domaine
 de faisabilité. L’optimisation consiste alors à améliorer les objectifs tout en
 respectant les contraintes spécifiques au problème \eqref{eq:def_optimisation}.
@@ -1727,7 +1749,7 @@ très élitiste car les solutions non faisables sont toujours écartées durant 
 recherche.
 
 Dans ces travaux, une méthode adaptative moins élitiste est retenue. Adaptée
-aux problèmes multi-objectif par \textcite{Woldesenbet20073077}, la méthode ne demande
+aux problèmes multi-objectifs par \textcite{Woldesenbet20073077}, la méthode ne demande
 aucun paramétrage, et l’objectif modifié est calculé de la manière suivante~:
 \begin{itemize}
   \item Normaliser les objectifs selon \eqref{eq:norm_obj}
@@ -1800,7 +1822,7 @@ l’ensemble des contraintes pour être acceptées.
 Dans la section précédente, chaque élément utilisé dans l’algorithme a été détaillé et
 les avantages et inconvénients des approches retenues ont aussi été explicités.
 Dans cette section le fonctionnement global de la méthode approchée d’optimisation
-multi-objectif retenue est décrit.
+multi-objectifs retenue est décrit.
 
 L’algorithme (\figref{fig:abc_complet}) et le détail de chaque phase est décrit ci-après.
 Les sources sont initialisées (\algref{alg:init_phase}) suivant la méthode
@@ -1824,7 +1846,8 @@ de l’archive forme le front de Pareto.
 \begin{figure}
     \centering
     \includegraphics[width=10cm]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
-    \caption{Description globale de l’algorithme ABC pour les problèmes multi-objectif.}
+    \caption[Description globale de l’algorithme ABC pour les problèmes multi-objectifs]
+            {Description globale de l’algorithme ABC pour les problèmes multi-objectifs.}
     \label{fig:abc_complet}
 \end{figure}
 
@@ -1868,73 +1891,78 @@ performance de l’algorithme simplifiant sa paramétrisation.
 % ------------------------------------------------------------------------------
 \subsection{Validation de la méthode} % (fold)
 \label{sub:validation_de_la_methode}
-
-\itodo{CETTE SECTION EST EN CONSTRUCTION}
-
 Cette section permet d’apprécier la performance de l’approche pour différentes types
 de problèmes pouvant être rencontrés dans un problème d’optimisation.
 
-La bibliothèque \textit{pyMayBee} a été développée autour de tests unitaires
-(Test-driven development).
-Chaque éléments (fonction / méthodes /\dots) et comportements (minimisation / maximisation /\dots)
-ont ainsi été testés afin de garantir que la bibliothèque implémente correctement
-les éléments et comportements nécessaires. De part son approche, chaque nouvelle
-modification tient implicitement compte des tests précédents et garantie ainsi
-l’intégrité du code lors de son développement.
-Après l’implémentation des briques nécessaires et la construction de l’algorithme, des
-problèmes étalons ont été utilisés afin de valider la performance de l’approche. Bien que
-la réussite d’un problème étalon ne soit pas une condition suffisante pour garantir la
-convergence sur un problème réel, il apporte une information importante~: la capacité de
-l’algorithme à s’adapter aux différents types de contraintes pouvant survenir.
+La bibliothèque \textit{pyMayBee} a été développée autour de tests unitaires (\enquote
+{Test-driven development}). Chaque éléments (fonction / méthodes /\dots) et comportements
+(minimisation / maximisation /\dots) ont ainsi été testés afin de garantir que la
+bibliothèque implémente correctement les éléments et comportements nécessaires. De part
+son approche, chaque nouvelle modification tient implicitement compte des tests précédents
+et garantie ainsi l’intégrité du code lors de son développement. Après l’implémentation
+des briques nécessaires et la construction de l’algorithme, des problèmes étalons ont été
+utilisés afin de valider la performance de l’approche. Bien que la réussite d’un problème
+étalon ne soit pas une condition suffisante pour garantir la convergence sur un problème
+réel, il apporte une information importante~: la capacité de l’algorithme à s’adapter aux
+différents types de contraintes pouvant survenir.
 
-Dans cette optique les résultats présentés dans cette section sont sélectionnés
-afin de couvrir les principales difficultés existantes~:
+La littérature décrit déjà les améliorations proposées à travers l’évaluation de la
+performance de l’algorithme \abr{ABC} comme illustré à travers ce chapitre. Ainsi, cette
+section n’a pas vocation a montrée le bénéfice apporté par les différentes améliorations
+proposées mais il reste cependant nécessaire de montrer que l’algorithme fonctionne
+correctement. Dans cette optique les résultats présentés dans cette section sont
+sélectionnés afin de couvrir les principales difficultés existantes~:
 \begin{itemize}
   \item front convexe~: ZDT1 (2 objectifs)
   \item front linéaire~: Hanne 1 (2 objectifs)
   \item front concave~: ZDT2 (2 objectifs)
   \item multi-modal~: ZDT4 (2 objectifs)
-  \item Non-uniformité avec faible densité près de l’optimal~: DTLZ5 (3 objectifs), ZDT6, ConvexGlobalNonConvexLocalHive
+  \item Non-uniformité avec faible densité près de l’optimal~: DTLZ5 (3 objectifs), ZDT6
   \item Discontinue~: DTLZ6 (3 objectifs), Kursawe
 \end{itemize}
-La validation portera ainsi sur la capacité de l’algorithme à converger vers le
-front de Pareto ainsi que la qualité des solutions obtenues à travers l’évaluation
-de sa diversité. De plus la vitesse de convergence vers le front sera aussi discutée.
-Concernant la méthode de prise en compte des contraintes, des travaux ont déjà
-évalué sa performance et ces résultats ne sont pas repris dans cette section (\mtodo{Ajouter ref}).
 
-\itodo{Ajout de graphe de convergence, et les résultats du calcul des indicateurs
-       évaluant la diversité, la rapidité, et la convergence.}
+\itodo{Hypervolume et distance générationnelle sur ZDT1, 2, 4, 6 et DTLZ5. DTLZ6.}
+\itodo{Illustration avec Hanne1 Kursawe}
+
+
+
+% La validation portera ainsi sur la capacité de l’algorithme à converger vers le
+% front de Pareto ainsi que la qualité des solutions obtenues à travers l’évaluation
+% de sa diversité. De plus la vitesse de convergence vers le front sera aussi discutée.
+% Concernant la méthode de prise en compte des contraintes, des travaux ont déjà
+% évalué sa performance et ces résultats ne sont pas repris dans cette section (\mtodo{Ajouter ref}).
+
 % subsection validation_de_la_methode (end)
 % section algorithme_de_colonie_d_abeilles_virtuelles (end)
 
 
 \section{Bilan} % (fold)
 \label{sec:bilan}
-Au cours de ce chapitre une méthodologie d’aide à la décision a été développée.
-Le choix a été fait dans un premier temps de réduire la complexité des modèles à
-travers une analyse de sensibilité globale. Au regard des temps de simulations
-importants, la méthodologie propose l’utilisation de méta-modèles. Cette étape est
-cependant nécessaire dans notre cas mais n’est en aucun cas indispensable. Dans le
-cas où le modèle peut être évalué dans un temps raisonnable, il est toujours préférable
-de conserver le modèle original. Pour l’aide à la décision, une approche a posteriori
+Au cours de ce chapitre une méthodologie d’aide à la décision a été développée. Le choix a
+été fait dans un premier temps de réduire la complexité des modèles à travers une analyse
+de sensibilité globale puis de réduire le temps d’évaluation du modèle grâce à des méta-
+modèles. Bien que nécessaire de ce cas précis, il reste préférable de conserver le modèle
+original dans le cas où il peut être évalué dans un temps raisonnable afin d’éviter
+d’introduire une erreur d’approximation. Pour l’aide à la décision, une approche a posteriori
 par coordonnées parallèles est retenue afin de ne pas introduire de préférences en amont et permettre d’explorer
 de nouvelles combinaisons. Cependant cette approche nécessite l’obtention préalable
 d’un ensemble de solutions non-dominées et le choix d’une méthode d’optimisation
-multi-objectifs est donc nécessaire. Le problème étant fortement combinatoire, et
-la connaissance du problème réduite, un méta-heuristique s’est imposé comme le choix
-le plus adaptée. Afin de proposer une approche à la fois simple, intuitive et performante,
+multi-objectifss est donc nécessaire. Le problème étant fortement combinatoire,
+un méta-heuristique s’est imposé comme le choix le plus adapté. Afin de proposer
+une approche à la fois simple, intuitive et performante,
 un algorithme de colonie d’abeilles virtuelles (\abr{ABC}) a été adaptée
-aux problèmes multi-objectifs. L’approche a ensuite été renforcée par l’ajout d’une
+aux problèmes multi-objectifss. Ce choix a été retenue principalement car l’approche
+ne nécessite le paramétrage que de $3$ paramètres dont l’impact est connu a priori.
+L’approche a ensuite été renforcée par l’ajout d’une
 archive garantissant une bonne diversité de la population, un vol de Lévy pour éviter
-la stagnation et améliorer l’exploratoire. Durant l’initialisation, le choix a été
+la stagnation et améliorer l’exploratoire. De plus durant l’initialisation, le choix a été
 fait de retenir l’\abr{OBLM} (\defref{def:oblm}) afin d’offrir une meilleure
 répartition des solutions. Finalement afin d’améliorer l’exploration et l’exploitation
 de l’ensemble de l’espace de faisabilité, les contraintes sont prises en compte
 dynamiquement. Contrairement à une approche stricte plus classique,
 des solutions non faisables peuvent être retenue apportant ainsi de nouvelles
 connaissances sur le problème. Il est ensuite possible par apprentissage, d’obtenir de nouvelles
-solutions optimales.
+solutions optimales même dans un domaine fortement contraint.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/chapitre3_bilan.pdf}
@@ -1950,15 +1978,12 @@ afin de pouvoir automatiser la simulation en parallèle des modèles à partir d
 \textit{Python}. \textit{DyMat} a permis quand à elle de lire les résultats qui ont été
 ensuite traités grâce au bibliothèques \textit{Pandas} et \textit{Numpy}. Afin de réaliser
 l’échantillon pour le criblage de Morris, la bibliothèque \textit{Salib} a été retenue.
-Pour la construction d’un échantillon uniformément réparti par méthode de quasi-Monte-Carlo
+Pour la construction d’un échantillon uniformément réparti par méthode de Quasi-Monte-Carlo
 et la création des méta-modèles, la bibliothèque \textit{OpenTurns} a été utilisée.
-L’optimisation a elle été réalisée à partir de l’algorithme développé dans le chapitre
+Ensuite, l’optimisation a elle été réalisée à partir de l’algorithme développé dans le chapitre
 précédent et implémentée dans la bibliothèque \textit{pyMayBee}. Finalement l’aide à la
 décision est réalisée par une méthode de coordonnées parallèles grâce au logiciel
-\textit{XDat}.
-La mise en place de la méthodologie est décrite dans le dernier chapitre à travers l’étude
-de la performance du \abr{SSC} sur Bordeaux et Strasbourg. En plus d’illustrer la
-méthodologie, les résultats de l’analyse exploratoire des solutions du front de Pareto
-invitent à repenser les choix de conception lors du développement de \abr{SSC} couplés à
-des \abr{MEPOS}.
+\textit{XDAT}.
+La mise en place de cette méthodologie est décrite dans le dernier chapitre à travers l’étude
+de la performance du \abr{SSC} sur Bordeaux et Strasbourg.
 % section bilan (end)

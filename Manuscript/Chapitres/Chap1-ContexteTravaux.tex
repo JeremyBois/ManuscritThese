@@ -2243,10 +2243,10 @@ l’énergétique du bâtiment et plus particulièrement dans les bureaux d’é
 les habitudes sont fortement ancrées et l’outil numérique est aujourd’hui principalement
 employé à travers une approche par essai/erreur. À partir d’un cas de référence
 généralement défini par l’expérience, un ensemble de variations sont introduites à l’aide
-d’itérations successives. De part sa rapidité de calcul, il offre pourtant la possibilité
+d’itérations successives. Ce processus est coûteux en temps humain et ne permet pas de valoriser la
+puissance de calcul disponible qui offre pourtant la possibilité
 d’explorer un nombre important de solutions et de vérifier des suppositions plus
-rapidement. Ce processus est coûteux en temps humain et ne permet pas de valoriser la
-puissance de calcul disponible. De plus, les réalités économiques et la forte concurrence
+rapidement. De plus, les réalités économiques et la forte concurrence
 lors des appels d’offres amènent les bureaux d’études à répondre de plus en plus
 rapidement aux marchés dont la complexité et la combinatoire augmentent parallèlement aux
 réglementations.
@@ -2270,8 +2270,8 @@ La construction d’un bâtiment est par définition multi-objectifs, elle fait 
 nombre conséquent de paramètres que ce soit sur l’enveloppe, les systèmes, la logique de
 contrôle, le climat, ou encore le comportement des occupants. Elle doit de plus à minima
 satisfaire un cadre réglementaire que ce soit sur des contraintes acoustiques, thermiques,
-mécaniques. Par extension la construction d’un \abr{BEPOS} solaire est donc aussi multi-
-objectifs.
+mécaniques. Par extension la construction d’une maison à énergie positive (\abr{MEPOS})
+solaire est donc aussi multi-objectifs.
 
 Au cours de la première section, il a été mis en évidence la nécessité de s’émanciper des
 énergies fossiles, dont la sur-utilisation est responsable des fortes émissions de
@@ -2282,8 +2282,8 @@ aussi un acteur clé à travers la mise en place d’une coopération internatio
 mesures incitatrices~: la politique de rachat de l’énergie électrique produite localement
 ou encore les aides financières obtenables lors de travaux de rénovation ou d’exemplarité
 énergétiques. C’est les actions combinés de tout ces intervenants qui permettent
-aujourd’hui d’être à l’aube d’un cadre réglementaire européen (\abr{PREN\,$15603$}) sur le
-\abr{BEPOS} dont chaque pays membres devra s’inspirer pour la définition de leur nouvelle
+aujourd’hui d’être à l’aube d’un cadre réglementaire européen (\abr{PREN\,$15603$}) sur la
+\abr{MEPOS} dont chaque pays membres devra s’inspirer pour la définition de leur nouvelle
 réglementation thermique nationale. Bien que la norme ne soit pour l’heure qu’un
 brouillon, les axes principaux sont d’ores et déjà définis. La norme s’articule autour de
 quatre objectifs péremptoires~: assurer une performance minimale sur l’enveloppe, assurer
@@ -2305,7 +2305,7 @@ de plus en plus importants dans les maisons individuelles.
 Il est ainsi évalué à la fois les besoins de chauffage et d’\abr{ECS}, mais aussi les charges internes.
 Même si la réglementation française ne considère pour le moment que les charges d’éclairage
 l’approche retenue tient aussi compte des charges électro-domestiques qui représentent
-une part importante de la consommation des \abr{BEPOS}.
+une part importante de la consommation des \abr{MEPOS}.
 Les autres objectifs de la norme \abr{PREN\,$15603$} sont aussi pris en compte
 même si plus de liberté est prise afin d’explorer l’ensemble des solutions envisageables.
 Ainsi la méthodologie retenue cherche à caractériser le bâtiment et ses systèmes conjointement
@@ -2331,7 +2331,7 @@ production d’\abr{ECS}. Cependant les \abr{SSC}, développés pour couvrir à 
 besoins en \abr{ECS} et le chauffage restent principalement une solution pour la
 rénovation. De nombreux systèmes existent sur le marché et une majorité ont été étudiés à
 travers la tâche $26$ et le projet \textit{CombiSol} mais peu de travaux cherchent à
-déterminer la performance pouvant être obtenue pour des \abr{BEPOS}. De plus parmi les
+déterminer la performance pouvant être obtenue pour des \abr{MEPOS}. De plus parmi les
 travaux existants, une partie évalue la performance des \abr{SSC} à travers des outils
 simplifiés tels que \textit{F-chart} qui ne permettent pas de tenir compte de la dynamique
 du système, ni des spécificités du \abr{SSC} retenue. D’autres approches utilisent des
@@ -2351,7 +2351,7 @@ contrôle est nécessaire. Le parti pris est le suivant~: les contraintes techni
 propres à chaque site, chaque industriels, mais aussi à chaque client dont les attentes
 varient fortement. Partant de ce constat, il apparaît plus intéressant de proposer
 un ensemble de solutions techniquement différentes mais répondant toutes aux contraintes
-du \abr{BEPOS} à travers une approche multi-objectifs. En effet une approche mono-objectif
+de la \abr{MEPOS} à travers une approche multi-objectifs. En effet une approche mono-objectif
 contraint à l’obtention d’une solution unique. Les limitations propres à l’approche mono-
 objectif et multi-objectifs sont discutées plus amplement dans le chapitre $3$ de ce
 document.
@@ -2404,256 +2404,3 @@ en parallèle pour des conditions climatiques distinctes, Bordeaux et Strasbourg
 % subsubsection bilan (end)
 % subsection un_probleme_multi_criteres_et_multi_objectifs (end)
 % section conception_de_maisons_solaires_a_energie_positive (end)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% \itodo{Ajouter citations, voir article BS 2017}
-% \itodo{Ajouter description de l’état de l’art des algos Voir Article}
-% De nombreuses études ont déjà cherché à évaluer la performance d’un système solaire
-% combiné à l’aide de méthodes plus ou moins détaillées. L’approche la plus répandue utilise
-% les besoins mensuels de la maison générés grâce à un modèle du bâtiment simplifié
-% \parencite{Raffenel2009657,Martinopoulos2014130}. Cette approche néglige le comportement dynamique du système
-% solaire comme du bâtiment. D’autres approches utilisent un modèle de bâtiment plus
-% détaillé (TrnSys, Energy Plus) permettant d’évaluer plus précisément la couverture du
-% système \parencite{Glembin2012601}. Ces approches permettent de tenir compte de l’évolution dynamique du système
-% solaire combiné (SSC) mais négligent les interactions entre le bâtiment et les systèmes. Le
-% bâtiment est seulement considéré comme une consommation (chauffage et production d’ECS) et
-% le système solaire comme une source potentielle répondant à cette demande. Cette approche
-% est aussi celle retenue pour la Task 26 \parencite{Task262003} au cours de laquelle de nombreux modèles
-% de SSC ont été développés puis validés.
-
-% Dans ces travaux, une approche détaillée de l’algorithme de contrôle et des systèmes est retenue. En
-% effet, plusieurs études ont mis en évidence l’importance de la modélisation du contrôle
-% sur la performance d’un système solaire combiné \parencite{Kicsiny20123489,Huang20123278}.
-% Afin de présenter des résultats pouvant être obtenues sur des bâtiment réels pour la
-% prochaine réglementation thermique (\mtodo{Ajouter citation}{\abr{RT\,2020}}), un algorithme existant et innovant
-% a été utilisé. Celui-ci est modifié et adapté pour répondre aux contraintes du projet~: obtenir
-% un bâtiment réactif en utilisant l’énergie solaire.
-% L’originalité de l’approche réside principalement dans l’évaluation couplée du système
-% solaire combiné et du bâtiment. Dans cette optique les interactions bâtiment / systèmes et
-% systèmes / bâtiment sont pris en compte et évaluées.
-
-% Dans un premier temps des outils retenues pour la modélisation et l’analyse des résultats.
-% Dans un second temps le modèle SSC développée ainsi que le bâtiment et les scénarios, sont
-% discutés. Finalement une étude paramétrique est réalisée. Elle permettra de mieux
-% comprendre les interactions existantes entre bâtiment et système et de fixer les scénarios
-% qui seront retenues pour l’aide à la décision. De plus les indicateurs nécessaires à la
-% caractérisation d’un SSC seront identifiés.
-
-
-% % ..............................................................................
-% % ..............................................................................
-% \section{Le solaire thermique appliqué au bâtiment} % (fold)
-% \label{sec:le_solaire_thermique_applique_au_batiment}
-
-% % ------------------------------------------------------------------------------
-% \subsection{Contexte énergétique} % (fold)
-% \label{sub:contexte_energetique}
-% \itodo{État de l’art sur performance des bâtiments, danger réchauffement, augmentation
-%        de la population}
-% \itodo{Parler de ce que fait NegaWatt notament avec le projet <Europe,Territoires>.\\
-%        \url{http://www.negawatt.org/telechargement/Docs/160615_Rapport-final_Europe-territoire_Phase1.pdf}\\
-%        \url{http://www.negawatt.org/telechargement/Docs/160324_Synthese_Etude_Europe-territoires_Phase1.pdf}}
-% % subsection contexte_énergétique (end)
-
-% % ------------------------------------------------------------------------------
-% \subsection{Le concept MEPOS} % (fold)
-% \label{sub:le_concept_mepos}
-% \itodo{Description des approches existantes: Passivhaus, NZEB, MEPOS}
-% \itodo{Décrire l’initiative de COMEPOS pour le label MEPOS}
-% \itodo{Décrire pourquoi ce choix (car il a apprit des anciens labels)}
-% % subsection le_concept_mepos (end)
-
-% % ------------------------------------------------------------------------------
-% \subsection{Le solaire thermique pour une production énergétique respectueuse} % (fold)
-% \label{sub:le_solaire_thermique_pour_une_production_energetique_respectueuse}
-% \itodo{État de l’art sur les applications du solaire thermique.}
-% \itodo{Montrer que le solaire thermique n’a pas la côte dans la construction à énergie positive.
-%        Problème de coût, de confiance, ou de performance ?}
-% \itodo{Montrer que l’innovation passe par le neuf avant d’être intégré à la rénovation.}
-% % subsection le_solaire_thermique_pour_une_production_énergétique_respectueuse (end)
-% % section le_solaire_thermique_appliqué_au_bâtiment (end)
-
-
-
-% % ..............................................................................
-% % ..............................................................................
-% \section{Une approche par optimisation} % (fold)
-% \label{sec:une_approche_par_optimisation}
-
-% % ------------------------------------------------------------------------------
-% \subsection{Approches explorées} % (fold)
-% \label{sub:approches_explorees}
-% \itodo{Décrire les différentes approches déjà explorées}
-% \itodo{Augmentation surface capteur, sur-isolation, mon approche couplée pour un
-%        compromis entre coût/surface capteur/isolation}
-% % subsection approches_explorées (end)
-
-% % ------------------------------------------------------------------------------
-% \subsection{L’optimisation d’une maison solaire: un problème multi-critère} % (fold)
-% \label{sub:l_optimisation_d_une_maison_solaire_un_probleme_multi_critere}
-% \itodo{Décrire brièvement les methodes existantes}
-% \itodo{Décrire les outils nécessaires (sensibilité, opimisation, aide à la décision)}
-% % subsection l_optimisation_d_une_maison_solaire_un_problème_multi_critère (end)
-% % section une_approche_par_optimisation (end)
-
-
-% % ..............................................................................
-% % ..............................................................................
-% \section{Le choix d’un modèle de système solaire couplé au bâtiment} % (fold)
-% \label{sec:le_choix_d_un_modele_de_systeme_solaire_couple_au_batiment}
-% % ------------------------------------------------------------------------------
-% \subsection{Les modèles existants} % (fold)
-% \label{sub:les_modeles_existants}
-% \itodo{Décrire le choix de l’approche par modélisation}
-% Il existe plusieurs moyens permettant d’évaluer un système énergétique. Le premier
-% consiste à reproduire expérimentalement le système et son environnement. Cependant
-% ce processus est couteux , spécialement lorsque on essayer d’évaluer un système à l’échelle
-% du bâtiment. On est de plus contraint par les conditions extérieures que l’on ne contrôle
-% pas. Ainsi ces deux raisons font qu’il est compliqué et couteux de chercher à dimensionner
-% expérimentalement un système. Pour réduire le coût de la recherche et explorer plus de
-% variation il est nécessaire de pouvoir contrôler les conditions limites et de pouvoir
-% itérer rapidement entre différents compositions/régulations. La modélisation entre alors
-% en jeu proposant un contrôle complet des systèmes, de leur régulation, et des conditions
-% limites. Le système n’étant pas physique il est alors possible de faire varier n’importe
-% quel paramètre simplement afin d’évaluer son importance, son impact,\dots
-% La modélisation est donc l’outil de choix pour réaliser une étude de faisabilité, un
-% dimensionnement, une optimisation.
-
-% \itodo{État de l’art des modèles numériques}
-% \itodo{Détail des modèles existant, contrôle, couplages}
-% \itodo{Montrer que ces modèles sont très génériques et souvent très simplifiés.
-%        De plus l’algorithme de contrôle est non évalué/optimisé.}
-% % subsection les_modèles_existants (end)
-
-% % ------------------------------------------------------------------------------
-% \subsection{Un modèle solaire couplé au bâtiment} % (fold)
-% \label{sub:un_modele_solaire_couple_au_bâtiment}
-% \itodo{Décrire le choix de l’approche par modélisation}
-
-
-% \itodo{Décrire les outils utilisés: Modelica et les bibliothèques, Dymola et les solveurs}
-% Il existe de nombreux langages, logiciels pour réaliser des simulations plus ou moins complexes.
-% La première choses à définir est donc le niveau de précision que l’on souhaite pour son modèle ou
-% pour les différentes parties du modèle. Notre cas d’étude se place à l’échelle du bâtiment mais
-% l’on souhaite aussi conserver un contrôle important sur la gestion des équipements.
-% Ensuite il est nécessaire de déterminer le niveau d’accessibilité que l’on souhaite avoir
-% sur chaque composant du système. Le modèle \textbf{boîte noire} ne pourrait pas correspondre à notre
-% demande. Celui-ci ne nous offre pas le liberté de comprendre comment évolue chaque
-% composants du système et nous empêche d’explorer/modifier le code.
-% Pour la même raison un modèle \textbf{boîte grise} nous limite dans l’accès à certaines
-% partie du code et donc à la compréhension interne du fonctionnement du système.
-% Il est alors nécessaire d’utiliser un modèle \textbf{boîte blanche} garantissant
-% un contrôle total sur chaque partie du système et permettant d’évaluer le comportement
-% au niveau global mais aussi composant par composant.
-% Nous avons ainsi opté pour le langage Modelica et la plateforme de développement
-% Dymola (Dynamics Modeling Laboratory).
-
-
-% \itodo{Modelica description}
-% \mtodo{Ajouter référence}{Modelica} est un langage de programmation libre et ouvert développé pour répondre aux
-% contraintes de la modélisation multi-physique. Il a été pensé pour être intuitif
-% et offre une approche équationnelle et orienté objet au développeur.
-% L’approche objet est très intuitive et permet d’encapsuler un ensemble de données
-% et d’offrir des interface pour accéder à ces données. On peut alors composer de nouveaux
-% objets grâce à des références vers d’autre objets (composition) ou en héritant
-% du comportement d’un objet pour lui ajouter une spécialisation (héritage).
-% Enfin le langage est acausal permettant d’itérer entre différentes formulation
-% d’un problème facilement. Un système acausal récupère l’ensemble des variables qu’il
-% connait et défini les inconnus à partir de celles-ci. L’ordre d’écriture des équations
-% n’est donc plus importante et modifier un système n’oblige pas à re-écrire complètement
-% les équations pour isoler la variable que l’on cherche à déterminer. Prenons l’exemple
-% de la formule $U = R \times I$. Un problème causal requiert de connaître \abr{R} et \abr{I}
-% pour trouver \abr{U}.L’équation doit être re-écrite si on cherche à trouver \abr{R} ou \abr{I}.
-% Si on utilise une approche acausal alors cette équation a une solution si on a deux des
-% trois inconnus ($U et R$ ou $R et I$, ...) sans avoir à modifier l’équation. On peut ainsi utiliser
-% la même formulation pour peut importe les variables connues.
-% On peut ainsi voir que le développement sous Modelica permet de rapidement proto-typer
-% des systèmes complexes.
-
-
-% \itodo{Dymola description}
-% Dymola est une suite de logiciels développée par \mtodo{Ajouter référence}{Dassault System}
-% permettant d’ajouter de nombreuses fonctionnalités.
-% La première étant l’interface graphique permettant de connecter différentes portion
-% de code de manière plus intuitive. Il ajoute aussi un débogueur puissant permettant
-% de trouver rapidement la portion de code qui pose problème, un outil pour faire du
-% refactoring. Enfin il offre un outil puissant pour compiler, initialiser et intégrer
-% le modèle avec un large choix d’intégrateurs avec le programme \mtodo{Ajouter référence}{Dymosim}.
-% Il propose aussi du support pour la parallélisation, les FMU, et, un outil
-% puissant pour faire du traitement des données durant et après les simulations. Enfin
-% Dymola propose grâce à des scripts d’accéder à l’ensemble des fonctionnalités
-% comme lancer une simulation, modifier un modèle, exporter un modèle, ...
-% Dymola est ainsi un outil puissant pour accélérer le développement de modèle Modelica.
-
-
-% \itodo{Couplage Dymola + Modelica description}
-% Ces deux outils offrent alors de nombreux avantages. On contrôle chaque partie
-% du système, le code est réutilisable, on peut choisir le détail de chaque partie
-% du modèle, et on peut le coupler avec d’autres logiciels si besoin est.
-
-% Le langage Modelica étant largement utilisé, de nombreuses bibliothèques open source
-% on été développées dont la liste peut être trouvée sur le site officiel de l’association Modelica
-% (\url{https://www.modelica.org/libraries}). Dans notre étude nous avons utilisé
-% la bibliothèque \mtodo{Ajouter référence}{Buildings} qui est développé par le
-% Laboratoire National Lawrence Berkeley (LBNL). C’est une bibliothèque libre et ouverte
-% orienté pour le secteur du bâtiment offrant de nombreux modèles de base.
-
-
-% \itodo{Pourquoi une modélisation détaillée d’un système existant}
-% Le but de cette étude est d’évaluer le potentiel de couverture d’un système solaire,
-% il apparaît donc important de pouvoir évaluer dans le détail son comportement au niveau
-% de chaque élément. On va chercher à comprendre comment évolue la température au sein
-% de la maison mais aussi des ballons, des capteurs, ...
-% Il est aussi important de pouvoir modifier facilement les différents éléments composant
-% le système comme les temporisations, les consignes, la taille des différents équipements, ...
-% L’étude ne s’intéresse en effet pas seulement à la performance finale du système mais
-% aux raisons et limitations qui ont pour conséquence ce résultat.
-
-
-% \itodo{Récapituler les besoins de l’étude}
-% Si on résume on a donc besoin de contrôler chaque composant pour évaluer si il se
-% comporte comme on l’entends. Il est aussi nécessaire de pouvoir facilement de manière
-% intuitive les sous-modèles sans affecter le modèle principal. On veut de plus pouvoir
-% évaluer le système au niveau du bâtiment et il est donc nécessaire de réaliser des
-% simulation sur une échelle de temps importante (de l’ordre de l’année).
-
-
-% \itodo{Conclure sur le choix de Modelica et Dymola}
-% Le choix du couple Modelica + Dymola est donc le résultat d’une recherche d’un outil
-% répondant à nos contraintes. On veut avoir un contrôle complet de chaque composant, leur
-% physique comme leur régulation et évaluer au niveau bâtiment la performance de celui-ci.
-% Ces deux outils nous permet d’évaluer/modifier/comprendre efficacement le système
-% sur différentes échelles tout en encourageant le processus itératif de cette étude.
-
-
-
-% \itodo{Montrer que aujourd’hui peu de travail a été fait sur l’optimisation couplée
-%        et que par conséquent ce sujet est innovant dans son approche du problème}
-% \itodo{Introduire la partie suivante}
-% % subsection un_modèle_solaire_couplé_au_bâtiment (end)
-% % section le_choix_d_un_modèle_de_système_solaire_couplé_au_bâtiment (end)

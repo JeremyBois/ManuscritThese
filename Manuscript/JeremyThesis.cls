@@ -287,6 +287,10 @@
 \RequirePackage{setspace}  % Used to correct spacing inside document
 \thesisspacing
 
+% Add more space after label numbering
+\renewcommand{\l@figure}{\@dottedtocline{1}{0em}{3em}}
+\renewcommand{\l@table}{\@dottedtocline{1}{0em}{3em}}
+
 % Used later in class
 \RequirePackage{tikz}
 
