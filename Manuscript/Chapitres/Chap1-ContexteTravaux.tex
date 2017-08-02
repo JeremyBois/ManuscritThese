@@ -2,16 +2,133 @@
 % Chapitres\Chap1-ContexteTravaux.tex
 
 
+
+Ce chapitre décrit les objectifs et le contexte dans lequel ces travaux s’inscrivent. En
+effet le développement de maisons à énergie positive est l’aboutissement d’une volonté
+politique nécessaire pour répondre aux enjeux climatiques et économiques. Le solaire lui
+est une énergie quasi-infinie pouvant se substituer aux énergies finies telles que le
+nucléaire ou les sources fossiles. Afin de proposer une méthodologie adaptée il est dans
+un premier temps exposé le contexte climatique, l’importance du secteur du bâtiment, et
+plus particulièrement la place de la maison individuelle. Suit une description de la
+notion de maison à énergie positive et de la place du solaire thermique et plus
+particulièrement des systèmes solaires combinés. Finalement en s’appuyant sur les travaux
+existants et les contraintes propre au contexte, il est proposé une méthodologie d’aide à
+la conception de maisons solaires à énergie positive appropriée.
+\clearpage
+
+
 % % ...........................................................................
 % % ...........................................................................
-% \section{Objectifs de ces travaux} % (fold)
-% \label{sec:objectifs_de_ces_travaux}
-% \itodo{Ajouter section objectifs}
+\section{Objectifs et importance du contexte international} % (fold)
+\label{sec:objectifs_et_importance_du_contexte_international}
+Les effets du réchauffement climatiques sont aujourd’hui facilement observables et sont
+tels qu’ils bouleversent le fonctionnement de la planète. L’énergie (\defref{def:energie})
+considérée comme infinie durant les \num{30} glorieuses s’est avérée être limitée et la
+sur-utilisation des énergies fossiles comme nocive pour la faune et la flore de la
+planète. Des mesures sont alors prises au niveau international et national afin de
+contenir le réchauffement climatique et éviter un dérèglement plus important. Ces mesures
+visent principalement à d’une part réduire la production de $C0_{2}$ mais d’autre part à
+réduire les dépenses énergétiques. La population étant en augmentation, il est en effet
+nécessaire de faire preuve de sobriété mais aussi de travailler au développement
+d’énergies alternatives comme l’énergie solaire.
 
-% \itodo{Voir Hugo Stéphanie et thomas}
+Le bâtiment est le premier consommateur d’énergie en France et est donc un élément clé
+pour la réussite de la transition énergétique. Bien que la rénovation soit le principal
+levier pour réduire les consommations du parc Français, son amélioration passe par le
+développement des bâtiments neufs. Les nouveaux bâtiments doivent ainsi être innovants
+énergétiquement afin de proposer des solutions économiquement viables et performantes pour
+la rénovation. En effet l’amélioration de la conception des bâtiments neufs se traduit
+dans le futur par une amélioration du parc immobilier. Avec $\nicefrac{3}{4}$ des
+consommations en énergie primaire, les ménages dont plus de \SI{50}{\percent} sont des
+maisons individuelles se doivent d’être exemplaires. C’est dans cette optique que les
+nouveaux bâtiments à l’horizon $2020$ devront être à énergie positive. Le concept
+d’énergie positive n’a cependant pas de définition unique et son cadre d’application n’est
+pas encore clairement établi même si des initiatives nationales et internationales
+permettent d’y voir plus clair. Ces initiatives cherchent à répondre à la problématique du
+réchauffement climatique grâce à des mesures d’efficacité, de sobriété ou encore grâce aux
+énergies alternatives plus respectueuses de l’environnement.
 
-% \iunsure{Utile de le mettre ici seulement à la fin}
-% % section objectifs_de_ces_travaux (end)
+\begin{Def}[Énergie]\label{def:energie}
+Dans l’ensemble de ce document, le terme énergie réfère non à son sens moral mais à son
+sens physique. L’énergie en physique est la mesure de la capacité d’un système à produire
+de la chaleur, modifier un état, ou encore entraîner un mouvement. Dans notre
+problématique une distinction est nécessaire entre l’énergie dite \textbf{primaire} et
+l’énergie dite \textbf{finale}. L’énergie primaire correspond à l’énergie prélevée à
+l’environnement alors que l’énergie finale est l’énergie primaire après soustraction des
+pertes de stockage, de transport, et de transformation. L’énergie finale correspond ainsi
+à l’énergie consommée par l’utilisateur sans tenir compte des consommations engendrées pour sa
+production à l’opposée de l’énergie primaire. Le bouquet énergétique étant propre à chaque
+pays, les facteurs de conversion le sont eux aussi. Pour la France,
+les coefficients souvent admis sont définis en annexe (\tabref{tab:coef_finale_primaire}).
+\end{Def}
+
+Parmi les solutions disponibles, l’énergie solaire apparaît comme un candidat de choix
+pour répondre aux problématiques de réchauffement climatique et forte croissance de la
+population. C’est une énergie dite propre, elle ne rejette pas de $CO_{2}$ dans
+l’atmosphère et permet de réduire la dépendance aux énergies fossiles et nucléaires. Un
+système solaire permet ainsi de répondre aux besoins d’une population grandissante sans
+pour autant polluer plus. Abondante et inépuisable l’énergie solaire permet selon la
+technologie retenue de couvrir des besoins électriques (électroménager\dots) ou thermiques
+(chauffage\dots). Cependant bien qu’inépuisable l’énergie est uniquement disponible durant
+la période diurne et les systèmes doivent alors permettre de valoriser au mieux cette
+énergie en tenant compte de cette contrainte forte. Alors que le photovoltaïque profite
+d’une croissance forte avec l’augmentation des charges électriques, les systèmes solaires
+combinés (\abr{SSC}) restent très minoritaires et sont principalement implémentés dans la
+rénovation.
+
+Un \abr{SSC} est un système permettant de couvrir la production d’Eau Chaude Sanitaire
+(\abr{ECS}) et les besoins en chauffage d’un bâtiment grâce l’énergie solaire. L’énergie
+solaire est récupérée par des capteurs puis, soit utilisée directement, soit stockée dans
+des ballons pour couvrir des besoins en période nocturne. Cependant ces systèmes
+comportent certains inconvénients responsables en parties de l’impopularité de la
+technologie. Ils nécessitent par exemple le recours à des ballons de tailles importantes
+qui augmentent le coût d’investissement. De plus bien souvent, la place disponible pour
+les équipements est réduite et le système doit être installée dans la zone chauffée. Ces
+choix techniques sont le résultat d’un dimensionnement basé uniquement sur l’expérience
+acquise à travers les installations plus anciennes. Pourtant les contraintes propres à la
+conception d’une maison à énergie positive (\abr{MEPOS}) ne sont pas les mêmes que celle
+de constructions plus anciennes. Les bâtiments sont en effet aujourd’hui bien mieux
+isolés, les charges internes augmentent et deviennent majoritaires, les besoins de
+chauffage sont bien moins important, mais les besoins en \abr{ECS} restent eux
+sensiblement les mêmes.
+
+Il est ainsi nécessaire de repenser la conception de \abr{SSC} pour les bâtiments à
+énergie positive (\abr{BEPOS}). Se reposer uniquement sur l’expérience acquise apparaît
+comme un frein au développement de la technologie. Ces travaux cherchent ainsi à évaluer
+le potentiel d’un \abr{SSC} adapté aux \abr{BEPOS}s. Inspiré par la norme européenne
+\abr{PREN\,$15603$} actuellement en rédaction, une méthodologie d’aide à la décision est
+proposée afin d’aider à leurs conception. L’originalité de ces travaux réside
+principalement par la prise en compte concomitante de la performance de l’enveloppe et du
+\abr{SSC} permettant d’identifier des combinaisons pertinentes entre les équipements du
+\abr{SSC}, la logique de contrôle, et l’enveloppe du bâti. Dans cette optique, une
+modélisation détaillée du système et de l’algorithme de contrôle est requis afin de
+pouvoir mieux comprendre les interactions existantes entre les deux. Le parti pris est le
+suivant~: les contraintes techniques sont propres à chaque site, chaque industriels, mais
+aussi à chaque client dont les attentes varient fortement. Partant de ce constat, il
+apparaît plus intéressant de proposer un ensemble de solutions techniquement différentes
+mais répondant toutes aux contraintes de la maison à énergie positive à travers une
+approche multi-objectifs.
+
+Ce chapitre décrit le contexte global dans lequel se place ces travaux. Il est dans un
+premier temps présenté les enjeux liés au réchauffement climatique et à la pénurie des
+ressources pour une population en forte croissance. Puis il est introduit les initiatives
+à l’origine de la prise de conscience collective de l’impact destructeur lié à la
+sur-utilisation des énergies fossiles. Ce sont en effet ces actions qui sont à l’origine des
+textes réglementaires qui encadre la rénovation et la conception des bâtiments. Cette
+volonté politique se traduit par le développement de bâtiment toujours plus performants
+sur le plan énergétique comme environnemental et la future réglementation imposera la
+construction de \abr{BEPOS}s. La seconde partie de ce chapitre présente ainsi les
+différents travaux et initiatives à l’origine de ce projet. Cette seconde partie met en
+avant la complexité inhérente à la définition d’une base réglementaire internationale
+commune pourtant nécessaire pour répondre de manière durable aux problématiques
+énergétiques et environnementales. La troisième partie invite le lecteur à découvrir
+l’histoire du développement des technologies solaires et les principales technologies
+thermiques aujourd’hui utilisées. Finalement il y est décrit les différents travaux de la
+littérature dans le domaine du solaire thermique et plus particulièrement pour les
+\abr{SSC}. Ces avancées sont utilisées afin de pouvoir proposer un \abr{SSC} et une
+méthodologie adaptée à la conception de \abr{MEPOS}s dont le détail de la démarche est
+discuté dans la dernière partie de ce chapitre.
+% section objectifs_et_importance_du_contexte_international (end)
 
 
 
@@ -19,6 +136,13 @@
 % ...........................................................................
 \section{L’Homme au centre d’un trouble climatologique} % (fold)
 \label{sec:l_homme_au_centre_d_un_trouble_climatologique}
+Comme explicité ci-avant il est important de définir le contexte dans lequel s’inscrit
+ces travaux. Cette section décrit dans un premiers temps les enjeux liés au réchauffement
+climatique puis les différentes initiatives qui ont permis une prise de conscience
+sur l’importance politique, économique, et environnemental d’un développement raisonné.
+La dernière partie discute plus en détail les actions françaises et sa participation
+à l’échelle internationale.
+
 % ------------------------------------------------------------------------------
 \subsection{Le réchauffement climatique~: origines et conséquences} % (fold)
 \label{sub:le_rechauffement_climatique_origines_et_consequences}
@@ -26,8 +150,8 @@ Auparavant les différentes tâches étaient principalement réalisées soit en 
 éléments (vent, eau, feu) soit en utilisant la force animale (bœufs, chevaux\dots). Les
 révolutions industrielles marquent l’émergence des machines, la société passe alors d’une
 dominante artisanale et agraire à une société commerciale et industrielle affectant aussi
-bien l’agriculture que la politique ou l’économie. Dès le début des années $1990$ le
-pétrole devient une source énergétique (\defref{def:energie}) stratégique et est
+bien l’agriculture que la politique ou l’économie. Dès le début des années $90$ le
+pétrole devient une source énergétique stratégique et est
 activement utilisé dans l’industrie. La tendance s’accélère après la seconde guerre
 mondiale, durant la période des $30$ glorieuses, où la France et d’autres pays développés
 profitent d’une croissance forte tant au niveau économique, que démographique (baby-boom).
@@ -36,8 +160,8 @@ fossiles principaux vecteur de développement de nos civilisations occidentales.
 cette période marquée par le développement du capitalisme, une énergie bon marché
 considérée comme inépuisable, et un accroissement important de la population, la demande
 énergétique explose. Afin de pouvoir comparer les différentes énergies entre elles, une
-unité commune est retenue~: le tonne équivalent pétrole (\abr{tep}) ou tonnes of oil
-equivalent (\abr{toe}) dans sa version anglophone qui équivaut au pouvoir calorifique
+unité commune est retenue~: la tonne équivalent pétrole (\abr{tep}) ou tonnes of oil
+équivalent (\abr{toe}) dans sa version anglophone qui équivaut au pouvoir calorifique
 d’une tonne de pétrole, soit \SI{41.868}{\giga\joule}.
 À titre de comparaison, l’énergie primaire consommée en $1973$ était de
 \SI{6101}{\mega tep} dont \SI{87}{\percent} en énergie fossile alors qu’elle est en $2014$
@@ -56,26 +180,11 @@ reste aujourd’hui encore fortement majoritaire même si la consommation du pé
 
 
 Une fraction de cette énergie est utilisée pour le chauffage, la voiture, ou encore pour
-nos équipements électriques de plus en plus nombreux~: \SI{+41}{\percent}
-entre $2010$ et $2013$ pour la France \textcite{ADEME2015}. L’autre fraction moins visible est
-pourtant majoritaire, c’est l’énergie utilisée pour la production, le transport ou le
-stockage des biens de consommation de la vie courante.
-La sur exploitation de ces énergies montre cependant des limites et impacte de manière
-importante l’environnement.
-
-\begin{Def}[Énergie]\label{def:energie}
-Dans l’ensemble de ce document, le terme énergie réfère non à son sens moral mais à son
-sens physique. L’énergie en physique est la mesure de la capacité d’un système à produire
-de la chaleur, modifier un état, ou encore entraîner un mouvement. Dans notre
-problématique une distinction est nécessaire entre l’énergie dite \textbf{primaire} et
-l’énergie dite \textbf{finale}. L’énergie primaire correspond à l’énergie prélevée à
-l’environnement alors que l’énergie finale est l’énergie primaire après soustraction des
-pertes de stockage, de transport, et de transformation. L’énergie finale correspond ainsi
-à l’énergie consommée par l’utilisateur sans tenir compte des consommations engendrées pour sa
-production à l’opposée de l’énergie primaire. Le bouquet énergétique étant propre à chaque
-pays, les facteurs de conversion le sont eux aussi. Pour la France,
-les coefficients souvent admis sont définis en annexe (\tabref{tab:coef_finale_primaire}).
-\end{Def}
+nos équipements électriques de plus en plus nombreux~: \SI{+41}{\percent} entre $2010$ et
+$2013$ en France \textcite{ADEME2015}. L’autre fraction moins visible représente
+l’énergie utilisée pour la production, le transport ou le stockage des
+biens de consommation de la vie courante. La sur-exploitation de ces énergies montre
+cependant des limites et impacte de manière importante l’environnement.
 
 Les effets du réchauffement climatiques sont aujourd’hui facilement observables et sont
 tels qu’ils bouleversent le fonctionnement de la planète. Bien que nous soyons en période
@@ -119,7 +228,7 @@ l’espace~: c’est le mécanisme d’effet de serre.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Environnement/evolution_effet_serre.png}
+    \includegraphics[width=0.6\textwidth]{Ressources/Images/Environnement/evolution_effet_serre.png}
     \caption{Évolution de la concentration des principaux \abr{GES} au cours des
              derniers siècles \parencite{IPCC2014}.}
     \label{fig:evolution_effet_serre}
@@ -138,7 +247,7 @@ est aussi responsable de nombreux autres facteurs environnementaux aggravants, c
 la pollution de l’air, la réduction de la biodiversité\dots\ \parencite{Biermann2016341}.
 Il a ainsi mis en évidence d’une part l’effet néfaste du réchauffement climatique
 et d’autre part la forte influence humaine au cours de la dernière décennie (\figref{fig:evolution_climat}).
-Lorsque seul les émissions naturelles sont considérées, les résultats de simulations
+Lorsque seules les émissions naturelles sont considérées, les résultats de simulations
 mettent en effet clairement en évidence une stagnation de la température moyenne. À
 l’inverse les observations et simulations qui tiennent compte de la part anthropique
 montrent que l’énergie stockée dans les océans (\abr{OHC}, Ocean Heat Content), la température des océans comme de la
@@ -150,7 +259,7 @@ vie actuelle, une alternative respectueuse de l’environnement, les énergies r
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Environnement/elevation_temperature.jpg}
+    \includegraphics[width=.7\textwidth]{Ressources/Images/Environnement/elevation_temperature.jpg}
     \caption{Mise en évidence des effets anthropiques globaux et à l’échelle de la région
               à travers l’évolution des température des océans et des terres, des précipitations,
               de l’énergie stockée dans les océans (\abr{OHC}, Ocean Heat Content), et
@@ -212,7 +321,7 @@ aujourd’hui largement repris, est introduit~:
 \end{figure}
 \footnotetext{\url{http://www.cdcmortainais.fr}}
 
-Au début portée par des militants, la conscience collective amène à la prise en compte de
+Portée par des militants, la conscience collective amène à la prise en compte de
 l’environnement dans les textes réglementaires avec notamment le \textit{protocole de
 Montreal} ($1987$) mettant en place des restrictions afin de protéger la couche d’ozone.
 
@@ -254,8 +363,8 @@ pays plus pauvres dans des conditions respectueuses de l’environnement.
 
 Dès $2007$, la réunion entre gouvernements et chefs d’états de l’Union Européenne
 (\abr{EU}) définissent des objectifs globaux pour $2020$. Ces objectifs sont au cœur du
-\fnref{http://www.assemblee-nationale.fr/13/europe/rap- info/i1260.asp}{paquet climat-
-énergie} et engage l’Europe à réduire de \SI{20}{\percent} (par rapport à $1990$) ces
+\fnref{http://www.assemblee-nationale.fr/13/europe/rap- info/i1260.asp}{paquet climat-énergie}
+et engagent l’Europe à réduire de \SI{20}{\percent} (par rapport à $1990$) ces
 émissions de \abr{GES}, à améliorer de \SI{20}{\percent} l’efficacité énergétique, et à
 couvrir \SI{20}{\percent} de la consommation finale par des énergies renouvelables
 (\abr{EnR}). Au niveau international, la $21ème$ \abr{COP} ($2016$) a permis d’aller
@@ -403,7 +512,7 @@ place des diagnostics de performance énergétique (\abr{DPE}), des valeurs seui
 méthodologie commune pour évaluer la performance énergétique des bâtiments, le contrôle
 régulier des chaudières (\SI{+10}{kW}) et un effort de normalisation commune par le Comité
 Européen de Normalisation (\abr{CEN}).
-Ces engagements ont été traduit par la plupart des pays membres dans leur \abr{RT}
+Ces engagements ont été traduits par la plupart des pays membres dans leur \abr{RT}
 propre comme la France à travers les
 disposition des lois Grenelle et les \abr{RT}\,$2005$.
 Mise en application en $2006$, elle marque de nombreuses avancées
@@ -422,19 +531,19 @@ label d’excellence énergétique est proposé et impose une consommation en é
 sur le chauffage, la production d’\abr{ECS}, le refroidissement, et l’éclairage à
 \SI{50}{kWh\per\metre\squared} (modulé en fonction des conditions géographiques).
 La mise en place de ce label a permis aux professionnels de s’adapter aux contraintes
-énergétiques fortes qui seront repris dans la réglementation actuellement en vigueur, la
+énergétiques fortes qui seront reprises dans la réglementation actuellement en vigueur, la
 \abr{RT}\,$2012$.
 En effet le passage à la \abr{RT\,$2012$} impose aux bâtiments une consommation maximale (\abr{$C_{ep}$\,max})
 réduite de moitié. De plus le nouveau seuil tient aussi compte de l’éclairage et des auxiliaires alors
-que dans la \abr{RT\,$2005$}, le \abr{$C_{ep}$\,max} est définie uniquement pour le
-chauffage, la production d’\abr{ECS}, et le refroidissement. Les travaux se concentre
+que dans la \abr{RT\,$2005$}, le \abr{$C_{ep}$\,max} est défini uniquement pour le
+chauffage, la production d’\abr{ECS}, et le refroidissement. Les travaux se concentrent
 aujourd’hui sur la préparation de la \abr{RT\,2020}, qui devra permettre d’honorer les
 engagements européens et se rapprocher des objectifs internationaux pour $2030$ et $2050$.
 
 \subsubsection{La place de la maison individuelle} % (fold)
 \label{ssub:la_place_de_la_maison_individuelle}
 Si on considère uniquement le parc résidentiel, la consommation moyenne
-est de \SI{186}{\kWh_{ep}\per\metre\squared} en $2012$ dont \SI{67}{\percent} dû
+est de \SI{186}{\kWh_{ep}\per\metre\squared} en $2012$ dont \SI{67}{\percent} due
 au chauffage. Les ménages représentent ainsi \SI{25}{\percent} des consommations
 en énergie primaire (\figref{fig:repartition_conso_primaire}). Finalement malgré
 une réduction de la consommation moyenne des logements jusqu’en $2006$, la
@@ -442,7 +551,7 @@ consommation augmente entre $2002$ et $2012$. Il est donc important
 de faire des économies d’énergie dans le bâtiment et en particulier dans le résidentiel
 afin d’une part de respecter les engagements mais aussi réduire la facture énergétique.
 D’après l’Institut National de la Statistique et des Études Économiques (\abr{INSEE})
-la maison individuelle représente en $2016$ \SI{56}{\percent} des \SI{35}{milliers}
+la maison individuelle représente en $2016$ \SI{56}{\percent} des \SI{35}{millions}
 logements en France.
 Rénover le patrimoine existant est la mesure la plus importante afin de réduire
 les consommations en énergie fossile, réduire notre dépendance à l’énergie nucléaire,
@@ -482,12 +591,12 @@ propre réglementation. En France cette initiative prend le nom de Bâtiment à
     \item La consommation doit être couverte par des sources d’énergies renouvelables
     \item La production doit être réalisée localement
 \end{itemize}
-Le concept reste ainsi fortement interprétable et aucunes indications concrètes
-permettant d’atteindre ces objectifs ne sont pour le moment fournies.
+Le concept reste ainsi fortement interprétable et aucune indication concrète
+permettant d’atteindre ces objectifs n’est pour le moment fournie.
 Pour cette raison, de nombreuses définitions ont été développées au sein du globe,
 si bien que la commission européenne a mandaté une expertise permettant de classer ou
 tout du moins d’identifier les différences \parencite{ECOFYS2013}. En effet, chaque pays
-porte ces propres convictions, sa propre culture du bâtiment et de la construction, sa
+porte ses propres convictions, sa propre culture du bâtiment et de la construction, sa
 propre politique, son propre mix énergétique, ses propres contraintes d’accès à l’énergie,
 et bien sûr son propre climat.
 Au final le rapport suggère l’élaboration de près de $75$ définitions différentes et
@@ -580,7 +689,7 @@ pour la maison individuelle afin d’aider à la préparation de la \abr{RT\,$20
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Bilan} % (fold)
 \label{ssub:bilan_initiative_fr}
-Bien que non décrit dans ces travaux, il est aussi possible de faire labellisé un bâtiment
+Bien que non décrit dans ces travaux, il est aussi possible de faire labelliser un bâtiment
 suivant le concept \fnref{https://www.minergie.ch/fr/?l}{\textit{Minergie}} ou
 \fnref{http://www.passivehouse.com/}{\textit{Passivhauss}} respectivement issus de
 l’initiative Suisse et Allemande. La France a ainsi été très active tant au niveau
@@ -683,21 +792,22 @@ fixée à \SI{80}{ans}. \textcite{Sartori2012220} proposent trois types de bilan
     \item mensuel (\enquote{monthly net balance})
 \end{itemize}
 
-Le bilan \textit{charge / production} est défini sur une base annuelle
-et tient compte des interactions entre le bâtiment et le réseau mais nécessite pour
-ce faire un pas de simulation faible afin d’estimer l’autoconsommation.
-Le choix d’un pas de temps plus réduit induit l’estimation plus précise du comportement
-des occupants à travers les consommations électro-domestiques ou le puisage en \abr{ECS}.
-Dans la seconde approche, équilibre \textit{importation / exportation}, les énergies respectives
-de chaque coté du bilan sont dans un premier temps pondérées par leurs coefficients
-respectifs puis sommées. Ainsi il est donc considéré que l’ensemble de la production est exporté vers le réseau
-et à l’inverse que l’ensemble de la consommation est fourni par le réseau. La seconde approche est ainsi plus
-simple à mettre en place, expliquant son adoption par un plus grand nombre de méthodologies.
-La première approche peut cependant être retenue expérimentalement sur les maisons pilotes
-et donner de précieuses informations. Finalement le dernier bilan proposé est \textit{mensuel} et
-permet de mieux évaluer l’équilibre ou déséquilibre existant entre la production et la
-consommation soulevant la question de l’adéquation entre production et consommation
-qui est discutée après avoir établi un cadre clair des frontières du bilan.
+Le bilan \textit{charge / production} est défini sur une base annuelle et tient compte des
+interactions entre le bâtiment et le réseau mais nécessite pour ce faire un pas de
+simulation faible afin d’estimer l’autoconsommation. Le choix d’un pas de temps plus
+réduit induit l’estimation plus précise du comportement des occupants à travers les
+consommations électro-domestiques ou le puisage en \abr{ECS}. Dans la seconde approche,
+équilibre \textit{importation / exportation}, les énergies respectives de chaque coté du
+bilan sont dans un premier temps pondérées par leurs coefficients respectifs puis sommées.
+Ainsi il est donc considéré que l’ensemble de la production est exportée vers le réseau et
+à l’inverse que l’ensemble de la consommation est fournie par le réseau. La seconde
+approche est ainsi plus simple à mettre en place, expliquant son adoption par un plus
+grand nombre de méthodologies. La première approche peut cependant être retenue
+expérimentalement sur les maisons pilotes et donner de précieuses informations. Finalement
+le dernier bilan proposé est \textit{mensuel} et permet de mieux évaluer l’équilibre ou
+le déséquilibre existant entre la production et la consommation soulevant la question de
+l’adéquation entre production et consommation qui est discutée après avoir établi un cadre
+clair des frontières du bilan.
 \begin{figure}
     \centering
     \includegraphics{Ressources/Images/Environnement/bilan_nzeb.png}
@@ -742,7 +852,7 @@ un site extérieur pour produire de l’énergie renouvelable, et le recours au 
 \paragraph{Les usages~:} % (fold)
 \label{par:les_usages}
 La définition d’un \abr{BEPOS} met ainsi clairement en avant l’utilisation d’énergies
-renouvelables afin de compenser les consommations sur site. Cette approche exclu
+renouvelables afin de compenser les consommations sur site. Cette approche exclut
 cependant les systèmes de cogénération qui sont pourtant des solutions qui permettent
 de maximiser l’utilisation des énergies non renouvelables \parencite{Sartori2010}.
 \textcite{Marszal2011971} mettent aussi en exergue la diversité observée sur les usages considérés pour le calcul
@@ -760,13 +870,13 @@ La prise en compte de ces nouveaux usages nécessite d’estimer les consommatio
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Adéquation temporelle avec le réseau~:} % (fold)
 \label{ssub:adequation_temporelle_avec_le_réseau}
-Un \textit{Net}\,\abr{ZEB} est part définition connecté au réseau. De plus il a été mis en évidence
+Un \textit{Net}\,\abr{ZEB} est par définition connecté au réseau. De plus il a été mis en évidence
 que l’obtention d’un bilan positif au niveau annuel ne permet pas d’assurer la
 symétrie des échanges sur toute l’année. Plus la fréquence du bilan positif est importante,
 plus l’asymétrie entre production et consommation est visible. En effet, la production
 d’énergie renouvelable est en majorité assurée par une production photovoltaïque
 dont les pics de production en période estivale ne sont pas en adéquation avec la forte demande
-énergétique en période hivernale. Le difficulté réside ainsi à gérer les pointes
+énergétique en période hivernale. La difficulté réside ainsi à gérer les pointes
 de consommations (hiver), les excédents de production (été), et la non-continuité
 de la production renouvelable (éolien, photovoltaïque).
 Cette mutation dans le bouquet énergétique a donc imposé le développement des
@@ -779,7 +889,7 @@ niveau du bâtiment (\enquote{load maching}) ou entre le bâtiment et le réseau
 de concomitance entre la demande du bâtiment et production sur site. La seconde
 permet d’évaluer la correspondance temporelle entre exportation du bâtiment et besoins au niveau du
 réseau. Une référence complète des différents indicateurs trouvés dans la littérature est
-proposé par \textcite{Salom2011} puis intégrés dans les travaux de annexe 52
+proposée par \textcite{Salom2011} puis intégrée dans les travaux de annexe $52$
 \parencite{Salom2014}.
 % subsubsection adequation_temporelle_avec_le_réseau (end)
 
@@ -797,7 +907,7 @@ Qualité de l’Air Intérieur (\abr{QAI}) permettant de s’assurer que la perf
 obtenue en sacrifiant le bien être des occupants. Un \textit{Net}\,\abr{ZEB} étant par définition connecté,
 l’adéquation du bâtiment avec le réseau est aussi une des principales recommandations.
 Finalement, le rapport présente une procédure standardisée mettant en avant différentes échelles
-de suivie du bâtiment ainsi qu’un outil d’analyses facilitant la comparaison des divers projets entre eux.
+de suivi du bâtiment ainsi qu’un outil d’analyse facilitant la comparaison des divers projets entre eux.
 % subsubsection mesures_et_verifications (end)
 % subsection la_definition_d_un_cadre_international (end)
 
@@ -810,7 +920,7 @@ Au niveau européen, les exigences pour $2020$ sont décrites à travers la dire
 parvenir aux \textit{nearly}\,\abr{ZEB}. Afin de faciliter l’application de la directive, la commission
 européenne a mandaté le Comité Européen de Normalisation (\abr{CEN})
 pour la rédaction d’un cadre normatif~: \abr{PREN\,$15603$} \parencite{CEN2013}. Ces travaux s’inscrivent
-dans dans un projet de normalisation européenne pour le développement d’une définition
+dans un projet de normalisation européenne pour le développement d’une définition
 commune, flexible, et claire de la \textit{nearly}\,\abr{ZEB} afin d’inciter les professionnels au développement
 de solutions innovantes et adaptées. De plus le cadre de la définition doit être
 suffisamment générique afin de permettre sa traduction au niveau national par les différents
@@ -822,7 +932,7 @@ des frontières considérées, ainsi que sur l’adéquation temporelle avec le 
 \subsubsection{Les frontière considérées} % (fold)
 \label{ssub:les_frontière_considérées}
 La directive décrit que la part de la production considérée doit être sur site (\enquote{on-site})
-ou à proximité (\enquote{nearby}). Les travaux du \abr{CEN} ajoute une description plus précise
+ou à proximité (\enquote{nearby}). Les travaux du \abr{CEN} ajoutent une description plus précise
 du périmètre en explicitant ces deux termes. La production sur site considère uniquement
 le terrain où est localisé le bâtiment, alors que la production à proximité intègre
 les sources locales jusqu’à l’échelle du quartier permettant de mutualiser les productions
@@ -864,7 +974,7 @@ coefficient.
 La méthodologie décrit ainsi de manière précise les attentes sur les besoins, les
 consommations, la part des énergies renouvelables, et sur la balance énergétique globale
 illustrée à travers la \figref{fig:attribution_nZEB}.
-Enfin, le non-respect d’un des indicateurs respectifs de chaque axes disqualifie le bâtiment
+Enfin, le non-respect d’un des indicateurs respectifs de chaque axe disqualifie le bâtiment
 qui ne peut donc pas accéder au titre de \textit{nearly}\,\abr{ZEB}.
 
 \begin{figure}
@@ -884,12 +994,12 @@ qui ne peut donc pas accéder au titre de \textit{nearly}\,\abr{ZEB}.
 \label{sub:bilan_sur_la_BEPOS}
 Le \abr{BEPOS} pourtant simple dans l’idée nécessite la prise en compte de nombreux
 facteurs~: le choix du ou des indicateurs évalués, l’intermittence des énergies, les
-usages pris en compte, la période et les limites physiques considérés, le type de bilan, et
+usages pris en compte, la période et les limites physiques considérées, le type de bilan, et
 finalement le processus de vérification.
 Les divers travaux internationaux ont permis de mieux comprendre le processus de
 construction d’un \abr{BEPOS} en proposant une synthèse des travaux effectués.
 De plus le nombre important de projets innovants ou de démonstrations de faisabilité
-permettent d’identifier forces et faiblesses de chaque approches.
+permettent d’identifier forces et faiblesses de chaque approche.
 Au niveau européen, une normalisation est ainsi en cours (\abr{PREN\,$15603$}) dont la
 construction est guidée par les travaux au niveau international mais aussi des résultats
 des études sur le plan national. Suffisamment générique mais précise, cette norme
@@ -1377,16 +1487,16 @@ la performance du capteur et a vite montré ces limites.
 
 \paragraph{Approche instantanée~:} % (fold)
 \label{par:approche_instantanée}
-Dans les années $1990$ avec la norme \abr{ISO}\,$9806$-$1$ une nouvelle corrélation plus précise est définie. Celle-ci
-dépend de deux nouveaux coefficients ($c_{1}$ et $c_{2}$) permettant d’estimer plus
-finement la performance en fonction de $T_{ext}$ \eqref{eq:rendement_instantanne}.
-la norme \abr{ISO}\,$9806$-$1$ considère la surface de l’absorbeur alors que la norme européenne
-EN\,$12975$-$2:2001$ considère la surface d’entrée \parencite{EN1297522001}.
-Ainsi en fonction de la norme considérée la valeur des coefficients varient, l’écart étant
-fonction de la différence de surface entre l’absorbeur et la surface d’entrée.
-De plus certains organismes de certification fournissent aussi la valeur de ces coefficients suivant la
-surface totale du capteur. Il est donc nécessaire de bien faire la distinction entre
-surface totale, d’entrée, et d’absorbeur.
+Dans les années $1990$ avec la norme \abr{ISO}\,$9806$-$1$ une nouvelle corrélation plus
+précise est définie. Celle-ci dépend de deux nouveaux coefficients ($c_{1}$ et $c_{2}$)
+permettant d’estimer plus finement la performance en fonction de $T_{ext}$
+\eqref{eq:rendement_instantanne}. la norme \abr{ISO}\,$9806$-$1$ considère la surface de
+l’absorbeur alors que la norme européenne EN\,$12975$-$2:2001$ considère la surface
+d’entrée \parencite{EN1297522001}. Ainsi en fonction de la norme considérée la valeur des
+coefficients varient, l’écart étant fonction de la différence de surface entre l’absorbeur
+et la surface d’entrée. De plus certains organismes de certification fournissent aussi la
+valeur de ces coefficients suivant la surface totale du capteur. Il est donc nécessaire de
+bien faire la distinction entre surface totale, d’entrée, et d’absorbeur.
 
 \begin{equation}\label{eq:rendement_instantanne}
     P_{u} = \eta_{0} \times G_{in}- c_{1} (T_{moy} - T_{ext}) - c_{2} (T_{moy} - T_{ext})^{2}
@@ -1810,9 +1920,9 @@ permettant d’obtenir une estimation de la performance du système pour différ
         FSC = \frac{\sum_{1}^{12} \left( \min(Conso_{ref, mois}, I_{inc} \times A) \right)}{Conso_{ref}}
 \end{equation}
 
-Dans la sous-tâche B, un nouveau modèle de capteur solaire détaillé est ajouté à \textit{TRNSYS}, (type~
-$132$). Le rendement du capteur est défini à partir des équations quasi-
-dynamiques explicitées à travers \ref{ssub:rendement_d_un_capteur_solaire_thermique}.
+Dans la sous-tâche B, un nouveau modèle de capteur solaire détaillé est ajouté à \textit{TRNSYS},
+(type~$132$). Le rendement du capteur est défini à partir des équations quasi-dynamiques
+explicitées à travers \ref{ssub:rendement_d_un_capteur_solaire_thermique}.
 
 Finalement dans la sous-tâche C \parencite{Task26C2007}, une analyse détaillée a été réalisée sur
 $9$ systèmes différents balayant une large variété de
@@ -2113,8 +2223,8 @@ système est optimisé avec deux méta-heuristiques, un essaim particulaire et u
 génétique. La solution optimale obtenue dépend fortement de l’algorithme utilisé et
 l’essaim particulaire permet d’obtenir les meilleures valeurs pour les $3$ objectifs.
 \textcite{Asaee2014510} évaluent la performance d’un \abr{SSC} (système \emph{\#14} de la tâche
-$26$) couvrant chauffage, \abr{ECS}, et climatisation. L’étude considère un modèle mono-
-zone et $3$ ballons dont un pour stocker l’énergie solaire lorsque les besoins sont déjà
+$26$) couvrant chauffage, \abr{ECS}, et climatisation. L’étude considère un modèle
+mono-zone et $3$ ballons dont un pour stocker l’énergie solaire lorsque les besoins sont déjà
 couverts. La logique de contrôle retenue considère deux modes de fonctionnement, un mode
 hiver et un mode été. Durant l’été la priorité est toujours donnée à la production
 d’\abr{ECS} alors que durant l’hiver la priorité est donnée à la production d’\abr{ECS} la
@@ -2124,11 +2234,11 @@ $4$ climats étudiés avec un $F_{sol}$ supérieur à \SI{70}{\percent}. Finalem
 plus récemment, une comparaison entre une optimisation multi-objectifs et une optimisation
 mono-objectif d’un \abr{SSC} couplé à un \abr{\textit{Net} ZEB} est discutée
 \parencite{Rey2016622}. Comme pour les autres optimisations, seules les équipements
-composant le \abr{SSC} sont retenue comme critères de décisions. L’optimisation mono-
-objectif est réalisée sur la somme pondérée des différents objectifs (\abr{LCE}
+composant le \abr{SSC} sont retenue comme critères de décisions. L’optimisation
+mono-objectif est réalisée sur la somme pondérée des différents objectifs (\abr{LCE}
 et \abr{CCV}). L’étude montre que l’obtention de solution résultant d’un compromis entre
-les divers objectifs est un travail fastidieux et coûteux en temps lorsque l’approche mono-
-objectif est utilisée.
+les divers objectifs est un travail fastidieux et coûteux en temps lorsque l’approche
+mono-objectif est utilisée.
 % subsubsection optimisation_de_ssc (end)
 
 
@@ -2342,8 +2452,8 @@ ballon\dots). Finalement, la performance est évaluée globalement, ne faisant p
 distinction entre la part solaire apportée au chauffage et la part solaire apportée à la
 production d’\abr{ECS}.
 Ainsi ces travaux chercheront à caractériser la performance d’un \abr{SSC} innovant à la
-fois sur le chauffage et sur la production d’\abr{ECS} à travers une approche multi-
-objectifs. De plus le système solaire, l’enveloppe du bâtiment, et la logique de contrôle
+fois sur le chauffage et sur la production d’\abr{ECS} à travers une approche
+multi-objectifs. De plus le système solaire, l’enveloppe du bâtiment, et la logique de contrôle
 seront évalués simultanément afin d’explorer les différentes combinaisons existantes
 permettant d’atteindre un bilan positif.
 Dans cette optique, une modélisation détaillée du \abr{SSC} et de son algorithme de
@@ -2352,8 +2462,8 @@ propres à chaque site, chaque industriels, mais aussi à chaque client dont les
 varient fortement. Partant de ce constat, il apparaît plus intéressant de proposer
 un ensemble de solutions techniquement différentes mais répondant toutes aux contraintes
 de la \abr{MEPOS} à travers une approche multi-objectifs. En effet une approche mono-objectif
-contraint à l’obtention d’une solution unique. Les limitations propres à l’approche mono-
-objectif et multi-objectifs sont discutées plus amplement dans le chapitre $3$ de ce
+contraint à l’obtention d’une solution unique. Les limitations propres à l’approche
+mono-objectif et multi-objectifs sont discutées plus amplement dans le chapitre $3$ de ce
 document.
 % subsubsection approche_proposee (end)
 
