@@ -522,8 +522,8 @@ diverses. Certains les utilises pour faire de l’optimisation, d’autres dans 
 réaliser une analyse de sensibilité détaillée avec des méthode de décomposition de la
 variance (voir Fig~\ref{fig:classement_methode_sensibilite}). \textcite{Armand-Decker2015}
 les utilisent en substituts à un modèle de bâtiment réalisé sous \textit{Energy Plus} afin
-de réduire le temps nécessaire pour l’optimisation multi- objectifs d’un bâtiment multi-
-étage en bois. Plus récemment, \textcite{Faggianelli201761} a utilisé les méta-modèles
+de réduire le temps nécessaire pour l’optimisation multi- objectifs d’un bâtiment multi-étages
+en bois. Plus récemment, \textcite{Faggianelli201761} a utilisé les méta-modèles
 dans le cadre de garantie de performance pour un bâtiment de bureaux. Après réduction du
 nombre de facteurs grâce à la réalisation d’un criblage de \textit{Morris}, plusieurs
 méthodes permettant l’obtention des indices de \textit{Sobol} sont comparées. Les
@@ -805,8 +805,8 @@ on parle alors de fronts convexes ou non-convexes \parencite{Collette2002}. Un e
 est dit \textit{convexe} lorsque pour deux points distincts, la droite les reliant est
 contenue dans cet ensemble (\figref{fig:convex_nadir}(a)). À l’inverse si l’ensemble ne
 contient pas la droite, il est non-convex (\figref{fig:convex_nadir}(b)). Ce terme est
-aussi utilisé pour décrire la forme du front de Pareto dans le cas de problèmes multi-
-objectif.
+aussi utilisé pour décrire la forme du front de Pareto dans le cas de problèmes
+multi-objectifs.
 % subsubsection la_convexite (end)
 
 \begin{figure}
@@ -1073,8 +1073,8 @@ solutions, l’impact environnemental, le confort des occupants en période
 estivale, et le coût, ont été évalués. Plus récemment, \textcite{Recht2016} a
 utilisé l’algorithme \abr{NSGA II} pour optimiser de manière combiné, le coût,
 l’émission de Gaz à effet de serre, et les besoins d’une maison à énergie
-positive. Dans les deux cas, les résultats montrent que l’approche par méta-
-heuristique permet de récupérer la majorité des solutions optimales au sens de Pareto pour
+positive. Dans les deux cas, les résultats montrent que l’approche par méta-heuristique
+permet de récupérer la majorité des solutions optimales au sens de Pareto pour
 un nombre fortement réduit d’évaluations.
 % paragraph les_algorithmes_evolutionnaires (end)
 
@@ -1095,8 +1095,8 @@ exploitation afin d’éviter la stagnation.
 Le \abr{PSO} (Particule Swarm Optimization), un autre algorithme, s’inspire du
 comportement des oiseaux qui volent de manière synchrone et qui sont capables
 d’éviter les collisions même lors de changements brusques de direction. Cette
-approche a été appliquée au domaine du bâtiment pour l’optimisation multi-
-objectif en tenant compte du confort des occupants, de l’impact environnemental,
+approche a été appliquée au domaine du bâtiment pour l’optimisation multi-objectifs
+en tenant compte du confort des occupants, de l’impact environnemental,
 des besoins en énergie, et de la sécurité de l’ouvrage \parencite{Armand-Decker2015}.
 Il existe de nombreuses autres implémentations et le lecteur intéressé pourra
 consulter \textcite{Aboul-EllaHassanien2015} qui décrit les approches récentes et
@@ -1115,8 +1115,8 @@ les méta-heuristiques ont en commun l’introduction de mécanismes stochastiqu
 et nécessitent le réglage de différents paramètres. Ces paramètres sont dans la
 majorité déterminés de manière empirique même si certaines méthodes
 existent afin d’automatiser ce paramétrage. \textcite{Lopez-Ibanez2012861} ont ainsi
-adapté l’algorithme \textit{F-Race} \parencite{Birattari2010311} aux problèmes multi-
-objectifs et proposent un outil permettant d’automatiser la paramétrisation de
+adapté l’algorithme \textit{F-Race} \parencite{Birattari2010311} aux problèmes
+multi-objectifs et proposent un outil permettant d’automatiser la paramétrisation de
 différents algorithmes de colonies de fourmis \parencite{Lopez-Ibanez2012861}.
 Les auteurs montrent ainsi qu’un réglage automatique par apprentissage permet
 d’améliorer la performance des algorithmes par rapport à un réglage empirique.
@@ -1940,8 +1940,8 @@ sélectionnés afin de couvrir les principales difficultés existantes~:
 \label{sec:bilan}
 Au cours de ce chapitre une méthodologie d’aide à la décision a été développée. Le choix a
 été fait dans un premier temps de réduire la complexité des modèles à travers une analyse
-de sensibilité globale puis de réduire le temps d’évaluation du modèle grâce à des méta-
-modèles. Bien que nécessaire de ce cas précis, il reste préférable de conserver le modèle
+de sensibilité globale puis de réduire le temps d’évaluation du modèle grâce à des
+méta-modèles. Bien que nécessaire de ce cas précis, il reste préférable de conserver le modèle
 original dans le cas où il peut être évalué dans un temps raisonnable afin d’éviter
 d’introduire une erreur d’approximation. Pour l’aide à la décision, une approche a posteriori
 par coordonnées parallèles est retenue afin de ne pas introduire de préférences en amont et permettre d’explorer
