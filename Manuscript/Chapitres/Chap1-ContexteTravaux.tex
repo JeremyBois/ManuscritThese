@@ -109,25 +109,29 @@ aussi à chaque client dont les attentes varient fortement. Partant de ce consta
 apparaît plus intéressant de proposer un ensemble de solutions techniquement différentes
 mais répondant toutes aux contraintes de la \abr{MEPOS} à travers une approche multi-objectifs.
 
+\paragraph{} % (fold)
 Ce chapitre décrit le contexte global dans lequel se place ces travaux. Il est dans un
 premier temps présenté les enjeux liés au réchauffement climatique et à la pénurie des
 ressources pour une population en forte croissance. Puis il est introduit les initiatives
-à l’origine de la prise de conscience collective de l’impact destructeur lié à la
-sur-utilisation des énergies fossiles. Ce sont en effet ces actions qui sont à l’origine des
+à l’origine de la prise de conscience collective de l’impact destructeur lié à la sur-
+utilisation des énergies fossiles. Ce sont en effet ces actions qui sont à l’origine des
 textes réglementaires qui encadre la rénovation et la conception des bâtiments. Cette
 volonté politique se traduit par le développement de bâtiment toujours plus performants
-sur le plan énergétique comme environnemental et la future réglementation imposera la
-construction de \abr{BEPOS}s. La seconde partie de ce chapitre présente ainsi les
-différents travaux et initiatives à l’origine de ce projet. Cette seconde partie met en
-avant la complexité inhérente à la définition d’une base réglementaire internationale
-commune pourtant nécessaire pour répondre de manière durable aux problématiques
-énergétiques et environnementales. La troisième partie invite le lecteur à découvrir
-l’histoire du développement des technologies solaires et les principales technologies
-thermiques aujourd’hui utilisées. Finalement il y est décrit les différents travaux de la
-littérature dans le domaine du solaire thermique et plus particulièrement pour les
-\abr{SSC}. Ces avancées sont utilisées afin de pouvoir proposer un \abr{SSC} et une
-méthodologie adaptée à la conception de \abr{MEPOS}s dont le détail de la démarche est
-discuté dans la dernière partie de ce chapitre.
+sur le plan énergétique comme environnemental et aujourd’hui par la construction de
+\abr{BEPOS}s. La seconde partie de ce chapitre présente ainsi les différents travaux et
+initiatives à l’origine de ce projet. Elle met notamment en avant la complexité inhérente
+à la définition d’une base réglementaire internationale commune, pourtant nécessaire pour
+répondre de manière durable aux problématiques énergétiques et environnementales. La
+troisième partie invite le lecteur à découvrir l’énergie solaire, comment elle est
+mesurée, récupérée, et les difficultés lié à l’évaluation d’un \abr{SSC} en particulier à
+cause de géométrie diverses et variées. Il existe en effet de nombreuses technologie en
+solaire thermique permettant de valoriser soit en chaleur, soit en électricité, l’énergie
+solaire. Suit une évaluation de l’évolution du solaire thermique à différentes échelles
+est présentée. Finalement, les différents travaux de la littérature dans le domaine du
+solaire thermique et plus particulièrement pour les \abr{SSC}s sont discutés. Ces avancées
+sont utilisées afin de pouvoir proposer un \abr{SSC} et une méthodologie adaptée à la
+conception de \abr{MEPOS}s dont le détail de la démarche est discuté dans la dernière
+partie de ce chapitre.
 % section objectifs_et_importance_du_contexte_international (end)
 
 
@@ -1094,6 +1098,29 @@ réalisées sur les \abr{SSC} est discuté à travers un état de l’art.
 % ------------------------------------------------------------------------------
 \subsection{Du soleil à la Terre} % (fold)
 \label{sub:du_soleil_a_la_terre}
+Avant de décrire les différents types de capteurs existant en solaire thermique,
+il est intéressant dans un premier temps de présenter le potentiel au niveau de
+la surface terrestre et les moyens permettant de le mesurer. En effet que ce soit
+pour de l’expérimental ou de la modélisation, il est toujours nécessaire de connaître
+a minima le rayonnement incident sur les capteurs. Dans le cas expérimental, cette
+information est la plupart du temps mesurée sur site afin d’être la plus précise
+possible. Dans le cas de la modélisation, il est nécessaire d’avoir recourt à des
+fichiers météorologiques qui peuvent soit représenter une année complète, soit des
+fragments de mois qui forment une année caractéristique du climat du site étudié. Ces fichiers
+sont indispensables pour pouvoir caractériser le potentiel d’une installation solaire
+et donc la performance d’un \abr{SSC} même si comme illustré ci-après ils ne comportent
+pas que des avantages.
+
+Ainsi cette partie présente le potentiel solaire au niveau terrestre, puis décrit les
+moyens disponibles pour le mesurer. Il est ensuite introduit les différents fichiers
+météorologiques et leurs avantages et inconvénients. Cependant la plupart des maisons
+individuelles sont construites avec des pans de toiture inclinés que ce soit pour
+l’esthétique ou pour favoriser un l’écoulement pluvial ou encore améliorer la résistance à
+diverses conditions climatiques. Il est donc aussi introduit une méthode de calcul
+simplifiée permettant d’obtenir le potentiel solaire sur une surface inclinée en fonction
+du temps universel.
+
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{L’énergie solaire} % (fold)
 \label{ssub:l_energie_solaire}
@@ -1183,8 +1210,38 @@ l’écran.
 
 \paragraph{Les fichiers météorologiques} % (fold)
 \label{par:les_fichiers_meteorologiques}
-Afin d’estimer la performance d’un système solaire il est nécessaire d’avoir des données
-d’ensoleillement. La première approche consiste à utiliser des données réelles du passé
+Afin d’estimer la performance d’un système solaire il est essentiel d’avoir des données
+d’ensoleillement. Les données météorologiques varient cependant fortement d’une année à
+l’autre et il est donc nécessaire de simuler un nombre important d’années afin d’obtenir
+le comportement moyen du système considéré. Afin de limiter la durée de simulation une
+autre approche est couramment retenue, l’utilisation de fichiers \textit{typiques}
+(\abr{TMY}, Typical Meteorological Year). Le rayonnement solaire est cependant
+très variable d’une année à l’autre et la construction de fichiers typiques est par
+conséquent fortement dépendante de la période considérée (\figref{fig:typique_vs_observee}).
+Le fichier typique est ici construit à partir de données couvrant la période de $1985$ à
+$2000$. L’irradiation mensuelle du fichier typique est majoritairement inférieure à celle
+observée sur les dernières années, en particulier durant la période estivale.
+L’irradiation estivale étant importante et les besoins en chauffage inexistant, sa sa
+sous-évaluation n’est pas un facteur limitant pour l’évaluation d’un \abr{SSC}. Cependant
+avec l’amélioration de l’isolation des bâtiment, le solaire thermique peut aussi être
+valorisé pour la climatisation du bâtiment même si la technologie n’est encore que peu
+utilisée. Dans ce cas de figure, il est important de correctement estimer le l’irradiation
+solaire en période estivale qui aura un impact direct sur le potentiel du \abr{SSC}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Ressources/Images/Solaire/typique_vs_observee.pdf}
+    \caption[Comparaisons mensuelles de l’irradiation solaire entre un fichier typique et des données réelles]
+            {Comparaisons mensuelles de l’irradiation horizontale ($I$) (haut) et
+            directe à la normale ($I_{dir,\,nor}$) (bas) pour la station météo de Mérignac
+            et le fichier typique de Bordeaux.}
+    \label{fig:typique_vs_observee}
+\end{figure}
+
+
+\paragraph{} % (fold)
+Il existe ainsi deux approches possibles pour évaluer le potentiel d’un \abr{SSC}.
+La première consiste à utiliser des données réelles du passé
 acquises par la mesure. Ces données peuvent alors être disponibles à plusieurs fréquences
 et une distinction est nécessaire entre les données récupérées par des stations météos et
 les données récupérées à partir de données satellites. Avec les données issues de stations
@@ -1195,7 +1252,6 @@ le rayonnement terrestre direct ($G_{dir,\,nor}$), diffus ($G_{dif,\,hor}$), ou 
 site étudié afin de fournir des données pertinentes. En France, ces données peuvent aussi
 être obtenues à partir des stations météos de \textit{Météo France} ou bien plus récemment auprès
 de l’organisme \fnref{http://weather.whiteboxtechnologies.com/}{WhiteBoxTechnologie}.
-
 Les données satellites permettent elles de récupérer les données solaires à n’importe quel
 point du globe ($265$ pays) et tiennent compte des spécificités du lieu comme du dénivelé.
 Le rayonnement au sol est issu de données satellites (\textit{Meteosat}) et est
@@ -1211,11 +1267,9 @@ un modèle simulant une atmosphère (\textit{Copernicus McClear}) proposé par l
 Copernicus Atmosphere Monitoring Service (\fnref{http://www.copernicus.eu/}{\abr{CAMS}}).
 Le rayonnement obtenu est vérifié et validé grâce aux données terrestres disponibles.
 
-Les données météorologiques varient cependant fortement d’une année à l’autre et il est
-donc nécessaire de simuler un nombre important d’années afin d’obtenir le comportement
-moyen du système considéré. Afin de limiter la durée de simulation une autre approche est
-couramment retenue, l’utilisation de fichiers \textit{typiques} (\abr{TMY}, Typical
-Meteorological Year). Un fichier météo comportant de nombreuses informations
+\paragraph{} % (fold)
+La seconde approche permet de limiter la durée de simulation en utilisation des
+fichiers \textit{typiques}. Un fichier météo comportant de nombreuses informations
 (températures extérieures, humidité relative, vitesse du vent, ou encore ensoleillement),
 il est nécessaire de définir un ordre d’importance grâce à des pondérations. De plus
 afin d’être cohérent temporellement un fichier typique doit être constitué que de blocs de
@@ -1287,20 +1341,20 @@ la plan incliné et l’horizontal (Si $\beta > \SI{90}{\degree}$ alors le plan 
 soleil), il alors possible de déterminer chaque composante de $G_{inc}$. D’après les
 règles de calcul de l’\textit{\abr{ASHRAE}}, la part diffuse et réfléchie peuvent être
 approximées uniquement en connaissant $G_{hor}$, $G_{dif, hor}$ et $\beta_{plan}$
-\eqref{eq:rayonnement_surf_incline}. Cependant la part directe ($G_{dir, inc}$) nécessite
-de connaître l’angle d’incidence ($\theta$) qui est l’écart angulaire entre le segment
-reliant le soleil à une surface et la normale à cette même surface.
+\eqref{eq:rayonnement_surf_incline} avec $\rho_{sol}$ l’albédo du sol.
+Cependant la part directe ($G_{dir, inc}$) nécessite de connaître l’angle d’incidence
+($\theta$) qui est l’écart angulaire entre le segment reliant le soleil à une surface et
+la normale à cette même surface.
 
 \begin{equation}\label{eq:rayonnement_surf_incline}
     \begin{aligned}
-        G_{dir, inc} &= G_{dir, nor} \times \cos(\theta) \\[10pt]
-        G_{dif, inc} &= G_{dif, hor} \times \frac{1 + \cos(\beta_{plan})}{2} \\[10pt]
-        G_{r, inc}   &= G_{hor} \times \rho_{sol} \frac{1 - \cos(\beta_{plan})}{2}
+        G_{dir, inc} &= G_{dir, nor} \times \cos(\theta) \\
+        G_{dif, inc} &= G_{dif, hor} \times \frac{1 + \cos(\beta_{plan})}{2} \\
+        G_{r, inc}   &= G_{hor} \times \rho_{sol} \frac{1 - \cos(\beta_{plan})}{2} \\
     \end{aligned}
-    \text{Avec $\rho_{sol}$ l’albédo du sol.}
 \end{equation}
 
-Le calcul de l’angle d’incidence peut être approximé par \eqref{eq:angle_incidence}
+Le calcul de l’angle d’incidence ($\theta$) peut être approximé par \eqref{eq:angle_incidence}
 \parencite{Cooper1969333,Duffie1980} et la liste des angles solaires
 (\figref{fig:angles_solaires}) intervenant est décrite ci-dessous~:
 \begin{itemize}
@@ -1309,19 +1363,19 @@ Le calcul de l’angle d’incidence peut être approximé par \eqref{eq:angle_i
           (positive au Nord)
     \item Latitude ($\phi$)~: position Nord-Sud d’un point par rapport à l’équateur
     \item L’angle horaire ($AH$)~: L’écart en minutes séparant du midi solaire (négatif en matinée).
-    \item L’angle zénithal ($\theta_{sol}$)~: L’angle d’incidence pour une surface horizontale
+    \item L’angle zénithal ($\theta_{z}$)~: L’angle d’incidence solaire sur une surface horizontale
     \item L’altitude solaire ($\alpha_{sol}$)~: écart angulaire entre une surface horizontale et le segment reliant
           le soleil à cette même surface. C’est l’angle complémentaire de l’angle zénithal.
     \item Azimut solaire ($\gamma_{sol}$)~: Écart angulaire entre la projection du segment reliant
           le soleil et une surface et le Sud (positif dans le sens horaire)
-    \item Azimut du plan ($\gamma$)~: Déviation par rapport au Sud de la projection
-          du plan sur l’horizontale ($\SI{-180}{\degree} \leq \gamma \leq \SI{180}{\degree}$).
-          Pour une surface orienté Sud~: $\gamma=0$.
+    \item Azimut du plan ($\gamma_{plan}$)~: Déviation par rapport au Sud de la projection
+          du plan sur l’horizontale ($\SI{-180}{\degree} \leq \gamma_{plan} \leq \SI{180}{\degree}$).
+          Pour une surface orienté Sud~: $\gamma_{plan}=0$.
 \end{itemize}
 
 \begin{subequations}\label{eq:angle_incidence}
     \begin{align}
-        \cos(\theta) &= \cos(\alpha) \cos(\gamma_{sol} - \gamma) \sin{\beta_{plan}} + \sin(\alpha_{sol}) \cos{\beta_{plan}} \\
+        \cos(\theta) &= \cos(\alpha) \cos(\gamma_{sol} - \gamma_{plan}) \sin{\beta_{plan}} + \sin(\alpha_{sol}) \cos{\beta_{plan}} \\
         \intertext{avec~:}
         \sin(\alpha_{sol}) &= \cos(\phi) \cos(\delta) \cos(AH) + \sin(\phi) \sin(\delta) \\[10pt]
         \cos\left(\abs{\gamma_{sol}}\right) &= \frac{\sin(\alpha_{sol}) \sin(\phi) - \sin(\delta)}{\cos(\alpha_{sol}) \cos(\phi)} \\
@@ -1334,8 +1388,24 @@ Le calcul de l’angle d’incidence peut être approximé par \eqref{eq:angle_i
 
 \begin{figure}
     \centering
-    \ftodo{Ajouter schéma avec les angles}
-    % \includegraphics[width=\textwidth]{Ressources/Images/Environnement/hurdle_race.png}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth, clip=true, trim=0mm 150mm 195mm 0mm]{Ressources/Images/Solaire/ear_ray.pdf}
+        \caption{}
+        \label{fig:ear_ray}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth, clip=true, trim=0mm 135mm 195mm 0mm]{Ressources/Images/Solaire/zen_sun.pdf}
+        \caption{}
+        \label{fig:zen_sun}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth, clip=true, trim=0mm 145mm 190mm 0mm]{Ressources/Images/Solaire/zen_pla.pdf}
+        \caption{}
+        \label{fig:zen_pla}
+    \end{subfigure}
     \caption[Représentation des différentes angles solaires]
             {Représentation des différentes angles solaires.}
     \label{fig:angles_solaires}
@@ -1347,6 +1417,9 @@ Il est aussi possible par exemple grâce à \fnref{http://pysolar.org/}{Pysolar}
 de manière très \href{http://docs.pysolar.org/en/latest/#validation}{précise} la
 position du soleil pour n’importe quel position du globe. Ces outils peuvent
 alors être embarqués dans des contrôleurs afin de suivre la course du soleil.
+Dans le cadre de ces travaux, il particulièrement important de pouvoir évaluer
+la part de l’énergie solaire qui arrive sur les capteurs afin de pouvoir calculer
+le rendement et donc la part transmise au système solaire.
 % subsubsection déterminer_le_rayonnement_sur_une_surface_inclinée (end)
 % subsection du_soleil_a_la_terre (end)
 
@@ -1355,25 +1428,29 @@ alors être embarqués dans des contrôleurs afin de suivre la course du soleil.
 % ------------------------------------------------------------------------------
 \subsection{Valoriser l’énergie solaire} % (fold)
 \label{sub:valoriser_l_energie_solaire}
-Nous savons maintenant d’où vient l’énergie solaire et comment elle est mesurée au niveau
-du sol. Il a de plus été vu que l’énergie solaire après son passage dans l’atmosphère est
-en partie dispersée. Ainsi une distinction est faite entre la part directe et la part diffuse.
-Cette partie s’intéresse à décrire les moyens existants
-pour récupérer l’énergie solaire, en particulier les applications en solaire thermique,
-cœur du sujet de ces travaux. Comme il a été vu l’énergie solaire est utilisée depuis très
-longtemps afin de fournir soit de l’électricité, soit de l’énergie sous forme de chaleur.
-Le système le plus courant dans le domaine du bâtiment est appelé panneau solaire, ou
-capteur solaire. On distingue trois grandes familles de capteurs solaires~:
+L’énergie solaire est utilisée depuis très longtemps afin de fournir soit de
+l’électricité, soit de l’énergie sous forme de chaleur.
+Le système le plus courant dans le domaine du bâtiment pour récupérer cette énergie,
+est appelé panneau solaire, ou capteur solaire. On distingue trois grandes familles~:
 \begin{itemize}
     \item Le capteur plan
     \item Le capteur sous-vide
     \item Le capteur à concentration
 \end{itemize}
 
-Dans le cas de la maison individuelle, les applications en solaire thermique sont
-majoritairement classables en deux catégories~: les systèmes couvrant uniquement
-la demande en \abr{ECS} et les systèmes couvrant aussi les besoins de chauffage
-du bâtiment, les Systèmes Solaires Combinés (\abr{SSC}).
+Afin de pouvoir évaluer le potentiel d’un \abr{SSC}, il est donc nécessaire de
+sélectionner un type de capteur adapté à l’application. Cependant chaque capteur a sa
+propre géométrie et le calcul de son rendement nécessite la connaissance de nombreux
+paramètres. Afin de pouvoir simplifier l’évaluation d’un capteur quelconque, une
+méthodologie de test universelle a été mise en place et permet d’exprimer en fonction de
+données communes à tous les systèmes solaire le rendement du capteur indépendamment de
+la géométrie. Ces corrélations sont utilisées dans ces travaux afin de
+modéliser le comportement des capteurs solaires.
+
+Ainsi les différents types de capteurs sont dans un premier temps présentés puis
+la méthodologie de calcul retenue pour la modélisation des capteurs solaires
+thermique détaillée.
+
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1697,45 +1774,15 @@ indépendamment de leur géométrie.
 % subsubsection rendement_d_un_capteur_sola ire_thermique (end)
 
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Les systèmes existants} % (fold)
-% \label{ssub:les_systemes_existants}
-% Non compatible avec des installations traditionnelles de chauffage ou de production
-% d’\abr{ECS} les capteurs à concentration sont en majorité utilisés pour des applications
-% industrielles comme décrit ci-avant. Dans le bâtiment des systèmes de cogénération
-% se développent cependant en couplant un moteur à vapeur avec des capteurs à concentration
-% cylindro-paraboliques mais les applications restent mineures.
-
-% \itodo{Information générales }
-% IEA2012
-
-% \itodo{Applications très large}
-% Kalogirou2004 et Thirugnanasambandam2010
-
-% \paragraph{Production d’\abr{ECS}} % (fold)
-% \label{par:production_d_ecs}
-
-% % paragraph production_d_ecs (end)
-
-% \paragraph{Systèmes solaires combinés} % (fold)
-% \label{par:systèmes_solaires_combines}
-
-% % paragraph systèmes_solaires_combines (end)
-% % subsubsection les_systemes_existants (end)
-
-
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% \subsubsection{Intégration au bâtiment} % (fold)
-% \label{ssub:integration_au_batiment}
-% \iunsure{Voir doc master + normes}
-% % subsubsection integration_au_batiment (end)
-% % subsection valoriser_l_energie_solaire (end)
-
-
-
 % ------------------------------------------------------------------------------
 \subsection{Le solaire thermique en chiffres} % (fold)
 \label{sub:le_solaire_thermique_en_chiffres}
+Avant de discuter des différents travaux déjà réalisés dans le solaire thermique
+et plus particulièrement pour les \abr{SSC}, il est intéressant de faire une description
+rapide de l’évolution du secteur à différentes échelles. Cette partie discute aussi
+des initiatives actuellement en cours afin d’encourager le développement des
+\abr{SSC}.
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Les chiffres clés} % (fold)
 \label{ssub:les_chiffres_cles}
@@ -1827,7 +1874,6 @@ dans la plupart des autres pays du monde, le \abr{SSC} représente une part infi
 représente en Europe \SI{19}{\percent} des systèmes installés même si la tendance est à
 la baisse~: \SI{17}{\percent} en $2014$ \parencite{Mauthner2016} et \SI{16}{\percent} en
 $2015$ \parencite{Weiss2017}.
-\iunsure{Ajouter graphe montrant la répartition des applications}
 % paragraph applications (end)
 
 
@@ -1868,13 +1914,16 @@ pour permettre d’exploiter et valoriser rapidement les résultats de recherche
 Des innovations comme l’invention d’une vanne solaire thermostatique fonctionnant
 sans contrôleur électrique (\fnref{http://www.iea-shc.org/article?NewsID=177}{\textit{Conico}})
 permettent déjà d’apprécier les retombées.
+De plus une \href{http://www.iea-shc.org/article?NewsID=173}{nouvelle tâche} qui doit
+commencer début $2018$ devrait permettre d’accompagner le développement de systèmes mixtes
+permettant de produire de manière combinée énergie électrique et thermique.
 % subsubsection les_travaux_en_cours (end)
 
 
 \subsubsection{Bilan} % (fold)
 \label{ssub:bilan_evolution}
 Les applications en solaire thermique sont nombreuses mais subissent
-une tendance très négative en comparaison avec les autres énergies renouvelables. Le
+une tendance négative en comparaison avec les autres énergies renouvelables. Le
 secteur du solaire thermique est ainsi au niveau mondial en décroissance forte et stagne
 sur le continent Européen. Bien que des applications de \abr{SSC} existent au niveau
 Européen, la tendance est aussi à la baisse. Ces tendances traduisent une perte de
@@ -1887,12 +1936,17 @@ solaire. Le \abr{SSC} est ainsi aujourd’hui une technologie principalement uti
 sur l’aspect économique ou sur les applications de refroidissement
 permettront à terme d’améliorer la compétitivité du secteur et de mieux valoriser ces systèmes pour les nouvelles
 problématiques du bâtiment.
-De plus une \href{http://www.iea-shc.org/article?NewsID=173}{nouvelle tâche} qui doit
-commencer début $2018$ devrait permettre d’accompagner le développement de systèmes mixtes
-permettant de produire de manière combinée énergie électrique et thermique. Finalement, la
-nouvelle norme en préparation (\abr{PREN\,$15603$}) amène aussi à reconsidérer la manière
-de construire des \abr{BEPOS}. La contrainte de production renouvelable
-locale par type d’énergie est ainsi une occasion de valoriser les \abr{SSC}.
+
+Cependant comme illustré dans les sections précédentes, le solaire thermique doit
+afin d’inverser la tendance proposer des solutions performantes et adaptées au \abr{BEPOS}.
+Dans cette optique il est nécessaire de pouvoir évaluer la performance potentiel
+du couplage entre une \abr{BEPOS} et un \abr{SSC} et de réduire la taille des équipements
+nécessaires qui représentent un frein à son développement.
+De plus la norme en préparation (\abr{PREN\,$15603$}) amène aussi à reconsidérer la manière
+de construire des \abr{BEPOS} et les \abr{SSC} peuvent permettre d’atteindre ces nouveaux
+objectifs propre à la production locale.
+Les \abr{SSC} restent donc une solution du futur mais leur dimensionnement doit adaptée
+aux nouveaux bâtiment et non uniquement basés sur l’expérience acquise sur les anciens.
 % subsubsection bilan (end)
 % subsection le_solaire_thermique_en_chiffres (end)
 
@@ -1900,6 +1954,12 @@ locale par type d’énergie est ainsi une occasion de valoriser les \abr{SSC}.
 % ------------------------------------------------------------------------------
 \subsection{Les travaux sur le solaire thermique} % (fold)
 \label{sub:les_travaux_sur_le_solaire_thermique}
+Afin de pouvoir proposer un système adapté, un état de l’art est proposé. Celui-ci
+décrit dans un premiers temps les travaux sur le solaire thermique de manière générale, puis
+plus spécifiquement sur les \abr{SSC} en présentant les divers systèmes existants
+et les résultats obtenus. Enfin des exemples d’analyse paramétriques et d’optimisation
+sont discutés.
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Les études pionnières} % (fold)
 \label{ssub:les_etudes_pionnieres}
@@ -2349,6 +2409,30 @@ surproduction en période estivale. Finalement, au cours de la tâche $26$ une c
 été trouvée permettant de comparer entre eux les différent \abr{SSC} indépendamment des
 conditions climatiques ou des besoins à travers l’indicateur $FSC$
 \eqref{eq:FSC}.
+
+Le contexte et les contraintes spécifiques propre au sujet de ces travaux ont ainsi
+pu être identifiés~:
+\begin{itemize}
+  \item Les énergies renouvelables et donc l’énergie solaire se place comme une
+        alternative pertinente pour lutter contre le réchauffement climatique.
+  \item Le développement du solaire thermique stagne en Europe et celui des \abr{SSC}
+        est très peu développé.
+  \item Il est nécessaire de repenser la conception des \abr{SSC} pour les revaloriser
+        dans le cadre des \abr{MEPOS}, d’adapter les systèmes aux nouvelles contraintes
+        du bâtiment.
+  \item La norme \abr{PREN\,$15603$} amène à reconsidérer les moyens mis à mettre
+        en œuvre pour la conception de \abr{BEPOS}.
+  \item Compenser les consommations par une production locale renouvelable n’est plus un critère
+        suffisant, cette production doit permettre de couvrir directement une part
+        importante des consommations du bâtiment.
+  \item Les \abr{SSC} doivent donc être évalués suivant un bilan exportation / importation
+        afin d’optimiser non pas la production solaire mais la production solaire
+        en adéquation avec la demande.
+  \item La conception d’une \abr{MEPOS} solaire doit être le compromis entre qualité
+        de l’enveloppe et performance du \abr{SSC}.
+  \item Afin d’évaluer le potentiel solaire, le modèle doit être détaillée afin
+        de permettre l’implémentation d’une logique de contrôle adaptée.
+\end{itemize}
 % subsubsection bilan (end)
 % subsection les_travaux_sur_le_solaire_thermique (end)
 % section les_systemes_solaires (end)
@@ -2360,6 +2444,8 @@ conditions climatiques ou des besoins à travers l’indicateur $FSC$
 % ..............................................................................
 \section{Conception de maisons solaires à énergie positive} % (fold)
 \label{sec:conception_de_maisons_solaires_a_energie_positive}
+\itodo{Introduire la dernière section}
+
 % ------------------------------------------------------------------------------
 \subsection{Le processus de conception dans le bâtiment} % (fold)
 \label{sub:le_processus_de_conception_dans_le_batiment}
