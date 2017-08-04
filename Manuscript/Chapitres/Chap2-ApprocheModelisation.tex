@@ -1,6 +1,7 @@
 %!TEX root = ../main.tex
 % Chapitres/Chap2-ApprocheModelisation.tex
 
+\itodo{Ajouter captures du modèle (algo FSM et global)}
 
 L’objectif de ces travaux a été explicité à travers le chapitre précédent. Il est proposé
 de réaliser un outil d’aide à la décision pour explorer les combinaisons pertinentes pour
@@ -252,7 +253,7 @@ que l’inconnu soit isolé a priori par le programmeur.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/composant_vs_bloc.png}
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Modelisation/composant_vs_bloc.png}
     \caption[Différences entre modélisation acausale et causal]
             {Différences entre modélisation acausale (par composant) et causal (par bloc)
              (\href{http://www.wolfram.com/system-modeler/}{Wolfram}).}
@@ -318,9 +319,9 @@ bibliothèque \textit{Buildings} décrits ci-après.
 \textit{Dymola} est une suite de logiciels développée par \textit{Dassault Systèmes}
 permettant de simplifier le développement de modèles numériques grâce au langage
 \textit{Modelica}. Il offre une interface graphique permettant de connecter les modèles
-entre eux de manière intuitive (\figref{fig:exemple_modelica}) et un outil de
-post-traitement afin d’évaluer rapidement les résultats. Il propose aussi de nombreuses fonctions
-simplifiant le développement afin de se focaliser sur le problème physique à modéliser~:
+entre eux de manière intuitive et un outil de post-traitement afin d’évaluer rapidement
+les résultats. Il propose aussi de nombreuses fonctions simplifiant le développement afin
+de se focaliser sur le problème physique à modéliser~:
 \begin{itemize}
     \item \textit{Dymosim}~: un large choix de solveurs pour intégrer les modèles
     \item Un format texte permettant la coopération, le \enquote{versionnage}, et la construction dynamique.
@@ -333,13 +334,13 @@ simplifiant le développement afin de se focaliser sur le problème physique à 
     \item \dots
 \end{itemize}
 
-\begin{figure}
-    \centering
-    \includegraphics{Ressources/Images/Modelisation/exemple.PNG}
-    \caption[Modélisation d’un échange thermique entre deux masses en Modelica]
-            {Modélisation d’un échange thermique entre deux masses en Modelica.}
-    \label{fig:exemple_modelica}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{Ressources/Images/Modelisation/exemple.PNG}
+%     \caption[Modélisation d’un échange thermique entre deux masses en Modelica]
+%             {Modélisation d’un échange thermique entre deux masses en Modelica.}
+%     \label{fig:exemple_modelica}
+% \end{figure}
 % subsubsection dymola (end)
 
 
@@ -435,7 +436,7 @@ est considérée comme uniforme.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Batiment/plan.png}
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Modelisation/Batiment/plan.png}
     \caption[Plan du bâtiment utilisé à travers ces travaux]
             {Plan du bâtiment utilisé à travers ces travaux.}
     \label{fig:plan_maison}
@@ -443,7 +444,7 @@ est considérée comme uniforme.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/maison.png}
+    \includegraphics[width=0.7\textwidth]{Ressources/Images/Modelisation/maison.png}
     \caption[Représentation du bâtiment sous Modelica]
             {Représentation du bâtiment sous Modelica.}
     \label{fig:modelisation_maison}
@@ -595,7 +596,7 @@ sont discutés dans la partie qui suit.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Batiment/compare_power.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Modelisation/Batiment/compare_power.pdf}
     \caption[Évolution des besoins de chauffage entre le modèle mono-zone et multi-zone]
              {Évolution des besoins en chauffage (puissance appelée (haut) et énergie (bas)) entre le modèle mono-zone
               (\textit{Modelica}) et le modèle multi-zone (\textit{EnergyPlus}).}
@@ -682,7 +683,7 @@ en inoccupation.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}
     \caption[Profil de référence pour les charges internes et la consigne de chauffage]
             {Profil de référence pour les charges internes (occupants, équipements et éclairage)
              et la consigne de chauffage.}
@@ -694,7 +695,6 @@ en inoccupation.
 % ------------------------------------------------------------------------------
 \subsection{Description du système solaire} % (fold)
 \label{sub:description_du_systeme_solaire}
-\itodo{Mettre des captures du modèle \textit{Modelica} (système et algorithme)}
 Dans un premier temps un modèle existant et innovant basé sur le vecteur eau
 de l’entreprise \textit{SolisArt} a été modélisé. Les travaux réalisés sur son
 développement sont en partie décrit dans \textcite{Bois2015}. La maison considérée dans
@@ -722,7 +722,7 @@ décrite et le fonctionnement combiné du système et de la maison explicité.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}
     \caption[escription schématique du système solaire couplé à la ventilation]
             {Description schématique du système solaire couplé à la ventilation.}
     \label{fig:air_complet_mono}
@@ -833,7 +833,7 @@ pour des angles d’incidences allant de \SIrange{0}{70}{\degree}.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Capteurs/IDMK/IAM.pdf}
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Modelisation/Capteurs/IDMK/IAM.pdf}
     \caption[\abr{IAM} pour le rayonnement direct]
              {Évolution de $K_{\theta,\,dir}$ en fonction de l’angle d’incidence.
               Les croix représentent les points expérimentaux, et la courbe le résultat
@@ -857,7 +857,7 @@ reste du document.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/compare_capteurs.pdf}
+    \includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/compare_capteurs.pdf}
     \caption[Comparaisons de l’irradiation entre \textit{TrnSys}, \textit{Modelica}]
              {Comparaisons par mois~: (gauche) l’irradiation sur les capteurs entre un modèle
              \textit{TrnSys} et \textit{Modelica}, (droite) la production des capteurs entre des résultats
@@ -946,9 +946,9 @@ stricte séparation entre la logique de chaque composant. Le système solaire fo
 ainsi suivant trois principaux modes ordonnées afin de valoriser l’énergie solaire captée.
 (\figref{fig:schema_modes}).
 
-\begin{figure}
+\begin{figure}[tb]
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Principe/air_modes.pdf}
+    \includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
     \caption[Description schématique des différents modes de fonctionnements du \abr{SSC}]
             {Description schématique des différents modes de fonctionnements du \abr{SSC}. Système
              global (a), fonctionnement $Indirect$ (b), fonctionnement $Direct$ avec besoin de
@@ -1025,14 +1025,14 @@ $T7$. Ainsi il est aussi admis un hystérésis relatif à ce différentiel.
     \centering
     \begin{subfigure}[b]{0.35\textwidth}
         \centering
-        \includegraphics{Ressources/Images/Modelisation/Regulation/hysteresis.pdf}
+        \includegraphics[width=0.6\textwidth]{Ressources/Images/Modelisation/Regulation/hysteresis.pdf}
         \caption{}
         \label{fig:hysteresis}
     \end{subfigure}
     \quad
     \begin{subfigure}[b]{0.6\textwidth}
         \centering
-        \includegraphics{Ressources/Images/Modelisation/onOff_control.pdf}
+        \includegraphics[width=0.6\textwidth]{Ressources/Images/Modelisation/onOff_control.pdf}
         \caption{}
         \label{fig:onOff}
     \end{subfigure}
@@ -1074,7 +1074,7 @@ un certain nombre de sous-états avec leur propres transitions.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Regulation/exemple_fsm.pdf}
+    \includegraphics[width=0.75\textwidth]{Ressources/Images/Modelisation/Regulation/exemple_fsm.pdf}
     \caption[Illustration du fonctionnement d’un automate fini]
             {Illustration du fonctionnement d’un automate fini appliqué au contrôle
              d’un personnage fictif grâce à deux boutons~: A et B.}
@@ -1120,7 +1120,7 @@ en attente d’activation pour permettre de couvrir le chauffage (temporisation 
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Regulation/chauffage_fsm.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Modelisation/Regulation/chauffage_fsm.pdf}
     \caption[\abr{HFSM} contrôlant la transition entre les différents modes de chauffage]
             {Description détaillée de l’\abr{HFSM} contrôlant la transition entre
              les différents modes de chauffage.}
@@ -1172,7 +1172,7 @@ garantir le maintien du confort thermique (\figref{fig:chauffage_aeraulique}).
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Regulation/chauffage_aeraulique.pdf}
+    \includegraphics[width=0.6\textwidth]{Ressources/Images/Modelisation/Regulation/chauffage_aeraulique.pdf}
     \caption[Fonctionnement de la régulation du chauffage par vecteur air]
             {Fonctionnement de la régulation du chauffage par vecteur air.}
     \label{fig:chauffage_aeraulique}
@@ -1188,7 +1188,7 @@ ainsi retarder ou éviter la relance du chauffage~: l’utilisation potentielle 
 l’appoint électrique sur le chauffage est réduite.
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Regulation/control_air_curve.pdf}
+    \includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Regulation/control_air_curve.pdf}
     \caption[Principe de la surchauffe diurne durant une journée hivernale]
             {Principe de la surchauffe diurne durant une journée hivernale.}
     \label{fig:control_air}
@@ -1244,7 +1244,7 @@ pour 5 villes~: Bordeaux, Nantes, Strasbourg, Limoges, et Marseille (\figref{fig
 
 \begin{figure}
     \centering
-    \includegraphics[clip=true, trim=2mm 2mm 2mm 20mm]{Ressources/Images/Modelisation/Batiment/France_map.pdf}
+    \includegraphics[width=0.6\textwidth, clip=true, trim=2mm 2mm 2mm 20mm]{Ressources/Images/Modelisation/Batiment/France_map.pdf}
     \caption[Cartographie des villes sélectionnées pour l’étude paramétrique]
             {Cartographie des villes sélectionnées pour l’étude paramétrique.}
     \label{fig:carte_france}
@@ -1341,7 +1341,7 @@ d’une famille dans une habitation individuelle ou un appartement, et les besoi
 journaliers sont pondérées en fonction du jour de la semaine (\tabref{tab:coef_semaine}).
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Modelisation/Scenario/puisage.pdf}
+    \includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Scenario/puisage.pdf}
     \caption[Description des profils de puisage envisagés]
             {Description des profils de puisage envisagés.}
     \label{fig:profil_puisage}
@@ -1724,7 +1724,7 @@ même si durant décembre et janvier l’appoint électrique est nécessaire pon
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Parametrique/temp_ballons.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Parametrique/temp_ballons.pdf}
     \caption[Évolution des température internes des ballons du \abr{SSC}]
             {Évolution des température internes des ballons du \abr{SSC} en fonction du mois
              de l’année avec indication de la moyenne (triangle vert) et
@@ -1835,7 +1835,7 @@ Il est donc important de tenir compte des scénarios d’éclairage, de l’util
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Parametrique/parametric_consigne.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Parametrique/parametric_consigne.pdf}
     \caption[Impact de la température de consigne sur la performance du \abr{SSC}]
             {Impact de la température de consigne sur la performance
              du \abr{SSC} à Strasbourg durant la période de chauffage (01/10 - 30/04).}
@@ -1844,7 +1844,7 @@ Il est donc important de tenir compte des scénarios d’éclairage, de l’util
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Parametrique/besoins_charges_internes.pdf}
+    \includegraphics[width=0.9\textwidth]{Ressources/Images/Parametrique/besoins_charges_internes.pdf}
     \caption[Évolution annuelle des charges internes et des besoins du bâtiment]
             {Évolution annuelle des charges internes et des besoins du bâtiment
              pour la simulation de référence~: (haut) Bordeaux, (bas) Strasbourg.}
@@ -1889,7 +1889,7 @@ différentes conditions de fonctionnement.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Parametrique/importance_chauffage_ecs.pdf}
+    \includegraphics[width=0.9\textwidth]{Ressources/Images/Parametrique/importance_chauffage_ecs.pdf}
     \caption[Évolution mensuelle de la répartition des consommations à Bordeaux]
             {Évolution mensuelle de la répartition des consommations et du taux
              de couverture solaire ($F_{sol}$) à Bordeaux (01/10 - 30/04).}
@@ -1917,7 +1917,7 @@ d’améliorer la $Prod_{sol}^{valorisée}$.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Parametrique/parametric_echangeur.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Parametrique/parametric_echangeur.pdf}
     \caption[Impact de la position de l’échangeur solaire sur la performance du \abr{SSC}]
             {Impact de la position de l’échangeur solaire sur la performance
              du \abr{SSC} à Strasbourg durant la période de chauffage (01/10 - 30/04).}
@@ -1956,7 +1956,7 @@ de l’évaluation du \abr{SSC}.
 
 \begin{figure}
     \centering
-    \includegraphics{Ressources/Images/Parametrique/parametric_puisage.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Parametrique/parametric_puisage.pdf}
     \caption[Impact du profil de puisage sur la performance du \abr{SSC}]
             {Impact du profil de puisage sur la performance
              du \abr{SSC} à Strasbourg durant la période de chauffage (01/10 - 30/04).}
