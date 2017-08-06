@@ -1806,20 +1806,14 @@ Le front uniquement composé des solutions obtenues pour de faibles volumes est 
 en annexe (\figref{fig:tanks_small_variations_strasbourg}) où le volume exact est décrit par
 la couleur du point. Les résultats montrent qu’un volume minimal sur le tampon (\SI{100}{\litre})
 et un volume de \SIrange{150}{200}{\litre} pour le ballon d’\abr{ECS} est suffisant sur Strasbourg.
-
+Utiliser un volume de ballon sanitaire plus petit ne permet pas en effet d’améliorer le
+$F_{sol}^{CH}$ mais dégrade le $F_{sol}^{ECS}$.
 Il est aussi noté que lorsque le nombre de capteurs est faible, il est plus intéressant de
 considérer un volume faible pour les deux ballons. En effet, si il n’y a pas assez
 d’énergie solaire, la température du ballon tampon reste trop basse pour pouvoir être
 ensuite valorisée. Finalement, il est aussi observé que même pour une plage de variation
 réduite, le \abr{SSC} est toujours capable de proposer des solutions maximisant soit le
-$F_{sav}^{CH}$, soit le $F_{sav}^{ECS}$. Il existe une large variabilité dans les valeurs
-des critères de décisions de l’algorithme de contrôle. Pour améliorer le $F_{sav}^{CH}$,
-il semble plus intéressant de retenir un $\Delta min_{capteur}$ et un $\Delta
-min_{tampon}$ faibles (\SIrange{0}{10}{\celsius}). Augmenter le $\Delta min_{tampon}$
-permet d’améliorer le $F_{sav}^{ECS}$ mais dégrade le $F_{sav}^{CH}$ et inversement. Du
-fait des fortes interactions entre l’algorithme et les composants du \abr{SSC}, il n’est
-pas identifié de tendance pour la variable $\Delta T_{sol}$.
-
+$F_{sav}^{CH}$, soit le $F_{sav}^{ECS}$.
 
 \begin{figure}
 % volume_collector_factorplot
@@ -1831,6 +1825,50 @@ pas identifié de tendance pour la variable $\Delta T_{sol}$.
               du volume du ballon d’\abr{ECS} (couleur).}
     \label{fig:tanks_variations_locales_strasbourg}
 \end{figure}
+
+
+
+Il existe une large variabilité dans les valeurs des critères de décisions de l’algorithme
+de contrôle et sont corrélés à la taille des ballons (\mtodo{Ref fig}). Lorsque le volume
+des ballons est important,
+Pour améliorer le $F_{sav}^{CH}$, il semble plus intéressant de retenir un $\Delta
+min_{capteur}$ et un $\Delta min_{tampon}$ faibles (\SIrange{0}{10}{\celsius}). Augmenter
+le $\Delta min_{tampon}$ permet d’améliorer le $F_{sav}^{ECS}$ mais dégrade le
+$F_{sav}^{CH}$ et inversement. Concernant le $\Delta min_{capteur}$, les meilleures
+solutions sur l’indicateur $F_{sav}^{ECS}$ admettent un $\Delta min_{capteur}$ important.
+Ce différentiel important permet diriger une part plus importante du solaire vers la
+production d’\abr{ECS} mais limite grandement la qualité de couverture du solaire sur le
+chauffage.
+
+Pour obtenir
+la meilleure performance sur le chauffage et sur la production d’\abr{ECS}, il est
+nécessaire de considérer un $\Delta T_{sol}$ faible (\SIrange{0}{10}{\celsius}).
+Lorsque la taille des ballons est limitée (\SI{\geq 200}{\l}) une description plus précise
+est possible. Obtenir la meilleure performance sur le chauffage nécessite un $\Delta T_{sol}$
+très faible (\SIrange{5}{8}{\celsius}) alors que pour maximiser la production
+d’\abr{ECS}, il est plus opportun de considérer un $\Delta T_{sol}$ de
+\SIrange{13}{15}{\celsius}. Le meilleur compromis entre les deux permet de faire la
+meilleure économie sur l’ensemble des consommations (\SIrange{7}{12}{\celsius}).
+
+
+Concernant la position de l’échangeur dans le ballon sanitaire, il n’existe pas de
+position idéale. Une position basse tend à favoriser le $F_{sav}^{ECS}$ (\numrange{0.8}{1})
+mais il reste possible d’obtenir un $F_{sav}^{ECS}$ important (\SI{\geq 85}{\percent})
+lorsque la position est plus haute (\numrange{1}{1.2}). Par contre si on considère uniquement
+des ballons de petites tailles, alors il est toujours plus intéressant de favoriser une
+position basse (\numrange{0.8}{1}) que ce soit pour le $F_{sav}^{ECS}$ ou pour le $F_{sav}^{CH}$.
+Les meilleures solutions sur l’indicateur $F_{sav}^{CH}$ sont en effet pour une position
+de l’échangeur autour de \num{0.9}. Il n’est identifié de relations entre la position de l’échangeur
+et les variables de décisions sur l’algorithme ($\Delta min_{capteur}$, $\Delta min_{tampon}$,
+$\Delta T_{sol}$).
+
+
+\ftodo{Ajouter cluster dans XDAT avec des noms proches du manuscrit.}
+
+
+
+
+
 
 
 Ainsi, au regard des résultats, il est plus intéressant de considérer des ballons
@@ -2040,33 +2078,10 @@ maximisant $F_{sav,\,ext}$.
 % ..............................................................................
 \subsection{Aide à la décision a posteriori} % (fold)
 \label{sub:aide_a_la_décision_a_posteriori}
-L’analyse du front de Pareto a permis d’identifier et caractériser l’ensemble des
-solutions optimales obtenues et les résultats sont encourageant pour le développement de
-\abr{SSC} appliqués aux maisons à énergie positive. Une approche exploratoire des
-différents objectifs liés à la performance énergétique s’est en effet montrée être
-pertinente pour mieux comprendre les interactions existantes. Cependant aucunes méthodes
-n’est parfaite et l’approche retenue introduit un élitisme important sur certains critères
-de décisions. Il a donc été proposé de mettre en place un processus itératif d’aide à la
-décision. Dans un premier temps l’optimisation est réalisée en considérant l’ensemble des
-critères de décisions pour les objectifs principaux. En effet il est essentiel dans un
-premier temps de réaliser l’optimisation multi-objectifs sans introduire de caractères
-préférentiels afin de ne pas écarter trop tôt des solutions et d’explorer l’ensemble du
-domaine de décision. Ensuite en fonction des objectifs secondaires et des résultats de la
-première optimisation, certains critères de décisions peuvent être fixés ou la plage de
-variation réduite. Le processus d’optimisation est alors relancé et les solutions
-optimales ajoutées dans une archive commune. Cette méthode a permis d’identifier des
-compromis similaires aux solutions optimales mais proposant de nouvelles combinaisons sur
-les critères de décisions. Ce processus permet ainsi d’affiner la recherche afin de
-proposer un ensemble de solutions optimales à la fois par rapports aux objectifs mais
-aussi aux contraintes propres du ou des décideurs. Elle reste aussi adaptée même pour des
-applications où les objectifs sont tous antinomiques. En effet la complexité augmente
-rapidement avec le nombre d’objectifs considérés et la littérature montre que les
-l’efficacité des méta-heuristiques diminue à mesure que le nombre d’objectifs augmente.
-
 Le processus d’aide à la décision interactif est la dernière étape de la
 méthodologie développée dans le chapitre III pour aider à l’identification et au choix de
 solutions parmi le front de Pareto. Durant ce processus les objectifs ne sont pas
-forcement les mêmes que durant l’optimisation multi-objectifs. En effet l’avantage d’une
+forcement les mêmes que durant l’optimisation. En effet l’avantage d’une
 optimisation multi-objectifs réside dans sa capacité à explorer l’espace des objectifs
 afin de proposer différentes combinaisons sans introduire en amont de préférence. De cette
 manière, de nouvelles connaissances sur le problème peuvent émerger comme ce fut le cas
@@ -2074,8 +2089,8 @@ dans ces travaux. Par contre durant le processus d’aide à la décision, les p
 décideur doivent être introduite. Elles permettront de réduire le nombre de solutions et
 orienter le choix vers celle qui correspond le plus aux contraintes.
 Cette section illustre l’utilisation du logiciel \textit{Xdat}, un outil d’analyse par
-coordonnées paramétriques qui permet comme décrit dans le chapitre précédent de bouger des
-curseurs sur chaque critère afin de réduire la population. L’outil étant graphique, il
+coordonnées parallèles qui permet comme décrit dans le chapitre précédent de bouger des
+curseurs pour chaque critère afin de réduire le nombre de solutions optimales. L’outil étant graphique, il
 permet de rapidement évaluer l’impact de l’ajout d’une contrainte. De plus il permet de
 voir évoluer à la fois les objectifs de l’optimisation, de nouveaux objectifs, mais aussi
 les critères de décisions de manière simultanée. Afin de profiter de l’ensemble des
@@ -2084,39 +2099,170 @@ par les optimisations successives sur Strasbourg.
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Application de la méthode pour le \abr{SSC} sur Strasbourg} % (fold)
-\label{ssub:application_de_la_méthode_pour_le_ssc_sur_strasbourg}
-\itodo{Critères d’aide à la décision}
-Comme explicité ci-avant, les critères pouvant être retenus pour réaliser l’aide à la décision
-couvrent les critères de décisions utilisés pour l’optimisation, les objectifs de
-l’optimisation, ou encore de nouvelles contraintes. Par exemple, il est
-\itodo{coût, Suface disponible, fournisseurs locaux, type de clientèle, réglementation, ...}
+\subsubsection{Exploration des solutions pour le climat de Strasbourg} % (fold)
+\label{ssub:exploration_des_solutions_pour_le_climat_de_strasbourg}
+Comme explicité ci-avant, les critères pouvant être retenus pour réaliser l’aide à la
+décision couvrent les critères de décisions, les objectifs, ou encore de nouvelles
+contraintes. Par exemple, il est possible de préférer certains matériaux afin de faire
+travailler des professionnels de la région. Dans le cas d’un constructeur de maisons
+individuelles, il est possible de choisir la maison directement avec les clients.
+L’optimisation est réalisée en amont permettant au constructeur de proposée une palette de
+solutions. Puis, grâce à une visualisation par coordonnées parallèles, le client participe
+de manière active aux choix constructifs, ou aux choix des systèmes sans avoir besoin
+d’une expertise importante. Le client devient acteur de son choix et évalue mieux
+les contraintes et atouts de chaque proposition. De la même manière, ce processus est
+adaptée dans le cas où le respect d’une réglementation spécifique est nécessaire\dots
 
-\itodo{Application}
-% subsubsection application_de_la_méthode_pour_le_ssc_sur_strasbourg (end)
+La large variété de solutions peut être observée à travers \mtodo{ref fig}.
+Prenons le cas où le client souhaite limité au maximum la place prise par les équipements.
+En jouant sur les curseurs, il est possible de conserver uniquement les solutions
+qui correspondent et de voir directement les effets sur les autres critères de décisions
+ou les objectifs (\mtodo{ref fig}).
+Étant un peu juste financièrement, il souhaite
+aussi limité le nombre de capteurs solaires thermiques sans augmenter le nombre
+de capteurs \abr{PV}(\mtodo{ref fig}). Finalement il trouve une solution qui lui
+correspond.
+À partir de là, il est possible de relancer le processus d’optimisation
+en tenant compte de la préférence du décideur afin de proposer plus de choix sur les
+autres critères.
+
+\ftodo{Figure avec évolution du front en fonction des préférences (3 stade)}
+
+Six solutions ont été sélectionnée qui permettent de récapituler les observations faites
+de manière plus détaillée~:
+\begin{blockdescription}{Solution 1 (\abr{S1})~:}
+  \item[Solution 1 (\abr{S1})~:] Cette solution maximise le $F_{sav,\,ext}$. Elle représente
+                                 le meilleur compromis entre une bonne couverture du chauffage
+                                 et de la production d’\abr{ECS} et permet donc minimiser
+                                 le nombre de capteurs \abr{PV}. Elle admet une taille
+                                 importante pour les deux ballons et le maximum de capteurs
+                                 thermiques possibles. L’isolation est très importante
+                                 afin de réduire au maximum les besoins sur le chauffage mais
+                                 ne retient pas le meilleur vitrage existant.
+  \item[Solution 2 (\abr{S2})~:] Cette solution maximise le $F_{sav}^{ECS}$ et est très
+                                 similaire à la solution $1$. En cherchant à maximiser $F_{sav}^{ECS}$,
+                                 la solution minimiser $F_{sav}^{CH}$ notamment avec l’utilisation
+                                 d’un petit ballon tampon.
+  \item[Solution 3 (\abr{S3})~:] Cette solution maximise le $F_{sav}^{CH}$. $F_{sav}^{ECS}$ reste
+                                 important pour deux raisons~: la production d’\abr{ECS} est prioritaire,
+                                 et les besoins en \abr{ECS} reste similaires durant l’année entière.
+                                 À l’inverse de la solution $2$, c’est cette fois le ballon sanitaire qui
+                                 est minimisé. Par contre il reste à \SI{200}{\litre} alors que la valeur
+                                 minimale est de \SI{100}{\litre}. C’est aussi la seule solution où
+                                 l’échangeur est plus haut dans le ballon mais pas à la hauteur maximale.
+                                 En augmentant sa position, la production solaire sur l’\abr{ECS} est défavorisée
+                                 et une part plus importante est utilisée pour le chauffage.
+  \item[Solution 4 (\abr{S4})~:] Cette solution correspond à la solution maximisant le $F_{sav,\,ext}$ lorsque
+                                 la $Prod_{sol}$ est maximale. Il existe en effet de nombreuses solutions ayant exactement
+                                 la même production par les capteurs \abr{PV} car le nombre de capteurs est discret.
+                                 Le \abr{SSC} permet de couvrir près de \SI{43}{\percent} avec seulement $2$ capteurs
+                                 solaires thermiques mais l’économie de $5$ capteurs thermiques nécessite l’introduction
+                                 de $8$ capteurs \abr{PV} supplémentaires. Il est aussi important de noter que
+                                 la production des capteurs n’est pas forcement en adéquation avec la demande
+                                 contrairement à l’appoint économisé par le \abr{SSC}.
+  \item[Solution 5 (\abr{S5})~:] Cette solution maximise le $F_{sav,\,ext}$ mais
+                                 est contraint par l’utilisation d’un volume faible
+                                 pour les deux ballons. Mis en exergue dans \ref{sub:influence_du_volume_des_ballons},
+                                 le volume des ballons peuvent être réduit tout en permettant de
+                                 conserver une bonne performance globale.
+  \item[Solution 6 (\abr{S6})~:] Cette solution maximise le $F_{sav,\,ext}$ mais
+                                 est contraint par l’utilisation d’un capteur
+                                 \textit{IDMK}. Comme explicité en \ref{sub:influence_des_capteurs_solaires_thermiques}
+                                 le type de capteur est peu influent. De plus comme explicité
+                                 dans \ref{sub:influence_du_volume_des_ballons}, les paramètres
+                                 de l’algorithme sont très variants et il existe des solutions
+                                 similaires sur le $F_{sav,\,ext}$ mais pour des configurations
+                                 différentes.
+  \item[Solution 6 (\abr{S6})~:] Représente la solution qui maximise le $F_{sav,\,ext}$
+                                 lorsque uniquement $5$ capteurs sont installés. L’isolation
+                                 est amélioré par rapport à la solution $1$ mais la consommation
+                                 de l’appoint augmentée de \SI{300}{kWh}. L’écart nécessite
+                                 donc l’installation de $3$ capteurs \abr{PV} supplémentaires.
+\end{blockdescription}
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Répartition des critères de décisions} % (fold)
-\label{ssub:repartition_des_criteres_de_decisions}
-\itodo{Variation algo en fonction objectif à maximiser. faire avec XDAT}
-\ttodo{Décrire critère pour les solutions maxisant chaque taux}
-Il est aussi noté que les solutions permettant de réduire au maximum la
-consommation de l’appoint ($\max(F_{sav,\,ext})$) ne sont ni les meilleures sur
-la production d’\abr{ECS}, ni les meilleures sur le chauffage. Il apparaît donc
-qu’il existe un compromis entre amélioration de la performance sur le chauffage et
-amélioration de la production d’\abr{ECS}. En effet en cherchant à maximiser par exemple la production
-d’\abr{ECS} on réduit la part apportée au chauffage et inversement.
-
-\ftodo{Countplot pour répartition des critères}
-% subsubsection repartition_des_criteres_de_decisions (end)
-
-
-\itodo{Impact position échangeur}
+\begin{table}
+\small
+\centering
+\caption[Détail des solutions optimales sélectionnée sur Strasbourg]
+         {Détail des solutions optimales sélectionnée sur Strasbourg.}
+\label{tab:detail_opti_stras}
+\begin{tabular}{l c c c c c c c}
+  \toprule
+  \addlinespace
+                       & S1        & S2         & S3  & S4       & S5   & S6 & S7                             \\
+  \addlinespace
+  \multicolumn{5}{l}{\textbf{\abr{SSC}}}         \\
+  \midrule
+  Nombre capteurs \abr{TH}      & \num{7} & \num{7} & \num{7} & \num{2} & \num{7} & \num{7} & \num{5} \\
+  Type capteurs \abr{TH}        & \multicolumn{5}{c}{\textit{SkyPro}}  & \textit{IDMK} & \textit{SkyPro} \\
+  $Ech_{sol}^{pos}$             & \num{0.8} & \num{0.96}  & \num{1.23}  & \num{0.95}  & \num{0.94}  & \num{0.87}  & \num{1} \\
+  Volume ballon tampon          & \num{400} & \num{100} & \num{400} & \num{250} & \num{200} & \num{400} & \num{400} \\
+  Volume ballon $ECS$           & \num{400} & \num{400} & \num{200} & \num{350} & \num{200} & \num{400} & \num{400} \\
+  $\Delta T_{sol}$              & \num{5} & \num{10}  & \num{8} & \num{10}  & \num{10}  & \num{18}  & \num{0} \\
+  $\Delta min_{capteur}$        & \num{30}  & \num{28}  & \num{0} & \num{8} & \num{16}  & \num{21}  & \num{30}  \\
+  $\Delta min_{tampon}$         & \num{25}  & \num{30}  & \num{0} & \num{10}  & \num{21}  & \num{21}  & \num{30}  \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}             \\
+  \midrule
+  $R$ murs              & \num{7} & \num{7} & \num{7} & \num{4} & \num{7} & \num{7} & \num{7} \\
+  $R$ plafond           & \num{10}  & \num{10}  & \num{10}  & \num{9.5} & \num{10}  & \num{10}  & \num{10}  \\
+  $R$ plancher          & \num{8.5} & \num{8.5} & \num{10}  & \num{10}  & \num{9} & \num{9} & \num{10}  \\
+  Surface vitrée sud    & \num{5.8} & \num{6.6} & \num{6,2} & \num{5.4} & \num{6.2} & \num{5.4} & \num{5.8} \\
+  Surface vitrée est    & \num{4.3} & \num{4.7} & \num{4,3} & \num{4.7} & \num{4.4} & \num{4.6} & \num{4.3} \\
+  Type de vitrage       & \multicolumn{3}{c}{\textit{PlanithermXN}} & \textit{PlanithermOne}  & \multicolumn{3}{c}{\textit{PlanithermXN}} \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{5}{l}{\textbf{Production d’électricité}}      \\
+  \midrule
+  Nombre capteurs \abr{PV}  & \num{16}  & \num{17}  & \num{18}  & \num{24}  & \num{16}  & \num{16}  & \num{19}  \\
+  \\
+  \addlinespace[\defaultaddspace]
+  \multicolumn{5}{l}{\textbf{Indicateurs}}      \\
+  \midrule
+  $Conso_{app}$ & \num{1118}  & \num{1208}  & \num{1233}  & \num{2667}  & \num{1217}  & \num{1166}  & \num{1441}  \\
+  $Conso_{ref}$ & \num{4221}  & \num{4219}  & \num{4187}  & \num{4726}  & \num{4208}  & \num{4225}  & \num{4193}  \\
+  $Conso_{app,\, diff}$ & \num{3103}  & \num{3011}  & \num{2954}  & \num{2059}  & \num{2990}  & \num{3059}  & \num{2752}  \\
+  $F_{sav,\, ext}$  & \num{74}  & \num{71}  & \num{70}  & \num{43}  & \num{71}  & \num{72}  & \num{66}  \\
+  $F_{sav}^{ECS}$ & \num{87}  & \num{89}  & \num{80}  & \num{61}  & \num{84}  & \num{85}  & \num{82}  \\
+  $F_{sav}^{CH}$  & \num{44}  & \num{34}  & \num{62}  & \num{18}  & \num{45}  & \num{47}  & \num{38}  \\
+  $Prod_{PV}$ & \num{4014}  & \num{4252}  & \num{4490}  & \num{6021}  & \num{4014}  & \num{4014}  & \num{4766}  \\
+  \bottomrule
+\end{tabular}
+\end{table}
 % subsection aide_a_la_décision_a_posteriori (end)
 
+Comme explicité en \ref{sub:correlation_entre_performance_de_l_enveloppe_et_ssc} comme il n’est
+évalué uniquement les caractéristiques énergétiques, un biais est donc introduit favorisant
+uniquement des solutions avec une forte isolation. Pour cette raison il est nécessaire
+d’introduire un autre objectif tel que le confort intérieur, ou le temps de retour sur l’investissement,
+afin de voir apparaître des caractéristiques de l’enveloppe plus diverses. Sur les autres paramètres,
+une large diversité est obtenue.
 
 
+L’analyse du front de Pareto a permis d’identifier et caractériser l’ensemble des
+solutions optimales obtenues et les résultats sont encourageant pour le développement de
+\abr{SSC} appliqués aux maisons à énergie positive. Une approche exploratoire des
+différents objectifs liés à la performance énergétique s’est en effet montrée être
+pertinente pour mieux comprendre les interactions existantes. Cependant l’approche retenue
+introduit un élitisme important sur certains critères de décisions en partie car tous les
+objectifs ne sont pas antinomiques. Il a donc été proposé de mettre en place un processus itératif d’aide à la
+décision. Dans un premier temps l’optimisation est réalisée en considérant l’ensemble des
+critères de décisions. Afin de ne pas écarter trop tôt des solutions et explorer l’ensemble du
+domaine de décision aucun caractère préférentiel est introduit. Ensuite en fonction des objectifs secondaires et des résultats de la
+première optimisation, certains critères de décisions peuvent être fixés ou la plage de
+variation réduite. Le processus d’optimisation est alors relancé et les solutions
+optimales ajoutées dans une archive commune. Cette méthode a permis d’identifier des
+compromis similaires aux solutions optimales mais proposant de nouvelles combinaisons sur
+les critères de décisions. Ce processus permet ainsi d’affiner la recherche afin de
+proposer un ensemble de solutions optimales à la fois par rapports aux objectifs mais
+aussi aux contraintes propres du ou des décideurs. Elle reste aussi adaptée pour des
+applications où les objectifs sont tous antinomiques. En effet la complexité augmente
+rapidement avec le nombre d’objectifs considérés et la littérature montre que les
+l’efficacité des méta-heuristiques diminue à mesure que le nombre d’objectifs augmente.
+
+% subsubsection exploration_des_solutions_pour_le_climat_de_strasbourg (end)
 
 
 
@@ -2140,5 +2286,4 @@ En plus d’illustrer la
 méthodologie, les résultats de l’analyse exploratoire des solutions du front de Pareto
 invitent à repenser les choix de conception lors du développement de \abr{SSC} couplés à
 des \abr{MEPOS}.
-
 % section bilan_et_conclusions (end)
