@@ -1653,6 +1653,8 @@ accentuée. Ainsi l’écart entre la performance maximale pour le capteur \text
 le capteur \textit{EnergyEco} est de \SI{5}{\percent} lorsque $7$ capteurs sont installées
 contre \SI{2.5}{\percent} pour seulement $2$.
 
+Finalement, il est intéressant
+
 \paragraph{} % (fold)
 En considérant l’ensemble des solutions formées par les fronts optimaux pour chaque
 type de capteurs, il est possible d’évaluer l’influence du nombre de capteurs
@@ -1829,8 +1831,7 @@ $F_{sav}^{CH}$, soit le $F_{sav}^{ECS}$.
 
 
 Il existe une large variabilité dans les valeurs des critères de décisions de l’algorithme
-de contrôle et sont corrélés à la taille des ballons (\mtodo{Ref fig}). Lorsque le volume
-des ballons est important,
+de contrôle.
 Pour améliorer le $F_{sav}^{CH}$, il semble plus intéressant de retenir un $\Delta
 min_{capteur}$ et un $\Delta min_{tampon}$ faibles (\SIrange{0}{10}{\celsius}). Augmenter
 le $\Delta min_{tampon}$ permet d’améliorer le $F_{sav}^{ECS}$ mais dégrade le
@@ -1838,18 +1839,17 @@ $F_{sav}^{CH}$ et inversement. Concernant le $\Delta min_{capteur}$, les meilleu
 solutions sur l’indicateur $F_{sav}^{ECS}$ admettent un $\Delta min_{capteur}$ important.
 Ce différentiel important permet diriger une part plus importante du solaire vers la
 production d’\abr{ECS} mais limite grandement la qualité de couverture du solaire sur le
-chauffage.
+chauffage. En effet afin de renforcer l’économie sur le chauffage grâce au solaire, il
+apparaît que un $\Delta min_{capteur}$  faible est plus profitable. Au niveau global,
+du fait des compromis, de nombreuses combinaisons sont possibles.
 
-Pour obtenir
-la meilleure performance sur le chauffage et sur la production d’\abr{ECS}, il est
+Pour obtenir la meilleure performance globale ($F_{sav,\, ext}$), il est
 nécessaire de considérer un $\Delta T_{sol}$ faible (\SIrange{0}{10}{\celsius}).
-Lorsque la taille des ballons est limitée (\SI{\geq 200}{\l}) une description plus précise
-est possible. Obtenir la meilleure performance sur le chauffage nécessite un $\Delta T_{sol}$
+Obtenir la meilleure performance sur le chauffage nécessite un $\Delta T_{sol}$
 très faible (\SIrange{5}{8}{\celsius}) alors que pour maximiser la production
 d’\abr{ECS}, il est plus opportun de considérer un $\Delta T_{sol}$ de
 \SIrange{13}{15}{\celsius}. Le meilleur compromis entre les deux permet de faire la
 meilleure économie sur l’ensemble des consommations (\SIrange{7}{12}{\celsius}).
-
 
 Concernant la position de l’échangeur dans le ballon sanitaire, il n’existe pas de
 position idéale. Une position basse tend à favoriser le $F_{sav}^{ECS}$ (\numrange{0.8}{1})
@@ -1901,7 +1901,68 @@ s’intéresse à cette question.
 \subsection{Corrélation entre performance de l’enveloppe et \abr{SSC}} % (fold)
 \label{sub:correlation_entre_performance_de_l_enveloppe_et_ssc}
 Cette section s’intéresse aux corrélations existantes entre la performance de l’enveloppe
-et la performance du \abr{SSC}. Dans cette optique, $3$ indicateurs sont introduits, $p$,
+et la performance du \abr{SSC}. Dans un premier temps l’influence de la qualité de
+l’enveloppe est évaluée de manière qualitative, puis il est exploré les relations pouvant
+exister entre $Conso_{ref}^{CH}$ (qui traduit la performance de l’enveloppe) et la
+performance du \abr{SSC}.
+
+Comme le montre \figref{fig:pareto_enveloppe_strasbourg}, le meilleur taux d’économie
+est obtenue lorsque l’isolation du bâtiment est importante.
+Pour le chauffage, il apparaît possible
+d’obtenir un taux d’économie important sans pour autant fortement isoler le bâtiment
+cependant, les meilleures solutions assument une isolation importante.
+Maintenant si on regarde l’évolution couplée du $F_{sav}^{ECS}$ et du $F_{sav,\, ext}$, la
+tendance n’est pas la même lorsque $F_{sav,\, ext} < 66$ et lorsque $F_{sav,\, ext} > 66$.
+Dans le premier cas, une enveloppe peu performante permet d’obtenir le meilleur $F_{sav,\,
+ext}$~: il n’y a pas assez d’énergie solaire pour permettre d’optimiser à la fois le
+chauffage et la production d’\abr{ECS} (qui est prioritaire). Dans le second cas, une
+enveloppe performante améliore le $F_{sav,\, ext}$. Ces solutions comportent $6$ ou $7$
+capteurs solaires thermiques et il est alors possible de couvrir une part importante sur
+la production d’\abr{ECS} tout en ayant encore assez d’énergie pour fournir suffisamment
+d’énergie sur le chauffage. Le solaire ne couvrant pas l’ensemble des besoins en
+\abr{ECS}, réduire les besoins de chauffage permet de réduire la part solaire attribuée au
+chauffage et donc il est possible de couvrir plus efficacement les besoins en \abr{ECS}.
+Il est ainsi mis en évidence l’existence de nombreux compromis sur la qualité de l’enveloppe
+permettant tous d’obtenir un taux d’économie important favorisant tantôt le chauffage
+tantôt la production d’\abr{ECS}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_enveloppe_colormap.pdf}
+    \caption[Évolution de la performance du \abr{SSC} en fonction de la qualité de l’enveloppe]
+             {Évolution de la performance du \abr{SSC} sur Strasbourg pour les indicateurs $F_{sav}^{CH}$
+              et $F_{sav}^{CH}$, et $F_{sav,\,ext}$ en fonction de la performance de l’enveloppe (couleurs).}
+    \label{fig:pareto_enveloppe_strasbourg}
+\end{figure}
+
+
+% Afin de pouvoir évaluer le front optimal, la qualité de l’enveloppe est définie
+% de manière qualitative (\figref{fig:pareto_enveloppe_strasbourg}). Il est retenu
+% trois valeurs~: \enquote{faible}, \enquote{forte}, et \enquote{moyenne}. Pour obtenir
+% ces valeurs, un coefficient de transfert thermique pour l’ensemble du bâtiment est calculé
+% en fonction de la performance des murs, du plancher, du plafond et des vitrages (en tenant
+% compte de la variation de surface). Les résultats sont ensuite répartis dans les $3$ groupes~:
+% \enquote{faible} regroupe les solutions où l’isolation est peu importante et \enquote{forte}
+% les solutions ayant la meilleure enveloppe.
+% Les résultats montrent que majoritairement, il est préférable d’isoler fortement le bâtiment
+% afin d’améliorer la performance du bâtiment. L’écart de consommation entre la solution la plus performante
+% pour une enveloppe \enquote{moyenne} et pour une enveloppe \enquote{forte} est de \SI{3}{kWh\per m^{2}}
+% Cet écart est relativement peu important au regard de la consommation de référence (\SI{\sim 41}{kWh\per m^{2}})
+% et le surcoût dû à une sur-isolation n’est certainement profitable au niveau économique.
+% \itodo{Continue}
+
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_enveloppe.pdf}
+%     \caption[Évolution de la performance du \abr{SSC} en fonction de la qualité de l’enveloppe]
+%              {Évolution de la performance du \abr{SSC} sur Strasbourg pour les indicateurs $F_{sav}^{CH}$
+%               et $F_{sav}^{CH}$, et $F_{sav,\,ext}$ en fonction de la performance de l’enveloppe (couleurs).}
+%     \label{fig:pareto_enveloppe_strasbourg}
+% \end{figure}
+
+
+Afin de mieux caractériser les corrélations existantes, $3$ indicateurs sont introduits, $p$,
 la probabilité qu’une corrélation existe entre deux variables mais aussi, les coefficients
 de corrélation de \textit{Pearson} ($spearmanr$) et de \textit{Spearman} ($pearsonr$).
 L’indicateur $pearsonr$ permet d’évaluer le niveau de corrélation linéaire existant entre
@@ -1946,7 +2007,16 @@ comportera des solutions favorisant une enveloppe peu performante afin que le ga
 absolue potentiel soit plus important. On obtiendra donc des solutions
 maximisant $F_{sav}^{ECS}$ (car $Conso_{ref}^{ECS}$ est fixe) mais aucunes ne
 favorisant $F_{sav}^{CH}$. Il est en effet plus intéressant de dégrader la performance
-de l’enveloppe si on cherche à augmente l’économie en valeur absolue.
+de l’enveloppe si on cherche à augmente l’économie d’énergie en valeur absolue.
+
+% \ftodo{Type capteur et volume ballon  / performance XDAT}
+% Les analyses précédentes ont montrées qu’il est possible d’obtenir une performance
+% similaire pour différents types de capteurs et pour différentes tailles de ballons.
+% Afin d’illustrer les propos tenus, une représentation paramétrique est proposée (\mtodo{ref fig}).
+% La présente représentation permet d’évaluer simultanément l’évolution de la qualité de
+% l’enveloppe en fonction du volume des ballons en construisant plusieurs clusters.
+
+
 
 Ainsi, le choix du niveau d’isolation doit bien être déterminé parallèlement au choix des
 équipements du \abr{SSC}. Il est de plus nécessaire de considérer un autre indicateur afin
@@ -2013,64 +2083,64 @@ et bien que non traité dans ces travaux, l’ajout de nouveaux objectifs est si
 
 
 
-% ------------------------------------------------------------------------------
-\subsection{Adéquation entre besoins et production} % (fold)
-\label{sub:adequation_entre_besoins_et_production}
-\iunsure{Si j’ai le temps.}
-Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
-sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
-tient donc pas compte de l’adéquation entre les besoins et la demande comme illustré sur
-Bordeaux avec $11$ et $16$ capteurs \abr{PV}.
-(\figref{fig:evolution_usages_pv}). Ainsi une forte production durant la période estivale
-compense une faible production durant la période hivernale. À l’opposée, l’économie
-engendrée par le \abr{SSC} est calculée par rapport à une solution de référence et tient
-donc implicitement compte de l’adéquation entre besoins et demande (bilan charge /
-production). C’est d’ailleurs pour cette raison que l’indicateur $F_{sav}$ a été préféré
-au taux de couverture ($F_{sol}$) qui permet de tenir compte de l’adéquation entre besoins
-et demande \textbf{uniquement} si il est calculé sur une base mensuelle.
+% % ------------------------------------------------------------------------------
+% \subsection{Adéquation entre besoins et production} % (fold)
+% \label{sub:adequation_entre_besoins_et_production}
+% \iunsure{Si j’ai le temps.}
+% Il est de plus important de rappeler que la production des capteurs \abr{PV} est estimée
+% sur l’année (bilan importation / exportation, \ref{ssub:la_methodologie_de_calcul}) et ne
+% tient donc pas compte de l’adéquation entre les besoins et la demande comme illustré sur
+% Bordeaux avec $11$ et $16$ capteurs \abr{PV}.
+% (\figref{fig:evolution_usages_pv}). Ainsi une forte production durant la période estivale
+% compense une faible production durant la période hivernale. À l’opposée, l’économie
+% engendrée par le \abr{SSC} est calculée par rapport à une solution de référence et tient
+% donc implicitement compte de l’adéquation entre besoins et demande (bilan charge /
+% production). C’est d’ailleurs pour cette raison que l’indicateur $F_{sav}$ a été préféré
+% au taux de couverture ($F_{sol}$) qui permet de tenir compte de l’adéquation entre besoins
+% et demande \textbf{uniquement} si il est calculé sur une base mensuelle.
 
-\begin{figure}
-    \centering
-    \ftodo{Ajouter évolution apports PV sur l’année vs besoins spécifiques}
-    % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
-    \caption[None]
-             {None.}
-    \label{fig:evolution_usages_pv}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \ftodo{Ajouter évolution apports PV sur l’année vs besoins spécifiques}
+%     % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+%     \caption[None]
+%              {None.}
+%     \label{fig:evolution_usages_pv}
+% \end{figure}
 
 
-Afin d’évaluer les solutions du front de Pareto obtenu en tenant mieux compte de
-l’adéquation entre besoins et demande, un nouvel indicateur, $F_{sol.\, tot}$ est construit
-en se basant sur le taux de couverture \eqref{eq:f_sol_mensuel_total}. Il permet
-de réaliser un bilan mensuel du rapport entre la part solaire utile et la demande en
-énergie nécessaire pour couvrir l’ensemble des besoins de la maisons, usages spécifiques,
-chauffage, et production d’\abr{ECS}. Étant réaliser à une fréquence mensuelle, l’indicateur
-tient compte en parti de l’adéquation avec le réseau, à la fois pour le thermique et
-pour le photovoltaïque.
+% Afin d’évaluer les solutions du front de Pareto obtenu en tenant mieux compte de
+% l’adéquation entre besoins et demande, un nouvel indicateur, $F_{sol.\, tot}$ est construit
+% en se basant sur le taux de couverture \eqref{eq:f_sol_mensuel_total}. Il permet
+% de réaliser un bilan mensuel du rapport entre la part solaire utile et la demande en
+% énergie nécessaire pour couvrir l’ensemble des besoins de la maisons, usages spécifiques,
+% chauffage, et production d’\abr{ECS}. Étant réaliser à une fréquence mensuelle, l’indicateur
+% tient compte en parti de l’adéquation avec le réseau, à la fois pour le thermique et
+% pour le photovoltaïque.
 
-\begin{subequations}\label{eq:f_sol_mensuel_total}
-    \begin{align}
-        F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
-        \shortintertext{avec~:}
-        Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
-        Gain_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right)
-    \end{align}
-\end{subequations}
+% \begin{subequations}\label{eq:f_sol_mensuel_total}
+%     \begin{align}
+%         F_{sol,\, tot} &= \frac{\sum_{i=1}^{12}\left(Gain_{TH}^{i} + Gain_{PV}^{i} \right)}{Conso_{usages} + Conso_{app}} \\
+%         \shortintertext{avec~:}
+%         Gain_{TH}^{i} &= \min \left(Prod_{TH}^{i},\ Conso_{app} \right) \\
+%         Gain_{PV}^{i} &= \min \left(Prod_{PV}^{i},\ Conso_{usages}^{i} + \max\left(0,\ \left[Conso_{app}^{i} - Prod_{TH}^{i} \right]\right) \right)
+%     \end{align}
+% \end{subequations}
 
-Le bâtiment et ses équipements est ainsi évaluée en traçant l’évolution de l’indicateur $F_{sol,\, tot}$,
-en fonction du nombre de capteurs \abr{PV} installés. Pour chaque variation du nombre de capteurs \abr{PV},
-il est retenu uniquement la solution ayant la meilleure performance globale sur le \abr{SSC}, la solution
-maximisant $F_{sav,\,ext}$.
+% Le bâtiment et ses équipements est ainsi évaluée en traçant l’évolution de l’indicateur $F_{sol,\, tot}$,
+% en fonction du nombre de capteurs \abr{PV} installés. Pour chaque variation du nombre de capteurs \abr{PV},
+% il est retenu uniquement la solution ayant la meilleure performance globale sur le \abr{SSC}, la solution
+% maximisant $F_{sav,\,ext}$.
 
-\begin{figure}
-    \centering
-    \ftodo{Ajouter F sol tot en fonction du nombre de capteurs PV}
-    % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
-    \caption[None]
-             {None.}
-    \label{fig:fsoltot_vs_pvnumber}
-\end{figure}
-% subsection adequation_entre_besoins_et_production (end)
+% \begin{figure}
+%     \centering
+%     \ftodo{Ajouter F sol tot en fonction du nombre de capteurs PV}
+%     % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+%     \caption[None]
+%              {None.}
+%     \label{fig:fsoltot_vs_pvnumber}
+% \end{figure}
+% % subsection adequation_entre_besoins_et_production (end)
 
 
 
@@ -2098,9 +2168,6 @@ connaissances acquises, l’illustration est réalisée en considérant le front
 par les optimisations successives sur Strasbourg.
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsubsection{Exploration des solutions pour le climat de Strasbourg} % (fold)
-\label{ssub:exploration_des_solutions_pour_le_climat_de_strasbourg}
 Comme explicité ci-avant, les critères pouvant être retenus pour réaliser l’aide à la
 décision couvrent les critères de décisions, les objectifs, ou encore de nouvelles
 contraintes. Par exemple, il est possible de préférer certains matériaux afin de faire
@@ -2108,25 +2175,37 @@ travailler des professionnels de la région. Dans le cas d’un constructeur de 
 individuelles, il est possible de choisir la maison directement avec les clients.
 L’optimisation est réalisée en amont permettant au constructeur de proposée une palette de
 solutions. Puis, grâce à une visualisation par coordonnées parallèles, le client participe
-de manière active aux choix constructifs, ou aux choix des systèmes sans avoir besoin
+de manière active aux choix constructifs et des systèmes sans avoir besoin
 d’une expertise importante. Le client devient acteur de son choix et évalue mieux
-les contraintes et atouts de chaque proposition. De la même manière, ce processus est
-adaptée dans le cas où le respect d’une réglementation spécifique est nécessaire\dots
+les contraintes et atouts de chaque proposition; le constructeur est lui mieux à même de
+présenter et défendre ces offres. De la même manière, ce processus est
+adapté dans le cas où le respect d’une réglementation spécifique est nécessaire
+et encore d’autres applications\dots
 
 La large variété de solutions peut être observée à travers \mtodo{ref fig}.
-Prenons le cas où le client souhaite limité au maximum la place prise par les équipements.
+Prenons le cas où le client souhaite limiter au maximum la place prise par les équipements.
 En jouant sur les curseurs, il est possible de conserver uniquement les solutions
 qui correspondent et de voir directement les effets sur les autres critères de décisions
 ou les objectifs (\mtodo{ref fig}).
 Étant un peu juste financièrement, il souhaite
-aussi limité le nombre de capteurs solaires thermiques sans augmenter le nombre
+aussi limiter le nombre de capteurs solaires thermiques sans augmenter le nombre
 de capteurs \abr{PV}(\mtodo{ref fig}). Finalement il trouve une solution qui lui
 correspond.
 À partir de là, il est possible de relancer le processus d’optimisation
 en tenant compte de la préférence du décideur afin de proposer plus de choix sur les
 autres critères.
 
-\ftodo{Figure avec évolution du front en fonction des préférences (3 stade)}
+\begin{figure}
+    \centering
+    \ftodo{Figure avec évolution du front en fonction des préférences (3 stade)}
+    % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    % \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \caption[None]
+             {Évolution de l’aide à la décision en fonction des choix}
+    \label{fig:xdat_exemple}
+\end{figure}
+
 
 Six solutions ont été sélectionnée qui permettent de récapituler les observations faites
 de manière plus détaillée~:
@@ -2173,11 +2252,15 @@ de manière plus détaillée~:
                                  de l’algorithme sont très variants et il existe des solutions
                                  similaires sur le $F_{sav,\,ext}$ mais pour des configurations
                                  différentes.
-  \item[Solution 6 (\abr{S6})~:] Représente la solution qui maximise le $F_{sav,\,ext}$
+  \item[Solution 7 (\abr{S7})~:] Représente la solution qui maximise le $F_{sav,\,ext}$
                                  lorsque uniquement $5$ capteurs sont installés. L’isolation
                                  est amélioré par rapport à la solution $1$ mais la consommation
                                  de l’appoint augmentée de \SI{300}{kWh}. L’écart nécessite
                                  donc l’installation de $3$ capteurs \abr{PV} supplémentaires.
+  \item[Solution 8 (\abr{S8})~:] Représente la solution qui maximise le $F_{sav,\,ext}$
+                                 lorsque le niveau d’isolation est inférieur à \SI{50}{\percent}
+                                 que ce soit sur le plancher, le plafond, ou les murs.
+                                 Lorsque l’isolation est peu importante, c’est le ,
 \end{blockdescription}
 
 
@@ -2187,47 +2270,49 @@ de manière plus détaillée~:
 \caption[Détail des solutions optimales sélectionnée sur Strasbourg]
          {Détail des solutions optimales sélectionnée sur Strasbourg.}
 \label{tab:detail_opti_stras}
-\begin{tabular}{l c c c c c c c}
+\begin{tabular}{l c c c c c c c c}
   \toprule
   \addlinespace
-                       & S1        & S2         & S3  & S4       & S5   & S6 & S7                             \\
+                       & S1        & S2         & S3  & S4       & S5   & S6 & S7  & S8                       \\
   \addlinespace
-  \multicolumn{5}{l}{\textbf{\abr{SSC}}}         \\
+  \multicolumn{9}{l}{\textbf{\abr{SSC}}}         \\
   \midrule
-  Nombre capteurs \abr{TH}      & \num{7} & \num{7} & \num{7} & \num{2} & \num{7} & \num{7} & \num{5} \\
-  Type capteurs \abr{TH}        & \multicolumn{5}{c}{\textit{SkyPro}}  & \textit{IDMK} & \textit{SkyPro} \\
-  $Ech_{sol}^{pos}$             & \num{0.8} & \num{0.96}  & \num{1.23}  & \num{0.95}  & \num{0.94}  & \num{0.87}  & \num{1} \\
-  Volume ballon tampon          & \num{400} & \num{100} & \num{400} & \num{250} & \num{200} & \num{400} & \num{400} \\
-  Volume ballon $ECS$           & \num{400} & \num{400} & \num{200} & \num{350} & \num{200} & \num{400} & \num{400} \\
-  $\Delta T_{sol}$              & \num{5} & \num{10}  & \num{8} & \num{10}  & \num{10}  & \num{18}  & \num{0} \\
-  $\Delta min_{capteur}$        & \num{30}  & \num{28}  & \num{0} & \num{8} & \num{16}  & \num{21}  & \num{30}  \\
-  $\Delta min_{tampon}$         & \num{25}  & \num{30}  & \num{0} & \num{10}  & \num{21}  & \num{21}  & \num{30}  \\
+  Nombre capteurs \abr{TH}      & \num{7} & \num{7} & \num{7} & \num{2} & \num{7} & \num{7} & \num{5} & \num{7}  \\
+  Type capteurs \abr{TH}        & \multicolumn{5}{c}{\textit{SkyPro}} & \textit{IDMK} & \multicolumn{2}{c}{\textit{SkyPro}}  \\
+  $Ech_{sol}^{pos}$             & \num{0.8} & \num{0.96}  & \num{1.23}  & \num{0.95}  & \num{0.94}  & \num{0.87}  & \num{1} & \num{1.21}  \\
+  Volume ballon tampon          & \num{400} & \num{100} & \num{400} & \num{250} & \num{200} & \num{400} & \num{400} & \num{400}  \\
+  Volume ballon $ECS$           & \num{400} & \num{400} & \num{200} & \num{350} & \num{200} & \num{400} & \num{400} & \num{400}  \\
+  $\Delta T_{sol}$              & \num{5} & \num{10}  & \num{8} & \num{10}  & \num{10}  & \num{18}  & \num{0} & \num{7}  \\
+  $\Delta min_{capteur}$        & \num{30}  & \num{28}  & \num{0} & \num{8} & \num{16}  & \num{21}  & \num{30}  & \num{4}  \\
+  $\Delta min_{tampon}$         & \num{25}  & \num{30}  & \num{0} & \num{10}  & \num{21}  & \num{21}  & \num{30}  & \num{4}  \\
+
   \\
   \addlinespace[\defaultaddspace]
-  \multicolumn{4}{l}{\textbf{Enveloppe du bâtiment}}             \\
+  \multicolumn{9}{l}{\textbf{Enveloppe du bâtiment}}             \\
   \midrule
-  $R$ murs              & \num{7} & \num{7} & \num{7} & \num{4} & \num{7} & \num{7} & \num{7} \\
-  $R$ plafond           & \num{10}  & \num{10}  & \num{10}  & \num{9.5} & \num{10}  & \num{10}  & \num{10}  \\
-  $R$ plancher          & \num{8.5} & \num{8.5} & \num{10}  & \num{10}  & \num{9} & \num{9} & \num{10}  \\
-  Surface vitrée sud    & \num{5.8} & \num{6.6} & \num{6,2} & \num{5.4} & \num{6.2} & \num{5.4} & \num{5.8} \\
-  Surface vitrée est    & \num{4.3} & \num{4.7} & \num{4,3} & \num{4.7} & \num{4.4} & \num{4.6} & \num{4.3} \\
-  Type de vitrage       & \multicolumn{3}{c}{\textit{PlanithermXN}} & \textit{PlanithermOne}  & \multicolumn{3}{c}{\textit{PlanithermXN}} \\
+
+  $R$ murs              & \num{7} & \num{7} & \num{7} & \num{4} & \num{7} & \num{7} & \num{7} & \num{4} \\
+  $R$ plafond           & \num{10}  & \num{10}  & \num{10}  & \num{9.5} & \num{10}  & \num{10}  & \num{10}  & \num{6} \\
+  $R$ plancher          & \num{8.5} & \num{8.5} & \num{10}  & \num{10}  & \num{9} & \num{9} & \num{10}  & \num{6} \\
+  Surface vitrée sud    & \num{5.8} & \num{6.6} & \num{6,2} & \num{5.4} & \num{6.2} & \num{5.4} & \num{5.8} & \num{5.7} \\
+  Surface vitrée est    & \num{4.3} & \num{4.7} & \num{4,3} & \num{4.7} & \num{4.4} & \num{4.6} & \num{4.3} & \num{5.7} \\
+  Type de vitrage       & \multicolumn{3}{c}{\textit{PlanithermXN}} & \textit{PlanithermOne}  &\multicolumn{3}{c}{\textit{PlanithermXN}} & \textit{OptiWhiteKGlass}  \\
   \\
   \addlinespace[\defaultaddspace]
-  \multicolumn{5}{l}{\textbf{Production d’électricité}}      \\
+  \multicolumn{9}{l}{\textbf{Production d’électricité}}      \\
   \midrule
-  Nombre capteurs \abr{PV}  & \num{16}  & \num{17}  & \num{18}  & \num{24}  & \num{16}  & \num{16}  & \num{19}  \\
+  Nombre capteurs \abr{PV}  & \num{16}  & \num{17}  & \num{18}  & \num{24}  & \num{16}  & \num{16}  & \num{19} & \num{21} \\
   \\
   \addlinespace[\defaultaddspace]
   \multicolumn{5}{l}{\textbf{Indicateurs}}      \\
   \midrule
-  $Conso_{app}$ & \num{1118}  & \num{1208}  & \num{1233}  & \num{2667}  & \num{1217}  & \num{1166}  & \num{1441}  \\
-  $Conso_{ref}$ & \num{4221}  & \num{4219}  & \num{4187}  & \num{4726}  & \num{4208}  & \num{4225}  & \num{4193}  \\
-  $Conso_{app,\, diff}$ & \num{3103}  & \num{3011}  & \num{2954}  & \num{2059}  & \num{2990}  & \num{3059}  & \num{2752}  \\
-  $F_{sav,\, ext}$  & \num{74}  & \num{71}  & \num{70}  & \num{43}  & \num{71}  & \num{72}  & \num{66}  \\
-  $F_{sav}^{ECS}$ & \num{87}  & \num{89}  & \num{80}  & \num{61}  & \num{84}  & \num{85}  & \num{82}  \\
-  $F_{sav}^{CH}$  & \num{44}  & \num{34}  & \num{62}  & \num{18}  & \num{45}  & \num{47}  & \num{38}  \\
-  $Prod_{PV}$ & \num{4014}  & \num{4252}  & \num{4490}  & \num{6021}  & \num{4014}  & \num{4014}  & \num{4766}  \\
+  $Conso_{app}$ & \num{1118}  & \num{1208}  & \num{1233}  & \num{2667}  & \num{1217}  & \num{1166}  & \num{1441}  & \num{1826}  \\
+  $Conso_{ref}$ & \num{4221}  & \num{4219}  & \num{4187}  & \num{4726}  & \num{4208}  & \num{4225}  & \num{4193}  & \num{4946}  \\
+  $Conso_{app,\, diff}$ & \num{3103}  & \num{3011}  & \num{2954}  & \num{2059}  & \num{2990}  & \num{3059}  & \num{2752}  & \num{3119}  \\
+  $F_{sav,\, ext}$  & \num{74}  & \num{71}  & \num{70}  & \num{43}  & \num{71}  & \num{72}  & \num{66}  & \num{63}  \\
+  $F_{sav}^{ECS}$ & \num{87}  & \num{89}  & \num{80}  & \num{61}  & \num{84}  & \num{85}  & \num{82}  & \num{81}  \\
+  $F_{sav}^{CH}$  & \num{44}  & \num{34}  & \num{62}  & \num{18}  & \num{45}  & \num{47}  & \num{38}  & \num{44}  \\
+  $Prod_{PV}$ & \num{4014}  & \num{4252}  & \num{4490}  & \num{6021}  & \num{4014}  & \num{4014}  & \num{4766}  & \num{5204}  \\
   \bottomrule
 \end{tabular}
 \end{table}
