@@ -74,8 +74,9 @@ d’une architecture alsacienne.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
-    \caption[Évolution mensuel du potentiel solaire sur Bordeaux et Strasbourg]
-            {Évolution mensuel du potentiel solaire sur Bordeaux et Strasbourg}
+    \caption[Évolution mensuelle du potentiel solaire sur Bordeaux et Strasbourg]
+            {Évolution mensuelle du potentiel solaire sur Bordeaux et Strasbourg avec l’irradiation
+            globale à gauche ($I$) et la l’ensoleillement direct à droite ($I_{dir,\,nor}$)}
     \label{fig:diff_ensoleillement_bor_stras}
 \end{figure}
 
@@ -191,7 +192,8 @@ par les variables qualitatives. Enfin les autres paramètres sont présentés.
 
 \begin{table}
 \centering
-\caption{Liste des paramètres a priori utilisés pour l’analyse de sensibilité.}
+\caption[Liste des paramètres a priori utilisés pour l’analyse de sensibilité]
+        {Liste des paramètres a priori utilisés pour l’analyse de sensibilité.}
 \label{tab:parametre_a_priori}
 \begin{tabular}{l c c l}
   \toprule
@@ -298,16 +300,16 @@ leurs performances soient constantes sur la journée comme montré dans le premi
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/Modelisation/Capteurs/IAM_all.pdf}
-    \caption[Évolution des \abr{IAM}s en fonction de l’angle d’incidence]
-    {Évolution des \abr{IAM}s respectifs des quatre capteurs considérés en fonction
-     de l’angle d’incidence.}
+    \caption[Évolution de l’\abr{IAM} en fonction de l’angle d’incidence]
+    {Évolution de l’\abr{IAM} en fonction de l’angle d’incidence pour les quatre capteurs considérés.}
     \label{fig:correlation_IAM_all}
 \end{figure}
 
 \begin{table}
 \centering
-\caption{Caractéristiques des capteurs solaires thermiques sélectionnés. La présence d’un astérisque (*)
-         indique la surface utilisée pour les corrélations.}
+\caption[Caractéristiques des capteurs solaires thermiques sélectionnés]
+        {Caractéristiques des capteurs solaires thermiques sélectionnés. La présence d’un astérisque (*)
+         indique la surface qui a été utilisée pour déterminer les coefficients de corrélations.}
 \label{tab:capteurs_specs_optimisation}
 \begin{tabular}{l c c c c r}
     \toprule
@@ -343,7 +345,8 @@ sur l’ensemble des parois verticales, la fenêtre de toit, elle, conserve les 
 
 \begin{table}
 \centering
-\caption{Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
+\caption[Descriptif des caractéristiques des différents vitrages envisagés]
+        {Descriptif des caractéristiques (suivant \cite{NFEN410} et \cite{NFEN673})
          des différents vitrages envisagés.}
 \label{tab:carac_vitrages}
 \begin{tabular}{l c c c r}
@@ -549,7 +552,9 @@ en assurant que les valeurs prises lors de la création de l’échantillon sont
 
 \begin{table}
 \centering
-\caption{Variabilité des caractéristiques des capteurs et des vitrages pour l’étude
+\caption[Variabilité des caractéristiques des capteurs et des vitrages pour l’étude
+         de sensibilité]
+        {Variabilité des caractéristiques des capteurs et des vitrages pour l’étude
          de sensibilité.}
 \label{tab:variabilite_capteur_vitrage}
 \begin{minipage}[t][][b]{0.45\linewidth}
@@ -605,7 +610,8 @@ importantes et de fournir le reste en annexe (\ref{cha:analyse_de_sensibilite}).
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/Sensibilite/sigma_mu_star_1.pdf}
-    \caption{Résultat de l’analyse de \textit{Morris} pour les indicateurs principaux
+    \caption[Résultat de l’analyse de \textit{Morris} pour les indicateurs principaux]
+            {Résultat de l’analyse de \textit{Morris} pour les indicateurs principaux
              ($f(\mu^{*}) = \sigma$).}
     \label{fig:objectifs_mu_star}
 \end{figure}
@@ -900,10 +906,10 @@ proposer d’utiliser des modèles de substitutions.
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Ressources/Images/Sensibilite/graphInfluence.pdf}
-    \caption[Graphe d’influence\abr{SSCpour }Bordeaux et Strasbourg]
-            {Graphe d’influence\abr{SSCpour }Bordeaux (gauche) et Strasbourg (droite) où les
-             relations linéaires sont de couleur noire, et les relations non-linéaires ou
-             avec interactions de couleur bleue.}
+    \caption[Graphe d’influence du \abr{SSC} pour Bordeaux et Strasbourg]
+            {Graphe d’influence du \abr{SSC} pour Bordeaux (gauche) et Strasbourg (droite). Les
+             relations linéaires sont en noires, et les relations non-linéaires ou
+             avec interactions en bleues.}
     \label{fig:graphe_influence_objectifs}
 \end{figure}
 
@@ -960,12 +966,17 @@ l’espace de décision. Une fois l’échantillon simulé, la bibliothèque
 \fnref{http://openturns.org/}{\textit{OpenTurns}} et les travaux de \textcite{Rania2013}
 sont utilisés pour construire les modèles de substitutions. Étant en phase de conception
 et cherchant à explorer l’ensemble du domaine de recherche, une loi uniforme est
-considérée pour chaque paramètre. La précision des modèles de substitutions par rapport au
-modèle original est évaluée sur deux critères~: l’erreur quadratique moyenne ($RMSE$, Root
-Mean Square Error) et l’erreur absolue maximale ($MAE$, Maximal Absolute Error). La $RMSE$
-permet d’évaluer l’écart moyen entre, les sorties du méta-modèle ($\mathcal{M}$), et
-celles du modèle original ($f$) \eqref{eq:rmse}. La $MAE$ permet d’obtenir l’écart maximal existant entre le
-méta-modèle et le modèle de référence \eqref{eq:mae}.
+considérée pour chaque paramètre. Afin de prendre en compte les variables qualitatives,
+une substitution est nécessaire. Pour les capteurs, il apparaît nécessaire de tenir compte
+du rendement optique ($\eta_{0}$) mais aussi du coefficient de pertes linéiques ($a_{1}$)
+car uniquement considérer l’un des deux réduit la précision du méta-modèle. Pour le
+vitrage, le coefficient de pertes thermique ($U_{g}$) est suffisant. La précision des
+modèles de substitutions par rapport au modèle original est évaluée sur deux critères~:
+l’erreur quadratique moyenne ($RMSE$, Root Mean Square Error) et l’erreur absolue maximale
+($MAE$, Maximal Absolute Error). La $RMSE$ permet d’évaluer l’écart moyen entre, les
+sorties du méta-modèle ($\mathcal{M}$), et celles du modèle original ($f$)
+\eqref{eq:rmse}. La $MAE$ permet d’obtenir l’écart maximal existant entre le méta-modèle
+et le modèle de référence \eqref{eq:mae}.
 
 Pour le système de référence, l’échantillon est construit en faisant varier les différents
 paramètres de l’enveloppe soit $6$ facteurs. Pour le système solaire l’ensemble des
@@ -987,7 +998,6 @@ dans la section qui suit.
 % ------------------------------------------------------------------------------
 \subsection{Sélection des méta-modèles} % (fold)
 \label{sub:selection_des_meta_modeles}
-\iunsure{Décrire prise en compte capteurs et vitrages}
 Afin d’offrir une meilleure lisibilité, seuls les principaux résultats sont intégrés dans
 le cœur du document. Cependant comme pour l’étude de sensibilité, tous
 les résultats sont disponibles en annexes (\ref{cha:creation_des_meta_modeles}).
@@ -1059,8 +1069,8 @@ au cours du processus d’optimisation et les résultats sont discutés.
 
 \begin{table}
 \centering
-\caption[Erreurs caractéristiques des \num{8} méta-modèles retenus.]
-        {Erreurs caractéristiques ($RMSE$ et $MAE$) (\si{kWh}) des\num{8} méta-modèles retenus.}
+\caption[Erreurs caractéristiques des \num{8} méta-modèles retenus]
+        {Erreurs caractéristiques ($RMSE$ et $MAE$) des \num{8} méta-modèles retenus (\si{kWh}).}
 \label{tab:meta_result_bilan}
 \begin{tabular}{l c c c c c c c c c c}
     \toprule
@@ -1127,7 +1137,9 @@ l’optimisation.
 
 \begin{table}
 \centering
-\caption{Erreurs caractéristiques ($RMSE$ et $MAE$) des méta-modèles sur l’échantillon
+\caption[Erreurs caractéristiques des méta-modèles sur l’échantillon
+         de validation et sur les solutions non-dominées]
+        {Erreurs caractéristiques ($RMSE$ et $MAE$) des méta-modèles sur l’échantillon
          de validation (gauche) et sur les solutions non-dominées obtenues par
          l’optimisation (droite).}
 \label{tab:meta_vs_optimisation}
@@ -1499,7 +1511,7 @@ positive. Il n’existe ainsi pas de solution minimisant au maximum la $Conso_{t
         \caption{}
         \label{fig:fsav_pv_stras}
     \end{subfigure}
-    \caption[Évolution de la performance globale du \abr{SSC} en fonction du nombre de capteurs \abr{PV}.]
+    \caption[Évolution de la performance globale du \abr{SSC} en fonction du nombre de capteurs \abr{PV}]
              {Évolution de la performance globale du \abr{SSC} en fonction du nombre de capteurs \abr{PV}.}
     \label{fig:fsav_pv_bor_stras}
 \end{figure}
@@ -1684,16 +1696,14 @@ varie de \SI{50}{\percent} et sur le $F_{sav}^{CH}$ de \SI{60}{\percent}.
 % pair_grid_plot
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
-    \caption[Projection $2D$ des solutions optimales des fronts de Pareto pour les
-             différents types de capteurs sur Strasbourg.]
-             {Projection $2D$ des solutions optimales des fronts de Pareto pour les
-              différents types de capteurs sur Strasbourg. La couleur permet d’identifier le nombre
-              de capteurs solaires thermiques installés.}
+    \caption[Fronts de Pareto pour les différents types de capteurs sur Strasbourg]
+             {Projection $2D$ des fronts de Pareto pour les différents types de capteurs sur Strasbourg.
+             La couleur permet d’identifier le nombre de capteurs solaires thermiques installés.}
     \label{fig:front_pareto_nb_th}
 \end{figure}
 
 
-La \figref{fig:evolution_front_pareto_nb_th} permet de mieux apprécier l’évolution de la
+La \figref{fig:perf_nb_th} permet de mieux apprécier l’évolution de la
 population en fonction du nombre de capteurs pour respectivement $F_{sav}^{CH}$,
 $F_{sav}^{ECS}$, et $F_{sav,\, ext}$. Ajouter un capteur permet d’améliorer le
 $F_{sav}^{CH}$ de \SIrange{8}{10}{\percent} jusqu’à $6$ capteurs. Ajouter le $7^{ème}$ ne
@@ -1721,12 +1731,10 @@ augmenterait de \SI{180}{kWh}, alors que avec un $5^{ème}$ seulement \SI{100}{k
 % nb_collector_evolution
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/evolution_perf_nb_capteurs.pdf}
-    \caption[Projection $2D$ des solutions optimales des fronts de Pareto pour les
-             différents types de capteurs.]
-             {Projection $2D$ des solutions optimales des fronts de Pareto pour les
-              différents types de capteurs. La couleur permet d’identifier le nombre
-              de capteurs solaires thermiques installés.}
-    \label{fig:evolution_front_pareto_nb_th}
+    \caption[Performance du \abr{SSC} sur Strasbourg en fonction du nombre de capteurs solaires thermiques]
+             {Évolution de la performance du \abr{SSC} sur Strasbourg en fonction du nombre de capteurs solaires thermiques.
+              Le jeu de couleur est identique à celui utilisé dans \figref{fig:front_pareto_nb_th}.}
+    \label{fig:perf_nb_th}
 \end{figure}
 
 
@@ -1821,7 +1829,7 @@ $F_{sav}^{CH}$, soit le $F_{sav}^{ECS}$.
 % volume_collector_factorplot
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_local.pdf}
-    \caption[Évolution de la performance du \abr{SSC} par secteur en fonction du volume des ballons sur Strasbourg.]
+    \caption[Performance du \abr{SSC} sur Strasbourg en fonction du volume des ballons]
              {Évolution de la performance du \abr{SSC} sur Strasbourg pour les indicateurs $F_{sav}^{CH}$
               et $F_{sav}^{CH}$ en fonction du volume du ballon tampon (colonne) et
               du volume du ballon d’\abr{ECS} (couleur).}
@@ -1923,7 +1931,7 @@ tantôt la production d’\abr{ECS}.
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_enveloppe_colormap.pdf}
     \caption[Évolution de la performance du \abr{SSC} en fonction de la qualité de l’enveloppe]
              {Évolution de la performance du \abr{SSC} sur Strasbourg pour les indicateurs $F_{sav}^{CH}$
-              et $F_{sav}^{CH}$, et $F_{sav,\,ext}$ en fonction de la performance de l’enveloppe (couleurs).}
+              et $F_{sav}^{CH}$, et $F_{sav,\,ext}$ en fonction de la performance de l’enveloppe (couleur).}
     \label{fig:pareto_enveloppe_strasbourg}
 \end{figure}
 
@@ -2195,14 +2203,14 @@ de l’enveloppe. Plusieurs choix sont ainsi possibles~:
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/base.png}
+    \includegraphics[width=0.95\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/base.png}
     \\
-    \includegraphics[width=\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}
+    \includegraphics[width=0.95\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}
     \\
-    \includegraphics[width=\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/final.png}
+    \includegraphics[width=0.95\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/final.png}
     \caption[Évolution de l’aide à la décision en fonction de choix fictif d’un décideur]
-             {Évolution de l’aide à la décision en fonction de choix fictif d’un décideur. Les courbes grisées ne répondent à
-             aucunes contraintes du décideur. Chaque couleur indique par contre d’une ou plusieurs contraintes.}
+             {Évolution de l’aide à la décision en fonction de choix fictifs d’un décideur. Les courbes grisées ne répondent à
+             aucunes contraintes du décideur. Chaque autre couleur indique par contre le respect d’une ou plusieurs contraintes.}
     \label{fig:xdat_exemple}
 \end{figure}
 
