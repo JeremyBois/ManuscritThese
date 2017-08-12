@@ -1,7 +1,6 @@
 %!TEX root = ../main.tex
 % Chapitres/Chap2-ApprocheModelisation.tex
 
-\itodo{Ajouter captures du modèle (algo FSM et global)}
 
 L’objectif de ces travaux a été explicité à travers le chapitre précédent. Il est proposé
 de réaliser un outil d’aide à la décision pour explorer les combinaisons pertinentes pour
@@ -333,15 +332,6 @@ de se focaliser sur le problème physique à modéliser~:
     \item La génération de modèles autonomes.
     \item \dots
 \end{itemize}
-
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{Ressources/Images/Modelisation/exemple.PNG}
-%     \caption[Modélisation d’un échange thermique entre deux masses en Modelica]
-%             {Modélisation d’un échange thermique entre deux masses en Modelica.}
-%     \label{fig:exemple_modelica}
-% \end{figure}
-% subsubsection dymola (end)
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -702,7 +692,7 @@ l’étude est du niveau \abr{RT}\,$2005$ et le système modélisé considère d
 pour émetteurs. Les résultats obtenus montrent clairement le potentiel d’un \abr{SSC}
 pour la maison individuelle, indépendamment du climat considéré. Ces travaux
 ont servi de base de travail pour le développement du système de ce document et
-s’inscrivent dans le cadre du projet \abr{COMEPOS} (\ref{ssub:le_projet_comepos})
+s’inscrivent dans le cadre du projet \abr{COMEPOS} (\ref{sub:les_initiatives_francaises})
 en partenariat avec l’entreprise \abr{IGC}, un constructeur de maisons individuelles
 personnalisables implémenté dans \num{12} départements français.
 
@@ -714,7 +704,8 @@ Le vecteur air est retenu afin d’améliorer la réactivité du bâtiment, et d
 ressenti de confort des occupants. Le système modélisé est composé de trois
 parties principales~: la partie hydraulique, la partie aéraulique, et l’algorithme de
 contrôle qui orchestre le fonctionnement couplé entre le système solaire et le bâtiment
-(\figref{fig:air_complet_mono}).
+(\figref{fig:air_complet_mono}). Le modèle correspondant réalisé sous \textit{Dymola} est disponible
+en annexe (\figref{fig:dymola_ssc_batiment}).
 
 Dans un premier temps le fonctionnement de la partie hydraulique sera détaillé. Dans un
 second temps la partie aéraulique sera présentée. Finalement la logique de contrôle sera
@@ -833,7 +824,7 @@ pour des angles d’incidences allant de \SIrange{0}{70}{\degree}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{Ressources/Images/Modelisation/Capteurs/IDMK/IAM.pdf}
+    \includegraphics[width=0.7\textwidth]{Ressources/Images/Modelisation/Capteurs/IDMK/IAM.pdf}
     \caption[\abr{IAM} pour le rayonnement direct]
              {Évolution de $K_{\theta,\,dir}$ en fonction de l’angle d’incidence.
               Les croix représentent les points expérimentaux, et la courbe le résultat
@@ -841,7 +832,6 @@ pour des angles d’incidences allant de \SIrange{0}{70}{\degree}.
     \label{fig:IAM_idmk}
 \end{figure}
 
-\paragraph{} % (fold)
 Afin de vérifier la pertinence du modèle des données expérimentales fournies par
 l’entreprise \textit{SolisArt} ont été utilisées. Pour ce faire la température, le débit
 de l’eau en entrée des collecteurs, et les irradiations directe et indirecte ont été
@@ -857,11 +847,10 @@ reste du document.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/compare_capteurs.pdf}
-    \caption[Comparaisons de l’irradiation entre \textit{TrnSys}, \textit{Modelica}]
-             {Comparaisons par mois~: (gauche) l’irradiation sur les capteurs entre un modèle
-             \textit{TrnSys} et \textit{Modelica}, (droite) la production des capteurs entre des résultats
-             expérimentaux et le modèle \textit{Modelica}.}
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Modelisation/compare_capteurs.pdf}
+    \caption[Comparaisons de l’irradiation entre \textit{TrnSys}, \textit{Modelica} et des résultats expérimentaux]
+             {Irradiation sur les capteurs calculé avec \textit{TrnSys} et \textit{Modelica} (gauche).
+             Production des capteurs pour des résultats expérimentaux et le modèle \textit{Modelica} (droite).}
     \label{fig:compare_capteurs}
 \end{figure}
 \FloatBarrier
@@ -944,7 +933,8 @@ le plus élevé de contrôle a pour rôle l’activation ou la désactivation de
 approche permet d’adapter dynamiquement le comportement du système tout en conservant un
 stricte séparation entre la logique de chaque composant. Le système solaire fonctionne
 ainsi suivant trois principaux modes ordonnées afin de valoriser l’énergie solaire captée.
-(\figref{fig:schema_modes}).
+(\figref{fig:schema_modes}). La représentation au niveau macro de l’ensemble de l’algorithme sous
+\textit{Dymola} est disponible en annexe (\figref{fig:dymola_ssc_controle}).
 
 \begin{figure}[tb]
     \centering
@@ -1359,7 +1349,7 @@ important durant la période hivernale (\tabref{tab:coef_mois}).
 \centering
 \caption[Détail des coefficients de pondération journaliers pour le profil de puisage Réaliste]
         {Détail des coefficients de pondération journaliers pour le profil de
-         puisage Réaliste.}
+         puisage \textbf{Réaliste}.}
 \label{tab:coef_semaine}
 \begin{tabular}{l*{7}{c}}
     \toprule
@@ -1374,7 +1364,7 @@ important durant la période hivernale (\tabref{tab:coef_mois}).
 \centering
 \caption[Détail des coefficients de pondération mensuels pour le profil de puisage Réaliste]
         {Détail des coefficients de pondération mensuels pour le profil de
-         puisage Réaliste.}
+         puisage \textbf{Réaliste}.}
 \label{tab:coef_mois}
 \begin{tabular}{l*{12}{c}}
     \toprule

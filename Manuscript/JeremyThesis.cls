@@ -291,6 +291,11 @@
 \renewcommand{\l@figure}{\@dottedtocline{1}{0em}{3em}}
 \renewcommand{\l@table}{\@dottedtocline{1}{0em}{3em}}
 
+% Default float placement (Only float is not allowed by default)
+% https://tex.stackexchange.com/questions/35125/how-to-use-the-placement-options-t-h-with-figures#35130
+\renewcommand*{\fps@table}{!htb}
+\renewcommand*{\fps@figure}{!htb}
+
 % Used later in class
 \RequirePackage{tikz}
 
