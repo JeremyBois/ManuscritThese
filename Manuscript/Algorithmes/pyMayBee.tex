@@ -36,7 +36,7 @@
 
 
 % Phase d’initialisation
-\begin{algorithm}
+\begin{algorithm}[!htb]
   \SetAlgoVlined
   \DontPrintSemicolon
   \emph{Initialisation des \ASources sur l’ensemble de l’espace de décision}\;
@@ -76,7 +76,7 @@
 
 
 % Phase des éclaireuses
-\begin{algorithm}
+\begin{algorithm}[!htb]
   \SetAlgoVlined
   \DontPrintSemicolon
   \AComment{Exploration par les \AScouts}
@@ -94,7 +94,7 @@
 
 
 % Phase des ouvrières
-\begin{algorithm}
+\begin{algorithm}[!htb]
   \SetAlgoVlined
   \DontPrintSemicolon
   \AComment{Exploitation des sources par les \AOnlookers}
@@ -135,11 +135,10 @@
 
 
 % Maj des sources
-\begin{algorithm}
+\begin{algorithm}[!htb]
   \SetAlgoVlined
   \DontPrintSemicolon
-  Récupérer le maximum et minimum pour chaque objectif dans l’\AHive\;
-  Récupérer le maximum pour chaque contrainte dans l’\AHive\;
+  Récupérer le maximum et minimum pour chaque objectif et contraintes dans l’\AHive\;
   \For{$\ABee \in \ABees$}
   {
     Calcul du vecteur objectif pour l’\ABee ($\vec{F}'_{i}$) et pour sa \ASource $i$ ($\vec{F}_{i}$),
@@ -172,14 +171,13 @@
 
 
 % Phase des butineuses
-\begin{algorithm}
+\begin{algorithm}[!htb]
   \SetAlgoVlined
   \DontPrintSemicolon
   \AComment{Exploration des sources par les \AEmployed}
   \For{$i \leftarrow 0$ \KwTo \ANbrSources}
   {
-    Sélection aléatoire d’une source $a$ ($a \neq i$) dans l’\AArchive\;
-    Sélection aléatoire d’une source $b$ ($b \neq i$) dans l’\AHive\;
+    Sélection aléatoire de $2$ sources~: $a$ ($a \neq i$) dans l’\AArchive, et $b$ ($b \neq i$) dans l’\AHive\;
     \BlankLine
     \circled[b]{a} \emph{Génération d’une nouvelle position $\vec{x_{i}}'$ à partir de la %
                        position $\vec{x_{i}}$ pour la \AButineuse $i$}\;
@@ -197,8 +195,7 @@
             x_{ij}        &\ sinon
           \end{cases}
       \end{algomathdisplay}
-      \ALevy est nombre aléatoire dans une distribution de Lévy
-      permettant de réaliser un vol de Lévy (Définition~\ref{def:vol_levy})\;
+      \ALevy est nombre aléatoire dans une distribution de Lévy (Définition~\ref{def:vol_levy})\;
       }
       }
     \Else
