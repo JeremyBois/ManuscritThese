@@ -1572,7 +1572,7 @@ ces travaux implémentent un vol de \textit{Lévy} comme marche aléatoire duran
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth, clip=True, trim=115mm 10mm 90mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
+    \includegraphics[width=0.6\textwidth, clip=True, trim=110mm 10mm 95mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
     \caption[Mouvement brownien et vol de \textit{Lévy} pour 200 pas aléatoires]
             {Mouvement brownien (en vert) et vol de \textit{Lévy} (en bleu) pour 200 pas aléatoires.}
     \label{fig:levy_vs_gaussian}
@@ -1916,9 +1916,9 @@ principales difficultés existantes \parencite{Collette2002,Deb2002825}~:
 \begin{itemize}
     \item Front linéaire~: \textit{Hanne1} et \textit{DTLZ1}
     \item Front convexe~: \textit{ZDT1}
-    \item Front concave~: \textit{ZDT2}
+    % \item Front concave~: \textit{ZDT2}
     \item Multi-modal~: \textit{ZDT4}
-    \item Non-uniformité avec faible densité près de l’optimal~: \textit{ZDT6} et \textit{DTLZ5}
+    \item Concave + non-uniformité avec faible densité près de l’optimal~: \textit{ZDT6} et \textit{DTLZ5}
     \item Discontinue~: \textit{DTLZ7}
 \end{itemize}
 
@@ -1953,7 +1953,6 @@ Il est donc utilisé dans le chapitre suivant pour réaliser l’étude de cas.
         {Comparaison de la qualité de convergence et de la qualité de répartition des
          solutions des fronts de Pareto obtenues à partir de différents algorithmes.}
 \label{tab:evaluation_algo_opti}
-\small
 \begin{tabular}{L{4cm} c c c c c}
   \toprule
   \addlinespace
@@ -1973,15 +1972,15 @@ Il est donc utilisé dans le chapitre suivant pour réaliser l’étude de cas.
   \textit{$\epsilon$-MOEA} & \num{3.955E-04} & \num{1.220E-05} & & \num{0.8702} & \cellcolor{SolarizedBrWhite} \num{8.25E-05} \\
   \textit{pyMayBee}        & \num{3.662E-04} & \cellcolor{SolarizedBrWhite} \num{2.510E-05} & & \num{0.8696} & \num{2.74E-04} \\
   \\
-  \addlinespace[\defaultaddspace]
-  \multicolumn{6}{l}{\textbf{\abr{ZDT2}} ($2$ objectifs)}                                                                              \\
-  \midrule
-  \textit{PESA}            & \num{3.794E-04} & \num{2.950E-05} & & \num{0.5329}  & \num{1.13E-03} \\
-  \textit{NSGAII}          & \cellcolor{SolarizedBrWhite} \num{3.785E-04} & \cellcolor{SolarizedBrWhite} \num{1.880E-05} & & \num{0.5372}  & \num{3.01E-04} \\
-  \textit{SPEA2}           & \num{8.285E-04} & \num{1.138E-04} & & \num{0.5374}  & \num{2.61E-04} \\
-  \textit{$\epsilon$-MOEA} & \num{4.645E-04} & \num{2.470E-05} & & \cellcolor{SolarizedBrWhite} \num{0.5383}  & \cellcolor{SolarizedBrWhite} \num{6.39E-05} \\
-  \textit{pyMayBee}        & \num{4.468E-04} & \num{4.149E-05} & & \num{0.5281}  & \num{1.20E-04} \\
-  \\
+  % \addlinespace[\defaultaddspace]
+  % \multicolumn{6}{l}{\textbf{\abr{ZDT2}} ($2$ objectifs)}                                                                              \\
+  % \midrule
+  % \textit{PESA}            & \num{3.794E-04} & \num{2.950E-05} & & \num{0.5329}  & \num{1.13E-03} \\
+  % \textit{NSGAII}          & \cellcolor{SolarizedBrWhite} \num{3.785E-04} & \cellcolor{SolarizedBrWhite} \num{1.880E-05} & & \num{0.5372}  & \num{3.01E-04} \\
+  % \textit{SPEA2}           & \num{8.285E-04} & \num{1.138E-04} & & \num{0.5374}  & \num{2.61E-04} \\
+  % \textit{$\epsilon$-MOEA} & \num{4.645E-04} & \num{2.470E-05} & & \cellcolor{SolarizedBrWhite} \num{0.5383}  & \cellcolor{SolarizedBrWhite} \num{6.39E-05} \\
+  % \textit{pyMayBee}        & \num{4.468E-04} & \num{4.149E-05} & & \num{0.5281}  & \num{1.20E-04} \\
+  % \\
   \addlinespace[\defaultaddspace]
   \multicolumn{6}{l}{\textbf{\abr{ZDT4}} ($2$ objectifs)}                                                                              \\
   \midrule
@@ -2069,30 +2068,30 @@ un algorithme de colonie d’abeilles virtuelles (\abr{ABC}) a été adaptée
 aux problèmes multi-objectifs. Ce choix a été retenue principalement car l’approche
 ne nécessite le paramétrage que de $3$ paramètres dont l’impact est connu a priori.
 L’approche a ensuite été renforcée par l’ajout d’une
-archive garantissant une bonne diversité de la population, un vol de Lévy pour éviter
+archive garantissant une bonne diversité de la population, et d’un vol de Lévy pour éviter
 la stagnation et améliorer l’exploratoire. De plus, durant l’initialisation, le choix a été
 fait de retenir l’\abr{OBLM} (\defref{def:oblm}) afin d’offrir une meilleure
-répartition des solutions. Finalement afin d’améliorer l’exploration et l’exploitation
+répartition des solutions. Finalement, afin d’améliorer l’exploration et l’exploitation
 de l’ensemble de l’espace de faisabilité, les contraintes sont prises en compte
-dynamiquement. Contrairement à une approche stricte plus classique,
+dynamiquement. Contrairement à une approche statique et stricte plus classique,
 des solutions non faisables peuvent être retenue apportant ainsi de nouvelles
 connaissances sur le problème. Il est ensuite possible par apprentissage, d’obtenir de nouvelles
 solutions optimales même dans un domaine fortement contraint.
 
 La \figref{fig:outils_methode} récapitule l’ensemble des outils utilisés dans ce chapitre
 afin de mettre en place la méthodologie d’aide à la décision. Comme pour l’étude
-paramétrique, les bibliothèques \textit{Buildingspy} et \textit{DymTK} ont été utilisées
+paramétrique, les bibliothèques \textit{Buildingspy} et \textit{DymTK} sont utilisées
 afin de pouvoir automatiser la simulation en parallèle des modèles à partir du langage
-\textit{Python}. \textit{DyMat} a permis quand à elle de lire les résultats qui ont été
+\textit{Python}. \textit{DyMat} a permis quand à elle de lire les résultats qui sont
 ensuite traités grâce au bibliothèques \textit{Pandas} et \textit{Numpy}. Afin de réaliser
-l’échantillon pour le criblage de Morris, la bibliothèque \textit{Salib} a été retenue.
+l’échantillon pour le criblage de \textit{Morris}, la bibliothèque \textit{Salib} est retenue.
 Pour la construction d’un échantillon uniformément réparti par méthode de Quasi-Monte-Carlo
-et la création des méta-modèles, la bibliothèque \textit{OpenTurns} a été utilisée.
+et la création des méta-modèles, la bibliothèque \textit{OpenTurns} est utilisée.
 Ensuite, l’optimisation a elle été réalisée à partir de l’algorithme développé dans le chapitre
 précédent et implémentée dans la bibliothèque \textit{pyMayBee}. Finalement l’aide à la
 décision est réalisée par une méthode de coordonnées parallèles grâce au logiciel
 \textit{XDAT}.
-La mise en place de cette méthodologie est décrite dans le dernier chapitre à travers l’étude
+La mise en place de cette méthodologie est illustrée dans le dernier chapitre à travers l’étude
 de la performance du \abr{SSC} sur Bordeaux et Strasbourg.
 
 \begin{figure}
