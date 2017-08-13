@@ -12,6 +12,23 @@
   - Légende figure en bas
   - Redéfinir les niveaux de titre avec titlesec
 
+## Potentiel (BS 2017)
+
+Impact du fichier météo :
+
+  - Jisoo Shim : Effect of the Typical Weather Data on Building Energy Simulation
+
+Impact du calcul de l’irradiation :
+
+  - Alexssandro Prada / G. Pernigotto : Influence of solar irradiance models of optimal refurbishment measures
+  - Haowei Xing : Effect of application between Anisotropic and Isotropic Diffuse Radiation
+    Model on Building Diffuse Radition Heat Gain
+    - Déviation entre les deux due à la direction
+
+Optimisation multi-objectif :
+
+  - Nicolas Perez : optimisation multi-objectif à l’échelle du quartier avec DymoSim
+
 ## Latex:
 
 **Ajouter des notes:**

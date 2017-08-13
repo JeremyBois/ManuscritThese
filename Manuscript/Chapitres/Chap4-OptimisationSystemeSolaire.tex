@@ -39,7 +39,7 @@ utilisée afin d’illustrer le processus.
 
 % ------------------------------------------------------------------------------
 \subsection{Hypothèses} % (fold)
-\label{sub:hypotheses}
+\label{sub:hypotheses_optimization}
 L’objectif de ces travaux est de déterminer les configurations permettant
 de garantir l’obtention d’une \abr{MEPOS} dont les besoins sont majoritairement couverts
 par l’énergie solaire. Le terme \abr{MEPOS} considère ici quatre usages, la consommation
@@ -175,7 +175,7 @@ de production photovoltaïque est envoyé vers le réseau.
 Ainsi les solutions produisant trop d’énergie comme celle produisant trop peu d’énergie
 seront écartées.
 % subsubsection definition_des_contraintes (end)
-% subsection hypotheses (end)
+% subsection hypotheses_optimization (end)
 
 
 
@@ -515,7 +515,7 @@ $Conso_{app}$, et $Conso_{tot}$ permettant de représenter les facteurs influent
 considérés dans le reste de l’étude.
 
 \subsection{Hypothèses} % (fold)
-\label{sub:hypotheses}
+\label{sub:hypotheses_morris}
 La méthode de \textit{Morris} nécessite que l’ensemble des variables soient continues et
 puissent varier indépendamment les unes des autres. Ainsi pour des variables qualitatives
 comme le type de capteurs solaires thermiques et le type de vitrage, les caractéristiques
@@ -585,7 +585,7 @@ en assurant que les valeurs prises lors de la création de l’échantillon sont
   \end{tabular}
 \end{minipage}
 \end{table}
-% subsection hypotheses (end)
+% subsection hypotheses_morris (end)
 
 
 
@@ -1050,7 +1050,7 @@ consommations importantes alors que l’optimisation cherche à les minimiser.
     \label{fig:validite_meta_ssc}
 \end{figure}
 
-Finalement, \tabref{tab:meta_retenus} récapitule les informations concernant les modèles
+Finalement, \tabref{tab:meta_result_bilan} récapitule les informations concernant les modèles
 de substitutions retenus mais aussi la variabilité de chaque indicateurs observée sur les
 $2000$ simulations. Sur les $8$ meta-modèles, $7$ sont d’ordre $2$ et un seul est d’ordre
 $3$~: le modèle substituant le calcul de la $Conso_{ref}^{CH}$ sur Strasbourg. Il est
@@ -1874,7 +1874,7 @@ solutions avec de faibles volumes, et les meilleures solutions en laissant l’a
 du volume le plus optimal pour chaque ballon.
 Une fois obtenu, le front cumulé est évalué pour les indicateurs principaux du \abr{SSC}
 en fonction du nombre de capteurs, du volume du ballon tampon, et du volume du ballon d\abr{ECS}
-(\figref{fig:tanks_variations_locales_strasbourg}, annexe \figref{fig:tanks_variations_globales_strasbourg}).
+(\figref{fig:tanks_variations_locales_strasbourg}, annexe \figref{fig:tanks_variations_strasbourg}).
 Si on considère séparément le chauffage et la production d’\abr{ECS},
 il apparaît que comme sur Bordeaux, le volume du ballon tampon est uniquement influent
 sur le $F_{sav}^{CH}$ lorsque le nombre de capteur solaires thermiques est faible ($2$).
@@ -2208,11 +2208,11 @@ possibles~:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/base.png}
+    \includegraphics[width=0.92\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/base.png}
     \\
-    \includegraphics[width=0.95\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}
+    \includegraphics[width=0.92\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}
     \\
-    \includegraphics[width=0.95\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/final.png}
+    \includegraphics[width=0.92\textwidth, clip=true, trim=0mm 20mm 0mm 0mm]{Ressources/Images/EtudeDeCas/AideDecision/final.png}
     \caption[Évolution de l’aide à la décision en fonction de choix fictif d’un décideur]
              {Évolution de l’aide à la décision en fonction de choix fictifs d’un décideur. Les courbes grisées ne répondent à
              aucunes contraintes du décideur. Chaque autre couleur indique par contre le respect d’une ou plusieurs contraintes.}
@@ -2338,7 +2338,7 @@ et chaque solution est présentée ci-dessous~:
 % ..............................................................................
 % ..............................................................................
 \section{Bilan} % (fold)
-\label{sec:bilan}
+\label{sec:bilan_aide_decision}
 Une approche exploratoire par optimisation multi-objectifs s’est montrée être pertinente à
 la fois pour évaluer les interactions existantes mais aussi pour proposer un large choix
 de solutions optimales. Il est en effet mis en exergue une large diversité des paramètres
@@ -2385,4 +2385,4 @@ gain potentiel est moins important.
 La méthodologie développée a ainsi mis en évidence l’existence de nombreuses solutions
 prometteuses et invitent à repenser les choix de conception lors du développement de
 \abr{SSC} couplés à des \abr{MEPOS}.
-% section bilan (end)
+% section bilan_aide_decision (end)
