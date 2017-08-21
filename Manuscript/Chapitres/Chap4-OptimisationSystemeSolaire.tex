@@ -2,39 +2,61 @@
 % Chapitres/Chap4-OptimisationSystemeSolaire.tex
 
 
+\itodo{Faire introduction chapitre}
+\itodo{Virer les répétitions}
+\itodo{Tenir compte des corrections de Laurent}
+
+
+Dans ce chapitre, la méthodologie développée dans le chapitre III est appliquée
+à travers l’étude combinée du \abr{SSC} et d’une maison à énergie positive afin de trouver
+un ensemble de solutions optimales pour deux climats différents. Ces solutions permettent de caractériser le potentiel
+du \abr{SSC} mais aussi d’étudier les interactions existantes entre enveloppe du bâtiment et \abr{SSC}.
+Dans un premier temps, les hypothèses, les paramètres a priori,
+les contraintes, et objectifs retenus sont explicités. Dans un second temps la combinatoire
+du problème est limitée grâce à la méthode de \textit{Morris}, puis le temps nécessaire
+pour l’évaluation d’une solution réduite, grâce à l’utilisation de méta-modèles.
+Suit une description détaillée des résultats obtenus par l’optimisation multi-objectifs
+à travers l’analyse du comportement du méta-heuristique et d’une étude détaillée
+de l’ensemble des solutions non-dominées. Finalement le processus d’aide à la décision est
+illustré.
+\clearpage
+
+
 % ..............................................................................
 % ..............................................................................
 \section{Description de l’étude de cas} % (fold)
 \label{sec:description_de_l_etude_de_cas}
-Le \abr{SSC} et le bâtiment considérés ont été décrits à travers le chapitre II et une étude
-paramétrique a permis de mettre en avant son potentiel. Afin de trouver les solutions
-optimales, une méthodologie d’aide à la décision a été développée dans le chapitre III.
-Dans ce chapitre, la méthodologie est appliquée à travers l’étude combinée du \abr{SSC}
-et d’une maison à énergie positive afin de trouver un ensemble de solutions optimales.
-Ces solutions permettront de caractériser le potentiel du \abr{SSC} mais aussi d’étudier
-les interactions existantes entre la performance de l’enveloppe et l’efficacité du \abr{SSC}.
+% Le \abr{SSC} et le bâtiment considérés ont été décrits à travers le chapitre II et une étude
+% paramétrique a permis de mettre en avant son potentiel. Afin de trouver les solutions
+% optimales, une méthodologie d’aide à la décision a été développée dans le chapitre III.
+% Dans ce chapitre, la méthodologie est appliquée à travers l’étude combinée du \abr{SSC}
+% et d’une maison à énergie positive afin de trouver un ensemble de solutions optimales.
+% Ces solutions permettront de caractériser le potentiel du \abr{SSC} mais aussi d’étudier
+% les interactions existantes entre la performance de l’enveloppe et l’efficacité du \abr{SSC}.
+
+
+% Afin de limiter la
+% cardinalité du problème, une étude de sensibilité est réalisée en utilisant la méthode de
+% \textit{Morris}. Comme explicité précédemment elle permet d’identifier les facteurs les
+% plus influents de manière qualitative. Le but étant de réduire le nombre de variables de
+% décision pour l’optimisation. Une fois les variables influentes
+% identifiées, un échantillon représentatif pour chaque climat est construit grâce à une
+% méthode de \textit{quasi-Monte-Carlo} afin que les solutions soient uniformément réparties.
+% Ces échantillons sont ensuite utilisés afin de construire un modèle de substitution pour chaque objectif ou
+% contraintes. Ensuite l’optimisation par colonie d’abeilles virtuelles est réalisée
+% grâce à la bibliothèque \textit{pyMayBee}.
+% Une fois le front de Pareto obtenu, les résultats sont dans un premier temps analysés~:
+% \begin{itemize}
+%   \item Vérification de la validité des méta-modèles
+%   \item Analyse de la population optimale
+% \end{itemize}
+% Enfin une approche interactive d’aide à la décision avec le logiciel \textit{Xdat} est
+% utilisée afin d’illustrer le processus.
 
 L’optimisation multi-objectifs est réalisée à la fois sur l’enveloppe, le \abr{SSC},
-et sur l’algorithme de contrôle. Dans un premier temps, les hypothèses
-et paramètres a priori sont explicités, puis, les contraintes et objectifs retenus
-sont discutés. Afin de limiter la
-cardinalité du problème, une étude de sensibilité est réalisée en utilisant la méthode de
-\textit{Morris}. Comme explicité précédemment elle permet d’identifier les facteurs les
-plus influents de manière qualitative. Le but étant de réduire le nombre de variables de
-décision pour l’optimisation. Une fois les variables influentes
-identifiées, un échantillon représentatif pour chaque climat est construit grâce à une
-méthode de \textit{quasi-Monte-Carlo} afin que les solutions soient uniformément réparties.
-Ces échantillons sont ensuite utilisés afin de construire un modèle de substitution pour chaque objectif ou
-contraintes. Ensuite l’optimisation par colonie d’abeilles virtuelles est réalisée
-grâce à la bibliothèque \textit{pyMayBee}.
-Une fois le front de Pareto obtenu, les résultats sont dans un premier temps analysés~:
-\begin{itemize}
-  \item Vérification de la validité des méta-modèles
-  \item Analyse de la population optimale
-\end{itemize}
-Enfin une approche interactive d’aide à la décision avec le logiciel \textit{Xdat} est
-utilisée afin d’illustrer le processus.
-
+et sur l’algorithme de contrôle.
+À travers cette section, les hypothèses et paramètres a priori sont explicités, puis, les
+contraintes et objectifs retenus sont discutés.
 
 
 % ------------------------------------------------------------------------------
