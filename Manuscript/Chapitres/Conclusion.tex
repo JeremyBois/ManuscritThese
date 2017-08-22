@@ -3,10 +3,147 @@
 
 \itodo{Vérifier définition maître oeuvre et ouvrage}
 \itodo{Vérifier définition des phases de construction APD, ...}
+\itodo{Renseigner plus sur PAC CO2 et absorption}
 
 
-Ces travaux ont mis en exergue l’importance du choix de la méthodologie pour le
-développement de \abr{MEPOS}.
+
+
+\itodo{Conclusion}
+Cette thèse s’est intéressée aux \abr{MEPOS} solaires et en particulier au développement
+d’une méthodologie multi-critères et multi-objectifs permettant d’accompagner les concepteurs dans leur prise de décision
+pour le dimensionnement couplée du \abr{SSC} et du bâtiment. Le choix a en
+effet été fait de considérer le bâtiment, le \abr{SSC} et son algorithme de contrôle comme
+un ensemble cohérent et fonctionnant de concert. S’inspirant de la norme
+\abr{PREN\,$15603$} et basée sur une d’aide à la décision a posteriori, la méthodologie
+s’est montrée pertinente à la fois pour évaluer les interactions existantes mais
+aussi pour proposer un large choix de solutions optimales. Parmi ces solutions, des
+compromis intéressants ont été identifiés, invitant à repenser les choix de conception
+lors du développement de \abr{SSC} couplés à des \abr{MEPOS}.
+
+
+** chapter 1
+Il a été vu que la construction d’un \abr{MEPOS} est un problème multi-objectif complexe
+faisant intervenir de nombreux facteurs. De plus il n’existe pas encore à l’heure actuelle
+de définition précise en France même si un cadre européen se construit à travers la norme
+\abr{PREN\,$15603$}. Cette norme invitent à favoriser l’utilisation des énergies renouvelables
+sur site afin de favoriser une part importante d’auto-consommation et ainsi limiter le
+déséquilibre des réseaux. De part sa simplicité, le solaire thermique et par extension
+le \abr{SSC} est un candidat pertinent pour couvrir une part importante des besoins
+en adéquation avec la demande, favorisant ainsi l’auto-consommation. Pourtant cette
+technologie n’est pas utilisée pour la constructions de \abr{BEPOS} et il n’existe
+pas de travaux cherchant à caractériser le potentiel d’un tel couplage en tenant
+compte à la fois, de l’enveloppe, du système, et de l’algorithme de contrôle.
+Il est pourtant nécessaire avec l’augmentation de la complexité de tenir compte
+des interactions existantes mais il est aussi important de tenir compte des contraintes
+de temps disponibles pour la conception d’un bâtiment.
+C’est pour répondre à ces trois contraintes principales que la méthodologie développée
+dans ces travaux a été pensée.
+
+
+
+** chapter 2
+Parallèlement au développement de la méthodologie, un bâtiment couplé à un \abr{SSC} a été modélisé.
+Le langage \textit{Modelica} et le logiciel \textit{Dymola} ont été retenus car
+ils sont particulièrement adaptés au processus de développement itératif nécessaire
+dans cette application. Dans
+un premier temps, il a été décrit les scénarios et l’enveloppe du bâtiment de référence
+et la comparaison entre un modèle multi-zone et mono-zone a montré que l’approche simplifiée
+est suffisante dans le contexte de ces travaux.
+
+
+
+
+
+Le bâtiment est un système complexe
+importance algorithme
+
+
+** chapter 3
+Favorisant le temps machine à travers un processus d’optimisation multi-objectifs
+le concepteur
+
+la recherche de solutions optimales, proposer intéractivement une aide à la décision,
+modélisation dé
+
+
+
+** chapter 4
+Mis en pratique sur deux cas d’études, la méthodologie s’est montrée efficace
+et a permis d’identifier de nombreuses combinaisons pertinentes.
+L’approche a permis d’explorer un domaine très large et
+
+
+\itodo{Perspectives}
+Dans la continuité de ces travaux, il est identifié trois axes principaux~: la validation
+expérimentale, une évaluation économique détaillée, et la caractérisation du potentiel
+d’un \abr{SSC} en période hivernale comme estivale.
+
+Comme explicité dès le second chapitre, les réponses et observations faites au cours de
+cette thèse nécessitent d’être confrontées aux résultats d’une expérimentation à échelle
+$1$. En effet même si les composants du modèle ont fait pour la plupart l’objet d’une
+vérification analytique, le modèle dans son ensemble nécessitent d’être validés
+expérimentalement afin de corroborer les conclusions de ces travaux. La méthodologie
+développée par contre reste valable et elle a d’ailleurs montrée sa capacité à explorer le
+domaine de définition pour proposer de nombreuses combinaisons pertinentes. Il serait
+alors uniquement nécessaire de vérifier que le modèle traduit correctement le comportement
+du réel du \abr{SSC}. En plus de la validation, il serait intéressant d’évaluer les
+risques de surchauffes et de caractériser les méthodes existantes pour évacuer la chaleur.
+soit en la valorisant pour une autre application comme le chauffage d’une piscine, soit
+en déchargeant le système par exemple en faisant circuler l’eau du \abr{SSC} dans les
+capteurs solaires en période nocturne.
+
+Afin de compléter l’étude, il semble pertinent d’intégrer la prise en compte de manière
+quantitative du critère économique à travers le coût d’investissement et le temps de
+retour. Il est cependant nécessaire de rester très prudent quand à leur implémentation en
+particulier pour le temps de retour sur investissement qui doit tenir compte de la
+complexité inhérente à ce type d’analyse comme explicité à travers le chapitre précédent.
+De plus, comme noté à travers le premier chapitre, les résultats obtenus sont fortement
+dépendant des données météos utilisées. Le rayonnement solaire en particulier est très
+changeant d’une année à l’autre, il serait alors pertinent d’évaluer la variation de la
+performance du \abr{SSC} pour une période étendue de simulation. Cette analyse peut être
+réalisée avec l’aide de données météorologiques existantes mais une étude prospective sur
+l’évolution du climat futur est plus profitable. En effet afin d’être complète, l’analyse
+du retour sur investissement doit tenir compte de l’évolution du coût des énergies mais
+aussi des besoins du bâtiment en partie liée à l’évolution du climat. Il apparaît ainsi
+judicieux de coupler la construction de fichiers météorologiques prospectifs à la
+construction de scénarios économiques afin de pouvoir quantifier le potentiel énergétique
+et économique du \abr{SSC} selon différents scénarios tout en tenant compte du
+vieillissement des équipements. Afin de répondre à ces perspectives, il peut être envisagé
+un couplage entre la méthodologie développée et une approche par clustering afin de
+réduire chaque année à un jeu de semaines représentatives et donc limiter le temps de
+simulation nécessaire. Ainsi les résultats issus de la comparaison entre les deux
+approches pourrait ainsi amener à revoir les moyens à mettre en œuvre pour évaluer la
+performance d’un \abr{SSC} de manière plus complète.
+
+Ces travaux ont permis d’identifier des solutions techniques permettant d’obtenir un taux
+d’économie important en réduisant la surface de capteurs mais surtout la taille des
+ballons, levant ainsi les principales contraintes qui freinent l’adoption de tels
+systèmes. Cependant avec l’amélioration de l’enveloppe des bâtiments et l’augmentation des
+consommations dues aux charges internes, le confort estival est aussi un facteur clé. Le
+solaire étant abondant durant l’été, un travail approfondie sur le dimensionnement d’un
+\abr{SSC} à la fois pour couvrir les besoins hivernaux et estivaux apparaît comme une suite
+logique à ces travaux et viendrait en complément à la tâche $53$ actuellement en cours.
+Parmi les technologies potentielles, il serait intéressant d’investiguer le couplage entre
+un système solaire et une \abr{PAC} à $CO_{2}$ plus respectueuse de l’environnement que
+que les \abr{PAC} plus classiques qui nécessitent l’utilisation d’un fluide frigorigène
+polluant. Ce couplage présente aussi un avantage énergétique, grâce à l’énergie solaire,
+le coefficient de performance (\abr{COP} pour le chauffage ou \abr{EER} pour le
+refroidissement) d’une \abr{PAC} peut être maintenue à un niveau important durant
+l’ensemble de l’année. Ainsi le potentiel solaire est double et permet à la fois de
+réduire la consommation en se substituant à l’énergie électrique mais aussi en améliorant
+la performance de la \abr{PAC}~: le gain énergétique est donc potentiellement plus
+important que avec une batterie électrique. Une autre alternative possible serait
+l’utilisation d’une pompe à absorption. Le principe est similaire à celui d’une \abr{PAC}
+mais le compresseur est remplacé par un bouilleur limitant ainsi la consommation
+électrique, le bruit, et améliorant la robustesse du système. Il n’existe cependant pas
+actuellement sur le marché de pompe à absorption de puissance assez faible pour convenir à
+une application pour une \abr{MEPOS}. De plus, le bouilleur nécessite une source chaude à
+une température plus élevée que une \abr{PAC} classique et des capteurs solaires
+cylindro-paraboliques pourraient être plus adaptés. La méthodologie développée dans ces travaux
+pourrait ainsi être étendue afin de caractériser le potentiel du couplage avec une
+\abr{PAC} ou d’une pompe à absorption. Bien sur dans cet optique, il apparaît pertinent de
+tenir compte du confort d’été en s’orientant vers une modélisation du bâtiment plus
+détaillée.
 
 
 
@@ -23,56 +160,3 @@ des autres méthodes d’aide à la décision a posteriori même si elle me semb
 l’optique d’une interaction entre maître d’ouvrage et d’oeuvre plus complexe à mettre
 en place.
 
-prise en compte du coût
-Adaptation mensuel de l’algorithme ou à partir de prévision météorologiques
-
-variabilité des fichiers météos (voir notes BS2017)
-
-Experimentation~:
-Fort de l’expérience acquise, il serait aussi très intéressant de s’orienter vers
-l’expérimentation à échelle 1 afin dans un premier temps valider le modèle mais surtout
-de mieux comprendre la dynamique du système en fonctionnement réelle.
-Il est aussi évident au regard des résultats que deux ballons, un tampon comme un sanitaire
-représente une perte d’espace et un risque potentiel d’inconfort estival. Ce qui m’amène à
-un autre point important, le comportement d’un $SSC$ dans une maison performante, en période
-estivale. Il serait alors intéressant de comprendre ou trouver des moyens permettant de
-décharger l’énergie des capteurs ou fort l’influence des ballons sur le confort des occupants.
-
-
-Numérique~:
-Coût~:
-Finalement au niveau numérique, une approche par clustering ou un modèle réduit pourrait
-permettre d’évaluer le $SSC$ sur le temps en tenant compte du viellissement et du coût
-de l’entretien. C’est en effet un autre point qui n’a pas été pris en compte dans ces travaux
-car c’est un paramètre très complexe nécessitant je pense un travail doctoral à lui seul.
-Alors bien sûr l’ajout d’une composante coût à l’optimisation a été discuté mais le
-temps disponible n’est pas extensible et des choix ont été faits.
-L’évaluation du coût doit en effet tenir compte de nombreux paramètres~: le coût initial,
-les aides existantes, le retour sur investissement, la valeur verte du bâtiment, l’évolution
-du coût des énergies, l’entretien et le remplacement des composant, le coût de la main d’oeurvre,
-le temps d’occupation, ...
-Afin d’être pertinent d’un point de vue technique et économique, il est donc nécessaire
-de travailler avec un partenaire ayant accès à ces informations au tout du moins un
-échantillon.
-
-Impact environnemental~:
-Il a aussi été discuté l’intégration d’une analyse de l’impact environnemental
-d’un tel système mais faute de temps, n’a pas vu le jour.
-
-Fichiers météos~:
-Enfin l’analyse de la pertinence des fichiers météo est aussi une perspective intéressant.
-Il a été vu sur un petit échantillon que l’ensoleillement issue des fichiers météos
-sous-estime fortement la réalité. En effet ces fichiers ont été construit dans l’optique
-de simuler la performance d’un bâtiment et il et peut être opportun de discuter d’une
-autre méthode pour le dimensionnement des systèmes solaires.
-
-
-Climatisation~:
-Potentiel solaire en été
-
-
-Ouverture:
-Évaluer la pertinence des fichiers météos pour un dimensionnement solaire
-Aide à la décision par des méthodes plus poussées
-Méthode de **clustering** pour évaluer le comportement hivernal et estival sur une
-longue période.
