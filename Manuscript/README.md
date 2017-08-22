@@ -5,12 +5,17 @@
 
 ## À faire:
 
+  - Virer la voie passive au maximum
+  - Ajouter citation de Matplotlib / pandas / numpy
   - Vérifier que les noms exotiques soit correctement écrits
   - Abréviation en mode math ($$)
   - Nom Logiciel en italique (\textit)
   - Légende tableau en haut
   - Légende figure en bas
   - Redéfinir les niveaux de titre avec titlesec
+  - Vérifier définition maître oeuvre et ouvrage
+  - Vérifier définition des phases de construction APD, ...
+  - Renseigner plus sur PAC CO2 et absorption
 
 ## Potentiel (BS 2017)
 
