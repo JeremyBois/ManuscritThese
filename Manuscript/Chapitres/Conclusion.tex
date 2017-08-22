@@ -7,8 +7,6 @@
 
 
 
-
-\itodo{Conclusion}
 Cette thèse s’est intéressée aux \abr{MEPOS} solaires et en particulier au développement
 d’une méthodologie multi-critères et multi-objectifs permettant d’accompagner les concepteurs dans leur prise de décision
 pour le dimensionnement couplée du \abr{SSC} et du bâtiment. Le choix a en
@@ -20,8 +18,7 @@ aussi pour proposer un large choix de solutions optimales. Parmi ces solutions, 
 compromis intéressants ont été identifiés, invitant à repenser les choix de conception
 lors du développement de \abr{SSC} couplés à des \abr{MEPOS}.
 
-
-** chapter 1
+\paragraph{} % (fold)
 Il a été vu que la construction d’un \abr{MEPOS} est un problème multi-objectif complexe
 faisant intervenir de nombreux facteurs. De plus il n’existe pas encore à l’heure actuelle
 de définition précise en France même si un cadre européen se construit à travers la norme
@@ -35,45 +32,97 @@ pas de travaux cherchant à caractériser le potentiel d’un tel couplage en te
 compte à la fois, de l’enveloppe, du système, et de l’algorithme de contrôle.
 Il est pourtant nécessaire avec l’augmentation de la complexité de tenir compte
 des interactions existantes mais il est aussi important de tenir compte des contraintes
-de temps disponibles pour la conception d’un bâtiment.
-C’est pour répondre à ces trois contraintes principales que la méthodologie développée
-dans ces travaux a été pensée.
+de temps disponibles pour la conception d’un bâtiment. Il est alors mis en évidence les
+points suivants~:
+\begin{itemize}
+    \item La logique de contrôle doit faire partie du processus de décision.
+    \item La conception d’une \abr{MEPOS} solaire doit être le compromis entre qualité
+          de l’enveloppe et performance du \abr{SSC}.
+    \item La taille des équipements du \abr{SSC} doit être réduite afin d’être viable
+          économiquement.
+    \item Un regard neuf est nécessaire pour repenser la conception des \abr{SSC}
+          afin de les revaloriser dans le cadre des \abr{MEPOS}.
+\end{itemize}
+
+Ainsi fort de l’expérience acquise à travers l’analyse de l’état de l’art et des tendances
+au niveau industriel, un bâtiment couplé à un \abr{SSC} a été dans un premier temps
+modélisé les principaux composants validés analytiquement. Le langage \textit{Modelica} et le logiciel \textit{Dymola} ont été retenus car
+ils sont particulièrement adaptés au processus de développement itératif nécessaire pour
+cette application. Pour le bâtiment, un modèle mono-zone a été retenu après une
+comparaison avec une approche multi-zone plus précise sous \textit{EnergyPlus}.
+Concernant le \abr{SSC}, le système retenu utilise l’air comme vecteur de chaleur afin
+d’améliorer la réactivité du bâtiment et éviter l’installation d’un système de chauffage
+conventionnel. De plus, le choix a été fait de retenir une modélisation détaillée afin de
+pouvoir contrôler l’ensemble des facteurs influents que ce soit sur les caractéristiques
+du système ou sur les paramètres de la logique de contrôle et ainsi pouvoir affiner la
+logique de contrôle pour favoriser la production solaire. Les premiers résultats sont
+obtenus en suivant la méthodologie couramment utilisée dans les bureaux d’études, à savoir
+une approche paramétrique~: chaque évaluation est réalisée à partir de l’expérience
+acquise en amont et l’enveloppe du bâtiment est fixée. Bien que les résultats aient permis
+d’identifier le potentiel du couplage d’une \abr{MEPOS} à un \abr{SSC}, l’approche ne
+permet pas d’évaluer de manière complète le domaine de définition. Ainsi ces premiers
+résultats confirment en majeure partie les observations déjà documentées par la
+littérature comme la nécessité d’opter pour des volumes importants ou de favoriser en
+priorité la production d’\abr{ECS}. Il est cependant aussi mis en avant un comportement
+caractéristique du système étudié. Le \abr{SSC} développé est capable de répartir
+l’énergie solaire disponible en fonction des caractéristiques des équipements retenus,
+soit pour réduire la consommation sur la production d’\abr{ECS}, soit sur la consommation
+du chauffage.
+
+Une fois le potentiel du \abr{SSC} développé et les limites de l’approche paramétrique
+mis en exergue, il est proposer une méthodologie plus adaptée permettant d’accompagner
+le concepteur dans son choix. La méthodologie favorise
+le temps machine afin de couvrir l’ensemble du domaine de définition tout
+en libérant le temps humain et est définie suivant trois étapes principales~:
+\begin{itemize}
+    \item Réduire la complexité du problème et le temps nécessaire pour une évaluation.
+    \item Explorer l’espace de décision grâce à processus automatisée afin d’obtenir
+          un large choix de solutions optimales pour un temps humain très court.
+    \item Accompagner le concepteur dans le choix de la solution la plus adaptée
+          de manière simple et interactive.
+\end{itemize}
+Pour la première étape, la méthode de \textit{Morris} permet de sélectionner uniquement
+les critères de décisions les plus influents grâce à un tri qualitatif. Suit la
+création d’un modèle de substitution afin de réduire fortement le temps d’évaluation
+nécessaire pour chaque évaluation. Cette approche s’est montrée particulièrement adaptée
+pour le modèle développée dans ces travaux pour lequel le temps de simulation initial
+était un facteur limitant.
+Afin d’explorer le domaine de décision, une approche d’aide à la décision a posteriori
+est retenu afin de ne introduire un caractère préférentiel. Celle-ci nécessite dans un premier temps la réalisation d’une optimisation
+multi-objectifs pour obtenir un ensemble de solutions optimales. Après une
+analyse de la littérature et toujours dans l’optique de proposer une approche simplifiée,
+l’optimisation est réalisée par méta-heuristique basé sur le comportement des abeilles
+mellifères principalement car il ne nécessite la détermination de peu de paramètres. Tenant compte
+des résultats de la littérature, l’approche est améliorée afin d’offrir un bon équilibre entre
+exploration et exploitation sans sacrifier pour autant la simplicité. Finalement, la dernière
+étape consiste à assister le ou les décideurs dans le choix de la solution la plus adaptée.
+Dans ces travaux, le choix a été fait d’utiliser une approche interactive simple d’utilisation
+afin que chaque intervenant puisse participer et être acteur de leur décision.
+
+La méthodologie développée est finalement illustrée à travers l’étude de deux cas
+d’études, Bordeaux avec un climat propice et Strasbourg où le climat est plus rude durant
+la période hivernale. L’évaluation est réalisé en faisant varier de manière concomitante
+les paramètres caractéristiques de l’enveloppe, du \abr{SSC} et de sa logique de contrôle.
+La définition de \abr{MEPOS} intègre ici les consommations internes (équipements
+domestiques et éclairage) et les consommation propres à la couverture des besoins pour la
+production d’\abr{ECS} et du chauffage. Ainsi, la toiture est partagée entre des capteurs
+photovoltaïques et des capteurs solaires thermiques en tenant compte de la géométrie
+triangulaire caractéristique d’une toiture quatre pans. L’approche s’est montrée
+particulièrement pertinente à la fois pour évaluer les interactions existantes mais aussi
+pour proposer un large choix de solutions optimales. Il est en effet trouvé des solutions
+diverses permettant toutes d’obtenir un taux d’économie important. Grâce à une approche
+itérative à partir des solutions du premier front de \textit{Pareto}, il est aussi identifié des
+solutions similaires pour des volumes de ballons très faibles, ou encore pour une surface de
+capteur réduite. Ainsi contrairement aux premiers résultats obtenus par une approche
+paramétrique, l’exploration sans préférence a priori a permis d’identifier des solutions
+encourageant pour le développement de \abr{MEPOS} solaires. En effet en plus de libérer une place conséquente, réduire la taille des
+ballons permet de limiter les risques de surchauffes mais surtout de limiter le coût d’investissement.
+Finalement, au regard des résultats, il semble que l’utilisation d’un \abr{SSC} soit plus pertinent
+dans un climat rude où les besoins en chauffage restent important malgré une isolation
+importante comme sur Strasbourg.
 
 
-
-** chapter 2
-Parallèlement au développement de la méthodologie, un bâtiment couplé à un \abr{SSC} a été modélisé.
-Le langage \textit{Modelica} et le logiciel \textit{Dymola} ont été retenus car
-ils sont particulièrement adaptés au processus de développement itératif nécessaire
-dans cette application. Dans
-un premier temps, il a été décrit les scénarios et l’enveloppe du bâtiment de référence
-et la comparaison entre un modèle multi-zone et mono-zone a montré que l’approche simplifiée
-est suffisante dans le contexte de ces travaux.
-
-
-
-
-
-Le bâtiment est un système complexe
-importance algorithme
-
-
-** chapter 3
-Favorisant le temps machine à travers un processus d’optimisation multi-objectifs
-le concepteur
-
-la recherche de solutions optimales, proposer intéractivement une aide à la décision,
-modélisation dé
-
-
-
-** chapter 4
-Mis en pratique sur deux cas d’études, la méthodologie s’est montrée efficace
-et a permis d’identifier de nombreuses combinaisons pertinentes.
-L’approche a permis d’explorer un domaine très large et
-
-
-\itodo{Perspectives}
+\paragraph{} % (fold)
 Dans la continuité de ces travaux, il est identifié trois axes principaux~: la validation
 expérimentale, une évaluation économique détaillée, et la caractérisation du potentiel
 d’un \abr{SSC} en période hivernale comme estivale.
@@ -144,19 +193,3 @@ pourrait ainsi être étendue afin de caractériser le potentiel du couplage ave
 \abr{PAC} ou d’une pompe à absorption. Bien sur dans cet optique, il apparaît pertinent de
 tenir compte du confort d’été en s’orientant vers une modélisation du bâtiment plus
 détaillée.
-
-
-
-Conclusion:
-Ces travaux représentent une avancée nécessaire sur la compréhension des $SSC$ pour
-les bâtiment de demain. L’influence des différents paramètres, les limites et atouts
-de ces systèmes a ainsi pu être détaillée à travers une étude paramétrique, un criblage
-global et les résultats d’une optimisation multi-objectif.
-
-Il est clair que la connaissance acquise doit être mise à profis afin de développer
-les $SSC$ pour la maison individuelle. Plusieurs axes peuvent ainsi être proposées.
-Dans l’optique d’une aide à la décision, il est possible d’évaluer la pertinence
-des autres méthodes d’aide à la décision a posteriori même si elle me semble dans
-l’optique d’une interaction entre maître d’ouvrage et d’oeuvre plus complexe à mettre
-en place.
-
