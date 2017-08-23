@@ -2,31 +2,31 @@
 
 Cette thèse s’est intéressée aux \abr{MEPOS} solaires et en particulier au développement
 d’une méthodologie  multi-objectifs permettant d’accompagner les concepteurs pour le
-dimensionnement de \abr{SSC} couplés à des \abr{MEPOS}. Le choix a été fait de
+dimensionnement de \abr{SSC} couplés à des \abr{MEPOS}. Le choix de
 considérer le bâtiment, le \abr{SSC} et son algorithme de contrôle comme un ensemble
-cohérent et fonctionnant de concert. S’inspirant de la norme \abr{PREN\,$15603$} et
-basée sur une d’aide à la décision a posteriori, la méthodologie s’est montrée pertinente
+cohérent et fonctionnant de concert a été fait. S’inspirant de la norme \abr{PREN\,$15603$} et
+basée sur une aide à la décision a posteriori, la méthodologie s’est montrée pertinente
 à la fois pour évaluer les interactions existantes mais aussi pour proposer un large choix
 de solutions optimales. Parmi ces solutions, des compromis intéressants ont été
-identifiés, invitant à repenser les choix de conception lors du développement de \abr{SSC}
+identifiés invitant à repenser les choix de conception lors du développement de \abr{SSC}
 couplés à des \abr{MEPOS}.
 
 
 \paragraph{} % (fold)
-À travers ces travaux il a été mis en avant que la construction d’un \abr{MEPOS} est un
+À travers ces travaux, il a été mis en avant que la construction d’un \abr{MEPOS} est un
 problème multi-objectifs complexe faisant intervenir de nombreux critères. Il n’existe
-cependant pas à l’heure actuelle une définition précise en France même si un cadre
-européen se construit à travers la norme \abr{PREN\,$15603$}. Cette norme invitent à
+cependant pas à l’heure actuelle une définition précise en France, même si un cadre
+européen se construit à travers la norme \abr{PREN\,$15603$}. Cette norme invite à
 la sobriété énergétique en favorisant l’utilisation des énergies renouvelables sur site
 pour de l’auto-consommation. Le but étant de limiter la production électrique directement
-injectées dans le réseau afin d’éviter des aberrations écologiques.
+injectée dans le réseau afin d’éviter des aberrations écologiques.
 De part sa simplicité, le solaire thermique et par extension le \abr{SSC} est un
 candidat approprié pour couvrir une part importante des besoins en adéquation avec la
 demande. Pourtant cette technologie n’est que peu utilisée pour la constructions de
-\abr{BEPOS} et il n’existe pas de travaux cherchant à caractériser le potentiel d’un tel
+\abr{BEPOS}, et il n’existe pas de travaux cherchant à caractériser le potentiel d’un tel
 couplage en tenant compte à la fois, de l’enveloppe, du système, et de l’algorithme de
 contrôle. Partant de ce constat, un regard neuf est proposé dans ce document et invite à
-repenser la conception des \abr{SSC} pour les \abr{MEPOS}s avec une attention
+repenser la conception des \abr{SSC} pour les \abr{MEPOS} avec une attention
 particulière sur les points suivants~:
 \begin{itemize}
     \item La conception est un processus complexe, la méthodologie se doit d’être
@@ -45,17 +45,17 @@ observées au niveau industriel, un bâtiment couplé à un \abr{SSC} a été da
 modélisé et les principaux composants validés analytiquement. Le langage \textit{Modelica}
 et le logiciel \textit{Dymola} ont été retenus car ils sont particulièrement adaptés au
 processus de développement itératif nécessaire pour cette application. Pour le bâtiment,
-un modèle mono-zone a été retenu après une comparaison avec une approche multi-zone
+un modèle mono-zone a été sélectionné après une comparaison avec une approche multi-zone
 sous \textit{EnergyPlus}. Concernant le \abr{SSC}, le système retenu utilise l’air
 comme vecteur de chaleur afin d’améliorer la réactivité du bâtiment et éviter
-l’installation d’un système de chauffage conventionnel. De plus, le choix a été fait de
-retenir une modélisation détaillée afin de pouvoir contrôler l’ensemble des facteurs
+l’installation d’un système de chauffage conventionnel. De plus, une modélisation détaillée
+est retenue afin de pouvoir contrôler l’ensemble des facteurs
 influents que ce soit sur les caractéristiques du système ou sur les paramètres de la
 logique de contrôle. Ce choix a permis d’affiner l’algorithme de contrôle afin de
 favoriser la part solaire. Les
 premiers résultats sont obtenus en suivant la méthodologie couramment utilisée dans les
 bureaux d’études, à savoir une approche paramétrique où chaque évaluation est réalisée
-à partir de l’expérience acquise en amont, et où la performance de l’enveloppe est fixée. Bien que les
+à partir de l’expérience acquise en amont et où la performance de l’enveloppe est fixée. Bien que les
 résultats aient permis d’identifier le potentiel du couplage d’une \abr{MEPOS} à un
 \abr{SSC}, l’approche ne permet pas d’évaluer de manière complète le domaine de
 définition et donc de caractériser la performance pouvant être attendue.
@@ -73,7 +73,7 @@ mises en exergue, il est proposé une méthodologie plus adaptée permettant d�
 le concepteur dans son choix à travers trois étapes~:
 \begin{itemize}
     \item Réduire la complexité du problème et le temps nécessaire pour une évaluation.
-    \item Explorer l’espace de décision grâce à processus automatisée afin d’obtenir
+    \item Explorer l’espace de décision grâce à processus automatisé afin d’obtenir
           un large choix de solutions optimales pour un temps humain court.
     \item Accompagner le concepteur dans le choix de la solution la plus adaptée
           de manière simple et interactive.
@@ -83,9 +83,9 @@ les critères de décisions les plus influents grâce à un tri qualitatif. Suit
 d’un modèle de substitution par la méthode du chaos polynomiale afin de réduire fortement le temps d’évaluation nécessaire
 pour chaque évaluation et permettre de créer un modèle faisant abstraction de la complexité du modèle original.
 Cette approche s’est montrée particulièrement adaptée pour le
-modèle développée dans ces travaux où le temps de simulation initial était un facteur
+modèle développé dans ces travaux où le temps de simulation initial était un facteur
 limitant. Afin d’explorer le domaine de décision, une approche d’aide à la décision a
-posteriori est retenu afin de ne pas introduire de caractères préférentiels. Celle-ci
+posteriori est choisie afin de ne pas introduire de caractères préférentiels. Celle-ci
 nécessite dans un premier temps la réalisation d’une optimisation multi-objectifs pour
 obtenir un ensemble de solutions optimales. Après une analyse de la littérature et
 toujours dans l’optique de proposer une approche simplifiée, un méta-heuristique basé sur
@@ -93,7 +93,7 @@ le comportement des abeilles mellifères (\abr{ABC}) est retenu pour l’optimis
 il nécessite la détermination de seulement trois paramètres. Puis en tenant compte des observations
 de la littérature, l’approche est améliorée afin d’offrir un bon équilibre entre exploration
 et exploitation sans sacrifier pour autant la simplicité d’utilisation. L’implémentation est
-réalisée en \textit{Python} et est disponible en open source sous le nom \textit{pyMayBee}.
+réalisée en \textit{Python}, disponible en open source sous le nom \textit{pyMayBee}.
 Finalement, la dernière étape consiste à assister le ou
 les décideurs dans le choix de la solution la plus adaptée. Dans ces travaux, le choix a
 été fait d’utiliser une approche interactive simple afin que chaque intervenant puisse
@@ -101,8 +101,8 @@ participer et être acteur de leur décision.
 
 La méthodologie développée est finalement illustrée à travers l’étude de deux cas
 d’études, Bordeaux avec un climat propice, et Strasbourg où le climat est plus rude durant
-la période hivernale. L’évaluation est réalisé en faisant varier de manière concomitante
-les paramètres caractéristiques de l’enveloppe, du \abr{SSC} et de sa logique de contrôle.
+la période hivernale. L’évaluation est réalisée en faisant varier de manière concomitante
+les paramètres caractéristiques de l’enveloppe du \abr{SSC} et de sa logique de contrôle.
 La définition de la \abr{MEPOS} intègre ici les consommations internes (équipements
 domestiques et éclairage) et les consommation propres à la couverture des besoins pour la
 production d’\abr{ECS} et du chauffage. Ainsi, la toiture est partagée entre des capteurs
@@ -111,85 +111,86 @@ triangulaire caractéristique d’une toiture quatre pans afin de couvrir les be
 électriques et thermiques.
 L’approche s’est montrée particulièrement pertinente à la fois pour évaluer
 les interactions existantes mais aussi pour proposer un large choix de solutions
-optimales. Il a en effet été trouvé des solutions diverses permettant toutes d’obtenir un
-bilan nul ou positif, soit en favorisant une surface important de capteurs \abr{PV}, soit
+optimales. Des solutions diverses permettant toutes d’obtenir un
+bilan nul ou positif ont été trouvées, soit en favorisant une surface importante de capteurs \abr{PV}, soit
 en favorisant la production du \abr{SSC}. Au regard des résultats, l’utilisation d’un
 \abr{SSC} est plus pertinente dans un climat rude comme sur Strasbourg où les besoins en chauffage restent
 élevés malgré une isolation importante. Pour des conditions
-similaires à celle de Bordeaux, les besoins en chauffage sont en effet limités et même si
-l’économie relative est plus importante, l’économie absolue est elle plus faible. Aussi,
+similaires à celles de Bordeaux, les besoins en chauffage sont en effet limités et même si
+l’économie relative est plus importante, l’économie absolue reste plus faible. Aussi,
 l’identification d’un compromis entre qualité de l’enveloppe et investissement sur le
-\abr{SSC} est identifié et confirme l’hypothèse initiée dans le premier chapitre~: la
+\abr{SSC} confirme l’hypothèse initiée dans le premier chapitre~: la
 construction d’une \abr{MEPOS} solaire doit être le fruit du dimensionnement couplé du
-bâtiment et du système solaire afin de tenir compte des interactions. Une fois les
+bâtiment avec le système solaire afin de tenir compte des interactions. Une fois les
 résultats de la première optimisation analysés, l’introduction
 de préférence est illustrée dans un premier temps à travers une optimisation itérative qui
 consiste à relancer le processus d’optimisation en ajoutant une ou plusieurs contraintes
 supplémentaires. Cette approche a permis d’identifier des solutions similaires pour des
 volumes de ballons très faibles, ou encore pour une surface de capteur réduite. Ainsi
 contrairement aux premiers résultats obtenus par une approche paramétrique, l’exploration
-sans préférence a priori a permis d’identifier des solutions encourageant pour le
+sans préférence a priori a permis d’identifier des solutions encourageante pour le
 développement de \abr{MEPOS} solaires. En effet, en plus de libérer une place conséquente,
 réduire la taille des ballons permet de limiter les risques de surchauffes mais surtout de
-limiter le coût d’investissement. Finalement l’ajout du caractère préférentiel est illustrée à travers
+limiter le coût d’investissement. Finalement l’ajout du caractère préférentiel est illustré à travers
 une représentation des solutions par coordonnées parallèles permettant de mettre en avant
 la praticité de la méthodologie développée.
 
 
 \paragraph{} % (fold)
-Dans la continuité de ces travaux, il est identifié trois axes principaux~: la validation
+Dans la continuité de ces travaux, trois axes principaux sont identifiés~: la validation
 expérimentale, une évaluation économique détaillée, et la caractérisation du potentiel
 d’un \abr{SSC} en période hivernale comme estivale.
 
 Comme explicité dès le second chapitre, les réponses et observations faites au cours de
 cette thèse nécessitent d’être confrontées aux résultats d’une expérimentation à échelle
-$1$. En effet même si les composants du modèle ont fait pour la plupart l’objet d’une
+$1$. En effet même si les composants du modèle ont fait, pour la plupart, l’objet d’une
 vérification analytique, le modèle dans son ensemble nécessite d’être validé
 expérimentalement afin de corroborer les conclusions de ces travaux. Il est alors
 nécessaire de vérifier que le modèle traduit correctement le comportement du
 \abr{SSC} dans des conditions réelles.
-En plus de la validation, il serait aussi intéressant d’évaluer les risques de surchauffes
+En plus de la validation, il serait aussi intéressant d’évaluer les risques de surchauffe
 et de caractériser les méthodes existantes pour évacuer la chaleur, soit en la valorisant
 pour une autre application comme pour le chauffage d’une piscine, soit en déchargeant
-l’énergie excédentaire par exemple en faisant circuler l’eau du \abr{SSC} dans les
+l’énergie excédentaire, par exemple, en faisant circuler l’eau du \abr{SSC} dans les
 capteurs solaires en période nocturne.
 
 Afin de compléter l’étude, il semble aussi pertinent d’intégrer la prise en compte de manière
 quantitative du critère économique à travers le coût d’investissement et le temps de
 retour. Il est cependant nécessaire de rester très prudent quand à leur implémentation en
 particulier pour le temps de retour sur investissement qui doit tenir compte de la
-complexité inhérente à ce type d’analyse comme explicité à travers le chapitre précédent.
+complexité inhérente à ce type d’analyses comme explicité à travers le chapitre précédent.
 De plus, comme noté à travers le premier chapitre, les résultats obtenus sont fortement
-dépendant des données météos utilisées. Le rayonnement solaire en particulier est très
+dépendants des données météos utilisées. Le rayonnement solaire en particulier est très
 changeant d’une année à l’autre, il serait alors pertinent d’évaluer la variation de la
 performance du \abr{SSC} pour une période étendue de simulation. Cette analyse peut être
 réalisée avec l’aide de données météorologiques existantes mais une étude prospective sur
 l’évolution du climat futur est plus profitable. En effet afin d’être complète, l’analyse
-du retour sur investissement doit tenir compte de l’évolution, du coût des énergies, mais
-aussi, de l’évolution des besoins du bâtiment qui sont en partie liés à l’évolution du climat. Il apparaît ainsi
+du retour sur investissement doit tenir compte de l’évolution du coût des énergies, mais
+aussi, des besoins du bâtiment qui sont en partie liés à l’évolution du climat. Il apparaît ainsi
 judicieux de coupler la construction de fichiers météorologiques prospectifs à la
-construction de scénarios économiques afin de pouvoir quantifier le potentiel énergétique
-et économique du \abr{SSC} selon différents scénarios tout en tenant compte du
+construction de scénarios économiques. Il est alors possible de quantifier le potentiel énergétique
+et économique du \abr{SSC} pour différents scénarios, tout en tenant compte du
 vieillissement des équipements. Afin de répondre à ces perspectives, il peut être envisagé
-un couplage entre la méthodologie développée dans ce manuscrit et une approche par clustering pour
-permettre de réduire chaque année à un jeu de semaines représentatives et donc limiter le temps de
-simulation nécessaire. Les résultats issus de la comparaison entre les deux
-approches pourrait alors amener à revoir les moyens à mettre en œuvre pour évaluer la
-performance d’un \abr{SSC} de manière plus complète.
+un couplage entre la méthodologie développée dans ce manuscrit et une approche par clustering. Chaque
+année serait alors représentée par un jeu de semaines typiques permettant de limiter le temps de
+simulation nécessaire.
+% Les résultats issus de la comparaison entre les deux
+% approches pourraient amener à revoir les moyens à mettre en œuvre pour évaluer la
+% performance d’un \abr{SSC} de manière plus complète.
 
 Enfin, ces travaux ont permis d’identifier des solutions techniques permettant d’obtenir un taux
 d’économie important en réduisant la surface de capteurs mais surtout la taille des
 ballons, levant ainsi les principales contraintes qui freinent l’adoption de tels
 systèmes. Cependant avec l’amélioration de l’enveloppe des bâtiments et l’augmentation des
 consommations dues aux charges internes, le confort estival est aussi un facteur clé. Le
-solaire étant abondant durant l’été, un travail approfondie sur le dimensionnement d’un
-\abr{SSC} à la fois pour couvrir les besoins hivernaux et estivaux apparaît comme une suite
+solaire étant abondant durant l’été, un travail approfondi sur le dimensionnement d’un
+\abr{SSC} pour couvrir à la fois les besoins hivernaux et estivaux apparaît comme une suite
 logique à ces travaux et viendrait en complément à la tâche $53$ actuellement en cours.
 Parmi les technologies potentielles, il serait intéressant d’investiguer le couplage entre
 un système solaire et une \abr{PAC} respectueuse de l’environnement en substituant
-l’utilisation d’un fluide frigorigène par l’utilisation du $CO_{2}$. De plus ce couplage présente aussi un
+l’utilisation d’un fluide frigorigène par l’utilisation du $CO_{2}$. De plus, ce couplage présente aussi un
 avantage énergétique. Grâce à l’énergie solaire,
-le coefficient de performance (\abr{COP} pour le chauffage) d’une \abr{PAC} peut être maintenue à un niveau important durant
+le coefficient de performance (\abr{COP} pour le chauffage) d’une \abr{PAC} peut être maintenu à un niveau important durant
 l’ensemble de l’année. Ainsi, le potentiel solaire est double et permet à la fois de
 réduire la consommation en se substituant à l’énergie électrique mais peut aussi permettre d’améliorer
 la performance de la \abr{PAC}~: le gain énergétique est donc potentiellement plus
@@ -202,6 +203,6 @@ une application pour une \abr{MEPOS}. De plus, le bouilleur nécessite une sourc
 une température plus élevée qu’une \abr{PAC} classique et des capteurs solaires
 cylindro-paraboliques pourraient alors être plus adaptés. La méthodologie développée dans ces travaux
 pourrait ainsi être étendue afin de caractériser le potentiel du couplage avec une
-\abr{PAC} ou d’une pompe à absorption. Bien sur dans cet optique, il apparaît pertinent de
-aussi tenir compte du confort d’été en s’orientant vers une modélisation du bâtiment plus
+\abr{PAC} ou d’une pompe à absorption. Bien sûr dans cet optique, il apparaît pertinent
+d’également tenir compte du confort d’été en s’orientant vers une modélisation du bâtiment plus
 détaillée et donc vers un modèle multi-zone.
