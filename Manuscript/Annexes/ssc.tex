@@ -24,6 +24,50 @@
 \end{landscape}
 
 
+Description des modèles de la bibliothèque \fnref{https://github.com/lbl-srg/modelica-buildings}{\textit{Buildings}}
+retenus pour chaque composant du système modélisé dans ce manuscrit~: \label{modele_solaires_list}
+\begin{blockdescription}{Combles et Vide sanitaire}
+    \item [Ballon] \textit{Fluid.Storage.StratifiedEnhancedInternalHex} qui modélise
+                   un ballon avec stratification.
+    \item [Échangeur interne] \textit{Fluid.Storage.BaseClasses.IndirectTankHeatExchanger}.
+    \item [Vase d’expansion] \textit{Buildings.Fluid.Storage.ExpansionVessel}.
+    \item [Pompes] \textit{Fluid.Movers.SpeedControlled\_Nrpm} permettant
+                   de contrôler le indirectement le débit par modulation de la vitesse
+                   de rotation normalisée de la pompe.
+    \item [Ventilateurs] \textit{Fluid.Movers.FlowControlled\_m\_flow}.
+                          permettant de contrôler le débit directement.
+    \item [Parseur météo] \textit{BoundaryConditions.WeatherData.ReaderTMY3}.
+                          Nécessite de transformer le fichier météo dans un format propre au modèle.
+                          Un outil en \textit{Java} est disponible pour convertir un fichier de
+                          type \textit{.epw} dans le format supporté \textit{.mos}.
+    \item [Capteur solaire] \textit{Fluid.SolarCollectors.EN12975} implémentant
+          l’équation quasi-dynamique décrite en \ref{par:approche_quasi_dynamique}.
+    \item [Rayonnement diffus] \textit{BoundaryConditions.SolarIrradiation.DiffusePerez} permettant
+          de calculé le rayonnement diffus ($G_{dif,\,inc}$) suivant le modèle développé par \textcite{Perez1990271}.
+    \item [rayonnement direct] \textit{BoundaryConditions.SolarIrradiation.DirectTiltedSurface}
+          permettant de calculer le rayonnement direct ($G_{dir,\,inc}$) selon \eqref{eq:rayonnement_surf_incline}.
+    \item [Échangeur eau/air] \textit{Fluid.HeatExchangers.ConstantEffectiveness} qui
+          modélise un échangeur avec une efficacité constante fixée à \SI{80}{\percent}.
+    \item [Zone chauffée] \textit{Rooms.MixedAir} qui assume une zone où l’air est
+          complètement mixé. Le modèle calcule séparément les échanges radiatifs
+          et conductifs et permet de modéliser des fenêtres et des scénarios
+          internes \parencite{Wetter2011}.
+    \item [Combles et Vide sanitaire] Une version simplifiée de \textit{Rooms.MixedAir}
+          ne permettant pas l’ajout de fenêtres ni d’apports internes.
+    \item [Fenêtres] \textit{Rooms.Constructions.ConstructionWithWindow} séparant
+          les apports radiatifs des apports convectifs nécessitant donc une description
+          détaillée des composants de la fenêtre.
+    \item [Vanne $\bm{3}$ voies] \textit{Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear}
+    \item [Vanne $\bm{2}$ voies] \textit{Fluid.Actuators.Valves.TwoWayEqualPercentage}
+    \item [Canalisation extérieures] \textit{Fluid.FixedResistances.Pipe} permettant
+          de discrétiser le volume de fluide afin de mieux évaluer les déperditions.
+    \item [Puisage] À partir d’une loi de mélange, le volume d’eau du ballon nécessaire
+          pour obtenir une température de puisage de \SI{40}{\celsius} est puisé
+          par une pompe hors du ballon sanitaire.
+\end{blockdescription}
+\clearpage
+
+
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth, page=4]{Ressources/Images/Modelisation/circulateur.pdf}

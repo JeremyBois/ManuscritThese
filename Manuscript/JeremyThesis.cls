@@ -639,6 +639,7 @@
 \renewcommand\nomgroup[1]{%
   \bigskip
   \bigskip
+  \bigskip
   \item[\bfseries
   \ifstrequal{#1}{A}{Abréviations}{%
   \ifstrequal{#1}{L}{Lettres latines}{%
