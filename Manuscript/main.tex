@@ -200,13 +200,20 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % Tables of contents
 % ------------------------------------------------------------------------------
-% {
-%     \hypersetup{linkcolor=ClassicBlack} % local change
-%     \tableofcontents
-%     \listoffigures
-%     \listoftables
-%     \listofalgorithms
-% }
+{
+    \hypersetup{linkcolor=ClassicBlack} % local change
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \listofalgorithms
+}
+
+\input{Nomenclature/nomenclature}
+\printnomenclature[3cm]
+\thispagestyle{empty}
+\newpage
+\clearpage
+\footOn
 
 % \input{Nomenclature/nomenclature}
 % \printnomenclature[3cm]
@@ -217,7 +224,6 @@ Extension=.otf,
 % \footOn
 
 
-
 % ------------------------------------------------------------------------------
 % Chapters
 % ------------------------------------------------------------------------------
@@ -225,11 +231,11 @@ Extension=.otf,
 \chapter*{Introduction}
 \input{Chapitres/Introduction}
 
-% \chapter{Le solaire thermique appliqué au bâtiment, un problème multi-objectifs}
-% \input{Chapitres/Chap1-ContexteTravaux}
+\chapter{Le solaire thermique appliqué au bâtiment, un problème multi-objectifs}
+\input{Chapitres/Chap1-ContexteTravaux}
 
-% \chapter{Modélisation détaillée d’un système solaire combiné innovant}
-% \input{Chapitres/Chap2-ApprocheModelisation}
+\chapter{Modélisation détaillée d’un système solaire combiné innovant}
+\input{Chapitres/Chap2-ApprocheModelisation}
 
 % \chapter{Développement d’une méthode d’aide à la décision}
 % \input{Chapitres/Chap3-UnOutilAideDecision}
@@ -237,46 +243,51 @@ Extension=.otf,
 % \chapter{Optimisation multi-objectifs d’un \abr{SSC} couplé à une \abr{MEPOS}}
 % \input{Chapitres/Chap4-OptimisationSystemeSolaire}
 
-\chapter*{Conclusions et Perspectives}
-\input{Chapitres/Conclusion}
+% \chapter*{Conclusions et Perspectives}
+% \input{Chapitres/Conclusion}
 
 
 
 % ------------------------------------------------------------------------------
 % Appendix
 % ------------------------------------------------------------------------------
-% \begin{thesisAppendices}
+\begin{thesisAppendices}
 
-% % \chapter{Énergie} % (fold)
-% % \label{cha:energie}
-% % \input{Annexes/primaire_finale_coefs}
+\chapter{Énergie} % (fold)
+\label{cha:energie}
+\input{Annexes/primaire_finale_coefs}
 
-% % \chapter{Bâtiment} % (fold)
-% % \label{cha:batiment}
-% % \input{Annexes/vitrages}
-% % \include{Annexes/parois}
+\chapter{Construction d’un bâtiment} % (fold)
+\label{cha:construction_batiment}
+\input{Annexes/construction}
 
-% % \chapter{Système solaire} % (fold)
-% % \label{cha:systeme_solaire}
-% % \include{Annexes/ssc}
+\chapter{Bâtiment} % (fold)
+\label{cha:batiment}
+\input{Annexes/vitrages}
+\include{Annexes/parois}
 
-% % \chapter{Répartition des capteurs} % (fold)
-% % \label{cha:repartition_des_capteurs}
-% % \include{Annexes/packaging}
+\chapter{Modélisation du système solaire combiné} % (fold)
+\label{cha:systeme_solaire}
+\include{Annexes/ssc}
+\include{Annexes/modeles}
 
-% % \chapter{Analyse de sensibilité} % (fold)
-% % \label{cha:analyse_de_sensibilite}
-% % \include{Annexes/sensibilite}
+% \chapter{Répartition des capteurs} % (fold)
+% \label{cha:repartition_des_capteurs}
+% \include{Annexes/packaging}
 
-% % \chapter{Création des méta-modèles} % (fold)
-% % \label{cha:creation_des_meta_modeles}
-% % \include{Annexes/meta-modele}
+% \chapter{Analyse de sensibilité} % (fold)
+% \label{cha:analyse_de_sensibilite}
+% \include{Annexes/sensibilite}
 
-% % \chapter{Optimisation multi-objectifs} % (fold)
-% % \label{cha:optimisation_multi_objectifs}
-% % \include{Annexes/optimization}
+% \chapter{Création des méta-modèles} % (fold)
+% \label{cha:creation_des_meta_modeles}
+% \include{Annexes/meta-modele}
 
-% \end{thesisAppendices}
+% \chapter{Optimisation multi-objectifs} % (fold)
+% \label{cha:optimisation_multi_objectifs}
+% \include{Annexes/optimization}
+
+\end{thesisAppendices}
 
 
 
