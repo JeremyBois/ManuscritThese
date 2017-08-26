@@ -41,7 +41,7 @@ trois cas les différentes méthodes de \abr{MCDA} nécessitent le respect de qu
 éventuelle contribution à la décision globale, susceptible, eu à l’égard à l’état
 d’avancement du processus de décision, d’être envisagée de façon autonome et de servir de
 point d’application à l’aide à la décision (ce point pouvant suffire à caractériser a).}
-L’ensemble des actions est évalué en fonction des critères qui devront si possible êtres
+L’ensemble des actions est évalué en fonction des critères qui devront si possible être
 indépendants. La construction des critères demande alors une connaissance importante du
 problème et implique fortement le ou les décideurs. En fonction des méthodes une
 pondération peut être nécessaire pour évaluer la force de la contribution de chaque action
@@ -52,15 +52,15 @@ n’est pas linéaire et ces étapes peuvent être répétées plusieurs fois.
 performance actuelle, le résultat espéré, et les pistes permettant de définir a priori
 comment ces outils peuvent apporter une réponse aux questionnements. L’expérience et les
 résultats obtenus en amont permettent alors d’alimenter la réflexion amenant à la
-formulation des critères et actions de manière précise nécessaires pour sélectionner une
+formulation des critères et actions de manière précise nécessaire pour sélectionner une
 méthode d’aide à la décision adaptée. Lorsque le problème suggère une optimisation, il est
 nécessaire de définir les critères à optimiser. On parle alors des objectifs d’une
 optimisation multi-critère ou multi-objectifs. La définition des fonctions objectifs et des
 contraintes est propre à chaque problème et est directement dépendant des données
 disponibles. Dans le secteur du bâtiment, il est courant de considérer certaines sorties
 des logiciels de simulation dynamique (\abr{STD}, \abr{CFD}\dots) comme objectifs.
-\textcite{Attia2013110}, montrent que dans le cas d’études sur la performance des bâtiment
-passifs la consommation, le coût, et le confort son couramment sélectionnés. Dans le cas
+\textcite{Attia2013110}, montrent que dans le cas d’étude sur la performance des bâtiment
+passifs la consommation, le coût, et le confort sont couramment sélectionnés. Dans le cas
 de l’optimisation d’un \abr{SSC}, les objectifs les plus utilisés sont le taux d’économie ($F_{sav,\, ext}$),
 le taux de couverture ($F_{sol}$), ou le Coût du Cycle de Vie (\abr{CCV}).
 
@@ -144,7 +144,7 @@ optimale au cours du processus d’optimisation.
 \subsubsection{Décision a posteriori} % (fold)
 \label{ssub:decision_a_posteriori}
 Contrairement aux autres approches, l’aide à la décision multi-objectifs a posteriori
-suppose qu’un ensemble de solutions optimales a été généré grâce à un processus
+suppose qu’un ensemble de solutions optimales ait été généré grâce à un processus
 d’optimisation. Lors de l’optimisation aucun caractère préférentiel
 n’est introduit permettant ainsi d’explorer l’espace de décision sans restrictions.
 De plus ce processus permet d’améliorer la compréhension du problème et ainsi
@@ -164,7 +164,7 @@ Dans cette approche l’ensemble des objectifs est réduit à une note unique pe
 de trier l’ensemble des solutions de l’espace de compromis.
 L’approche est similaire aux méthodes d’aide à la décision a priori mais est dans
 ce cas uniquement appliquée à l’ensemble formé par les solutions optimales. Dans cette
-configuration l’ordre est dit total~: toute les solutions sont comparables entre elles.
+configuration l’ordre est dit total~: toutes les solutions sont comparables entre elles.
 
 Une fonction unique dite d’utilité est formulée à partir de l’ensemble des critères
 de décision. Pour chaque critère, une fonction de valeur associée est construite en
@@ -176,7 +176,7 @@ Les méthodes \abr{MAUT} (Multiple Attribute Utility Theory) \parencite{Fishburn
 ou \abr{AHP} (Analytic Hierarchy Process) \parencite{Saaty1987161} sont deux exemples utilisant
 l’approche par critère de synthèse.
 Ces approches assurent l’obtention d’une solution unique mais comportent
-cependant un fort effet compensatoire due à l’agrégation par pondération pour
+cependant un fort effet compensatoire dû à l’agrégation par pondération pour
 obtenir la note unique. Un critère ayant une valeur hautement pénalisante peut
 ainsi être retenu si les autres critères ont en moyenne une valeur élevée.
 % paragraph approche_par_critère_de_synthèse (end)
@@ -231,7 +231,7 @@ intervenir technicien et décideur de manière similaire aux approches a posteri
 l’exception que le processus est itératif et progressif.
 \textcite{Flourentzou2002185} à travers le projet Européen \abr{TOBUS} (Tool for selecting Office Building
 Upgrading Solutions) implémentent une méthode interactive afin d’aider
-à la création de scénario de rénovation en tenant compte de nombreux critères comme les
+à la création de scénarios de rénovation en tenant compte de nombreux critères comme les
 besoins énergétiques et le coût. L’outil informe aussi l’expert au fur et à mesure de la
 cohérence de son scénario permettant au décideur d’ajuster ses préférences.
 % subsubsection decision_interactive (end)
@@ -240,7 +240,7 @@ cohérence de son scénario permettant au décideur d’ajuster ses préférence
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{Visualisation par coordonnées parallèles} % (fold)
 \label{ssub:visualisation_par_coordonnees_paralleles}
-Le trie par coordonnées parallèles a été introduit afin de permettre de visualiser
+Le tri par coordonnées parallèles a été introduit afin de permettre de visualiser
 sur un même graphe un nombre important de paramètres, là ou les représentations
 graphiques plus classiques montrent leur limites \parencite{Inselberg198725}.
 Son utilisation est rapidement illustré à travers le logiciel \fnref{http://www.xdat.org/}{\textit{XDAT}}
@@ -276,7 +276,7 @@ de conserver uniquement les solutions les respectant. Par exemple dans \figref{f
 la borne maximale pour le critère \emph{température} est réduite et toutes les solutions
 violant la nouvelle contrainte ne sont plus visibles. Cet outil est bien sûr aussi adapté
 pour mieux comprendre les relations existantes entre différentes solutions lorsque de
-nombreux paramètres entre en jeu. Dans le cas de notre exemple, il est clairement mis en
+nombreux paramètres entrent en jeu. Dans le cas de notre exemple, il est clairement mis en
 évidence que la contrainte de rupture (\enquote{failure strain}) est basse lorsque on ne
 retient que des solutions dont la température est elle aussi basse.
 % subsubsection visualisation_par_coordonnees_paralleles (end)
@@ -295,11 +295,11 @@ biais impactant directement la qualité de la solution finale \parencite{Blondea
 L’approche a posteriori apporte ainsi plus de souplesse dans l’aide à la décision et
 permet une meilleure exploration de l’espace de décision.
 Une fois la surface de compromis atteinte, l’introduction de la préférence du décideur
-permet de réduire le nombre de solutions et/ou de les classer. Dans ces travaux, un trie
-par coordonnées parallèles a été retenue avec le logiciel \textit{XDAT}. Elle est intuitive,
+permet de réduire le nombre de solutions et/ou de les classer. Dans ces travaux, un tri
+par coordonnées parallèles est retenu avec le logiciel \textit{XDAT}. La méthode est intuitive,
 simple d’utilisation et permet de rapidement identifier un sous-espace de solutions.
 Elle est donc particulièrement adaptée pour l’aide à la conception de maisons solaires
-à énergie positives. En effet la conception d’un bâtiment fait intervenir de nombreux
+à énergie positive. En effet la conception d’un bâtiment fait intervenir de nombreux
 corps de métiers, le choix final est donc le résultat d’un compromis. Afin de l’obtenir,
 il est important que l’outil puisse être utilisé directement par les décideurs, qu’ils
 soient acteurs de la décision.
@@ -338,7 +338,7 @@ durée de simulation en utilisant des modèles de substitution.
 \label{sub:reduction_de_la_cardinalite_du_probleme}
 En amont de l’optimisation, les variables de décisions (facteurs) dont la variation sera
 étudiée sont sélectionnées sur la connaissance seule du système et des premiers résultats
-obtenues. Il apparaît donc opportun de réduire le nombre de facteurs afin d’éviter
+obtenus. Il apparaît donc opportun de réduire le nombre de facteurs afin d’éviter
 l’évaluation couteuse de variations n’influençant pas ou très sensiblement le modèle.
 
 Les méthodes dites d’analyse de sensibilité permettent de répondre à cette problématique
@@ -383,7 +383,7 @@ ou bien variable \parencite{Saltelli2004}.
 La méthode de Morris utilise un plan \abr{OAT} (One (Factor) At the Time) et est basée
 sur l’\abr{EEM} (Elementary Effect Method) \parencite{Saltelli2004}. Chaque facteur
 (entrée) assume $z$ valeurs discrètes appelées \textit{niveaux} couvrant l’ensemble de la
-plage de validité. L’intervalle entre les différents niveaux est appelée \textit{pas}
+plage de validité. L’intervalle entre les différents niveaux est appelé \textit{pas}
 ($\delta$) et doit être un multiple de $\frac{1}{(z - 1)}$. La littérature utilise
 couramment $\delta = \frac{z}{2 \times (z - 1)}$ \parencite{Morris1991161, Campolongo20071509}.
 
@@ -517,11 +517,11 @@ est d’approximer les sorties d’intérêts (objectifs) par une fonction analy
 méta-modèle. Cette fonction analytique sera ensuite utilisée pour évaluer les différentes
 combinaisons existantes à la place du modèle complexe et coûteux.
 
-L’utilisation de méta-modèle s’est fortement développée, et ceux pour des applications
-diverses. Certains les utilises pour faire de l’optimisation, d’autres dans l’optique de
-réaliser une analyse de sensibilité détaillée avec des méthode de décomposition de la
+L’utilisation de méta-modèle s’est fortement développée, et ce pour des applications
+diverses. Certains les utilisent pour faire de l’optimisation, d’autres dans l’optique de
+réaliser une analyse de sensibilité détaillée avec des méthodes de décomposition de la
 variance (voir Fig~\ref{fig:classement_methode_sensibilite}). \textcite{Armand-Decker2015}
-les utilisent en substituts à un modèle de bâtiment réalisé sous \textit{Energy Plus} afin
+les utilise en substituts à un modèle de bâtiment réalisé sous \textit{Energy Plus} afin
 de réduire le temps nécessaire pour l’optimisation multi- objectifs d’un bâtiment multi-étages
 en bois. Plus récemment, \textcite{Faggianelli201761} a utilisé les méta-modèles
 dans le cadre de garantie de performance pour un bâtiment de bureaux. Après réduction du
@@ -532,16 +532,16 @@ de plus un bon compromis entre temps de calcul et précision. Ainsi dans notre c
 temps nécessaire pour une simulation est important, l’utilisation de méta-modèle a un
 potentiel très intéressant. De plus, cette approche est adaptable car elle permet
 d’encapsuler un modèle complexe dans des outils métiers. Il est alors possible de répondre
-dans un temps très cours à un problème spécifique sans la complexité d’un logiciel de
+dans un temps très court à un problème spécifique sans la complexité d’un logiciel de
 modélisation.
 
 L’approche comporte cependant des désavantages. Pour leur création, il est nécessaire
 d’évaluer le modèle complexe sur un échantillon représentatif de l’espace des entrées.
-Le méta-modèle est donc limité par les conditions retenues lors de sa création~; comme
+Le méta-modèle est donc limité par les conditions retenues lors de sa création, comme
 les variables d’entrées, ou leurs bornes. La modification d’un de ces paramètres nécessite
 donc la création d’une nouvelle fonction de substitution.
 Enfin, il est important d’évaluer la taille de l’échantillon nécessaire pour construire
-un méta-modèle adapté. Il n’est en effet pas forcement possible de construire un modèle
+un méta-modèle adapté. Il n’est en effet pas forcément possible de construire un modèle
 répondant de manière satisfaisante aux différentes sollicitations pour une taille raisonnable
 de l’échantillon.
 Dans l’optique d’une optimisation il est ainsi important de prendre les points
@@ -575,7 +575,7 @@ nécessaire. Une méthode de Monte-Carlo couplée à une suite à discrépance f
 méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à la méthode de
 Monte-Carlo, une suite ayant une discrépance faible telle que la suite de Halton,
 (\figref{fig:halton_vs_uniform}) permet de maintenir un ensemble de
-point uniformément répartis même lorsque le nombre de points générés est faible.
+points uniformément répartis même lorsque le nombre de points générés est faible.
 L’ensemble des points des deux échantillons ont été générés à partir d’une
 distribution uniforme et les tirages sont strictement identiques (même graine).
 Il peut être noté que l’échantillon par Quasi-Monte-Carlo est une méthode plus robuste car elle
@@ -593,7 +593,7 @@ couvre mieux le domaine de définition.
 La seconde étape consiste à construire le méta-modèle à partir d’une partie de
 l’échantillon simulé. Le principe des polynômes du chaos est
 d’approximer une variable d’intérêt par une série de polynômes orthogonaux dépendant de
-chaque variables d’entrées aléatoires. Initialement développée par \textcite{Wiener1938897},
+chaque variable d’entrées aléatoires. Initialement développée par \textcite{Wiener1938897},
 la forme généralisée du \textit{chaos polynomial} est introduite par \textcite{Xiu2002619}
 \eqref{eq:chaos_generalisee}. La généralisation permet d’associer à chaque variable
 d’entrée aléatoire, une famille de polynômes orthogonaux en fonction de la loi de
@@ -621,10 +621,10 @@ dont le degré total est inférieur ou égal à $P$ sont exclus \eqref{eq:chaos_
 \begin{equation}\label{eq:chaos_generalisee_tronquee}
   Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
 \end{equation}
-La construction d’un méta-modèle se traduit donc par la détermination des ensemble de
+La construction d’un méta-modèle se traduit donc par la détermination des ensembles de
 coefficients $\{c_{\vec{\alpha}},\ \abs{\vec{\alpha}} \leq P\}$ permettant de minimiser
 l’erreur d’approximation entre le modèle original et le modèle de substitution. La
-minimisation est réalisée par la méthode des moindres carrées et consiste à minimiser
+minimisation est réalisée par la méthode des moindres carrés et consiste à minimiser
 l’erreur quadratique entre le modèle de substitution et le modèle original.
 
 Finalement la dernière étape permet de valider le modèle obtenu. Afin de pouvoir vérifier
@@ -648,7 +648,7 @@ paramétrique permet de définir les différents paramètres clés (objectifs, c
 variables, bornes\dots). Ensuite, la cardinalité du problème est réduite grâce à la
 méthode de \textit{Morris} appliquée sur chaque objectif et contrainte. Le problème
 résultant est alors substitué par un ensemble de méta-modèles afin de fortement réduire le
-temps de calcul nécessaire pour une évaluation. Les modèles de substitutions obtenues
+temps de calcul nécessaire pour une évaluation. Les modèles de substitutions obtenus
 sont finalement utilisés pour réaliser l’optimisation multi-objectifs dans l’optique
 d’une aide à la décision a posteriori. Une fois les solutions optimales obtenues, le
 décideur pourra grâce à une méthode de réduction par coordonnées parallèles sélectionner
@@ -679,7 +679,7 @@ ainsi que les différentes méthodes existantes parmi lesquelles le choix sera a
 Dans le domaine de la thermique du bâtiment la caractérisation de la performance est
 souvent effectuée de manière itérative à partir d’une solution de référence ou bien de
 manière empirique dans l’espace de décision. La direction et les variations évaluées
-résultant dans la plupart des cas de l’expérience du ou des décideur[s]. La recherche est
+résultent dans la plupart des cas de l’expérience du ou des décideur[s]. La recherche est
 alors fortement biaisée en amont, limitant l’exploration d’alternatives et l’obtention
 d’une solution optimale est alors peu probable. Afin de palier à ces problèmes, des
 méthodes dites d’optimisation ont été développées. Dans un premier temps le vocabulaire
@@ -858,7 +858,7 @@ ses dérivées \parencite{Hart1968100}.
 Cette approche se base sur la résolution de sous-problèmes pour résoudre le
 problème global et se représente aussi sous forme d’un graphe. La recherche à
 l’intérieur du graphe est basée sur le théorème de Bellmann qui stipule qu’un
-chemin optimal ne peux être composé que de sous-chemins optimaux. Cette approche
+chemin optimal ne peut être composé que de sous-chemins optimaux. Cette approche
 permet ainsi de garantir l’obtention de toutes les solutions optimales tout en
 réduisant le nombre d’évaluations nécessaires. Cette approche est
 particulièrement adaptée à l’optimisation de processus séquentiels.
@@ -1021,11 +1021,11 @@ La performance d’une méta-heuristique réside dans sa capacité à faire un b
 compromis entre exploitation et exploration afin d’augmenter les chances de
 converger vers le front de Pareto formé par les optimums globaux. En effet,
 améliorer l’exploration permet d’éviter de converger vers des optimums locaux
-mais ralenti la vitesse de convergence. À l’inverse, si l’exploitation est trop
+mais ralentit la vitesse de convergence. À l’inverse, si l’exploitation est trop
 forte, la diversité des solutions va diminuer et entraîner la stagnation de
 l’algorithme sur des front dits locaux. Ce phénomène est particulièrement vrai
 pour des problèmes multi-modaux et ceux ayant des optimums dits trompeurs. Un
-problème est dit multi-modal lorsqu’il admet de nombreux optimums locaux
+problème est dit multi-modal lorsqu’il admet de nombreux optimum locaux
 augmentant les chances pour l’algorithme de rester bloqué. Enfin, un problème
 est dit trompeur lorsque la majorité de l’espace de décision favorise un front
 local et qu’une faible partie de l’espace permet d’atteindre le front de Pareto.
@@ -1304,7 +1304,7 @@ Afin de pouvoir faire émerger de nouvelles solutions et remplacer celles qui se
 il est nécessaire d’ajouter un comportement stochastique à l’exploration. Ce comportement
 est observé chez les abeilles avec les éclaireuses qui ne tiennent pas compte des retours
 positifs et/ou négatifs et cherchent par eux-même de nouvelles sources. La quantité
-d’éclaireuses dans une ruche est estimée à 5/10\si{\percent} \parencite{Seeley1996}. Ce
+d’éclaireuses dans une ruche est estimé à 5/10\si{\percent} \parencite{Seeley1996}. Ce
 mécanisme est ainsi responsable de la diversité et du renouvellement en prévention de la
 raréfaction des ressources.
 % paragraph fluctuation (end)
@@ -1432,8 +1432,8 @@ propositions d’améliorations ont vu le jour. Certains s’inspirent des algor
 évolutionnaires \parencite{Bi2011174,Zhao2010558} et d’autres s’inspirent du \abr{PSO}.
 \textcite{Zhu20103166} développent l’algorithme GBest Artificial Bee Colony (\abr{GABC}) en
 ajoutant la prise en compte de l’inertie et de la meilleure solution actuelle.
-\textcite{Li2012320} mimiquent la formulation du \abr{PSO} en ajoutant une inertie, l’accélération et la prise
-en compte de la meilleure solution et le nomme Improved Artificial Bee Colony (\abr{I-ABC}).
+\textcite{Li2012320} ajoutent aussi la prise en compte de l’accélération et nomme l’approche~:
+Improved Artificial Bee Colony (\abr{I-ABC}).
 Afin d’améliorer la diversité dans la population initiale, \textcite{Xiang20131256}
 initialisent la position des sources en utilisant une séquence issue de la théorie
 du chaos en place d’une initialisation stochastique. Il peut aussi être cité
@@ -1465,7 +1465,7 @@ aux problèmes multi-objectifs. Les nombreux travaux témoignent d’un attrait 
 pour l’approche et mettent en avant sa modularité. En effet, à travers la diversité des
 comportements (butineuses, exploratrices, et ouvrières) il est possible d’équilibrer
 l’exploration et l’exploitation~; condition essentielle pour répondre de manière adaptée
-et flexible à des problématiques complexes. Les différent travaux décrits dans la
+et flexible à des problématiques complexes. Les différents travaux décrits dans la
 littérature permettent ainsi de construire un algorithme efficient.
 
 La sous-section suivante présente les améliorations retenues dans ces travaux.
@@ -1489,7 +1489,7 @@ le vecteur décision des solutions déjà existantes à l’aide d’un indicate
 Par exemple, une loi normale permet de renforcer une solution localement alors qu’une loi
 uniforme permet d’explorer de manière analogue le domaine. Le lecteur pourra noter la
 forme caractéristique de la distribution de \textit{Lévy} retenue dont l’expression
-analytique est définie que pour certaines valeurs de paramètres contrairement aux autres
+analytique est définie uniquement pour certaines valeurs de paramètres contrairement aux autres
 distributions (\figref{fig:distribution_pdf}).
 
 \textcite{Sharma2012213}, utilisent le vol de \textit{Lévy} afin de réaliser une recherche locale
