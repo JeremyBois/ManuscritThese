@@ -1,0 +1,52 @@
+%!TEX root = ../main.tex
+% Resume/resume_fr.tex
+
+
+Les enjeux énergétiques et environnementaux liés au réchauffement climatique amènent à
+généraliser la sobriété énergétique des bâtiments neufs ainsi que la production locale
+d’énergie à l’horizon $2020$. Ce travail de thèse se concentre sur le secteur de la maison
+individuelle qui représente près de la moitié des logements neufs construits en France
+pour un volume d’environ \SI{200000}{unités} par an.
+
+\paragraph{} % (fold)
+Le contexte de la maison individuelle à énergie positive \SI{100}{\percent} solaire consiste à
+rechercher les compromis entre le niveau de performance du bâti qui détermine les besoins
+en énergie et la capacité des équipements à valoriser l’énergie solaire pour d’une part
+subvenir aux besoins en chaleur pour assurer le chauffage et la production d’eau chaude
+sanitaire, et d’autre part produire l’électricité nécessaire à l’éclairage et aux autres
+usages spécifiques (matériels électroménager, vidéo, etc.).
+
+Après un examen des différents concepts de bâtiments à énergie positive, une analyse a été
+menée pour identifier les solutions techniques de systèmes solaires combinés capables de
+fournir le double service de production d’eau chaude et de chauffage. Un modèle détaillé a
+été développé dans l’environnement Dymola et vérifié par inter-comparaison de modèles à
+l’échelle des composants. Un algorithme de contrôle original a été mis au point pour
+maximiser la performance globale du système. Une première étude paramétrique a montré que
+ce système est capable dans certaines conditions de couvrir près de \SI{80}{\percent} des besoins en
+chaleur de la maison étudiée. Néanmoins, son dimensionnement demeure complexe et la
+recherche de compromis entre la sobriété de la maison et le dimensionnement des systèmes
+solaires thermiques et photovoltaïques doit s’appuyer sur un algorithme d’optimisation
+multi-objectifs adapté.
+
+Un chapitre est donc consacré à l’élaboration d’un algorithme d’optimisation multi-
+objectifs qui s’appuie sur la méthode des colonies d’abeilles virtuelles. Cette approche
+s’est avérée particulièrement pertinente vis à vis du problème (paramètres discrets,
+continus et qualitatifs) à caractère multi-objectifs (maximiser la valorisation du solaire
+thermique pour le chauffage d’une part et pour la production d’eau chaude d’autre part,
+minimiser la consommation d’énergie conventionnelle) et sous contrainte car seules les
+solutions à bilan d’énergie positif sur l’année seront retenues. L’algorithme
+d’optimisation développé ici a été confronté à une série de problèmes classiques et a
+démontré sa capacité à construire l’ensemble des solutions avec un nombre relativement
+faible d’évaluations du modèle.
+
+\paragraph{} % (fold)
+Le dernier chapitre présente deux applications de conception de maisons à énergie
+positive. La première se situe en région bordelaise alors que la seconde est située à
+proximité de Strasbourg. Ces deux conditions climatiques permettent de mettre en évidence
+la capacité de l’algorithme d’optimisation à proposer un éventail de solutions optimales
+présentant des compromis différents en termes de performance du bâti et de dimensionnement
+des équipements solaires. Enfin, un outil d’aide à la décision permet d’explorer les
+fronts optimaux pour dégager les solutions à retenir.
+
+\vfill
+\noindent\textbf{Mots clés~:} Système solaire combiné, Bâtiment à énergie positive, Optimisation multi-objectifs, Aide à la décision, Modélisation, Modelica
