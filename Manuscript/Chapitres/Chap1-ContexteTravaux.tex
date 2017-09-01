@@ -1054,7 +1054,7 @@ effet uniquement nécessaire d’avoir un capteur solaire, une pompe et un volum
 cette raison que ces systèmes sont utilisés depuis longtemps avec plus ou moins
 d’efficacité. Bien que relativement simple à mettre en place en comparaison avec les
 autres alternatives, les \abr{SSC} ne sont très populaires. Le défaut principal de ces
-systèmes et en effet la place que prennent les équipements et le coût d’investissement
+systèmes est en effet la place que prennent les équipements et le coût d’investissement
 important nécessaire. Ces deux critères sont liés, un système nécessitant un nombre
 important de capteurs ou un volume de ballon plus important coutera plus cher et prendra
 plus de place. Ces deux facteurs représentent les principaux verrous qui freinent le
@@ -1068,7 +1068,7 @@ les différents travaux existants. En effet ce sont ces travaux qui ont permis l
 développement du \abr{SSC} modélisé dans ces travaux afin de caractériser le potentiel
 d’\abr{MEPOS} solaire. Cette section présente donc dans un premier
 temps l’énergie solaire et son potentiel au niveau de la surface terrestre. Suit une
-descriptions des limites et difficultés inhérentes à la caractérisation et au
+description des limites et difficultés inhérentes à la caractérisation et au
 dimensionnement d’un système solaire thermique comme photovoltaïque. Après une rapide
 description du solaire thermique et de sa place au niveau mondial et européen, un état
 de l’art présente les principales avancées réalisées notamment pour le développement des \abr{SSC}.
@@ -1083,7 +1083,7 @@ la surface terrestre et les moyens permettant de le mesurer. En effet que ce soi
 pour de l’expérimental ou de la modélisation, il est toujours nécessaire de connaître
 a minima le rayonnement incident sur les capteurs. Dans le cas expérimental, cette
 information est la plupart du temps mesurée sur site afin d’être la plus précise
-possible. Dans le cas de la modélisation, il est nécessaire d’avoir recourt à des
+possible. Dans le cas de la modélisation, il est nécessaire d’avoir recours à des
 fichiers météorologiques qui peuvent soit représenter une année complète, soit des
 fragments de mois qui forment le climat caractéristique du site étudié. Ces fichiers
 sont indispensables pour pouvoir caractériser le potentiel d’une installation solaire
@@ -1104,14 +1104,14 @@ du temps universel.
 \subsubsection{L’énergie solaire} % (fold)
 \label{ssub:l_energie_solaire}
 L’énergie solaire provient sans surprise du soleil qui est une sphère gazeuse dont la
-température intérieure est estimée entre \num{8} à \SI{40e-6}{\kelvin}
+température intérieure est estimée entre \num{8} à \SI{40e6}{\kelvin}
 \parencite{Duffie1980}. Dans ces travaux, seul le rayonnement radiatif au niveau de la
 photosphère nous intéresse dont la température effective est de \SI{5777}{\kelvin}. On
 entend par température effective, la température d’un corps noir émettant la même quantité
 de rayonnement électromagnétique qui représente ici une approximation de la température de
 surface du soleil. Le soleil se trouve à \SI{1.495e11}{\metre} de la Terre et la densité
 de la puissance rayonnée reçue au niveau de la surface extérieure de l’atmosphère
-terrestre, la constante solaire ($G_{cs}$) est estimée pour la première fois à \num{1228}
+terrestre, la constante solaire ($G_{cs}$) est estimée pour la première fois à \SI{1228}{\watt\per\metre\squared}
 par Claude Pouillet en $1838$ (\cite{Coulson2012}, page $17$). Aujourd’hui grâce aux satellites équipés de radiomètres,
 elle est estimée à \SI{1360.8 +- 0.5}{\watt\per\metre\squared} \parencite{Kopp2011}. Après
 pénétration dans l’atmosphère une partie est absorbée, déviée, ou réfléchie. Il est alors
@@ -1158,7 +1158,7 @@ Les rayons solaires pénètrent dans un collimateur afin d’être dirigé vers 
 thermopile est alors utilisée afin de transformer l’énergie thermique en énergie
 électrique. Il peut être noté que pour fonctionner correctement, l’instrument doit
 toujours être orienté en direction du soleil et donc monté sur un traqueur solaire. Le
-premier pyranomètre sphérique est quand à lui inventé en $1836$ par \textit{Belloni}
+premier pyranomètre sphérique est quant à lui inventé en $1836$ par \textit{Belloni}
 \parencite{Boer1985}. Contrairement au pyrhéliomètre, il permet de mesurer le rayonnement
 hémisphérique total comprenant les parts directes et diffuses (\abr{G}) et ne nécessite donc pas
 de dispositif de suivi du soleil. Le rayonnement est aussi calculé grâce à une thermopile
@@ -1204,9 +1204,9 @@ $2000$. L’irradiation mensuelle du fichier typique est majoritairement inféri
 observée sur les dernières années, en particulier durant la période estivale.
 L’irradiation estivale étant importante et les besoins en chauffage inexistants, sa
 sous-évaluation n’est pas un facteur limitant pour l’évaluation d’un \abr{SSC}. Cependant
-avec l’amélioration de l’isolation des bâtiment, le solaire thermique peut aussi être
+avec l’amélioration de l’isolation des bâtiments, le solaire thermique peut aussi être
 valorisé pour la climatisation du bâtiment même si la technologie n’est encore que peu
-utilisée. Dans ce cas de figure, il sera alors important de correctement estimer le l’irradiation
+utilisée. Dans ce cas de figure, il sera alors important de correctement estimer l’irradiation
 solaire même durant la période estivale afin d’évaluer correctement le potentiel du \abr{SSC}.
 
 \begin{figure}
@@ -1224,10 +1224,10 @@ solaire même durant la période estivale afin d’évaluer correctement le pote
 Il existe ainsi deux approches possibles pour évaluer le potentiel d’un \abr{SSC}.
 La première consiste à utiliser des données réelles du passé
 acquises par la mesure. Ces données peuvent alors être disponibles à plusieurs fréquences
-et une distinction est nécessaire entre les données récupérées par des stations météos et
-les données récupérées à partir de données satellites. Avec les données issues de stations
+et une distinction est nécessaire entre celles récupérées par des stations météos et
+celles récupérées de satellites. Avec les données issues de stations
 météo le rayonnement est mesuré à la surface de la terre permettant d’obtenir directement
-le rayonnement terrestre direct ($G_{dir,\,nor}$), diffus ($G_{dif,\,hor}$), ou global
+le rayonnement solaire direct ($G_{dir,\,nor}$), diffus ($G_{dif,\,hor}$), ou global
 ($G_{hor}$). Néanmoins cette approche nécessite l’installation d’instruments spécifiques
 (pyranomètres ou pyrhéliomètres) à une position géographique suffisamment proche du
 site étudié afin de fournir des données pertinentes. En France, ces données peuvent aussi
@@ -1238,10 +1238,10 @@ point du globe ($265$ pays) et tiennent compte des spécificités du lieu comme 
 Le rayonnement au sol est issu de données satellites (\textit{Meteosat}) et est
 calculé à partir d’images couplées à un algorithme de conversion qui dépend du type de
 fichier météo construit. Une fois le rayonnement global horizontal obtenu, des
-\fnref{http://www.soda-pro.com/help/helioclim/decomposition-models}{algorithme de décomposition}
+\fnref{http://www.soda-pro.com/help/helioclim/decomposition-models}{algorithmes de décomposition}
 sont utilisés afin de déterminer les parts respectives directe et diffuse. La SOlar
 radiation DAta (\fnref{http://www.soda-pro.com/}{\abr{SODA}}) est la principale source de
-donnée regroupant les services de 4 pays~: la France, les États-Unis, la Suisse, et
+données regroupant les services de quatre pays~: la France, les États-Unis, la Suisse, et
 l’Italie. Elle propose des services gratuits et payants permettant d’obtenir le
 rayonnement dans des conditions réelles mais aussi dans le cas idéal sans nuages grâce à
 un modèle simulant une atmosphère (\textit{Copernicus McClear}) proposé par le
@@ -1249,7 +1249,7 @@ Copernicus Atmosphere Monitoring Service (\fnref{http://www.copernicus.eu/}{\abr
 Le rayonnement obtenu est vérifié et validé grâce aux données terrestres disponibles.
 
 \paragraph{} % (fold)
-La seconde approche permet de limiter la durée de simulation en utilisation des
+La seconde approche permet de limiter la durée de simulation en utilisant des
 fichiers \textit{typiques}. Un fichier météo comportant de nombreuses informations
 (températures extérieures, humidité relative, vitesse du vent, ou encore ensoleillement),
 il est nécessaire de définir un ordre d’importance grâce à des pondérations. De plus
@@ -1291,7 +1291,7 @@ L’énergie solaire est disponible sur l’ensemble du globe de manière abonda
 possible d’utiliser soit des données réelles, soit des données typiques afin d’évaluer le
 potentiel d’un système pour n’importe quel emplacement. Alors que la plupart des systèmes
 ont une surface de capteurs inclinée les données sont le plus souvent disponibles ou à
-l’horizontal, ou normal au soleil. La Terre tournant autour du soleil et sur elle-même, il
+l’horizontal, ou normal à l’incidence. La Terre tournant autour du soleil et sur elle-même, il
 est nécessaire pour obtenir le rayonnement sur une surface inclinée de connaître
 sa position exacte durant chaque pas de temps simulé. Le temps utilisé couramment
 est le temps standard (\abr{UTC}, Temps Universel Coordonné), qui est identique sur
@@ -1312,17 +1312,17 @@ est définie par \eqref{eq:heure_solaire_locale}.
   ($0$ Greenwich) et la longitude (positif vers l’ouest)
 \end{subequations}
 
-Sur une surface incliné le rayonnement total ($G_{tot, inc}$) est défini par
+Sur une surface inclinée le rayonnement total ($G_{tot, inc}$) est défini par
 \eqref{eq:rayonnement_inclinee}.
 \begin{equation}\label{eq:rayonnement_inclinee}
         G_{inc} = G_{dir, inc} + G_{dif, inc} + G_{r, inc}
 \end{equation}
 
 Connaissant la $HSL$ et l’angle d’inclinaison ($\beta_{plan}$) qui est l’angle formé entre
-la plan incliné et l’horizontal (Si $\beta > \SI{90}{\degree}$ alors le plan est dos au
-soleil), il alors possible de déterminer chaque composante de $G_{inc}$. D’après les
-règles de calcul de l’\textit{\abr{ASHRAE}}, la part diffuse et réfléchie peuvent être
-approximées uniquement en connaissant $G_{hor}$, $G_{dif, hor}$ et $\beta_{plan}$
+la plan incliné et l’horizontal (Si $\beta > \SI{90}{\degree}$ le soleil fait face au
+coté opposé au plan), il alors possible de déterminer chaque composante de $G_{inc}$. D’après les
+règles de calcul de l’\textit{\abr{ASHRAE}}, les rayonnements diffus et réfléchi peuvent être
+approximés uniquement en connaissant $G_{hor}$, $G_{dif, hor}$ et $\beta_{plan}$
 \eqref{eq:rayonnement_surf_incline} avec $\rho_{sol}$ l’albédo du sol.
 Cependant la part directe ($G_{dir, inc}$) nécessite de connaître l’angle d’incidence
 ($\theta$) qui est l’écart angulaire entre le segment reliant le soleil à une surface et
@@ -1390,18 +1390,18 @@ Le calcul de l’angle d’incidence ($\theta$) peut être approximé par \eqref
         \caption{}
         \label{fig:zen_pla}
     \end{subfigure}
-    \caption[Représentation des différentes angles solaires]
-            {Représentation des différentes angles solaires.}
+    \caption[Représentation des différents angles solaires]
+            {Représentation des différents angles solaires.}
     \label{fig:angles_solaires}
 \end{figure}
 
 Ces équations simplifiées couplées à la géométrie du bâtiment permettent aussi de calculer
-les masques créés par les obstructions tel qu’une avancée de toiture ou un arbre.
+les masques créés par les obstructions tels qu’une avancée de toiture ou un arbre.
 Il est aussi possible par exemple grâce à \fnref{http://pysolar.org/}{Pysolar} de calculer
 de manière très \href{http://docs.pysolar.org/en/latest/#validation}{précise} la
 position du soleil par rapport à n’importe quel point du globe. Ces outils peuvent
 alors être embarqués dans des contrôleurs afin de suivre la course du soleil.
-Dans le cadre de ces travaux, il particulièrement important de pouvoir évaluer
+Dans le cadre de ces travaux, il est particulièrement important de pouvoir évaluer
 la part de l’énergie solaire qui arrive sur les capteurs afin de pouvoir calculer
 le rendement et donc la part transmise au système solaire.
 % subsubsection déterminer_le_rayonnement_sur_une_surface_inclinée (end)
@@ -1412,7 +1412,7 @@ le rendement et donc la part transmise au système solaire.
 % ------------------------------------------------------------------------------
 \subsection{Valoriser l’énergie solaire} % (fold)
 \label{sub:valoriser_l_energie_solaire}
-Le système le plus courant dans le domaine du bâtiment pour récupérer l’énergie solaire,
+Le système le plus courant dans le domaine du bâtiment pour récupérer l’énergie solaire
 est appelé panneau solaire, ou capteur solaire. On distingue trois grandes familles~:
 \begin{itemize}
     \item Le capteur plan
@@ -1439,7 +1439,7 @@ thermique est détaillée.
 \subsubsection{Le capteur plan} % (fold)
 \label{ssub:le_capteur_plan}
 C’est le système le plus ancien et aujourd’hui encore le plus économique. Parmi les
-capteurs plan, une distinction peut être faite entre les capteurs avec et sans vitrage.
+capteurs plans, une distinction peut être faite entre les capteurs avec et sans vitrage.
 
 \paragraph{Le capteur non-vitré~:} % (fold)
 \label{par:le_capteur_non_vitre}
@@ -1451,7 +1451,7 @@ simple et le plus économique mais les pertes importantes par convection et rayo
 infrarouge font que ce système n’est pas très performant. N’ayant pas de protection, ni
 d’isolation il est en effet très sensible au vent, à la température extérieure, et aux
 échanges avec la voute céleste. Pour ces raisons, il est principalement utilisé pour des
-opérations annexes tel que le chauffage de piscines.
+opérations annexes telles que le chauffage de piscines.
 % paragraph le_capteur_non_vitre (end)
 
 \paragraph{Le capteur vitré~:} % (fold)
@@ -1461,20 +1461,20 @@ thermiques par convection et par rayonnement infrarouge. De manière schématiqu
 capteur vitré est composé d’une surface transparente, d’un absorbeur, de tubes, et d’un
 isolant thermique (\figref{fig:capteur_plan_vitre}). Un vitrage est utilisé pour la
 surface transparente afin de laisser passer la majorité du rayonnement solaire (visible et
-Proche InfraRouge (\abr{PIR})) de part ces propriétés optiques. L’absorbeur comme son nom
+Proche InfraRouge (\abr{PIR})) de par ces propriétés optiques. L’absorbeur comme son nom
 l’indique doit permettre d’absorber au maximum l’énergie solaire et émettre le moins possible dans
 l’infrarouge. En effet d’après la loi du déplacement de \textit{Wien}, à température
 ambiante les objets émettent spontanément dans l’InfraRouge Moyen (\abr{MIR}) soit pour
-une longueur d’onde allant de \SIrange{3}{50}{\micro\metre}. L’absorbeur est ainsi de
+une longueur d’onde de \SIrange{3}{50}{\micro\metre}. L’absorbeur est ainsi de
 couleur noire ($\leq \SI{95}{\percent}$) afin d’absorber un maximum dans le visible et
 subit un traitement chimique (chrome ou céramique à base d’oxydes métalliques) afin
 d’obtenir une surface faiblement émissive ($\leq \SI{12}{\percent}$). Le vitrage peut lui
 aussi être faiblement émissif afin de laisser passer le rayonnement solaire mais réfléchir
 le \abr{MIR}. La combinaison des deux permet ainsi de récupérer la majorité du spectre
 solaire au niveau de l’absorbeur tout en limitant les pertes par inter-réflexions. Les
-tubes contenant le fluide sont couramment en cuivre car il est simple à travailler et à
+tubes contenant le fluide sont couramment en cuivre car il est simple à travailler et a
 une conductivité thermique importante ($\lambda = \SI{390}{\watt\per(\metre\period\kelvin)}$).
-Finalement l’isolant en face arrière et sur les cotés permet de réduire les pertes par conduction.
+Finalement l’isolant en face arrière et sur les côtés permet de réduire les pertes par conduction.
 % paragraph le_capteur_vitre (end)
 
 \begin{figure}
@@ -1504,15 +1504,15 @@ Finalement l’isolant en face arrière et sur les cotés permet de réduire les
 \label{ssub:le_capteur_sous_vide}
 À la différence du capteur plan, le capteur sous-vide réduit les déperditions au niveau de
 l’absorbeur en remplaçant l’air par du vide supprimant les échanges convectifs. On
-distingue quatre types~: le capteur à circulation direct, le capteur à caloduc, le
+distingue quatre types~: le capteur à circulation directe, le capteur à caloduc, le
 capteur à effet \enquote{Thermos}, et le capteur à réflecteur intégré. Pour le capteur à
-circulation direct, l’absorbeur est une structure plan à ailettes et la circulation de
-l’eau est assurée par un système de tube en \abr{U}. L’absorbeur de chaque tube est
+circulation directe, l’absorbeur est une structure plane à ailettes et la circulation de
+l’eau est assurée par un système de tubes en \abr{U}. L’absorbeur de chaque tube est
 contrairement aux autres modèles, orientable, ce qui permet de les utiliser en façade. Le
 capteur à caloduc (\figref{fig:capteur_sous_vide}) utilise le principe de la vaporisation
 de l’eau déminéralisée. L’eau en se
 vaporisant remonte jusqu’à la tête du caloduc et s’y condense au contact du fluide
-solaire. Le capteur à effet \enquote{Thermos} est lui composé de deux tubes concentriques,
+caloporteur. Le capteur à effet \enquote{Thermos} est lui composé de deux tubes concentriques,
 le tube intérieur étant l’absorbeur. Le vide est réalisé entre les deux tubes et l’échange
 de chaleur se fait soit par un système de caloduc, soit directement par circulation du
 fluide dans le tube intérieur. Afin d’améliorer la part solaire reçue, un réflecteur peut
@@ -1559,23 +1559,26 @@ Dans cette famille, une distinction est faite entre, les capteurs cylindro-parab
 paraboliques, les centrales à tour, et les fours solaires. Les capteurs cylindro-paraboliques
 (\figref{fig:capteur_cylindro_parabolique}) utilisent des réflecteurs
 cylindriques orientables sur un axe (pour suivre le soleil) afin de concentrer le
-rayonnement direct sur un foyer linéaire où passe un fluide (souvent de l’huile). La
-vapeur produite est envoyée vers une turbine pour fabriquer de l’électricité par détente.
+rayonnement direct sur un foyer linéaire où passe un fluide (souvent de l’huile). Le fluide
+est ensuite utilisé pour transformer de l’eau en vapeur qui est ensuite envoyée vers une turbine pour fabriquer de l’électricité par détente.
 Les capteurs paraboliques emploient un système de suivi du soleil sur deux axes et un
 réflecteur en forme de \fnref{https://fr.wikipedia.org/wiki/Paraboloïde}{paraboloïde de
 révolution} afin de pouvoir concentrer en un point unique le rayonnement~: le point focal.
-L’électricité est produite par conversion directe via un moteur \textit{Stirling}. Ayant un
-système de suivi sur deux axes, la centrale à tour peut suivre parfaitement le soleil afin
-de capter un maximum du rayonnement direct. Il comporte un miroir plan ou légèrement
-concave et permet de monter jusqu’à \SI{1500}{\celsius}. L’électricité est fabriquée soit à
-l’aide d’une turbine et d’un fluide intermédiaire, soit par production directe. Finalement
-le dernier dispositif est le four solaire composé d’un miroir concave concentrant le
-rayonnement en son foyer. Deux applications peuvent être notées. La première est la
-production d’électricité comme par exemple avec le four solaire français mondialement
-connu d’\href{http://www.promes.cnrs.fr/index.php?page=historique}{Odeillo} qui permet
+L’électricité est produite par conversion directe via un moteur \textit{Stirling}.
+
+\itodo{Vérifier avec cours La rochelle}
+Ayant un système de suivi sur deux axes, le système de tour solaire permet de réfléchir en
+permanence l’énergie solaire. Un champ de mirroirs orientables (\enquote{héliostats})
+réfléchissent en permanence l’énergie solaire vers un absorbeur au sommet de la tour
+permettant d’obtenir une source chaude allant jusqu’à \SI{1500}{\celsius}. L’électricité
+est fabriquée soit à l’aide d’une turbine et d’un fluide intermédiaire, soit par
+production directe. Finalement le dernier dispositif est le four solaire composé d’un
+miroir concave concentrant le rayonnement en son foyer. Deux applications peuvent être
+notées. La première est la production d’électricité comme par exemple avec le four solaire
+français mondialement connu d’\href{http://www.promes.cnrs.fr/index.php?page=historique}{Odeillo} qui permet
 d’atteindre une puissance d’\SI{1}{\mega\watt}. Il utilise un ensemble de miroirs
 orientables (héliostats) dirigeant les rayons vers un miroir concave géant concentrant les
-rayons vers le foyer. La deuxième application et la cuisson avec des appareils plus ou
+rayons vers le foyer. La deuxième application est la cuisson avec des appareils plus ou
 moins rudimentaires.
 % subsubsection le_capteur_a_concentration (end)
 
@@ -1594,7 +1597,7 @@ du flux solaire incident ($G_{in}$, [\si{W\per\metre\squared}]).
 Comme il a été vu à travers les différents capteurs existants, de nombreux facteurs
 influencent le calcul de $P_{u}$. Il est en effet nécessaire de considérer les
 caractéristiques optiques et thermiques des différents composant du capteur. Si on considère
-un capteur plan non-vitrée, $P_{u}$ est définie comme la part absorbée moins les pertes
+un capteur plan non-vitré, $P_{u}$ est définie comme la part absorbée moins les pertes
 par convection, conduction, et rayonnement infrarouge (\cite{Duffie1980}, équation $5.9.2$
 et équation $6.2.1$). Ces relations nécessitent cependant de connaître la température
 moyenne de l’absorbeur dont la mesure ou le calcul est ardu. En effet, elle dépend
@@ -1663,14 +1666,14 @@ possible d’obtenir la forme complète de l’équation instantanée
 
 \paragraph{Approche quasi-dynamique~:} % (fold)
 \label{par:approche_quasi_dynamique}
-La procédure de test quasi-dynamique est quand à elle décrite à travers l’ISO\,$9806$-$3$
+La procédure de test quasi-dynamique est quant à elle décrite à travers l’ISO\,$9806$-$3$
 aussi introduite dans la norme EN\,$12975$-$2:2001$ \parencite{EN1297522001} aujourd’hui
 remplacée par la EN\,$12975$-$2:2006$ \parencite{EN1297522006}.
 Contrairement à l’approche précédente, trois nouveaux coefficients sont introduits.
 Les deux premiers décrivent l’impact du vent sur le rendement optique ($c_{6}$) et sur
 les pertes thermiques ($c_{3}$), le dernier, $c_{4}$, permet de tenir compte des pertes
 par \abr{MIR}. Comme explicité dans \ref{sub:valoriser_l_energie_solaire}
-les capteurs plan vitrés et les capteurs sous-vides sont peu sensibles à l’impact du
+les capteurs plans vitrés et les capteurs sous-vide sont peu sensibles à l’impact du
 vent et du rayonnement \abr{MIR}. Ces coefficients doivent cependant être considérés
 pour des capteurs non-vitrés. \textcite{Hunn197733} montrent en effet que les pertes
 par rayonnement infrarouge représentent près de \SI{25}{\percent} des pertes annuelles
@@ -1678,8 +1681,8 @@ pour ces capteurs. Que ce soit pour l’approche statique ou dynamique, les coef
 sont obtenus à partir des données expérimentales et des régressions linéaires multiples.
 L’approche quasi-dynamique contrairement à l’approche statique considère aussi séparément
 le rayonnement diffus et direct en introduisant deux \abr{IAM}. Il sont notés dans le reste
-de ce document respectivement par $K_{theta,\,dir}$ et $K_{theta,\,dif}$.
-Dans le cas des capteurs plan dont le comportement est
+de ce document respectivement par $K_{\theta,\,dir}$ et $K_{\theta,\,dif}$.
+Dans le cas des capteurs plans dont le comportement est
 isotropique, il est admis \eqref{eq:iam_dir_plan} où $b_{0}$ est le coefficient
 modificateur d’angle d’incidence \parencite{Zambolin20101382}
 
@@ -1727,12 +1730,13 @@ non comprise dans le spectre solaire (longueur d’onde $> \SI{3}{\micro\metre}$
 
 \paragraph{Bilan~:} % (fold)
 \label{par:bilan_rendement}
+\itodo{tous types ou tout type}
 Les deux approches permettent aujourd’hui de tester tous types de capteurs solaires
 en se basant sur une méthodologie commune facilitant la comparaison entre divers
 fabricants. L’ensemble des organismes de certification propose ainsi les données nécessaires
 pour appliquer soit la méthode statique, soit la méthode quasi-dynamique.
 Les résultats montrent cependant que la méthode quasi-dynamique permet d’obtenir de
-meilleures performances, en particulier en matinée et en soirée
+une meilleure précision, en particulier en matinée et en soirée
 où l’approche statique sur-estime l’énergie récupérée (\figref{fig:compare_static_quasi_dyn})
 
 \begin{figure}
@@ -1771,12 +1775,12 @@ L’\abr{IEA} actualise tous les ans son rapport sur l’évolution mondiale du 
 dans le cadre de son programme \enquote{Solar Heating and Cooling} (\abr{SHC}). Dans la dernière
 édition, la couverture des données représente \SI{95}{\percent} du
 marché mondial \parencite{Weiss2017}. Ainsi fin 2016, près de \SI{456}{\giga\watt_{th}}
-sont installés et une évolution de \SI{7.4}{\percent} est enregistré depuis le début du
+sont installés et une évolution de \SI{7.4}{\percent} est enregistrée depuis le début du
 siècle. Cette évolution est portée par un fort développement des structures industrielles
 ($\geq \SI{350}{\kilo\watt_{th}}$ ou $\geq \SI{500}{\metre\squared}$). La plus grande
 installation à ce jour étant au Danemark avec près de \SI{110}{\mega\watt_{th}} pour
 \SI{156694}{\metre\squared} de capteurs plans représentant \SI{30}{\percent} de la surface
-installée courant $2016$. Historiquement, la puissance maximale double tout les ans depuis
+installée courant $2016$. Historiquement, la puissance maximale double tous les ans depuis
 2013~:
 \begin{description}
     \item[2013~:] Marstal au Danemark avec \SI{\sim 20000}{\metre\squared}
@@ -1789,7 +1793,7 @@ Parmi les $66$ pays analysés, le marché est majoritairement situé en Chine
 qui à eux deux représentent \SI{82.3}{\percent} de la puissance thermique installée.
 Ramené au nombre d’habitant, il peut être observé que le marché se développe plutôt bien
 en Europe avec l’Autriche (\SI{421}{\kilo\watt_{th}\per(1000 hab.)}), la Grèce
-(\SI{287}{\kilo\watt_{th}\per(1000 hab.)}), ou Allemagne
+(\SI{287}{\kilo\watt_{th}\per(1000 hab.)}), ou l’Allemagne
 (\SI{164}{\kilo\watt_{th}\per(1000 hab.)}) contre \SI{226}{\kilo\watt_{th}\per(1000 hab.)}
 pour la Chine. En France, le solaire thermique n’est que peu développé avec seulement
 \SI{22.03}{\kilo\watt_{th}\per(1000 hab.)} (hors \abr{DOM}) alors que l’ensoleillement
@@ -1802,7 +1806,7 @@ respectivement \SI{362}{\tonne} et \SI{112}{\mega\tonne} en France.
 Malgré une progression de la surface installée chaque année, la tendance décroit
 de \SI{14}{\percent} en $2015$ par rapport à $2014$ et la baisse semble continuer en
 $2016$. Au niveau économique, le marché stagne en Europe et est décroissant dans le reste
-du monde à l’exception de l’Afrique Sub-Saharienne et de l’Asie (Chine non-inclus).
+du monde à l’exception de l’Afrique Sub-Saharienne et de l’Asie à l’exception de la Chine.
 L’énergie solaire thermique assume donc une perte d’intérêt importante depuis le début du siècle
 (\figref{fig:tendances_enr}). Depuis $2010$ la tendance est toujours à la baisse
 et depuis $2014$ le solaire thermique affiche une progression nettement plus faible
@@ -1825,18 +1829,18 @@ L’association Allemande (\textit{BSW-Solar}, German Solar Industry Association
 a publié une carte des installations industrielles mondiales et met en avant les
 principaux facteurs responsables du développement du solaire thermique \parencite{Augsten2017}.
 Le  marché semble être en premier influencé par le prix des énergies fossiles, suivi par les considérations
-politiques des états imposant une part plus importante d’énergies renouvelables. Arrivée
+politiques des états imposant une part plus importante d’énergies renouvelables. Arrivées
 en second en $2013$, les aides financières sont reléguées à la troisième place avec
 cette nouvelle étude en $2016$. Les industriels
 mettent aussi en avant le scepticisme des consommateurs vis à vis du solaire thermique
 alors que \SI{70}{\percent} des groupes interrogés estiment que le marché est déjà
 compétitif. Finalement le marché entre de plus en plus en compétition avec les installations \abr{PV} pour
-lesquels les industriels s’accordent majoritairement sur leur compétitivité.
+lesquelles les industriels s’accordent majoritairement sur leur compétitivité.
 
 
 \paragraph{Applications~:} % (fold)
 \label{par:applications}
-Au niveau mondial $108$ millions de systèmes sont référencés en $2015$, dont $\nicefrac{3}{4}$
+Au niveau mondial $108$ millions de systèmes sont référencés en $2015$, dont trois-quarts
 sont des systèmes à thermosiphon, et sont majoritairement utilisés pour la production
 d’\abr{ECS}~: \SI{63}{\percent} dans des maisons individuelles et \SI{28}{\percent} sur des bâtiments plus importants comme
 les hôpitaux ou les écoles. La tendance actuelle semble cependant inverser les proportions
@@ -1865,7 +1869,7 @@ actuellement sur le développement économique des systèmes solaires. Ces trava
 à travers deux tâches. La première, la tâche $53$ cherche à évaluer le potentiel
 de l’énergie solaire (thermique et photovoltaïque) pour le refroidissement qui
 avec les \abr{BEPOS} deviendra un secteur clé de la consommation du bâtiment.
-La tâche s’articule suivant $3$ sous-tâches~:
+La tâche s’articule suivant trois sous-tâches~:
 \begin{description}
     \item[A~:] Caractériser le potentiel des systèmes existants et proposer une méthodologie
                 commune permettant de les comparer économiquement. Proposition de nouveaux
@@ -1875,7 +1879,7 @@ La tâche s’articule suivant $3$ sous-tâches~:
     \item[C~:] Mise en place d’une évaluation expérimentale pour établir un standard
                 de test, vérifier les modèles, collecter, et analyser les données.
 \end{description}
-La seconde, la tâche $54$ axe ces recherches sur la compétitivité économique des
+La seconde, la tâche $54$ axe ses recherches sur la compétitivité économique des
 systèmes solaires. Le but étant d’arriver à une standardisation des
 divers composants et de proposer des systèmes \enquote{plug and play} nécessitant
 moins de maintenance. Cette évolution implique une réduction du coût de production
@@ -1892,12 +1896,12 @@ Les deux tâches ont en commun une sous-tâche supplémentaire (D) montrant une 
 de synergie. Le rôle de cette sous-tâche est en effet d’assurer une coopération
 continue entre l’industrie et la recherche, condition nécessaire
 pour permettre d’exploiter et valoriser rapidement les résultats de recherche.
-Des innovations comme l’invention d’une vanne solaire thermostatique fonctionnant
+Des innovations comme l’invention d’une vanne thermostatique fonctionnant
 sans contrôleur électrique (\fnref{http://www.iea-shc.org/article?NewsID=177}{\textit{Conico}})
 permettent déjà d’apprécier les retombées.
 De plus une \href{http://www.iea-shc.org/article?NewsID=173}{nouvelle tâche} qui doit
 commencer début $2018$ devrait permettre d’accompagner le développement de systèmes mixtes
-permettant de produire de manière combinée énergie électrique et thermique.
+permettant de produire de manière combinée électricité et énergie thermique.
 % subsubsection les_travaux_en_cours (end)
 
 
@@ -1911,7 +1915,7 @@ Européen, la tendance est aussi à la baisse. Ces tendances traduisent une pert
 confiance dans cette technologie déjà observée par les industriels. La même observation
 est faite par \textcite{Musall2010} à travers l’analyse de $280$ \textit{Net}\,\abr{ZEB} qui
 montrent que moins de \SI{10}{\percent} des maisons individuelles sélectionnent un \abr{SSC}
-comme mesure là ou près de \SI{70}{\percent} recommande une production d’\abr{ECS}
+comme mesure là où près de \SI{70}{\percent} recommande une production d’\abr{ECS}
 solaire. Le \abr{SSC} est ainsi aujourd’hui une technologie principalement utilisée dans la rénovation
 \parencite{Ellehauge2003}. L’ouverture de nouveaux travaux de recherche
 sur l’aspect économique ou sur les applications de refroidissement
@@ -1952,7 +1956,7 @@ en France et en Angleterre les premières maisons solaires utilisant des systèm
 et actifs \parencite{Michaelides1993}. Un modèle numérique développé par \textcite{Hunn197733}
 permet en $1977$ d’évaluer pour un pas de temps horaire l’effet des conditions
 météorologiques sur la performance d’\abr{SSC}. Étudiant la performance des capteurs, il
-conclut qu’une seconde vitre sur les capteurs plan permet d’améliorer les performances
+conclut qu’une seconde vitre sur les capteurs plans permet d’améliorer les performances
 dans un climat caractérisé par une forte couverture nuageuse. Ces travaux sont complétés
 par \textcite{Elsayed198989} qui étudie plus en détail la transmission du rayonnement à
 l’absorbeur en étudiant par exemple l’impact de l’albédo et du nombre de vitres sur le
@@ -1970,8 +1974,8 @@ l’utilisation d’un débit réduit (\num{0.002} à \SI{0.007}{kg\per(\metre\s
 d’obtenir une fraction solaire plus importante d’un tiers par rapport à un ballon dont
 l’eau est fortement mixée. En pratique un ballon n’est jamais fortement stratifié mais il est possible par son dimensionnement
 d’augmenter sa stratification, en favorisant un volume de stockage journalier. \textcite{Loef1967}
-s’intéressent eux aux systèmes à circulation naturelle et observe que le différentiel
-de température entre l’entrée et la sortie des capteurs reste constante durant la journée
+s’intéressent eux aux systèmes à circulation naturelle et observent que le différentiel
+de température entre l’entrée et la sortie des capteurs reste constant durant la journée
 et se situe à \SI{\sim 10}{\celsius}.
 
 \begin{equation}\label{eq:f_sol}
@@ -1980,8 +1984,8 @@ et se situe à \SI{\sim 10}{\celsius}.
 
 \textcite{Jordan2001197} étudient l’influence du profil de puisage en comparant le
 scénario type de la norme \abr{PREN\,$12977$} et un profil statistique tenant compte
-des fluctuations annuelles et mensuelles. Il est observée une variation de l’ordre
-de \SI{3}{\percent} entre les deux scénarios due en majorité à un besoin plus
+des fluctuations annuelles et mensuelles. Une variation de l’ordre
+de \SI{3}{\percent} est observée entre les deux scénarios due en majorité à un besoin plus
 important durant la période hivernale pour le scénario statistique.
 L’importance du maintien de la stratification dans le ballon d’$ECS$ est aussi identifiée
 en comparant plusieurs débits de puisage.
@@ -1992,9 +1996,9 @@ en comparant plusieurs débits de puisage.
 \subsubsection{La tâche $\bf{26}$} % (fold)
 \label{ssub:la_tâche_26}
 Une des majeures contributions aux \abr{SSC} pour la maison individuelle a été réalisée au cours
-de la tâche\,$26$ qui fait intervenir $10$ pays dont la France. Elle s’articule en
+de la tâche\,$26$ qui fait intervenir dix pays dont la France. Elle s’articule en
 trois sous-tâches \parencite{Task26C2003}. Au cours
-de la tâche, $21$ systèmes ont été étudiés dont $9$ de manière détaillée apportant
+de la tâche, $21$ systèmes ont été étudiés dont neuf de manière détaillée apportant
 un nombre conséquent de résultats et recommandations à travers les travaux de nombreux
 auteurs indépendants.
 Ces travaux sont ainsi utilisés dans ce document comme fil conducteur auxquels des
@@ -2002,8 +2006,8 @@ références plus récentes ou plus anciennes sont greffées. Ce choix est fait 
 de pouvoir apprécier l’étendue des travaux dans le domaine tout en limitant au
 maximum les redondances.
 
-Dans la sous-tâche A, une méthodologie est définie pour le développement des modèles
-numérique et $3$ indicateurs sont introduits \eqref{eq:indicateur_performance}. $F_{sav,\,th}$ est le taux d’économie
+Dans la sous-tâche A, une méthodologie est définie pour le développement de modèles
+numériques et trois indicateurs sont introduits \eqref{eq:indicateur_performance}. $F_{sav,\,th}$ est le taux d’économie
 caractérisant la réduction de la
 consommation de l’appoint au regard d’un système de référence. Le second ($F_{sav,\,ext}$) ajoute
 la prise en compte des consommations des auxiliaires électriques. Le dernier ($F_{sav, si}$) ajoute en
@@ -2049,8 +2053,8 @@ différents systèmes existants sur le marché.
 \label{par:systemes_de_la_sous_tache_c}
 Les différents systèmes sont décrits brièvement afin de fournir un aperçu des
 technologies et logiques de contrôle existantes (\tabref{tab:diff_ssc}).
-Sur les $9$ systèmes, $2$ sont pensés pour une application en maisons ou appartements
-collectifs, \emph{\#9b} et \emph{\#19},avec respectivement $3$ et $2$ ballons.
+Sur les neuf systèmes, deux sont pensés pour une application en maisons ou appartements
+collectifs, \emph{\#9b} et \emph{\#19},avec respectivement trois et deux ballons.
 \emph{\#9b} comporte deux ballons pour l’$ECS$ dont un immergé
 dans le ballon tampon. \emph{\#19} utilise le même réseau secondaire pour le chauffage
 et la production \abr{ECS}.
@@ -2068,16 +2072,16 @@ uniquement des échangeurs tubulaires internes.
 Le système \emph{\#15} est l’unique système tout-en-un regroupant en une unique unité,
 un échangeur solaire en tube stratifié, une pompe solaire,
 une chaudière gaz, un échangeur à plaques pour l’\abr{ECS}, et un ballon de stockage.
-De par son approche compact, l’installation sur site est facilitée.
-Parmi les systèmes, il est aussi noté que seul les systèmes \emph{\#8}, \emph{\#9b},
+De par son approche compacte, l’installation sur site est facilitée.
+Parmi les systèmes, seules les systèmes \emph{\#8}, \emph{\#9b},
 et \emph{\#19} assurent la logique de contrôle complète du système. Les autres systèmes
 sont dépendants d’un contrôleur externe pour la gestion du chauffage même si le système
 \emph{\#12} est capable de désactiver l’appoint électrique si la pompe solaire se met en marche.
 
-Pour la production d’\abr{ECS}, $5$ systèmes exploitent une production
+Pour la production d’\abr{ECS}, cinq systèmes exploitent une production
 d’$ECS$ indirecte, par l’intermédiaire d’un échangeur. \emph{\#19}, \emph{\#15} ayant fait le
 choix d’utiliser un échangeur externe à plaque. Pour \emph{\#19}, l’échangeur
-assure le transfert d’énergie vers le second ballon chargé $1$ à $2$ fois par jour afin
+assure le transfert d’énergie vers le second ballon chargé une à deux fois par jour afin
 de refaire le stock d’\abr{ECS}. \emph{\#12}, \emph{\#11}, et \emph{\#8} optent eux pour
 un échangeur interne couvrant la hauteur du ballon de stockage. La géométrie
 du serpentin est cependant optimisée uniquement pour récupérer de la chaleur en
@@ -2089,7 +2093,7 @@ La couverture du chauffage par le solaire est assurée par un circuit direct pou
 \emph{\#3a} et \emph{\#2}. Le premier ne permet pas au solaire d’assurer simultanément
 le chauffage et la production d’\abr{ECS} alors que le second ne permet pas de fournir
 aux émetteurs de l’énergie provenant en même temps de l’appoint et du solaire.
-Les $7$ autres systèmes s’orientent eux vers un chauffage indirect uniquement. Il est noté
+Les sept autres systèmes s’orientent eux vers un chauffage indirect uniquement. Il est noté
 qu’aucun des systèmes étudiés ne permet l’alternance entre chauffage direct et indirect.
 % paragraph systemes_de_la_sous_tache_c (end)
 
@@ -2175,7 +2179,7 @@ pour l’inclinaison optimale. À l’inverse l’ensoleillement annuel est maxi
 une inclinaison $\phi - \SI{8}{\degree}$. Une analyse de l’évolution mensuelle met
 en évidence que réduire l’inclinaison favorise le système durant la période estivale
 là où le rayonnement solaire est déjà maximal. Il est donc recommandé à la fois pour diminuer
-les risques de surchauffes et pour améliorer la performance de favoriser une
+les risques de surchauffe et pour améliorer la performance de favoriser une
 inclinaison selon la première relation.
 \textcite{Badescu2006129} modélisent grâce au logiciel \textit{TRNSYS}, un \abr{SSC}
 couplé à une maison passive (selon le standard \textit{PassivHauss}) de \SI{150}{\metre\squared}
@@ -2205,7 +2209,7 @@ pour fournir de l’énergie au circuit secondaire de chauffage. Il est aussi no
 la proximité de l’échangeur pour le chauffage risque de parasiter le volume supérieur
 qui doit être maintenu à une température plus importante et donc affecter les performances.
 La logique de contrôle étant dépendante des informations retournées par les sondes, il est
-recommandé de placer la sonde de température pour l’échangeur solaire à $\nicefrac{1}{3}$
+recommandé de placer la sonde de température pour l’échangeur solaire à un tiers
 en dessous de sa position haute afin de maximiser la part d’énergie récupérée.
 % paragraph ballon_de_stockage (end)
 
@@ -2223,7 +2227,7 @@ un volume de stockage plus grand que \SI{100}{\litre\per\metre\squared (capteurs
 \textcite{Lund200559} montre à l’aide d’un modèle analytique journalier que le volume
 du ballon de stockage doit permettre de stocker de l’énergie pour quelques jours et que
 chercher à l’augmenter au delà n’apporte pas de bénéfices.
-Ces résultats sont intégrés et complétés avec l’ajout de $6$ nouveaux systèmes à travers
+Ces résultats sont intégrés et complétés avec l’ajout de six nouveaux systèmes à travers
 le projet européen \href{http://www.combisol.eu/}{\textit{CombiSol}} ($2007$-$2010$) qui reprend
 les travaux existants (notamment ceux de la tâche $26$) dans une approche plus pragmatique où
 chaque composant est analysé pour lister les bonnes pratiques et recommendations \parencite{Thur2011}.
@@ -2238,7 +2242,7 @@ considéré. Il est aussi montré que pour toutes les configurations étudiées
 la valeur nette actuelle est toujours positive faisant du système solaire un
 investissement toujours favorable pour le \abr{\textit{Net} ZEB} considéré. De plus un
 investissement plus important permet d’améliorer la valeur nette actuelle. La prise en
-compte de la production des panneaux photovoltaïque et du système solaire thermique permet
+compte de la production des panneaux photovoltaïques et du système solaire thermique permet
 de couvrir de \SIrange{76}{97}{\percent} de la consommation totale en énergie primaire.
 Dans le cas d’une maison efficiente \parencite{Martinopoulos2014130}, la même méthodologie
 est suivie. Les résultats indiquent un temps de retour sur investissement similaire pour une
@@ -2252,15 +2256,15 @@ Dans les deux cas le système est capable de couvrir entre \SI{45}{\percent} et
 Des systèmes moins conventionnels sont aussi traités dans la littérature.
 \textcite{Hartl2012623} décrivent ainsi une étude numérique et expérimentale sur une
 chaudière biomasse couplée à des capteurs solaires. Les résultats acquis hors période
-estivale (novembre à mai) sont encourageant avec un taux de couverture de
+estivale (novembre à mai) sont encourageants avec un taux de couverture de
 \SI{82}{\percent}. \textcite{Ucar20082532} évaluent le potentiel d’un stockage
-solaire saisonnier à travers $4$ configurations couplées à une \abr{PAC} pour couvrir les
+solaire saisonnier à travers quatre configurations couplées à une \abr{PAC} pour couvrir les
 besoins en chauffage de respectivement $25$, $250$, $1000$ maisons~: ballon non-isolé,
 ballon isolé, ballon non-isolé enterré, ballon isolé enterré. En se basant sur une
-évolution mensuelle de l’irradiation et de la température extérieure, il est observé que
+valeur mensuelle pour l’irradiation et de la température extérieure, il est observé que
 le stockage solaire enterré permet d’atteindre une meilleure couverture et que les
-économies financières et énergétiques sont réduites à mesure que le nombre de bâtiment
-alimenté par le système augmente. Des travaux similaires appliqués à une maison
+économies financières et énergétiques sont réduites à mesure que le nombre de bâtiments
+alimentés par le système augmente. Des travaux similaires appliqués à une maison
 individuelle ont aussi été réalisés \parencite{Yumrutas2012983} complétant les travaux
 précédents en indiquant une forte dépendance entre la température moyenne du ballon enterré
 et le type de sol, exception faite de la période hivernale.
@@ -2275,9 +2279,9 @@ Des travaux récents cherchent à évaluer la performance des systèmes solaires
 un processus d’optimisation. L’optimisation est le processus permettant de trouver les
 solutions maximisant ou minimisant un ou plusieurs objectifs et sera détaillée dans la
 suite de ce document. Contrairement aux approches paramétriques qui utilisent des variations
-successives sur un paramètre, l’optimisation explore l’espace des solution de manière automatisée
+successives sur un paramètre, l’optimisation explore l’espace des solutions de manière automatisée
 et pouvant faire varier plusieurs paramètres simultanément. \textcite{Fraisse2009232} présentent
-une étude comparative des différents objectifs retenu lors des études antérieures
+une étude comparative des différents objectifs retenus lors des études antérieures
 d’optimisation de système solaires pour la production d’\abr{ECS}. Le système retenu est
 évalué successivement suivant sa performance d’un point de vue énergétique (exergie,
 $F_{sav, ext}$, et $F_{sav, si}$), économique (coût du cycle de vie, \abr{CCV}), et
@@ -2307,7 +2311,7 @@ coût, de la consommation, et des émissions en $CO_{2}$~:
     \frac{Conso_{complément} + Conso_{aux} + Conso_{pénalité}}{Prod_{sol}}
 \end{equation}
 
-Bien que le système considéré ne permettent pas de couvrir les besoins en chauffage du
+Bien que le système considéré ne permet pas de couvrir les besoins en chauffage du
 bâtiment, les remarques restent transposables aux \abr{SSC} qui doivent eux aussi
 couvrir les besoins en \abr{ECS}.
 \textcite{Deng2013212} évaluent le potentiel d’un couplage entre une \abr{PAC} $CO_{2}$ et
@@ -2315,7 +2319,7 @@ d’un \abr{SSC} à travers une étude paramétrique puis une optimisation. L’
 réalisée sur le \abr{CCV} et il est montré que coupler la \abr{PAC} avec le
 solaire permet d’améliorer son \abr{COP}. Le temps de retour du système optimal est estimé
 à un peu moins de \SI{10}{ans} avec un taux de couverture de \SI{69}{\percent}. Une autre
-approche utilisant un appoint électrique est investiguée sur $3$ indicateurs
+approche utilisant un appoint électrique est investiguée sur trois indicateurs
 \parencite{Hin2012,Hin2014102}~:
 le \abr{CCV}, le cumul de l’énergie grise et de l’énergie consommée sur la durée de vie
 (\abr{LCE}), et de l’exergie \abr{LCX}. Les résultats montrent que le choix de l’objectif
@@ -2328,8 +2332,7 @@ la solution optimisée sur le \abr{LCE}. \textcite{Bornatico201231} utilisent eu
 logiciel \textit{PolySun} pour évaluer un \abr{SCC} à travers $F_{sol}$, la
 consommation totale, et le coût d’investissement groupés en un unique objectif. Le
 système est optimisé avec deux méta-heuristiques, un essaim particulaire et un algorithme
-génétique. La solution optimale obtenue dépend fortement de l’algorithme utilisé et
-l’essaim particulaire permet d’obtenir les meilleures valeurs pour les $3$ objectifs.
+génétique. La solution optimale obtenue dépend peu de l’algorithme utilisé.
 \textcite{Asaee2014510} évaluent la performance d’un \abr{SSC} (système \emph{\#14} de la tâche
 $26$) couvrant chauffage, \abr{ECS}, et climatisation. L’étude considère un modèle
 mono-zone et $3$ ballons dont un pour stocker l’énergie solaire lorsque les besoins sont déjà
@@ -2337,7 +2340,7 @@ couverts. La logique de contrôle retenue considère deux modes de fonctionnemen
 hiver et un mode été. Durant l’été la priorité est toujours donnée à la production
 d’\abr{ECS} alors que durant l’hiver la priorité est donnée à la production d’\abr{ECS} la
 nuit et au chauffage le jour. Le système montre de très bonnes performances pour les
-$4$ climats étudiés avec un $F_{sol}$ supérieur à \SI{70}{\percent}. Finalement
+quatre climats étudiés avec un $F_{sol}$ supérieur à \SI{70}{\percent}. Finalement
 plus récemment, une comparaison entre une optimisation multi-objectifs et une optimisation
 mono-objectif d’un \abr{SSC} couplé à un \abr{\textit{Net} ZEB} est discutée
 \parencite{Rey2016622}. Comme pour les autres optimisations, seuls les équipements
@@ -2358,7 +2361,7 @@ est très variable et de nombreux facteurs influents ont été identifiés, et l
 sensibilité analysée. Il est cependant aussi observé que la majorité des études ne
 considèrent que les différents équipements principaux du \abr{SSC} (capteurs, volume des
 ballons). Dans ces approches, la qualité de l’enveloppe et la logique de contrôle sont
-définies en amont et fixée même lors des études d’optimisations. Avec une variation de \SIrange{5}{100}{ans}
+définies en amont et fixée même lors des études d’optimisation. Avec une variation de \SIrange{5}{100}{ans}
 \parencite{Tsalikis2015743,Hin2014102}, une forte disparité des résultats obtenus pour le
 calcul du temps de retour sur investissement est identifiée. Les différents travaux
 assument une approche plus ou moins simplifiée qui ne prend pas en compte toute
@@ -2390,8 +2393,8 @@ Des verrous et conclusions propres au sujet de ces travaux ont ainsi pu être id
   \item Compenser les consommations par une production locale renouvelable n’est plus un critère
         suffisant, cette production doit permettre de couvrir directement une part
         importante des consommations du bâtiment.
-  \item Le développement du solaire thermique stagne en Europe et celui des \abr{SSC}
-        est très peu développé.
+  \item Le développement du solaire thermique stagne en Europe et les \abr{SSC}
+        sont très peu utilisés.
   \item Il est nécessaire de repenser la conception des \abr{SSC} pour les revaloriser
         dans le cadre des \abr{MEPOS}.
   \item Les \abr{SSC} doivent être évalués suivant un bilan exportation / importation
@@ -2399,13 +2402,12 @@ Des verrous et conclusions propres au sujet de ces travaux ont ainsi pu être id
         en adéquation avec la demande.
   \item La conception d’une \abr{MEPOS} solaire doit être le compromis entre qualité
         de l’enveloppe et performance du \abr{SSC}.
-  \item Afin d’évaluer le potentiel solaire, le modèle doit être détaillée pour
+  \item Afin d’évaluer le potentiel solaire, le modèle doit être détaillé pour
         permettre l’implémentation d’une logique de contrôle adaptée et évaluer
         son influence.
   \item La logique de contrôle doit faire partie du processus de décision
   \item La taille des équipements du \abr{SSC} doit être réduite afin d’éviter des
-        surcoûts importants, de réduire l’espace de vie, ou encore réduire les risques
-        de surchauffe par les déperditions.
+        surcoûts et un encombrement importants.
 \end{itemize}
 % subsubsection bilan (end)
 % subsection les_travaux_sur_le_solaire_thermique (end)
@@ -2430,15 +2432,15 @@ détaillé (\ref{cha:construction_batiment}).
 La construction d’un bâtiment est à l’origine guidée par le bon sens et l’expérience
 acquise dans l’optique de satisfaire aux besoins immédiats du client.
 Les ressources énergétiques d’origine fossile étant limitées, des
-réglementations sont misent en place au $20^{ème}$ siècle afin de sécuriser
+réglementations sont mises en place au $20^{ème}$ siècle afin de sécuriser
 l’approvisionnement. Ces réglementations sont ensuite renforcées afin de tenir
 compte des changements climatiques induits par la sur-utilisation des énergies
 fossiles en visant à toujours plus d’exemplarité. Le secteur du bâtiment reste
 cependant encore aujourd’hui le plus gros consommateur d’énergie.
 
 Parallèlement les progrès de l’informatique ont permis le développement d’outils
-techniques et économiques marquant une évolution dans le processus de construction. Au
-début réservé à une élite, sa démocratisation a permis de l’exploiter dans le domaine de
+techniques et économiques, marquant une évolution dans le processus de conception.
+Au début réservée à une élite, sa démocratisation a permis de l’exploiter dans le domaine de
 l’énergétique du bâtiment et plus particulièrement dans les bureaux d’études. Cependant
 les habitudes sont fortement ancrées et l’outil numérique est aujourd’hui principalement
 employé à travers une approche par essai/erreur. À partir d’un cas de référence
@@ -2453,8 +2455,8 @@ la combinatoire augmentent parallèlement aux réglementations.
 Ainsi, afin de pouvoir répondre au nouvelles contraintes du marché, le temps humain doit
 être valorisé pour des tâches cognitives, et le temps machine assujetti aux tâches
 répétitives. En effet la miniaturisation, la finesse de gravure, et l’augmentation du
-nombre de transistor par processeur a permis une croissance exponentielle de la puissance
-de calcul. L’arrivée des processeurs multi-cœur à encore repoussée les limites de calcul,
+nombre de transistors par processeur a permis une croissance exponentielle de la puissance
+de calcul. L’arrivée des processeurs multi-cœur a encore repoussé les limites de calcul,
 si bien que le développement d’une méthodologie basée sur le temps machine est tout à fait
 pertinente. Dans cette optique il est nécessaire d’automatiser le processus de décision en
 phase de conception grâce à l’intelligence artificielle. Cette approche nécessite cependant
@@ -2468,8 +2470,8 @@ le développement d’une méthodologie adaptée.
 La construction d’un bâtiment est par définition multi-objectifs, elle fait intervenir un
 nombre conséquent de paramètres que ce soit sur l’enveloppe, les systèmes, la logique de
 contrôle, le climat, ou encore le comportement des occupants. Elle doit de plus à minima
-satisfaire un cadre réglementaire que ce soit sur des contraintes acoustiques, thermiques,
-mécaniques. Par extension la construction d’une \abr{MEPOS} solaire est donc aussi multi-objectifs.
+satisfaire un cadre réglementaire au niveau acoustique, thermique, et mécanique. Par extension
+la construction d’une \abr{MEPOS} solaire est donc aussi multi-objectifs.
 
 \paragraph{} % (fold)
 Au cours de la première section, il a été mis en évidence la nécessité de s’émanciper des
@@ -2480,9 +2482,9 @@ certifiant une qualité supérieure favorisant le recours aux énergies alternat
 aussi un acteur clé à travers la mise en place d’une coopération internationale et de
 mesures incitatrices~: la politique de rachat de l’énergie électrique produite localement
 ou encore les aides financières obtenables lors de travaux de rénovation ou d’exemplarité
-énergétiques. C’est les actions combinés de tout ces intervenants qui permettent
+énergétiques. Les actions combinées de tous ces intervenants permettent
 aujourd’hui d’être à l’aube d’un cadre réglementaire européen (\abr{PREN\,$15603$}) sur la
-\abr{MEPOS} dont chaque pays membres devra s’inspirer pour la définition de leur nouvelle
+\abr{MEPOS} dont chaque pays membre devra s’inspirer pour la définition de leur nouvelle
 réglementation thermique nationale. Bien que la norme ne soit pour l’heure qu’un
 brouillon, les axes principaux sont d’ores et déjà définis. La norme s’articule autour de
 quatre objectifs péremptoires~: assurer une performance minimale sur l’enveloppe, assurer
@@ -2513,7 +2515,7 @@ en imposant d’une part une enveloppe performante et d’autre part une limitat
 consommation sur site. Il apparaît pour l’auteur que ces contraintes relèvent
 d’une volonté de sobriété énergétique afin de garantir une empreinte énergétique
 la plus faible possible. Cependant dans le cas d’une maison solaire il est intéressant
-d’explorer les combinaisons complémentaires possibles qui pourront peut être offrir des alternatives
+d’explorer les combinaisons complémentaires possibles qui pourraient offrir des alternatives
 cohérentes, sans aller à l’encontre de la sobriété.
 Finalement ces travaux intègrent l’énergie primaire comme indicateur de référence
 pour la définition du bilan positif comme décrit par la $4^{ème}$ directive de la
@@ -2534,7 +2536,7 @@ travers la tâche $26$ et le projet \textit{CombiSol}, mais peu de travaux cherc
 déterminer la performance pouvant être obtenue pour des \abr{MEPOS}. De plus parmi les
 travaux existants, une partie évalue la performance des \abr{SSC} à travers des outils
 simplifiés tels que \textit{F-chart} qui ne permettent pas de tenir compte de la dynamique
-du système, ni des spécificités du \abr{SSC} retenue. D’autres approches utilisent des
+du système, ni des spécificités du \abr{SSC} retenu. D’autres approches utilisent des
 outils permettant une approche détaillée comme \textit{TrnSys}. Cependant
 même dans ces approches, l’algorithme de contrôle reste secondaire et les critères de
 décision sont liés aux équipements solaires uniquement (surface de capteur, volume du
@@ -2553,7 +2555,7 @@ propres à chaque site, chaque industriel, mais aussi à chaque client dont les 
 varient fortement. Partant de ce constat, il apparaît plus intéressant de proposer
 un ensemble de solutions techniquement différentes mais répondant toutes aux contraintes
 de la \abr{MEPOS} à travers une approche multi-objectifs. En effet une approche mono-objectif
-contraint à l’obtention d’une solution unique. Les limitations propres à l’approche
+contraint à l’obtention d’une solution unique. Les limitations propres aux approches
 mono-objectif et multi-objectifs sont discutées plus amplement dans le chapitre $3$ de ce
 manuscrit.
 % subsection approche_proposee (end)
@@ -2575,7 +2577,7 @@ Dans un premier temps, le choix des outils est introduit à travers une étude c
 Suit une description du bâtiment de référence et des développements réalisés sur le
 \abr{SSC} à travers une présentation des équipements du système et d’une description détaillée
 de la logique de contrôle implémentée. Le chapitre $2$ permet ainsi de préciser
-les scénarios d’usages tel que le profil de puisage retenu mais aussi d’évaluer
+les scénarios d’usages tels que le profil de puisage retenu mais aussi d’évaluer
 a priori la performance du \abr{SSC} pour différentes configurations et différents climats
 à travers une étude paramétrique.
 
