@@ -56,7 +56,7 @@ formulation des critères et actions de manière précise nécessaire pour séle
 méthode d’aide à la décision adaptée. Lorsque le problème suggère une optimisation, il est
 nécessaire de définir les critères à optimiser. On parle alors des objectifs d’une
 optimisation multi-critère ou multi-objectifs. La définition des fonctions objectifs et des
-contraintes est propre à chaque problème et est directement dépendant des données
+contraintes est propre à chaque problème et est directement dépendante des données
 disponibles. Dans le secteur du bâtiment, il est courant de considérer certaines sorties
 des logiciels de simulation dynamique (\abr{STD}, \abr{CFD}\dots) comme objectifs.
 \textcite{Attia2013110}, montrent que dans le cas d’étude sur la performance des bâtiment
@@ -112,7 +112,7 @@ Ce processus de réduction est réalisé à l’aide de méthodes d’agrégatio
 il est possible de citer les méthodes de pondération, de compromis,
 ou encore de distance (\figref{fig:multi_to_mono}). Dans tous les cas la réduction
 nécessite de normaliser les objectifs et le décideur introduit un caractère préférentiel.
-Dans le cas de la pondération, un coefficient est attribuer à chaque objectif. Bien que
+Dans le cas de la pondération, un coefficient est attribué à chaque objectif. Bien que
 algorithmiquement relativement simple à mettre en place, le choix des coefficients peut
 lui être complexe lorsque les divers objectifs ont des échelles ou unités différentes.
 La méthode du compromis, considère un objectif unique et les autres sont formulés
@@ -206,14 +206,14 @@ trois grands principes permettant d’éviter les effets compensatoires~:
 \end{itemize}
 Les solutions sont ainsi comparées deux à deux permettant de réduire le nombre de
 solutions optimales dans le respect des préférences du décideur. Les méthodes
-\textit{ELECTRE} ou encore \textit{PROMETHEE} font parties des principales méthodes développées
+\textit{ELECTRE} ou encore \textit{PROMETHEE} font partie des principales méthodes développées
 et la sélection d’une approche est liée au type de problématique. Dans une problématique de
 choix, la méthode \textit{ELECTRE} I ou IS pourra être sélectionnée. Dans une
 problématique de rangement, les méthodes \textit{ELECTRE} II, III, ou IV pourront être
 utilisées.
 
 L’approche par surclassement ne souffre ainsi pas des problèmes de compensation
-mais ne garantie pas l’obtention d’une solution unique. L’ensemble des solutions
+mais ne garanti pas l’obtention d’une solution unique. L’ensemble des solutions
 finales est cependant fortement réduit.
 % paragraph approche_par_surclassement (end)
 % subsubsection decision_a_posteriori (end)
@@ -241,9 +241,9 @@ cohérence de son scénario permettant au décideur d’ajuster ses préférence
 \subsubsection{Visualisation par coordonnées parallèles} % (fold)
 \label{ssub:visualisation_par_coordonnees_paralleles}
 Le tri par coordonnées parallèles a été introduit afin de permettre de visualiser
-sur un même graphe un nombre important de paramètres, là ou les représentations
-graphiques plus classiques montrent leur limites \parencite{Inselberg198725}.
-Son utilisation est rapidement illustré à travers le logiciel \fnref{http://www.xdat.org/}{\textit{XDAT}}
+sur un même graphe un nombre important de paramètres, là où les représentations
+graphiques plus classiques montrent leurs limites \parencite{Inselberg198725}.
+Son utilisation est rapidement illustrée à travers le logiciel \fnref{http://www.xdat.org/}{\textit{XDAT}}
 qui permet de contrôler intéractivement les bornes des paramètres grâce à un jeu de
 curseurs (\figref{fig:principe_xdat}).
 
@@ -291,7 +291,7 @@ et le \abr{SSC} sont dimensionnés simultanément et fonctionnent de concert. Le
 est donc le résultat d’un choix à la fois, sur l’enveloppe du bâtiment, la logique de
 contrôle et les caractéristiques des systèmes du \abr{SSC}. Il existe ainsi une
 combinatoire importante. Afin de ne pas écarter prématurément des solutions, une approche
-d’aide à la décision a posteriori a été retenu. L’ensemble des solutions optimales offre
+d’aide à la décision a posteriori a été retenue. L’ensemble des solutions optimales offre
 en effet une nouvelle connaissance sur le problème facilitant l’introduction de
 préférences pour l’aide à la décision. De plus, il a été montré que la reformulation d’un
 problème multi-objectifs sous la forme d’un objectif unique introduit un biais impactant
@@ -448,7 +448,7 @@ La seconde modification proposée est la génération d’un grand nombre de tra
 dans lesquelles, $R$ trajectoires dissimilaires sont sélectionnées. La méthode de sélection
 proposée est cependant faite par \enquote{Brute force} et demande donc une puissance de
 calcul importante.
-Afin de palier à ce problème, \textcite{Ruano2012103} proposent une approximation de
+Afin de pallier ce problème, \textcite{Ruano2012103} proposent une approximation de
 la méthode par \enquote{Brute force} pour un temps de calcul très court permettant d’obtenir
 une sélection représentative et hétérogène des trajectoires.
 % paragraph interpretation (end)
@@ -476,8 +476,8 @@ Le principe est illustré par \textcite{Iooss2011} à travers deux résultats ob
 pour deux objectifs différents mais pour les mêmes critères (\figref{fig:meth_graph_morris}).
 Les résultats pour l’objectif en partie gauche permettent alors de dire que
 les facteurs $Z_{v}$, $Q$, $C_{b}$ et $H_{d}$ sont influents
-avec des effets linéaires car pour tout ces facteurs $j$~: $\sigma_{j} \ll \mu^{*}_{j}$.
-De plus, $Z_{v}$, $Q$, et $H_{d}$ sont impactant car leur moyenne absolue ($\mu^{*}$) est élevé.
+avec des effets linéaires car pour tous ces facteurs $j$~: $\sigma_{j} \ll \mu^{*}_{j}$.
+De plus, $Z_{v}$, $Q$, et $H_{d}$ sont impactants car leur moyenne absolue ($\mu^{*}$) est élevée.
 Enfin, $K_{s}$ a une influence non linéaire ou avec interactions car son écart type ($\sigma$)
 est important et  $\sigma_{K_{s}} \sim \mu^{*}_{K_{s}}$.
 Les résultats pour l’objectif en partie droite montrent eux que les facteurs $K_{s}$, $Z_{v}$, $Q$, $C_{b}$,
@@ -566,7 +566,7 @@ Il existe plusieurs moyens permettant de construire un méta-modèle. Dans ces t
 l’implémentation réalisée par \textcite{Merheb2013} à l’aide de l’algorithme décrit par
 \textcite{Malen2009} est retenue. Le chaos polynomial ou décomposition par polynômes du
 chaos (\abr{PC}) est une méthode permettant d’approximer une sortie du modèle original
-($Y = f(\vec{x})$) grâce un modèle analytique simplifié appelé méta-modèle. Il est noté
+($Y = f(\vec{x})$) grâce à un modèle analytique simplifié appelé méta-modèle. Il est noté
 $\mathcal{M}(\vec{x})$ où $\vec{x}$ est de dimension $D$ avec $D$ le nombre de variables d’entrées
 $x_{j} (j \in \{1, 2, \dotsc, D\})$ \eqref{eq:meta_principe}.
 
@@ -580,7 +580,7 @@ méthode de Quasi-Monte-Carlo \parencite{Caflisch19981}. Contrairement à la mé
 Monte-Carlo, une suite ayant une discrépance faible telle que la suite de Halton,
 (\figref{fig:halton_vs_uniform}) permet de maintenir un ensemble de
 points uniformément répartis même lorsque le nombre de points générés est faible.
-L’ensemble des points des deux échantillons ont été générés à partir d’une
+L’ensemble des points des deux échantillons a été généré à partir d’une
 distribution uniforme et les tirages sont strictement identiques (même graine).
 Il peut être noté que l’échantillon par Quasi-Monte-Carlo est une méthode plus robuste car elle
 couvre mieux le domaine de définition.
@@ -635,7 +635,7 @@ Finalement la dernière étape permet de valider le modèle obtenu. Afin de pouv
 que le modèle se comporte correctement sur l’ensemble du domaine de définition,
 \SI{90}{\percent} de l’échantillon sera utilisé pour construire le méta-modèle et les
 \SI{10}{\percent} restants sont utilisés afin de le valider. De plus le nombre minimal
-d’évaluations nécessaire pour la construction des méta-modèles sera aussi investigué. Les
+d’évaluations nécessaires pour la construction des méta-modèles sera aussi investigué. Les
 méta-modèles associés aux objectifs et contraintes étant propres au cas d’étude, le détail
 de leur construction est décrit à travers le cas d’étude dans le dernier chapitre.
 % subsubsection construction (end)
@@ -686,8 +686,8 @@ manière empirique dans l’espace de décision. La direction et les variations 
 résultent dans la plupart des cas de l’expérience du ou des décideur[s]. La recherche est
 alors fortement biaisée en amont, limitant l’exploration d’alternatives et l’obtention
 d’une solution optimale est alors peu probable. Cette tendance est renforcée dans notre
-cas où une évaluation couplée du \abr{SSC} et du bâtiment est considérée. Afin de palier
-à ces problèmes, des méthodes dites d’optimisation ont été développées. Dans un premier
+cas où une évaluation couplée du \abr{SSC} et du bâtiment est considérée. Afin de pallier
+ces problèmes, des méthodes dites d’optimisation ont été développées. Dans un premier
 temps le vocabulaire propre à l’optimisation est introduit et une description succincte
 des méthodes existantes appliquées aux bâtiment est discutée.
 
@@ -838,9 +838,9 @@ coûteuses car un nombre très important de simulations est requis.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection{La méthode énumérative} % (fold)
 \label{ssub:la_methode_enumerative}
-Avec cette approche l’ensemble des combinaisons entre les différentes variables de
-décision garantissant la découverte du front de Pareto complet. À mesure de
-l’augmentation de la cardinalité de l’espace de décision, le nombre de simulation requis
+Cette approche garanti la découverte du front de Pareto complet car l’ensemble des
+combinaisons entre les différentes variables de décision est évalué. À mesure de
+l’augmentation de la cardinalité de l’espace de décision, le nombre de simulations requis
 augmente exponentiellement.
 % subsubsection la_methode_enumerative (end)
 
@@ -1070,7 +1070,7 @@ le plus connu étant l’algorithme \abr{NSGA II}
 \parencite{Deb2002182} mais de nombreuses variations existent. L’algorithme
 \abr{SPEA2} par exemple améliore la diversité du front de Pareto grâce à une approche
 par clustering au prix d’une convergence plus lente \parencite{Zitzler2001}. À
-l’inverse, l’algorithme \abr{PESA} tent à améliorer la convergence au prix
+l’inverse, l’algorithme \abr{PESA} améliore la convergence au prix
 de la diversité des solutions du front final. Appliquée au bâtiment,
 \textcite{Rivallain2013} a utilisé une méthode approchée (\abr{NSGA-II}) pour identifier
 des programmes séquentiels efficaces de réhabilitation énergétique. Il a ainsi
@@ -1078,7 +1078,7 @@ optimisé la combinaison des modifications pour chaque phase mais aussi l’ordr
 dans lequel ces améliorations doivent être réalisées. Pour les différentes
 solutions, l’impact environnemental, le confort des occupants en période
 estivale, et le coût, ont été évalués. Plus récemment, \textcite{Recht2016} a
-utilisé l’algorithme \abr{NSGA II} pour optimiser de manière combiné, le coût,
+utilisé l’algorithme \abr{NSGA II} pour optimiser de manière combinée, le coût,
 l’émission de Gaz à effet de serre, et les besoins d’une maison à énergie
 positive. Dans les deux cas, les résultats montrent que l’approche par méta-heuristique
 permet de récupérer la majorité des solutions optimales au sens de Pareto pour
@@ -1091,9 +1091,9 @@ un nombre fortement réduit d’évaluations.
 Ces méthodes sont basées sur l’expérience du vivant et plus particulièrement de
 l’organisation au sein d’un groupe, d’un essaim, ou d’une colonie. Parmi les plus connus,
 l’algorithme de colonie de fourmis a été proposé à l’origine par \textcite{Colorni1992509}
-puis étendue aux aux problèmes multi-objectifs et combinatoires
+puis étendu aux problèmes multi-objectifs et combinatoires
 \parencite{MichaelGuntsch2003,Shea2006627}.
-La méthode s’inspire du comportement des colonies de fourmis où chaque fourmis
+La méthode s’inspire du comportement des colonies de fourmis où chaque fourmi
 explore une partie du domaine de décision en laissant une trace de phéromone
 derrière elle. Les phéromones permettent de guider les autres fourmis vers les
 solutions optimales et son évaporation impose un équilibre entre exploration et
@@ -1137,7 +1137,7 @@ Finalement le couplage entre l’outil d’optimisation et l’outil utilisé po
 décrire le problème doit être le plus simple possible afin d’éviter les
 problèmes d’interfaçage.
 
-{
+\paragraph{} % (fold)
 \noindent
 Le choix d’une approche peut ainsi être guidé par les réponses aux questions
 suivantes~:
@@ -1145,23 +1145,30 @@ suivantes~:
   \item Quelle est la nature des variables de décision (discrètes, continues\dots)~?
   \item Quelles sont les contraintes imposées par l’outil de modélisation~?
   \item L’algorithme nécessite-t-il la définition de nombreux paramètres~?
-  \item La définition de ces paramètres est-elle ardue~?
     \begin{itemize}
-      \item La sensibilité aux variations est forte~? Dur à paramétrer
-      \item Chaque paramètre a un impact identifiable en amont~? Simple à paramétrer
-    \end{itemize}
-  \item Une implémentation de la méthode existe~?
-    \begin{itemize}
-      \item Elle répond aux contraintes de l’outil de modélisation~?
-      \item Elle est adaptée à la nature des variables de décision~?
-      \item La formulation du problème est-elle adaptée à la méthode~?
-    \end{itemize}
-  \item Quelle est la quantité de travail nécessaire pour l’implémenter~?
-    \begin{itemize}
-      \item Plus de travail que le couplage nécessaire entre les outils~?
+      \item La sensibilité de l’algorithme aux paramètres est forte~: Dur à paramétrer
+      \item Chaque paramètre a un impact identifiable en amont~: Simple à paramétrer
     \end{itemize}
 \end{itemize}
-}
+
+\noindent
+Une fois que l’approche est sélectionnée, deux cas sont possibles~:
+\begin{itemize}
+  \item Une implémentation de la méthode existe~:
+    \begin{itemize}
+      \item Est-elle compatible avec les outils de modélisation utilisés~?
+      \item Permet-elle de prendre en compte la nature des variables de décision~?
+    \end{itemize}
+  \item Une implémentation de la méthode n’existe pas~:
+    \begin{itemize}
+        \item Existe-t-il une autre approche répondant aux contraintes du problème~?
+    \end{itemize}
+\end{itemize}
+
+Il est possible dans les deux cas de préférer sa propre implémentation à condition
+que le travail nécessaire pour le couplage avec des outils existants (interface,
+abstraction de la nature des variables\dots) soit plus important
+que celui requis pour l’implémentation de l’algorithme.
 % subsubsection comment_choisir (end)
 % subsection les_meta_heuristiques (end)
 % section selection_d_une_approche_d_optimisation_multi_objectif (end)
@@ -1191,7 +1198,7 @@ $IT$, est commun à l’ensemble des approches et représente la condition d’a
 Les deux autres impactent de manière prévisible les proportions d’exploration et
 d’exploitation. La taille de la population, ($NP$), permet d’augmenter
 l’exploration mais peut affecter négativement la convergence. Le nombre
-d’essai maximum $Max_{échec}$, permet de contrôler l’exploitation. Un nombre
+d’essais maximum $Max_{échec}$, permet de contrôler l’exploitation. Un nombre
 trop faible risque d’entraîner l’abandon prématuré d’une solution réduisant les chances de
 l’améliorer. À l’inverse, un nombre trop important risque de ralentir la convergence
 ou limiter la diversité.
@@ -1287,8 +1294,8 @@ l’\abr{ABC} reste la plus répandue et sera retenue dans ces travaux (\figref{
 \subsection{Principe de fonctionnement} % (fold)
 \label{sub:principe_de_fonctionnement}
 L’algorithme s’appuie sur les mécanismes d’organisation sociale des insectes
-\parencite{Bonabeau1999} définie à travers quatre propriétés illustrés à travers le
-comportement des abeilles (\figref{fig:bee_dance}) et détaillées ci-dessous.
+\parencite{Bonabeau1999} définie par les quatre propriétés suivantes
+décrivant le comportement des abeilles (\figref{fig:bee_dance}).
 
 \paragraph{Le retour positif (Positive feedback)~:} % (fold)
 \label{par:positive_feedback}
@@ -1404,7 +1411,7 @@ remplacées par une nouvelle position aléatoire définie par les éclaireuses.
 \end{equation}
 $x_{ij}$ étant la position d’une source $i$ ($i \in \{1, 2, \dotsc, N\}$) pour la
 variable $j$ ($j \in \{1, 2, \dotsc, D\}$) et $x_{j}^{max}$ et $x_{j}^{min}$
-étant respectivement ces bornes maximales et minimales.
+étant respectivement ses bornes maximales et minimales.
 
 Le lecteur souhaitant avoir plus d’informations sur l’algorithme, son origine
 et/ou son fonctionnement pourra lire~: \cite{Karaboga201221,Aboul-EllaHassanien2015}.
@@ -1641,9 +1648,9 @@ L’algorithme de base du \abr{NSGA-II} \parencite{Deb2002182}, utilise le \text
 Non Dominated Sorting Algorithm} afin de construire son archive. Dans cette approche une
 sélection par rang est appliquée afin de trier les solutions en différents niveaux et la
 distance dite de crowding (distance moyenne entre deux solutions) est utilisée afin de
-maintenir la diversité. L’algorithme \abr{SPEA II} cherche à améliore la diversité du
+maintenir la diversité. L’algorithme \abr{SPEA II} améliore la diversité du
 front final au prix d’une convergence plus lente en utilisant une approche par clustering.
-Dans cette approche la taille limite de l’archive est définie par le nombre de cluster.
+Dans cette approche la taille limite de l’archive est définie par le nombre de clusters.
 Ces clusters sont formés en se basant sur la distance euclidienne et une seule solution
 est retenue.
 \textcite{Laumanns2002263} proposent une autre approche, séparer l’espace des solutions en une
@@ -1657,8 +1664,8 @@ choisis pour chaque objectif et est donc toujours garantie d’être finie.
 
 
 \begin{Def}[$\epsilon$-dominance]\label{def:eps_dominance}
-L’$\epsilon$-dominance assume que deux solutions sont identiques lorsqu’elles appartiennent
-au même hypercube dont les dimensions des arrêtes sont définies par
+L’$\epsilon$-dominance suppose que deux solutions sont identiques lorsqu’elles appartiennent
+au même hypercube dont les dimensions des arêtes sont définies par
 $\vec{\epsilon}_{m}, m \in \{1, \dotsc, M\}$ avec $M$ le nombre de fonctions objectif.
 Dans le cas d’une maximisation il est dit que $\vec{x}_{a}$ $\epsilon$-domine $\vec{x}_{b}$ si~:
 \begin{align*}
@@ -1710,7 +1717,7 @@ Cette observation est d’autant plus vraie pour des problèmes ayant plus de de
 objectifs (\textit{DTLZ1} \dots\ \textit{DTLZ7}).
 De plus les résultats mettent aussi en évidence que le \abr{NSGA II} et le \abr{$\epsilon$-MOEA}
 convergent plus rapidement que le \abr{SPEA II}.
-Un désavantage à cette méthode peut cependant être noté. De part sa formulation
+Un désavantage à cette méthode peut cependant être noté. De par sa formulation
 les solutions au niveau des extrêmes sur le front de Pareto sont plus difficilement
 atteignables.
 
@@ -1817,7 +1824,7 @@ avec $d_{m}(\vec{x})$ calculée selon \eqref{eq:dist_obj} et $ p_{m}(\vec{x})$ s
 
 L’algorithme s’adapte ainsi dynamiquement à la population et peut accepter des
 solutions ne respectant pas les contraintes. Plus il y a de solutions non
-réalisables dans la population, moins une solution ne respectant pas les contraintes à
+réalisables dans la population, moins une solution ne respectant pas les contraintes a
 de chances d’être sélectionnée. L’approche permet d’améliorer l’exploration de
 l’espace de décision et ainsi de pouvoir trouver des solutions existantes même
 lorsque l’espace de faisabilité est faible.
@@ -1835,7 +1842,7 @@ les avantages et inconvénients des approches retenues ont aussi été explicit�
 Dans cette section le fonctionnement global de la méthode approchée d’optimisation
 multi-objectifs retenue est décrit.
 
-L’algorithme (\figref{fig:abc_complet}) et le détail de chaque phase est décrit ci-après.
+L’algorithme (\figref{fig:abc_complet}) et le détail de chaque phase sont décrits ci-après.
 Les sources sont initialisées (\algref{alg:init_phase}) suivant la méthode
 \abr{OBL} (\defref{def:oblm}) afin d’obtenir une meilleure représentation du
 domaine de décision en amont de l’optimisation.
@@ -1901,15 +1908,15 @@ performance de l’algorithme simplifiant sa paramétrisation.
 % ------------------------------------------------------------------------------
 \subsection{Validation de la méthode} % (fold)
 \label{sub:validation_de_la_methode}
-Cette section permet d’apprécier la performance de l’approche pour différentes types
+Cette section permet d’apprécier la performance de l’approche pour différents types
 de problèmes pouvant être rencontrés dans un problème d’optimisation.
 
 La bibliothèque \textit{pyMayBee} a été développée autour de tests unitaires (\enquote
-{Test-driven development}). Chaque éléments (fonction / méthodes /\dots) et comportements
-(minimisation / maximisation /\dots) ont ainsi été testés afin de garantir que la
-bibliothèque implémente correctement les éléments et comportements nécessaires. De part
+{Test-driven development}). Chaque élément (fonction / méthodes /\dots) et comportement
+(minimisation / maximisation /\dots) a ainsi été testé afin de garantir que la
+bibliothèque implémente correctement les éléments et comportements nécessaires. De par
 son approche, chaque nouvelle modification tient implicitement compte des tests précédents
-et garantie ainsi l’intégrité du code lors de son développement. Après l’implémentation
+et garanti ainsi l’intégrité du code lors de son développement. Après l’implémentation
 des briques nécessaires et la construction de l’algorithme, des problèmes étalons ont été
 utilisés afin de valider la performance de l’approche. Bien que la réussite d’un problème
 étalon ne soit pas une condition suffisante pour garantir la convergence sur un problème
@@ -1918,7 +1925,7 @@ différents types de contraintes pouvant survenir.
 
 La littérature décrit déjà les bénéfices apportée par l’utilisation du vol de
 \textit{Lévy}, de l’\abr{OBL}, de l’$\epsilon$-dominance, ou encore de la prise en compte
-dynamique des contraintes. Ainsi, cette section n’a pas vocation a montrée le bénéfice
+dynamique des contraintes. Ainsi, cette section n’a pas vocation a montrer le bénéfice
 apporté par les différentes améliorations proposées. Il reste cependant nécessaire de
 montrer que l’implémentation de l’algorithme \abr{ABC} fonctionne correctement. Dans cette
 optique les résultats présentés dans cette section sont sélectionnés afin de couvrir les
@@ -1936,10 +1943,10 @@ Les résultats obtenus sont comparés aux résultats obtenus par \textcite{Deb20
 pour différents algorithmes couramment utilisés à travers l’hypervolume et la
 distance générationnelle (\tabref{tab:evaluation_algo_opti}). Une augmentation de l’hypervolume
 traduit une meilleure convergence et couverture de l’espace des objectifs par l’ensemble des solutions.
-À l’inverse plus la distance générationnelle est faible, plus l’approximation obtenu par l’algorithme
+À l’inverse plus la distance générationnelle est faible, plus l’approximation obtenue par l’algorithme
 est proche du vrai front de \textit{Pareto}~: l’indicateur traduit la qualité de convergence.
-Comme pour les algorithmes de l’article, il considéré \num{20000} évaluations pour les problèmes avec $2$
-objectifs et \num{30000} évaluations pour les problèmes avec $3$ objectifs.
+Comme pour les algorithmes de l’article, on considère \num{20000} évaluations pour les problèmes avec deux
+objectifs et \num{30000} évaluations pour les problèmes avec trois objectifs.
 Les résultats montrent que l’algorithme permet d’obtenir une bonne convergence et une bonne
 répartition des solutions sur le front de Pareto. Il obtient de plus un écart type très bas
 que ce soit sur l’hypervolume ou sur la distance générationnelle traduisant la robustesse de
@@ -2066,7 +2073,7 @@ Au cours de ce chapitre une méthodologie d’aide à la décision permettant d�
 concepteurs pour le dimensionnement d’un \abr{SSC} couplé à une \abr{MEPOS} a été
 développée. Dans un premier temps, la complexité du modèle est limitée grâce à une analyse
 de sensibilité globale puis le temps d’évaluation du modèle est réduit en utilisant des
-méta-modèles. Bien que nécessaire de ce cas précis, il reste préférable de conserver le
+méta-modèles. Bien que nécessaire dans ce cas précis, il reste préférable de conserver le
 modèle original dans le cas où il peut être évalué dans un temps raisonnable afin d’éviter
 d’introduire une erreur d’approximation. Pour l’aide à la décision, une approche a
 posteriori par coordonnées parallèles est retenue afin de ne pas introduire de préférences
@@ -2076,7 +2083,7 @@ méthode d’optimisation multi-objectifs est donc nécessaire. Le problème ét
 combinatoire, un méta-heuristique s’est imposé comme le choix le plus adapté. Afin de
 proposer une approche à la fois simple, intuitive et performante, un algorithme de colonie
 d’abeilles virtuelles (\abr{ABC}) a été adaptée aux problèmes multi-objectifs. Ce choix a
-été retenue principalement car l’approche ne nécessite le paramétrage que de trois
+été retenu principalement car l’approche ne nécessite le paramétrage que de trois
 paramètres dont l’impact est connu a priori. L’approche a ensuite été renforcée par
 l’ajout d’une archive garantissant une bonne diversité de la population, et d’un vol de
 Lévy pour éviter la stagnation et améliorer l’exploratoire. De plus, durant
@@ -2084,22 +2091,22 @@ l’initialisation, le choix a été fait de retenir l’\abr{OBLM} (\defref{def
 d’offrir une meilleure répartition des solutions. Finalement, afin d’améliorer
 l’exploration et l’exploitation de l’espace de faisabilité, les contraintes
 sont prises en compte dynamiquement. Contrairement à une approche statique et stricte plus
-classique, des solutions non faisables peuvent être retenue apportant ainsi de nouvelles
+classique, des solutions non faisables peuvent être conservées apportant ainsi de nouvelles
 connaissances sur le problème. Il est ensuite possible par apprentissage, d’obtenir de
 nouvelles solutions optimales même dans un domaine fortement contraint.
 
 La \figref{fig:outils_methode} récapitule l’ensemble des outils utilisés pour la
-mise en place la méthodologie. Comme pour l’étude
+mise en place de la méthodologie. Comme pour l’étude
 paramétrique, les bibliothèques \textit{Buildingspy} et \textit{DymTK} sont utilisées
 afin de pouvoir automatiser la simulation en parallèle des modèles à partir du langage
-\textit{Python}. \textit{DyMat} a permis quand à elle de lire les résultats qui sont
-ensuite traités grâce au bibliothèques \textit{Pandas} et \textit{Numpy}. Afin de réaliser
+\textit{Python}. \textit{DyMat} a permis quant à elle de lire les résultats qui sont
+ensuite traités grâce aux bibliothèques \textit{Pandas} et \textit{Numpy}. Afin de réaliser
 l’échantillon pour le criblage de \textit{Morris}, la bibliothèque \textit{Salib} est retenue.
 Pour la construction d’un échantillon uniformément réparti par méthode de Quasi-Monte-Carlo
 et la création des méta-modèles, la bibliothèque \textit{OpenTurns} est utilisée.
-L’optimisation est réalisée par une méta-heuristique et implémentée dans la bibliothèque \textit{pyMayBee}. Finalement l’aide à la
-décision est réalisée par une méthode de coordonnées parallèles grâce au logiciel
-\textit{XDAT}.
+L’optimisation est réalisée par une méta-heuristique et implémentée dans la bibliothèque \textit{pyMayBee}.
+Finalement l’aide à la décision est réalisée par une méthode de coordonnées
+parallèles grâce au logiciel \textit{XDAT}.
 La mise en place de cette méthodologie est illustrée dans le dernier chapitre à travers l’étude
 de la performance du \abr{SSC} sur Bordeaux et Strasbourg.
 

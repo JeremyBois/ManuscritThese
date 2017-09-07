@@ -1566,12 +1566,12 @@ réflecteur en forme de \fnref{https://fr.wikipedia.org/wiki/Paraboloïde}{parab
 révolution} afin de pouvoir concentrer en un point unique le rayonnement~: le point focal.
 L’électricité est produite par conversion directe via un moteur \textit{Stirling}.
 
-\itodo{Vérifier avec cours La rochelle}
-Ayant un système de suivi sur deux axes, le système de tour solaire permet de réfléchir en
-permanence l’énergie solaire. Un champ de mirroirs orientables (\enquote{héliostats})
-réfléchissent en permanence l’énergie solaire vers un absorbeur au sommet de la tour
-permettant d’obtenir une source chaude allant jusqu’à \SI{1500}{\celsius}. L’électricité
-est fabriquée soit à l’aide d’une turbine et d’un fluide intermédiaire, soit par
+Le système de tour solaire est lui aussi basé sur la concentration des rayons solaires sur
+un point unique et permet d’obtenir une source chaude allant jusqu’à
+\SI{1500}{\celsius}. Un champ de mirroirs orientables ayant un système de suivi sur deux axes
+(\enquote{héliostats}), réfléchissent en permanence l’énergie solaire vers un absorbeur au
+sommet d’une tour.
+L’électricité est fabriquée soit à l’aide d’une turbine et d’un fluide intermédiaire, soit par
 production directe. Finalement le dernier dispositif est le four solaire composé d’un
 miroir concave concentrant le rayonnement en son foyer. Deux applications peuvent être
 notées. La première est la production d’électricité comme par exemple avec le four solaire
@@ -1594,12 +1594,13 @@ du flux solaire incident ($G_{in}$, [\si{W\per\metre\squared}]).
     \eta = \frac{P_{u}}{G_{in}}
 \end{equation}
 
+\itodo{Quelles relations ????}
 Comme il a été vu à travers les différents capteurs existants, de nombreux facteurs
 influencent le calcul de $P_{u}$. Il est en effet nécessaire de considérer les
 caractéristiques optiques et thermiques des différents composant du capteur. Si on considère
 un capteur plan non-vitré, $P_{u}$ est définie comme la part absorbée moins les pertes
-par convection, conduction, et rayonnement infrarouge (\cite{Duffie1980}, équation $5.9.2$
-et équation $6.2.1$). Ces relations nécessitent cependant de connaître la température
+par convection, conduction, et rayonnement infrarouge (\cite{Duffie1980}, voir équations $5.9.2$
+et $6.2.1$). Ces relations nécessitent cependant de connaître la température
 moyenne de l’absorbeur dont la mesure ou le calcul est ardu. En effet, elle dépend
 à la fois du rayonnement incident, du fluide entrant dans le capteur, mais aussi
 de la géométrie propre à chaque capteur.
@@ -1648,8 +1649,9 @@ L’approche statique ne fait cependant pas de distinction entre $G_{dir, in}$ e
 in}$. Ainsi l’approche dans ces conditions n’est valide que lorsque $G_{dif, in}$
 représente moins de \SI{30}{\percent} du rayonnement hémisphérique total $G_{in}$ \parencite{Osorio2014}.
 Finalement la procédure de test ajoute la prise en compte du $C_{p,\,eff}$, la capacité
-thermique massique effective qui est calculée comme étant la somme pondérée des capacités
-massiques des différents composants du collecteur. $c_{5}$, un nouveau coefficient de
+thermique massique effective définit comme étant la somme pondérée des capacités
+massiques des différents composants du collecteur. Ces facteurs de pondération indiquent que certains éléments
+ne sont impliqués que partiellement dans l'inertie thermique du capteur. $c_{5}$, un nouveau coefficient de
 corrélation est alors défini par $\nicefrac{C_{p,\,eff}}{A}$ où $A$ est la surface de
 capteur considérée par la norme retenue. En couplant les différentes informations, il est
 possible d’obtenir la forme complète de l’équation instantanée
@@ -1730,8 +1732,7 @@ non comprise dans le spectre solaire (longueur d’onde $> \SI{3}{\micro\metre}$
 
 \paragraph{Bilan~:} % (fold)
 \label{par:bilan_rendement}
-\itodo{tous types ou tout type}
-Les deux approches permettent aujourd’hui de tester tous types de capteurs solaires
+Les deux approches permettent aujourd’hui de tester tout type de capteurs solaires
 en se basant sur une méthodologie commune facilitant la comparaison entre divers
 fabricants. L’ensemble des organismes de certification propose ainsi les données nécessaires
 pour appliquer soit la méthode statique, soit la méthode quasi-dynamique.
@@ -1808,8 +1809,8 @@ de \SI{14}{\percent} en $2015$ par rapport à $2014$ et la baisse semble continu
 $2016$. Au niveau économique, le marché stagne en Europe et est décroissant dans le reste
 du monde à l’exception de l’Afrique Sub-Saharienne et de l’Asie à l’exception de la Chine.
 L’énergie solaire thermique assume donc une perte d’intérêt importante depuis le début du siècle
-(\figref{fig:tendances_enr}). Depuis $2010$ la tendance est toujours à la baisse
-et depuis $2014$ le solaire thermique affiche une progression nettement plus faible
+(\figref{fig:tendances_enr}). Depuis $2010$ la tendance est toujours à la baisse (progression plus
+faible chaque année) et depuis $2014$ le solaire thermique affiche une progression nettement moins importante
 que les autres énergies renouvelables comme le photovoltaïque ou l’éolien. Ainsi à partir
 de $2016$ l’énergie éolienne produit plus d’énergie que le solaire thermique. Finalement
 le photovoltaïque qui profite d’une croissance forte et d’une tendance à la hausse depuis $2014$

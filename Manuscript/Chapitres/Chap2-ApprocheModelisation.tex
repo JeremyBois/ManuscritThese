@@ -563,8 +563,8 @@ retenu dans ces travaux. Le fichier météo utilisé est celui de Bordeaux
 La consigne de chauffage est de \SI{19}{\celsius} en occupation et de \SI{16}{\celsius} en
 inoccupation. L’étude ne portant pas sur l’évaluation du confort estival, seuls les
 besoins en chauffage ont été comparés. Les résultats pour l’approche mono-zone et de l’approche
-multi-zone sont similaires~: respectivement \SI{1153}{\kilo\watt\hour} et
-\SI{1189}{\kilo\watt\hour} pour une année complète (\figref{fig:compare_models}).
+multi-zone sont similaires~: respectivement \SI{1150}{\kilo\watt\hour} et
+\SI{1190}{\kilo\watt\hour} pour une année complète (\figref{fig:compare_models}).
 Il peut être noté que le bâtiment modélisé avec \textit{Modelica} se comporte de
 manière similaire au bâtiment modélisé avec \textit{Energy Plus}. Il n’est cependant
 pas possible de comparer directement les puissances nécessaires car les deux logiciels
@@ -989,8 +989,8 @@ $T7$. Ainsi il est aussi admis un hystérésis relatif à ce différentiel.
 
 \paragraph{Architecture de l’algorithme~:} % (fold)
 \label{par:architecture_de_l_algorithme}
-Chaque équipement ou entité est dans ces travaux représenté comme un automate fini (\abr{FSM},
-Finite State Machine)~: la position de la V3V, l’état des
+Chaque équipement ou entité est dans ces travaux représenté comme un automate fini (noté \abr{FSM},
+\enquote{Finite State Machine})~: la position de la V3V, l’état des
 pompes, et le mode de chauffage actif. Un \abr{FSM} décrit un algorithme comme étant un
 ensemble d’états ayant un jeu de conditions et/ou temporisations permettent de passer d’un
 état à l’autre~: les transitions.
@@ -1607,27 +1607,25 @@ solaire et la consommation de l’appoint et s’exprime sous la forme d’un po
 \label{ssub:impact_des_conditions_meteorologiques}
 Les résultats obtenus à enveloppe identique pour les différents climats sont disponibles dans
 le \tabref{tab:performance_annuelles}. Une forte disparité dans les consommations
-de chauffage est observée. La consommation pour Marseille est la plus faible, et deux fois
+de chauffage est observée. La consommation totale pour Marseille est la plus faible, et deux fois
 plus d’énergie est nécessaire pour couvrir les besoins de Strasbourg. De plus il est aussi
 mis en évidence l’impact important de la température de l’eau froide du réseau. En effet
-les simulations admettent le même scénario de puisage mais la $Conso_{app}$ varie de
+les simulations admettent le même scénario de puisage mais la $Conso_{app}^{ECS}$ varie de
 \SI{400}{\kilo\watt\hour} entre Marseille et Strasbourg. Les pertes en ligne à travers
 les canalisations ($Pertes_{réseau}$) sont similaires pour les différents climats et la
 consommation des pompes ne semble pas être un facteur impactant sauf pour Marseille où la
-$Conso_{app}$ cumulée du chauffage et de la production d’\abr{ECS} est presque nulle.
-La $Conso_{app}$ (\abr{ECS} + \abr{CH}) à Limoges est inférieure à celle de Nantes alors
-que la consommation totale (solaire et appoint) est plus importante sur Limoges.
-Les besoins sur Nantes sont inférieurs mais l’ensoleillement est plus important
-sur Limoges ce qui permet de valoriser une plus grande part solaire et donc de réduire
-la $Conso_{app}$ (\tabref{tab:description_climat}).
+$Conso_{app}$  (\abr{ECS} + \abr{CH}) est très faible.
 
-La même remarque peut être faite au niveau du
-chauffage. La consommation totale à Limoges est supérieure de \SI{200}{kWh} par rapport à
-Nantes mais la $Conso_{app}$ est elle seulement supérieure de \SI{100}{kWh}. Pour
-Strasbourg, il semble que quatre capteurs solaires soient insuffisants pour permettre
-de couvrir majoritairement les besoins par le solaire. Finalement, le système solaire obtient une bonne
-performance autant sur le $F_{sol}^{ECS}$ que sur le $F_{sol}^{CH}$ en récupérant une quantité
-relativement proche d’énergie solaire sur les différents climats.
+La $Conso_{app}^{ECS}$ pour les conditions de Limoges et de Nantes sont similaires malgré
+une consommation totale pour la production d’\abr{ECS} plus importante. L’ensoleillement
+plus élevé sur la ville de Limoges (\tabref{tab:description_climat}) permet en effet de
+valoriser une part d’énergie solaire plus grande. Pour les mêmes raisons, le \abr{SSC}
+permet d’économiser \SI{50}{kWh} supplémentaires sur le chauffage ($Conso_{app}^{ECS}$) lorsqu’il
+est installé sur Limoges au lieu de Nantes. Pour Strasbourg, il semble que quatre capteurs
+solaires soient insuffisants pour permettre de couvrir majoritairement les besoins par le
+solaire. Finalement, le système solaire obtient une bonne performance autant sur le
+$F_{sol}^{ECS}$ que sur le $F_{sol}^{CH}$ en récupérant une quantité d’énergie solaire
+relativement proche sur les différents climats.
 
 \begin{table}
 \small
@@ -1639,18 +1637,18 @@ relativement proche d’énergie solaire sur les différents climats.
     \toprule
                &   \multicolumn{9}{c}{Consommation [\si{\kilo\watt\hour}]} & & \multicolumn{2}{c}{\multirow{2}{*}{\si{\percent}}} \\
     \cmidrule(r){2-10}
-               & \multicolumn{2}{c}{\textbf{Totale}} &  \multicolumn{3}{c}{\textbf{Électrique}}  & \multicolumn{4}{c}{\textbf{Solaire}} & \\
-    \cmidrule(r){2-3}
-    \cmidrule(r){4-6}
+               & \multicolumn{3}{c}{\textbf{Totale}} &  \multicolumn{2}{c}{\textbf{Appoint}}  & \multicolumn{4}{c}{\textbf{Solaire}} & \\
+    \cmidrule(r){2-4}
+    \cmidrule(r){5-6}
     \cmidrule(r){7-10}
     \cmidrule(r){12-13}
-               & \abr{ECS}    & \abr{CH}      &  \abr{ECS}        & \abr{CH} & Pompes    & $Solaire_{abs}$  & $Pertes_{réseau}$ & \abr{ECS}  & \abr{CH} & & $F_{sol}^{ECS}$  & $F_{sol}^{CH}$ \\
+               & \abr{ECS}      & \abr{CH}   & Pompes   &  \abr{ECS}   & \abr{CH}    & $Solaire_{abs}$  & $Pertes_{réseau}$ & \abr{ECS}  & \abr{CH}   & & $F_{sol}^{ECS}$  & $F_{sol}^{CH}$ \\
     \midrule
-    Bordeaux   & \num{2983}     & \num{1024}      &  \num{101}          & \num{91}          &  \num{7}                 & \num{3387}                  & \num{219}       & \num{2444}   &  \num{949}    &   & \num{95}         & \num{91}  \\
-    Strasbourg & \num{3180}     & \num{1986}      &  \num{479}          & \num{1203}        &  \num{8}                 & \num{3164}                  & \num{199}       & \num{2332}   &  \num{845}    &   & \num{83}         & \num{42}  \\
-    Marseille  & \num{2784}     & \num{975}       &  \num{2}            & \num{1}           &  \num{7}                 & \num{3280}                  & \num{218}       & \num{2300}   &  \num{974}    &   & \num{100}        & \num{100} \\
-    Nantes     & \num{3044}     & \num{1114}      &  \num{233}          & \num{248}         &  \num{7}                 & \num{3295}                  & \num{209}       & \num{2399}   &  \num{902}    &   & \num{91}         & \num{78}  \\
-    Limoges    & \num{3120}     & \num{1311}      &  \num{217}          & \num{359}         &  \num{9}                 & \num{3474}                  & \num{209}       & \num{2502}   &  \num{983}    &   & \num{92}         & \num{73}  \\
+    Bordeaux   & \num{2962}     & \num{986}  &  \num{4} &  \num{194}   & \num{138}   & \num{3479}       & \num{261}         & \num{2768} &  \num{848} & & \num{93}         & \num{86}  \\
+    Strasbourg & \num{3175}     & \num{2021} &  \num{5} &  \num{599}   & \num{1294}  & \num{3237}       & \num{239}         & \num{2575} &  \num{726} & & \num{81}         & \num{36}  \\
+    Marseille  & \num{2748}     & \num{907}  &  \num{4} &  \num{12}    & \num{3}     & \num{3450}       & \num{266}         & \num{2736} &  \num{904} & & \num{100}        & \num{100} \\
+    Nantes     & \num{3031}     & \num{1114} &  \num{4} &  \num{346}   & \num{316}   & \num{3375}       & \num{251}         & \num{2685} &  \num{798} & & \num{89}         & \num{72}  \\
+    Limoges    & \num{3106}     & \num{1301} &  \num{5} &  \num{342}   & \num{452}   & \num{3511}       & \num{250}         & \num{2764} &  \num{850} & & \num{89}         & \num{65}  \\
     \bottomrule
 \end{tabular}
 \end{table}
@@ -1817,8 +1815,8 @@ sont ensuite discutés. Au regard des résultats, augmenter le volume du ballon 
 (\num{300} à \SI{450}{\litre}) améliore les indicateurs principaux (le $F_{sol}^{ECS}$, le
 $F_{sol}^{CH}$, et la $Conso_{app}$). Cependant la part électrique pour le chauffage
 augmente. Au niveau du ballon de stockage, un volume plus important améliore le $F_{sol}^{CH}$
-et réduit la $Conso_{app}$ ainsi que le $F_{sol}^{ECS}$. Dans les deux cas, le $\eta_{sol}$
-augmente traduisant une meilleure valorisation de l’énergie incidente disponible.
+et réduit la $Conso_{app}$ ainsi que le $F_{sol}^{ECS}$. Dans les deux cas, l’énergie solaire
+incidente est mieux valorisée ($\eta_{sol}$ augmente).
 De plus les températures des ballons ($T3$, $T4$, $T5$) fluctuent plus doucement lorsque le
 volume est important. Réduire le volume des deux ballons (\num{300} à \SI{150}{\litre})
 impacte négativement les performances du \abr{SSC} mais l’inverse améliore l’ensemble des
