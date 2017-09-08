@@ -118,8 +118,8 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 % Landscape support
 % ------------------------------------------------------------------------------
-% \usepackage{pdflscape}  % Numeric version (rotate content and page)
-\usepackage{lscape}   % Printed version (rotate only content)
+\usepackage{pdflscape}  % Numeric version (rotate content and page)
+% \usepackage{lscape}   % Printed version (rotate only content)
 
 
 
@@ -213,13 +213,12 @@ Extension=.otf,
     \listofalgorithms
 }
 
-% \input{Nomenclature/nomenclature}
-% \printnomenclature[3cm]
-% \thispagestyle{empty}
-
+% Nomenclature
 \input{Nomenclature/nomenclature}
 \printnomenclature[3cm]
 \thispagestyle{empty}
+
+% Notes
 \newpage
 \listoftodos[Notes]
 
@@ -234,6 +233,8 @@ Extension=.otf,
 % ------------------------------------------------------------------------------
 
 \chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}%
+\markboth{Introduction}{Introduction}%
 \input{Chapitres/Introduction}
 
 \chapter{Le solaire thermique appliqué au bâtiment, un problème multi-objectifs}
@@ -249,6 +250,8 @@ Extension=.otf,
 \input{Chapitres/Chap4-OptimisationSystemeSolaire}
 
 \chapter*{Conclusions et Perspectives}
+\addcontentsline{toc}{chapter}{Conclusions et Perspectives}%
+\markboth{Conclusions et Perspectives}{Conclusions et Perspectives}%
 \input{Chapitres/Conclusion}
 
 
