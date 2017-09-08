@@ -180,17 +180,26 @@ des capteurs.
 
 
 
-## À Faire :
+## Second mail :
 
   - p.50 `Exergie`
 
+> L’exergie permet de quantifier la qualité d’une énergie, celle ci diminuant au cours des
+transformations successives. Le travail maximum récupérable est ainsi égal à l’opposé de
+la variation d’exergie au cours d’une transformation. L’auteur de l’article
+cherche donc à maximiser le rendement exergétique qui est le rapport entre l’exergie en
+sortie du système solaire (exergie fourni à l’ECS pour l’occupant) et l’exergie
+en entrée du système (auxiliaires électriques et irradiation solaire).
+
   - p.151 `8 %, ce n'est pas une erreur négligeable.`
 
-
-TROUVER QUOI DIRE
+> Bien que l’erreur maximale ne soit pas négligeable, elle reste faible au regard
+des incertitudes liées à l’évaluation de tels systèmes (isolation, rendement des équipements,
+gains internes, apports solaires…)
 
 
   - p. 160 `Vous êtes sûr ?`
 
-
-TROUVER QUOI DIRE
+> Les résultats montrent aussi que le nombre de capteurs PV diminue lorsque la
+performance du SSC augmente. Afin de respecter la contrainte de bilan positif,
+la production solaire thermique augmente lorsque la production photovoltaïque diminue.

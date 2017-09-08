@@ -2281,19 +2281,19 @@ un processus d’optimisation. L’optimisation est le processus permettant de t
 solutions maximisant ou minimisant un ou plusieurs objectifs et sera détaillée dans la
 suite de ce document. Contrairement aux approches paramétriques qui utilisent des variations
 successives sur un paramètre, l’optimisation explore l’espace des solutions de manière automatisée
-et pouvant faire varier plusieurs paramètres simultanément. \textcite{Fraisse2009232} présentent
-une étude comparative des différents objectifs retenus lors des études antérieures
+et pouvant faire varier plusieurs paramètres simultanément.
+
+\textcite{Fraisse2009232} présentent une étude comparative des différents objectifs retenus lors des études antérieures
 d’optimisation de système solaires pour la production d’\abr{ECS}. Le système retenu est
 évalué successivement suivant sa performance d’un point de vue énergétique (exergie,
 $F_{sav, ext}$, et $F_{sav, si}$), économique (coût du cycle de vie, \abr{CCV}), et
 écologique (émissions de $CO_{2}$ puis en combinant plusieurs objectifs en un objectif
-unique.
-
-\itodo{Exergie}
-L’exergie permet de quantifier la qualité d’une énergie, celle ci diminuant au cours des transformations
-successives. La valeur minimisée dans les travaux est donc la somme de l’exergie détruite
-à chaque transformation.
-
+unique. L’exergie permet de quantifier la qualité d’une énergie, celle ci diminuant au cours des
+transformations successives. Le travail maximum récupérable est ainsi égal à l’opposé de
+la variation d’exergie au cours d’une transformation. L’auteur de l’article
+cherche donc à maximiser le rendement exergétique qui est le rapport entre l’exergie en
+sortie du système solaire (exergie fourni à l’\abr{ECS} pour l’occupant) et l’exergie
+en entrée du système (auxiliaires électriques et irradiation solaire).
 Le système est décrit dans \textit{TrnSys} et optimisé grâce à
 \textit{GenOpt} en faisant varier la surface de capteurs, le volume du ballon sanitaire,
 et le débit du fluide au travers des capteurs. Pour les différents objectifs la surface de

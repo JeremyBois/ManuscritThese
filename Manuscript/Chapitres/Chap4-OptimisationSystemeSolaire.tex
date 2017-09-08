@@ -1078,14 +1078,15 @@ minima nécessaire de considérer un échantillon de taille $600$ afin d’appro
 correctement le modèle original (\figref{fig:rmse_mae}). Entre $600$ et $1000$, la qualité
 de l’approximation oscille pour les trois indicateurs sur Bordeaux comme sur Strasbourg.
 Enfin au delà de $1000$, l’approximation s’améliore lentement même si sur Strasbourg,
-l’erreur absolue maximale continue d’osciller. Ainsi, pour les $3$ méta-modèles, un
-échantillon de taille $600$ est pertinent.
-
-\itodo{8 \%, ce n'est pas une erreur négligeable}
-En effet, l’erreur moyenne quadratique est pour
-Bordeaux inférieure à \SI{3.5}{\percent} et l’erreur maximale absolue inférieure à \SI{8}{\percent}.
+l’erreur absolue maximale continue d’osciller.
+Ainsi, pour les $3$ méta-modèles, un échantillon de taille $600$ est pertinent.
+L’erreur moyenne quadratique est pour Bordeaux inférieure à \SI{3.5}{\percent} et
+l’erreur maximale absolue inférieure à \SI{8}{\percent}.
 Sur Strasbourg l’erreur moyenne quadratique est inférieure à \SI{2.7}{\percent} et
 l’erreur absolue maximale inférieure à \SI{6.8}{\percent}.
+Bien que l’erreur maximale ne soit pas négligeable, elle reste faible au regard
+des incertitudes liées à l’évaluation de tels systèmes (isolation, rendement des équipements,
+gains internes, apports solaires\dots)
 
 \begin{figure}
     \centering
@@ -1556,22 +1557,21 @@ paragraphe précédent, la consommation de référence est plus importante sur S
 où la performance relative du \abr{SSC} est moins importante. Ainsi, le nombre minimal de
 capteurs \abr{PV} est plus important sur Strasbourg.
 
-\itodo{Vous êtes sûr ?}
-Les résultats montrent aussi que le nombre de capteurs \abr{PV} est inversement
-proportionnel à la performance du \abr{SSC}. Lorsque elle augmente, la production
-photovoltaïque diminue et la production solaire thermique augmente afin de respecter la
-contrainte de bilan positif. Ainsi sur Strasbourg, augmenter le nombre de capteur
-thermiques de $5$ (\SI{11.6}{m^{2}}) permet de réduire de $8$ (\SI{13.1}{m^{2}}) le nombre de capteurs \abr{PV} nécessaires
-(\figref{fig:fsav_pv_stras}). Sur Bordeaux ajouter $3$ (\SI{7.0}{m^{2}}) capteurs thermique permet
-de réduire de $5$ (\SI{8.2}{m^{2}}) le nombre de capteurs \abr{PV} (\figref{fig:fsav_pv_bor}). De
-plus, la production des capteurs solaires thermiques est en adéquation
-avec la demande alors que le bilan \textit{production / consommation} est réalisé à l’échelle annuelle
-pour le \abr{PV}. Il est aussi mis en évidence que les solutions encadrées sont celles qui
-minimisent le nombre de capteurs \abr{PV} sur la toiture. Contrairement aux solutions en
-dehors du cadre, elles ne couvrent pas l’ensemble de l’intervalle défini par la contrainte
-de bilan à énergie positive. Il n’existe ainsi pas de solution minimisant au maximum la
-$Conso_{tot}$ (\SI{-304}{kWh_{ef}}) et en même temps la surface minimale de capteurs
-\abr{PV}.
+Les résultats montrent aussi que le nombre de capteurs \abr{PV} diminue lorsque la
+performance du \abr{SSC} augmente. Afin de respecter la contrainte de bilan positif,
+la production solaire thermique augmente lorsque la production photovoltaïque diminue.
+Ainsi sur Strasbourg, augmenter le nombre de capteur thermiques de $5$ (\SI{11.6}{m^{2}})
+permet de réduire de $8$ (\SI{13.1}{m^{2}}) le nombre de capteurs \abr{PV} nécessaires
+(\figref{fig:fsav_pv_stras}). Sur Bordeaux ajouter $3$ (\SI{7.0}{m^{2}}) capteurs
+thermique permet de réduire de $5$ (\SI{8.2}{m^{2}}) le nombre de capteurs \abr{PV}
+(\figref{fig:fsav_pv_bor}). De plus, la production des capteurs solaires thermiques est en
+adéquation avec la demande alors que le bilan \textit{production / consommation} est
+réalisé à l’échelle annuelle pour le \abr{PV}. Il est aussi mis en évidence que les
+solutions encadrées sont celles qui minimisent le nombre de capteurs \abr{PV} sur la
+toiture. Contrairement aux solutions en dehors du cadre, elles ne couvrent pas l’ensemble
+de l’intervalle défini par la contrainte de bilan à énergie positive. Il n’existe ainsi
+pas de solution minimisant au maximum la $Conso_{tot}$ (\SI{-304}{kWh_{ef}}) et en même
+temps la surface minimale de capteurs \abr{PV}.
 
 \begin{figure}
 % perf_th_vs_nb_pv
