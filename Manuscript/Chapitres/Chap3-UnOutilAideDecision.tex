@@ -343,7 +343,7 @@ durée de simulation en utilisant des modèles de substitution.
 En amont de l’optimisation, les variables de décisions (facteurs) dont la variation sera
 étudiée sont sélectionnées sur la connaissance seule du système et des premiers résultats
 obtenus. Il apparaît donc opportun de réduire le nombre de facteurs afin d’éviter
-l’évaluation couteuse de variations n’influençant pas ou très sensiblement le modèle.
+l’évaluation couteuse du modèle pour des variations négligeables.
 
 Les méthodes dites d’analyse de sensibilité permettent de répondre à cette problématique
 en identifiant les facteurs les plus influents au regard des objectifs retenus pour
@@ -652,12 +652,12 @@ paramétrique permet de définir les différents paramètres clés (objectifs, c
 variables, bornes\dots). Ensuite, la cardinalité du problème est réduite grâce à la
 méthode de \textit{Morris} appliquée sur chaque objectif et contrainte. Le problème
 résultant est alors substitué par un ensemble de méta-modèles afin de fortement réduire le
-temps de calcul nécessaire pour une évaluation. Les modèles de substitutions obtenus
+temps de calcul nécessaire pour une évaluation. Les modèles de substitution obtenus
 sont finalement utilisés pour réaliser l’optimisation multi-objectifs dans l’optique
 d’une aide à la décision a posteriori. Une fois les solutions optimales obtenues, le
 décideur pourra grâce à une méthode de réduction par coordonnées parallèles sélectionner
 la solution correspondant à ses préférences. En parallèle, l’optimisation sera réalisée
-avec le modèle d’origine afin d’évaluer le gain apporté par les modèles de substitutions.
+avec le modèle d’origine afin d’évaluer le gain apporté par les modèles de substitution.
 
 \begin{figure}
     \centering
@@ -1942,7 +1942,7 @@ principales difficultés existantes \parencite{Collette2002,Deb2002825}~:
 Les résultats obtenus sont comparés aux résultats obtenus par \textcite{Deb2005501}
 pour différents algorithmes couramment utilisés à travers l’hypervolume et la
 distance générationnelle (\tabref{tab:evaluation_algo_opti}). Une augmentation de l’hypervolume
-traduit une meilleure convergence et couverture de l’espace des objectifs par l’ensemble des solutions.
+se traduit par une meilleure convergence et couverture de l’espace des objectifs par l’ensemble des solutions.
 À l’inverse plus la distance générationnelle est faible, plus l’approximation obtenue par l’algorithme
 est proche du vrai front de \textit{Pareto}~: l’indicateur traduit la qualité de convergence.
 Comme pour les algorithmes de l’article, on considère \num{20000} évaluations pour les problèmes avec deux

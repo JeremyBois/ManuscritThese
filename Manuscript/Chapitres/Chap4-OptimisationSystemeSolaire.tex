@@ -78,9 +78,9 @@ d’une architecture alsacienne.
 Afin de pouvoir couvrir les consommations électriques, éclairage ($Conso_{éclairage}$) et
 électro-domestique ($Conso_{électroménager}$), une production photovoltaïque ($Prod_{PV}$)
 est retenue. La toiture doit donc être partagée entre d’une part les capteurs thermiques, et
-d’autre part les capteurs photovoltaïques (\abr{PV}). Comme le montre la littérature et les résultats
+d’autre part les capteurs photovoltaïques (\abr{PV}). D’après la littérature et les résultats
 de l’étude paramétrique l’orientation est pour le \abr{SSC} un des facteurs les plus
-important. Le choix est donc fait de favoriser en priorité les capteurs solaires
+importants. Le choix est donc fait de favoriser en priorité les capteurs solaires
 thermiques sur le pan sud. Afin d’être le plus représentatif possible la géométrie
 de la toiture et des capteurs est prise en compte.
 En effet la maison comporte une toiture quatre pans, chaque pan est donc triangulaire~; par
@@ -707,19 +707,10 @@ grâce au système de chauffage aéraulique. Il n’existe cependant pas à la c
 de moyens pour identifier la part réellement utile dans les apports solaires indirects. En considérant
 la part économisée sur l’appoint, seule l’énergie solaire utile est implicitement prise en
 compte. Le choix des objectifs $F_{sav}^{ECS}$ et $F_{sav}^{CH}$ en place des indicateurs
-$F_{sol}^{ECS}$ et $F_{sol}^{CH}$ est donc plus pertinent. Finalement l’existence d’un
-compromis entre qualité de l’enveloppe et performance du \abr{SSC} sur le chauffage, est
-aussi identifiée.
+$F_{sol}^{ECS}$ et $F_{sol}^{CH}$ est donc plus pertinent.
 
-
-
-Le choix des objectifs $F_{sav}^{ECS}$ et $F_{sav}^{CH}$ pour
-l’optimisation est donc bien plus pertinent. En effet il n’existe pas à la connaissance de
-l’auteur de moyen d’identifier la part passive utile de la part inutile. En considérant la
-part économisé d’appoint, il est pris indirectement en compte de l’utilité de l’énergie
-solaire apportée au bâtiment, que ce soit la part active ou passive. Finalement
-l’existence d’un compromis entre qualité de l’enveloppe et performance du \abr{SSC} sur le
-chauffage, est aussi identifiée.
+Finalement l’existence d’un compromis entre qualité de l’enveloppe et performance
+du \abr{SSC} sur le chauffage, est aussi identifiée.
 % paragraph bilan_prod_sol_chauff (end)
 % subsubsection couverture_solaire_sur_le_chauffage (end)
 
@@ -761,13 +752,13 @@ impactant par rapport aux autres facteurs. Sur Strasbourg, la performance thermi
 murs est aussi influente que le nombre de capteurs solaires car les besoins en chauffage
 sont importants.
 Sur la $Conso_{app}^{CH}$, $\Delta min_{tampon}$ et $\Delta min_{capteur}$ sont influents
-pour les deux climats Sur la $Conso_{app}^{ECS}$, $\Delta min_{tampon}$ est le seul
-facteur impactant pour Bordeaux alors que sur Strasbourg $\Delta min_{capteur}$ est aussi
-un facteur influent. En effet, les besoins en chauffage étant faibles relativement aux
+pour les deux climats. Sur la $Conso_{app}^{ECS}$, $\Delta min_{tampon}$ est le seul
+facteur impactant pour Bordeaux. Par contre sur Strasbourg, $\Delta min_{capteur}$ est aussi
+un facteur influent. En effet, les besoins en chauffage étant faibles sur Bordeaux relativement aux
 besoins pour la production d’\abr{ECS}, la consommation totale ($Conso_{app}$) est
-uniquement influencée par $\Delta min_{tampon}$ sur Bordeaux. La même observation peut
-être faite pour le ballon tampon dont le volume impacte uniquement la $Conso_{app}^{CH}$
-sur Bordeaux. Enfin les caractéristiques des capteurs sont influentes à la fois sur la
+uniquement influencée par $\Delta min_{tampon}$. La même observation peut
+être faite sur Bordeaux pour le ballon de stockage dont le volume impacte uniquement la $Conso_{app}^{CH}$.
+Enfin les caractéristiques des capteurs sont influentes à la fois sur la
 $Conso_{app}^{CH}$ et la $Conso_{app}^{ECS}$.
 
 \paragraph{Bilan~:} % (fold)
@@ -1049,8 +1040,7 @@ les résultats sont disponibles en annexes (\ref{cha:creation_des_meta_modeles})
 
 Pour l’indicateur $Conso_{ref}^{CH}$, peu de simulations ont été nécessaires afin
 d’obtenir une bonne approximation (\figref{fig:mae_rmse_qualite_ref}). L’ordre du méta-modèle
-(degré du polynôme) est défini par la zone grise associée à l’axe vertical de droite.
-L’axe de gauche est lui utilisé comme échelle de valeurs pour la courbe (\abr{RMSE} ou \abr{MAE}).
+(degré maximal du polynôme après troncation) est défini par la zone grise associée à l’axe vertical de droite.
 
 \begin{figure}
     \centering
@@ -1089,7 +1079,10 @@ correctement le modèle original (\figref{fig:rmse_mae}). Entre $600$ et $1000$,
 de l’approximation oscille pour les trois indicateurs sur Bordeaux comme sur Strasbourg.
 Enfin au delà de $1000$, l’approximation s’améliore lentement même si sur Strasbourg,
 l’erreur absolue maximale continue d’osciller. Ainsi, pour les $3$ méta-modèles, un
-échantillon de taille $600$ est pertinent. En effet, l’erreur moyenne quadratique est pour
+échantillon de taille $600$ est pertinent.
+
+\itodo{8 \%, ce n'est pas une erreur négligeable}
+En effet, l’erreur moyenne quadratique est pour
 Bordeaux inférieure à \SI{3.5}{\percent} et l’erreur maximale absolue inférieure à \SI{8}{\percent}.
 Sur Strasbourg l’erreur moyenne quadratique est inférieure à \SI{2.7}{\percent} et
 l’erreur absolue maximale inférieure à \SI{6.8}{\percent}.
@@ -1563,6 +1556,7 @@ paragraphe précédent, la consommation de référence est plus importante sur S
 où la performance relative du \abr{SSC} est moins importante. Ainsi, le nombre minimal de
 capteurs \abr{PV} est plus important sur Strasbourg.
 
+\itodo{Vous êtes sûr ?}
 Les résultats montrent aussi que le nombre de capteurs \abr{PV} est inversement
 proportionnel à la performance du \abr{SSC}. Lorsque elle augmente, la production
 photovoltaïque diminue et la production solaire thermique augmente afin de respecter la
@@ -1730,12 +1724,11 @@ plus importante et prioritaire, les solutions favorisant le $F_{sav,\, ext}$ adm
 un $F_{sav}^{ECS}$ important. De plus peu importe le type de capteur, la
 meilleure performance est obtenue pour une consommation de référence similaire.
 
-Comme explicité lors du choix des collecteurs, les capteurs plans récents
-ont tous un rendement optique ($\eta_{0}$) important et de ce fait, le coefficient $a_{1}$ est
-le principal responsable des différences de performance.
-
-De plus, le capteur \textit{SkyPro}, qui a pourtant le rendement optique ($\eta_{0}$) le moins élevé,
-permet au \abr{SSC} d’obtenir le meilleur $F_{sav,\, ext}$. En effet, la surface considérée dans le calcul du
+Comme explicité lors du choix des capteurs, les capteurs plans récents ont tous un
+rendement optique ($\eta_{0}$) important et de ce fait, le coefficient $a_{1}$ est le
+principal responsable des différences de performance. De plus, le capteur \textit{SkyPro},
+qui a pourtant le rendement optique ($\eta_{0}$) le moins élevé, permet au \abr{SSC}
+d’obtenir le meilleur $F_{sav,\, ext}$. En effet, la surface considérée dans le calcul du
 rendement optique n’est pas la même. Pour le capteur \textit{SkyPro} la surface utilisée
 est la surface totale soit \SI{2.59}{\metre\squared}. Pour les trois autres, la surface
 d’entrée est utilisée soit \SI{2.32}{\metre\squared}. Il est ainsi nécessaire de porter

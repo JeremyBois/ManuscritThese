@@ -1568,8 +1568,8 @@ L’électricité est produite par conversion directe via un moteur \textit{Stir
 
 Le système de tour solaire est lui aussi basé sur la concentration des rayons solaires sur
 un point unique et permet d’obtenir une source chaude allant jusqu’à
-\SI{1500}{\celsius}. Un champ de mirroirs orientables ayant un système de suivi sur deux axes
-(\enquote{héliostats}), réfléchissent en permanence l’énergie solaire vers un absorbeur au
+\SI{1500}{\celsius}. Un champ de miroirs orientables ayant un système de suivi sur deux axes
+(\enquote{héliostats}), réfléchissent toute la journée l’énergie solaire vers un absorbeur au
 sommet d’une tour.
 L’électricité est fabriquée soit à l’aide d’une turbine et d’un fluide intermédiaire, soit par
 production directe. Finalement le dernier dispositif est le four solaire composé d’un
@@ -1650,7 +1650,7 @@ in}$. Ainsi l’approche dans ces conditions n’est valide que lorsque $G_{dif,
 représente moins de \SI{30}{\percent} du rayonnement hémisphérique total $G_{in}$ \parencite{Osorio2014}.
 Finalement la procédure de test ajoute la prise en compte du $C_{p,\,eff}$, la capacité
 thermique massique effective définit comme étant la somme pondérée des capacités
-massiques des différents composants du collecteur. Ces facteurs de pondération indiquent que certains éléments
+massiques des différents composants du capteur. Ces facteurs de pondération indiquent que certains éléments
 ne sont impliqués que partiellement dans l'inertie thermique du capteur. $c_{5}$, un nouveau coefficient de
 corrélation est alors défini par $\nicefrac{C_{p,\,eff}}{A}$ où $A$ est la surface de
 capteur considérée par la norme retenue. En couplant les différentes informations, il est
@@ -1807,7 +1807,7 @@ respectivement \SI{362}{\tonne} et \SI{112}{\mega\tonne} en France.
 Malgré une progression de la surface installée chaque année, la tendance décroit
 de \SI{14}{\percent} en $2015$ par rapport à $2014$ et la baisse semble continuer en
 $2016$. Au niveau économique, le marché stagne en Europe et est décroissant dans le reste
-du monde à l’exception de l’Afrique Sub-Saharienne et de l’Asie à l’exception de la Chine.
+du monde à l’exception de l’Afrique Sub-Saharienne et de l’Asie (Chine non-inclus).
 L’énergie solaire thermique assume donc une perte d’intérêt importante depuis le début du siècle
 (\figref{fig:tendances_enr}). Depuis $2010$ la tendance est toujours à la baisse (progression plus
 faible chaque année) et depuis $2014$ le solaire thermique affiche une progression nettement moins importante
@@ -2287,8 +2287,13 @@ d’optimisation de système solaires pour la production d’\abr{ECS}. Le syst�
 évalué successivement suivant sa performance d’un point de vue énergétique (exergie,
 $F_{sav, ext}$, et $F_{sav, si}$), économique (coût du cycle de vie, \abr{CCV}), et
 écologique (émissions de $CO_{2}$ puis en combinant plusieurs objectifs en un objectif
-unique. L’exergie permet de quantifier l’utilité d’une énergie qui diminue au cours de ces transformations. La
-valeur minimisée est donc la somme de l’énergie détruite par transformations successives. La définition est donc fortement dépendante de la source primaire considérée.
+unique.
+
+\itodo{Exergie}
+L’exergie permet de quantifier la qualité d’une énergie, celle ci diminuant au cours des transformations
+successives. La valeur minimisée dans les travaux est donc la somme de l’exergie détruite
+à chaque transformation.
+
 Le système est décrit dans \textit{TrnSys} et optimisé grâce à
 \textit{GenOpt} en faisant varier la surface de capteurs, le volume du ballon sanitaire,
 et le débit du fluide au travers des capteurs. Pour les différents objectifs la surface de
