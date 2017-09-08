@@ -165,12 +165,25 @@
   \fancyfoot[L]{\nouppercase{\leftmark}}
 \fi
 
+
+% Redefine plain page style to remove page number as in empty style
+% because plain style is internal to chapter and cannot be changed in any other ways
+\fancypagestyle{plain}{%
+  % Define style for footer
+  \fancyhf{}  % Clean all headers and footers
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[L]{}
+  \fancyfoot[R]{}
+  \fancyfoot[C]{}
+}
+
 % Footer and headers style for bibliography
 % \thispagestyle{bibliographyplain}                  % Select this style for one page
 % \pagestyle{bibliographyplain}                      % Apply this style for remaining pages
 \fancypagestyle{bibliographyPlain}{%
   % Add page number on chapter first page
-  \assignpagestyle{\chapter}{plain}
+  % \assignpagestyle{\chapter}{plain}
   % Define style for footer
   \fancyhf{}  % Clean all headers and footers
   \renewcommand{\headrulewidth}{0pt}
@@ -189,7 +202,7 @@
 % \pagestyle{appendicesplain}                      % Apply this style
 \fancypagestyle{appendicesPlain}{%
   % Add page number on chapter first page
-  \assignpagestyle{\chapter}{plain}
+  % \assignpagestyle{\chapter}{plain}
   % Define style for footer
   \fancyhf{}  % Clean all headers and footers
   \renewcommand{\headrulewidth}{0pt}
