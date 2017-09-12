@@ -91,6 +91,9 @@ docs/_build/
 *.nlo
 *.nls
 *.synctex.gz(busy)
+*.lua
+*.timestamp
+*.xmpi
 Manuscript/*.pdf
 Manuscript/Plan/*.pdf
 Demonstrations/*.pdf

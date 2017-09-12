@@ -3,7 +3,13 @@
 **Mise à jour: 27042017**
 
 
-## À faire:
+## À Faire:
+
+  - Correction Michel Pons
+  - Corriger la thèse pour acceptation de la norme PDF-A
+
+
+## Notes:
 
   - Virer la voie passive au maximum
   - Ajouter citation de Matplotlib / pandas / numpy
@@ -12,10 +18,6 @@
   - Nom Logiciel en italique (\textit)
   - Légende tableau en haut
   - Légende figure en bas
-  - Redéfinir les niveaux de titre avec titlesec
-  - Vérifier définition maître oeuvre et ouvrage
-  - Vérifier définition des phases de construction APD, ...
-  - Renseigner plus sur PAC CO2 et absorption
 
 ## Potentiel (BS 2017)
 
