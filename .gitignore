@@ -94,6 +94,8 @@ docs/_build/
 *.lua
 *.timestamp
 *.xmpi
+*.nav
+*.snm
 Manuscript/*.pdf
 Manuscript/Plan/*.pdf
 Demonstrations/*.pdf
