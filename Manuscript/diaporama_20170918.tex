@@ -2,7 +2,7 @@
 %!TEX encoding = UTF-8 Unicode
 
 
-\documentclass[xcolor=x11names, compress, 10pt]{beamer}
+\documentclass[xcolor=x11names, compress, 11pt]{beamer}
 % Options for doc
     % handout to hide navigation bar
     % compress to make pdf output smaller (not sure)
@@ -24,6 +24,7 @@
 \usepackage{palatino}                                      % Layout and font model
 
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{changepage}                                    % Enable changing text margins
 \usepackage{color, colortbl,transparent}                   % Add colors and opacity
 \usepackage{siunitx}                                       % Unit package
@@ -165,20 +166,24 @@
     \usebeamerfont{title}\insertsectionhead\par%
   \end{beamercolorbox}
   \vfill
-   \addtocounter{page}{-1}
+  \addtocounter{page}{-1}
   \end{frame}
 }
 
 
 
-
+\newcommand{\addsubtitle}[1]{%
+\begin{beamercolorbox}[sep=2pt,center,shadow=true,rounded=true]{footlinecolor}
+    #1\par%
+\end{beamercolorbox}%
+}
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \begin{document}
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
-\NoHyper
+\pagenumbering{Alph}
 \begin{frame}[plain,noframenumbering]
 \titlepage
 \addtocounter{page}{-1}
@@ -186,8 +191,9 @@
 \note{
 Notes for the first frame here
 }
-\endNoHyper
 \end{frame}
+\pagenumbering{arabic}
+
 
 % % Group can be used to declare local change
 % \begingroup
@@ -199,7 +205,7 @@ Notes for the first frame here
 %         \begin{columns}
 %             \begin{column}{0.3\textwidth}
 %                 \begin{flushleft}
-%                     \includegraphics[scale=0.07]{Ressources/Templates/Soutenance/Include/logos/I2M_logo.jpg}
+%                     \includegraphics[scale=0.07]{Ressources/Images/Soutenance/logos/I2M_logo.jpg}
 %                 \end{flushleft}
 %             \end{column}%
 %             \begin{column}{0.3\textwidth}
@@ -210,7 +216,7 @@ Notes for the first frame here
 %             \end{column}%
 %             \begin{column}{0.3\textwidth}
 %                 \begin{flushright}
-%                     \includegraphics[scale=0.08]{Ressources/Templates/Soutenance/Include/logos/bordeaux_logo.jpg}
+%                     \includegraphics[scale=0.08]{Ressources/Images/Soutenance/logos/bordeaux_logo.jpg}
 %                 \end{flushright}
 %             \end{column}
 %         \end{columns}
@@ -218,17 +224,17 @@ Notes for the first frame here
 %         \begin{columns}
 %         \begin{column}{0.3\textwidth}
 %             \begin{flushleft}
-%                 \includegraphics[scale=0.05]{Ressources/Templates/Soutenance/Include/logos/cea_logo.png}
+%                 \includegraphics[scale=0.05]{Ressources/Images/Soutenance/logos/cea_logo.png}
 %             \end{flushleft}
 %         \end{column}
 %         \begin{column}{0.3\textwidth}
 %             \begin{center}
-%                 \includegraphics[scale=0.22]{Ressources/Templates/Soutenance/Include/logos/comepos_logo.png}
+%                 \includegraphics[scale=0.22]{Ressources/Images/Soutenance/logos/comepos_logo.png}
 %             \end{center}
 %         \end{column}
 %         \begin{column}{0.3\textwidth}
 %             \begin{flushright}
-%                 \includegraphics[scale=0.13]{Ressources/Templates/Soutenance/Include/logos/aquitaine_logo.png}
+%                 \includegraphics[scale=0.13]{Ressources/Images/Soutenance/logos/aquitaine_logo.png}
 %             \end{flushright}
 %         \end{column}
 %         \end{columns}
@@ -254,15 +260,17 @@ Notes for the first frame here
 % % ==============================================================================
 \section{\scshape Contexte / Objectifs}
 % -------------------------------------
-
-
-
 % ------------------------------------------------------------------------------
 \subsection{Contexte global}
 \begin{frame}[c]
     \vfill
+    \centering
+    \includegraphics[height=0.5\textheight]{Ressources/Images/Environnement/evolution_effet_serre2.png}
+    \vfill
+    \includegraphics[width=\textwidth, clip=true, trim=0mm 0mm 0mm 150mm]{Ressources/Images/Environnement/elevation_temperature.jpg}
     \vfill
 \end{frame}
+
 
 
 
@@ -270,29 +278,158 @@ Notes for the first frame here
 \subsection{Contexte du bâtiment en France}
 \begin{frame}[c]
     \vfill
+    \begin{columns}
+        \begin{column}{0.35\textwidth}
+            \begin{itemize}
+                \item \SI{200000}{chantiers}
+            \end{itemize}
+            \vskip2em
+            \begin{itemize}
+                \item[~] Sobriété
+                \item[~] +
+                \item[~] Efficacité
+                \item[~] =
+                \item[~] Réduction des coûts
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}
+            \vskip1em
+            \includegraphics[height=0.45\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/reglementation.png}
+        \end{column}%
+    \end{columns}%
     \vfill
 \end{frame}
 
+
+% ------------------------------------------------------------------------------
+\subsection{Conception d’un bâtiment}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/vie_batiment.png}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Choix de l’enveloppe
+                \item Choix des équipements
+                \item Recours aux EnR
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/construction_batiment.png}
+        \end{column}%
+    \end{columns}%
+
+    % \begin{itemize}
+    %     \item construction / exploitation / démolition
+    %     \item Programmation / Conception / réalisation
+    %     \item Décrire les éléments pris en compte dans l’étude~:
+    %     \begin{itemize}
+    %         \item Bâti
+    %         \item chauffage / ECS / charges internes / Auxiliaire / Ventilation
+    %         \item Systèmes
+    %         \item Recours aux EnR
+    %         \item Cadre réglementaire
+    %     \end{itemize}
+    % \end{itemize}
+    \vfill
+
+    \note{RT 2012 impose des EnR ??}
+\end{frame}
 
 
 % ------------------------------------------------------------------------------
 \subsection{La maison à énergie positive}
 \begin{frame}[c]
-    \vfill
-    \vfill
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+                \small
+                Bilan~:
+                \begin{itemize}
+                    \scriptsize
+                    \item Énergie finale
+                    \item Énergie primaire
+                    \item $CO_{2}$
+                    \item Gain financier
+                \end{itemize}
+                \vskip3em
+                 Cadre normatif Européen~:
+                \begin{itemize}
+                    \scriptsize
+                    \item Sobriété
+                    \item Efficacité
+                    \item Énergie renouvelables
+                    \item Bilan positif
+                \end{itemize}
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[height=0.55\textheight]{Ressources/Images/Environnement/bilan_nzeb.png}
+            \vskip3em
+            \includegraphics[height=0.25\textheight]{Ressources/Images/Environnement/hurdle_race.png}
+        \end{column}%
+    \end{columns}%
+    \note{Pour respecter ces contraintes il faut faire preuve de sobriété sur le bâti ...}
 \end{frame}
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Le solaire thermique}
+\subsection{L’énergie solaire}
 \begin{frame}[c]
     \vfill
+    \centering
+    \includegraphics[height=0.6\textheight]{Ressources/Images/Environnement/evolution_enr.png}
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \item Progression du photovoltaïque
+                    \item Progression solaire thermique en baisse
+                \end{itemize}
+            \end{center}
+        \end{column}%
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \item Impact politique important
+                    \item Climat français propice
+                \end{itemize}
+            \end{center}
+        \end{column}%
+    \end{columns}%
     \vfill
+    % http://www.travaux.com/dossier/construction-ecologique/12274/Baisse-des-tarifs-d-achat-du-photovoltaique-pour-2011.html
+    % http://www.lefigaro.fr/impots/2010/09/06/05003-20100906ARTFIG00493-les-aides-au-photovoltaique-reduites-de-moitie.php
+    \note{Chute du crédit d'impôt photovoltaïque en 2011 50 à 25\% + baisse du tarif de rachat 58 à 46 expliquant la chute de progression.}
 \end{frame}
+
 
 \begin{frame}[c]
     \vfill
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Contexte_objectifs/repartition_installations.png}
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \item Solaire thermique peu développé en France
+                    \item SSC sur le marché Européen
+                \end{itemize}
+            \end{center}
+        \end{column}%
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \item Majoritairement en maison individuelle
+                    \item BEPOS avec SSC $< \SI{10}{\percent}$
+                \end{itemize}
+            \end{center}
+        \end{column}%
+    \end{columns}%
     \vfill
 \end{frame}
 
@@ -301,10 +438,39 @@ Notes for the first frame here
 % ------------------------------------------------------------------------------
 \subsection{Objectifs / Démarche}
 \begin{frame}[c]
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{frametitle}
+      \usebeamerfont{frametitle} \footnotesize \textbf{Comment aider à la prise de décision dans la construction de maisons solaires à énergie positive ?}\par%
+    \end{beamercolorbox}%
     \vfill
+    \begin{columns}
+        \begin{column}{0.2\textwidth}
+            \vskip2em
+            \addsubtitle{Verrous}
+            \vskip7em
+            \addsubtitle{Démarche}
+        \end{column}%
+        \begin{column}{0.9\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \footnotesize
+                    \item[--] Comment tenir compte du caractère multi-physiques et multi-critères ?
+                    \item[--] Potentiel d’un système solaire combiné et d’une MEPOS ?
+                    \item[--] Quels indicateurs retenir pour l’évaluation du SSC ?
+                    \item[--] Quel équilibre entre performance sur l’enveloppe et efficacité des systèmes ?
+                \end{itemize}
+                \vskip2em
+                \begin{itemize}
+                    \footnotesize
+                    \item[--] Modélisation puis évaluation du potentiel du SSC développé.
+                    \item[--] Dimensionnement couplé de l’enveloppe du SSC et de la logique de contrôle.
+                    \item[--] Génération d’un grand nombre d’alternatives.
+                    \item[--] Aide au choix d’une solution interactivement.
+                \end{itemize}
+            \end{center}
+        \end{column}%
+    \end{columns}%
     \vfill
 \end{frame}
-
 
 
 % ------------------------------------------------------------------------------
@@ -333,16 +499,117 @@ Notes for the first frame here
 
 % % ==============================================================================
 % % ==============================================================================
-\section{\scshape Objet de l’étude}
-% ---------------------------------
+\section{\scshape Cas d’étude}
+% ----------------------------
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Étude}
+\subsection{Outil de Modélisation}
 \begin{frame}[c]
     \vfill
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \item Multi-physiques
+                    \item Équationnel
+                    \item Acausal
+                    \item Boîte blanche
+                \end{itemize}
+            \end{center}
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/modelica_logo.png}
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/dymola_logo.jpg}
+        \end{column}%
+        \begin{column}{0.45\textwidth}
+            \centering
+            \begin{center}
+                \begin{itemize}
+                    \item Large bibliothèque
+                    \item Libre et ouverte
+                \end{itemize}
+            \end{center}
+            \vskip2em
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/Berkeley_logo.jpg}
+        \end{column}%
+    \end{columns}%
     \vfill
+    \note{Éprouvé dans d’autres domaines notamment le transport l’aéronautique ou les voitures.\\
+          Itération importantes.
+          Même logiciel pour le bâtiment et les systèmes}
+\end{frame}
+
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Bâtiment étudié}
+\begin{frame}[c]
+    \vfill
+    \centering
+    Ajouter image du bâtiment \\
+    \includegraphics[height=0.5\textheight]{Ressources/Images/Modelisation/maison.png}
+    \vfill
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Système étudié}
+\begin{frame}[c]
+    \vfill
+    \includegraphics[height=\textheight, clip=true, trim=0mm 250mm 310mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
+    \vfill
+\end{frame}
+\begin{frame}[c]
+    \vfill
+    \includegraphics[height=\textheight, clip=true, trim=310mm 250mm 0mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
+    \vfill
+\end{frame}
+\begin{frame}[c]
+    \vfill
+    \includegraphics[height=\textheight, clip=true, trim=0mm 0mm 310mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
+    \vfill
+\end{frame}
+\begin{frame}[c]
+    \vfill
+    \includegraphics[height=\textheight, clip=true, trim=310mm 0mm 0mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
+    \vfill
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Hétérogénéité des facteurs pris en compte}
+\begin{frame}[c]
+    \vfill
+    \includegraphics[height=0.8\textheight]{Ressources/Images/Soutenance/CasEtude/facteurs.png}
+    \vfill
+    \begin{itemize}
+        \item Fortement combinatoire
+    \end{itemize}
+
+\note{Changer tableau}
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Objectifs et contraintes}
+\begin{frame}[c]
+    \vfill
+    Objectifs~:
+    \begin{itemize}
+        \item Performance du SSC~: Sur le chauffage et sur l’ECS
+        \item Production des capteurs PV
+    \end{itemize}
+    \vfill
+    Contraintes~:
+    \begin{itemize}
+        \item Partage de la surface disponible en toiture 4 pans
+        \item Solutions ayant un bilan positif
+    \end{itemize}
+
+\note{Ajouter plus de détail sur objectifs et contraintes voir une autre diapo}
 \end{frame}
 
 
@@ -354,49 +621,120 @@ Notes for the first frame here
 
 
 
-
-
-
-
-
-
-
-
-
-
 % % ==============================================================================
 % % ==============================================================================
-\section{\scshape Méthodologie adoptée}
+\section{\scshape Méthodologie}
 % -------------------------------------
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Métho}
+\subsection{Approches Existantes}
 \begin{frame}[c]
     \vfill
+     Incrémentale~: Approche actuelle dans le bâtiment par essais/erreurs
+     Optimisation~: Approche valorisant temps machine
     \vfill
+
+    \note{Ajouter des smiley pour comparer les approches}
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Optimisation et décision}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[c]
+    \addsubtitle{La décision précède l’optimisation}
+    \vfill
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
+    \vfill
+
+Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: décision --> optimisation (aggrégation)
+\end{frame}
+
+\begin{frame}[c]
+    \addsubtitle{La décision précède l’optimisation}
+    \vfill
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/multi_to_mono.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[c]
+    \addsubtitle{L’optimisation précède à la décision}
+    \vfill
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
+    \vfill
+
+Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --> décision (notion de pareto)
+\end{frame}
+
+\begin{frame}[c]
+    \addsubtitle{L’optimisation précède à la décision}
+    \vfill
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/dominance.pdf}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[c]
+    \addsubtitle{L’optimisation précède à la décision}
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \begin{itemize}
+                    \item Variables non-continues
+                    \item Combinatoire importante
+                    \item Connaissances limitées
+                \end{itemize}
+            \end{center}
+        \end{column}%
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
+        \end{column}%
+    \end{columns}%
+    \vfill
+
+    \note{Refaire graphe pour gagner de la place}
 \end{frame}
 
 
 
 
+% ------------------------------------------------------------------------------
+\subsection{Optimisation par Colonie d’Abeilles Virtuelles}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
+    \vfill
+\end{frame}
 
 
-
-
-
-
-
-
-
-
+\begin{frame}[c]
+    \vfill
+    \centering
+    \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
+    \vfill
+\end{frame}
 
 
 
 % % ==============================================================================
 % % ==============================================================================
-\section{\scshape Mise en œuvre / Application}
+\section{\scshape Application}
 % --------------------------------------------
 
 
@@ -578,21 +916,21 @@ Notes for the first frame here
 %     \large{\color{SolarizedGreen} Solution:}
 %     \small
 %     \begin{itemize}
-%         \item Modelica : Language object, équationnel et acausal
-%         \item Dymola : Interface graphique et post-traitement
-%         \item DymoSim : Intégrateur multi-solveur
+%         \item Modelica~: Language object, équationnel et acausal
+%         \item Dymola~: Interface graphique et post-traitement
+%         \item DymoSim~: Intégrateur multi-solveur
 %     \end{itemize}
 %     \vfill
 %     \center
 %     \begin{columns}
 %         \begin{column}{0.3\textwidth}
-%             \includegraphics[height=8mm]{Ressources/Templates/Soutenance/Include/logos/modelica_logo.png}
+%             \includegraphics[height=8mm]{Ressources/Images/Soutenance/logos/modelica_logo.png}
 %         \end{column}
 %         \begin{column}{0.3\textwidth}
-%             \includegraphics[height=8mm]{Ressources/Templates/Soutenance/Include/logos/dassault_logo.jpg}
+%             \includegraphics[height=8mm]{Ressources/Images/Soutenance/logos/dassault_logo.jpg}
 %         \end{column}
 %         \begin{column}{0.3\textwidth}
-%             \includegraphics[height=8mm]{Ressources/Templates/Soutenance/Include/logos/dymola_logo.jpg}
+%             \includegraphics[height=8mm]{Ressources/Images/Soutenance/logos/dymola_logo.jpg}
 %         \end{column}
 %     \end{columns}
 %     \vfill
@@ -649,7 +987,7 @@ Notes for the first frame here
 %         \vfill
 %         \item Validation du modèle de capteur
 %         \vfill
-%         \item Confiance dans le comportement du système à travers :
+%         \item Confiance dans le comportement du système à travers~:
 %             \begin{itemize}
 %                 \item L’expertise de SolisArt
 %                 \item L’obtention des performances évaluées sur site
@@ -694,8 +1032,8 @@ Notes for the first frame here
 %     \frametitle{Description du modèle}
 %     \vfill
 %     \begin{itemize}
-%         \item Nombre de variable initiales : {\color{emphase}57 211}
-%         \item Nombre d’équations après réduction : {\color{emphase} 17 966}
+%         \item Nombre de variable initiales~: {\color{emphase}57 211}
+%         \item Nombre d’équations après réduction~: {\color{emphase} 17 966}
 %     \end{itemize}
 %     \vfill
 %     \begin{adjustwidth}{-2.3em}{0pt}
