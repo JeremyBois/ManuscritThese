@@ -13,7 +13,7 @@
 %     \setbeameroption{show notes on second screen=right}
 % }
 
-\mode<presentation>
+% \mode<presentation>
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,7 +27,45 @@
 \usepackage{hyperref}
 \usepackage{changepage}                                    % Enable changing text margins
 \usepackage{color, colortbl,transparent}                   % Add colors and opacity
-\usepackage{siunitx}                                       % Unit package
+
+\usepackage[separate-uncertainty=true,%
+            per-mode=symbol]{siunitx}                      % Unit package
+\usepackage{amsmath, amssymb, amsthm, mathtools,bm} % Allow adding complex equations
+\usepackage{nicefrac}                               % for \nicefrac macro
+\usepackage{letltxmacro}                            % Support for optional argument in redefinition
+
+\sisetup{output-decimal-marker={,}}                   % ... and in siunitx: dot with comma
+% Writing a dot print a comma in math mode
+\mathchardef\period=\mathcode`.                       % Allows to still write a dot if needed
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}         % Decimal separator in math mode ...
+
+
+\makeatletter % changes the catcode of @ to 11
+
+% Sign function
+\DeclareMathOperator{\sign}{sign}
+
+% Change the ways square root appears
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.1\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.59pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+
+
+% Quick and easy way to typeset abs (|) and norm (||)
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+% Swap the definition of \abs* and \norm*, so that \abs and \norm resizes the
+% size of the brackets, and the starred version does not.
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\makeatother % changes the catcode of @ back to 12
+
+
 \usepackage{booktabs, multirow}                            % Easy pro tables and multiple row
 \usepackage{marvosym}                                      % Smileys
 
@@ -267,7 +305,7 @@ Notes for the first frame here
     \centering
     \includegraphics[height=0.5\textheight]{Ressources/Images/Environnement/evolution_effet_serre2.png}
     \vfill
-    \includegraphics[width=\textwidth, clip=true, trim=0mm 0mm 0mm 150mm]{Ressources/Images/Environnement/elevation_temperature.jpg}
+    \uncover<2->{\includegraphics[width=\textwidth, clip=true, trim=0mm 0mm 0mm 150mm]{Ressources/Images/Environnement/elevation_temperature.jpg}}
     \vfill
 \end{frame}
 
@@ -530,7 +568,7 @@ Notes for the first frame here
                 \end{itemize}
             \end{center}
             \vskip2em
-            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/Berkeley_logo.jpg}
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/Buildings_logo.png}
         \end{column}%
     \end{columns}%
     \vfill
@@ -558,22 +596,10 @@ Notes for the first frame here
 \subsection{Système étudié}
 \begin{frame}[c]
     \vfill
-    \includegraphics[height=\textheight, clip=true, trim=0mm 250mm 310mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
-    \vfill
-\end{frame}
-\begin{frame}[c]
-    \vfill
-    \includegraphics[height=\textheight, clip=true, trim=310mm 250mm 0mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
-    \vfill
-\end{frame}
-\begin{frame}[c]
-    \vfill
-    \includegraphics[height=\textheight, clip=true, trim=0mm 0mm 310mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
-    \vfill
-\end{frame}
-\begin{frame}[c]
-    \vfill
-    \includegraphics[height=\textheight, clip=true, trim=310mm 0mm 0mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}
+    \only<1>{\includegraphics[height=\textheight, clip=true, trim=0mm 250mm 310mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
+    \only<2>{\includegraphics[height=\textheight, clip=true, trim=310mm 250mm 0mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
+    \only<3>{\includegraphics[height=\textheight, clip=true, trim=0mm 0mm 310mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
+    \only<4>{\includegraphics[height=\textheight, clip=true, trim=310mm 0mm 0mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
     \vfill
 \end{frame}
 
@@ -599,17 +625,23 @@ Notes for the first frame here
     \vfill
     Objectifs~:
     \begin{itemize}
-        \item Performance du SSC~: Sur le chauffage et sur l’ECS
-        \item Production des capteurs PV
+        \item Maximiser Performance du SSC~:
+        \begin{itemize}
+            \item $F_{sav}^{CH}$
+            \item $F_{sav}^{ECS}$
+        \end{itemize}
+        \item Maximiser la production des capteurs PV
+        \item Minimiser la surface de capteurs PV
     \end{itemize}
     \vfill
     Contraintes~:
     \begin{itemize}
         \item Partage de la surface disponible en toiture 4 pans
-        \item Solutions ayant un bilan positif
+        \item $\abs{Conso_{app} + Conso_{usages} - Prod_{PV}}   \leq  8 \quad (\si{kWh_{ep}\per\metre\squared})$
     \end{itemize}
 
-\note{Ajouter plus de détail sur objectifs et contraintes voir une autre diapo}
+\note{À mettre ici ou bien après méthodologie ??
+      Ajouter équation pour $F_{sav}$}
 \end{frame}
 
 
@@ -625,11 +657,8 @@ Notes for the first frame here
 % % ==============================================================================
 \section{\scshape Méthodologie}
 % -------------------------------------
-
-
-
 % ------------------------------------------------------------------------------
-\subsection{Approches Existantes}
+\subsection{Approche incrémentale ou optimisation ?}
 \begin{frame}[c]
     \vfill
      Incrémentale~: Approche actuelle dans le bâtiment par essais/erreurs
@@ -650,7 +679,7 @@ Notes for the first frame here
     \vfill
 \end{frame}
 
-\begin{frame}[c]
+\begin{frame}[t]
     \addsubtitle{La décision précède l’optimisation}
     \vfill
     \centering
@@ -660,7 +689,7 @@ Notes for the first frame here
 Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: décision --> optimisation (aggrégation)
 \end{frame}
 
-\begin{frame}[c]
+\begin{frame}[t]
     \addsubtitle{La décision précède l’optimisation}
     \vfill
     \centering
@@ -668,8 +697,8 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: décision --> o
     \vfill
 \end{frame}
 
-\begin{frame}[c]
-    \addsubtitle{L’optimisation précède à la décision}
+\begin{frame}[t]
+    \addsubtitle{L’optimisation précède la décision}
     \vfill
     \centering
     \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
@@ -678,31 +707,47 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: décision --> o
 Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --> décision (notion de pareto)
 \end{frame}
 
-\begin{frame}[c]
-    \addsubtitle{L’optimisation précède à la décision}
+\begin{frame}[t]
+    \addsubtitle{L’optimisation précède la décision}
     \vfill
-    \centering
-    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/dominance.pdf}
+    % \centering
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \centering
+            \small
+            Relation de dominance \\ \vskip1em
+            + \\  \vskip1em
+            Ensemble de solutions \\  \vskip2em
+            = \\  \vskip2em
+            Front de Pareto
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[width=0.98\textwidth]{Ressources/Images/Optimisation/dominance.pdf}
+        \end{column}%
+    \end{columns}%
+
     \vfill
 \end{frame}
 
 
-\begin{frame}[c]
-    \addsubtitle{L’optimisation précède à la décision}
+\begin{frame}[t]
+    \addsubtitle{L’optimisation précède la décision}
     \vfill
-    \centering
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{center}
                 \begin{itemize}
                     \item Variables non-continues
-                    \item Combinatoire importante
-                    \item Connaissances limitées
+                    \item<2-> Combinatoire importante
+                    \item<3-> Connaissances limitées
                 \end{itemize}
             \end{center}
         \end{column}%
-        \begin{column}{0.5\textwidth}
-            \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
+        \begin{column}{0.55\textwidth}
+            \only<1>{\includegraphics[width=1\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}}
+            \only<2>{\includegraphics[width=1\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}}
+            \only<3>{\includegraphics[width=1\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}}
         \end{column}%
     \end{columns}%
     \vfill
@@ -718,7 +763,144 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
 \begin{frame}[c]
     \vfill
     \centering
-    \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
+    \begin{columns}
+        \begin{column}{0.65\textwidth}
+            \raggedright
+            \includegraphics[height=0.7\textheight]{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
+        \end{column}%
+        \begin{column}{0.4\textwidth}
+            \raggedleft
+            \begin{itemize}
+                \item Initialisation (fleurs)
+                \item eq ouvrière
+                \item eq exploratrice
+                \item eq butineuse
+            \end{itemize}
+        \end{column}%
+    \end{columns}%
+    \vfill
+
+    \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom}
+\end{frame}
+
+
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \uncover<2->{\includegraphics[height=0.6\textheight]{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}}
+            \uncover<3->{\includegraphics[height=0.4\textheight, clip=true, trim=100mm 10mm 100mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}}
+        \end{column}%
+        \begin{column}{0.55\textwidth}
+            \raggedleft
+            \uncover<1->{\includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}}
+        \end{column}%
+    \end{columns}%
+    \vfill
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la complexité}
+\begin{frame}[t]
+    \addsubtitle{Criblage de Morris}
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \begin{itemize}
+                \item bla bla
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.6\textwidth}
+            \raggedleft
+            \includegraphics[width=\textwidth]{Ressources/Images/Sensibilite/cube_morris.pdf}
+        \end{column}%
+    \end{columns}%
+    \vfill
+\end{frame}
+
+
+\begin{frame}[t]
+    \addsubtitle{Modèle de substitution par chaos polynomial}
+    \vfill
+    \centering
+    % \begin{equation*}
+    %     Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P}
+    %         c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
+    % \end{equation*}
+    \vfill
+\end{frame}
+
+
+
+
+% % ==============================================================================
+% % ==============================================================================
+\section{\scshape Application}
+% ----------------------------
+
+
+% ------------------------------------------------------------------------------
+\subsection{Conditions limites de l’étude}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la cardinalité}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 178mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[c]
+    \vfill
+    Ajouter tableau avec facteurs les plus influents
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Création des méta-modèles}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 128mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[c]
+    \vfill
+    Ajouter des résultats de méta-modèles
+    \vfill
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Optimisation multi-objectifs}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 77mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[c]
+    \vfill
+    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
     \vfill
 \end{frame}
 
@@ -726,28 +908,43 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
 \begin{frame}[c]
     \vfill
     \centering
-    \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
+    \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/tanks_count.pdf}}
+
+    \only<2>{%
+    \begin{adjustwidth}{-2em}{-2em}
+        \includegraphics[width=1.14\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
+    \end{adjustwidth}
+    }
     \vfill
+
+    \note{Ajouter $F_{sav,\,ext}$ à la figure}
 \end{frame}
 
-
-
-% % ==============================================================================
-% % ==============================================================================
-\section{\scshape Application}
-% --------------------------------------------
 
 
 % ------------------------------------------------------------------------------
-\subsection{Oeuvre}
-\begin{frame}[c]
+\subsection{Aide à la décision}
+\begin{frame}[t]
     \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 0mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
     \vfill
 \end{frame}
 
 
-
-
+\begin{frame}[c]
+    \vfill
+    \centering
+    \only<1-2>{%
+        \includegraphics[width=0.7\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/base.png}
+        \uncover<2>{\includegraphics[width=0.7\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}}
+    }
+    \only<3-4>{%
+    \uncover<3->{\includegraphics[width=0.7\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}}
+    \uncover<4->{\includegraphics[width=0.7\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/final.png}}
+    }
+    \vfill
+\end{frame}
 
 
 
@@ -792,625 +989,6 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% \subsection{Problématique}
-% \begin{frame}[c]
-%     \frametitle{Problématique}
-%     \vfill
-%     \large{\color{SolarizedGreen} Constat:}
-%     \small
-%     \begin{itemize}
-
-%         % Présenter le sujet !!
-
-%         \item Réchauffement climatique
-%             \begin{itemize}
-%                 \footnotesize
-%     \small
-%                 \item Nécessaire de réduire la consommation
-%                 \item Vers des bâtiments à faible consommation
-%             \end{itemize}
-%         \item Climat favorable au solaire: 1112~\si{kWh/m^{2}/an}
-%         \item Solaire thermique faiblement exploité (2\% des maisons individuelles)
-%         \item De nombreux travaux existants
-%         \item Etudes existantes trop peu détaillées
-%             \begin{itemize}
-%                 \footnotesize
-%                 \item Données d’entrées mensuelles / modèles simplifiés
-%                 \item Aucunes informations sur le comportement du système
-%                 \item Algorithme de contrôle simplifié
-%             \end{itemize}
-%         \item Système et bâtiment dimensionnés indépendaments
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \vfill
-%     \large{\color{SolarizedGreen} Verrous identifiés:}
-%     \small
-%     \begin{itemize}
-%         \item Peu de développement utilisant des modèles détaillés de SSC$^{*}$
-%         % \item Comment définir une maison faiblement consommatrice ?
-%         \item Un dimensionnement couplé système/bâtiment, quel détail pour les composants ?
-%         \item Pas ? Peu ? de travaux sur les intéractions système solaire~/~bâtiment
-%         \item Le solaire thermique pour des maisons faiblement consommatrices ?
-%         % \item Est-il possible de réaliser une maison 100\% solaire ?
-%         \item Le couplage système~/~bâtiment permet-il ...
-%             \begin{itemize}
-%                 \footnotesize
-%                 \item ... de mieux comprendre le fonctionnement du système ?
-%                 \item ... d’améliorer la performance (pilotage + dimensionnement)?
-%                 \item ... de remettre en question la sur-isolation ?
-%             \end{itemize}
-%         \item Forte cardinalité
-%     \end{itemize}
-%     \vfill
-
-%     \tiny
-%     $^{*}$SSC = Système solaire combiné
-%     \vfill
-% \end{frame}
-
-% \subsection{Approche par optimisation}
-% \begin{frame}[c]
-%     % Choix de l’approche MEPOS (inspiration venant des NZEB et de PassivHaus)
-%     % Plus de souplesse sur la performance de l’enveloppe
-%     \frametitle{Approche par optimisation}
-%     \vfill
-%     \large{\color{SolarizedGreen}  1. ~Modelisation du SCC:}
-%     \small
-%     \begin{itemize}
-%         \item Inspiration d’un modèle existant et innovant
-%         \item Détail de l’algorithme de contrôle
-%         \item Couplage système~/~bâtiment
-%         \item Analyse détaillée de son comportement
-%     \end{itemize}
-%     \vfill
-%     \large{\color{SolarizedGreen} 2. ~Évaluer les éléments caractéristiques d’un SSC:}
-%     \small
-%     \begin{itemize}
-%         \item Quels sont les facteurs dimensionnants ?
-%         \item Quels sont les indicateurs de performance ?
-%         \item Quel méthode pour une optimisation couplée ?
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Décrire}
-% % -------------------------------
-% \subsection{Modélisation}
-% \begin{frame}
-%     \frametitle{Modélisation}
-%     \vfill
-%     \large{\color{SolarizedGreen} Contraintes:}
-%     \small
-%     \begin{itemize}
-%         \item Évaluer la performance de système existant
-%         \item Modélisation multi-physique
-%         \item Nombreuses itérations / modifications / modèles
-%         \item Souplesse sur la description des systèmes (pas de boîte noire)
-%     \end{itemize}
-%     \vfill
-%     \large{\color{SolarizedGreen} Solution:}
-%     \small
-%     \begin{itemize}
-%         \item Modelica~: Language object, équationnel et acausal
-%         \item Dymola~: Interface graphique et post-traitement
-%         \item DymoSim~: Intégrateur multi-solveur
-%     \end{itemize}
-%     \vfill
-%     \center
-%     \begin{columns}
-%         \begin{column}{0.3\textwidth}
-%             \includegraphics[height=8mm]{Ressources/Images/Soutenance/logos/modelica_logo.png}
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             \includegraphics[height=8mm]{Ressources/Images/Soutenance/logos/dassault_logo.jpg}
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             \includegraphics[height=8mm]{Ressources/Images/Soutenance/logos/dymola_logo.jpg}
-%         \end{column}
-%     \end{columns}
-%     \vfill
-%     ~
-% \end{frame}
-
-
-% \subsection{Mode de chauffage}
-% \begin{frame}
-%     \frametitle{Quel modèle ?}
-%     % Vérification != Validation
-%     % Vérification capteur, vérification consommations, vérification comportement,
-%     % vérification facteurs caractéristiques annuels (SolisArt)
-
-%     \large{\color{SolarizedGreen} Contrôler la fiabilité de l’approche par modélisation}
-%     \includegraphics[scale=0.35]{Includes/Modelisation/eau_hydraulique.pdf}
-% \end{frame}
-
-% \begin{frame}[c]
-%     % Présenter vecteur Air
-%     \vfill
-%     \center
-%     \Large
-%     \begin{columns}
-%         \begin{column}{0.3\textwidth}
-%             Réactivité
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             Simplicité
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             Vecteur Air
-%         \end{column}
-%     \end{columns}
-%     \vfill
-%     \includegraphics[scale=0.34]{Includes/Modelisation/air_hydraulique.pdf}
-%     \vfill
-% \end{frame}
-
-% % -------------------------------
-% \subsection{Quelle performance}
-% \begin{frame}[c]
-%     \frametitle{Performances Annuelles}
-%     \includegraphics[scale=0.2]{Includes/Modelisation/annuel_bordeaux.png}
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Que retenir ?}
-%     \vfill
-%     \begin{itemize}
-%         \item Construction de multiples modèles de SSC
-%         \vfill
-%         \item Capacité à évaluer les performances du modèle
-%         \vfill
-%         \item Validation du modèle de capteur
-%         \vfill
-%         \item Confiance dans le comportement du système à travers~:
-%             \begin{itemize}
-%                 \item L’expertise de SolisArt
-%                 \item L’obtention des performances évaluées sur site
-%             \end{itemize}
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Comprendre}
-% % --------------------------
-% \subsection{Analyse paramétrique}
-% \begin{frame}[c]
-%     \frametitle{Objectifs}
-%     \large{\color{SolarizedGreen} Approche paramétrique}
-%     \begin{itemize}
-%         \item Évaluer l’impact des modifications
-%             \begin{itemize}
-%                 \item Variation des scénarios (consigne, puisage, apports internes, ...)
-%                 \item Variation des conditions climatiques
-%             \end{itemize}
-%         \vfill
-%         \item Définir les facteurs influents
-%         \vfill
-%         \item Définir les indicateurs importants
-%         \vfill
-%         \item Definir les scénarios pour les occupants
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Échantillon de l’analyse paramétrique}
-%     \begin{adjustwidth}{-2.3em}{-2em}
-%         \includegraphics[scale=0.2]{Includes/Identification/variations.pdf}
-%     \end{adjustwidth}
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Description du modèle}
-%     \vfill
-%     \begin{itemize}
-%         \item Nombre de variable initiales~: {\color{emphase}57 211}
-%         \item Nombre d’équations après réduction~: {\color{emphase} 17 966}
-%     \end{itemize}
-%     \vfill
-%     \begin{adjustwidth}{-2.3em}{0pt}
-%         \includegraphics[scale=0.22]{Includes/Identification/modele.png}
-%     \end{adjustwidth}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Niveau de détail du modèle: Bâtiment}
-%     % DIFFERENCE ENERGY PLUS ET DYMOLA
-%     \large{\color{SolarizedGreen} Modèle monozone:}
-%     \small
-%     \begin{itemize}
-%         \item Simulation de Octobre à Mai
-%         \item Consommation identiques au modèle multi-zone
-%             \begin{itemize}
-%                 \scriptsize
-%                 \item Energy Plus: {\color{emphase}1190~\si{kWh}}
-%                 \item Modelica: {\color{emphase}1114~\si{kWh}}
-%             \end{itemize}
-%         \item Le confort d’été n’est pas évalué
-%     \end{itemize}
-%     \vfill
-%     \center
-%     \small
-%     \begin{columns}
-%         \begin{column}{0.7\textwidth}
-%             \includegraphics[scale=0.15]{Includes/Identification/consoElectrique.PNG}
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             \vfill
-%             Annuelle $\sim$ 3/4h
-%             \vfill
-%             Réduite $\sim$ 1h
-%             \vfill
-%         \end{column}
-%     \end{columns}
-%     ~
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Niveau de détail du modèle: Contrôle}
-%     \includegraphics[scale=0.19]{Includes/Identification/control_air_curve.pdf}
-%     % Expliquer l’apport d’un modèle détaillé sur la compréhension
-%     % et l’impact sur la performance
-% \end{frame}
-
-
-% \begin{frame}[c]
-%     \frametitle{Que retenir ?}
-%     \begin{itemize}
-%         \item Impact important des occupants
-%         \item Identification d’un problème multi-objectif
-%         \item Réduction de la cardinalité en fixant les scénarios
-%     \end{itemize}
-%     \vfill
-%     \center
-%     \includegraphics[scale=0.25]{Includes/Identification/repartition_chauffage_consosElec.png}
-%     % Problème fortement dépendant des scénarios (impact important des occupants)
-%     % Problème fortement dépendant de la météo
-%     % Processus d’optimisation limité au choix en amont
-%     % Aide au choix des facteurs et indicateurs pour l’analyse de sensibilité
-%     % Aide à la détermination d’objectifs pour l’optimisation
-%     \vfill
-% \end{frame}
-
-
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Identifier}
-% % ----------------------------------------
-% \subsection{Approche retenues}
-% \begin{frame}[c]
-%     \frametitle{Analyse de sensibilité}
-%     \large{\color{SolarizedGreen} Méthode de Morris:}
-%     \small
-%     \begin{itemize}
-%         \item Méthode OAT (variation d’un unique paramètre à la fois)
-%         \item Globale et qualitative
-%     \end{itemize}
-%     % Décrire rapidement Morris (Méthode OAT d’analyse de sensibilité globale qualitative)
-%     % Présenter les facteurs / les indicateurs
-%     \vfill
-%     \scriptsize
-%     \begin{tabular}{lp{6cm}r}
-%         \toprule
-%         Nom                      & Signification                                        & Unité    \\
-%         \midrule
-%         Chauffage solaire        & Quantité d’énergie solaire transmise à la maison     & \si{kWh} \\
-%         Chauffage electrique     & Quantité d’énergie électrique pour le chauffage      & \si{kWh} \\
-%         Chauffage solaire actif  & Part solaire direct                                  & \si{kWh} \\
-%         Chauffage solaire passif & Part solaire indirect                                & \si{kWh} \\
-%         BallonECS solaire        & Quantité d’énergie solaire apportée au ballon ECS    & \si{kWh} \\
-%         BallonECS electrique     & Quantité d’énergie électrique apportée au ballon ECS & \si{kWh} \\
-%         Consommation appoint     & Quantité totale de l’appoint (pompes comprises)      & \si{kWh} \\
-%         Production solaire       & Énergie récupérée au niveau des capteurs             & \si{kWh} \\
-%         Production solaire utile & Production moins les pertes en ligne                 & \si{kWh} \\
-%         Couverture solaire       & Part solaire                                         & \%       \\
-%         Couverture chauffage     & Part solaire sur le chauffage                        & \%       \\
-%         Couverture ECS           & Part solaire sur l’ECS                               & \%       \\
-%         Consommation chauffage   & Chauffage solaire + électrique                       & \si{kWh} \\
-%         Consommation Électrique  & Consommation appoint + charges électriques           & \si{kWh} \\
-%         Couverture Électrique    & Production solaire / Consommation électrique         & \%       \\
-%         \bottomrule
-%     \end{tabular}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Sensibilité des indicateurs}
-%     \vspace{-1cm}
-%     \begin{adjustwidth}{-4.5em}{-2em}
-%         \includegraphics[scale=0.42]{Includes/Identification/indicators_table.pdf}
-%     \end{adjustwidth}
-
-% \end{frame}
-
-
-% \begin{frame}[c]
-%     \frametitle{Que retenir ?}
-%     \vfill
-%     \large{\color{SolarizedGreen} Choix des indicateurs:}
-%     \small
-%     \begin{itemize}
-%         \item Couverture solaire sur le chauffage
-%         \item Couverture solaire sur l’ECS
-%         \item Consommation de l’appoint
-%         \item Contrainte de bilan énergétique positif
-%     \end{itemize}
-%     \vfill
-%     \large{\color{SolarizedGreen} En cours:}
-%     \small
-%     \begin{itemize}
-%         \item Analyse de Morris sur l’ensemble des indicateurs
-%         \item Augmentation de la plage de variation de la performance de la maison
-%         \item Prise en compte des contraintes de la maison IGC
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Caractériser}
-% % -------------------------------
-% \subsection{Optimisation multi-objectifs}
-% \begin{frame}[c]
-%     \frametitle{Comment ?}
-%     \center
-%     \normalsize
-%     \vspace{-0.6cm}
-%     \large{\color{SolarizedGreen} Problème complexe multi-objectif et sous contraintes}
-%     \vfill
-%     \small
-%     \begin{columns}
-%         \begin{column}{0.3\textwidth}
-%             Connaissances limitées
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             Combinatoire
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             Temps de simulation important
-%         \end{column}
-%     \end{columns}
-%     \vfill
-%     \includegraphics[scale=0.19]{Includes/Identification/Classification_optimisations_approchee.png}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \frametitle{Construction d’une méthode adaptée}
-%     % Décrire un meta-heuristique
-%     \large{\color{SolarizedGreen} Inspiré du comportement des abeilles mélifères}
-%     \center
-%     \begin{adjustwidth}{-4.5em}{0em}
-%         \begin{columns}
-%             \begin{column}{0.4\textwidth}
-%                 \includegraphics[scale=0.22]{Includes/Caracterisation/algorithme_complet.png}
-%             \end{column}
-%             \begin{column}{0.6\textwidth}
-%                 \small
-%                 \begin{itemize}
-%                     \item Un générateur de solution (ABC)
-%                 \end{itemize}
-%                     \vfill
-%                 \begin{itemize}
-%                     \item Une méthode d’archivage ($\epsilon$-dominance)
-%                 \end{itemize}
-%                     \vfill
-%                 \begin{itemize}
-%                     \item Une marche aléatoire (Marche de Lévy)
-%                 \end{itemize}
-%                     \vfill
-%                 \begin{itemize}
-%                     \item Une méthode d’initialisation (Opposite Based Learning)
-%                 \end{itemize}
-%                     \vfill
-%                 \begin{itemize}
-%                     \item Une methode de prise en compte des contraintes (Pénalisation dynamique)
-%                 \end{itemize}
-%             \end{column}
-%         \end{columns}
-%     \end{adjustwidth}
-% \end{frame}
-
-% \begin{frame}[c]
-%     \large{\color{SolarizedGreen} Artificial Bee Colony}
-%     % DESCRIPTION GÉNÉRATEUR IMAGE ABC
-%     \vfill
-%     \center
-%     \includegraphics[scale=0.15]{Includes/Caracterisation/BeeDance.png}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \large{\color{SolarizedGreen} Archivage par $\epsilon$-dominance}
-%     % DESCRIPTION ARCHIVE IMAGE ARCHIVE
-%     \vfill
-%     \center
-%     \includegraphics[scale=0.5]{Includes/Caracterisation/selection_boxes.png}
-%     \vfill
-% \end{frame}
-
-
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Bilan}
-% % -------------------------------
-% \subsection{Conclusions et perspectives}
-% \begin{frame}[c]
-%     \frametitle{Conclusions et perspectives}
-%     \large{\color{SolarizedGreen} Conclusions:}
-%     \vfill
-%     \small
-%     \begin{itemize}
-%         \item Modélisation de multiples systèmes solaires
-%         \item Sélection du vecteur Air pour l’étude de cas
-%         \item Identification de l’importance des occupants pour une maison passive
-%         \item Réduction des degrés de liberté pour réduire la cardinalité du problème
-%         \item Identification des facteurs influents
-%         \item Identification des objectifs pour l’optimisation
-%         \item Définition des contraintes
-%         \item Proposition d’une methode d’optimisation adaptée au problème
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[c]
-%     \vfill
-%     \large{\color{SolarizedGreen} Perspectives:}
-%     \vfill
-%     \small
-%     \begin{itemize}
-%         \item Finalisation de l’étude de sensibilité
-%         \vfill
-%         \item Prise en compte du facteur coût économique dans l’optimisation
-%         \vfill
-%         \item Réalisation de l’optimisation multi-objectif
-%         \vfill
-%         \item Optimisation prévue fin Décembre
-%     \end{itemize}
-%     \vfill
-% \end{frame}
-
-% % % % ==============================================================================
-% % % % ==============================================================================
-% % \section{\scshape Analyse de Morris}
-% % % ---------------------------------
-% % \subsection{Paramètres}
-% % \begin{frame}[c]
-% %     \frametitle{Paramètres}
-% %     \vfill
-% %     \begin{tabular}{llc}
-% %         \toprule
-% %         Nom                & Signification              & Valeur         \\
-% %         \midrule
-% %         k                  & Nombre de variable         & 22             \\
-% %         \\
-% %         N                  & Nombre de pré-trajectoires & 100            \\
-% %         \\
-% %         p                  & Nombre de niveaux          & 4              \\
-% %         \\
-% %         r                  & Nombre de trajectoires     & 10             \\
-% %         \\
-% %         $\Delta$           & Pas de discrétisation      & $\frac{2}{3}$  \\
-% %         \\
-% %         Saut               & Le saut                    & 2              \\
-% %         \\
-% %         $r \times (k + 1)$ & Nombre de simulation       & 230            \\
-% %         \bottomrule
-% %     \end{tabular}
-% %     \vfill
-% % \end{frame}
-
-
-% % \subsection{Facteurs}
-% % \begin{frame}[c]
-% %     \frametitle{Facteurs de l’enveloppe}
-% %     \vfill
-% %     \begin{tabular}{lccr}
-% %         \toprule
-% %         Nom                        & Borne mini & Borne max & Unité            \\
-% %         \midrule
-% %         Résistance plancher       & 7.5         & 10        & \si{m^{2}.K / W} \\
-% %         \\
-% %         Résistance plafond        & 7.5         & 10        & \si{m^{2}.K / W} \\
-% %         \\
-% %         Résistance mur            & 4.5         & 6.5       & \si{m^{2}.K / W} \\
-% %         \\
-% %         Surface vitrée Sud        & 8.62        & 12.9      & \si{m^{2}}       \\
-% %         \\
-% %         Surface vitrée Nord       & 0.46        & 0.684     & \si{m^{2}}       \\
-% %         \\
-% %         Surface vitrée Est        & 10.08       & 15.12     & \si{m^{2}}       \\
-% %         \\
-% %         Surface vitrée Ouest      & 5.18        & 7.78      & \si{m^{2}}       \\
-% %         \\
-% %         Facteur solaire           & 0.38        & 0.63      &                  \\
-% %         \bottomrule
-% %     \end{tabular}
-% %     \vfill
-% % \end{frame}
-
-% % \begin{frame}[c]
-% %     \frametitle{Facteurs du système}
-% %     \vfill
-% %     \begin{tabular}{lccr}
-% %         \toprule
-% %         Nom                            & Borne mini  & Borne max & Unité               \\
-% %         \midrule
-% %         Volume ballon ECS              & 0.1         & 0.5       & \si{m^{3}}          \\
-% %         Résistance ballon ECS          & 7           & 10        & \si{m^{2}.K / W}    \\
-% %         Volume ballon Stockage         & 0.1         & 0.5       & \si{m^{3}}          \\
-% %         Résistance ballon Stockage     & 7           & 10        & \si{m^{2}.K / W}    \\
-% %         Inclinaison capteur            & 15          & 60        & \si{\degree}        \\
-% %         Orientation capteur            & Ouest (-90) & Est (90)  & \si{\degree}        \\
-% %         Nombre capteurs                & 2           & 5         &                     \\
-% %         Rendement optique              & 0.63        & 0.84      &                     \\
-% %         a1                             & 0.9249      & 3.796     & \si{W/m^{2}.K}      \\
-% %         a2                             & 0.00069     & 0.013     & \si{W/m^{2}.K^{2}}  \\
-% %         Pente                          & -5.103      & -0.975    & \si{W/(m^{2}.K)}    \\
-% %         Épaisseur isolant canalisation & 0.013       & 0.04      & \si{m}              \\
-% %         \midrule
-% %         Consigne solaire               & 19          & 25        & \si{\degreeCelsius} \\
-% %         Delta solaire minimum          & 5           & 15        & \si{\degreeCelsius} \\
-% %         \bottomrule
-% %     \end{tabular}
-% %     \vfill
-% % \end{frame}
-
-
-% % \subsection{Indicateurs}
-% % \begin{frame}[c]
-% %     \frametitle{Indicateurs}
-% %     \vfill
-% %     \footnotesize
-% %     \begin{tabular}{lp{6cm}r}
-% %         \toprule
-% %         Nom                      & Signification                                        & Unité    \\
-% %         \midrule
-% %         Chauffage solaire        & Quantité d’énergie solaire pour le chauffage         & \si{kWh} \\
-% %         Chauffage electrique     & Quantité d’énergie électrique pour le chauffage      & \si{kWh} \\
-% %         Chauffage solaire actif  & Part solaire direct                                  & \si{kWh} \\
-% %         Chauffage solaire passif & Part solaire indirect                                & \si{kWh} \\
-% %         BallonECS solaire        & Quantité d’énergie solaire apportée au ballon ECS    & \si{kWh} \\
-% %         BallonECS electrique     & Quantité d’énergie électrique apportée au ballon ECS & \si{kWh} \\
-% %         Consommation electrique  & Quantité totale électrique                           & \si{kWh} \\
-% %         Production solaire       & Quantité totale solaire                              & \si{kWh} \\
-% %         Production solaire utile & Quantité totale solaire moins les pertes en ligne    & \si{kWh} \\
-% %         Couverture solaire       & Part solaire                                         & \%       \\
-% %         Couverture chauffage     & Part solaire sur le chauffage                        & \%       \\
-% %         Couverture ECS           & Part solaire sur l’ECS                               & \%       \\
-% %         \bottomrule
-% %     \end{tabular}
-% %     \vfill
-% % \end{frame}
 
 
 
