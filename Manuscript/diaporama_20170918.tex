@@ -146,7 +146,7 @@
 \setbeamercolor{frametitle}{fg=SolarizedBlue,bg=SolarizedBrWhite}
 \setbeamercolor{title}{fg=SolarizedBlue,bg=SolarizedBrWhite}
 \setbeamercolor{normal text}{fg=ClassicBlack,bg=white}
-\setbeamercolor{alerted text}{fg=SolarizedRed}
+\setbeamercolor{alerted text}{fg=SolarizedRed,bg=SolarizedBrWhite}
 \setbeamercolor{example text}{fg=ClassicBlack}
 \setbeamercolor{structure}{fg=ClassicBlack}
 \setbeamercolor{palette tertiary}{fg=ClassicBlack,bg=black!10}
@@ -213,6 +213,13 @@
 
 \newcommand{\addsubtitle}[1]{%
 \begin{beamercolorbox}[sep=2pt,center,shadow=true,rounded=true]{footlinecolor}
+    #1\par%
+\end{beamercolorbox}%
+}
+
+
+\newcommand{\addalert}[1]{%
+\begin{beamercolorbox}[sep=2pt,center,shadow=true,rounded=true]{alerted text}
     #1\par%
 \end{beamercolorbox}%
 }
@@ -708,83 +715,94 @@ Notes for the first frame here
 % -------------------------------------
 % ------------------------------------------------------------------------------
 \subsection{Approche incrémentale ou optimisation ?}
-\begin{frame}[c]
-    \vfill
-     ~: Approche actuelle dans le bâtiment par essais/erreurs
-     ~: Approche valorisant temps machine
+\begin{frame}[t]
      \begin{columns}
         \begin{column}{0.45\textwidth}
             \centering
             \addsubtitle{Incrémentale}
             \begin{itemize}
-                \item Intuitif
-                \item Essais / erreurs
-                \item Expérience uniquement
-                \item Amélioration solution de base
+                \item[\Smiley{}] {\color{SolarizedGreen} Approche actuelle du domaine}
+                \item[\Smiley{}] {\color{SolarizedGreen} Simple}
+                \item[\Frowny{}] {\color{SolarizedRed} Processus par essais / erreurs}
+                \item[\Frowny{}] {\color{SolarizedRed} Basée uniquement sur l’expérience}
+                \item[\Frowny{}] {\color{SolarizedRed} Amélioration solution de base}
             \end{itemize}
         \end{column}%
         \begin{column}{0.55\textwidth}
-            \centering
+            % \centering
             \uncover<2->{%
             \addsubtitle{Optimisation}
             \begin{itemize}
-                \item
-                \item Automatisée
-                \item Valorisation de la puissance machine
-                \item Exploration du domaine de décision
-                \item Renforcement de la connaissance
+                \item[\Frowny{}] {\color{SolarizedRed} Développement de la méthodologie}
+                \item[\Smiley{}] {\color{SolarizedGreen} Automatisée}
+                \item[\Smiley{}] {\color{SolarizedGreen} Valorisation de la puissance machine}
+                \item[\Smiley{}] {\color{SolarizedGreen} Exploration du domaine de décision}
+                \item[\Smiley{}] {\color{SolarizedGreen} Renforcement de la connaissance}
             \end{itemize}
             }
         \end{column}%
     \end{columns}%
-    \vfill
+    % \vfill
 
-    \note{Ajouter des smiley pour comparer les approches}
+    \note{Approche actuelle dans le bâtiment par essais/erreurs.
+          Approche valorisant temps machine
+          Ajouter des smiley pour comparer les approches}
 \end{frame}
 
 
 
 % ------------------------------------------------------------------------------
 \subsection{Optimisation et décision}
-\begin{frame}[c]
-    \vfill
-    \centering
-    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
-    \vfill
-\end{frame}
-
 \begin{frame}[t]
     \addsubtitle{La décision précède l’optimisation}
     \vfill
     \centering
-    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
-    \vfill
-
-Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: décision --> optimisation (aggrégation)
-\end{frame}
-
-\begin{frame}[t]
-    \addsubtitle{La décision précède l’optimisation}
-    \vfill
-    \centering
-    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/multi_to_mono.pdf}
+    \only<1>{\includegraphics[width=0.8\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_priori.pdf}}
+    \only<2>{\includegraphics[width=0.8\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_priori_detail.pdf}}
     \vfill
 \end{frame}
+
 
 \begin{frame}[t]
     \addsubtitle{L’optimisation précède la décision}
     \vfill
     \centering
-    \includegraphics[width=0.8\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}
+    \begin{adjustwidth}{-2.1em}{-2.1em}
+     \begin{columns}
+        \begin{column}{0.42\textwidth}
+            \raggedright
+            \begin{itemize}
+                \item<2-> Variables hétérogènes
+                \vskip-0.5em
+                \begin{itemize}
+                    \item<2->[--] Qualitatives
+                    \item<2->[--] Discrètes
+                    \item<2->[--] Continues
+                \end{itemize}
+                \vskip0.5em
+                \item<3-> Combinatoire importante
+                \vskip0.5em
+                \item<4-> Connaissance limitée
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.74\textwidth}
+            \centering
+            \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori.pdf}}
+            \only<2>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_type.pdf}}
+            \only<3>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_cardinalite.pdf}}
+            \only<4->{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_meta.pdf}}
+        \end{column}%
+    \end{columns}%
+    \end{adjustwidth}
     \vfill
-
-Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --> décision (notion de pareto)
+    \uncover<5>{\addalert{Comment classer des solutions avec plusieurs objectifs sans ajouter de préférences~?}}
+    \vfill
 \end{frame}
 
 \begin{frame}[t]
-    \addsubtitle{L’optimisation précède la décision}
+    \addsubtitle{Dominance au sens de Pareto}
     \vfill
-    % \centering
+    \centering
     \begin{columns}
         \begin{column}{0.45\textwidth}
             \centering
@@ -800,35 +818,10 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
             \includegraphics[width=0.98\textwidth]{Ressources/Images/Optimisation/dominance.pdf}
         \end{column}%
     \end{columns}%
-
     \vfill
+
+    \note{Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --> décision (notion de pareto)}
 \end{frame}
-
-
-\begin{frame}[t]
-    \addsubtitle{L’optimisation précède la décision}
-    \vfill
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{center}
-                \begin{itemize}
-                    \item Variables non-continues
-                    \item<2-> Combinatoire importante
-                    \item<3-> Connaissances limitées
-                \end{itemize}
-            \end{center}
-        \end{column}%
-        \begin{column}{0.55\textwidth}
-            \only<1>{\includegraphics[width=1\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}}
-            \only<2>{\includegraphics[width=1\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}}
-            \only<3>{\includegraphics[width=1\textwidth]{Ressources/Images/Optimisation/meta_heuristique.pdf}}
-        \end{column}%
-    \end{columns}%
-    \vfill
-
-    \note{Refaire graphe pour gagner de la place}
-\end{frame}
-
 
 
 
@@ -854,7 +847,8 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
     \end{columns}%
     \vfill
 
-    \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom}
+    \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom.
+          Mettre en avant le nombre faible de paramètres à définir.}
 \end{frame}
 
 
@@ -892,7 +886,7 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
         \end{column}%
         \begin{column}{0.6\textwidth}
             \raggedleft
-            \includegraphics[width=\textwidth]{Ressources/Images/Sensibilite/cube_morris.pdf}
+            \includegraphics[width=0.6\textwidth]{Ressources/Images/Sensibilite/cube_morris.pdf}
         \end{column}%
     \end{columns}%
     \vfill
@@ -1043,17 +1037,51 @@ Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --
 \subsection{Conclusions}
 \begin{frame}[c]
     \vfill
+    \begin{itemize}
+        \item Développement d’un modèle de SSC avec une logique de contrôle détaillée.
+        \vfill
+        \item Développement d’un algorithme d’optimisation nécessitant très peu de paramètres.
+        \vfill
+        \item Exploration automatisée de l’espace de décision.
+        \vfill
+        \item Grande diversité de solutions optimales obtenue.
+        \vfill
+        \item Aide à la décision interactive.
+        \vfill
+        \item Mise en évidence du potentiel du solaire thermique pour les climats rudes.
+    \end{itemize}
     \vfill
 \end{frame}
 
 
 % ------------------------------------------------------------------------------
-\subsection{Perspectives}
+\subsection{Perspectives à court terme}
 \begin{frame}[c]
     \vfill
+    \begin{itemize}
+        \item Validation expérimental du modèle de SSC.
+    \vfill
+        \item Prise en compte de modèles stochastiques pour le comportement des occupants.
+    \vfill
+        \item Prise en compte de l’aspect économique et de l’évolution du climat.
+    \vfill
+        \item Incorporation de méthodes de propagation d’incertitudes
+    \end{itemize}
     \vfill
 \end{frame}
 
+
+% ------------------------------------------------------------------------------
+\subsection{Perspectives à long terme}
+\begin{frame}[c]
+    \vfill
+    \begin{itemize}
+        \item Application à la réhabilitation lourde ou aux habitats groupés
+    \vfill
+        \item Application aux immeubles collectifs.
+    \end{itemize}
+    \vfill
+\end{frame}
 
 
 
