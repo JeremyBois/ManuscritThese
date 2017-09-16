@@ -19,6 +19,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[OT1, T1]{fontenc}                              % .pdf Encoding spec
 \usepackage[utf8]{inputenc}                                % .tex Encoding spec
+\usepackage[autostyle=true, threshold=0]{csquotes}         % Ensure correct quote text even nested one
 \usepackage[greek, french]{babel}                          % language used
 
 \usepackage{palatino}                                      % Layout and font model
@@ -125,7 +126,7 @@
 
 
 
-\title{Outil d’Aide à la Décision pour la conception de maisons solaires à énergie positive}
+\title{Outil d’Aide à la Décision pour la Conception de Maisons Solaires à Énergie Positive}
 \author{Jérémy Bois}
 \date{2017/10/09}
 
@@ -314,27 +315,35 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Contexte du bâtiment en France}
-\begin{frame}[c]
+\begin{frame}[t]
     \vfill
+    \small
     \begin{columns}
-        \begin{column}{0.35\textwidth}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \uncover<2->{%
             \begin{itemize}
-                \item \SI{200000}{chantiers}
+                \item \SI{35}{millions} de logements
+                \item \SI{56}{\percent} en maison individuelle
+                \item \SI{200000}{chantiers / an}
             \end{itemize}
-            \vskip2em
-            \begin{itemize}
-                \item[~] Sobriété
-                \item[~] +
-                \item[~] Efficacité
-                \item[~] =
-                \item[~] Réduction des coûts
-            \end{itemize}
+            }
+            \vskip4em
+            \uncover<4->{%
+            Sobriété \\
+            + \\
+            Efficacité \\
+            = \\
+            Réduction des coûts
+            }
         \end{column}%
         \begin{column}{0.7\textwidth}
             \centering
             \includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}
             \vskip1em
-            \includegraphics[height=0.45\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/reglementation.png}
+            \uncover<3->{%
+                \includegraphics[height=0.45\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/reglementation.png}
+            }
         \end{column}%
     \end{columns}%
     \vfill
@@ -343,10 +352,12 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Conception d’un bâtiment}
-\begin{frame}[c]
+\begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/vie_batiment.png}
+    \only<1>{\includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/vie_batiment.png}}
+    \only<2->{\includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/vie_batiment_construction.png}}
+    \uncover<3->{%
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
@@ -360,31 +371,20 @@ Notes for the first frame here
             \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/construction_batiment.png}
         \end{column}%
     \end{columns}%
-
-    % \begin{itemize}
-    %     \item construction / exploitation / démolition
-    %     \item Programmation / Conception / réalisation
-    %     \item Décrire les éléments pris en compte dans l’étude~:
-    %     \begin{itemize}
-    %         \item Bâti
-    %         \item chauffage / ECS / charges internes / Auxiliaire / Ventilation
-    %         \item Systèmes
-    %         \item Recours aux EnR
-    %         \item Cadre réglementaire
-    %     \end{itemize}
-    % \end{itemize}
+    }
     \vfill
 
-    \note{RT 2012 impose des EnR ??}
+    \note{RT 2012 impose des EnR ??
+          Concevoir et Examiner.}
 \end{frame}
 
 
 % ------------------------------------------------------------------------------
 \subsection{La maison à énergie positive}
-\begin{frame}[c]
+\begin{frame}[t]
+    \small
     \begin{columns}
         \begin{column}{0.4\textwidth}
-                \small
                 Bilan~:
                 \begin{itemize}
                     \scriptsize
@@ -394,20 +394,24 @@ Notes for the first frame here
                     \item Gain financier
                 \end{itemize}
                 \vskip3em
+                \uncover<2->{%
                  Cadre normatif Européen~:
                 \begin{itemize}
                     \scriptsize
-                    \item Sobriété
-                    \item Efficacité
+                    \item Sobriété énergétique
+                    \item Efficacité énergétique
                     \item Énergie renouvelables
-                    \item Bilan positif
+                    \item Bilan énergétique positif
                 \end{itemize}
+                }
         \end{column}%
         \begin{column}{0.7\textwidth}
             \centering
             \includegraphics[height=0.55\textheight]{Ressources/Images/Environnement/bilan_nzeb.png}
             \vskip3em
+            \uncover<2->{%
             \includegraphics[height=0.25\textheight]{Ressources/Images/Environnement/hurdle_race.png}
+            }
         \end{column}%
     \end{columns}%
     \note{Pour respecter ces contraintes il faut faire preuve de sobriété sur le bâti ...}
@@ -420,6 +424,7 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \centering
+    \small
     \includegraphics[height=0.6\textheight]{Ressources/Images/Environnement/evolution_enr.png}
     \begin{columns}
         \begin{column}{0.45\textwidth}
@@ -432,10 +437,12 @@ Notes for the first frame here
         \end{column}%
         \begin{column}{0.45\textwidth}
             \begin{center}
+                \uncover<2->{%
                 \begin{itemize}
                     \item Impact politique important
-                    \item Climat français propice
+                    \item \SI{1112}{kWh\per\metre\squared\per an}
                 \end{itemize}
+                }
             \end{center}
         \end{column}%
     \end{columns}%
@@ -449,6 +456,7 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \centering
+    \small
     \includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Contexte_objectifs/repartition_installations.png}
     \begin{columns}
         \begin{column}{0.45\textwidth}
@@ -461,10 +469,12 @@ Notes for the first frame here
         \end{column}%
         \begin{column}{0.45\textwidth}
             \begin{center}
+                \uncover<2->{%
                 \begin{itemize}
                     \item Majoritairement en maison individuelle
                     \item BEPOS avec SSC $< \SI{10}{\percent}$
                 \end{itemize}
+                }
             \end{center}
         \end{column}%
     \end{columns}%
@@ -475,7 +485,7 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Objectifs / Démarche}
-\begin{frame}[c]
+\begin{frame}[t]
     \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{frametitle}
       \usebeamerfont{frametitle} \footnotesize \textbf{Comment aider à la prise de décision dans la construction de maisons solaires à énergie positive ?}\par%
     \end{beamercolorbox}%
@@ -485,7 +495,9 @@ Notes for the first frame here
             \vskip2em
             \addsubtitle{Verrous}
             \vskip7em
+            \uncover<2->{%
             \addsubtitle{Démarche}
+            }
         \end{column}%
         \begin{column}{0.9\textwidth}
             \begin{center}
@@ -497,6 +509,7 @@ Notes for the first frame here
                     \item[--] Quel équilibre entre performance sur l’enveloppe et efficacité des systèmes ?
                 \end{itemize}
                 \vskip2em
+                \uncover<2->{%
                 \begin{itemize}
                     \footnotesize
                     \item[--] Modélisation puis évaluation du potentiel du SSC développé.
@@ -504,6 +517,7 @@ Notes for the first frame here
                     \item[--] Génération d’un grand nombre d’alternatives.
                     \item[--] Aide au choix d’une solution interactivement.
                 \end{itemize}
+                }
             \end{center}
         \end{column}%
     \end{columns}%
@@ -513,7 +527,7 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Sommaire}
-\begin{frame}
+\begin{frame}[t]
 \tableofcontents[hideallsubsections]
 \addtocounter{page}{-1}
 \end{frame}
@@ -544,34 +558,35 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Outil de Modélisation}
-\begin{frame}[c]
-    \vfill
+\begin{frame}[t]
     \begin{columns}
         \begin{column}{0.45\textwidth}
-            \begin{center}
-                \begin{itemize}
-                    \item Multi-physiques
-                    \item Équationnel
-                    \item Acausal
-                    \item Boîte blanche
-                \end{itemize}
-            \end{center}
+            \centering
+            \addsubtitle{Langage / Logiciel}
+            \begin{itemize}
+                \item Multi-physiques
+                \item Équationnel
+                \item Acausal
+                \item Boîte blanche
+            \end{itemize}
+            \vskip1em
             \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/modelica_logo.png}
             \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/dymola_logo.jpg}
         \end{column}%
-        \begin{column}{0.45\textwidth}
+        \begin{column}{0.55\textwidth}
             \centering
-            \begin{center}
-                \begin{itemize}
-                    \item Large bibliothèque
-                    \item Libre et ouverte
-                \end{itemize}
-            \end{center}
-            \vskip2em
-            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/Buildings_logo.png}
+            \uncover<2->{%
+            \addsubtitle{Bibliothèque}
+            \begin{itemize}
+                \item Activement maintenue
+                \item Libre et ouverte
+            \end{itemize}
+            \vskip1em
+            \includegraphics[width=0.4\textwidth]{Ressources/Images/Logos/Buildings_logo.png}
+            }
         \end{column}%
     \end{columns}%
-    \vfill
+
     \note{Éprouvé dans d’autres domaines notamment le transport l’aéronautique ou les voitures.\\
           Itération importantes.
           Même logiciel pour le bâtiment et les systèmes}
@@ -587,6 +602,23 @@ Notes for the first frame here
     \centering
     Ajouter image du bâtiment \\
     \includegraphics[height=0.5\textheight]{Ressources/Images/Modelisation/maison.png}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \begin{itemize}
+                \item \SI{98.4}{\metre\squared}
+                \item Cinq pièces
+                \item Fenêtre de toit
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \begin{itemize}
+                \item Mono-zone (Modelica)~: \SI{1150}{kWh\per an}
+                \item Multi-zone (Energy Plus)~: \SI{1190}{kWh\per an}
+            \end{itemize}
+        \end{column}%
+    \end{columns}%
     \vfill
 \end{frame}
 
@@ -597,8 +629,8 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \only<1>{\includegraphics[height=\textheight, clip=true, trim=0mm 250mm 310mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
-    \only<2>{\includegraphics[height=\textheight, clip=true, trim=310mm 250mm 0mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
-    \only<3>{\includegraphics[height=\textheight, clip=true, trim=0mm 0mm 310mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
+    \only<2>{\includegraphics[height=\textheight, clip=true, trim=0mm 0mm 310mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
+    \only<3>{\includegraphics[height=\textheight, clip=true, trim=310mm 250mm 0mm 0mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
     \only<4>{\includegraphics[height=\textheight, clip=true, trim=310mm 0mm 0mm 250mm]{Ressources/Images/Modelisation/Principe/air_modes.pdf}}
     \vfill
 \end{frame}
@@ -606,13 +638,16 @@ Notes for the first frame here
 
 
 % ------------------------------------------------------------------------------
-\subsection{Hétérogénéité des facteurs pris en compte}
+\subsection{Choix des paramètres a priori}
 \begin{frame}[c]
     \vfill
+    \centering
     \includegraphics[height=0.8\textheight]{Ressources/Images/Soutenance/CasEtude/facteurs.png}
     \vfill
     \begin{itemize}
-        \item Fortement combinatoire
+        \item \num{21} paramètres
+        \item Forte hétérogénéité~: continues / discrètes / qualitatives
+        \item Combinatoire importante
     \end{itemize}
 
 \note{Changer tableau}
@@ -621,24 +656,38 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Objectifs et contraintes}
-\begin{frame}[c]
+\begin{frame}[t]
     \vfill
-    Objectifs~:
-    \begin{itemize}
-        \item Maximiser Performance du SSC~:
-        \begin{itemize}
-            \item $F_{sav}^{CH}$
-            \item $F_{sav}^{ECS}$
-        \end{itemize}
-        \item Maximiser la production des capteurs PV
-        \item Minimiser la surface de capteurs PV
-    \end{itemize}
+    \begin{columns}
+        \begin{column}{0.2\textwidth}
+            \vskip2em
+            \addsubtitle{Objectifs}
+            \vskip5.5em
+            \uncover<2->{%
+            \addsubtitle{Contraintes}
+            }
+        \end{column}%
+        \begin{column}{0.9\textwidth}
+            \begin{itemize}
+                \item Maximiser Performance du SSC~:
+                \begin{itemize}
+                    \footnotesize
+                    \item $F_{sav}^{CH}$
+                    \item $F_{sav}^{ECS}$
+                \end{itemize}
+                \item Maximiser la production des capteurs PV
+                \item Minimiser la surface de capteurs PV
+            \end{itemize}
+            \vskip2em
+            \uncover<2->{%
+            \begin{itemize}
+                \item Partage de la surface disponible en toiture 4 pans
+                \item $\abs{Conso_{app} + Conso_{usages} - Prod_{PV}}  \leq  8  (\si{kWh_{ep}\per\metre\squared})$
+            \end{itemize}
+            }
+        \end{column}%
+    \end{columns}%
     \vfill
-    Contraintes~:
-    \begin{itemize}
-        \item Partage de la surface disponible en toiture 4 pans
-        \item $\abs{Conso_{app} + Conso_{usages} - Prod_{PV}}   \leq  8 \quad (\si{kWh_{ep}\per\metre\squared})$
-    \end{itemize}
 
 \note{À mettre ici ou bien après méthodologie ??
       Ajouter équation pour $F_{sav}$}
@@ -661,8 +710,33 @@ Notes for the first frame here
 \subsection{Approche incrémentale ou optimisation ?}
 \begin{frame}[c]
     \vfill
-     Incrémentale~: Approche actuelle dans le bâtiment par essais/erreurs
-     Optimisation~: Approche valorisant temps machine
+     ~: Approche actuelle dans le bâtiment par essais/erreurs
+     ~: Approche valorisant temps machine
+     \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \centering
+            \addsubtitle{Incrémentale}
+            \begin{itemize}
+                \item Intuitif
+                \item Essais / erreurs
+                \item Expérience uniquement
+                \item Amélioration solution de base
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.55\textwidth}
+            \centering
+            \uncover<2->{%
+            \addsubtitle{Optimisation}
+            \begin{itemize}
+                \item
+                \item Automatisée
+                \item Valorisation de la puissance machine
+                \item Exploration du domaine de décision
+                \item Renforcement de la connaissance
+            \end{itemize}
+            }
+        \end{column}%
+    \end{columns}%
     \vfill
 
     \note{Ajouter des smiley pour comparer les approches}
