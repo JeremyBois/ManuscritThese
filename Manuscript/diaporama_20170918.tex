@@ -829,24 +829,13 @@ Notes for the first frame here
 
 % ------------------------------------------------------------------------------
 \subsection{Optimisation par Colonie d’Abeilles Virtuelles}
-\begin{frame}[c]
+\begin{frame}[t]
     \vfill
     \centering
-    \begin{columns}
-        \begin{column}{0.65\textwidth}
-            \raggedright
-            \includegraphics[height=0.7\textheight]{Ressources/Images/Optimisation/ABC/comportement_abeilles.pdf}
-        \end{column}%
-        \begin{column}{0.4\textwidth}
-            \raggedleft
-            \begin{itemize}
-                \item Initialisation (fleurs)
-                \item eq ouvrière
-                \item eq exploratrice
-                \item eq butineuse
-            \end{itemize}
-        \end{column}%
-    \end{columns}%
+    \only<1>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_1.pdf}}
+    \only<2>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_2.pdf}}
+    \only<3>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_3.pdf}}
+    \only<4>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_4.pdf}}
     \vfill
 
     \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom.
@@ -857,19 +846,72 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \centering
+    \begin{adjustwidth}{-2.2em}{-2em}
     \begin{columns}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.6\textwidth}
+            \raggedright
+            \footnotesize
+
+            % Initialisation
+            \uncover<2->{%
+            \textbf{Initialisation / Exploratrices}
+            \begin{subequations}
+                \begin{align*}
+                x_{ij} = x_{j}^{min} &+ RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min}) \\
+                \check{x_{ij}} = x_{j}^{min} &+ x_{j}^{max} - x_{ij}
+                \end{align*}
+            \end{subequations}
+            \vskip2em
+            }
+
+            % Maj butineuses
+            \uncover<3->{%
+            \textbf{Butineuses}
+            \begin{subequations}
+                \begin{align*}
+                    x_{ij}' = x_{ij}  &+ \num{0.01} \times ~Levy  \times (x_{ij} - x_{bj})  \\
+                                      &+ \num{0.01} \times |Levy|   \times (x_{aj} - x_{ij}) \\[1em]
+                \shortintertext{Ou}
+                    x_{ij}' = x_{ij}  &+ RandUniform(-1, 1)   \times \ (x_{ij} - x_{bj})  \\
+                      &+ RandUniform(0, 1)    \times \ (x_{aj} - x_{ij})
+                \end{align*}
+            \end{subequations}
+            \vskip2em
+            }
+
+            % Maj ouvrières
+            \uncover<4->{%
+            \textbf{Ouvrières} \\
+            $x_{ij}' = x_{ij}  + RandUniform(-1, 1)   \times \ (x_{ij} - x_{aj})$ \\
+            }
+        \end{column}%
+        \begin{column}{0.4\textwidth}
+            \raggedright
+            \includegraphics[width=1.05\textwidth]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
+        \end{column}%
+    \end{columns}%
+    \end{adjustwidth}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
             \centering
-            \uncover<2->{\includegraphics[height=0.6\textheight]{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}}
-            \uncover<3->{\includegraphics[height=0.4\textheight, clip=true, trim=100mm 10mm 100mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}}
+            \uncover<2-3>{\includegraphics[height=0.6\textheight]{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}}
+            \uncover<3>{\includegraphics[height=0.4\textheight, clip=true, trim=100mm 10mm 100mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}}
         \end{column}%
         \begin{column}{0.55\textwidth}
             \raggedleft
-            \uncover<1->{\includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}}
+            \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
         \end{column}%
     \end{columns}%
     \vfill
 \end{frame}
+
 
 
 
