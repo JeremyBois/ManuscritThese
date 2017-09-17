@@ -5,82 +5,10 @@
 \documentclass[xcolor=x11names, compress, 11pt]{beamer}
 % Options for doc
     % handout to hide navigation bar
-    % compress to make pdf output smaller (not sure)
+    % compress to make slide content compressed
 
 
-\mode<presentation> {
-    \usepackage{pgfpages}
-    \setbeameroption{show notes on second screen=right}
-}
-
-% \mode<presentation>
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[OT1, T1]{fontenc}                              % .pdf Encoding spec
-\usepackage[utf8]{inputenc}                                % .tex Encoding spec
-\usepackage[autostyle=true, threshold=0]{csquotes}         % Ensure correct quote text even nested one
-\usepackage[greek, french]{babel}                          % language used
-
-\usepackage{palatino}                                      % Layout and font model
-
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{changepage}                                    % Enable changing text margins
-\usepackage{color, colortbl,transparent}                   % Add colors and opacity
-
-\usepackage[separate-uncertainty=true,%
-            per-mode=symbol]{siunitx}                      % Unit package
-\usepackage{amsmath, amssymb, amsthm, mathtools,bm} % Allow adding complex equations
-\usepackage{nicefrac}                               % for \nicefrac macro
-\usepackage{letltxmacro}                            % Support for optional argument in redefinition
-
-\sisetup{output-decimal-marker={,}}                   % ... and in siunitx: dot with comma
-% Writing a dot print a comma in math mode
-\mathchardef\period=\mathcode`.                       % Allows to still write a dot if needed
-\DeclareMathSymbol{.}{\mathord}{letters}{"3B}         % Decimal separator in math mode ...
-
-
-\makeatletter % changes the catcode of @ to 11
-
-% Sign function
-\DeclareMathOperator{\sign}{sign}
-
-% Change the ways square root appears
-\let\oldr@@t\r@@t
-\def\r@@t#1#2{%
-\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
-\advance\dimen0-0.1\ht0
-\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
-{\box0\lower0.59pt\box2}}
-\LetLtxMacro{\oldsqrt}{\sqrt}
-\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
-
-
-% Quick and easy way to typeset abs (|) and norm (||)
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}
-% Swap the definition of \abs* and \norm*, so that \abs and \norm resizes the
-% size of the brackets, and the starred version does not.
-\let\oldabs\abs
-\def\abs{\@ifstar{\oldabs}{\oldabs*}}
-
-\makeatother % changes the catcode of @ back to 12
-
-
-\usepackage{booktabs, multirow}                            % Easy pro tables and multiple row
-\usepackage{marvosym}                                      % Smileys
-
-
-\usepackage{tikz,tcolorbox}
-
-
-\hypersetup{
-      pdfauthor   = {Jérémy Bois},%
-      pdftitle    = {Soutenance Thèse - 20171009},%
-      pdfsubject  = {Soutenance Thèse - 20171009},%
-}
-
-
+\mode<presentation>
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define new colors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -112,23 +40,71 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define border %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlength\fboxsep{0pt}
-\setlength\fboxrule{0.5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[OT1, T1]{fontenc}                              % .pdf Encoding spec
+\usepackage[utf8]{inputenc}                                % .tex Encoding spec
+\usepackage[autostyle=true, threshold=0]{csquotes}         % Ensure correct quote text even nested one
+\usepackage[greek, french]{babel}                          % language used
+\usepackage{palatino}                                      % Font used
+\usepackage{graphicx}                                      % Add images
+
+\usepackage{hyperref}
+\hypersetup{
+      pdfauthor   = {Jérémy Bois},%
+      pdftitle    = {Soutenance - Outil d’Aide à la Décision pour la Conception de Maisons Solaires à Énergie Positive},%
+      pdfsubject  = {Soutenance Thèse - 20171009},%
+}
 
 
+\usepackage{color, colortbl, transparent}             % Add colors and opacity
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% New columns type %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[separate-uncertainty=true,%
+            per-mode=symbol]{siunitx}                 % Unit package
+\usepackage{amsmath, amssymb, amsthm, mathtools,bm}   % Allow adding complex equations
+% \usepackage{nicefrac}                               % for \nicefrac macro
+% \usepackage{letltxmacro}                            % Support for optional argument in redefinition
+
+\sisetup{output-decimal-marker={,}}                   % ... and in siunitx: dot with comma
+% Writing a dot print a comma in math mode
+\mathchardef\period=\mathcode`.                       % Allows to still write a dot if needed
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}         % Decimal separator in math mode ...
+
+
+\makeatletter % changes the catcode of @ to 11
+    % Sign function
+    \DeclareMathOperator{\sign}{sign}
+
+    % Change the ways square root appears
+    \let\oldr@@t\r@@t
+    \def\r@@t#1#2{%
+    \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+    \advance\dimen0-0.1\ht0
+    \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+    {\box0\lower0.59pt\box2}}
+    \LetLtxMacro{\oldsqrt}{\sqrt}
+    \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+
+    % Quick and easy way to typeset abs (|) and norm (||)
+    \DeclarePairedDelimiter\abs{\lvert}{\rvert}
+    % Swap the definition of \abs* and \norm*, so that \abs and \norm resizes the
+    % size of the brackets, and the starred version does not.
+    \let\oldabs\abs
+    \def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\makeatother % changes the catcode of @ back to 12
+
+
+\usepackage{booktabs, multirow}                            % Easy pro tables and multiple row
+% New columns type
 \newcolumntype{B}{>{\columncolor{Amaranth}}c}
 \newcolumntype{G}{>{\columncolor{Asparagus}}c}
 \newcolumntype{R}{>{\columncolor{Amber}}c}
 
 
+\usepackage{changepage}                                    % Enable changing text margins
+\usepackage{tikz,tcolorbox}
 
 
-\title{Outil d’Aide à la Décision pour la Conception de Maisons Solaires à Énergie Positive}
-\author{Jérémy Bois}
-\date{2017/10/09}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -153,6 +129,8 @@
 \setbeamercolor{palette quaternary}{fg=ClassicBlack,bg=black!10}
 \setbeamercolor{footlinecolor}{fg=DeepSkyBlue4,bg=black!10}
 
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
 
 % Remove navigation symbols
 \setbeamertemplate{navigation symbols}{}
@@ -166,7 +144,10 @@
   \end{beamercolorbox}%
 }
 
-% Custom first page
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Specific Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{title page}{%
   \vbox{}
   \begingroup
@@ -194,8 +175,7 @@
 }
 
 
-
-
+% Before each section
 \AtBeginSection[]
 {
  \begin{frame}[plain,noframenumbering]
@@ -211,19 +191,57 @@
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add boxed subtitle
 \newcommand{\addsubtitle}[1]{%
 \begin{beamercolorbox}[sep=2pt,center,shadow=true,rounded=true]{footlinecolor}
     #1\par%
 \end{beamercolorbox}%
 }
 
-
+% Add boxed alert
 \newcommand{\addalert}[1]{%
 \begin{beamercolorbox}[sep=2pt,center,shadow=true,rounded=true]{alerted text}
     #1\par%
 \end{beamercolorbox}%
 }
 
+% Add smileys
+\newcommand{\addSimley}[2]{%
+\begin{tikzpicture}[scale=0.11]
+    \newcommand*{\SmileyRadius}{1.5}%
+    \draw [fill=#2] (0,0) circle (\SmileyRadius)% outside circle
+        %node [yshift=-0.22*\SmileyRadius cm] {\tiny #1}% uncomment this to see the smile factor
+        ;
+
+    \pgfmathsetmacro{\eyeX}{0.5*\SmileyRadius*cos(30)}
+    \pgfmathsetmacro{\eyeY}{0.5*\SmileyRadius*sin(30)}
+    \draw [fill=SolarizedBrBlack,draw=none] (\eyeX,\eyeY) circle (0.2cm);
+    \draw [fill=SolarizedBrBlack,draw=none] (-\eyeX,\eyeY) circle (0.2cm);
+
+    \pgfmathsetmacro{\xScale}{2*\eyeX/180}
+    \pgfmathsetmacro{\yScale}{1.0*\eyeY}
+    \draw[color=SolarizedBrBlack, domain=-\eyeX:\eyeX]
+        plot ({\x},{
+            -0.1+#1*0.15 % shift the smiley as smile decreases
+            -#1*1.75*\yScale*(sin((\x+\eyeX)/\xScale))-\eyeY});
+\end{tikzpicture}%
+}%
+
+
+
+
+
+
+
+
+
+
+% Custom first page
+\title{Outil d’Aide à la Décision pour la Conception de Maisons Solaires à Énergie Positive}
+\author{Jérémy Bois}
+\date{2017/10/09}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \begin{document}
@@ -239,64 +257,6 @@ Notes for the first frame here
 }
 \end{frame}
 \pagenumbering{arabic}
-
-
-% % Group can be used to declare local change
-% \begingroup
-% % \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{Includes/fond_title.jpg}}
-% \begin{frame}[plain]
-%     \title{\color{SolarizedBlue}\textsc{\textbf{}}}
-%     %\subtitle{SUBTITLE}
-%     \author{
-%         \begin{columns}
-%             \begin{column}{0.3\textwidth}
-%                 \begin{flushleft}
-%                     \includegraphics[scale=0.07]{Ressources/Images/Soutenance/logos/I2M_logo.jpg}
-%                 \end{flushleft}
-%             \end{column}%
-%             \begin{column}{0.3\textwidth}
-%                 \begin{center}
-%                     \small
-%                     Jérémy Bois\\Laurent Mora\\Etienne Wurtz\\
-%                 \end{center}
-%             \end{column}%
-%             \begin{column}{0.3\textwidth}
-%                 \begin{flushright}
-%                     \includegraphics[scale=0.08]{Ressources/Images/Soutenance/logos/bordeaux_logo.jpg}
-%                 \end{flushright}
-%             \end{column}
-%         \end{columns}
-%         \vspace{1cm}
-%         \begin{columns}
-%         \begin{column}{0.3\textwidth}
-%             \begin{flushleft}
-%                 \includegraphics[scale=0.05]{Ressources/Images/Soutenance/logos/cea_logo.png}
-%             \end{flushleft}
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             \begin{center}
-%                 \includegraphics[scale=0.22]{Ressources/Images/Soutenance/logos/comepos_logo.png}
-%             \end{center}
-%         \end{column}
-%         \begin{column}{0.3\textwidth}
-%             \begin{flushright}
-%                 \includegraphics[scale=0.13]{Ressources/Images/Soutenance/logos/aquitaine_logo.png}
-%             \end{flushright}
-%         \end{column}
-%         \end{columns}
-%     }
-%     \date{
-%         \normalsize
-%         2017/10/09
-%     }
-%     \titlepage
-% \end{frame}
-% \endgroup
-
-
-
-
-
 
 
 
@@ -515,7 +475,7 @@ Notes for the first frame here
                     \item[--] Quels indicateurs retenir pour l’évaluation du SSC ?
                     \item[--] Quel équilibre entre performance sur l’enveloppe et efficacité des systèmes ?
                 \end{itemize}
-                \vskip2em
+                \vskip1.5em
                 \uncover<2->{%
                 \begin{itemize}
                     \footnotesize
@@ -607,7 +567,7 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \centering
-    Ajouter image du bâtiment \\
+    \alert{Ajouter image du bâtiment} \\
     \includegraphics[height=0.5\textheight]{Ressources/Images/Modelisation/maison.png}
     \begin{columns}
         \begin{column}{0.4\textwidth}
@@ -649,15 +609,15 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \centering
-    \includegraphics[height=0.8\textheight]{Ressources/Images/Soutenance/CasEtude/facteurs.png}
+    \includegraphics[height=0.7\textheight]{Ressources/Images/Soutenance/CasEtude/facteurs.png}
     \vfill
     \begin{itemize}
         \item \num{21} paramètres
         \item Forte hétérogénéité~: continues / discrètes / qualitatives
         \item Combinatoire importante
     \end{itemize}
-
-\note{Changer tableau}
+    \vfill
+    \alert{Refaire diapo}
 \end{frame}
 
 
@@ -677,8 +637,8 @@ Notes for the first frame here
         \begin{column}{0.9\textwidth}
             \begin{itemize}
                 \item Maximiser Performance du SSC~:
-                \footnotesize
                 \begin{subequations}
+                \footnotesize
                     \begin{align*}
                         F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
                         F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}
@@ -719,17 +679,18 @@ Notes for the first frame here
 % ------------------------------------------------------------------------------
 \subsection{Approche incrémentale ou optimisation ?}
 \begin{frame}[t]
-     \begin{columns}
+    \small
+    \begin{columns}
         \begin{column}{0.45\textwidth}
             \centering
             \addsubtitle{Incrémentale}
             \begin{itemize}
-                \item[\Smiley{}] {\color{SolarizedGreen} Approche actuelle du domaine}
-                \item[\Smiley{}] {\color{SolarizedGreen} Simple}
-                \item[\Frowny{}] {\color{SolarizedRed} Objectifs traités indépendamment}
-                \item[\Frowny{}] {\color{SolarizedRed} Processus par essais / erreurs}
-                \item[\Frowny{}] {\color{SolarizedRed} Basée uniquement sur l’expérience}
-                \item[\Frowny{}] {\color{SolarizedRed} Amélioration solution de base}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Approche actuelle du domaine}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Simple}
+                \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Objectifs traités indépendamment}
+                \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Essais / erreurs}
+                \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Basée uniquement sur l’expérience}
+                \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Améliore une solution initiale}
             \end{itemize}
         \end{column}%
         \begin{column}{0.55\textwidth}
@@ -737,12 +698,12 @@ Notes for the first frame here
             \uncover<2->{%
             \addsubtitle{Optimisation}
             \begin{itemize}
-                \item[\Frowny{}] {\color{SolarizedRed} Développement de la méthodologie}
-                \item[\Smiley{}] {\color{SolarizedGreen} Automatisée}
-                \item[\Smiley{}] {\color{SolarizedGreen} Traitement simultané des objectifs}
-                \item[\Smiley{}] {\color{SolarizedGreen} Valorisation de la puissance machine}
-                \item[\Smiley{}] {\color{SolarizedGreen} Exploration du domaine de décision}
-                \item[\Smiley{}] {\color{SolarizedGreen} Renforcement de la connaissance}
+                \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Développement de la méthodologie}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Automatisée}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Traitement simultané des objectifs}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Valorisation de la puissance machine}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Exploration du domaine de décision}
+                \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Renforcement de la connaissance}
             \end{itemize}
             }
         \end{column}%
@@ -874,11 +835,11 @@ Notes for the first frame here
             \textbf{Butineuses}
             \begin{subequations}
                 \begin{align*}
-                    x_{ij}' = x_{ij}  &+ \num{0.01} \times ~Levy  \times (x_{ij} - x_{bj})  \\
-                                      &+ \num{0.01} \times |Levy|   \times (x_{aj} - x_{ij}) \\[1em]
-                \shortintertext{Ou}
-                    x_{ij}' = x_{ij}  &+ RandUniform(-1, 1)   \times \ (x_{ij} - x_{bj})  \\
+                x_{ij}' = x_{ij}  &+ RandUniform(-1, 1)   \times \ (x_{ij} - x_{bj})  \\
                       &+ RandUniform(0, 1)    \times \ (x_{aj} - x_{ij})
+                \shortintertext{Ou}
+                x_{ij}' = x_{ij}  &+ \num{0.01} \times ~Levy  \times (x_{ij} - x_{bj})  \\
+                                      &+ \num{0.01} \times |Levy|   \times (x_{aj} - x_{ij})
                 \end{align*}
             \end{subequations}
             \vskip2em
@@ -1009,7 +970,6 @@ Notes for the first frame here
 % ------------------------------------------------------------------------------
 \subsection{Conditions limites de l’étude}
 \begin{frame}[t]
-    \vfill
     \centering
     \textbf{Deux climats étudiés}
     \vfill
@@ -1032,7 +992,7 @@ Notes for the first frame here
 \begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 178mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
     \vfill
 \end{frame}
 
@@ -1094,6 +1054,7 @@ Notes for the first frame here
 
 
 \begin{frame}[c]
+    \addsubtitle{Résultats d’optimisation sur Strasbourg}
     \vfill
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
     \vfill
@@ -1101,20 +1062,23 @@ Notes for the first frame here
 
 
 \begin{frame}[c]
+    \addsubtitle{Occurrences de tailles pour les deux ballons du SSC}
     \vfill
     \centering
-    \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/tanks_count.pdf}}
+    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/tanks_count.pdf}
+    \vfill
+\end{frame}
 
-    \only<2>{%
+
+\begin{frame}[c]
+    \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
+    \vfill
+    \centering
     \begin{adjustwidth}{-2em}{-2em}
         \includegraphics[width=1.14\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
     \end{adjustwidth}
-    }
     \vfill
-
-    \note{Ajouter $F_{sav,\,ext}$ à la figure}
 \end{frame}
-
 
 
 % ------------------------------------------------------------------------------
@@ -1197,7 +1161,7 @@ Notes for the first frame here
     \vfill
         \item<3-> Incorporation de méthodes de propagation d’incertitudes.
     \vfill
-        \item<4-> Prise en compte de modèles stochastiques pour le comportement des occupants.
+        \item<4-> Ajout de modèles stochastiques pour le comportement des occupants.
     \end{itemize}
     \vfill
 \end{frame}
