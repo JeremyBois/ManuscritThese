@@ -1,0 +1,106 @@
+[file]
+diaporama.pdf
+[notes]
+### 1
+PAGE DE TITRE
+Je vais aujourd’hui vous présenter mes travaux de thèse sur le développement d’un outil d’aide à la décision pour la conception de maisons solaires à énergie positives.
+
+Ces travaux ont été encadrés par Etienne Wurtz et Laurent Mora.
+
+
+
+CONTEXTE / OBJECTIFS
+Dans un premier temps le contexte sera décrit, puis les objectifs et verrous seront abordés.
+
+Le plan de la présentation sera ensuite présenté.### 2
+IMAGE 1
+Les effets du réchauffement climatique sont aujourd’hui facilement observables et sont tels qu’ils bouleversent le fonctionnement de la planète.
+
+Le dérèglement climatique trouve sont origine dès le début des années 90 avec le développement de l’industrie grâce aux énergies fossiles.
+La tendance s’accélère après la fin de la seconde guerre mondiale avec une croissance forte tant au niveau économique que démographique.
+Ce développement est fortement corrélé à l’augmentation des émissions anthropiques en CO2 responsables de l’augmentation trop rapide de l’effet de serre.
+
+IMAGE 2
+Absorbant une part de plus en plus importante, la température du globe terrestre s’élève anormalement.  Le Groupe d'experts intergouvernemental sur l'évolution du climat (GIEC) a en effet montré que l’évolution anormale de la température de la planète est une conséquence de l’antropisation à travers des modèles climatologiques et des observations. ### 3
+IMAGE 1 et 2
+En France, le secteur du bâtiment, résidentiel comme le tertiaire représente en 2014 près de 45% de l’énergie finale consommée. 
+
+Il faudra attendre le premier choc pétrolier en 1973 pour que la France considère l’épuissement des ressources comme une préocupation nationale.
+La première réglementation est alors mise en place dès 1974 fixant un objectif de réduction de 25% de la consommation en énergie finale dans le résidentiel.
+La réglementation a depuis été plusieurs fois mise à jour obligeant des économies de plus en plus importantes jusqu’à aujourd’hui avec la RT 2012 et bientôt en 2020 la normalisation de la maison à énergie positive.
+
+TEXTE 1
+En France, la maison individuelle représente plus de 56% des 35 millions de logements existants.
+Même si la rénovation du parc bâti est le principal défi énergétique, il est important de continuer à innover dans le neuf et particulièrement dans le résidentiel qui représente près de 25% de la consommation en énergie primaire.
+Avec près de 200 000 chantiers par an, la maison individuelle est un élément clé du secteur et les nouvelles constructions se doivent d’être innovantes énergetiquement afin de réduire le coût des rénovations futures.### 4
+IMAGE 1
+Il existe principalement 3 étapes dans la vie d’un bâtiment : Sa construction, son utilisation, et sa démolition.
+
+
+IMAGE 2
+Ces travaux s’attaque à l’étape de construction et plus particulièrement à sa conception.
+
+La conception du bâtiment intervient après l’analyse de faisabilité du projet et avant la réalisation du chantier.
+
+Elle est l’étape clé où le choix sont faits sur la géométrie du bâtiment, les caractéristiques de son enveloppe.
+
+Il est aussi étudié le choix des différents équipements permettant le confort des usagers et le recours potentiel aux énergies alternatives afin de réduire l’empreinte énergétique.### 5
+TEXTE 1
+Ces travaux s’intéresse au développement d’une méthodologie pour le dimensionnement de maison solaires à énergie positive.
+Comme explicité juste avant, le renforcement de la réglementation thermique imposera courant 2020 que chaque nouvelles maisons individuelles soit à énergie positive.
+Bien qu’il n’existe pour l’heure pas de cadre réglementaire, le concept peut être définie dans les grandes lignes.
+
+Un bâtiment à énergie positive est un bâtiment dont la consommation quasi nulle doit être compensée par une production locale en énergie renouvelable.
+
+IMAGE 1
+La définition d’énergie n’est pas à prendre au sens stricte et ce bilan entre production et consommation peut être réalisée en énergie finale comme primaire, sur les émissions de CO2, ou encore sur le rapport coût / bénéfice.
+La fréquence du bilan joue aussi un rôle important et il n’existe pas de concensus sur la méthode à retenir même si le bilan annuel entre production et consommation et le critère le plus couramment retenue pour sa simplicité.
+
+IMAGE 2
+Ces travaux s’inspirent fortement des contraintes actuellement décrites dans la norme européenne en construction qui propose 4 axes : limiter les besoins, limiter la consommation, imposer le recours majoritairement aux énergies renouvelables, et obtenir un bilan en énergie primaire positif.### 6
+TEXTE
+Au cours de ces travaux la production d’énergie renouvelable est assurée par l’énergie solaire, une énergie disponible sur l’ensemble du globe.
+La France profite d’un climat propice au développement de cette technologie avec une irradiation globale annuelle à l’horizontale de 1112 kWh/m².
+
+Deux technologies sont utilisées dans ces travaux, les systèmes photovoltaïques pour produire directement de l’énergie électrique et les systèmes solaires thermiques pour la production d’énergie solaire thermique.
+
+
+IMAGE
+L’évolution du marché sur les dernières années montrent que le photovoltaïque est en forte croissance alors que la progression du solaire thermique est très basse et continue de diminuer.### 7
+Afin de répondre aux contraintes de maison à énergie positive définie à travers la norme européenne, il est indispensable que la production locale soit utilisée sur place.
+
+IMAGE
+Dans cette optique il est retenu un système solaire combiné afin de couvir les besoins en Eau chaude sanitaire et en chauffage grâce à l’énergie solaire.
+De tels systèmes sont nommés systèmes solaires combinés et l’abréviation SSC sera utilisé dans le reste de la présentation.
+
+Ces systemes sont simples et nécessitent uniquement des capteurs solaires thermiques, une pompe, et un ballon de stockage.
+Grâce au stockage, ces systèmes permettent d’avoir une adéquation entre besoin et demande faisant du système solaire combiné un candidat de choix pour assurer que la majorité de la consommation en énergie du bâtiment est issue de sources renouvelables.
+
+TEXTE
+Cette technologie n’est que peu développée au niveau mondiale et reste minoritaire en Europe.
+
+Enfin même si la majorité des applications sont faites en maisons individuelles, les constructions à énergie positives utilisant un SSC représentent moins de 10%.### 8
+Le sujet invite à répondre à la question suivante :
+Comment aider à la prise de décision dans la construction de maisons solaires à énergie positive ?
+
+VERROUS
+Plusieurs verrous sont identifiés :
+Le problème est multi-critères et multi-objectifs car il faut tenir compte à la fois évaluer la performance de l’enveloppe du bâtiment, respecter un bilan énergétique positif, et valoriser au maximum la production solaire thermique comme photovoltaïque.
+La technologie des SSC étant que peu utilisée pour des applications en maisons à énergie positive, il est aussi nécessaire dans un premier temps de caractériser son potentiel.
+Pour celà il apparaît cependant important de sélectionner les bons indicateurs.
+Finalement le bilan positif étant le résultat d’un équilibre entre consommation et production, il est nécessaire de trouver le bon équilibre entre qualité de l’enveloppe et éfficacité des systèmes.
+
+DEMARCHE
+Dans cette optique il est envisagé dans un premier temps le développement d’un SSC. Un attention particulière sera portée à sa modélisation en particulier sur sa logique de contrôle qui est le plus souvent négligée dans les études de la littérature.
+Il est ainsi envisagé de dimensionner de manière simultané le bâti, les systèmes,  et la logique de contrôle de l’ensemble.
+Une fois le potentiel du SSC identifié il est proposé un approche automatisée permettant l’exploration du domaine de décision.
+Finalement, afin d’aider à la décision parmis un large choix de solutions, une approche intéractive est présentée.### 9
+Maintenant que le contexte et la démarche a été présentée, la présentation des travaux s’articulera suivant 4 parties
+
+Dans un premier temps le cas d’étude est présenté.
+
+Suit une description de la méthodologie développée.
+
+Puis deux cas applicatifs sont discutés.
+
+Enfin les conclusions de ces travaux seront abordées et plusieurs perspectives proposées.
