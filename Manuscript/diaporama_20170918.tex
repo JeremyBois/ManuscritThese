@@ -669,7 +669,7 @@ Notes for the first frame here
         \begin{column}{0.2\textwidth}
             \vskip2em
             \addsubtitle{Objectifs}
-            \vskip5.5em
+            \vskip9.5em
             \uncover<2->{%
             \addsubtitle{Contraintes}
             }
@@ -677,15 +677,18 @@ Notes for the first frame here
         \begin{column}{0.9\textwidth}
             \begin{itemize}
                 \item Maximiser Performance du SSC~:
-                \begin{itemize}
-                    \footnotesize
-                    \item $F_{sav}^{CH}$
-                    \item $F_{sav}^{ECS}$
-                \end{itemize}
+                \footnotesize
+                \begin{subequations}
+                    \begin{align*}
+                        F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
+                        F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}
+                    \end{align*}
+                    \vskip0.5em
+                \end{subequations}
                 \item Maximiser la production des capteurs PV
                 \item Minimiser la surface de capteurs PV
             \end{itemize}
-            \vskip2em
+            \vskip3em
             \uncover<2->{%
             \begin{itemize}
                 \item Partage de la surface disponible en toiture 4 pans
@@ -924,15 +927,25 @@ Notes for the first frame here
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \centering
-            \begin{itemize}
-                \item bla bla
-            \end{itemize}
-        \end{column}%
-        \begin{column}{0.6\textwidth}
-            \raggedleft
             \includegraphics[width=0.6\textwidth]{Ressources/Images/Sensibilite/cube_morris.pdf}
         \end{column}%
+        \begin{column}{0.6\textwidth}
+            \raggedright
+            \uncover<2->{%
+            \begin{subequations}
+                \begin{align*}
+                    \mu^{*} &= \sum_{r = 1}^{R} \frac{\lvert EE_{r} \rvert}{R} \\
+                    \sigma &= \sqrt{\sum_{r=1}^{R}\frac{(EE_{r} - \mu)^{2}}{R}}
+                \end{align*}
+            \end{subequations}
+            }
+        \end{column}%
     \end{columns}%
+    \vfill
+    \begin{itemize}
+        \item Création d’un plan OAT (One (factor) At the Time).
+        \item Évaluation des Effets Élémentaires ($EE$) pour $R$ trajectoires sur $z$ niveaux.
+    \end{itemize}
     \vfill
 \end{frame}
 
@@ -941,10 +954,44 @@ Notes for the first frame here
     \addsubtitle{Modèle de substitution par chaos polynomial}
     \vfill
     \centering
-    % \begin{equation*}
-    %     Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P}
-    %         c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
-    % \end{equation*}
+    \textbf{Approximation des objectifs par des fonctions analytiques}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $Conso_{app}$
+                \item $Conso_{app}^{CH}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $Conso_{app}^{ECS}$
+                \item $Conso_{ref}^{CH}$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    \vfill
+
+    \uncover<2->{%
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \raggedright
+            \begin{subequations}
+                \begin{align*}
+                    &Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P}
+                    c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) \\
+                    \shortintertext{Avec}
+                    &\psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) = \prod_{j = 1}^{D}\pi_{\vec{\alpha}p}^{(j)} \left(\,\underline{x}_{j} \right)
+                \end{align*}
+            \end{subequations}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Ressources/Images/Logos/python_logo.png}
+            \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
+        \end{column}
+    \end{columns}
+    }
     \vfill
 \end{frame}
 
@@ -962,7 +1009,18 @@ Notes for the first frame here
 \begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
+    \textbf{Deux climats étudiés}
+    \vfill
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \addsubtitle{Bordeaux}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \addsubtitle{Strasbourg}
+        \end{column}
+    \end{columns}
+    \vfill
+    \includegraphics[width=0.95\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
     \vfill
 \end{frame}
 
@@ -978,7 +1036,28 @@ Notes for the first frame here
 
 \begin{frame}[c]
     \vfill
-    Ajouter tableau avec facteurs les plus influents
+    \centering
+    \begin{columns}
+        \begin{column}{0.8\textwidth}
+            \uncover<2->{%
+                \includegraphics[height=0.9\textheight]{Ressources/Images/Sensibilite/graphInfluence.pdf}
+            }
+        \end{column}
+        \begin{column}{0.2\textwidth}
+            \centering
+            \small
+            \addsubtitle{A priori}
+            21 facteurs \\
+            \vskip4em
+            \uncover<3->{%
+            \addsubtitle{Bordeaux}
+            $14$ facteurs \\
+            \vskip2em
+            \addsubtitle{Strasbourg}
+            $15$ facteurs
+            }
+        \end{column}
+    \end{columns}
     \vfill
 \end{frame}
 
@@ -994,7 +1073,9 @@ Notes for the first frame here
 
 \begin{frame}[c]
     \vfill
-    Ajouter des résultats de méta-modèles
+    \includegraphics[height=0.3\textheight]{Ressources/Images/Soutenance/Application/meta_results.png}
+    \vfill
+    \uncover<2->{\includegraphics[width=\textwidth, clip=true, trim=0mm 100mm 0mm 0mm]{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}}
     \vfill
 \end{frame}
 
