@@ -227,7 +227,7 @@ par les variables qualitatives. Enfin les autres paramètres sont présentés.
   \bottomrule
   \end{tabular}
   \raggedright
-  *  $5$ pour Bordeaux et $7$ pour Strasbourg.
+  *  cinq pour Bordeaux et sept pour Strasbourg.
 \end{table}
 
 
@@ -237,7 +237,7 @@ par les variables qualitatives. Enfin les autres paramètres sont présentés.
 Au cours de l’étude paramétrique, $\Delta T_{sol}$ a été évalué comme impactant et est
 donc retenu lors de l’application de la méthodologie d’aide à la décision. Dans l’optique
 d’une valorisation maximale de l’énergie solaire pour le chauffage, il est aussi
-investigué $3$ variations algorithmiques supplémentaires. Le fonctionnement de base de
+investigué trois variations algorithmiques supplémentaires. Le fonctionnement de base de
 l’algorithme admet une priorité sur la production d’\abr{ECS} car les travaux de la
 littérature ont montré que l’énergie était mieux valorisée de cette manière. Ainsi,
 actuellement, la température au niveau de l’échangeur solaire ($T3$) doit être supérieure
@@ -372,11 +372,11 @@ La plage de variation pour les surfaces vitrées a été fixée arbitrairement �
 \SI{20}{\percent} de leur valeur d’origine et les proportions de cadre sont ajustées
 en fonction de la nouvelle surface (les caractéristiques du cadre et des ponts thermiques
 restent constantes).
-Le nombre minimal de $PV$ a été défini à $8$ afin de couvrir \SI{80}{\percent} (\SI{\approx
-2408}{\kWh}) de la consommation des équipements internes (\SI{\approx 3082}{\kWh}) et éviter
+Le nombre minimal de $PV$ a été défini à huit afin de couvrir \SI{80}{\percent} (\SI{\approx 2408}{\kWh})
+de la consommation des équipements internes (\SI{\approx 3082}{\kWh}) et éviter
 l’évaluation de solutions qui ne pourront jamais obtenir un bilan positif.
-Pour les capteurs solaires thermiques, il est considéré au minimum $2$ capteurs et respectivement
-$5$ et $7$ pour Bordeaux et Strasbourg. Une distinction est faite entre les deux climats
+Pour les capteurs solaires thermiques, il est considéré au minimum deux capteurs et respectivement
+cinq et sept pour Bordeaux et Strasbourg. Une distinction est faite entre les deux climats
 au regard des résultats obtenus durant l’étude paramétrique.
 % subsubsection autres_parametres (end)
 % subsection definition_des_parametres_a_priori (end)
@@ -499,7 +499,7 @@ permettant d’obtenir une \abr{MEPOS} solaire.
 \label{sec:methode_criblage_de_morris}
 Afin de réduire la cardinalité du problème, la méthode de \enquote{screening} de
 \textit{Morris} est retenue. L’analyse a été réalisée sur Bordeaux et Strasbourg en
-considérant \num{20} trajectoires uniques et \num{4} niveaux. Dans un premier temps les
+considérant vingt trajectoires uniques et quatre niveaux. Dans un premier temps les
 résultats sont discutés pour les principaux indicateurs du \abr{SSC}. Puis un graphe
 d’influence est réalisé sur les indicateurs $F_{sol}^{CH}$, $F_{sol}^{ECS}$,
 $Conso_{app}$, et $Conso_{tot}$ permettant de représenter les facteurs influents
@@ -851,7 +851,7 @@ $F_{sol}^{CH}$.
 \subsection{Paramètres retenus a posteriori} % (fold)
 \label{sub:parametres_retenus_a_posteriori}
 L’analyse de sensibilité a permis de réduire le nombre de critères de décision
-pour Bordeaux et Strasbourg. Ainsi sur les $22$ facteurs a priori, $14$ ont été retenus
+pour Bordeaux et Strasbourg. Ainsi sur les $21$ facteurs a priori, $14$ ont été retenus
 pour Bordeaux et $15$ pour Strasbourg dont les bornes de variation sont décrites
 dans \tabref{tab:facteur_retenues}. Pour l’indicateur $Conso_{app}$, il est retenu
 l’ensemble des paramètres pour lesquels $\mu^{*} > \SI{50}{kWh}$ ou $\sigma > \SI{50}{kWh}$. Pour
@@ -994,7 +994,7 @@ et de \SI{2866 (2)}{kWh} pour Strasbourg et est donc considérée comme constant
 dans le reste du document.
 
 La méthodologie décrite dans \ref{sub:modeles_de_substitution} est appliquée pour
-construire les $4$ échantillons nécessaires~: un pour le système de référence et un pour
+construire les quatre échantillons nécessaires~: un pour le système de référence et un pour
 le \abr{SSC} pour les deux climats ($2 \times 2$ échantillons). Les solutions sont
 générées pseudo-aléatoirement à partir d’une suite à faible discrépance qui permet
 d’obtenir un échantillon équitablement réparti offrant une bonne représentativité de
@@ -1015,7 +1015,7 @@ sorties du méta-modèle ($\mathcal{M}$), et celles du modèle original ($f$)
 et le modèle de référence \eqref{eq:mae}.
 
 Pour le système de référence, l’échantillon est construit en faisant varier les différents
-paramètres de l’enveloppe soit $6$ facteurs. Pour le système solaire l’ensemble des
+paramètres de l’enveloppe soit six facteurs. Pour le système solaire l’ensemble des
 variables influentes est considéré, soit respectivement $14$ et $15$ facteurs pour
 Bordeaux et Strasbourg (\tabref{tab:facteur_retenues}).
 La qualité de l’approximation est discutée pour différentes tailles d’échantillons
@@ -1064,7 +1064,7 @@ d’obtenir une bonne approximation (\figref{fig:mae_rmse_qualite_ref}). L’ord
     \label{fig:mae_rmse_qualite_ref}
 \end{figure}
 
-En effet, à partir d’un échantillon de taille $100$, le méta-modèle est d’ordre $3$ et précis à
+En effet, à partir d’un échantillon de taille $100$, le méta-modèle est d’ordre trois et précis à
 \SI{+- 1.5}{kWh}. À partir de $400$ simulations l’erreur quadratique moyenne et l’erreur
 absolue stagne toutes les deux en dessous de \SI{0.5}{kWh} (\tabref{tab:meta_result_bilan}).
 Au regard des résultats, un échantillon de taille $400$ est donc suffisant pour obtenir
@@ -1079,7 +1079,7 @@ correctement le modèle original (\figref{fig:rmse_mae}). Entre $600$ et $1000$,
 de l’approximation oscille pour les trois indicateurs sur Bordeaux comme sur Strasbourg.
 Enfin au delà de $1000$, l’approximation s’améliore lentement même si sur Strasbourg,
 l’erreur absolue maximale continue d’osciller.
-Ainsi, pour les $3$ méta-modèles, un échantillon de taille $600$ est pertinent.
+Ainsi, pour les trois méta-modèles, un échantillon de taille $600$ est pertinent.
 L’erreur moyenne quadratique est pour Bordeaux inférieure à \SI{3.5}{\percent} et
 l’erreur maximale absolue inférieure à \SI{8}{\percent}.
 Sur Strasbourg l’erreur moyenne quadratique est inférieure à \SI{2.7}{\percent} et
@@ -1131,7 +1131,7 @@ et de \SI{2866}{kWh} pour Strasbourg.
 \begin{table}
 \centering
 \caption[Erreurs caractéristiques des huit méta-modèles retenus]
-        {Erreurs caractéristiques ($RMSE$ et $MAE$) des \num{8} méta-modèles retenus (\si{kWh}).}
+        {Erreurs caractéristiques ($RMSE$ et $MAE$) des huit méta-modèles retenus (\si{kWh}).}
 \label{tab:meta_result_bilan}
 \begin{tabular}{l c c c c c c c c c c}
     \toprule
@@ -1192,7 +1192,7 @@ de critères fictifs et une sélection de solutions optimales est discutée.
 \label{sub:parametrage_de_l_optimisation}
 L’algorithme de colonie d’abeilles virtuelles (\ref{sub:description_de_l_approche_globale})
 est utilisé afin de réaliser l’optimisation multi-objectifs. L’optimisation est réalisée
-sur $4$ objectifs et est contraint afin d’obtenir uniquement des solutions à énergie
+sur quatre objectifs et est contraint afin d’obtenir uniquement des solutions à énergie
 positive (\ref{ssub:approche_retenue})~:
 \begin{itemize}
   \item Maximiser le $F_{sav}^{ECS}$ ($\epsilon = 0.005$)
@@ -1333,7 +1333,7 @@ Comme pour les solutions de l’échantillon, les solutions optimales sont corre
 approximées même si la dispersion des points est plus importante. Il est cependant
 observé que les modèles de substitution semblent sous-évaluer la valeur du modèle
 original pour tous les indicateurs en particulier sur Strasbourg pour l’indicateur
-$Conso_{app}^{CH}$. L’algorithme d’optimisation cherche en effet à minimiser ces $3$
+$Conso_{app}^{CH}$. L’algorithme d’optimisation cherche en effet à minimiser ces trois
 indicateurs afin de pouvoir maximiser les objectifs $F_{sav}^{ECS}$ et $F_{sav}^{CH}$.
 Ainsi en cherchant à trouver les solutions minimisant au maximum les indicateurs, les
 erreurs \abr{RMSE} et \abr{MAE} sont maximisées.
@@ -1446,15 +1446,15 @@ correspondant au point nadir et au point idéal sont disponibles dans le
 \tabref{tab:bornes_front_pareto} . Les valeurs renseignées sont donc les maximums ou
 minimums pour chaque indicateur, chaque ligne ne correspond pas à une solution existante
 mais à la combinaison des solutions maximisant ou minimisant un objectif en particulier.
-Sur Bordeaux, le \abr{SSC} permet avec $5$ capteurs de réduire de
+Sur Bordeaux, le \abr{SSC} permet avec cinq capteurs de réduire de
 \SI{90}{\percent} la consommation par rapport au cas de référence, soit une économie de
 \SI{2572}{kWh}. À titre de comparaison, la meilleure solution avec
-seulement $2$ capteurs solaires thermique permet une économie de \SI{2038}{kWh}. Ainsi
-l’écart entre les deux est peu important et $2$ capteurs permettent déjà d’obtenir un taux
+seulement deux capteurs solaires thermique permet une économie de \SI{2038}{kWh}. Ainsi
+l’écart entre les deux est peu important et deux capteurs permettent déjà d’obtenir un taux
 d’économie important~: \SI{76}{\percent} sur la production d’\abr{ECS} et
-\SI{31}{\percent} sur le chauffage. Sur Strasbourg avec $7$ capteurs, l’économie
+\SI{31}{\percent} sur le chauffage. Sur Strasbourg avec sept capteurs, l’économie
 sur la consommation de l’appoint  est de \SI{3103}{kWh} ($F_{sav,\, ext} = \SI{74}{\percent}$)
-contre \SI{2009}{kWh} avec seulement $2$ capteurs. Il apparaît donc que même sur Strasbourg, le
+contre \SI{2009}{kWh} avec seulement deux capteurs. Il apparaît donc que même sur Strasbourg, le
 \abr{SSC} permet avec peu de capteurs solaires d’obtenir de bon taux d’économie~:
 \SI{60}{\percent} sur la production d’\abr{ECS} et \SI{22}{\percent} sur le chauffage.
 Le \abr{SSC} permet sur Strasbourg, d’économiser une part absolue plus importante, en
@@ -1500,8 +1500,8 @@ sur Strasbourg.
 % pair_grid_plot
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
-    \caption[Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations]
-             {Front de Pareto sur Bordeaux pour les $4$ objectifs après $400$ itérations.
+    \caption[Front de Pareto sur Bordeaux pour les quatre objectifs après $400$ itérations]
+             {Front de Pareto sur Bordeaux pour les quatre objectifs après $400$ itérations.
               Chaque graphique est la projection des objectifs deux à deux.
               Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
     \label{fig:front_pareto_bordeaux}
@@ -1511,8 +1511,8 @@ sur Strasbourg.
 % pair_grid_plot
     \centering
     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
-    \caption[Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations]
-             {Front de Pareto sur Strasbourg pour les $4$ objectifs après $400$ itérations.
+    \caption[Front de Pareto sur Strasbourg pour les quatre objectifs après $400$ itérations]
+             {Front de Pareto sur Strasbourg pour les quatre objectifs après $400$ itérations.
               Chaque graphique est la projection des objectifs deux à deux.
               Le quatrième objectif, le nombre de capteurs \abr{PV}, est décrit par la couleur des points.}
     \label{fig:front_pareto_strasbourg}
@@ -1560,10 +1560,10 @@ capteurs \abr{PV} est plus important sur Strasbourg.
 Les résultats montrent aussi que le nombre de capteurs \abr{PV} diminue lorsque la
 performance du \abr{SSC} augmente. Afin de respecter la contrainte de bilan positif,
 la production solaire thermique augmente lorsque la production photovoltaïque diminue.
-Ainsi sur Strasbourg, augmenter le nombre de capteur thermiques de $5$ (\SI{11.6}{m^{2}})
-permet de réduire de $8$ (\SI{13.1}{m^{2}}) le nombre de capteurs \abr{PV} nécessaires
-(\figref{fig:fsav_pv_stras}). Sur Bordeaux ajouter $3$ (\SI{7.0}{m^{2}}) capteurs
-thermique permet de réduire de $5$ (\SI{8.2}{m^{2}}) le nombre de capteurs \abr{PV}
+Ainsi sur Strasbourg, augmenter le nombre de capteur thermiques de cinq (\SI{11.6}{m^{2}})
+permet de réduire de huit (\SI{13.1}{m^{2}}) le nombre de capteurs \abr{PV} nécessaires
+(\figref{fig:fsav_pv_stras}). Sur Bordeaux ajouter trois (\SI{7.0}{m^{2}}) capteurs
+thermique permet de réduire de cinq (\SI{8.2}{m^{2}}) le nombre de capteurs \abr{PV}
 (\figref{fig:fsav_pv_bor}). De plus, la production des capteurs solaires thermiques est en
 adéquation avec la demande alors que le bilan \textit{production / consommation} est
 réalisé à l’échelle annuelle pour le \abr{PV}. Il est aussi mis en évidence que les
@@ -1794,7 +1794,7 @@ ballon tampon, indépendamment du nombre ou du type de capteurs solaires thermiq
 plus un $F_{sav,\, ext}$ important est obtenu pour des petits comme des gros volumes de
 ballon tampon. Il semble donc possible de retenir un volume de ballon tampon faible sans
 dégrader la performance globale du \abr{SSC}. Par contre un volume de ballon \abr{ECS}
-important permet d’obtenir la meilleure performance globale. Si on considère moins de $5$
+important permet d’obtenir la meilleure performance globale. Si on considère moins de cinq
 capteurs par contre le volume du ballon d’\abr{ECS} est moins impactant. Aussi,
 même si des volumes importants sont favorisés, il existe des solutions très
 performantes avec des volumes peu important d’\abr{ECS}. Ces solutions considèrent
@@ -1804,13 +1804,13 @@ d’économie important. Ces résultats confirment les observations précédente
 est nécessaire entre la performance sur le chauffage et sur la production d’\abr{ECS}.
 
 Pour chaque nombre de capteurs installés, l’écart d’économie entre la valeur minimale et
-maximale augmente. Ainsi lorsque uniquement $2$ capteurs sont installés, $F_{sav,\, ext}$
-varie de \SIrange{38}{46}{\percent} alors que pour $7$ capteurs la variation est de
+maximale augmente. Ainsi lorsque uniquement deux capteurs sont installés, $F_{sav,\, ext}$
+varie de \SIrange{38}{46}{\percent} alors que pour sept capteurs la variation est de
 \SIrange{57}{74}{\percent}, soit une augmentation de \SI{9}{\percent}. En effet à mesure
 que le nombre de capteurs augmente, la différence de performance entre les capteurs est
 accentuée. Ainsi l’écart entre la performance maximale pour le capteur \textit{SkyPro} et
-le capteur \textit{EnergyEco} est de \SI{5}{\percent} lorsque $7$ capteurs sont installées
-contre \SI{2.5}{\percent} pour seulement $2$.
+le capteur \textit{EnergyEco} est de \SI{5}{\percent} lorsque sept capteurs sont installées
+contre \SI{2.5}{\percent} pour seulement deux.
 
 
 \paragraph{} % (fold)
@@ -1829,7 +1829,7 @@ varie faiblement (\SI{\sim 100}{kWh}) car la toiture est partagée. La performan
 \abr{SSC} augmente à mesure que l’on augmente le nombre de capteurs et on note clairement
 un front pour chaque nombre installé. Par contre à mesure que l’on augmente le nombre de
 capteurs, la différence de performance avec le nombre précédent est moindre. En effet, les
-premiers ajouts de capteurs améliorent plus la qualité des solutions. Avec uniquement $3$
+premiers ajouts de capteurs améliorent plus la qualité des solutions. Avec uniquement trois
 capteurs, seule la production d’\abr{ECS} est couverte. Il est nécessaire d’installer au
 minimum quatre capteurs pour que le \abr{SSC} récupère assez d’énergie solaire pour améliorer le
 $F_{sav}^{CH}$. À l’aide des histogrammes, il est aussi identifié que pour une même
@@ -1851,24 +1851,24 @@ variable. Sur le chauffage pour un même nombre de capteur le $F_{sav}^{ECS}$ va
 La \figref{fig:perf_nb_th} permet de mieux apprécier l’évolution de la
 population sur Strasbourg en fonction du nombre de capteurs, pour respectivement, $F_{sav}^{CH}$,
 $F_{sav}^{ECS}$, et $F_{sav,\, ext}$. Ajouter un capteur permet d’améliorer le
-$F_{sav}^{CH}$ de \SIrange{8}{10}{\percent} jusqu’à $6$ capteurs. Ajouter le $7^{ème}$ ne
+$F_{sav}^{CH}$ de \SIrange{8}{10}{\percent} jusqu’à six capteurs. Ajouter le $7^{ème}$ ne
 semble plus aussi efficace et permet uniquement une amélioration de \SI{2.2}{\percent}. Sur
-l’indicateur $F_{sav}^{ECS}$ l’amélioration est similaire de $2$ à $5$ capteurs thermiques
+l’indicateur $F_{sav}^{ECS}$ l’amélioration est similaire de deux à cinq capteurs thermiques
 (\SIrange{6}{7}{\percent}) alors que au-delà, l’impact est moindre (\SI{3}{\percent}).
-Dans les deux cas la meilleure progression est enregistrée lorsque l’on passe de $3$ à $4$
+Dans les deux cas la meilleure progression est enregistrée lorsque l’on passe de trois à quatre
 capteurs solaires thermiques sur le chauffage comme la production d’\abr{ECS} et marque
 aussi par extension la meilleure progression du $F_{sav,\, ext}$. L’analyse de la
 population en fonction de $F_{sav,\, ext}$ permet de montrer que le $7^{ème}$ capteur
 n’apporte qu’une faible amélioration (\SI{3}{\percent}) par rapport aux autres variations
 (\SIrange{5}{10}{\percent}). Cependant la distribution des solutions est plus importante
-pour $6$ capteurs que pour $7$. Il existe ainsi moins de combinaisons permettant au
+pour six capteurs que pour sept. Il existe ainsi moins de combinaisons permettant au
 \abr{SSC} d’atteindre une très bonne performance. Sur le $F_{sav}^{ECS}$ uniquement, la
-dispersion augmente jusqu’à $5$ capteurs puis se réduit alors qu’elle progresse sur le
-chauffage jusqu’à $6$ capteurs. Ainsi sur Strasbourg il est pertinent de considérer
-uniquement $6$ capteurs ce qui permet de réduire la consommation de l’appoint à
-\SI{1251}{kWh} contre \SI{4222}{kWh} sans solaire. Sur Bordeaux, installer $4$ capteurs
+dispersion augmente jusqu’à cinq capteurs puis se réduit alors qu’elle progresse sur le
+chauffage jusqu’à six capteurs. Ainsi sur Strasbourg il est pertinent de considérer
+uniquement six capteurs ce qui permet de réduire la consommation de l’appoint à
+\SI{1251}{kWh} contre \SI{4222}{kWh} sans solaire. Sur Bordeaux, installer quatre capteurs
 est suffisant et permet de réduire la consommation de l’appoint à \SI{380}{kWh} pour une
-consommation de référence de \SI{2856}{kWh}. Avec $3$ capteurs la consommation
+consommation de référence de \SI{2856}{kWh}. Avec trois capteurs la consommation
 augmenterait de \SI{180}{kWh}, alors que avec un $5^{ème}$ seulement \SI{100}{kWh} seraient
 économisés.
 
@@ -1896,7 +1896,7 @@ Les résultats obtenus permettent donc de lever les conclusions suivantes~:
           et sur la production d’\abr{ECS}, il est nécessaire de choisir sa préférence
           notamment en favorisant un volume important soit sur le tampon, soit sur le
           ballon d’\abr{ECS}.
-    \item Au delà de $4$ capteurs pour Bordeaux et $6$ capteurs pour Strasbourg,
+    \item Au delà de quatre capteurs pour Bordeaux et six capteurs pour Strasbourg,
           le gain énergétique est moins intéressant.
 \end{itemize}
 
@@ -1920,7 +1920,7 @@ mais n’impacte que faiblement le $F_{sav,\, ext}$. Les consommations nécessai
 couvrir les besoins en chauffage sur Bordeaux sont en effet faibles, ainsi améliorer
 l’efficacité du \abr{SSC} sur le chauffage n’apporte pas de réduction importante sur la
 $Conso_{app}$. Il semble donc pertinent sur Bordeaux de considérer un volume de tampon
-inférieur à \SI{100}{\litre} avec $3$ ou $4$ capteurs (annexe, \figref{fig:tanks_variations_bordeaux}).
+inférieur à \SI{100}{\litre} avec trois ou quatre capteurs (annexe, \figref{fig:tanks_variations_bordeaux}).
 En effet la $Conso_{ref}$ varie seulement de \SIrange{228}{620}{kWh} et les solutions
 optimales observées montrent que la $Conso_{app}$ varie elle de \SIrange{48}{470}{kWh}. Ainsi le
 reste de cette section s’intéresse uniquement aux variations observées pour le climat de
@@ -1947,10 +1947,10 @@ en fonction du nombre de capteurs, du volume du ballon tampon, et du volume du b
 (\figref{fig:tanks_variations_locales_strasbourg}, annexe \figref{fig:tanks_variations_strasbourg}).
 Si on considère séparément le chauffage et la production d’\abr{ECS},
 il apparaît que comme sur Bordeaux, le volume du ballon tampon est uniquement influent
-sur le $F_{sav}^{CH}$ lorsque le nombre de capteurs solaires thermiques est faible ($2$).
+sur le $F_{sav}^{CH}$ lorsque le nombre de capteurs solaires thermiques est faible (deux).
 Il est aussi clairement mis en évidence qu’opter pour des volumes faibles pour le
 ballon tampon et le ballon d’\abr{ECS} permet d’obtenir des performances similaires.
-Par exemple pour $7$ capteurs, la \abr{SSC} permet au maximum, de couvrir
+Par exemple pour sept capteurs, la \abr{SSC} permet au maximum, de couvrir
 \SI{62}{\percent}, et \SI{89}{\percent} des consommations pour respectivement le chauffage et l’\abr{ECS}.
 En limitant la variation du volume des ballons (\SIrange{100}{200}{\litre}) il est possible d’obtenir
 une performance similaire avec respectivement
@@ -2064,7 +2064,7 @@ tendance n’est pas la même lorsque $F_{sav,\, ext} < 66$ et lorsque $F_{sav,\
 Dans le premier cas, une enveloppe peu performante permet d’obtenir le meilleur $F_{sav,\,ext}$~:
 il n’y a pas assez d’énergie solaire pour permettre d’optimiser à la fois le
 chauffage et la production d’\abr{ECS} (qui est prioritaire). Dans le second cas, une
-enveloppe performante améliore le $F_{sav,\, ext}$. Ces solutions comportent $6$ ou $7$
+enveloppe performante améliore le $F_{sav,\, ext}$. Ces solutions comportent six ou sept
 capteurs solaires thermiques et il est alors possible de couvrir une part importante sur
 la production d’\abr{ECS} tout en ayant encore assez d’énergie pour couvrir les besoins sur
 le chauffage. Le solaire ne couvrant pas l’ensemble des besoins en
@@ -2084,7 +2084,7 @@ tantôt la production d’\abr{ECS}.
 \end{figure}
 
 
-Afin de mieux caractériser les corrélations existantes, $3$ indicateurs sont introduits,
+Afin de mieux caractériser les corrélations existantes, trois indicateurs sont introduits,
 $p$, la probabilité qu’une corrélation existe entre deux variables mais aussi, les
 coefficients de corrélation de \textit{Pearson} ($spearmanr$) et de \textit{Spearman}
 ($pearsonr$). L’indicateur $pearsonr$ permet d’évaluer le niveau de corrélation linéaire
@@ -2157,7 +2157,7 @@ Ainsi l’évaluation économique nécessite un large panel de connaissances
 afin de fournir des résultats pertinents.
 La difficulté inhérente à l’évaluation du coût est mis en avant par les résultats
 disparates obtenus dans la littérature amenant à des temps de retour variant de entre moins de
-\num{5} ans à plus de \num{100} ans.
+\SI{5}{ans} à plus de \SI{100}{ans}.
 Dans le cadre d’une \abr{MEPOS}, il est aussi possible de diriger son choix en tenant
 compte des résultats d’une Analyse de Cycle de Vie (\abr{ACV}) ou bien du confort des occupants.
 L’utilisation de modèle de substitution permet en effet de simuler très rapidement
@@ -2302,9 +2302,9 @@ et chaque solution est présentée ci-dessous~:
   \item[Solution 4 (\abr{S4})~:] Cette solution correspond à la solution maximisant le $F_{sav,\,ext}$ lorsque
                                  la $Prod_{sol}$ est maximale. Il existe en effet de nombreuses solutions ayant exactement
                                  la même production par les capteurs \abr{PV} car le nombre de capteurs est discret.
-                                 Le \abr{SSC} permet de couvrir près de \SI{43}{\percent} avec seulement $2$ capteurs
-                                 solaires thermiques mais l’économie de $5$ capteurs thermiques nécessite l’ajout
-                                 de $8$ capteurs \abr{PV} supplémentaires. Enfin
+                                 Le \abr{SSC} permet de couvrir près de \SI{43}{\percent} avec seulement deux capteurs
+                                 solaires thermiques mais l’économie de cinq capteurs thermiques nécessite l’ajout
+                                 de huit capteurs \abr{PV} supplémentaires. Enfin
                                  la production des capteurs n’est pas forcement en adéquation avec la demande
                                  contrairement à l’appoint économisé par le \abr{SSC} qui tient parfaitement compte
                                  de la temporalité des besoins.
@@ -2314,7 +2314,7 @@ et chaque solution est présentée ci-dessous~:
                                  le volume des ballons peut être réduit tout en permettant de
                                  conserver une bonne performance globale.
   \item[Solution 6 (\abr{S6})~:] Représente une solution répondant aux préférences du décideur
-                                 et qui admet uniquement $5$ capteurs solaires thermiques.
+                                 et qui admet uniquement cinq capteurs solaires thermiques.
   \item[Solution 7 (\abr{S7})~:] Représente une solution répondant aux préférences du décideur
                                  et qui admet une isolation minimale. Contrairement aux autres
                                  solutions la résistance thermique du plafond est fortement réduite.
@@ -2429,7 +2429,7 @@ Aussi, un compromis entre qualité de l’enveloppe et
 performance du \abr{SSC} est identifié, le choix restant propre aux contraintes du décideur~: sur-isoler
 et réduire le nombre de capteurs, ou moins isoler et augmenter le nombre de capteurs.
 Concernant les capteurs, le choix du type reste peu influent tant que le capteur
-est récent. Finalement, au delà de $4$ capteurs sur Bordeaux et de $6$ sur Strasbourg le
+est récent. Finalement, au delà de quatre capteurs sur Bordeaux et de six sur Strasbourg le
 gain potentiel est moins important.
 
 \paragraph{} % (fold)
