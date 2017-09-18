@@ -178,14 +178,14 @@
 % Before each section
 \AtBeginSection[]
 {
- \begin{frame}[plain,noframenumbering]
+ \begin{frame}[plain]
   \vfill
   \centering
   \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
     \usebeamerfont{title}\insertsectionhead\par%
   \end{beamercolorbox}
   \vfill
-  \addtocounter{page}{-1}
+  % \addtocounter{page}{-1}
   \end{frame}
 }
 
@@ -666,9 +666,6 @@ Notes for the first frame here
         \end{column}%
     \end{columns}%
     \vfill
-
-\note{À mettre ici ou bien après méthodologie ??
-      Ajouter équation pour $F_{sav}$}
 \end{frame}
 
 
