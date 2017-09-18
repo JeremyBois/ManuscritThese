@@ -103,4 +103,65 @@ Suit une description de la méthodologie développée.
 
 Puis deux cas applicatifs sont discutés.
 
-Enfin les conclusions de ces travaux seront abordées et plusieurs perspectives proposées.
+Enfin les conclusions de ces travaux seront abordées et plusieurs perspectives proposées.### 10
+TEXT 1
+Afin de modéliser à la fois le bâtiment et le SSC il est retenu le langage Modelica.
+La modélisation nécessitant le développement de système à la fois au niveau hydraulique, aéraulique, électrique, et thermique, un langage multi-physique est un choix pertinent.
+De plus son approche équationnel et acausal permet de simplifier le développement de modèles en faisant abstraction de la complexité de la re-écriture des systèmes d’équations.
+Cette approche est donc particulièrement adapté lors du processus itératif qu’est le développement d’un modèle de SSC.
+
+Finalement le langage est ouvert et chaque modèle est défini dans un fichier texte facilement modifiable avec n’importe quel éditeur de texte.
+Cependant il est retenu le logiciel Dymola afin de simplifier le développement et réaliser les simulations et un post-traitement rapide des résultats.
+
+TEXT 2
+La majorité des modèles utilisés sont issus de la bibliothèque Buildings activement maintenue par le laboratoire National Lawrence Berkeley. Elle propose un nombre important de modèles de base
+qui ont permis de réaliser à la fois bâtiment, systèmes, et logique de contrôle.### 11
+Le bâtiment utilisé a une surface habitable de 98.4m² et comprend 5 pièces, une cuisine, un salon et 3 chambres. Une fenêtre de toit est aussi présente dans le salon.
+Il est considéré 4 personnes dans le bâtiment, 2 adultes, et 2 enfants avec une puissance moyenne par habitant de 97.5 W.
+
+Le bâtiment est dans un premier temps modélisé avec une zone chauffée unique mais les combles et le vide-sanitaire sont modélisés séparement pour prendre en compte les bonnes conditions limites.
+
+Le bâtiment étant à très faible consommation, il est nécessaire de vérifier que un modèle mono-zone est suffisament.
+Le modèle mono-zone est donc comparé à un modèle multi-zones réalisé sous Energy Plus permettant de décrire de manière plus complète l’enveloppe et les besoins spécifiques de chaque pièce.
+Il apparaît que les résultats sont similaires. Ce résultat étant en parti expliqué par l’utilisation d’un modèle détaillée de fenêtre séparant le bilan en radiatif et conductif.
+
+Afin de simplifier le processus, le modèle sous Modelica est donc conservé.
+
+
+### 12
+Le SSC est lui aussi modélisé grâce à la bibliothèque Buildings.
+Il se compose de capteurs solaires,  d’une vanne 3 voies, de 3 pompes à vitesse variable, et de deux ballons.
+
+Le premier ballon est le ballon sanitaire qui permet de maintenir un volume d’eau chaude à 55°C pour couvrir les besoins sanitaires comme les douches.
+Un appoint électrique est ajouté en partie haute du ballon sanitaire afin de s’assurer que dans toutes
+les configurations, la température de l’eau reste maintenue à 55°C.
+
+Le second ballon permet lui de stocker l’énergie solaire en surplus pour la revaloriser pour du chauffage.
+
+Le SSC est couplé à un système de chauffage par air afin d’améliorer la réactivité du bâtiment et donc le ressenti de confort des occupants. Comme pour la production d’eau chaude sanitaire, une batterie électrique est ajoutée en partie terminale afin d’assurer le respect de la consigne de température et donc le confort des occupants.
+
+Finalement les pompes sont à vitesse variables afin de répondre précisément aux besoins et maintenir un rendement solaire important.
+### 13
+IMAGE 1
+Le système a principalement 3 configurations en fonction des besoins et de l’énergie solaire disponible.
+
+En période diurne l’énergie solaire est récupérée directement par les capteurs solaires et utilisée pour couvrir les besoins en chauffage par l’intermédiare d’un échangeur eau/air ou pour la production d’eau chaude sanitaire.
+La couverture des besoins en eau chaude sanitaire est prioritaire mais il est tout à fait possible de couvrir simultanément les besoins en chauffage et la production en eau chaude sanitaire.
+De même si l’énergie disponible est suffisante, le surplus est stocké dans le ballon de stockage en activant la pompe S6.
+
+IMAGE 2
+En période nocturne, la vanne 3 voies est ouverte vers le ballon de stockage et la pompe S6 est arrêtée.
+Si le bâtiment nécessite du chauffage, alors la pompe S2 s’active et puise l’énergie nécessaire dans le ballon où le fluide circule du bas vers le haut.
+Le surplus accumulé durant la journée est ainsi valorisé.
+Il n’est cependant pas possible d’activer la pompe S5 pour décharger l’énergie vers le ballon sanitaire.
+Dans le cas où l’énergie n’est pas suffisante, les appoints électriques s’enclenchent afin de fournir l’énergie manquante.
+### 14
+Comme précisé en introduction, il est considéré le dimensionnement couplé du bâtiment, du SSC, et de l’algorithme de contrôle qui orchestre le fonctionnement global, à savoir : la couverture des besoins en chauffage, le respecte des débits réglementaires de ventilation et la production d’eau chaude sanitaire.
+
+Il apparaît donc logique de considéré a priori des paramètres à la fois sur le système solaire,
+sur le fonctionnement de la logique de contrôle, sur l’enveloppe du bâtiment, et sur la production des capteurs photovoltaïques.
+
+Il est donc au total retenu a priori 21 paramètres ayant une forte hétérogénéité. Certains comme le nombre de capteurs solaires thermiques ou photovoltaïques étant de nature discrètes. D’autres comme le différentiel de température entre la sortie des capteurs et la température de l’air en sortie d’échangeur air/eau sont continus.
+Enfin certaines variables sont qualitatives comme le type de vitrage ou de capteurs solaires thermiques.
+
+Le problème est ainsi fortement combinatoire et une méthodologie adaptée est nécessaire.
