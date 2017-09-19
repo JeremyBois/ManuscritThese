@@ -186,7 +186,7 @@ Enfin ces travaux s’intéressant uniquement aux maisons à énergie positive, 
 Au regard des incertitudes et afin de proposer un large panel de solutions, il est en effet envisagé une plage assez large.### 18
 Le b6atiment, ces systèmes et les objectifs étant définis, la méthodologie développée est présentée. ### 19
 INCREMENTALE
-L’approche couramment utilisée dans le domaine du bâtiment nottament dans les bureaux d’études, est une approche incrémentale. 
+L’approche couramment utilisée dans le domaine du bâtiment nottament dans les bureaux d’études, est une approche incrémentale.
 Elle est simple d’utilisation mais comporte cependant des limites non négligeables lorsque la combinatoire est importante.
 
 Chaque objectifs sont traités indépendamment par essai / erreurs. La méthodologie revient donc à améliorer une solution initialement définie grâce à l’expérience.
@@ -194,12 +194,12 @@ Chaque objectifs sont traités indépendamment par essai / erreurs. La méthodol
 OPTIMISATION
 L’approche proposée dans ces travaux, l’optimisation, permet de pallier ces limitations mais nécessitent un travail important de développement.
 
-Étant automatisée et pouvant être utilisée de manière concurrente, elle permet 
+Étant automatisée et pouvant être utilisée de manière concurrente, elle permet
 de valoriser la puissance de calcul aujourd’hui disponible.
 Cette puissance permettant de traiter simultanément l’ensemble des objectifs et d’explorer l’ensemble de l’espace de décision.
 
 Elle participe finalement à un renforcement de la connaissance en permettent l’obtention de solutions issues de l’expérience ou non### 27
-L’évaluation du système solaire étant très couteux en temps, entre 1h et 3h selon la valeur des paramètres, il est proposé d’approximer les indicateurs de consommation par des fonctions analytiques en amont de l’optimisation. 
+L’évaluation du système solaire étant très couteux en temps, entre 1h et 3h selon la valeur des paramètres, il est proposé d’approximer les indicateurs de consommation par des fonctions analytiques en amont de l’optimisation.
 La production des capteurs PV étant calculée grâce à un modèle indépendant, il est uniquement construit 4 meta-modèles pour les consommations respectives de la référence sur le chauffage et de l’appoint sur chauffage, ECS et le cumul des deux.
 En séparant l’évaluation du SSC et du modèle de référence, l’approche est plus modulaire, raison pour laquelle ce choix a été fait.
 
