@@ -270,6 +270,15 @@
 
 
 
+% Add command to bubble a text with optional argument to keep same size for all
+% \circled{1}       % fit argument size
+% \circled{1}[10]   % fit optional argument size
+\newcommand{\circled}[2][]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape = circle, draw, inner sep = 2pt, line width=0.5pt]
+    (char) {\phantom{\ifblank{#1}{#2}{#1}}};%
+    \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
 
 
 
@@ -527,6 +536,7 @@ Notes for the first frame here
         \end{column}%
     \end{columns}%
     \vfill
+    \alert{Refaire}
 \end{frame}
 
 
@@ -581,8 +591,8 @@ Notes for the first frame here
         \begin{column}{0.7\textwidth}
             \centering
             \begin{itemize}
-                \item Mono-zone (Modelica)~: \SI{1150}{kWh\per an}
-                \item Multi-zone (Energy Plus)~: \SI{1190}{kWh\per an}
+                \item Mono-zone~: \SI{1150}{kWh\per an}
+                \item Multi-zone~: \SI{1190}{kWh\per an}
             \end{itemize}
         \end{column}%
     \end{columns}%
@@ -769,47 +779,6 @@ Notes for the first frame here
 \end{frame}
 
 
-% ------------------------------------------------------------------------------
-\subsection{Objectifs et contraintes}
-\begin{frame}[t]
-    \vfill
-    \begin{columns}
-        \begin{column}{0.2\textwidth}
-            \vskip2em
-            \addsubtitle{Objectifs}
-            \vskip9.5em
-            \uncover<2->{%
-            \addsubtitle{Contraintes}
-            }
-        \end{column}%
-        \begin{column}{0.9\textwidth}
-            \begin{itemize}
-                \item Maximiser Performance du SSC~:
-                \begin{subequations}
-                \footnotesize
-                    \begin{align*}
-                        F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
-                        F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}
-                    \end{align*}
-                    \vskip0.5em
-                \end{subequations}
-                \item Maximiser la production des capteurs PV
-                \item Minimiser la surface de capteurs PV
-            \end{itemize}
-            \vskip3em
-            \uncover<2->{%
-            \begin{itemize}
-                \item Partage de la surface disponible en toiture 4 pans
-                \item $\abs{Conso_{app} + Conso_{usages} - Prod_{PV}}  \leq  8 \si{kWh_{ep}\per\metre\squared}$
-            \end{itemize}
-            }
-        \end{column}%
-    \end{columns}%
-    \vfill
-\end{frame}
-
-
-
 
 
 
@@ -899,13 +868,14 @@ Notes for the first frame here
 % ------------------------------------------------------------------------------
 \subsection{Optimisation par Colonie d’Abeilles Virtuelles}
 \begin{frame}[t]
-    \vfill
+    \addalert{\footnotesize Exploration~: $NP$ \hfill Exploitation~: $Max_{echec}$}
+    \vskip0.25em
     \centering
-    \only<1>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_1.pdf}}
-    \only<2>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_2.pdf}}
-    \only<3>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_3.pdf}}
-    \only<4>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_4.pdf}}
-    \only<5>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_5.pdf}}
+    \only<2>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_1.pdf}}
+    \only<3>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_2.pdf}}
+    \only<4>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_3.pdf}}
+    \only<5>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_4.pdf}}
+    \only<6>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_5.pdf}}
     \vfill
 
     \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom.
@@ -994,18 +964,18 @@ Notes for the first frame here
     \begin{columns}
         \begin{column}{0.4\textwidth}
         \centering
-        \colorbox{SolarizedBrWhite}{1}Définition des bornes\\
+        \circled[3]{1} Définition des bornes\\
         \includegraphics[height=0.35\textheight]{Ressources/Images/Soutenance/Methodologie/morris_definition.pdf}
         \vskip1.5em
             \uncover<3->{%
-            \colorbox{SolarizedBrWhite}{3} Évaluation de l’influence\\
+            \circled[3]{3} Évaluation de l’influence\\
             \includegraphics[height=0.3\textheight]{Ressources/Images/Soutenance/Methodologie/morris_analyse.pdf}
             }
         \end{column}%
         \begin{column}{0.7\textwidth}
             \centering
             \uncover<2->{%
-            \colorbox{SolarizedBrWhite}{2} Création d’un plan d’expérience\\
+            \circled[3]{2} Création d’un plan d’expérience\\
             \includegraphics[height=0.6\textheight]{Ressources/Images/Soutenance/Methodologie/cube_morris_axes.pdf}
             }
         \end{column}%
@@ -1033,8 +1003,26 @@ Notes for the first frame here
             \end{itemize}
         \end{column}
     \end{columns}
-
+    \vskip2em
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \uncover<2->{%
+            \circled[3]{1} Définition d’un échantillon représentatif
+            \includegraphics[width=1\textwidth]{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
+            }
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \centering
+            \uncover<3->{%
+            \circled[3]{2} Minimisation de l’erreur quadratique moyenne
+            }
+        \end{column}
+    \end{columns}
     \vfill
+\end{frame}
+
+
 
     % \uncover<2->{%
     % \begin{columns}
@@ -1057,25 +1045,6 @@ Notes for the first frame here
     % \end{columns}
     % }
 
-    \uncover<2->{%
-    \begin{columns}
-        \begin{column}{0.6\textwidth}
-            \centering
-            \colorbox{SolarizedBrWhite}{1} Définition d’un échantillon représentatif
-            \includegraphics[width=0.8\textwidth]{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
-        \end{column}
-        \begin{column}{0.4\textwidth}
-            \centering
-            \colorbox{SolarizedBrWhite}{2} Minimisation de l’erreur quadratique moyenne
-            \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
-        \end{column}
-    \end{columns}
-    }
-    \vfill
-\end{frame}
-
-
-
 
 % % ==============================================================================
 % % ==============================================================================
@@ -1087,18 +1056,18 @@ Notes for the first frame here
 \subsection{Conditions limites de l’étude}
 \begin{frame}[t]
     \centering
-    \textbf{Deux climats étudiés}
+    \addalert{\small Deux climats étudiés~: \textbf{Bordeaux} et \textbf{Strasbourg}}
     \vfill
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \addsubtitle{Bordeaux}
+            \alert{Ajouter besoins}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \addsubtitle{Strasbourg}
+            \includegraphics[height=0.75\textheight, clip=true, trim=200mm 0mm 0mm 0mm]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
         \end{column}
     \end{columns}
     \vfill
-    \includegraphics[width=0.95\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
+
     \vfill
 \end{frame}
 
@@ -1108,7 +1077,7 @@ Notes for the first frame here
 \begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
     \vfill
 \end{frame}
 
@@ -1145,14 +1114,15 @@ Notes for the first frame here
 \begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 128mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 128mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
     \vfill
 \end{frame}
 
 \begin{frame}[c]
     \vfill
-    \begin{table}
     \centering
+    \tiny
+    \begin{table}
     Erreurs relatives aux solutions de l’échantillon (\si{\percent})
     \vfill
     \begin{tabular}{l c c c c c c}
@@ -1174,7 +1144,7 @@ Notes for the first frame here
     \end{tabular}
     \end{table}
     \vfill
-    \uncover<2->{\includegraphics[width=\textwidth, clip=true, trim=0mm 100mm 0mm 0mm]{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}}
+    \uncover<2->{\includegraphics[width=0.9\textwidth, clip=true, trim=0mm 100mm 0mm 0mm]{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}}
     \vfill
 \end{frame}
 
@@ -1185,14 +1155,14 @@ Notes for the first frame here
 \begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 77mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 77mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
     \vfill
 \end{frame}
 
 
 \begin{frame}[c]
     \vfill
-    \small
+    \scriptsize
     \begin{table}
     \centering
     Variation de performance pour les solutions optimales (\si{kWh})
@@ -1246,9 +1216,7 @@ Notes for the first frame here
     \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
     \vfill
     \centering
-    \begin{adjustwidth}{-2em}{-2em}
-        \includegraphics[width=1.14\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
-    \end{adjustwidth}
+    \includegraphics[width=1.05\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
     \vfill
 \end{frame}
 
@@ -1258,7 +1226,7 @@ Notes for the first frame here
 \begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 0mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 0mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
     \vfill
 \end{frame}
 
