@@ -318,33 +318,33 @@ Notes for the first frame here
 
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Contexte du bâtiment en France}
-% \begin{frame}[t]
-%     \vfill
-%     \small
-%     \begin{columns}
-%         \begin{column}{0.3\textwidth}
-%             \centering
-%             \uncover<3->{%
-%             \begin{itemize}
-%                 \item \SI{35}{millions} de logements
-%                 \vfill
-%                 \item \SI{56}{\percent} en maison individuelle
-%             \end{itemize}
-%             }
-%         \end{column}%
-%         \begin{column}{0.75\textwidth}
-%             \centering
-%             \includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}
-%             \vskip0.5em
-%             \uncover<2->{%
-%                 \includegraphics[height=0.55\textheight, clip=true, trim=0mm 0mm 0mm 10mm]{Ressources/Images/Soutenance/Contexte_objectifs/RT_evolution.pdf}
-%             }
-%         \end{column}%
-%     \end{columns}%
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Contexte du bâtiment en France}
+\begin{frame}[t]
+    \vfill
+    \small
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \centering
+            \uncover<3->{%
+            \begin{itemize}
+                \item \SI{35}{millions} de logements
+                \vfill
+                \item \SI{56}{\percent} en maison individuelle
+            \end{itemize}
+            }
+        \end{column}%
+        \begin{column}{0.75\textwidth}
+            \centering
+            \includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}
+            \vskip0.5em
+            \uncover<2->{%
+                \includegraphics[height=0.55\textheight, clip=true, trim=0mm 0mm 0mm 10mm]{Ressources/Images/Soutenance/Contexte_objectifs/RT_evolution.pdf}
+            }
+        \end{column}%
+    \end{columns}%
+    \vfill
+\end{frame}
 
 
 % ------------------------------------------------------------------------------
@@ -459,7 +459,6 @@ Notes for the first frame here
     \vfill
     \centering
     \small
-    % \includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Contexte_objectifs/repartition_installations.png}
     \includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Contexte_objectifs/energie_icones.png}
     \vfill
     \uncover<2->{%
@@ -596,16 +595,16 @@ Notes for the first frame here
 \subsection{Système étudié}
 \begin{frame}[c]
     \vfill
-%     \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}}
-%     \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_base.pdf}}
+    \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}}
+    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_base.pdf}}
     \vfill
 \end{frame}
 
 \begin{frame}[c]
     \vfill
-    % \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct.pdf}}
-    % \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct_charge.pdf}}
-    % \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_indirect.pdf}}
+    \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct.pdf}}
+    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct_charge.pdf}}
+    \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_indirect.pdf}}
     \vfill
 \end{frame}
 
@@ -652,40 +651,69 @@ Notes for the first frame here
 \begin{frame}[c]
     \vfill
     \centering
-    Occupation du bâtiment
-    \begin{itemize}
-        \item Occupation fixe
-        \item Consigne de chauffage~: 16-18-19
-        \item Équipements et éclairage~: scénarios $RT\,2012$
-    \end{itemize}
-    Profil de Puisage (couper image)
-    % \includegraphics[height=0.5\textheight]{Ressources/Images/Modelisation/Scenario/puisage.pdf}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \addsubtitle{Charges internes}~\\[0.5em]
+            Inoccupation~: \SI{16}{\celsius}\\[0.5em]
+            Occupation (jour)~: \SI{19}{\celsius}\\[0.5em]
+            Occupation (nuit)~: \SI{18}{\celsius}
+            \vskip3.5em
+            \uncover<3->{%
+            \addsubtitle{Puisage}~\\
+            Pondération~:
+            \begin{itemize}
+                \item mensuelle
+                \item hebdomadaire
+            \end{itemize}
+            }
+        \end{column}
+        \begin{column}{0.7\textwidth}
+            \raggedleft
+            \vskip1em
+            \uncover<2->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}}
+            \vskip2em
+            \uncover<3->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Soutenance/CasEtude/puisage_realiste.pdf}}
+        \end{column}
+    \end{columns}
     \vfill
 \end{frame}
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Choix des paramètres a priori}
+\subsection{Paramètres a priori}
 \begin{frame}[c]
     \vfill
     \centering
-    Prise en compte de \num{21} facteurs
-    \begin{itemize}
-        \item Équipements du SSC
-        \item Logique de contrôle
-        \item Production électrique
-        \item Enveloppe du bâtiment
-    \end{itemize}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \vskip1em
+            \addsubtitle{\num{21} facteurs}
+            \vskip5.5em
+            \uncover<2->{%
+            \addsubtitle{Forte hétérogénéité}
+            }
+        \end{column}
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}
+                \item Équipements du SSC
+                \item Logique de contrôle
+                \item Production électrique
+                \item Enveloppe du bâtiment
+            \end{itemize}
+            \vskip2em
+            \uncover<2->{%
+            \begin{itemize}
+                \item continues
+                \item discrètes
+                \item qualitatives
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+    \vskip0.5em
     \vfill
-    Forte hétérogénéité des variables
-    \begin{itemize}
-        \item continues
-        \item discrètes
-        \item qualitatives
-    \end{itemize}
-    \vfill
-    \addalert{Combinatoire importante}
+    \uncover<3->{\addalert{Combinatoire importante}}
 \end{frame}
 
 
@@ -712,13 +740,13 @@ Notes for the first frame here
                     \begin{column}{0.5\textwidth}
                         \centering
                         \only<2-3>{$F_{sol}       = \frac{Prod_{sol}}{Prod_{sol} + Conso_{app}}$}
-                        \only<4>{{\color{SolarizedRed} \cancel{$F_{sol}$}}}
+                        \only<4>{{\color{SolarizedRed} \cancel{$F_{sol}       = \frac{Prod_{sol}}{Prod_{sol} + Conso_{app}}$}}}
                         \only<5->{$F_{sav}^{CH}   = 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}}$}
                     \end{column}
                     \begin{column}{0.5\textwidth}
                         \centering
                         \only<3>{$F_{sav}  = 1 - \frac{Conso_{app}}{Conso_{ref}}$}
-                        \only<4>{{\color{SolarizedGreen} $F_{sav}$}}
+                        \only<4>{{\color{SolarizedGreen} $F_{sav}  = 1 - \frac{Conso_{app}}{Conso_{ref}}$}}
                         \only<5->{$F_{sav}^{ECS}   = 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}$}
                     \end{column}
                 \end{columns}
@@ -741,44 +769,44 @@ Notes for the first frame here
 \end{frame}
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Objectifs et contraintes}
-% \begin{frame}[t]
-%     \vfill
-%     \begin{columns}
-%         \begin{column}{0.2\textwidth}
-%             \vskip2em
-%             \addsubtitle{Objectifs}
-%             \vskip9.5em
-%             \uncover<2->{%
-%             \addsubtitle{Contraintes}
-%             }
-%         \end{column}%
-%         \begin{column}{0.9\textwidth}
-%             \begin{itemize}
-%                 \item Maximiser Performance du SSC~:
-%                 \begin{subequations}
-%                 \footnotesize
-%                     \begin{align*}
-%                         F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
-%                         F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}
-%                     \end{align*}
-%                     \vskip0.5em
-%                 \end{subequations}
-%                 \item Maximiser la production des capteurs PV
-%                 \item Minimiser la surface de capteurs PV
-%             \end{itemize}
-%             \vskip3em
-%             \uncover<2->{%
-%             \begin{itemize}
-%                 \item Partage de la surface disponible en toiture 4 pans
-%                 \item $\abs{Conso_{app} + Conso_{usages} - Prod_{PV}}  \leq  8 \si{kWh_{ep}\per\metre\squared}$
-%             \end{itemize}
-%             }
-%         \end{column}%
-%     \end{columns}%
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Objectifs et contraintes}
+\begin{frame}[t]
+    \vfill
+    \begin{columns}
+        \begin{column}{0.2\textwidth}
+            \vskip2em
+            \addsubtitle{Objectifs}
+            \vskip9.5em
+            \uncover<2->{%
+            \addsubtitle{Contraintes}
+            }
+        \end{column}%
+        \begin{column}{0.9\textwidth}
+            \begin{itemize}
+                \item Maximiser Performance du SSC~:
+                \begin{subequations}
+                \footnotesize
+                    \begin{align*}
+                        F_{sav}^{CH}   &= 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}} \\
+                        F_{sav}^{ECS}  &= 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}
+                    \end{align*}
+                    \vskip0.5em
+                \end{subequations}
+                \item Maximiser la production des capteurs PV
+                \item Minimiser la surface de capteurs PV
+            \end{itemize}
+            \vskip3em
+            \uncover<2->{%
+            \begin{itemize}
+                \item Partage de la surface disponible en toiture 4 pans
+                \item $\abs{Conso_{app} + Conso_{usages} - Prod_{PV}}  \leq  8 \si{kWh_{ep}\per\metre\squared}$
+            \end{itemize}
+            }
+        \end{column}%
+    \end{columns}%
+    \vfill
+\end{frame}
 
 
 
@@ -789,379 +817,337 @@ Notes for the first frame here
 
 
 
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Méthodologie}
-% % -------------------------------------
-% % % ------------------------------------------------------------------------------
-% % \subsection{Approche incrémentale ou optimisation ?}
-% % \begin{frame}[t]
-% %     \small
-% %     \begin{columns}
-% %         \begin{column}{0.45\textwidth}
-% %             \centering
-% %             \addsubtitle{Incrémentale}
-% %             \begin{itemize}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Approche actuelle du domaine}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Simple}
-% %                 \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Objectifs traités indépendamment}
-% %                 \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Essais / erreurs}
-% %                 \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Basée uniquement sur l’expérience}
-% %                 \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Améliore une solution initiale}
-% %             \end{itemize}
-% %         \end{column}%
-% %         \begin{column}{0.55\textwidth}
-% %             % \centering
-% %             \uncover<2->{%
-% %             \addsubtitle{Optimisation}
-% %             \begin{itemize}
-% %                 \item[\addSimley{-0.5}{SolarizedRed!60}]  {\color{SolarizedRed} Développement de la méthodologie}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Automatisée}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Traitement simultané des objectifs}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Valorisation de la puissance machine}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Exploration du domaine de décision}
-% %                 \item[\addSimley{0.5}{SolarizedGreen!60}] {\color{SolarizedGreen} Renforcement de la connaissance}
-% %             \end{itemize}
-% %             }
-% %         \end{column}%
-% %     \end{columns}%
-% %     % \vfill
-
-% %     \note{Approche actuelle dans le bâtiment par essais/erreurs.
-% %           Approche valorisant temps machine
-% %           Ajouter des smiley pour comparer les approches}
-% % \end{frame}
+% % ==============================================================================
+% % ==============================================================================
+\section{\scshape Méthodologie}
+% ------------------------------------------------------------------------------
+\subsection{Optimisation et décision}
+\begin{frame}[t]
+    \addsubtitle{La décision précède l’optimisation}
+    \vfill
+    \centering
+    \only<1>{\includegraphics[width=0.8\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_priori.pdf}}
+    \only<2>{\includegraphics[width=0.8\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_priori_detail.pdf}}
+    \vfill
+\end{frame}
 
 
+\begin{frame}[t]
+    \addsubtitle{L’optimisation précède la décision}
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.1em}{-2.1em}
+     \begin{columns}
+        \begin{column}{0.42\textwidth}
+            \raggedright
+            \begin{itemize}
+                \item<2-> Variables hétérogènes
+                \vskip-0.5em
+                \begin{itemize}
+                    \item<2->[--] Qualitatives
+                    \item<2->[--] Discrètes
+                    \item<2->[--] Continues
+                \end{itemize}
+                \vskip0.5em
+                \item<3-> Combinatoire importante
+                \vskip0.5em
+                \item<4-> Connaissance limitée
+            \end{itemize}
+        \end{column}%
+        \begin{column}{0.74\textwidth}
+            \centering
+            \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori.pdf}}
+            \only<2>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_type.pdf}}
+            \only<3>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_cardinalite.pdf}}
+            \only<4->{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_meta.pdf}}
+        \end{column}%
+    \end{columns}%
+    \end{adjustwidth}
+    \vfill
+    \uncover<5>{\addalert{Comment classer des solutions avec plusieurs objectifs sans ajouter de préférences~?}}
+    \vfill
+\end{frame}
 
-% % ------------------------------------------------------------------------------
-% \subsection{Optimisation et décision}
-% \begin{frame}[t]
-%     \addsubtitle{La décision précède l’optimisation}
-%     \vfill
-%     \centering
-%     \only<1>{\includegraphics[width=0.8\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_priori.pdf}}
-%     \only<2>{\includegraphics[width=0.8\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_priori_detail.pdf}}
-%     \vfill
-% \end{frame}
+\begin{frame}[t]
+    \addsubtitle{Dominance au sens de Pareto}
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \centering
+            \small
+            \uncover<2->{%
+            Relation de dominance \\ \vskip1em
+            + \\  \vskip1em
+            Ensemble de solutions \\  \vskip2em
+            = \\  \vskip2em
+            Front de Pareto
+            }
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[width=0.98\textwidth]{Ressources/Images/Optimisation/dominance.pdf}
+        \end{column}%
+    \end{columns}%
+    \vfill
 
-
-% \begin{frame}[t]
-%     \addsubtitle{L’optimisation précède la décision}
-%     \vfill
-%     \centering
-%     \begin{adjustwidth}{-2.1em}{-2.1em}
-%      \begin{columns}
-%         \begin{column}{0.42\textwidth}
-%             \raggedright
-%             \begin{itemize}
-%                 \item<2-> Variables hétérogènes
-%                 \vskip-0.5em
-%                 \begin{itemize}
-%                     \item<2->[--] Qualitatives
-%                     \item<2->[--] Discrètes
-%                     \item<2->[--] Continues
-%                 \end{itemize}
-%                 \vskip0.5em
-%                 \item<3-> Combinatoire importante
-%                 \vskip0.5em
-%                 \item<4-> Connaissance limitée
-%             \end{itemize}
-%         \end{column}%
-%         \begin{column}{0.74\textwidth}
-%             \centering
-%             \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori.pdf}}
-%             \only<2>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_type.pdf}}
-%             \only<3>{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_cardinalite.pdf}}
-%             \only<4->{\includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Methodologie/decision_a_posteriori_meta.pdf}}
-%         \end{column}%
-%     \end{columns}%
-%     \end{adjustwidth}
-%     \vfill
-%     \uncover<5>{\addalert{Comment classer des solutions avec plusieurs objectifs sans ajouter de préférences~?}}
-%     \vfill
-% \end{frame}
-
-% \begin{frame}[t]
-%     \addsubtitle{Dominance au sens de Pareto}
-%     \vfill
-%     \centering
-%     \begin{columns}
-%         \begin{column}{0.45\textwidth}
-%             \centering
-%             \small
-%             \uncover<2->{%
-%             Relation de dominance \\ \vskip1em
-%             + \\  \vskip1em
-%             Ensemble de solutions \\  \vskip2em
-%             = \\  \vskip2em
-%             Front de Pareto
-%             }
-%         \end{column}%
-%         \begin{column}{0.7\textwidth}
-%             \centering
-%             \includegraphics[width=0.98\textwidth]{Ressources/Images/Optimisation/dominance.pdf}
-%         \end{column}%
-%     \end{columns}%
-%     \vfill
-
-%     \note{Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --> décision (notion de pareto)}
-% \end{frame}
+    \note{Ajouter cadre pour montrer de quoi je parle et plusieurs diapo~: optimisation --> décision (notion de pareto)}
+\end{frame}
 
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Optimisation par Colonie d’Abeilles Virtuelles}
-% \begin{frame}[t]
-%     \vfill
-%     \centering
-%     \only<1>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_1.pdf}}
-%     \only<2>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_2.pdf}}
-%     \only<3>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_3.pdf}}
-%     \only<4>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_4.pdf}}
-%     \only<5>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_5.pdf}}
-%     \vfill
+% ------------------------------------------------------------------------------
+\subsection{Optimisation par Colonie d’Abeilles Virtuelles}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \only<1>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_1.pdf}}
+    \only<2>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_2.pdf}}
+    \only<3>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_3.pdf}}
+    \only<4>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_4.pdf}}
+    \only<5>{\includegraphics[height=0.95\textheight]{Ressources/Images/Soutenance/Methodologie/comportement_abeilles_steps_5.pdf}}
+    \vfill
 
-%     \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom.
-%           Mettre en avant le nombre faible de paramètres à définir.}
-% \end{frame}
-
-
-% \begin{frame}[c]
-%     \vfill
-%     \centering
-%     \begin{adjustwidth}{-2.2em}{-2em}
-%     \begin{columns}
-%         \begin{column}{0.6\textwidth}
-%             \raggedright
-%             \footnotesize
-
-%             % Initialisation
-%             \uncover<2->{%
-%             \textbf{Initialisation / Exploratrices}
-%             \begin{subequations}
-%                 \begin{align*}
-%                 x_{ij} = x_{j}^{min} &+ RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min}) \\
-%                 \check{x_{ij}} = x_{j}^{min} &+ x_{j}^{max} - x_{ij}
-%                 \end{align*}
-%             \end{subequations}
-%             \vskip2em
-%             }
-
-%             % Maj butineuses
-%             \uncover<3->{%
-%             \textbf{Butineuses}
-%             \begin{subequations}
-%                 \begin{align*}
-%                 x_{ij}' = x_{ij}  &+ RandUniform(-1, 1)   \times \ (x_{ij} - x_{bj})  \\
-%                       &+ RandUniform(0, 1)    \times \ (x_{aj} - x_{ij})
-%                 \shortintertext{Ou}
-%                 x_{ij}' = x_{ij}  &+ \alt<5>{\highlight[SolarizedRed]{\num{0.01} \times ~Levy}}{\num{0.01} \times ~Levy}  \times (x_{ij} - x_{bj})  \\
-%                                   &+ \alt<5>{\highlight[SolarizedRed]{\num{0.01} \times |Levy|}}{\num{0.01} \times |Levy|}   \times (x_{aj} - x_{ij})
-%                 \end{align*}
-%             \end{subequations}
-%             \vskip2em
-%             }
-
-%             % Maj ouvrières
-%             \uncover<4->{%
-%             \textbf{Ouvrières} \\
-%             $x_{ij}' = x_{ij}  + RandUniform(-1, 1)   \times \ (x_{ij} - x_{aj})$ \\
-%             }
-%         \end{column}%
-%         \begin{column}{0.4\textwidth}
-%             \raggedright
-%             \includegraphics[width=1.05\textwidth]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
-%         \end{column}%
-%     \end{columns}%
-%     \end{adjustwidth}
-%     \vfill
-% \end{frame}
+    \note{Décrire système d’équations butineuses / exploratrices / ouvrières avec flèches et zoom.
+          Mettre en avant le nombre faible de paramètres à définir.}
+\end{frame}
 
 
-% \begin{frame}[t]
-%     \addsubtitle{Mise à jour~: $\epsilon$-Archive}
-%     \vfill
-%     \centering
-%     \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}
-%     \vfill
-% \end{frame}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.2em}{-2em}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \raggedright
+            \footnotesize
+
+            % Initialisation
+            \uncover<2->{%
+            \textbf{Initialisation / Exploratrices}
+            \begin{subequations}
+                \begin{align*}
+                x_{ij} = x_{j}^{min} &+ RandUniform(0, 1) \times (x_{j}^{max} - x_{j}^{min}) \\
+                \check{x_{ij}} = x_{j}^{min} &+ x_{j}^{max} - x_{ij}
+                \end{align*}
+            \end{subequations}
+            \vskip2em
+            }
+
+            % Maj butineuses
+            \uncover<3->{%
+            \textbf{Butineuses}
+            \begin{subequations}
+                \begin{align*}
+                x_{ij}' = x_{ij}  &+ RandUniform(-1, 1)   \times \ (x_{ij} - x_{bj})  \\
+                      &+ RandUniform(0, 1)    \times \ (x_{aj} - x_{ij})
+                \shortintertext{Ou}
+                x_{ij}' = x_{ij}  &+ \alt<5>{\highlight[SolarizedRed]{\num{0.01} \times ~Levy}}{\num{0.01} \times ~Levy}  \times (x_{ij} - x_{bj})  \\
+                                  &+ \alt<5>{\highlight[SolarizedRed]{\num{0.01} \times |Levy|}}{\num{0.01} \times |Levy|}   \times (x_{aj} - x_{ij})
+                \end{align*}
+            \end{subequations}
+            \vskip2em
+            }
+
+            % Maj ouvrières
+            \uncover<4->{%
+            \textbf{Ouvrières} \\
+            $x_{ij}' = x_{ij}  + RandUniform(-1, 1)   \times \ (x_{ij} - x_{aj})$ \\
+            }
+        \end{column}%
+        \begin{column}{0.4\textwidth}
+            \raggedright
+            \includegraphics[width=1.05\textwidth]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
+        \end{column}%
+    \end{columns}%
+    \end{adjustwidth}
+    \vfill
+\end{frame}
 
 
-% \begin{frame}[t]
-%     \addsubtitle{Vol de Lévy}
-%     \vfill
-%     \centering
-%     \includegraphics[height=0.8\textheight, clip=true, trim=100mm 10mm 90mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
-%     \vfill
-% \end{frame}
+\begin{frame}[t]
+    \addsubtitle{Mise à jour~: $\epsilon$-Archive}
+    \vfill
+    \centering
+    \includegraphics[height=0.8\textheight]{Ressources/Images/Optimisation/Epsilon_dominance/selection_boxes.pdf}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[t]
+    \addsubtitle{Vol de Lévy}
+    \vfill
+    \centering
+    \includegraphics[height=0.8\textheight, clip=true, trim=100mm 10mm 90mm 10mm]{Ressources/Images/Optimisation/LevyFlight/levy_vs_gaussian.pdf}
+    \vfill
+\end{frame}
 
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Réduction de la complexité}
-% \begin{frame}[t]
-%     \addsubtitle{Criblage de Morris}
-%     \vfill
-%     \centering
-%     \small
-%     \begin{columns}
-%         \begin{column}{0.4\textwidth}
-%         \centering
-%         \colorbox{SolarizedBrWhite}{1}Définition des bornes\\
-%         \includegraphics[height=0.35\textheight]{Ressources/Images/Soutenance/Methodologie/morris_definition.pdf}
-%         \vskip1.5em
-%             \uncover<3->{%
-%             \colorbox{SolarizedBrWhite}{3} Évaluation de l’influence\\
-%             \includegraphics[height=0.3\textheight]{Ressources/Images/Soutenance/Methodologie/morris_analyse.pdf}
-%             }
-%         \end{column}%
-%         \begin{column}{0.7\textwidth}
-%             \centering
-%             \uncover<2->{%
-%             \colorbox{SolarizedBrWhite}{2} Création d’un plan d’expérience\\
-%             \includegraphics[height=0.6\textheight]{Ressources/Images/Soutenance/Methodologie/cube_morris_axes.pdf}
-%             }
-%         \end{column}%
-%     \end{columns}%
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la complexité}
+\begin{frame}[t]
+    \addsubtitle{Criblage de Morris}
+    \vfill
+    \centering
+    \small
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+        \centering
+        \colorbox{SolarizedBrWhite}{1}Définition des bornes\\
+        \includegraphics[height=0.35\textheight]{Ressources/Images/Soutenance/Methodologie/morris_definition.pdf}
+        \vskip1.5em
+            \uncover<3->{%
+            \colorbox{SolarizedBrWhite}{3} Évaluation de l’influence\\
+            \includegraphics[height=0.3\textheight]{Ressources/Images/Soutenance/Methodologie/morris_analyse.pdf}
+            }
+        \end{column}%
+        \begin{column}{0.7\textwidth}
+            \centering
+            \uncover<2->{%
+            \colorbox{SolarizedBrWhite}{2} Création d’un plan d’expérience\\
+            \includegraphics[height=0.6\textheight]{Ressources/Images/Soutenance/Methodologie/cube_morris_axes.pdf}
+            }
+        \end{column}%
+    \end{columns}%
+    \vfill
+\end{frame}
 
 
-% \begin{frame}[t]
-%     \addsubtitle{Modèle de substitution par chaos polynomial}
-%     \vfill
-%     \centering
-%     \textbf{Approximation des objectifs par des fonctions analytiques}
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \begin{itemize}
-%                 \item $Conso_{app}$
-%                 \item $Conso_{app}^{CH}$
-%             \end{itemize}
-%         \end{column}
-%         \begin{column}{0.5\textwidth}
-%             \begin{itemize}
-%                 \item $Conso_{app}^{ECS}$
-%                 \item $Conso_{ref}^{CH}$
-%             \end{itemize}
-%         \end{column}
-%     \end{columns}
+\begin{frame}[t]
+    \addsubtitle{Modèle de substitution par chaos polynomial}
+    \vfill
+    \centering
+    \textbf{Approximation des objectifs par des fonctions analytiques}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $Conso_{app}$
+                \item $Conso_{app}^{CH}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $Conso_{app}^{ECS}$
+                \item $Conso_{ref}^{CH}$
+            \end{itemize}
+        \end{column}
+    \end{columns}
 
-%     \vfill
+    \vfill
 
-%     % \uncover<2->{%
-%     % \begin{columns}
-%     %     \begin{column}{0.6\textwidth}
-%     %         \raggedright
-%     %         \begin{subequations}
-%     %             \begin{align*}
-%     %                 &Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P}
-%     %                 c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) \\
-%     %                 \shortintertext{Avec}
-%     %                 &\psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) = \prod_{j = 1}^{D}\pi_{\vec{\alpha}p}^{(j)} \left(\,\underline{x}_{j} \right)
-%     %             \end{align*}
-%     %         \end{subequations}
-%     %     \end{column}
-%     %     \begin{column}{0.4\textwidth}
-%     %         \centering
-%     %         \includegraphics[width=0.8\textwidth]{Ressources/Images/Logos/python_logo.png}
-%     %         \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
-%     %     \end{column}
-%     % \end{columns}
-%     % }
+    % \uncover<2->{%
+    % \begin{columns}
+    %     \begin{column}{0.6\textwidth}
+    %         \raggedright
+    %         \begin{subequations}
+    %             \begin{align*}
+    %                 &Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P}
+    %                 c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) \\
+    %                 \shortintertext{Avec}
+    %                 &\psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) = \prod_{j = 1}^{D}\pi_{\vec{\alpha}p}^{(j)} \left(\,\underline{x}_{j} \right)
+    %             \end{align*}
+    %         \end{subequations}
+    %     \end{column}
+    %     \begin{column}{0.4\textwidth}
+    %         \centering
+    %         \includegraphics[width=0.8\textwidth]{Ressources/Images/Logos/python_logo.png}
+    %         \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
+    %     \end{column}
+    % \end{columns}
+    % }
 
-%     \uncover<2->{%
-%     \begin{columns}
-%         \begin{column}{0.6\textwidth}
-%             \centering
-%             \colorbox{SolarizedBrWhite}{1} Définition d’un échantillon représentatif
-%             \includegraphics[width=0.8\textwidth]{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
-%         \end{column}
-%         \begin{column}{0.4\textwidth}
-%             \centering
-%             \colorbox{SolarizedBrWhite}{2} Minimisation de l’erreur quadratique moyenne
-%             \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
-%         \end{column}
-%     \end{columns}
-%     }
-%     \vfill
-% \end{frame}
+    \uncover<2->{%
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \centering
+            \colorbox{SolarizedBrWhite}{1} Définition d’un échantillon représentatif
+            \includegraphics[width=0.8\textwidth]{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \colorbox{SolarizedBrWhite}{2} Minimisation de l’erreur quadratique moyenne
+            \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
+        \end{column}
+    \end{columns}
+    }
+    \vfill
+\end{frame}
 
 
 
 
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Résultats}
-% % ----------------------------
+% % ==============================================================================
+% % ==============================================================================
+\section{\scshape Résultats}
+% ----------------------------
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Conditions limites de l’étude}
-% \begin{frame}[t]
-%     \centering
-%     \textbf{Deux climats étudiés}
-%     \vfill
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \addsubtitle{Bordeaux}
-%         \end{column}
-%         \begin{column}{0.5\textwidth}
-%             \addsubtitle{Strasbourg}
-%         \end{column}
-%     \end{columns}
-%     \vfill
-%     \includegraphics[width=0.95\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Conditions limites de l’étude}
+\begin{frame}[t]
+    \centering
+    \textbf{Deux climats étudiés}
+    \vfill
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \addsubtitle{Bordeaux}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \addsubtitle{Strasbourg}
+        \end{column}
+    \end{columns}
+    \vfill
+    \includegraphics[width=0.95\textwidth]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
+    \vfill
+\end{frame}
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Réduction de la cardinalité}
-% \begin{frame}[t]
-%     \vfill
-%     \centering
-%     \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la cardinalité}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
 
-% \begin{frame}[c]
-%     \vfill
-%     \centering
-%     \begin{columns}
-%         \begin{column}{0.8\textwidth}
-%             \uncover<2->{%
-%                 \includegraphics[height=0.9\textheight]{Ressources/Images/Sensibilite/graphInfluence.pdf}
-%             }
-%         \end{column}
-%         \begin{column}{0.2\textwidth}
-%             \centering
-%             \small
-%             \addsubtitle{A priori}
-%             21 facteurs \\
-%             \vskip4em
-%             \uncover<3->{%
-%             \addsubtitle{Bordeaux}
-%             $14$ facteurs \\
-%             \vskip2em
-%             \addsubtitle{Strasbourg}
-%             $15$ facteurs
-%             }
-%         \end{column}
-%     \end{columns}
-%     \vfill
-% \end{frame}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.8\textwidth}
+            \uncover<2->{%
+                \includegraphics[height=0.9\textheight]{Ressources/Images/Sensibilite/graphInfluence.pdf}
+            }
+        \end{column}
+        \begin{column}{0.2\textwidth}
+            \centering
+            \small
+            \addsubtitle{A priori}
+            21 facteurs \\
+            \vskip4em
+            \uncover<3->{%
+            \addsubtitle{Bordeaux}
+            $14$ facteurs \\
+            \vskip2em
+            \addsubtitle{Strasbourg}
+            $15$ facteurs
+            }
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Création des méta-modèles}
-% \begin{frame}[t]
-%     \vfill
-%     \centering
-%     \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 128mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Création des méta-modèles}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 128mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
 
 \begin{frame}[c]
     \vfill
@@ -1188,20 +1174,20 @@ Notes for the first frame here
     \end{tabular}
     \end{table}
     \vfill
-    % \uncover<2->{\includegraphics[width=\textwidth, clip=true, trim=0mm 100mm 0mm 0mm]{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}}
-    % \vfill
+    \uncover<2->{\includegraphics[width=\textwidth, clip=true, trim=0mm 100mm 0mm 0mm]{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}}
+    \vfill
 \end{frame}
 
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Optimisation multi-objectifs}
-% \begin{frame}[t]
-%     \vfill
-%     \centering
-%     \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 77mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Optimisation multi-objectifs}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 77mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
 
 
 \begin{frame}[c]
@@ -1239,56 +1225,53 @@ Notes for the first frame here
     \vfill
 \end{frame}
 
-% \begin{frame}[c]
-%     \addsubtitle{Résultats d’optimisation sur Strasbourg}
-%     \vfill
-%     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
-%     \vfill
-% \end{frame}
+\begin{frame}[c]
+    \addsubtitle{Résultats d’optimisation sur Strasbourg}
+    \vfill
+    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
+    \vfill
+\end{frame}
 
 
-% \begin{frame}[c]
-%     \addsubtitle{Occurrences de tailles pour les deux ballons du SSC}
-%     \vfill
-%     \centering
-%     \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/tanks_count.pdf}
-%     \vfill
-% \end{frame}
+\begin{frame}[c]
+    \addsubtitle{Occurrences de tailles pour les deux ballons du SSC}
+    \vfill
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/tanks_count.pdf}
+    \vfill
+\end{frame}
 
 
-% \begin{frame}[c]
-%     \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
-%     \vfill
-%     \centering
-%     \begin{adjustwidth}{-2em}{-2em}
-%         \includegraphics[width=1.14\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
-%     \end{adjustwidth}
-%     \vfill
-% \end{frame}
+\begin{frame}[c]
+    \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2em}{-2em}
+        \includegraphics[width=1.14\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
+    \end{adjustwidth}
+    \vfill
+\end{frame}
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Aide à la décision}
-% \begin{frame}[t]
-%     \vfill
-%     \centering
-%     \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 0mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Aide à la décision}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.7\textwidth, clip=true, trim=0mm 0mm 0mm 53mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
 
 
-% \begin{frame}[c]
-%     \vfill
-%     \centering
-%     \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/base.png}}
-%     \only<2>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}}
-%     \only<3>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}}
-%     \only<4>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/final.png}}
-%     \vfill
-% \end{frame}
-
-
-
+\begin{frame}[c]
+    \vfill
+    \centering
+    \only<1>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/base.png}}
+    \only<2>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}}
+    \only<3>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/volume_ballons.png}}
+    \only<4>{\includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/AideDecision/final.png}}
+    \vfill
+\end{frame}
 
 
 
@@ -1300,66 +1283,69 @@ Notes for the first frame here
 
 
 
-% % % ==============================================================================
-% % % ==============================================================================
-% \section{\scshape Conclusions / Perspectives}
-% % ------------------------------------------
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Conclusions}
-% \begin{frame}[c]
-%     \vfill
-%     \begin{itemize}
-%         \item Développements~:
-%         \begin{itemize}
-%             \item[--] Modèle de SSC avec une logique de contrôle détaillée.
-%             \item[--] Algorithme d’optimisation nécessitant très peu de paramètres.
-%         \end{itemize}
-%         \vfill
-%         \uncover<2->{%
-%         \item Application~:
-%         \begin{itemize}
-%             \item[--] Exploration automatisée de l’espace de décision.
-%             \item[--] Grande diversité de solutions optimales obtenue.
-%             \item[--] Aide à la décision simple et interactive.
-%         \end{itemize}
-%         }
-%         \vfill
-%         \item<3-> Mise en évidence du potentiel des SSC pour des MEPOS en climats rudes.
-%     \end{itemize}
-%     \vfill
-% \end{frame}
+
+% % ==============================================================================
+% % ==============================================================================
+\section{\scshape Conclusions / Perspectives}
+% ------------------------------------------
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Perspectives à court terme}
-% \begin{frame}[c]
-%     \vfill
-%     \begin{itemize}
-%         \item Validation expérimentale du modèle de SSC.
-%     \vfill
-%         \item<2-> Prise en compte de l’aspect économique et de l’évolution du climat.
-%     \vfill
-%         \item<3-> Incorporation de méthodes de propagation d’incertitudes.
-%     \vfill
-%         \item<4-> Ajout de modèles stochastiques pour le comportement des occupants.
-%     \end{itemize}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Conclusions}
+\begin{frame}[c]
+    \vfill
+    \begin{itemize}
+        \item Développements~:
+        \begin{itemize}
+            \item[--] Modèle de SSC avec une logique de contrôle détaillée.
+            \item[--] Algorithme d’optimisation nécessitant très peu de paramètres.
+        \end{itemize}
+        \vfill
+        \uncover<2->{%
+        \item Application~:
+        \begin{itemize}
+            \item[--] Exploration automatisée de l’espace de décision.
+            \item[--] Grande diversité de solutions optimales obtenue.
+            \item[--] Aide à la décision simple et interactive.
+        \end{itemize}
+        }
+        \vfill
+        \item<3-> Mise en évidence du potentiel des SSC pour des MEPOS en climats rudes.
+    \end{itemize}
+    \vfill
+\end{frame}
 
 
-% % ------------------------------------------------------------------------------
-% \subsection{Perspectives à long terme}
-% \begin{frame}[c]
-%     \vfill
-%     \begin{itemize}
-%         \item Application à la réhabilitation lourde.
-%     \vfill
-%         \item<2-> Application aux habitats groupés et aux petits collectifs.
-%     \end{itemize}
-%     \vfill
-% \end{frame}
+% ------------------------------------------------------------------------------
+\subsection{Perspectives à court terme}
+\begin{frame}[c]
+    \vfill
+    \begin{itemize}
+        \item Validation expérimentale du modèle de SSC.
+    \vfill
+        \item<2-> Prise en compte de l’aspect économique et de l’évolution du climat.
+    \vfill
+        \item<3-> Incorporation de méthodes de propagation d’incertitudes.
+    \vfill
+        \item<4-> Ajout de modèles stochastiques pour le comportement des occupants.
+    \end{itemize}
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Perspectives à long terme}
+\begin{frame}[c]
+    \vfill
+    \begin{itemize}
+        \item Application à la réhabilitation lourde.
+    \vfill
+        \item<2-> Application aux habitats groupés et aux petits collectifs.
+    \end{itemize}
+    \vfill
+\end{frame}
 
 
 
