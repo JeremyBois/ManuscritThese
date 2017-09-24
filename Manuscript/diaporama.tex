@@ -190,6 +190,7 @@
         {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
       \fi%
     \end{beamercolorbox}%
+    \vfill
     \vskip1em\par
     \begin{beamercolorbox}[sep=8pt,center]{author}
       \usebeamerfont{author}\insertauthor
@@ -201,7 +202,6 @@
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}
   \endgroup
-  \vfill
 }
 
 
@@ -309,13 +309,13 @@
 % -------------------------------------
 % ------------------------------------------------------------------------------
 \subsection{Contexte global}
-\begin{frame}[c]
+\begin{frame}[t]
     \vfill
     \centering
-    \includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/evolution_effet_serre_cleaned.png}
-    \vfill
+    \includegraphics[height=0.48\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/evolution_effet_serre_cleaned.png}
+    \vskip0.5em
     \uncover<2->{
-    \includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/elevation_temperature_global.png}
+    \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/elevation_temperature_global.png}
     }
     \vfill
 \end{frame}
@@ -388,7 +388,7 @@
 
 
 % ------------------------------------------------------------------------------
-\subsection{La maison à énergie positive}
+\subsection{La maison à énergie positive (MEPOS)}
 \begin{frame}[t]
     \addalert{\scriptsize Production locale en énergie renouvelable $>$ Consommation}
     \vfill
@@ -400,20 +400,19 @@
             Bilan
             \begin{itemize}
                 \scriptsize
-                \item Énergie finale
-                \item Énergie primaire
-                \item $CO_{2}$
-                \item Gain financier
+                \item Énergie \uncover<3->{finale / primaire}
+                \item<3-> $CO_{2}$
+                \item<3-> Économique
             \end{itemize}
             }
             \vskip3.5em
-            \uncover<3->{%
+            \uncover<4->{%
             Norme Européenne
             \begin{itemize}
                 \scriptsize
                 \item Sobriété énergétique
                 \item Efficacité énergétique
-                \item Énergie renouvelables
+                \item Énergies renouvelables
                 \item Bilan énergétique positif
             \end{itemize}
             }
@@ -424,7 +423,7 @@
             \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/bilan_nzeb.png}
             }
             \vskip1.25em
-            \uncover<3->{%
+            \uncover<4->{%
             \includegraphics[height=0.25\textheight]{Ressources/Images/Environnement/hurdle_race.png}
             }
         \end{column}%
@@ -481,7 +480,6 @@
         \begin{column}{0.45\textwidth}
             \begin{center}
                 \begin{itemize}
-                    \item Solaire thermique peu développé en France
                     \item SSC sur le marché Européen
                 \end{itemize}
             \end{center}
@@ -491,12 +489,13 @@
 
                 \begin{itemize}
                     \item Majoritairement en maison individuelle
-                    \item BEPOS avec SSC $< \SI{10}{\percent}$
                 \end{itemize}
             \end{center}
         \end{column}%
     \end{columns}%
     }
+    \vfill
+    \uncover<3->{\addalert{BEPOS avec SSC $< \SI{10}{\percent}$}}
     \vfill
 \end{frame}
 
@@ -513,31 +512,33 @@
     \begin{columns}
         \begin{column}{0.2\textwidth}
             \vskip1.5em
-            \addsubtitle{Verrous}
-            \vskip5em
             \uncover<2->{%
+            \addsubtitle{Verrous}
+            }
+            \vskip5em
+            \uncover<5->{%
             \addsubtitle{Démarche}
             }
         \end{column}%
         \begin{column}{0.9\textwidth}
             \begin{center}
-                \begin{itemize}
-                    \footnotesize
-                    \item[--] Multi-physiques et multi-critères.
-                    \item[--] Potentiel SSC + MEPOS ?
-                    \item[--] Indicateur de performance ?
-                    \item[--] Équilibre Besoins / Capacité de production / Consommations ?
-                \end{itemize}
-                \vskip2em
                 \uncover<2->{%
                 \begin{itemize}
                     \footnotesize
-                    \item[--] Modélisation + évaluation du potentiel du SSC développé.
-                    \item[--] Dimensionnement couplé enveloppe / SSC.
-                    \item[--] Génération d’un grand nombre d’alternatives.
-                    \item[--] Aide au choix d’une solution interactivement.
+                    \item<2->[--] Multi-physiques et multi-critères.
+                    \item<3->[--] Indicateur de performance ?
+                    \item<3->[--] Performance SSC + MEPOS ?
+                    \item<4->[--] Équilibre Besoins / Capacité de production / Consommations ?
                 \end{itemize}
                 }
+                \vskip2em
+                \begin{itemize}
+                    \footnotesize
+                    \item<5->[--] Modélisation + évaluation du potentiel du SSC développé.
+                    \item<6->[--] Dimensionnement couplé enveloppe / SSC.
+                    \item<7->[--] Génération d’un grand nombre d’alternatives.
+                    \item<7->[--] Aide au choix d’une solution interactivement.
+                \end{itemize}
             \end{center}
         \end{column}%
     \end{columns}%
@@ -759,7 +760,7 @@
 
 
 % ------------------------------------------------------------------------------
-\subsection{Objectifs et contraintes}
+\subsection{Formulation du problème}
 \begin{frame}[t]
     \addalert{$Prod_{PV} - Conso_{app} - Conso_{usages} \geq 0$}
     \vfill
