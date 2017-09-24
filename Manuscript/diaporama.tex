@@ -345,7 +345,14 @@ Notes for the first frame here
         \end{column}%
         \begin{column}{0.75\textwidth}
             \centering
-            \includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}
+            \begin{tikzpicture}
+                \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}};
+                \begin{scope}[x={(image.south east)},y={(image.north west)}]
+                    \draw[SolarizedRed,ultra thick,rounded corners] (0.67,0.3) rectangle (0.75,0.4);
+                    \draw [stealth-, line width=2pt, SolarizedRed] (0.77,0.35) -- ++(0.1,0.0) node[right] {\Large \SI{45}{\percent}};
+                \end{scope}
+            \end{tikzpicture}
+
             \vskip0.5em
             \uncover<2->{%
                 \includegraphics[height=0.55\textheight, clip=true, trim=0mm 0mm 0mm 10mm]{Ressources/Images/Soutenance/Contexte_objectifs/RT_evolution.pdf}
@@ -506,9 +513,9 @@ Notes for the first frame here
     \vfill
     \begin{columns}
         \begin{column}{0.2\textwidth}
-            \vskip2em
+            \vskip1.5em
             \addsubtitle{Verrous}
-            \vskip7em
+            \vskip5em
             \uncover<2->{%
             \addsubtitle{Démarche}
             }
@@ -518,16 +525,16 @@ Notes for the first frame here
                 \begin{itemize}
                     \footnotesize
                     \item[--] Multi-physiques et multi-critères.
-                    \item[--] Quel potentiel ?
-                    \item[--] Quels indicateurs ?
-                    \item[--] Équilibre enveloppe / efficacité des systèmes ?
+                    \item[--] Potentiel SSC + MEPOS ?
+                    \item[--] Indicateur de performance ?
+                    \item[--] Équilibre Besoins / Capacité de production / Consommations ?
                 \end{itemize}
-                \vskip1.5em
+                \vskip2em
                 \uncover<2->{%
                 \begin{itemize}
                     \footnotesize
                     \item[--] Modélisation + évaluation du potentiel du SSC développé.
-                    \item[--] Dimensionnement couplé enveloppe / SSC / logique de contrôle.
+                    \item[--] Dimensionnement couplé enveloppe / SSC.
                     \item[--] Génération d’un grand nombre d’alternatives.
                     \item[--] Aide au choix d’une solution interactivement.
                 \end{itemize}
@@ -536,7 +543,6 @@ Notes for the first frame here
         \end{column}%
     \end{columns}%
     \vfill
-    \alert{Refaire}
 \end{frame}
 
 
@@ -568,19 +574,37 @@ Notes for the first frame here
 % % ==============================================================================
 \section{\scshape Cas d’étude}
 % ----------------------------
-
+\subsection{Système étudié}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}};
+        \begin{scope}[x={(image.south east)},y={(image.north west)}]
+            \draw<2-> [SolarizedRed,ultra thick,rounded corners] (0.8,0.67) rectangle (1.02,0.9);
+        \end{scope}
+    \end{tikzpicture}
+    \vfill
+\end{frame}
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Bâtiment étudié}
+\subsection{Bâtiment}
 \begin{frame}[c]
     \vfill
     \centering
-    \alert{Ajouter image du bâtiment} \\
-    \includegraphics[height=0.5\textheight]{Ressources/Images/Modelisation/maison.png}
     \begin{columns}
         \begin{column}{0.4\textwidth}
+            \includegraphics[width=1\textwidth]{Ressources/Images/Soutenance/CasEtude/maison_photo.jpg}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \uncover<2->{\includegraphics[width=1\textwidth]{Ressources/Images/Modelisation/maison.png}}
+        \end{column}
+    \end{columns}
+    \vfill
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
             \centering
             \begin{itemize}
                 \item \SI{98.4}{\metre\squared}
@@ -591,8 +615,8 @@ Notes for the first frame here
         \begin{column}{0.7\textwidth}
             \centering
             \begin{itemize}
-                \item Mono-zone~: \SI{1150}{kWh\per an}
-                \item Multi-zone~: \SI{1190}{kWh\per an}
+                \item<2-> Mono-zone~: \SI{1150}{kWh\per an}
+                \item<2-> Multi-zone~: \SI{1190}{kWh\per an}
             \end{itemize}
         \end{column}%
     \end{columns}%
@@ -600,12 +624,19 @@ Notes for the first frame here
 \end{frame}
 
 
-
 % ------------------------------------------------------------------------------
-\subsection{Système étudié}
+\subsection{Système Solaire Combiné (SSC)}
 \begin{frame}[c]
     \vfill
-    \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}}
+    \centering
+    \only<1>{%
+    \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}};
+        \begin{scope}[x={(image.south east)},y={(image.north west)}]
+            \draw [SolarizedRed,ultra thick,rounded corners] (-0.02,-0.02) rectangle (0.6,0.66);
+        \end{scope}
+    \end{tikzpicture}
+    }
     \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_base.pdf}}
     \vfill
 \end{frame}
@@ -927,7 +958,13 @@ Notes for the first frame here
         \end{column}%
         \begin{column}{0.4\textwidth}
             \raggedright
-            \includegraphics[width=1.05\textwidth]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}
+            \begin{tikzpicture}
+                \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.05\textwidth]{Ressources/Images/Optimisation/ABC/algorithme_complet.pdf}};
+                \begin{scope}[x={(image.south east)},y={(image.north west)}]
+                    \draw<5-> [SolarizedRed,ultra thick,rounded corners] (0,0.4) rectangle (0.35,0.7);
+                \end{scope}
+            \end{tikzpicture}
+
         \end{column}%
     \end{columns}%
     \end{adjustwidth}
@@ -1058,12 +1095,23 @@ Notes for the first frame here
     \centering
     \addalert{\small Deux climats étudiés~: \textbf{Bordeaux} et \textbf{Strasbourg}}
     \vfill
+    \scriptsize
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \alert{Ajouter besoins}
+            \begin{table}
+            \begin{tabular}{l c c c}
+                \toprule
+                                               & Bordeaux           &  & Strasbourg          \\
+                \midrule
+                $DJU$ (\SI{19}{\celsius})      & \num{2408}         &  & \num{3360}          \\
+                \addlinespace[\defaultaddspace]
+                $T_{EF}$ (\si{\celsius})       & \num{8.9} à \num{16}  &  & \num{5.3} à \num{14}    \\
+                \bottomrule
+            \end{tabular}
+            \end{table}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \includegraphics[height=0.75\textheight, clip=true, trim=200mm 0mm 0mm 0mm]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}
+            \uncover<2->{\includegraphics[height=0.75\textheight, clip=true, trim=200mm 0mm 0mm 0mm]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}}
         \end{column}
     \end{columns}
     \vfill
@@ -1087,7 +1135,7 @@ Notes for the first frame here
     \begin{columns}
         \begin{column}{0.8\textwidth}
             \uncover<2->{%
-                \includegraphics[height=0.9\textheight]{Ressources/Images/Sensibilite/graphInfluence.pdf}
+                \includegraphics[height=0.9\textheight]{Ressources/Images/Soutenance/Resultats/graphInfluence.pdf}
             }
         \end{column}
         \begin{column}{0.2\textwidth}
@@ -1165,45 +1213,45 @@ Notes for the first frame here
     \scriptsize
     \begin{table}
     \centering
-    Variation de performance pour les solutions optimales (\si{kWh})
+    Variation de la performance pour les solutions optimales (\si{kWh})
     \vskip1.5em
-    \begin{tabular}{l c c c c c c c}
+    \begin{tabular}{l c c c c c c c c}
         \toprule
-                        & & \multicolumn{2}{c}{Bordeaux} & & & \multicolumn{2}{c}{Strasbourg} \\
-                        \cmidrule(r){3-4}
-                        \cmidrule(r){7-8}
-                        & & min & max   &       & & min & max \\
+                        & & & \multicolumn{2}{c}{Bordeaux} & & & \multicolumn{2}{c}{Strasbourg} \\
+                        \cmidrule(r){4-5}
+                        \cmidrule(r){8-9}
+                        & & & min & max   &       & & min & max \\
         \midrule
-        $Conso_{ref}^{ECS}$  & & \multicolumn{2}{c}{2588}  & &  & \multicolumn{2}{c}{2866}  \\
+        \multirow{3}{*}{Référence} & ECS & &  \multicolumn{2}{c}{2588}  & &  & \multicolumn{2}{c}{2866}  \\
         \addlinespace[\defaultaddspace]
-        $Conso_{ref}^{CH}$  & & \num{228}  & \num{620} & &  & \num{1363}   & \num{2110} \\
+                                   & CH  & &  \num{228}  & \num{620} & &  & \num{1363}   & \num{2110} \\
         \addlinespace[\defaultaddspace]
-        $Conso_{app}^{ECS}$ & & \num{156} & \num{1043} & & & \num{397}   & \num{1360} \\
-        \addlinespace[\defaultaddspace]
-        $Conso_{app}^{CH}$  & & \num{84}  & \num{440} & &  & \num{612}   & \num{1861} \\
+                                   & ECS + CH & &  \num{2816} & \num{3208} & & & \num{4229}   & \num{4976} \\
         \\
         \addlinespace[\defaultaddspace]
-        $Conso_{ref}$       & & \num{2816} & \num{3208} & & & \num{4229}   & \num{4976} \\
+        \multirow{3}{*}{Appoint} & ECS & &  \num{156} & \num{1043} & & & \num{397}   & \num{1360} \\
         \addlinespace[\defaultaddspace]
-        $Conso_{app}$       & & \num{324} & \num{1372} & & & \num{1222}   & \num{3117} \\
+                                 & CH  & &  \num{84}  & \num{440} & &  & \num{612}   & \num{1861} \\
+        \addlinespace[\defaultaddspace]
+                                 & ECS + CH & &  \num{324} & \num{1372} & & & \num{1222}   & \num{3117} \\
         \\
         \addlinespace[\defaultaddspace]
-        $Prod_{PV}$       & & \num{3239} & \num{4743} & & & \num{4014}   & \num{6021} \\
+       \multicolumn{2}{c}{Production photovoltaïque}       & & \num{3239} & \num{4743} & & & \num{4014}   & \num{6021} \\
         \bottomrule
     \end{tabular}
     \end{table}
     \vfill
 \end{frame}
 
-\begin{frame}[c]
+\begin{frame}[t]
+    % \vskip1em
     \addsubtitle{Résultats d’optimisation sur Strasbourg}
-    \vfill
-    \includegraphics[width=\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
-    \vfill
+    \vskip1em
+    \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
 \end{frame}
 
 
-\begin{frame}[c]
+\begin{frame}[t]
     \addsubtitle{Occurrences de tailles pour les deux ballons du SSC}
     \vfill
     \centering
@@ -1212,12 +1260,11 @@ Notes for the first frame here
 \end{frame}
 
 
-\begin{frame}[c]
+\begin{frame}[t]
     \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
-    \vfill
+    \vskip1em
     \centering
-    \includegraphics[width=1.05\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_tanks_variations_cum.pdf}
-    \vfill
+    \includegraphics[width=1.08\textwidth]{Ressources/Images/Soutenance/Resultats/impact_ballon.pdf}
 \end{frame}
 
 
