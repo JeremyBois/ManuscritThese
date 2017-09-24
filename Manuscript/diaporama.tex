@@ -610,13 +610,14 @@
                 \item \SI{98.4}{\metre\squared}
                 \item Cinq pièces
                 \item Fenêtre de toit
+                \item Orientée Sud / Sud-Est
             \end{itemize}
         \end{column}%
         \begin{column}{0.7\textwidth}
             \centering
             \begin{itemize}
-                \item<2-> Mono-zone~: \SI{1150}{kWh\per an}
-                \item<2-> Multi-zone~: \SI{1190}{kWh\per an}
+                \item<3-> Mono-zone~: \SI{1150}{kWh\per an}
+                \item<3-> Multi-zone~: \SI{1190}{kWh\per an}
             \end{itemize}
         \end{column}%
     \end{columns}%
@@ -656,20 +657,22 @@
     \begin{columns}
         \begin{column}{0.45\textwidth}
             \centering
+            \uncover<2->{%
             \addsubtitle{Langage / Logiciel}
             \begin{itemize}
                 \item Multi-physiques
                 \item Équationnel
                 \item Acausal
-                \item Boîte blanche
+                \item Fichier texte
             \end{itemize}
             \vskip1em
             \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/modelica_logo.png}
             \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/dymola_logo.jpg}
+            }
         \end{column}%
         \begin{column}{0.55\textwidth}
             \centering
-            \uncover<2->{%
+            \uncover<3->{%
             \addsubtitle{Bibliothèque}
             \begin{itemize}
                 \item Activement maintenue
@@ -700,7 +703,7 @@
             Occupation (nuit)~: \SI{18}{\celsius}
             \vskip3.5em
             \uncover<3->{%
-            \addsubtitle{Puisage}~\\
+            \addsubtitle{Puisage~: \SI{33}{l\per (jour\period pers)}}~\\
             Pondération~:
             \begin{itemize}
                 \item mensuelle
@@ -768,14 +771,14 @@
     \begin{columns}
         \begin{column}{0.2\textwidth}
             \vskip3.5em
-            \uncover<2->{\addsubtitle{Objectifs}}
+            \uncover<5->{\addsubtitle{Objectifs}}
             \vskip7em
             \uncover<7->{\addsubtitle{Contraintes}}
         \end{column}%
         \begin{column}{0.8\textwidth}
             \uncover<2->{%
                 \begin{itemize}
-                    \item Maximiser la performance du SSC~:
+                    \item \only<2-4>{Évaluer la performance du SSC} \only<5->{Maximiser la performance du SSC}
                 \end{itemize}
                 \begin{columns}
                     \begin{column}{0.5\textwidth}
