@@ -205,18 +205,18 @@
 }
 
 
-% Before each section
-\AtBeginSection[]
-{
- \begin{frame}[plain]
-  \vfill
-  \centering
-  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
-    \usebeamerfont{title}\insertsectionhead\par%
-  \end{beamercolorbox}
-  \vfill
-  \end{frame}
-}
+% % Before each section
+% \AtBeginSection[]
+% {
+%  \begin{frame}[plain]
+%   \vfill
+%   \centering
+%   \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%     \usebeamerfont{title}\insertsectionhead\par%
+%   \end{beamercolorbox}
+%   \vfill
+%   \end{frame}
+% }
 
 
 
@@ -280,12 +280,17 @@
 \robustify{\circled}
 
 
-
-
 % Custom first page
 \title{Outil d’Aide à la Décision pour la Conception de Maisons Solaires à Énergie Positive}
 \author{Jérémy Bois}
 \date{2017/10/09}
+
+
+
+
+
+
+
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \begin{document}
@@ -304,89 +309,18 @@
 
 % % ==============================================================================
 % % ==============================================================================
-\section{\scshape Contexte / Objectifs}
-% -------------------------------------
+\section{\scshape Introduction}
 % ------------------------------------------------------------------------------
-\subsection{Contexte global}
-\begin{frame}[t]
+\begin{frame}[plain]
     \vfill
     \centering
-    \includegraphics[height=0.48\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/evolution_effet_serre_cleaned.png}
-    \vskip0.5em
-    \uncover<2->{
-    \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/elevation_temperature_global.png}
-    }
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+    \end{beamercolorbox}
     \vfill
 \end{frame}
 
 
-
-
-% ------------------------------------------------------------------------------
-\subsection{Contexte du bâtiment en France}
-\begin{frame}[t]
-    \vfill
-    \small
-    \begin{columns}
-        \begin{column}{0.3\textwidth}
-            \centering
-            \uncover<3->{%
-            \begin{itemize}
-                \item \SI{35}{millions} de logements
-                \vskip2em
-                \item \SI{56}{\percent} en maison individuelle
-            \end{itemize}
-            }
-        \end{column}%
-        \begin{column}{0.75\textwidth}
-            \centering
-            \begin{tikzpicture}
-                \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=0.45\textheight]{Ressources/Images/Environnement/evolution_energie_finale.png}};
-                \begin{scope}[x={(image.south east)},y={(image.north west)}]
-                    \draw[SolarizedRed,ultra thick,rounded corners] (0.67,0.3) rectangle (0.75,0.4);
-                    \draw [stealth-, line width=2pt, SolarizedRed] (0.77,0.35) -- ++(0.1,0.0) node[right] {\Large \SI{45}{\percent}};
-                \end{scope}
-            \end{tikzpicture}
-
-            \vskip0.5em
-            \uncover<2->{%
-                \includegraphics[height=0.55\textheight, clip=true, trim=0mm 0mm 0mm 10mm]{Ressources/Images/Soutenance/Contexte_objectifs/RT_evolution.pdf}
-            }
-        \end{column}%
-    \end{columns}%
-    \vfill
-
-    \note{Vérifier chiffres}
-\end{frame}
-
-
-% ------------------------------------------------------------------------------
-\subsection{Conception d’un bâtiment}
-\begin{frame}[t]
-    \vfill
-    \centering
-    \only<1>{\includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/vie_batiment.png}}
-    \only<2->{\includegraphics[height=0.4\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/vie_batiment_construction.png}}
-    \uncover<2->{%
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item Choix de l’enveloppe
-                \item Choix des équipements
-                \item Recours aux EnR
-            \end{itemize}
-        \end{column}%
-        \begin{column}{0.7\textwidth}
-            \centering
-            \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/construction_batiment.png}
-        \end{column}%
-    \end{columns}%
-    }
-    \vfill
-\end{frame}
-
-
-% ------------------------------------------------------------------------------
 \subsection{La maison à énergie positive (MEPOS)}
 \begin{frame}[t]
     \addalert{\scriptsize Production locale en énergie renouvelable $>$ Consommation}
@@ -500,62 +434,62 @@
 
 
 
+
 % ------------------------------------------------------------------------------
-\subsection{Démarche}
-\begin{frame}[t]
-    % \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{frametitle}
-    %   \usebeamerfont{frametitle} \footnotesize \textbf{Comment aider à la prise de décision dans la construction de maisons solaires à énergie positive ?}\par%
-    % \end{beamercolorbox}%
-    \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Comment valoriser l’énergie solaire pour des MEPOS ?}}
-    \vfill
-    \begin{columns}
-        \begin{column}{0.2\textwidth}
-            \vskip1.5em
-            \uncover<2->{%
-            \addsubtitle{Verrous}
-            }
-            \vskip5em
-            \uncover<5->{%
-            \addsubtitle{Démarche}
-            }
-        \end{column}%
-        \begin{column}{0.9\textwidth}
-            \begin{center}
-                \uncover<2->{%
-                \begin{itemize}
-                    \footnotesize
-                    \item<2->[--] Multi-critères.
-                    \item<3->[--] Indicateur de performance ?
-                    \item<3->[--] Performance SSC + MEPOS ?
-                    \item<4->[--] Équilibre Besoins / Capacité de production / Consommations ?
-                \end{itemize}
-                }
-                \vskip2em
-                \begin{itemize}
-                    \footnotesize
-                    \item<5->[--] Modélisation + évaluation du potentiel du SSC développé.
-                    \item<6->[--] Dimensionnement couplé enveloppe / SSC.
-                    \item<7->[--] Recherche d’alternatives pertinentes.
-                    \item<7->[--] Aide au choix de solutions interactivement.
-                \end{itemize}
-            \end{center}
-        \end{column}%
-    \end{columns}%
-    \vfill
-\end{frame}
+% \subsection{Verrous}
+% \begin{frame}[t]
+%     % \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{frametitle}
+%     %   \usebeamerfont{frametitle} \footnotesize \textbf{Comment aider à la prise de décision dans la construction de maisons solaires à énergie positive ?}\par%
+%     % \end{beamercolorbox}%
+%     \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Comment valoriser l’énergie solaire pour des MEPOS ?}}
+%     \vfill
+%     \begin{columns}
+%         \begin{column}{0.2\textwidth}
+%             \vskip1.5em
+%             \uncover<2->{%
+%             \addsubtitle{Verrous}
+%             }
+%             \vskip5em
+%             \uncover<5->{%
+%             \addsubtitle{Démarche}
+%             }
+%         \end{column}%
+%         \begin{column}{0.9\textwidth}
+%             \begin{center}
+%                 \uncover<2->{%
+%                 \begin{itemize}
+%                     \footnotesize
+%                     \item<2->[--] Multi-critères.
+%                     \item<3->[--] Indicateur de performance ?
+%                     \item<3->[--] Performance SSC + MEPOS ?
+%                     \item<4->[--] Équilibre Besoins / Capacité de production / Consommations ?
+%                 \end{itemize}
+%                 }
+%                 \vskip2em
+%                 \begin{itemize}
+%                     \footnotesize
+%                     \item<5->[--] Modélisation + évaluation du potentiel du SSC développé.
+%                     \item<6->[--] Dimensionnement couplé enveloppe / SSC.
+%                     \item<7->[--] Recherche d’alternatives pertinentes.
+%                     \item<7->[--] Aide au choix de solutions interactivement.
+%                 \end{itemize}
+%             \end{center}
+%         \end{column}%
+%     \end{columns}%
+%     \vfill
+% \end{frame}
 
 
 % ------------------------------------------------------------------------------
 \subsection{Sommaire}
 \begin{frame}[t]
 \raggedright
-\Large
 \vfill
-Cas d’étude
+Présentation de la problématique
 \vfill
-Méthodologie
+Description de la méthodologie d’optimisation développée
 \vfill
-Résultats
+Application au dimensionnement d’une MEPOS solaire
 \vfill
 Conclusions / Perspectives
 \vfill
@@ -580,179 +514,52 @@ Conclusions / Perspectives
 
 % % ==============================================================================
 % % ==============================================================================
-\section{\scshape Cas d’étude}
-% ----------------------------
-\subsection{Système étudié}
-\begin{frame}[c]
+\section{\scshape Problématique}
+% ------------------------------------------------------------------------------
+\begin{frame}[plain]
     \vfill
     \centering
-    \begin{tikzpicture}
-        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}};
-        \begin{scope}[x={(image.south east)},y={(image.north west)}]
-            \draw<2-> [SolarizedRed,ultra thick,rounded corners] (0.8,0.67) rectangle (1.02,0.9);
-        \end{scope}
-    \end{tikzpicture}
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}Presentation de la problématique traitée\par%
+    \end{beamercolorbox}
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Description du problème}
+\begin{frame}[c]
+    \vfill
+    \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_base.pdf}}
+    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_besoinsCH.pdf}}
+    \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_ECS.pdf}}
+    \only<4>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_CH.pdf}}
+    \only<5>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_Elec.pdf}}
     \vfill
 \end{frame}
 
 
 
 % ------------------------------------------------------------------------------
-\subsection{Bâtiment}
-\begin{frame}[c]
-    \vfill
-    \centering
-    \begin{columns}
-        \begin{column}{0.4\textwidth}
-            \includegraphics[width=1\textwidth]{Ressources/Images/Soutenance/CasEtude/maison_photo.jpg}
-        \end{column}
-        \begin{column}{0.6\textwidth}
-            \uncover<2->{\includegraphics[width=1\textwidth]{Ressources/Images/Modelisation/maison.png}}
-        \end{column}
-    \end{columns}
-    \vfill
-    \begin{columns}
-        \begin{column}{0.6\textwidth}
-            \centering
-            \begin{itemize}
-                \item \SI{98.4}{\metre\squared}
-                \item Cinq pièces
-                \item Fenêtre de toit
-                \item Orientée Sud / Sud-Est
-            \end{itemize}
-        \end{column}%
-        \begin{column}{0.7\textwidth}
-            \centering
-            \begin{itemize}
-                \item<3-> Mono-zone~: \SI{1150}{kWh\per an}
-                \item<3-> Multi-zone~: \SI{1190}{kWh\per an}
-            \end{itemize}
-        \end{column}%
-    \end{columns}%
-    \vfill
-\end{frame}
-
-
-% ------------------------------------------------------------------------------
-\subsection{Système Solaire Combiné (SSC)}
-\begin{frame}[c]
-    \vfill
-    \centering
-    \only<1>{%
-    \begin{tikzpicture}
-        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}};
-        \begin{scope}[x={(image.south east)},y={(image.north west)}]
-            \draw [SolarizedRed,ultra thick,rounded corners] (-0.02,-0.02) rectangle (0.6,0.66);
-        \end{scope}
-    \end{tikzpicture}
-    }
-    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_base.pdf}}
-    \vfill
-\end{frame}
-
-\begin{frame}[c]
-    \vfill
-    \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct.pdf}}
-    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct_charge.pdf}}
-    \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_indirect.pdf}}
-    \vfill
-\end{frame}
-
-
-% ------------------------------------------------------------------------------
-\subsection{Outil de Modélisation}
-\begin{frame}[t]
-    \centering
-    \only<1-3>{%
-    \begin{columns}
-        \begin{column}{0.45\textwidth}
-            \centering
-            \uncover<2->{%
-            \addsubtitle{Langage / Logiciel}
-            \begin{itemize}
-                \item Multi-physiques
-                \item Équationnel
-                \item Acausal
-                \item Fichier texte
-            \end{itemize}
-            \vskip1em
-            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/modelica_logo.png}
-            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/dymola_logo.jpg}
-            }
-        \end{column}%
-        \begin{column}{0.55\textwidth}
-            \centering
-            \uncover<3->{%
-            \addsubtitle{Bibliothèque}
-            \begin{itemize}
-                \item Activement maintenue
-                \item Large choix de composants
-                \item Libre et ouverte
-            \end{itemize}
-            \vskip1em
-            \includegraphics[width=0.4\textwidth]{Ressources/Images/Logos/Buildings_logo.png}
-            }
-        \end{column}%
-    \end{columns}%
-    }
-    \only<4->{\vfill \includegraphics[width=1.05\textwidth, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Modelisation/Captures/SSC_capture.pdf}\vfill}
-\end{frame}
-
-
-
-% ------------------------------------------------------------------------------
-\subsection{Hypothèses}
-\begin{frame}[c]
-    \vfill
-    \centering
-    \begin{columns}
-        \begin{column}{0.4\textwidth}
-            \addsubtitle{Charges internes}~\\[0.5em]
-            Inoccupation~: \SI{16}{\celsius}\\[0.5em]
-            Occupation (jour)~: \SI{19}{\celsius}\\[0.5em]
-            Occupation (nuit)~: \SI{18}{\celsius}
-            \vskip3.5em
-            \uncover<3->{%
-            \addsubtitle{Puisage~: \SI{33}{l\per (jour\period pers)}}~\\
-            Pondération~:
-            \begin{itemize}
-                \item journalière
-                \item mensuelle
-            \end{itemize}
-            }
-        \end{column}
-        \begin{column}{0.7\textwidth}
-            \raggedleft
-            \vskip1em
-            \uncover<2->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}}
-            \vskip2em
-            \uncover<3->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Soutenance/CasEtude/puisage_realiste.pdf}}
-        \end{column}
-    \end{columns}
-    \vfill
-\end{frame}
-
-
-
-% ------------------------------------------------------------------------------
-\subsection{Paramètres a priori}
+\subsection{Combinatoire du problème}
 \begin{frame}[c]
     \vfill
     \centering
     \begin{columns}
         \begin{column}{0.4\textwidth}
             \vskip1em
-            \addsubtitle{\num{21} facteurs}
-            \vskip5.5em
+            \addsubtitle{Nombreux facteurs}
+            \vskip6em
             \uncover<2->{%
             \addsubtitle{Forte hétérogénéité}
             }
         \end{column}
         \begin{column}{0.65\textwidth}
             \begin{itemize}
+                \item Scénario d’usages
                 \item Équipements du SSC
-                \item Logique de contrôle
-                \item Production électrique
+                \item Logique de contrôle associée
+                \item Production photovoltaïque
                 \item Enveloppe du bâtiment
             \end{itemize}
             \vskip2em
@@ -771,9 +578,34 @@ Conclusions / Perspectives
 \end{frame}
 
 
+% ------------------------------------------------------------------------------
+\subsection{Verrous}
+\begin{frame}[t]
+    \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Comment valoriser l’énergie solaire pour des MEPOS ?}}
+    \vfill
+    \small
+    \begin{itemize}
+        \item<1->[--] Multi-critères.
+        \item<2->[--] Indicateur de performance ?
+        \item<3->[--] Performance SSC + MEPOS ?
+        \item<4->[--] Équilibre Besoins / Capacité de production / Consommations ?
+    \end{itemize}
+    \vfill
+\end{frame}
+
+
+
+
 
 % ------------------------------------------------------------------------------
 \subsection{Formulation du problème}
+\begin{frame}[t]
+    \vfill
+    \vfill
+    \addalert{$Prod_{PV} - Conso_{app} - Conso_{usages} \geq 0$}
+\end{frame}
+
+
 \begin{frame}[t]
     \addalert{$Prod_{PV} - Conso_{app} - Conso_{usages} \geq 0$}
     \vfill
@@ -825,16 +657,82 @@ Conclusions / Perspectives
 
 
 
-
-
-
-
-
-
-% % ==============================================================================
-% % ==============================================================================
-\section{\scshape Méthodologie}
 % ------------------------------------------------------------------------------
+\subsection{Démarche}
+\begin{frame}[t]
+    \vfill
+    \begin{itemize}
+        \item[--] Modélisation + évaluation du potentiel du SSC développé.
+        \item<2->[--] Dimensionnement couplé enveloppe / SSC.
+        \item<3->[--] Recherche d’alternatives pertinentes par optimisation.
+        \item<4->[--] Aide au choix de solutions interactivement.
+    \end{itemize}
+    \vfill
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+% \subsection{Verrous}
+% \begin{frame}[t]
+%     % \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{frametitle}
+%     %   \usebeamerfont{frametitle} \footnotesize \textbf{Comment aider à la prise de décision dans la construction de maisons solaires à énergie positive ?}\par%
+%     % \end{beamercolorbox}%
+%     \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Comment valoriser l’énergie solaire pour des MEPOS ?}}
+%     \vfill
+%     \begin{columns}
+%         \begin{column}{0.2\textwidth}
+%             \vskip1.5em
+%             \uncover<2->{%
+%             \addsubtitle{Verrous}
+%             }
+%             \vskip5em
+%             \uncover<5->{%
+%             \addsubtitle{Démarche}
+%             }
+%         \end{column}%
+%         \begin{column}{0.9\textwidth}
+%             \begin{center}
+%                 \uncover<2->{%
+%                 \begin{itemize}
+%                     \footnotesize
+%                     \item<2->[--] Multi-critères.
+%                     \item<3->[--] Indicateur de performance ?
+%                     \item<3->[--] Performance SSC + MEPOS ?
+%                     \item<4->[--] Équilibre Besoins / Capacité de production / Consommations ?
+%                 \end{itemize}
+%                 }
+%                 \vskip2em
+%                 \begin{itemize}
+%                     \footnotesize
+%                     \item<5->[--] Modélisation + évaluation du potentiel du SSC développé.
+%                     \item<6->[--] Dimensionnement couplé enveloppe / SSC.
+%                     \item<7->[--] Recherche d’alternatives pertinentes.
+%                     \item<7->[--] Aide au choix de solutions interactivement.
+%                 \end{itemize}
+%             \end{center}
+%         \end{column}%
+%     \end{columns}%
+%     \vfill
+% \end{frame}
+
+
+
+
+% % ==============================================================================
+% % ==============================================================================
+\section{\scshape Méthode d’optimisation}
+% ------------------------------------------------------------------------------
+\begin{frame}[plain]
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}Méthode d’optimisation développée\par%
+    \end{beamercolorbox}
+    \vfill
+\end{frame}
+
+
 \subsection{Optimisation et décision}
 \begin{frame}[t]
     \addsubtitle{La décision précède l’optimisation}
@@ -1007,9 +905,15 @@ Conclusions / Perspectives
 \end{frame}
 
 
-
 % ------------------------------------------------------------------------------
 \subsection{Réduction de la cardinalité}
+\begin{frame}[t]
+    \addalert{Poser la question de la nécessité de toutes les variables génériques}
+    \vfill
+\end{frame}
+
+
+
 \begin{frame}[t]
     \addsubtitle{Criblage de Morris}
     \vfill
@@ -1040,8 +944,213 @@ Conclusions / Perspectives
 \end{frame}
 
 
+
+
+
+
+
+
+
+
+
+% % ==============================================================================
+% % ==============================================================================
+\section{\scshape Application}
+% ------------------------------------------------------------------------------
+\begin{frame}[plain]
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}Application au dimensionnement d’une MEPOS solaire\par%
+    \end{beamercolorbox}
+    \vfill
+\end{frame}
+
+% ------------------------------------------------------------------------------
+\subsection{Conditions limites de l’étude}
+\begin{frame}[t]
+    \centering
+    \addalert{\small Deux climats étudiés~: \textbf{Bordeaux} et \textbf{Strasbourg}}
+    \vfill
+    \scriptsize
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{table}
+            \begin{tabular}{l c c c}
+                \toprule
+                                               & Bordeaux           &  & Strasbourg          \\
+                \midrule
+                $DJU$ (\SI{19}{\celsius})      & \num{2408}         &  & \num{3360}          \\
+                \addlinespace[\defaultaddspace]
+                $T_{EF}$ (\si{\celsius})       & \num{8.9} à \num{16}  &  & \num{5.3} à \num{14}    \\
+                \bottomrule
+            \end{tabular}
+            \end{table}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \uncover<2->{\includegraphics[height=0.75\textheight, clip=true, trim=200mm 0mm 0mm 0mm]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}}
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Hypothèses}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \addsubtitle{Charges internes}~\\[0.5em]
+            Inoccupation~: \SI{16}{\celsius}\\[0.5em]
+            Occupation (jour)~: \SI{19}{\celsius}\\[0.5em]
+            Occupation (nuit)~: \SI{18}{\celsius}
+            \vskip3.5em
+            \uncover<3->{%
+            \addsubtitle{Puisage~: \SI{33}{l\per (jour\period pers)}}~\\
+            Pondération~:
+            \begin{itemize}
+                \item journalière
+                \item mensuelle
+            \end{itemize}
+            }
+        \end{column}
+        \begin{column}{0.7\textwidth}
+            \raggedleft
+            \vskip1em
+            \uncover<2->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}}
+            \vskip2em
+            \uncover<3->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Soutenance/CasEtude/puisage_realiste.pdf}}
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
+
+
+% \subsection{Système étudié}
+% \begin{frame}[c]
+%     \vfill
+%     \centering
+%     \begin{tikzpicture}
+%         \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}};
+%         \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%             \draw<2-> [SolarizedRed,ultra thick,rounded corners] (0.8,0.67) rectangle (1.02,0.9);
+%         \end{scope}
+%     \end{tikzpicture}
+%     \vfill
+% \end{frame}
+
+
+\subsection{Système étudié}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Application/air_complet_mono_PV.pdf}
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Outil de Modélisation}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 228mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[t]
+    \centering
+    \only<1-3>{%
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \centering
+            \uncover<2->{%
+            \addsubtitle{Langage / Logiciel}
+            \begin{itemize}
+                \item Multi-physiques
+                \item Équationnel
+                \item Acausal
+                \item Fichier texte
+            \end{itemize}
+            \vskip1em
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/modelica_logo.png}
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/dymola_logo.jpg}
+            }
+        \end{column}%
+        \begin{column}{0.55\textwidth}
+            \centering
+            \uncover<3->{%
+            \addsubtitle{Bibliothèque}
+            \begin{itemize}
+                \item Activement maintenue
+                \item Large choix de composants
+                \item Libre et ouverte
+            \end{itemize}
+            \vskip1em
+            \includegraphics[width=0.4\textwidth]{Ressources/Images/Logos/Buildings_logo.png}
+            }
+        \end{column}%
+    \end{columns}%
+    }
+    % \only<4->{\vfill \includegraphics[width=1.05\textwidth, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Modelisation/Captures/SSC_capture.pdf}\vfill}
+\end{frame}
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la cardinalité}
+\begin{frame}[t]
+    \vfill
+    \centering
+    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[c]
+    \vfill
+    \centering
+    \begin{columns}
+        \begin{column}{0.8\textwidth}
+            \uncover<2->{%
+                \includegraphics[height=0.9\textheight]{Ressources/Images/Soutenance/Resultats/graphInfluence.pdf}
+            }
+        \end{column}
+        \begin{column}{0.2\textwidth}
+            \centering
+            \small
+            \addsubtitle{A priori}
+            21 facteurs \\
+            \vskip4em
+            \uncover<3->{%
+            \addsubtitle{Bordeaux}
+            $14$ facteurs \\
+            \vskip2em
+            \addsubtitle{Strasbourg}
+            $15$ facteurs
+            }
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
+
+
+
 % ------------------------------------------------------------------------------
 \subsection{Réduction de la complexité}
+\begin{frame}[t]
+    \begin{adjustwidth}{-2em}{-2em}
+        \includegraphics[height=0.8\textheight, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Modelisation/Captures/SSC_capture.pdf}
+    \end{adjustwidth}
+    \vfill
+    \uncover<2->{%
+        \addalert{\small Temps de simulation important}
+    }
+\end{frame}
+
+
 \begin{frame}[t]
     \addsubtitle{Modèle de substitution par chaos polynomial}
     \vfill
@@ -1082,102 +1191,6 @@ Conclusions / Perspectives
     \vfill
 \end{frame}
 
-
-
-    % \uncover<2->{%
-    % \begin{columns}
-    %     \begin{column}{0.6\textwidth}
-    %         \raggedright
-    %         \begin{subequations}
-    %             \begin{align*}
-    %                 &Y = \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P}
-    %                 c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) \\
-    %                 \shortintertext{Avec}
-    %                 &\psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,) = \prod_{j = 1}^{D}\pi_{\vec{\alpha}p}^{(j)} \left(\,\underline{x}_{j} \right)
-    %             \end{align*}
-    %         \end{subequations}
-    %     \end{column}
-    %     \begin{column}{0.4\textwidth}
-    %         \centering
-    %         \includegraphics[width=0.8\textwidth]{Ressources/Images/Logos/python_logo.png}
-    %         \includegraphics[width=0.3\textwidth]{Ressources/Images/Logos/openturns.png}
-    %     \end{column}
-    % \end{columns}
-    % }
-
-
-% % ==============================================================================
-% % ==============================================================================
-\section{\scshape Résultats}
-% ----------------------------
-
-
-% ------------------------------------------------------------------------------
-\subsection{Conditions limites de l’étude}
-\begin{frame}[t]
-    \centering
-    \addalert{\small Deux climats étudiés~: \textbf{Bordeaux} et \textbf{Strasbourg}}
-    \vfill
-    \scriptsize
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{table}
-            \begin{tabular}{l c c c}
-                \toprule
-                                               & Bordeaux           &  & Strasbourg          \\
-                \midrule
-                $DJU$ (\SI{19}{\celsius})      & \num{2408}         &  & \num{3360}          \\
-                \addlinespace[\defaultaddspace]
-                $T_{EF}$ (\si{\celsius})       & \num{8.9} à \num{16}  &  & \num{5.3} à \num{14}    \\
-                \bottomrule
-            \end{tabular}
-            \end{table}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \uncover<2->{\includegraphics[height=0.75\textheight, clip=true, trim=200mm 0mm 0mm 0mm]{Ressources/Images/EtudeDeCas/irradiations_climats.pdf}}
-        \end{column}
-    \end{columns}
-    \vfill
-
-    \vfill
-\end{frame}
-
-
-% ------------------------------------------------------------------------------
-\subsection{Réduction de la cardinalité}
-\begin{frame}[t]
-    \vfill
-    \centering
-    \includegraphics[width=0.6\textwidth, clip=true, trim=0mm 178mm 0mm 0mm]{Ressources/Images/chapitre3_bilan.pdf}
-    \vfill
-\end{frame}
-
-\begin{frame}[c]
-    \vfill
-    \centering
-    \begin{columns}
-        \begin{column}{0.8\textwidth}
-            \uncover<2->{%
-                \includegraphics[height=0.9\textheight]{Ressources/Images/Soutenance/Resultats/graphInfluence.pdf}
-            }
-        \end{column}
-        \begin{column}{0.2\textwidth}
-            \centering
-            \small
-            \addsubtitle{A priori}
-            21 facteurs \\
-            \vskip4em
-            \uncover<3->{%
-            \addsubtitle{Bordeaux}
-            $14$ facteurs \\
-            \vskip2em
-            \addsubtitle{Strasbourg}
-            $15$ facteurs
-            }
-        \end{column}
-    \end{columns}
-    \vfill
-\end{frame}
 
 
 % ------------------------------------------------------------------------------
@@ -1285,7 +1298,7 @@ Conclusions / Perspectives
         \item<3-> Surcoût
     \end{itemize}
     \vfill
-    \uncover<4->{\addalert{Quel performance avec des ballons inférieurs à \SI{200}{\litre} ?}}
+    \uncover<4->{\addalert{\small Quelle performance avec un volume par ballon inférieur à \SI{200}{\litre} ?}}
 \end{frame}
 
 
@@ -1334,7 +1347,23 @@ Conclusions / Perspectives
 % % ==============================================================================
 % % ==============================================================================
 \section{\scshape Conclusions / Perspectives}
-% ------------------------------------------
+% ------------------------------------------------------------------------------
+\begin{frame}[plain]
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+    \end{beamercolorbox}
+    \vfill
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\subsection{Résolution des verrous}
+\begin{frame}[c]
+    \vfill
+    \vfill
+\end{frame}
 
 
 % ------------------------------------------------------------------------------
@@ -1385,25 +1414,13 @@ Conclusions / Perspectives
 \end{frame}
 
 
-% ------------------------------------------------------------------------------
-\subsection{Perspectives à long terme}
-\begin{frame}[c]
-    \vfill
-    \begin{itemize}
-        \item Application à la réhabilitation lourde.
-    \vfill
-        \item<2-> Application aux habitats groupés et aux petits collectifs.
-    \end{itemize}
-    \vfill
-\end{frame}
-
 
 \pagenumbering{gobble}
 % ------------------------------------------------------------------------------
 \section*{}
 \begin{frame}[plain, c]
     \vfill
-    \addalert{Merci de votre attention !}
+    \addalert{Merci à tous de votre attention~!}
     \vfill
 \end{frame}
 
@@ -1417,6 +1434,8 @@ Conclusions / Perspectives
 % % ------------------------------------------
 
 
+
+% EQUATIONS OPTIMISATION
 % \begin{frame}[noframenumbering, c]
 %     \vfill
 %     \centering
@@ -1474,6 +1493,87 @@ Conclusions / Perspectives
 %     \vfill
 % \end{frame}
 
+
+
+% DETAIL BÂTIMENT
+% % ------------------------------------------------------------------------------
+% \subsection{Bâtiment}
+% \begin{frame}[c]
+%     \vfill
+%     \centering
+%     \begin{columns}
+%         \begin{column}{0.4\textwidth}
+%             \includegraphics[width=1\textwidth]{Ressources/Images/Soutenance/CasEtude/maison_photo.jpg}
+%         \end{column}
+%         \begin{column}{0.6\textwidth}
+%             \uncover<2->{\includegraphics[width=1\textwidth]{Ressources/Images/Modelisation/maison.png}}
+%         \end{column}
+%     \end{columns}
+%     \vfill
+%     \begin{columns}
+%         \begin{column}{0.6\textwidth}
+%             \centering
+%             \begin{itemize}
+%                 \item \SI{98.4}{\metre\squared}
+%                 \item Cinq pièces
+%                 \item Fenêtre de toit
+%                 \item Orientée Sud / Sud-Est
+%             \end{itemize}
+%         \end{column}%
+%         \begin{column}{0.7\textwidth}
+%             \centering
+%             \begin{itemize}
+%                 \item<3-> Mono-zone~: \SI{1150}{kWh\per an}
+%                 \item<3-> Multi-zone~: \SI{1190}{kWh\per an}
+%             \end{itemize}
+%         \end{column}%
+%     \end{columns}%
+%     \vfill
+% \end{frame}
+
+
+
+% DETAIL SSC
+% % ------------------------------------------------------------------------------
+% \subsection{Système Solaire Combiné (SSC)}
+% \begin{frame}[c]
+%     \vfill
+%     \centering
+%     \only<1>{%
+%     \begin{tikzpicture}
+%         \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.95\textwidth]{Ressources/Images/Modelisation/Principe/air_complet_mono.pdf}};
+%         \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%             \draw [SolarizedRed,ultra thick,rounded corners] (-0.02,-0.02) rectangle (0.6,0.66);
+%         \end{scope}
+%     \end{tikzpicture}
+%     }
+%     \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_base.pdf}}
+%     \vfill
+% \end{frame}
+
+
+
+% DETAIL ALGORITHME
+% \begin{frame}[c]
+%     \vfill
+%     \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct.pdf}}
+%     \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_direct_charge.pdf}}
+%     \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/CasEtude/modes_indirect.pdf}}
+%     \vfill
+% \end{frame}
+
+
+
+% PERSPECTIVES LONG TERME
+% \begin{frame}[c]
+%     \vfill
+%     \begin{itemize}
+%         \item Application à la réhabilitation lourde.
+%     \vfill
+%         \item<2-> Application aux habitats groupés et aux petits collectifs.
+%     \end{itemize}
+%     \vfill
+% \end{frame}
 
 
 
