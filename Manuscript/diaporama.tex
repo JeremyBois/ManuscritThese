@@ -600,14 +600,34 @@ Conclusions / Perspectives
 % ------------------------------------------------------------------------------
 \subsection{Formulation du problème}
 \begin{frame}[t]
+    \small
+    \raggedright
     \vfill
+    \begin{subequations}
+        \begin{align*}
+            Conso_{ECS} &= Conso^{ECS}_{app} +  Prod^{ECS}_{sol} \\
+            Conso_{CH} &= Conso^{CH}_{app} +  Prod^{CH}_{sol} \\
+            Conso_{usages} &= Conso_{Electromenager} + Conso_{Eclairage}
+        \end{align*}
+    \end{subequations}
     \vfill
-    \addalert{$Prod_{PV} - Conso_{app} - Conso_{usages} \geq 0$}
+    \begin{subequations}
+        \begin{align*}
+            Prod_{sol} &= Prod^{ECS}_{sol} + Prod^{CH}_{sol} \\
+            Conso_{app} &= Conso^{ECS}_{app} + Conso^{CH}_{app}
+        \end{align*}
+    \end{subequations}
+    \vfill
+    \begin{equation*}
+        Prod_{PV} - Conso_{usages} + Prod^{ECS}_{sol} - Conso_{ECS} + Prod^{CH}_{sol} - Conso_{CH}
+    \end{equation*}
+    \vfill
+    \addalert{$Prod_{PV} - Conso_{usages} - Conso_{app} \geq 0$}
 \end{frame}
 
 
 \begin{frame}[t]
-    \addalert{$Prod_{PV} - Conso_{app} - Conso_{usages} \geq 0$}
+    \addalert{$Prod_{PV} - Conso_{usages} - Conso_{app} \geq 0$}
     \vfill
     \small
     \begin{columns}
@@ -647,7 +667,7 @@ Conclusions / Perspectives
             \uncover<7->{%
                 \begin{itemize}
                     \item Surface disponible en toiture $4$ pans
-                    \item<8-> \footnotesize $\abs{Prod_{PV} - Conso_{app} - Conso_{usages}}  \geq  8 \si{kWh_{ep}\per\metre\squared}$
+                    \item<8-> \footnotesize $\abs{Prod_{PV} - Conso_{usages} - Conso_{app}}  \geq  8 \si{kWh_{ep}\per\metre\squared}$
                 \end{itemize}
             }
         \end{column}
