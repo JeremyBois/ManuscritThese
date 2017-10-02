@@ -534,7 +534,7 @@ Conclusions / Perspectives
     \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_besoinsCH.pdf}}
     \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_ECS.pdf}}
     \only<4>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_CH.pdf}}
-    \only<5>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_Elec.pdf}}
+    \only<5>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_final.pdf}}
     \vfill
 \end{frame}
 
@@ -599,6 +599,13 @@ Conclusions / Perspectives
 
 % ------------------------------------------------------------------------------
 \subsection{Formulation du problème}
+\begin{frame}[c]
+    \vfill
+    \includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_final.pdf}
+    \vfill
+\end{frame}
+
+
 \begin{frame}[t]
     \small
     \raggedright
@@ -658,7 +665,7 @@ Conclusions / Perspectives
                 \end{columns}
             }
             \vskip0.5em
-            \only<4>{\includegraphics[height=0.6\textheight]{Ressources/Images/Modelisation/Principe/air_elec_mono.pdf}}
+            % \only<4>{\includegraphics[height=0.6\textheight]{Ressources/Images/Modelisation/Principe/air_elec_mono.pdf}}
             \begin{itemize}
                 \item<6-> Maximiser la production des capteurs PV
                 \item<6-> Minimiser la surface de capteurs PV
@@ -928,8 +935,22 @@ Conclusions / Perspectives
 % ------------------------------------------------------------------------------
 \subsection{Réduction de la cardinalité}
 \begin{frame}[t]
-    \addalert{Poser la question de la nécessité de toutes les variables génériques}
+    \centering
+    SSC
+    \begin{itemize}
+        \item Nombre de capteurs
+        \item Isolation des ballons
+        \item ...
+    \end{itemize}
     \vfill
+    Bâtiment
+    \begin{itemize}
+        \item Résistance plancher
+        \item Résistance plafond
+        \item ...
+    \end{itemize}
+    \vfill
+    \addalert{Est-il nécessaire de faire varier tous les paramètres~?}
 \end{frame}
 
 
@@ -1066,7 +1087,15 @@ Conclusions / Perspectives
 \begin{frame}[c]
     \vfill
     \centering
-    \includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Application/air_complet_mono_PV.pdf}
+    \includegraphics[width=\textwidth]{Ressources/Images/Soutenance/Application/air_complet_mono_PV.pdf}
+    \vfill
+\end{frame}
+
+\subsection{Système de référence}
+\begin{frame}[c]
+    \vfill
+    \centering
+    \includegraphics[width=0.85\textwidth]{Ressources/Images/Soutenance/Application/air_complet_ref.pdf}
     \vfill
 \end{frame}
 
@@ -1204,7 +1233,15 @@ Conclusions / Perspectives
         \begin{column}{0.6\textwidth}
             \centering
             \uncover<4->{%
-            \circled[3]{2} Minimisation de l’erreur quadratique moyenne
+            \circled[3]{2} Minimisation de l’erreur quadratique moyenne \\
+            \raggedright
+            \begin{equation*}
+                \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
+            \end{equation*}
+            \begin{equation*}
+                \min(Y - \mathcal{M}(\,\underline{\vec{x}}\,))
+            \end{equation*}
+
             }
         \end{column}
     \end{columns}
