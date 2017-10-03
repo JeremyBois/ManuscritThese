@@ -190,14 +190,28 @@
         {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
       \fi%
     \end{beamercolorbox}%
-    \vfill
     \vskip1em\par
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \raggedright
+            \includegraphics[width=\textwidth]{Ressources/Images/Logos/nouvelleAquitaine_logo.jpg}
+            \vskip1em
+            \includegraphics[width=\textwidth]{Ressources/Images/Logos/bordeaux_logo.jpg}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/comepos_logo.png}
+            \vskip1em
+            \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/ademe_logo.png}
+        \end{column}
+    \end{columns}
+    \vskip1em
     \begin{beamercolorbox}[sep=8pt,center]{author}
-      \usebeamerfont{author}\insertauthor
+              \usebeamerfont{author}\insertauthor
     \end{beamercolorbox}
-    % \begin{beamercolorbox}[sep=8pt,center]{institute}
-    %   \usebeamerfont{institute}\insertinstitute
-    % \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,center]{date}
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}
@@ -485,13 +499,13 @@
 \begin{frame}[t]
 \raggedright
 \vfill
-Présentation de la problématique
+Présentation de la problématique.
 \vfill
-Description de la méthodologie d’optimisation développée
+Description de la méthodologie d’optimisation développée.
 \vfill
-Application au dimensionnement d’une MEPOS solaire
+Application au dimensionnement d’une MEPOS solaire.
 \vfill
-Conclusions / Perspectives
+Conclusions et perspectives.
 \vfill
 \end{frame}
 
@@ -531,8 +545,8 @@ Conclusions / Perspectives
 \begin{frame}[c]
     \vfill
     \only<1>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_base.pdf}}
-    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_besoinsCH.pdf}}
-    \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_ECS.pdf}}
+    \only<2>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_ECS.pdf}}
+    \only<3>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_besoinsCH.pdf}}
     \only<4>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_CH.pdf}}
     \only<5>{\includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_final.pdf}}
     \vfill
@@ -549,7 +563,7 @@ Conclusions / Perspectives
         \begin{column}{0.4\textwidth}
             \vskip1em
             \addsubtitle{Nombreux facteurs}
-            \vskip6em
+            \vskip6.5em
             \uncover<2->{%
             \addsubtitle{Forte hétérogénéité}
             }
@@ -585,10 +599,11 @@ Conclusions / Perspectives
     \vfill
     \small
     \begin{itemize}
-        \item<1->[--] Multi-critères.
-        \item<2->[--] Indicateur de performance ?
-        \item<3->[--] Performance SSC + MEPOS ?
-        \item<4->[--] Équilibre Besoins / Capacité de production / Consommations ?
+        \item<1-> Multi-critères et multi-physiques
+        \vfill
+        \item<2-> Quelle performance SSC + MEPOS ?
+        \vfill
+        \item<3-> Équilibre Besoins / Capacité de production / Consommations ?
     \end{itemize}
     \vfill
 \end{frame}
@@ -599,38 +614,87 @@ Conclusions / Perspectives
 
 % ------------------------------------------------------------------------------
 \subsection{Formulation du problème}
-\begin{frame}[c]
-    \vfill
-    \includegraphics[width=0.95\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_final.pdf}
-    \vfill
-\end{frame}
-
-
 \begin{frame}[t]
-    \small
-    \raggedright
+    \footnotesize
     \vfill
-    \begin{subequations}
-        \begin{align*}
-            Conso_{ECS} &= Conso^{ECS}_{app} +  Prod^{ECS}_{sol} \\
-            Conso_{CH} &= Conso^{CH}_{app} +  Prod^{CH}_{sol} \\
-            Conso_{usages} &= Conso_{Electromenager} + Conso_{Eclairage}
-        \end{align*}
-    \end{subequations}
+    \begin{adjustwidth}{-2em}{-2em}
+        \begin{columns}
+            \begin{column}{0.6\textwidth}
+                \includegraphics[width=1.15\textwidth]{Ressources/Images/Soutenance/Problematique/modele_generique_eq.pdf}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{subequations}
+                        \begin{align*}
+                            Conso_{ECS} &= Conso^{ECS}_{app} +  Prod^{ECS}_{sol} \\
+                            Conso_{CH} &= Conso^{CH}_{app} +  Prod^{CH}_{sol}
+                        \end{align*}
+                \end{subequations}
+                \uncover<2->{
+                \begin{subequations}
+                    \begin{align*}
+                        Conso_{usages} &= Conso_{Electromenager} \\
+                                       &\quad + Conso_{Eclairage}
+                    \end{align*}
+                \end{subequations}
+                }
+                \uncover<3->{%
+                \begin{subequations}
+                    \begin{align*}
+                        Prod_{sol} &= Prod^{ECS}_{sol} + Prod^{CH}_{sol} \\
+                        Conso_{app} &= Conso^{ECS}_{app} + Conso^{CH}_{app}
+                    \end{align*}
+                \end{subequations}
+                }
+            \end{column}
+        \end{columns}
+        \vskip1em
+        \uncover<4->{%
+        \begin{equation*}
+            Prod_{PV} - Conso_{usages} + Prod^{ECS}_{sol} - Conso_{ECS} + Prod^{CH}_{sol} - Conso_{CH}
+        \end{equation*}
+        }
+        \vfill
+        \uncover<5->{%
+        \addalert{\normalsize $Prod_{PV} - Conso_{usages} - Conso_{app} \geq 0$}
+        }
+    \end{adjustwidth}
     \vfill
-    \begin{subequations}
-        \begin{align*}
-            Prod_{sol} &= Prod^{ECS}_{sol} + Prod^{CH}_{sol} \\
-            Conso_{app} &= Conso^{ECS}_{app} + Conso^{CH}_{app}
-        \end{align*}
-    \end{subequations}
-    \vfill
-    \begin{equation*}
-        Prod_{PV} - Conso_{usages} + Prod^{ECS}_{sol} - Conso_{ECS} + Prod^{CH}_{sol} - Conso_{CH}
-    \end{equation*}
-    \vfill
-    \addalert{$Prod_{PV} - Conso_{usages} - Conso_{app} \geq 0$}
 \end{frame}
+
+
+% \begin{frame}[t]
+%     \small
+%     \raggedright
+%     \vfill
+%     \begin{subequations}
+%         \begin{align*}
+%             Conso_{ECS} &= Conso^{ECS}_{app} +  Prod^{ECS}_{sol} \\
+%             Conso_{CH} &= Conso^{CH}_{app} +  Prod^{CH}_{sol} \\
+%             \uncover<2->{%
+%             Conso_{usages} &= Conso_{Electromenager} + Conso_{Eclairage}
+%             }
+%         \end{align*}
+%     \end{subequations}
+%     \vfill
+%     \uncover<3->{%
+%     \begin{subequations}
+%         \begin{align*}
+%             Prod_{sol} &= Prod^{ECS}_{sol} + Prod^{CH}_{sol} \\
+%             Conso_{app} &= Conso^{ECS}_{app} + Conso^{CH}_{app}
+%         \end{align*}
+%     \end{subequations}
+%     }
+%     \vfill
+%     \uncover<4->{%
+%     \begin{equation*}
+%         Prod_{PV} - Conso_{usages} + Prod^{ECS}_{sol} - Conso_{ECS} + Prod^{CH}_{sol} - Conso_{CH}
+%     \end{equation*}
+%     }
+%     \vfill
+%     \uncover<5->{%
+%     \addalert{$Prod_{PV} - Conso_{usages} - Conso_{app} \geq 0$}
+%     }
+% \end{frame}
 
 
 \begin{frame}[t]
@@ -667,13 +731,13 @@ Conclusions / Perspectives
             \vskip0.5em
             % \only<4>{\includegraphics[height=0.6\textheight]{Ressources/Images/Modelisation/Principe/air_elec_mono.pdf}}
             \begin{itemize}
-                \item<6-> Maximiser la production des capteurs PV
-                \item<6-> Minimiser la surface de capteurs PV
+                \item<6-> Maximiser la production des capteurs PV.
+                \item<6-> Minimiser la surface de capteurs PV.
             \end{itemize}
             \vskip2em
             \uncover<7->{%
                 \begin{itemize}
-                    \item Surface disponible en toiture $4$ pans
+                    \item Surface disponible en toiture $4$ pans.
                     \item<8-> \footnotesize $\abs{Prod_{PV} - Conso_{usages} - Conso_{app}}  \geq  8 \si{kWh_{ep}\per\metre\squared}$
                 \end{itemize}
             }
@@ -689,10 +753,13 @@ Conclusions / Perspectives
 \begin{frame}[t]
     \vfill
     \begin{itemize}
-        \item[--] Modélisation + évaluation du potentiel du SSC développé.
-        \item<2->[--] Dimensionnement couplé enveloppe / SSC.
-        \item<3->[--] Recherche d’alternatives pertinentes par optimisation.
-        \item<4->[--] Aide au choix de solutions interactivement.
+        \item Modélisation + évaluation du potentiel du SSC développé.
+        \vfill
+        \item<2-> Dimensionnement couplé enveloppe / SSC.
+        \vfill
+        \item<3-> Recherche d’alternatives pertinentes par optimisation.
+        \vfill
+        \item<4-> Aide au choix de solutions interactivement.
     \end{itemize}
     \vfill
 \end{frame}
@@ -932,25 +999,40 @@ Conclusions / Perspectives
 \end{frame}
 
 
+
 % ------------------------------------------------------------------------------
 \subsection{Réduction de la cardinalité}
 \begin{frame}[t]
+    \vfill
     \centering
-    SSC
-    \begin{itemize}
-        \item Nombre de capteurs
-        \item Isolation des ballons
-        \item ...
-    \end{itemize}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \vskip1em
+            \addsubtitle{SSC}
+            \vskip6em
+            \uncover<2->{%
+            \addsubtitle{Bâtiment}
+            }
+        \end{column}
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}
+                \item Nombre de capteurs
+                \item Isolation des ballons
+                \item \dots
+            \end{itemize}
+            \vskip2em
+            \uncover<2->{%
+            \begin{itemize}
+                \item Résistance plancher
+                \item Surface de vitrage
+                \item \dots
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+    \vskip0.5em
     \vfill
-    Bâtiment
-    \begin{itemize}
-        \item Résistance plancher
-        \item Résistance plafond
-        \item ...
-    \end{itemize}
-    \vfill
-    \addalert{Est-il nécessaire de faire varier tous les paramètres~?}
+    \uncover<3->{\addalert{Est-il nécessaire de faire varier tous les paramètres~?}}
 \end{frame}
 
 
@@ -1234,14 +1316,13 @@ Conclusions / Perspectives
             \centering
             \uncover<4->{%
             \circled[3]{2} Minimisation de l’erreur quadratique moyenne \\
-            \raggedright
-            \begin{equation*}
-                \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
-            \end{equation*}
-            \begin{equation*}
-                \min(Y - \mathcal{M}(\,\underline{\vec{x}}\,))
-            \end{equation*}
-
+            % \raggedright
+            % \begin{equation*}
+            %     \mathcal{M}(\,\underline{\vec{x}}\,) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
+            % \end{equation*}
+            % \begin{equation*}
+            %     \min(Y - \mathcal{M}(\,\underline{\vec{x}}\,))
+            % \end{equation*}
             }
         \end{column}
     \end{columns}
@@ -1301,12 +1382,48 @@ Conclusions / Perspectives
 \end{frame}
 
 
+% \begin{frame}[c]
+%     \vfill
+%     \scriptsize
+%     \begin{table}
+%     \centering
+%     Variation de la performance pour les solutions optimales (\si{kWh})
+%     \vskip1.5em
+%     \begin{tabular}{l c c c c c c c c}
+%         \toprule
+%                         & & & \multicolumn{2}{c}{Bordeaux} & & & \multicolumn{2}{c}{Strasbourg} \\
+%                         \cmidrule(r){4-5}
+%                         \cmidrule(r){8-9}
+%                         & & & min & max   &       & & min & max \\
+%         \midrule
+%         \multirow{3}{*}{Référence} & ECS & &  \multicolumn{2}{c}{2588}  & &  & \multicolumn{2}{c}{2866}  \\
+%         \addlinespace[\defaultaddspace]
+%                                    & CH  & &  \num{228}  & \num{620} & &  & \num{1363}   & \num{2110} \\
+%         \addlinespace[\defaultaddspace]
+%                                    & ECS + CH & &  \num{2816} & \num{3208} & & & \num{4229}   & \num{4976} \\
+%         \\
+%         \addlinespace[\defaultaddspace]
+%         \multirow{3}{*}{Appoint} & ECS & &  \num{156} & \num{1043} & & & \num{397}   & \num{1360} \\
+%         \addlinespace[\defaultaddspace]
+%                                  & CH  & &  \num{84}  & \num{440} & &  & \num{612}   & \num{1861} \\
+%         \addlinespace[\defaultaddspace]
+%                                  & ECS + CH & &  \num{324} & \num{1372} & & & \num{1222}   & \num{3117} \\
+%         \\
+%         \addlinespace[\defaultaddspace]
+%        \multicolumn{2}{c}{Production photovoltaïque}       & & \num{3239} & \num{4743} & & & \num{4014}   & \num{6021} \\
+%         \bottomrule
+%     \end{tabular}
+%     \end{table}
+%     \vfill
+% \end{frame}
+
+
 \begin{frame}[c]
     \vfill
     \scriptsize
     \begin{table}
     \centering
-    Variation de la performance pour les solutions optimales (\si{kWh})
+    Variation de la performance pour les solutions optimales.
     \vskip1.5em
     \begin{tabular}{l c c c c c c c c}
         \toprule
@@ -1315,26 +1432,30 @@ Conclusions / Perspectives
                         \cmidrule(r){8-9}
                         & & & min & max   &       & & min & max \\
         \midrule
-        \multirow{3}{*}{Référence} & ECS & &  \multicolumn{2}{c}{2588}  & &  & \multicolumn{2}{c}{2866}  \\
+        \multirow{3}{*}{Référence (\si{kWh})} & ECS & &  \multicolumn{2}{c}{2588}  & &  & \multicolumn{2}{c}{2866}  \\
         \addlinespace[\defaultaddspace]
                                    & CH  & &  \num{228}  & \num{620} & &  & \num{1363}   & \num{2110} \\
         \addlinespace[\defaultaddspace]
                                    & ECS + CH & &  \num{2816} & \num{3208} & & & \num{4229}   & \num{4976} \\
         \\
         \addlinespace[\defaultaddspace]
-        \multirow{3}{*}{Appoint} & ECS & &  \num{156} & \num{1043} & & & \num{397}   & \num{1360} \\
+        \uncover<2->{\multirow{3}{*}{Appoint (\si{\percent})} & $F_{sav}^{ECS}$ & &  \num{64} & \num{94} & & & \num{58}   & \num{89}} \\
         \addlinespace[\defaultaddspace]
-                                 & CH  & &  \num{84}  & \num{440} & &  & \num{612}   & \num{1861} \\
+                                                 & \uncover<2->{$F_{sav}^{CH}$  & &  \num{22}  & \num{84} & &  & \num{8}   & \num{62}} \\
         \addlinespace[\defaultaddspace]
-                                 & ECS + CH & &  \num{324} & \num{1372} & & & \num{1222}   & \num{3117} \\
+                                                 & \uncover<2->{$F_{sav,\,ext}$ & &  \num{57} & \num{90} & & & \num{42}   & \num{72}} \\
         \\
         \addlinespace[\defaultaddspace]
-       \multicolumn{2}{c}{Production photovoltaïque}       & & \num{3239} & \num{4743} & & & \num{4014}   & \num{6021} \\
+        \uncover<3->{Appoint (\si{kWh}) & ECS + CH & &  \num{324} & \num{1372} & & & \num{1222}   & \num{3117}} \\
+        \\
+        \addlinespace[\defaultaddspace]
+        \multicolumn{2}{c}{\uncover<4->{Production photovoltaïque (\si{kWh})}}       & & \uncover<4->{\num{3239} & \num{4743} & & & \num{4014}   & \num{6021}} \\
         \bottomrule
     \end{tabular}
     \end{table}
     \vfill
 \end{frame}
+
 
 \begin{frame}[t]
     % \vskip1em
@@ -1417,8 +1538,17 @@ Conclusions / Perspectives
 
 % ------------------------------------------------------------------------------
 \subsection{Résolution des verrous}
-\begin{frame}[c]
+\begin{frame}[t]
+    \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Comment valoriser l’énergie solaire pour des MEPOS ?}}
     \vfill
+    \small
+    \begin{itemize}
+        \item<1-> Multi-critères et multi-physiques
+        \vfill
+        \item<2-> Quelle performance SSC + MEPOS ?
+        \vfill
+        \item<3-> Équilibre Besoins / Capacité de production / Consommations ?
+    \end{itemize}
     \vfill
 \end{frame}
 
