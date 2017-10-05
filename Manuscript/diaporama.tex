@@ -194,9 +194,9 @@
     \begin{columns}
         \begin{column}{0.3\textwidth}
             \raggedright
-            \includegraphics[width=\textwidth]{Ressources/Images/Logos/nouvelleAquitaine_logo.jpg}
-            \vskip1em
             \includegraphics[width=\textwidth]{Ressources/Images/Logos/bordeaux_logo.jpg}
+            \vskip1em
+            \includegraphics[width=\textwidth]{Ressources/Images/Logos/nouvelleAquitaine_logo.jpg}
         \end{column}
         \begin{column}{0.3\textwidth}
 
@@ -354,12 +354,10 @@
             }
             \vskip3.5em
             \uncover<5->{%
-            Frontières
             \begin{itemize}
                 \scriptsize
-                \item Frontières physiques ?
-                \item Quels usages ?
-                \item Adéquation temporelle ?
+                \item 5 usages
+                \item Adéquation temporelle
             \end{itemize}
             }
         \end{column}%
@@ -498,7 +496,7 @@
 \begin{frame}[t]
 \raggedright
 \vfill
-Description de la problématique.
+Description de la problématique
 \vfill
 Présentation de la méthodologie d’optimisation développée.
 \vfill
@@ -529,14 +527,14 @@ Conclusions et perspectives.
 % % ==============================================================================
 \section{\scshape Problématique}
 % ------------------------------------------------------------------------------
-\begin{frame}[plain]
-    \vfill
-    \centering
-    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
-    \usebeamerfont{title}Presentation de la problématique traitée\par%
-    \end{beamercolorbox}
-    \vfill
-\end{frame}
+% \begin{frame}[plain]
+%     \vfill
+%     \centering
+%     \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%     \usebeamerfont{title}Presentation de la problématique traitée\par%
+%     \end{beamercolorbox}
+%     \vfill
+% \end{frame}
 
 
 % ------------------------------------------------------------------------------
@@ -592,27 +590,25 @@ Conclusions et perspectives.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Objectifs / Contraintes}
+\subsection{Interrogations / Contraintes}
 \begin{frame}[t]
     % \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Objectif~: valoriser l’énergie solaire pour des MEPOS}}
     \vfill
     \begin{adjustwidth}{-2em}{-2em}
-        \uncover<2->{
         \begin{beamercolorbox}[sep=1pt, wd=2.5cm, center,shadow=true,rounded=true]{footlinecolor}
-             Objectifs\par%
+             Interrogations\par%
         \end{beamercolorbox}
-        }
         \vskip0.5em
         \begin{itemize}
             \small
-            \item<2-> Quelle performance SSC + MEPOS ?
+            \item Quelle performance SSC + MEPOS ?
             \vskip1em
-            \item<2-> Quelle adéquation entre besoins / production / consommations ?
+            \item Quelle adéquation entre besoins / production / consommations ?
         \end{itemize}
 
         \vskip3em
 
-        \uncover<3->{
+        \uncover<2->{
             \begin{beamercolorbox}[sep=1pt, wd=2.5cm, center,shadow=true,rounded=true]{footlinecolor}
                  Contraintes\par%
             \end{beamercolorbox}
@@ -621,9 +617,9 @@ Conclusions et perspectives.
 
         \begin{itemize}
             \small
-            \item<3-> Problématique multi-critères et multi-physiques. \\
+            \item<2-> Problématique multi-critères et multi-physiques. \\
             \vskip1em
-            \item<3-> Partager la surface disponible en toiture.
+            \item<2-> Partager la surface disponible en toiture.
         \end{itemize}
         \vfill
     \end{adjustwidth}
@@ -726,41 +722,39 @@ Conclusions et perspectives.
     \begin{columns}
         \begin{column}{0.2\textwidth}
             \vskip3.5em
-            \uncover<5->{\addsubtitle{Objectifs}}
+            \uncover<4->{\addsubtitle{Objectifs}}
             \vskip7em
-            \uncover<7->{\addsubtitle{Contraintes}}
+            \uncover<6->{\addsubtitle{Contraintes}}
         \end{column}%
         \begin{column}{0.8\textwidth}
-            \uncover<2->{%
                 \begin{itemize}
-                    \item \only<2-4>{Évaluer la performance du SSC} \only<5->{Maximiser la performance du SSC}
+                    \item \only<1-3>{Évaluer la performance du SSC} \only<4->{Maximiser la performance du SSC}
                 \end{itemize}
                 \begin{columns}
                     \begin{column}{0.5\textwidth}
                         \centering
-                        \only<2-3>{$F_{sol}       = \frac{Prod_{sol}}{Prod_{sol} + Conso_{app}}$}
-                        \only<4>{{\color{SolarizedRed} \cancel{$F_{sol}       = \frac{Prod_{sol}}{Prod_{sol} + Conso_{app}}$}}}
-                        \only<5->{$F_{sav}^{CH}   = 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}}$}
+                        \only<1-2>{$F_{sol}       = \frac{Prod_{sol}}{Prod_{sol} + Conso_{app}}$}
+                        \only<3>{{\color{SolarizedRed} \cancel{$F_{sol}       = \frac{Prod_{sol}}{Prod_{sol} + Conso_{app}}$}}}
+                        \only<4->{$F_{sav}^{CH}   = 1 - \frac{Conso_{app}^{CH}}{Conso_{ref}^{CH}}$}
                     \end{column}
                     \begin{column}{0.5\textwidth}
                         \centering
-                        \only<3>{$F_{sav}  = 1 - \frac{Conso_{app}}{Conso_{ref}}$}
-                        \only<4>{{\color{SolarizedGreen} $F_{sav}  = 1 - \frac{Conso_{app}}{Conso_{ref}}$}}
-                        \only<5->{$F_{sav}^{ECS}   = 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}$}
+                        \only<2>{$F_{sav}  = 1 - \frac{Conso_{app}}{Conso_{ref}}$}
+                        \only<3>{{\color{SolarizedGreen} $F_{sav}  = 1 - \frac{Conso_{app}}{Conso_{ref}}$}}
+                        \only<4->{$F_{sav}^{ECS}   = 1 - \frac{Conso_{app}^{ECS}}{Conso_{ref}^{ECS}}$}
                     \end{column}
                 \end{columns}
-            }
             \vskip0.5em
             % \only<4>{\includegraphics[height=0.6\textheight]{Ressources/Images/Modelisation/Principe/air_elec_mono.pdf}}
             \begin{itemize}
-                \item<6-> Maximiser la production des capteurs PV.
-                \item<6-> Minimiser la surface de capteurs PV.
+                \item<5-> Maximiser la production des capteurs PV.
+                \item<5-> Minimiser la surface de capteurs PV.
             \end{itemize}
             \vskip2em
-            \uncover<7->{%
+            \uncover<6->{%
                 \begin{itemize}
                     \item Partage de la surface disponible en toiture.
-                    \item<8-> \footnotesize $\abs{Prod_{PV} - Conso_{usages} - Conso_{app}}  \geq  8 \si{kWh_{ep}\per\metre\squared}$
+                    \item<7-> \footnotesize $\abs{Prod_{PV} - Conso_{usages} - Conso_{app}}  \geq  8 \si{kWh_{ep}\per\metre\squared}$
                 \end{itemize}
             }
         \end{column}
@@ -800,7 +794,7 @@ Conclusions et perspectives.
             \footnotesize
             \item[--] afin de tenir compte de plusieurs objectifs.
             \vskip0.5em
-            \item[--] afin de converger vers un ensemble de solutions pertinentes.
+            \item[--] afin de converger vers un ensemble de solutions optimales.
         \end{itemize}
         \vfill
         \item Accompagner le décideur dans son choix.
@@ -1078,7 +1072,7 @@ Conclusions et perspectives.
     \end{columns}
     \vskip0.5em
     \vfill
-    \uncover<3->{\addalert{Est-il nécessaire de faire varier tous les paramètres~?}}
+    \uncover<3->{\addalert{Quels sont les paramètres les plus influents~?}}
 \end{frame}
 
 
@@ -1179,7 +1173,7 @@ Conclusions et perspectives.
             Occupation (jour)~: \SI{19}{\celsius}\\[0.5em]
             Occupation (nuit)~: \SI{18}{\celsius}
             \vskip3.5em
-            \uncover<3->{%
+            \uncover<2->{%
             \addsubtitle{Puisage~: \SI{33}{l\per (jour\period pers)}}~\\
             Pondération~:
             \begin{itemize}
@@ -1191,9 +1185,9 @@ Conclusions et perspectives.
         \begin{column}{0.7\textwidth}
             \raggedleft
             \vskip1em
-            \uncover<2->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}}
+            \includegraphics[width=0.9\textwidth]{Ressources/Images/Modelisation/Scenario/charges_internes.pdf}
             \vskip2em
-            \uncover<3->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Soutenance/CasEtude/puisage_realiste.pdf}}
+            \uncover<2->{\includegraphics[width=0.9\textwidth]{Ressources/Images/Soutenance/CasEtude/puisage_realiste.pdf}}
         \end{column}
     \end{columns}
     \vfill
@@ -1243,11 +1237,9 @@ Conclusions et perspectives.
 
 \begin{frame}[t]
     \centering
-    \only<1-3>{%
     \begin{columns}
         \begin{column}{0.45\textwidth}
             \centering
-            \uncover<2->{%
             \addsubtitle{Langage / Logiciel}
             \begin{itemize}
                 \item Multi-physiques
@@ -1257,11 +1249,10 @@ Conclusions et perspectives.
             \vskip1em
             \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/modelica_logo.png}
             \includegraphics[width=0.5\textwidth]{Ressources/Images/Logos/dymola_logo.jpg}
-            }
         \end{column}%
         \begin{column}{0.55\textwidth}
             \centering
-            \uncover<3->{%
+            \uncover<2->{%
             \addsubtitle{Bibliothèque}
             \begin{itemize}
                 \item Activement maintenue
@@ -1273,11 +1264,10 @@ Conclusions et perspectives.
             }
         \end{column}%
     \end{columns}%
-    }
-    % \only<4->{\vfill \includegraphics[width=1.05\textwidth, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Modelisation/Captures/SSC_capture.pdf}\vfill}
 \end{frame}
 
-
+% ------------------------------------------------------------------------------
+\subsection{Réduction de la complexité}
 \begin{frame}[t]
     \begin{adjustwidth}{-2em}{-2em}
         \includegraphics[height=0.8\textheight, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Modelisation/Captures/SSC_capture.pdf}
@@ -1294,6 +1284,56 @@ Conclusions et perspectives.
     \end{columns}
     }
 \end{frame}
+
+\begin{frame}[t]
+    \addsubtitle{Méta-modèles par chaos polynomial}
+    \vfill
+    \centering
+    \textbf{Approximation des objectifs par des fonctions analytiques}
+    \uncover<2->{%
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $Conso_{app}$
+                \item $Conso_{app}^{CH}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $Conso_{app}^{ECS}$
+                \item $Conso_{ref}^{CH}$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    }
+    \vskip2em
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \uncover<3->{%
+            \circled[3]{1} Définition d’un échantillon représentatif
+            \includegraphics[width=1\textwidth]{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
+            }
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \centering
+            \uncover<4->{%
+            \circled[3]{2} Minimisation de l’erreur quadratique moyenne \\
+            \raggedright
+            \begin{equation*}
+                \highlight[SolarizedRed!70]{\min(f(\vec{x}) - \mathcal{M}(\vec{x}))}
+            \end{equation*}
+            \vskip0.5em
+            \begin{equation*}
+                \mathcal{M}(\vec{x}) \approx \sum c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
+                % \mathcal{M}(\vec{x}) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
+            \end{equation*}
+            }
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
+
 
 
 
@@ -1333,58 +1373,6 @@ Conclusions et perspectives.
     \vfill
 \end{frame}
 
-
-
-% ------------------------------------------------------------------------------
-\subsection{Réduction de la complexité}
-\begin{frame}[t]
-    \addsubtitle{Méta-modèles par chaos polynomial}
-    \vfill
-    \centering
-    \textbf{Approximation des objectifs par des fonctions analytiques}
-    \uncover<2->{%
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item $Conso_{app}$
-                \item $Conso_{app}^{CH}$
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item $Conso_{app}^{ECS}$
-                \item $Conso_{ref}^{CH}$
-            \end{itemize}
-        \end{column}
-    \end{columns}
-    }
-    \vskip2em
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \centering
-            \uncover<3->{%
-            \circled[3]{1} Définition d’un échantillon représentatif
-            \includegraphics[width=1\textwidth]{Ressources/Images/MetaModele/halton_vs_uniform.pdf}
-            }
-        \end{column}
-        \begin{column}{0.6\textwidth}
-            \centering
-            \uncover<4->{%
-            \circled[3]{2} Minimisation de l’erreur quadratique moyenne \\
-            \raggedright
-            \begin{equation*}
-                \mathcal{M}(\vec{x}) \approx \sum c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
-                % \mathcal{M}(\vec{x}) \approx \sum_{\abs{\vec{\alpha}} \leq P} c_{\vec{\alpha}} \times \psi_{\vec{\alpha}}(\,\underline{\vec{x}}\,)
-            \end{equation*}
-            \vskip0.5em
-            \begin{equation*}
-                \highlight[SolarizedRed!70]{\min(f(\vec{x}) - \mathcal{M}(\vec{x}))}
-            \end{equation*}
-            }
-        \end{column}
-    \end{columns}
-    \vfill
-\end{frame}
 
 
 
