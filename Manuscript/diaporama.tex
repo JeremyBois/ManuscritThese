@@ -576,9 +576,9 @@ Conclusions et perspectives.
             \vskip2em
             \uncover<2->{%
             \begin{itemize}
-                \item continues
-                \item discrètes
-                \item qualitatives
+                \item continus
+                \item discrets
+                \item qualitatifs
             \end{itemize}
             }
         \end{column}
@@ -1463,13 +1463,16 @@ Conclusions et perspectives.
 % \end{frame}
 
 
+% ------------------------------------------------------------------------------
+\subsection{Optimisation multi-objectifs~: Potentiel du SSC}
 \begin{frame}[c]
     \vfill
+    \centering
     \scriptsize
     \begin{table}
     \centering
-    Variation de la performance pour les solutions optimales.
-    \vskip1.5em
+    % Variation de la performance pour les solutions optimales.
+    % \vskip1.5em
     \begin{tabular}{l c c c c c c c c}
         \toprule
                         & & & \multicolumn{2}{c}{Bordeaux} & & & \multicolumn{2}{c}{Strasbourg} \\
@@ -1477,17 +1480,17 @@ Conclusions et perspectives.
                         \cmidrule(r){8-9}
                         & & & min & max   &       & & min & max \\
         \midrule
-        \multirow{3}{*}{Référence (\si{kWh})} & ECS & &  \multicolumn{2}{c}{2588}  & &  & \multicolumn{2}{c}{2866}  \\
+        \multirow{3}{*}{Référence (\si{kWh})} & ECS & &  \multicolumn{2}{c}{\alt<1>{\cellcolor{SolarizedBrWhite}}{}2588}  & &  & \multicolumn{2}{c}{\alt<1>{\cellcolor{SolarizedBrWhite}}{}2866}  \\
         \addlinespace[\defaultaddspace]
-                                   & CH  & &  \num{228}  & \alt<2>{\cellcolor{SolarizedRed}}{}\num{620} & &  & \num{1363}   & \alt<2>{\cellcolor{SolarizedGreen}}{}\num{2110} \\
+                                   & CH  & &  \alt<3>{\cellcolor{SolarizedRed}}{} \num{228}  & \alt<2>{\cellcolor{SolarizedRed}}{}\num{620} & &  & \alt<3>{\cellcolor{SolarizedGreen}}{} \num{1363}   & \alt<2>{\cellcolor{SolarizedGreen}}{} \num{2110} \\
         \addlinespace[\defaultaddspace]
-                                   & ECS + CH & &  \num{2816} & \num{3208} & & & \num{4229}   & \num{4976} \\
+                                   & ECS + CH & & \alt<4>{\cellcolor{SolarizedRed}}{} \num{2816} & \num{3208} & & & \alt<4>{\cellcolor{SolarizedGreen}}{}\num{4229}   & \num{4976} \\
         \\
         \addlinespace[\defaultaddspace]
-        \uncover<3->{Appoint (\si{\percent})  & $F_{sav,\,ext}$ & &  \num{57} & \alt<3>{\cellcolor{SolarizedGreen}}{}\num{90} & & & \num{42}   & \alt<4>{\cellcolor{SolarizedGreen}}{}\num{72}} \\
+        \uncover<5->{Appoint (\si{\percent})  & $F_{sav,\,ext}$ & &  \num{57} & \uncover<5->{\cellcolor{SolarizedGreen}}{}\num{90} & & & \num{42}   & \uncover<5->{\cellcolor{SolarizedGreen}}{}\num{72}} \\
         \\
         \addlinespace[\defaultaddspace]
-        \uncover<4->{Appoint (\si{kWh}) & ECS + CH & &  \num{324} & \num{1372} & & & \num{1222}   & \num{3117}} \\
+        \uncover<6->{Appoint (\si{kWh}) & ECS + CH & &  \alt<6>{\cellcolor{SolarizedRed}}{} \num{324} & \alt<6>{\cellcolor{SolarizedRed}}{} \num{1372} & & & \alt<6>{\cellcolor{SolarizedGreen}}{} \num{1222}   & \alt<6>{\cellcolor{SolarizedGreen}}{} \num{3117}} \\
         \bottomrule
     \end{tabular}
     \end{table}
@@ -1495,10 +1498,14 @@ Conclusions et perspectives.
 \end{frame}
 
 
+% ------------------------------------------------------------------------------
+\subsection{Optimisation multi-objectifs~: Diversité des solutions}
 \begin{frame}[t]
-    \addsubtitle{Résultats d’optimisation sur Strasbourg}
-    \vskip1em
-    \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
+    % \addsubtitle{Résultats d’optimisation sur Strasbourg}
+    % \vskip1em
+    \begin{adjustwidth}{-2.4em}{-2.4em}
+        \includegraphics[width=1.2\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
+    \end{adjustwidth}
 \end{frame}
 
 
@@ -1517,11 +1524,15 @@ Conclusions et perspectives.
 % \end{frame}
 
 
+% ------------------------------------------------------------------------------
+\subsection{Optimisation multi-objectifs~: Impact du volume des ballons}
 \begin{frame}[t]
-    \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
-    \vskip1em
-    \centering
-    \includegraphics[width=1.08\textwidth]{Ressources/Images/Soutenance/Resultats/impact_ballon.pdf}
+    % \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
+    % \vskip1em
+    \begin{adjustwidth}{-2.4em}{-2.4em}
+        \includegraphics[width=1.17\textwidth]{Ressources/Images/Soutenance/Resultats/impact_ballon.pdf}
+    \end{adjustwidth}
+
 \end{frame}
 
 
@@ -1579,11 +1590,12 @@ Conclusions et perspectives.
     \vfill
     \small
     \begin{itemize}
-        \item Capacité à mettre en œuvre la modélisation complexe nécessaire.
+        \item Capacité à mettre en œuvre une modélisation complexe avec le
+              langage Modelica et l’environnement Dymola.
         \vfill
         \item Sélectionner une méthodologie d’optimisation adaptée.
         \vfill
-        \item Accompagner le décideur dans son choix.
+        \item Accompagner intéractivement le décideur dans son choix.
     \end{itemize}
     \vfill
 \end{frame}
