@@ -1,0 +1,76 @@
+[file]
+diaporama.pdf
+[font_size]
+11170
+[notes]
+### 18
+Ce principe permet d’améliorer la diversité et donc de proposer une meilleure base d’apprentissage permettant d’eviter la stagnation et converger plus rapidement vers le front de Pareto### 19
+Une autre amélioration mise en place est l’utilisation d’un vol de Lévy pour les butineuses.
+
+
+Maintenant que le principe global de fonctionnement de l’algorithme a été présenté, il est intéressant de revenir sur les variables a priori du problème.### 21
+On construit ensuite un plan d’expérience en discrétisant chaque intervalle.
+
+On tire ensuite plusieurs trajectoires aléatoirement dans ce plan en faisant varier un unique paramètre par pas élémentaire.
+
+On positionne sur un même graphe.### 22
+La méthodologie étant maintenant décrite, il est proposé de passer au cas applicatif.### 24
+Afin de pouvoir se focaliser sur le dimensionnement couplé de l’enveloppe du bâtiment et des systèmes solaires, les scénarios d’usages ont été fixés.
+### 25
+Évite l’installation d’équipements spécifiques couteux.### 27
+Afin de pouvoir modéliser à la fois le bâtiment, le système photovoltaïque, le SSC, et sa logique de contrôle il est retenu le langage Modelica.### 31
+Afin de limiter le nombre de variables pour la construction des méta-modèles, le criblage de Morris est réalisé en amont avec la bibliothèque Salib.### 33
+Maintenant que la cardinalité est réduite, la bibliothèque OpenTurns est utilisée pour la création des méta-modèles.### 34
+Les graphes ci-dessous représentent les valeurs obtenues par les méta-modèles en fonction de la valeur du modèle original.### 36
+Afin d’avoir une idée globale du potentiel du SSC il est nécessaire dans un premier temps de caractériser la variation de performance du systeme de référence en fonction de la qualité de l’enveloppe.
+
+Les résultats présenté ici correspondent donc aux cas de références associés aux solutions optimales.
+
+Il est donc maintenant proposé d’illustrer la diversité avec les solutions obtenues sur Strasbourg.### 37
+Le problème étant multi-objectifs il a été fait le choix de projeter deux à deux chaque objectif avec ici ...
+
+Ensuite afin de rapidement identifier des sous groupes de solutions
+
+De plus les histogrammes sur la diagonale permettent de rapidement identifier la distribution des solutions en fonction du nombre de capteurs solaires thermiques.
+
+Les éléments clés à retenir sont
+  - Diversité --> bornes
+  - Discret sur PV
+  - évolutions des sous-front qui se confondent à partir de 4 capteurs
+  - pas de solution maximisant Fecs et Fch  --> L’algorithme jouant un rôle essentiel dans cette orientation
+
+Une des raisons limitant le développement des SSC est le recours à un volume de ballon important.### 38
+Il est ici représenté l’ensemble des solutions optimales obtenues avec et sans l’ajout de la contrainte de volume.
+
+
+L’élément important à retenir est donc que des volumes de petites tailles pour le ballon de stockage comme le ballon sanitaire permet d’obtenir des performances satisfaisantes.### 39
+Maintenant que les résultats de l’optimisation ont été discutés, il est proposé d’illustrer ...### 41
+Il est maintenant proposé de revenir sur les verrous identifiés en début de présentation et de faire le bilan de ces travaux.### 42
+Il avait été identifié principalement 3 verrous.
+
+Le premier à été levé en réalisant la modélisation détaillée du bâtiment, des systèmes et de la logique de contrôle
+afin de permettre d’optimiser la conception d’une maison solaire à énergie positive en utilisant le langage Modelica et
+l’environnement Dymola.
+
+Le second a été levé par l’adaptation et l’amélioration d’une optimisation par méta-heuristique.
+
+Enfin le dernier verrou a été levé en utilisant une aide au choix intéractif. ### 43
+Il y a principalement 3 points à retenir de ces travaux
+
+  - position opposée --> meilleure représentativité de l’espace de décision
+  - Afin d’améliorer l’intensification et éviter les optimums locaux
+  - Diversité.
+  - Afin de ne pas écarter des solutions prometteuses et ne pas bridé l’apprentissage des individus.
+
+Ces développements ont ensuite été combinés afin d’aider à la conception de MEPOS solaire.
+
+Enfin l’ensemble des solutions a été contraint en utilisant un représentation par coordonnées parallèles afin d’aide au choix de solutions pertinentes de manière simple et intéractive.
+ 
+Ainsi ces travaux ont fait l’objet d’un travail important de modélisation afin de répondre à la la problematique initiale.### 44
+Le sujet et la démarche proposée comporte cependant certaines limites.
+
+Aussi l’aspect économique n’a pas pu être traité. Celui ci nécessite de considérer un nombre important de facteurs.
+coût 
+
+Il est donc indispensable de collaborer avec un industiel du secteur afin de pouvoir obtenir des prix cohérent avec le marché.
+Afin d’intégrer ce nouvel objectif, il est proposé le couplage entre méthodologie et approche par clustering permettant de réduire une année de simulation à l’évaluation d’un jeu de semaines typiques.
