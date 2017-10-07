@@ -107,6 +107,14 @@
 
 
 
+\newcommand{\hcancel}[1]{%
+    \tikz[baseline=(tocancel.base)]{
+        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+        \draw[SolarizedBrBlack] (tocancel.south west) -- (tocancel.north east);
+    }%
+}%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Head with sections
@@ -364,11 +372,11 @@
         \begin{column}{0.7\textwidth}
             \centering
             \uncover<2->{%
-            \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/bilan_nzeb.png}
+            \includegraphics[height=0.5\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/bilan_nzeb_fr.pdf}
             }
             \vskip1.25em
             \uncover<4->{%
-            \includegraphics[height=0.25\textheight]{Ressources/Images/Environnement/hurdle_race.png}
+            \includegraphics[height=0.25\textheight]{Ressources/Images/Soutenance/Contexte_objectifs/hurdle_race.pdf}
             }
         \end{column}%
     \end{columns}%
@@ -590,20 +598,20 @@ Conclusions et perspectives.
 
 
 % ------------------------------------------------------------------------------
-\subsection{Interrogations / Contraintes}
+\subsection{Objectifs / Contraintes}
 \begin{frame}[t]
     % \addalert{\usebeamerfont{frametitle} \footnotesize \textbf{Objectif~: valoriser l’énergie solaire pour des MEPOS}}
     \vfill
     \begin{adjustwidth}{-2em}{-2em}
         \begin{beamercolorbox}[sep=1pt, wd=2.5cm, center,shadow=true,rounded=true]{footlinecolor}
-             Interrogations\par%
+             Objectifs\par%
         \end{beamercolorbox}
         \vskip0.5em
         \begin{itemize}
             \small
-            \item Quelle performance SSC + MEPOS ?
+            \item Évaluer la performance du SSC pour une MEPOS.
             \vskip1em
-            \item Quelle adéquation entre besoins / production / consommations ?
+            \item Optimiser l’adéquation entre besoins / production / consommations.
         \end{itemize}
 
         \vskip3em
@@ -754,7 +762,7 @@ Conclusions et perspectives.
             \uncover<6->{%
                 \begin{itemize}
                     \item Partage de la surface disponible en toiture.
-                    \item<7-> \footnotesize $\abs{Prod_{PV} - Conso_{usages} - Conso_{app}}  \geq  8 \si{kWh_{ep}\per\metre\squared}$
+                    \item<7-> \footnotesize $\abs{Prod_{PV} - Conso_{usages} - Conso_{app}}  \geq  8 \si{kWh_{ep}\per\metre\squared\per an}$
                 \end{itemize}
             }
         \end{column}
@@ -935,6 +943,7 @@ Conclusions et perspectives.
         \end{column}%
     \end{columns}%
     \vfill
+    \uncover<3>{\addalert{Quel algorithme d’optimisation choisir~?}}
 \end{frame}
 
 
@@ -1268,10 +1277,11 @@ Conclusions et perspectives.
 \subsection{Réduction de la complexité}
 \begin{frame}[t]
     \begin{adjustwidth}{-2em}{-2em}
-        \includegraphics[height=0.8\textheight, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Modelisation/Captures/SSC_capture.pdf}
+        \only<1>{\includegraphics[height=0.8\textheight, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Soutenance/Application/SSC_capture.png}}
+        \only<2->{\includegraphics[height=0.8\textheight, clip=true trim0mm 0mm 0mm 2mm]{Ressources/Images/Soutenance/Application/SSC_capture_work.png}}
     \end{adjustwidth}
     \vfill
-    \uncover<2->{%
+    \uncover<3->{%
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \addalert{\small $> \num{22500}$ équations}
@@ -1344,27 +1354,33 @@ Conclusions et perspectives.
     \vfill
 \end{frame}
 
-\begin{frame}[c]
+\begin{frame}[t]
     \vfill
     \centering
     \begin{columns}
-        \begin{column}{0.8\textwidth}
+        \begin{column}{0.75\textwidth}
             \uncover<2->{%
-                \includegraphics[height=0.9\textheight]{Ressources/Images/Soutenance/Resultats/graphInfluence.pdf}
+                \includegraphics[height=0.9\textheight]{Ressources/Images/Soutenance/Application/graphInfluence.pdf}
             }
         \end{column}
-        \begin{column}{0.2\textwidth}
+        \begin{column}{0.3\textwidth}
             \centering
-            \small
-            \addsubtitle{A priori}
-            21 facteurs \\
-            \vskip4em
+            \tiny
+            \addsubtitle{\footnotesize 21 facteurs a priori}
+            \vskip3em
             \uncover<3->{%
-            \addsubtitle{Bordeaux}
-            $14$ facteurs \\
-            \vskip2em
-            \addsubtitle{Strasbourg}
-            $15$ facteurs
+            \addsubtitle{\footnotesize Bordeaux~: 14}
+            \hbox{\cancel{Surface vitrée Sud / Nord / Ouest}}
+            \hbox{\cancel{Résistance thermique plancher}}
+            \hbox{\cancel{Isolation ballon sanitaire}}
+            \hbox{\cancel{Isolation canalisation}}
+            \hbox{\cancel{Consigne algorithme~: $T3_{min}$}}
+            \vskip3em
+            \addsubtitle{\footnotesize Strasbourg~: 15}
+            \hbox{\cancel{Surface vitrée Nord / Ouest}}
+            \hbox{\cancel{Isolation ballon stockage et sanitaire}}
+            \hbox{\cancel{Isolation canalisation}}
+            \hbox{\cancel{Consigne algorithme~: $T3_{min}$}}
             }
         \end{column}
     \end{columns}
@@ -1384,12 +1400,11 @@ Conclusions et perspectives.
 \end{frame}
 
 \begin{frame}[c]
-    \vfill
     \centering
     \tiny
     \begin{table}
-    Erreurs relatives (\si{\percent})
-    \vfill
+    Erreurs relatives (\si{\percent}) | RMSE = Erreur quadratique moyenne | MAE = Erreur absolue maximale
+    \vskip0.4em
     \begin{tabular}{l c c c c c c}
         \toprule
                         & \multicolumn{2}{c}{Bordeaux} & & \multicolumn{2}{c}{Strasbourg} &
@@ -1408,9 +1423,8 @@ Conclusions et perspectives.
         \bottomrule
     \end{tabular}
     \end{table}
-    \vfill
+    \vskip0.5em
     \uncover<3->{\includegraphics[width=0.9\textwidth, clip=true, trim=0mm 100mm 0mm 0mm]{Ressources/Images/MetaModele/validite_meta_ssc_600.pdf}}
-    \vfill
 \end{frame}
 
 
@@ -1502,7 +1516,7 @@ Conclusions et perspectives.
     % \addsubtitle{Résultats d’optimisation sur Strasbourg}
     % \vskip1em
     \begin{adjustwidth}{-2.4em}{-2.4em}
-        \includegraphics[width=1.2\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_nb_capteurs.pdf}
+        \includegraphics[width=1.19\textwidth]{Ressources/Images/Soutenance/Application/Strasbourg_front_nb_capteurs.pdf}
     \end{adjustwidth}
 \end{frame}
 
@@ -1528,9 +1542,10 @@ Conclusions et perspectives.
     % \addsubtitle{SSC sur Strasbourg en fonction du volume des ballons}
     % \vskip1em
     \begin{adjustwidth}{-2.4em}{-2.4em}
-        \includegraphics[width=1.17\textwidth]{Ressources/Images/Soutenance/Resultats/impact_ballon.pdf}
+        \includegraphics[width=1.17\textwidth]{Ressources/Images/Soutenance/Application/impactBallon.pdf}
     \end{adjustwidth}
-
+    \vskip0.2em
+    \colorbox{SolarizedBrBlack!20}{\tiny Nombre de capteurs solaires thermiques}
 \end{frame}
 
 
