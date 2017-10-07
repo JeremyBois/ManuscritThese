@@ -3,7 +3,9 @@ diaporama.pdf
 [font_size]
 11170
 [notes]
-### 18
+### 13
+Introduit un biais important risquant donc d’écarter prématurement des solutions pertinentes. ### 14
+Encore une fois afin de ne pas biaisé la recherche avec une connaissance trop limitée du problème il est préféré ...### 18
 Ce principe permet d’améliorer la diversité et donc de proposer une meilleure base d’apprentissage permettant d’eviter la stagnation et converger plus rapidement vers le front de Pareto### 19
 Une autre amélioration mise en place est l’utilisation d’un vol de Lévy pour les butineuses.
 
