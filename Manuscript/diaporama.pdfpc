@@ -3,7 +3,9 @@ diaporama.pdf
 [font_size]
 11170
 [notes]
-### 13
+### 10
+Ce problème d’optimisation soulève cependant plusieurs verrous.### 11
+Afin de caractériser la performance couplée d’une MEPOS et des systèmes solaires, il est nécessaire d’avoir recours à une modélisation détaillée des systèmes.### 13
 Introduit un biais important risquant donc d’écarter prématurement des solutions pertinentes. ### 14
 Encore une fois afin de ne pas biaisé la recherche avec une connaissance trop limitée du problème il est préféré ...### 18
 Ce principe permet d’améliorer la diversité et donc de proposer une meilleure base d’apprentissage permettant d’eviter la stagnation et converger plus rapidement vers le front de Pareto### 19
@@ -16,7 +18,8 @@ On construit ensuite un plan d’expérience en discrétisant chaque intervalle.
 On tire ensuite plusieurs trajectoires aléatoirement dans ce plan en faisant varier un unique paramètre par pas élémentaire.
 
 On positionne sur un même graphe.### 22
-La méthodologie étant maintenant décrite, il est proposé de passer au cas applicatif.### 24
+La méthodologie étant maintenant décrite, le cas applicatif est présenté.### 23
+Aussi l’irradiation totale mensuelle reste 2 fois moins importante durant la période hivernale.### 24
 Afin de pouvoir se focaliser sur le dimensionnement couplé de l’enveloppe du bâtiment et des systèmes solaires, les scénarios d’usages ont été fixés.
 ### 25
 Évite l’installation d’équipements spécifiques couteux.### 27
