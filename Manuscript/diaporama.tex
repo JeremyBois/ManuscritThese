@@ -1443,16 +1443,18 @@ Conclusions et perspectives.
 
 
 
-\pagenumbering{gobble}
+% \pagenumbering{gobble}
 % ------------------------------------------------------------------------------
 \section*{}
+{
+\setbeamercolor{background canvas}{bg=SolarizedBrWhite}
 \begin{frame}[plain, c]
     \vfill
     % \addalert{Merci à tous de votre attention~!}
     \includegraphics[width=\textwidth]{Ressources/Images/Soutenance/merci.pdf}
     \vfill
 \end{frame}
-
+}
 
 
 
@@ -1461,11 +1463,25 @@ Conclusions et perspectives.
 % % % ==============================================================================
 \appendix
 \section{Annexes}
-% ------------------------------------------
+% ------------------------------------------------------------------------------
+\subsection{Méthodologie}
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[height=\textheight]{Ressources/Images/methode.pdf}
+    \vfill
+\end{frame}
 
 
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[height=\textheight]{Ressources/Images/Demonstration/repartition_capteur.pdf}
+    \vfill
+\end{frame}
 
-% EQUATIONS OPTIMISATION
+
+% ------------------------------------------------------------------------------
 \subsection{Algorithme d’optimisation}
 \begin{frame}[noframenumbering, c]
     \vfill
@@ -1525,16 +1541,38 @@ Conclusions et perspectives.
 \end{frame}
 
 
-% DISTRIBUTIONS PRINCIPALES
-% ------------------------------------------------------------------------------
-\subsection{Algorithme d’optimisation}
 \begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
     \includegraphics[width=1.05\textwidth]{Ressources/Images/Optimisation/LevyFlight/distribution_pdf.pdf}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/Optimisation/LevyFlight/levy_length.pdf}
+    \vfill
+\end{frame}
+
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[width=1.2\textwidth, clip=true, trim=45mm 0mm 0mm 0mm]{Ressources/Templates/Optimisation/Validation/dtlz1.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[width=1.25\textwidth, clip=true, trim=60mm 0mm 0mm 0mm]{Ressources/Templates/Optimisation/Validation/dtlz7.pdf}
+    \vfill
 \end{frame}
 
 
 
-% DETAIL BÂTIMENT
 % ------------------------------------------------------------------------------
 \subsection{Bâtiment}
 \begin{frame}[noframenumbering, c]
@@ -1572,7 +1610,7 @@ Conclusions et perspectives.
 
 
 
-% DETAIL SSC
+
 % ------------------------------------------------------------------------------
 \subsection{Système Solaire Combiné (SSC)}
 \begin{frame}[noframenumbering, c]
@@ -1601,8 +1639,59 @@ Conclusions et perspectives.
 
 
 
-% INFLUENCE VOLUME BALLON
+% ------------------------------------------------------------------------------
+\subsection{Criblage de Morris}
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[height=\textheight]{Ressources/Images/Sensibilite/sigma_mu_star_1.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[height=\textheight]{Ressources/Images/Sensibilite/sigma_mu_1.pdf}
+    \vfill
+\end{frame}
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Méta-modèles}
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/MetaModele/RMSE.pdf}
+    \vfill
+\end{frame}
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[width=\textwidth]{Ressources/Images/MetaModele/MAE.pdf}
+    \vfill
+\end{frame}
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
 \subsection{Résultats d’optimisation}
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \includegraphics[height=0.5\textheight]{Ressources/Images/EtudeDeCas/Strasbourg_algo.pdf}
+    \includegraphics[height=0.5\textheight]{Ressources/Images/EtudeDeCas/Bordeaux_algo.pdf}
+    \vfill
+\end{frame}
+
+
 \begin{frame}[noframenumbering, c]
     \vfill
     \scriptsize
@@ -1638,6 +1727,41 @@ Conclusions et perspectives.
     \vfill
 \end{frame}
 
+
+
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Résultats d’optimisation~: Strasbourg}
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.2em}{-2.2em}
+    \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/evolution_perf_nb_capteurs.pdf}
+    \end{adjustwidth}
+    \vfill
+\end{frame}
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.2em}{-2.2em}
+    \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front_enveloppe_colormap.pdf}
+    \end{adjustwidth}
+    \vfill
+\end{frame}
+
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.2em}{-2.2em}
+    \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/Strasbourg_front.pdf}
+    \end{adjustwidth}
+    \vfill
+\end{frame}
+
 \begin{frame}[noframenumbering, t]
     \addsubtitle{Influence du volume des ballons}
     \vfill
@@ -1653,7 +1777,36 @@ Conclusions et perspectives.
 \end{frame}
 
 
-% PERSPECTIVES LONG TERME
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.2em}{-2.2em}
+        \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/strasbourg_smalltanks_variations.pdf}
+    \end{adjustwidth}
+    \vfill
+\end{frame}
+
+
+
+
+
+% ------------------------------------------------------------------------------
+\subsection{Résultats d’optimisation~: Bordeaux}
+\begin{frame}[noframenumbering, c]
+    \vfill
+    \centering
+    \begin{adjustwidth}{-2.2em}{-2.2em}
+        \includegraphics[width=1.1\textwidth]{Ressources/Images/EtudeDeCas/Bordeaux_front.pdf}
+    \end{adjustwidth}
+    \vfill
+\end{frame}
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
 \subsection{Autres Perspectives}
 \begin{frame}[noframenumbering, c]
     \vfill
@@ -1664,6 +1817,7 @@ Conclusions et perspectives.
     \end{itemize}
     \vfill
 \end{frame}
+
 
 
 
