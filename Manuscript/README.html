@@ -1015,12 +1015,9 @@ body .markdown-body
   }
 }
 </style><title>README</title></head><body><article class="markdown-body"><h1 id="notes-sur-le-manuscrit"><a name="user-content-notes-sur-le-manuscrit" href="#notes-sur-le-manuscrit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Notes sur le manuscrit</h1>
-<p><strong>Mise à jour: 27042017</strong></p>
-<h2 id="a-faire"><a name="user-content-a-faire" href="#a-faire" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>À Faire:</h2>
-<ul>
-<li>Correction Michel Pons</li>
-<li>Corriger la thèse pour acceptation de la norme PDF-A</li>
-</ul>
+<p><strong>Mise à jour: 20171120</strong></p>
+<h2 id="pdf-a"><a name="user-content-pdf-a" href="#pdf-a" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>PDF A:</h2>
+<p><code>gs -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dCompressFonts=true -dSubsetFonts=true -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=outputPdf.pdf -c ".setpdfwrite &lt;&lt;/NeverEmbed [ ]&gt;&gt; setdistillerparams" -f original.pdf</code></p>
 <h2 id="notes"><a name="user-content-notes" href="#notes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Notes:</h2>
 <ul>
 <li>Virer la voie passive au maximum</li>

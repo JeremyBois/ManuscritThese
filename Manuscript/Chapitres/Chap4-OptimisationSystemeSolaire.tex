@@ -139,12 +139,17 @@ aux occupants sont fixes et suivent un scénario prédéfini. Ainsi la productio
 \abr{PV} et les charges internes sont évaluées sur \textbf{l’année complète}
 en amont des simulations du \abr{SSC}.
 
-En couplant les résultats des deux simulations, la
-consommation totale sur les quatre usages est considérée. Le \abr{SSC} couvrant en totalité
-les besoins sur la période non simulée, la consommation de l’appoint est équivalente à la
-consommation des pompes. Il est donc possible d’approximer la $Conso_{app}$ annuelle par
-la consommation de l’appoint et des pompes sur la période simulée. La consommation totale
-est alors obtenu par \eqref{eq:conso_totale}.
+En couplant les résultats des deux simulations, la consommation totale sur les quatre
+usages est considérée. Le \abr{SSC} couvrant en totalité les besoins sur la période non
+simulée, la consommation de l’appoint est équivalente à la consommation des pompes. Il est
+donc possible d’approximer la $Conso_{app}$ annuelle par la consommation de l’appoint et
+des pompes sur la période simulée. La consommation totale est alors obtenu par
+\eqref{eq:conso_totale}. Il est important de noter que la $Conso_{app}$ est calculée à
+chaque pas de temps. Elle tient donc compte implicitement de l’adéquation entre besoins
+(chauffage et \abr{ECS}) et de la production solaire thermique ($Prod_{sol}^{valorisée}$).
+À l’inverse, la $Prod_{PV}$ est elle pré-calculée et ne tient donc pas compte de
+l’adéquation avec les besoins (électroménager et éclairage).
+
 
 \begin{align} \label{eq:conso_totale}
   Conso_{tot} &= Conso_{app} + Conso_{usages} - Prod_{PV}  \\

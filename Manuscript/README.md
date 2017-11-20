@@ -1,12 +1,9 @@
 # Notes sur le manuscrit
 
-**Mise à jour: 27042017**
+**Mise à jour: 20171120**
 
-
-## À Faire:
-
-  - Correction Michel Pons
-  - Corriger la thèse pour acceptation de la norme PDF-A
+## PDF A:
+```gs -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dCompressFonts=true -dSubsetFonts=true -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=outputPdf.pdf -c ".setpdfwrite <</NeverEmbed [ ]>> setdistillerparams" -f original.pdf```
 
 
 ## Notes:

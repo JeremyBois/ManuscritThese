@@ -804,6 +804,8 @@ constant un différentiel de température comme décrit dans la suite du documen
 \label{ssub:validation_du_modele_de_capteurs_solaires_thermiques}
 Les capteurs solaires thermiques sont modélisés par l’équation \enquote{quasi-dynamique}
 implémentée dans le modèle \textit{Fluid.SolarCollectors.EN12975} de la bibliothèque \textit{Buildings}.
+Afin de tenir compte de la variation de la température dans les capteurs, ceux-ci sont discrétisés
+en \num{20} sous-volumes.
 Alors que la norme considère un unique modificateur d’\abr{IAM} ($b_{0}$)
 le modèle \textit{Fluid.SolarCollectors.EN12975} considère deux modificateurs ($b_{0}$ et $b_{1}$),
 permettant de mieux approcher le comportement réel du capteur \eqref{eq:iam_dir_plan_model}.
@@ -1145,9 +1147,19 @@ Dans un premier temps le bâtiment et les scénarios internes ont été présent
 choix a été fait d’utiliser un modèle de bâtiment mono-zone et les résultats en
 comparaison avec un modèle multi-zone montrent que l’approche est pertinente. Ensuite
 le \abr{SSC} et sa logique de fonctionnement a été présentée. Le système s’inspire
-des travaux de la littérature afin de proposer une approche simple et robuste.
+des travaux de la littérature afin de proposer une approche simple et robuste en considérant
+le bâtiment et les systèmes comme un ensemble (\figref{fig:control_air}).
 La section suivante décrit ainsi logiquement son application à travers une étude
 paramétrique où des variations à la fois techniques et climatiques sont étudiées.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.1\textwidth, clip=true, trim=50mm 0mm 10mm 0mm]{Ressources/Images/Modelisation/sankey_diagram.pdf}
+    \caption[Récapitulatif du fonctionnement couplé du système solaire combiné et du bâtiment.]
+            {Récapitulatif du fonctionnement couplé du système solaire combiné et du bâtiment.}
+    \label{fig:fonctionnementSystemeRecap}
+\end{figure}
+
 % subsection bilan_cas_etude (end)
 % section application_a_la_modelisation_du_cas_d_etude (end)
 
