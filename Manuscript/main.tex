@@ -34,39 +34,34 @@
 \documentclass[11pt, oneside]{JeremyThesis}
 
 
-% ------------------------------------------------------------------------------
-% Support for PDF/A standard (see file main.)
-% ------------------------------------------------------------------------------
-% \usepackage[a-1b]{pdfx}
-
-
 
 % ------------------------------------------------------------------------------
 % Meta data support
 % ------------------------------------------------------------------------------
+\newcommand{\myDate}{9 Octobre 2017}
+\newcommand{\myTitle}{Outil d’Aide à la Décision pour la Conception de Maisons Solaires à Énergie Positive}
+\newcommand{\myAuthor}{Jérémy BOIS}
+\newcommand{\keywordsFR}{%
+Système solaire combiné, Bâtiment à énergie positive, Optimisation multi-objectifs, Aide à la décision, Modélisation, Modelica, Dymola%
+}
+\newcommand{\keywordsENG}{%
+Solar combi-system, Nearly ZEB, Multi-criteria optimisation, Décision analysis, Modeling, Modelica, Dymola
+}
+
+
 % Hyper links and meta data
 \hypersetup{
-    pdfkeywords={Système solaire combiné,
-                 Bâtiment à énergie positive,
-                 Optimisation multi-objectifs,
-                 Méta-heuristique,
-                 Aide à la décision,
-                 Modélisation,
-                 Modelica,
-                 Dymola},         % list of keywords
+    pdfkeywords={\keywordsFR},         % list of keywords
     unicode=true,                          % non-Latin characters in Acrobat’s bookmarks
     pdftoolbar=true,                       % show Acrobat’s toolbar?
     pdfmenubar=true,                       % show Acrobat’s menu?
     pdffitwindow=false,                    % window fit to page when opened
     pdfstartview={FitH},                   % fits the width of the page to the window
-    pdftitle={Outil d’aide à la décision %
-              pour la conception de %
-              maisons solaires %
-              à énergie positive},             % title
-    pdfauthor={Jérémy Bois},               % author
-    pdfsubject={},                         % abstract of the document
-    pdfcreator={Jérémy Bois},              % creator of the document
-    pdfproducer={Jérémy Bois},             % producer of the document
+    pdfsubject={\myTitle},
+    pdftitle={\myTitle},             % title
+    pdfauthor={\myAuthor},               % author
+    pdfcreator={\myAuthor},              % creator of the document
+    pdfproducer={\myAuthor},             % producer of the document
     pdfnewwindow=true,                     % links in new PDF window
     colorlinks=true,                       % false: boxed links; true: colored links
     linkcolor=SolarizedOrange,             % color of internal links (change box color with linkbordercolor)
@@ -155,21 +150,13 @@ Extension=.otf,
 \addbibresource{./Bibliographie/references.bib}       % Where to find bibliography
 
 
-% ------------------------------------------------------------------------------
-% First page definition
-% ------------------------------------------------------------------------------
-\title{
-    {Outil d’aide à la décision pour la conception de maisons solaires à énergie positive}\\
-    {\large Université de Bordeaux}\\
-    % {\includegraphics{Ressources/Images/Logos/aquitaine_logo.png}}
-    {}
-}
-\author{Jérémy Bois}
-\date{}
 
 
-
-
+\newcommand{\blankpage}{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
@@ -184,10 +171,8 @@ Extension=.otf,
 % Preface
 % ------------------------------------------------------------------------------
 \pagenumbering{Alph}
-\begin{titlepage}
-    \maketitle
-    \thispagestyle{empty}
-\end{titlepage}
+\input{Chapitres/firstPage}
+\blankpage
 \pagenumbering{arabic}
 
 
@@ -207,21 +192,21 @@ Extension=.otf,
 
 
 
-% ------------------------------------------------------------------------------
-% Tables of contents
-% ------------------------------------------------------------------------------
-{
-    \hypersetup{linkcolor=ClassicBlack} % local change
-    \tableofcontents
-    \listoffigures
-    \listoftables
-    \listofalgorithms
-}
+% % ------------------------------------------------------------------------------
+% % Tables of contents
+% % ------------------------------------------------------------------------------
+% {
+%     \hypersetup{linkcolor=ClassicBlack} % local change
+%     \tableofcontents
+%     \listoffigures
+%     \listoftables
+%     \listofalgorithms
+% }
 
-% Nomenclature
-\input{Nomenclature/nomenclature}
-\printnomenclature[3cm]
-\thispagestyle{empty}
+% % Nomenclature
+% \input{Nomenclature/nomenclature}
+% \printnomenclature[3cm]
+% \thispagestyle{empty}
 
 % % Notes
 % \newpage
@@ -233,83 +218,83 @@ Extension=.otf,
 \footOn
 
 
-% ------------------------------------------------------------------------------
-% Chapters
-% ------------------------------------------------------------------------------
+% % ------------------------------------------------------------------------------
+% % Chapters
+% % ------------------------------------------------------------------------------
 
 
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}%
-\markboth{Introduction}{Introduction}%
-\input{Chapitres/Introduction}
+% \chapter*{Introduction}
+% \addcontentsline{toc}{chapter}{Introduction}%
+% \markboth{Introduction}{Introduction}%
+% \input{Chapitres/Introduction}
 
-\chapter{Le solaire thermique appliqué au bâtiment, un problème multi-objectifs}
-\input{Chapitres/Chap1-ContexteTravaux}
+% \chapter{Le solaire thermique appliqué au bâtiment, un problème multi-objectifs}
+% \input{Chapitres/Chap1-ContexteTravaux}
 
-\chapter{Modélisation détaillée d’un système solaire combiné innovant}
-\input{Chapitres/Chap2-ApprocheModelisation}
+% \chapter{Modélisation détaillée d’un système solaire combiné innovant}
+% \input{Chapitres/Chap2-ApprocheModelisation}
 
-\chapter{Développement d’une méthode d’aide à la décision}
-\input{Chapitres/Chap3-UnOutilAideDecision}
+% \chapter{Développement d’une méthode d’aide à la décision}
+% \input{Chapitres/Chap3-UnOutilAideDecision}
 
-\chapter{Optimisation multi-objectifs d’un \abr{SSC} couplé à une \abr{MEPOS}}
-\input{Chapitres/Chap4-OptimisationSystemeSolaire}
+% \chapter{Optimisation multi-objectifs d’un \abr{SSC} couplé à une \abr{MEPOS}}
+% \input{Chapitres/Chap4-OptimisationSystemeSolaire}
 
-\chapter*{Conclusions et Perspectives}
-\addcontentsline{toc}{chapter}{Conclusions et Perspectives}%
-\markboth{Conclusions et Perspectives}{Conclusions et Perspectives}%
-\input{Chapitres/Conclusion}
-
-
-% ------------------------------------------------------------------------------
-% Bibliography
-% ------------------------------------------------------------------------------
-\clearpage
-\thesisPrintbibliography
+% \chapter*{Conclusions et Perspectives}
+% \addcontentsline{toc}{chapter}{Conclusions et Perspectives}%
+% \markboth{Conclusions et Perspectives}{Conclusions et Perspectives}%
+% \input{Chapitres/Conclusion}
 
 
+% % ------------------------------------------------------------------------------
+% % Bibliography
+% % ------------------------------------------------------------------------------
+% \clearpage
+% \thesisPrintbibliography
 
-% ------------------------------------------------------------------------------
-% Appendix
-% ------------------------------------------------------------------------------
-\begin{thesisAppendices}
 
-\chapter{Énergie} % (fold)
-\label{cha:energie}
-\input{Annexes/primaire_finale_coefs}
 
-\chapter{Construction d’un bâtiment} % (fold)
-\label{cha:construction_batiment}
-\input{Annexes/construction}
+% % ------------------------------------------------------------------------------
+% % Appendix
+% % ------------------------------------------------------------------------------
+% \begin{thesisAppendices}
 
-\chapter{Bâtiment} % (fold)
-\label{cha:batiment}
-\clearpage
-\input{Annexes/vitrages}
-\input{Annexes/parois}
+% \chapter{Énergie} % (fold)
+% \label{cha:energie}
+% \input{Annexes/primaire_finale_coefs}
 
-\chapter{Modélisation du système solaire combiné} % (fold)
-\label{cha:systeme_solaire}
-\include{Annexes/ssc}
-\include{Annexes/modeles}
+% \chapter{Construction d’un bâtiment} % (fold)
+% \label{cha:construction_batiment}
+% \input{Annexes/construction}
 
-\chapter{Répartition des capteurs} % (fold)
-\label{cha:repartition_des_capteurs}
-\include{Annexes/packaging}
+% \chapter{Bâtiment} % (fold)
+% \label{cha:batiment}
+% \clearpage
+% \input{Annexes/vitrages}
+% \input{Annexes/parois}
 
-\chapter{Analyse de sensibilité} % (fold)
-\label{cha:analyse_de_sensibilite}
-\include{Annexes/sensibilite}
+% \chapter{Modélisation du système solaire combiné} % (fold)
+% \label{cha:systeme_solaire}
+% \include{Annexes/ssc}
+% \include{Annexes/modeles}
 
-\chapter{Création des méta-modèles} % (fold)
-\label{cha:creation_des_meta_modeles}
-\include{Annexes/meta-modele}
+% \chapter{Répartition des capteurs} % (fold)
+% \label{cha:repartition_des_capteurs}
+% \include{Annexes/packaging}
 
-\chapter{Optimisation multi-objectifs} % (fold)
-\label{cha:optimisation_multi_objectifs}
-\include{Annexes/optimization}
+% \chapter{Analyse de sensibilité} % (fold)
+% \label{cha:analyse_de_sensibilite}
+% \include{Annexes/sensibilite}
 
-\end{thesisAppendices}
+% \chapter{Création des méta-modèles} % (fold)
+% \label{cha:creation_des_meta_modeles}
+% \include{Annexes/meta-modele}
+
+% \chapter{Optimisation multi-objectifs} % (fold)
+% \label{cha:optimisation_multi_objectifs}
+% \include{Annexes/optimization}
+
+% \end{thesisAppendices}
 
 
 % ------------------------------------------------------------------------------
