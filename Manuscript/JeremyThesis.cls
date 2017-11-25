@@ -223,6 +223,13 @@
 % Prevent headings and footers to appear on empty pages
 \RequirePackage{emptypage}
 
+% New blank page
+\newcommand{\blankpage}{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
 % Add links as hyperlinks (numeric version) and in footnotes (printed version)
 \newcommand\fnref[2]{\href{#1}{#2}\footnote{\url{#1}}}
 
@@ -311,6 +318,7 @@
 
 % Used later in class
 \RequirePackage{tikz}
+
 
 
 % ------------------------------------------------------------------------------
