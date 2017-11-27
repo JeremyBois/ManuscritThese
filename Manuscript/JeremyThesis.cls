@@ -154,15 +154,16 @@
   \renewcommand{\sectionmark}[1]{\markright{\normalsize \textit{#1}}}
   \fancyfoot[LE, RO]{\thepage}
   \fancyfoot[C]{}
-  \fancyfoot[RE]{\nouppercase{\leftmark}}
-  \fancyfoot[LO]{\nouppercase{\rightmark}}
+  % Add some space from margin
+  \fancyfoot[RE]{\nouppercase{\leftmark}\  \hspace{1em} \ }
+  \fancyfoot[LO]{\ \hspace{1em} \ \nouppercase{\rightmark}}
 \else
   \renewcommand{\sectionmark}[1]{\markboth{\textit{\chaptername \enspace \large \thechapter}%
                                            \enspace \bullet \enspace%
                                            \textit{#1}}{}}
   \fancyfoot[R]{\thepage}
   \fancyfoot[C]{}
-  \fancyfoot[L]{\nouppercase{\leftmark}}
+  \fancyfoot[L]{\ \hspace{1em} \ \nouppercase{\leftmark}}
 \fi
 
 
@@ -326,8 +327,10 @@
 % ------------------------------------------------------------------------------
 % \mathbf not working with xelatex better to use /bm with bm package (sometimes required {{\Gamma}})
 \RequirePackage[separate-uncertainty=true,%
-                per-mode=symbol]{siunitx}               % Unit package
-\sisetup{output-decimal-marker={,}}                     % ... and in siunitx: dot with comma
+                per-mode=symbol,
+                mode=math]{siunitx}               % Unit package
+\sisetup{output-decimal-marker={,},
+         math-micro=\text{µ},text-micro=µ}              % ... and in siunitx: dot with comma
 
 \RequirePackage{amsmath, amssymb, amsthm, mathtools,bm} % Allow adding complex equations
 \RequirePackage{nicefrac}                               % for \nicefrac macro
